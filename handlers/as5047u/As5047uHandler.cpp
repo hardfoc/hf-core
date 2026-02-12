@@ -25,7 +25,7 @@
 #include <cstring>
 #include <algorithm>
 #include <cmath>
-#include "handlers/Logger.h"
+#include "handlers/logger/Logger.h"
 
 //======================================================//
 // AS5047U SPI ADAPTER IMPLEMENTATION

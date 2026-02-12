@@ -5,7 +5,7 @@
 #include <algorithm>
 #include "core/hf-core-utils/hf-utils-rtos-wrap/include/OsAbstraction.h"
 #include "core/hf-core-utils/hf-utils-rtos-wrap/include/OsUtility.h"
-#include "handlers/Logger.h"
+#include "handlers/logger/Logger.h"
 
 // ESP-IDF microsecond delay (available on ESP32 targets)
 #if defined(ESP_PLATFORM)

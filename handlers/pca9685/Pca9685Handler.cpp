@@ -21,7 +21,7 @@
  */
 
 #include "Pca9685Handler.h"
-#include "handlers/Logger.h"
+#include "handlers/logger/Logger.h"
 #include <cstring>
 #include <cmath>
 

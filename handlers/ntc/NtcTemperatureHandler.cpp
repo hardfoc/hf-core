@@ -14,7 +14,7 @@
 #include "NtcTemperatureHandler.h"
 #include "core/hf-core-drivers/external/hf-ntc-thermistor-driver/include/NtcThermistor.h"
 #include "core/hf-core-drivers/internal/hf-internal-interface-wrap/inc/base/BaseAdc.h"
-#include "handlers/Logger.h"
+#include "handlers/logger/Logger.h"
 #include "core/hf-core-utils/hf-utils-rtos-wrap/include/OsAbstraction.h"
 
 static const char* TAG = "NtcTempHandler";

@@ -22,7 +22,7 @@
 #include <cmath>
 #include <cstdio>
 #include <cstring>
-#include "handlers/Logger.h"
+#include "handlers/logger/Logger.h"
 
 // SH-2 error codes for mapping
 extern "C" {
