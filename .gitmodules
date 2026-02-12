@@ -1,0 +1,6 @@
+[submodule "hf-core-drivers"]
+	path = hf-core-drivers
+	url = https://github.com/hardfoc/hf-core-drivers.git
+[submodule "hf-core-utils"]
+	path = hf-core-utils
+	url = https://github.com/hardfoc/hf-core-utils.git
