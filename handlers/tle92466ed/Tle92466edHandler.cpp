@@ -25,6 +25,49 @@ HalSpiTle92466edComm::HalSpiTle92466edComm(
     : spi_(spi), resn_(resn), en_(en), faultn_(faultn) {}
 
 tle92466ed::CommResult<void> HalSpiTle92466edComm::Init() noexcept {
+    if (!spi_.EnsureInitialized()) {
+        last_error_ = tle92466ed::CommError::HardwareNotReady;
+        return std::unexpected(last_error_);
+    }
+
+    // Configure required control pins to known-safe defaults.
+    if (resn_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT) !=
+        hf_gpio_err_t::GPIO_SUCCESS) {
+        last_error_ = tle92466ed::CommError::HardwareNotReady;
+        return std::unexpected(last_error_);
+    }
+    resn_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
+    if (!resn_.EnsureInitialized() ||
+        resn_.SetInactive() != hf_gpio_err_t::GPIO_SUCCESS) {
+        last_error_ = tle92466ed::CommError::HardwareNotReady;
+        return std::unexpected(last_error_);
+    }
+
+    if (en_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT) !=
+        hf_gpio_err_t::GPIO_SUCCESS) {
+        last_error_ = tle92466ed::CommError::HardwareNotReady;
+        return std::unexpected(last_error_);
+    }
+    en_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH);
+    if (!en_.EnsureInitialized() ||
+        en_.SetInactive() != hf_gpio_err_t::GPIO_SUCCESS) {
+        last_error_ = tle92466ed::CommError::HardwareNotReady;
+        return std::unexpected(last_error_);
+    }
+
+    if (faultn_) {
+        if (faultn_->SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_INPUT) !=
+            hf_gpio_err_t::GPIO_SUCCESS) {
+            last_error_ = tle92466ed::CommError::HardwareNotReady;
+            return std::unexpected(last_error_);
+        }
+        faultn_->SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
+        if (!faultn_->EnsureInitialized()) {
+            last_error_ = tle92466ed::CommError::HardwareNotReady;
+            return std::unexpected(last_error_);
+        }
+    }
+
     initialized_ = true;
     last_error_ = tle92466ed::CommError::None;
     return {};
@@ -119,6 +162,11 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::ClearErrors() noexcept {
 
 tle92466ed::CommResult<void> HalSpiTle92466edComm::GpioSet(
     tle92466ed::CtrlPin pin, tle92466ed::GpioSignal signal) noexcept {
+    if (!initialized_) {
+        last_error_ = tle92466ed::CommError::HardwareNotReady;
+        return std::unexpected(last_error_);
+    }
+
     BaseGpio* gpio = nullptr;
 
     switch (pin) {
@@ -126,24 +174,39 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::GpioSet(
         case tle92466ed::CtrlPin::EN:     gpio = &en_;     break;
         case tle92466ed::CtrlPin::FAULTN: gpio = faultn_;  break;
         default:
-            return std::unexpected(tle92466ed::CommError::InvalidParameter);
+            last_error_ = tle92466ed::CommError::InvalidParameter;
+            return std::unexpected(last_error_);
     }
 
     if (gpio == nullptr) {
-        return std::unexpected(tle92466ed::CommError::InvalidParameter);
+        last_error_ = tle92466ed::CommError::InvalidParameter;
+        return std::unexpected(last_error_);
     }
 
     // BaseGpio active level is configured per-pin — use SetActive/SetInactive
+    hf_gpio_err_t gpio_err = hf_gpio_err_t::GPIO_SUCCESS;
     if (signal == tle92466ed::GpioSignal::ACTIVE) {
-        gpio->SetActive();
+        gpio_err = gpio->SetActive();
     } else {
-        gpio->SetInactive();
+        gpio_err = gpio->SetInactive();
     }
+
+    if (gpio_err != hf_gpio_err_t::GPIO_SUCCESS) {
+        last_error_ = tle92466ed::CommError::BusError;
+        return std::unexpected(last_error_);
+    }
+
+    last_error_ = tle92466ed::CommError::None;
     return {};
 }
 
 tle92466ed::CommResult<tle92466ed::GpioSignal> HalSpiTle92466edComm::GpioRead(
     tle92466ed::CtrlPin pin) noexcept {
+    if (!initialized_) {
+        last_error_ = tle92466ed::CommError::HardwareNotReady;
+        return std::unexpected(last_error_);
+    }
+
     BaseGpio* gpio = nullptr;
 
     switch (pin) {
@@ -151,19 +214,23 @@ tle92466ed::CommResult<tle92466ed::GpioSignal> HalSpiTle92466edComm::GpioRead(
         case tle92466ed::CtrlPin::EN:     gpio = &en_;     break;
         case tle92466ed::CtrlPin::FAULTN: gpio = faultn_;  break;
         default:
-            return std::unexpected(tle92466ed::CommError::InvalidParameter);
+            last_error_ = tle92466ed::CommError::InvalidParameter;
+            return std::unexpected(last_error_);
     }
 
     if (gpio == nullptr) {
-        return std::unexpected(tle92466ed::CommError::InvalidParameter);
+        last_error_ = tle92466ed::CommError::InvalidParameter;
+        return std::unexpected(last_error_);
     }
 
     bool is_active = false;
     auto err = gpio->IsActive(is_active);
     if (err != hf_gpio_err_t::GPIO_SUCCESS) {
-        return std::unexpected(tle92466ed::CommError::BusError);
+        last_error_ = tle92466ed::CommError::BusError;
+        return std::unexpected(last_error_);
     }
 
+    last_error_ = tle92466ed::CommError::None;
     return is_active ? tle92466ed::GpioSignal::ACTIVE
                      : tle92466ed::GpioSignal::INACTIVE;
 }
@@ -284,6 +351,7 @@ bool Tle92466edHandler::ConfigureChannel(uint8_t channel,
                                           const tle92466ed::ChannelConfig& config) noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_ || !driver_) return false;
+    if (channel >= kNumChannels) return false;
     auto result = driver_->ConfigureChannel(toChannel(channel), config);
     return result.has_value();
 }
@@ -291,6 +359,7 @@ bool Tle92466edHandler::ConfigureChannel(uint8_t channel,
 bool Tle92466edHandler::EnableChannel(uint8_t channel) noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_ || !driver_) return false;
+    if (channel >= kNumChannels) return false;
     auto result = driver_->EnableChannel(toChannel(channel), true);
     return result.has_value();
 }
@@ -298,6 +367,7 @@ bool Tle92466edHandler::EnableChannel(uint8_t channel) noexcept {
 bool Tle92466edHandler::DisableChannel(uint8_t channel) noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_ || !driver_) return false;
+    if (channel >= kNumChannels) return false;
     auto result = driver_->EnableChannel(toChannel(channel), false);
     return result.has_value();
 }
@@ -319,6 +389,7 @@ bool Tle92466edHandler::DisableAllChannels() noexcept {
 bool Tle92466edHandler::SetChannelCurrent(uint8_t channel, uint16_t current_ma) noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_ || !driver_) return false;
+    if (channel >= kNumChannels) return false;
     auto result = driver_->SetCurrentSetpoint(toChannel(channel), current_ma);
     return result.has_value();
 }
@@ -327,6 +398,7 @@ bool Tle92466edHandler::ConfigurePwmRaw(uint8_t channel, uint8_t mantissa,
                                          uint8_t exponent, bool low_freq_range) noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_ || !driver_) return false;
+    if (channel >= kNumChannels) return false;
     auto result = driver_->ConfigurePwmPeriodRaw(toChannel(channel), mantissa,
                                                   exponent, low_freq_range);
     return result.has_value();
@@ -365,6 +437,7 @@ bool Tle92466edHandler::GetChannelDiagnostics(uint8_t channel,
                                                tle92466ed::ChannelDiagnostics& diag) noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_ || !driver_) return false;
+    if (channel >= kNumChannels) return false;
     auto result = driver_->GetChannelDiagnostics(toChannel(channel));
     if (!result) return false;
     diag = *result;

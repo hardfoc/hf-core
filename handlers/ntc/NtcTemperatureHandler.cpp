@@ -17,6 +17,10 @@
 
 static const char* TAG = "NtcTempHandler";
 
+RtosMutex NtcTemperatureHandler::callback_registry_mutex_{};
+std::array<NtcTemperatureHandler*, NtcTemperatureHandler::kMonitoringContextSlots>
+    NtcTemperatureHandler::callback_registry_ = {};
+
 //--------------------------------------
 //  NtcTemperatureHandler Implementation
 //--------------------------------------
@@ -33,6 +37,7 @@ NtcTemperatureHandler::NtcTemperatureHandler(BaseAdc* adc_interface,
     , continuous_callback_(nullptr)
     , continuous_user_data_(nullptr)
     , monitoring_timer_()
+    , monitoring_context_id_(0)
     , calibration_offset_(0.0f)
     , statistics_({})
     , diagnostics_({}) {
@@ -76,6 +81,7 @@ NtcTemperatureHandler::NtcTemperatureHandler(NtcType ntc_type, BaseAdc* adc_inte
     , continuous_callback_(nullptr)
     , continuous_user_data_(nullptr)
     , monitoring_timer_()
+    , monitoring_context_id_(0)
     , calibration_offset_(0.0f)
     , statistics_({})
     , diagnostics_({}) {
@@ -123,6 +129,8 @@ NtcTemperatureHandler::~NtcTemperatureHandler() noexcept {
     
     // Clean up timer (PeriodicTimer handles its own cleanup in destructor)
     monitoring_timer_.Destroy();
+    UnregisterMonitoringContext(monitoring_context_id_);
+    monitoring_context_id_ = 0;
     
     // Clean up thermistor
     if (ntc_thermistor_) {
@@ -227,6 +235,8 @@ bool NtcTemperatureHandler::Deinitialize() noexcept {
     
     // Clean up timer
     monitoring_timer_.Destroy();
+    UnregisterMonitoringContext(monitoring_context_id_);
+    monitoring_context_id_ = 0;
     
     // Deinitialize thermistor (must happen before adapter reset)
     if (ntc_thermistor_) {
@@ -398,12 +408,22 @@ hf_temp_err_t NtcTemperatureHandler::StartContinuousMonitoring(hf_u32_t sample_r
         StopContinuousMonitoring();
     }
     
-    // Calculate period in milliseconds
-    const uint32_t period_ms = 1000U / sample_rate_hz;
+    // Calculate period in milliseconds (clamp to 1ms minimum).
+    const uint32_t period_ms = (sample_rate_hz >= 1000U)
+                                   ? 1U
+                                   : (1000U / sample_rate_hz);
+
+    monitoring_context_id_ = RegisterMonitoringContext(this);
+    if (monitoring_context_id_ == 0) {
+        Logger::GetInstance().Error(TAG, "No callback context slot available");
+        return TEMP_ERR_RESOURCE_UNAVAILABLE;
+    }
     
     // Create hardware-agnostic periodic timer
     if (!monitoring_timer_.Create("ntc_monitor", ContinuousMonitoringCallback,
-                                  reinterpret_cast<uint32_t>(this), period_ms, true)) {
+                                  monitoring_context_id_, period_ms, true)) {
+        UnregisterMonitoringContext(monitoring_context_id_);
+        monitoring_context_id_ = 0;
         Logger::GetInstance().Error(TAG, "Failed to create monitoring timer");
         return TEMP_ERR_RESOURCE_UNAVAILABLE;
     }
@@ -426,6 +446,8 @@ hf_temp_err_t NtcTemperatureHandler::StopContinuousMonitoring() noexcept {
     
     // Stop and destroy timer
     monitoring_timer_.Stop();
+    UnregisterMonitoringContext(monitoring_context_id_);
+    monitoring_context_id_ = 0;
     monitoring_timer_.Destroy();
     
     continuous_callback_ = nullptr;
@@ -903,7 +925,7 @@ hf_temp_err_t NtcTemperatureHandler::ConvertNtcError(NtcError ntc_error) const n
 //--------------------------------------
 
 void NtcTemperatureHandler::ContinuousMonitoringCallback(uint32_t arg) {
-    auto* handler = reinterpret_cast<NtcTemperatureHandler*>(arg);
+    auto* handler = ResolveMonitoringContext(arg);
     if (handler == nullptr) {
         return;
     }
@@ -917,4 +939,49 @@ void NtcTemperatureHandler::ContinuousMonitoringCallback(uint32_t arg) {
     if (handler->continuous_callback_ != nullptr) {
         handler->continuous_callback_(handler, &reading, handler->continuous_user_data_);
     }
-} 
+}
+
+hf_u32_t NtcTemperatureHandler::RegisterMonitoringContext(NtcTemperatureHandler* handler) noexcept {
+    if (handler == nullptr) {
+        return 0;
+    }
+
+    MutexLockGuard lock(callback_registry_mutex_);
+    if (!lock.IsLocked()) {
+        return 0;
+    }
+
+    for (hf_u32_t idx = 0; idx < kMonitoringContextSlots; ++idx) {
+        if (callback_registry_[idx] == nullptr) {
+            callback_registry_[idx] = handler;
+            return idx + 1;  // Reserve 0 as invalid ID.
+        }
+    }
+    return 0;
+}
+
+void NtcTemperatureHandler::UnregisterMonitoringContext(hf_u32_t context_id) noexcept {
+    if (context_id == 0 || context_id > kMonitoringContextSlots) {
+        return;
+    }
+
+    MutexLockGuard lock(callback_registry_mutex_);
+    if (!lock.IsLocked()) {
+        return;
+    }
+
+    callback_registry_[context_id - 1] = nullptr;
+}
+
+NtcTemperatureHandler* NtcTemperatureHandler::ResolveMonitoringContext(hf_u32_t context_id) noexcept {
+    if (context_id == 0 || context_id > kMonitoringContextSlots) {
+        return nullptr;
+    }
+
+    MutexLockGuard lock(callback_registry_mutex_);
+    if (!lock.IsLocked()) {
+        return nullptr;
+    }
+
+    return callback_registry_[context_id - 1];
+}

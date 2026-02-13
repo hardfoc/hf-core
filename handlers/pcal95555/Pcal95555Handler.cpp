@@ -423,6 +423,15 @@ hf_gpio_err_t Pcal95555Handler::RegisterPinInterrupt(
 
     MutexLockGuard lock(handler_mutex_);
 
+    if (!pcal95555_driver_) {
+        return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    }
+
+    // Callback-based interrupt dispatch requires a wired hardware INT pin.
+    if (!interrupt_pin_) {
+        return hf_gpio_err_t::GPIO_ERR_UNSUPPORTED_OPERATION;
+    }
+
     auto& gpio_pin = pin_registry_[pin];
     if (!gpio_pin) return hf_gpio_err_t::GPIO_ERR_PIN_NOT_FOUND;
 
@@ -445,8 +454,17 @@ hf_gpio_err_t Pcal95555Handler::RegisterPinInterrupt(
     }
 
     // Enable interrupt for this pin in the driver (unmask it).
-    if (pcal95555_driver_) {
-        pcal95555_driver_->ConfigureInterrupt(pin, InterruptState::Enabled);
+    if (!pcal95555_driver_->ConfigureInterrupt(pin, InterruptState::Enabled)) {
+        // Roll back pin callback state when driver-side configuration fails.
+        gpio_pin->interrupt_callback_ = nullptr;
+        gpio_pin->interrupt_user_data_ = nullptr;
+        gpio_pin->interrupt_trigger_ =
+            hf_gpio_interrupt_trigger_t::HF_GPIO_INTERRUPT_TRIGGER_NONE;
+        gpio_pin->interrupt_enabled_ = false;
+
+        return pcal95555_driver_->HasAgileIO()
+                   ? hf_gpio_err_t::GPIO_ERR_FAILURE
+                   : hf_gpio_err_t::GPIO_ERR_UNSUPPORTED_OPERATION;
     }
 
     return hf_gpio_err_t::GPIO_SUCCESS;
@@ -469,7 +487,11 @@ hf_gpio_err_t Pcal95555Handler::UnregisterPinInterrupt(hf_pin_num_t pin) noexcep
 
     // Mask interrupt for this pin in the driver.
     if (pcal95555_driver_) {
-        pcal95555_driver_->ConfigureInterrupt(pin, InterruptState::Disabled);
+        if (!pcal95555_driver_->ConfigureInterrupt(pin, InterruptState::Disabled)) {
+            return pcal95555_driver_->HasAgileIO()
+                       ? hf_gpio_err_t::GPIO_ERR_FAILURE
+                       : hf_gpio_err_t::GPIO_ERR_UNSUPPORTED_OPERATION;
+        }
     }
 
     return hf_gpio_err_t::GPIO_SUCCESS;
@@ -874,7 +896,7 @@ bool Pcal95555GpioPin::IsPinAvailable() const noexcept {
 
 hf_gpio_err_t Pcal95555GpioPin::SupportsInterrupts() const noexcept {
     if (!parent_handler_) return hf_gpio_err_t::GPIO_ERR_NULL_POINTER;
-    return parent_handler_->HasAgileIO()
+    return (parent_handler_->HasAgileIO() && parent_handler_->HasInterruptSupport())
                ? hf_gpio_err_t::GPIO_SUCCESS
                : hf_gpio_err_t::GPIO_ERR_UNSUPPORTED_OPERATION;
 }

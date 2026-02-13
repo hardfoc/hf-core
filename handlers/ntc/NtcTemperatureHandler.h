@@ -21,6 +21,7 @@
 
 #include <memory>
 #include <cfloat>
+#include <array>
 
 //--------------------------------------
 //  NTC ADC Adapter (BaseAdc → ntc::AdcInterface bridge)
@@ -406,6 +407,7 @@ private:
     hf_temp_reading_callback_t continuous_callback_; ///< Continuous monitoring callback
     void* continuous_user_data_;            ///< Continuous monitoring callback user data
     PeriodicTimer monitoring_timer_;        ///< Hardware-agnostic periodic timer
+    hf_u32_t monitoring_context_id_;        ///< Timer callback context ID (0 = unassigned)
     float calibration_offset_;             ///< Current calibration offset
     
     // Statistics and diagnostics
@@ -456,9 +458,20 @@ private:
     
     /**
      * @brief Static callback for continuous monitoring timer
-     * @param arg Timer callback argument (pointer to handler instance)
+     * @param arg Timer callback argument (registered context ID)
      */
     static void ContinuousMonitoringCallback(uint32_t arg);
+
+    /**
+     * @brief Register/unregister callback context IDs for timer callbacks.
+     */
+    static hf_u32_t RegisterMonitoringContext(NtcTemperatureHandler* handler) noexcept;
+    static void UnregisterMonitoringContext(hf_u32_t context_id) noexcept;
+    static NtcTemperatureHandler* ResolveMonitoringContext(hf_u32_t context_id) noexcept;
+
+    static constexpr hf_u32_t kMonitoringContextSlots = 8;
+    static RtosMutex callback_registry_mutex_;
+    static std::array<NtcTemperatureHandler*, kMonitoringContextSlots> callback_registry_;
     
     /**
      * @brief Update BaseTemperature diagnostics

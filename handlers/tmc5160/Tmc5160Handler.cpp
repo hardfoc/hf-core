@@ -51,13 +51,11 @@ tmc51x0::Result<void> HalSpiTmc5160Comm::GpioSet(
     if (gpio == nullptr) {
         return tmc51x0::Result<void>(tmc51x0::ErrorCode::UNSUPPORTED);
     }
-    // Map logical signal to physical GPIO state
-    hf_gpio_state_t state;
-    if (signal == tmc51x0::GpioSignal::ACTIVE) {
-        state = hf_gpio_state_t::HF_GPIO_STATE_ACTIVE;
-    } else {
-        state = hf_gpio_state_t::HF_GPIO_STATE_INACTIVE;
-    }
+    const bool pin_active_high = active_levels_.GetActiveLevel(pin);
+    const bool want_active = (signal == tmc51x0::GpioSignal::ACTIVE) == pin_active_high;
+    hf_gpio_state_t state = want_active
+                                ? hf_gpio_state_t::HF_GPIO_STATE_ACTIVE
+                                : hf_gpio_state_t::HF_GPIO_STATE_INACTIVE;
     auto err = gpio->SetState(state);
     if (err != hf_gpio_err_t::GPIO_SUCCESS) {
         return tmc51x0::Result<void>(tmc51x0::ErrorCode::HARDWARE_ERROR);
@@ -76,7 +74,8 @@ tmc51x0::Result<tmc51x0::GpioSignal> HalSpiTmc5160Comm::GpioRead(
     if (err != hf_gpio_err_t::GPIO_SUCCESS) {
         return tmc51x0::Result<tmc51x0::GpioSignal>(tmc51x0::ErrorCode::HARDWARE_ERROR);
     }
-    tmc51x0::GpioSignal signal = is_active
+    const bool pin_active_high = active_levels_.GetActiveLevel(pin);
+    tmc51x0::GpioSignal signal = (is_active == pin_active_high)
         ? tmc51x0::GpioSignal::ACTIVE
         : tmc51x0::GpioSignal::INACTIVE;
     return tmc51x0::Result<tmc51x0::GpioSignal>(signal);
@@ -154,12 +153,11 @@ tmc51x0::Result<void> HalUartTmc5160Comm::GpioSet(
     if (gpio == nullptr) {
         return tmc51x0::Result<void>(tmc51x0::ErrorCode::UNSUPPORTED);
     }
-    hf_gpio_state_t state;
-    if (signal == tmc51x0::GpioSignal::ACTIVE) {
-        state = hf_gpio_state_t::HF_GPIO_STATE_ACTIVE;
-    } else {
-        state = hf_gpio_state_t::HF_GPIO_STATE_INACTIVE;
-    }
+    const bool pin_active_high = active_levels_.GetActiveLevel(pin);
+    const bool want_active = (signal == tmc51x0::GpioSignal::ACTIVE) == pin_active_high;
+    hf_gpio_state_t state = want_active
+                                ? hf_gpio_state_t::HF_GPIO_STATE_ACTIVE
+                                : hf_gpio_state_t::HF_GPIO_STATE_INACTIVE;
     auto err = gpio->SetState(state);
     if (err != hf_gpio_err_t::GPIO_SUCCESS) {
         return tmc51x0::Result<void>(tmc51x0::ErrorCode::HARDWARE_ERROR);
@@ -178,7 +176,8 @@ tmc51x0::Result<tmc51x0::GpioSignal> HalUartTmc5160Comm::GpioRead(
     if (err != hf_gpio_err_t::GPIO_SUCCESS) {
         return tmc51x0::Result<tmc51x0::GpioSignal>(tmc51x0::ErrorCode::HARDWARE_ERROR);
     }
-    tmc51x0::GpioSignal signal = is_active
+    const bool pin_active_high = active_levels_.GetActiveLevel(pin);
+    tmc51x0::GpioSignal signal = (is_active == pin_active_high)
         ? tmc51x0::GpioSignal::ACTIVE
         : tmc51x0::GpioSignal::INACTIVE;
     return tmc51x0::Result<tmc51x0::GpioSignal>(signal);

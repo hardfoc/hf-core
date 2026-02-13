@@ -25,12 +25,54 @@ HalSpiMax22200Comm::HalSpiMax22200Comm(
     : spi_(spi), enable_(enable), cmd_(cmd), fault_(fault) {}
 
 bool HalSpiMax22200Comm::Initialize() {
+    if (!spi_.EnsureInitialized()) {
+        initialized_ = false;
+        return false;
+    }
+
+    if (enable_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT) !=
+        hf_gpio_err_t::GPIO_SUCCESS) {
+        initialized_ = false;
+        return false;
+    }
+    enable_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH);
+    if (!enable_.EnsureInitialized() ||
+        enable_.SetInactive() != hf_gpio_err_t::GPIO_SUCCESS) {
+        initialized_ = false;
+        return false;
+    }
+
+    if (cmd_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT) !=
+        hf_gpio_err_t::GPIO_SUCCESS) {
+        initialized_ = false;
+        return false;
+    }
+    cmd_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH);
+    if (!cmd_.EnsureInitialized() ||
+        cmd_.SetInactive() != hf_gpio_err_t::GPIO_SUCCESS) {
+        initialized_ = false;
+        return false;
+    }
+
+    if (fault_) {
+        if (fault_->SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_INPUT) !=
+            hf_gpio_err_t::GPIO_SUCCESS) {
+            initialized_ = false;
+            return false;
+        }
+        fault_->SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
+        if (!fault_->EnsureInitialized()) {
+            initialized_ = false;
+            return false;
+        }
+    }
+
     initialized_ = true;
     return true;
 }
 
 bool HalSpiMax22200Comm::Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) {
-    if (!initialized_ || tx_data == nullptr || rx_data == nullptr || length == 0) {
+    if (!IsReady() || tx_data == nullptr || rx_data == nullptr || length == 0) {
         return false;
     }
     auto err = spi_.Transfer(tx_data, rx_data, static_cast<hf_u16_t>(length), hf_u32_t{0});
@@ -48,7 +90,11 @@ bool HalSpiMax22200Comm::Configure(uint32_t /*speed_hz*/, uint8_t /*mode*/, bool
 }
 
 bool HalSpiMax22200Comm::IsReady() const {
-    return initialized_;
+    if (!initialized_) return false;
+    if (!spi_.IsInitialized()) return false;
+    if (!enable_.IsInitialized() || !cmd_.IsInitialized()) return false;
+    if (fault_ && !fault_->IsInitialized()) return false;
+    return true;
 }
 
 void HalSpiMax22200Comm::DelayUs(uint32_t us) {
@@ -65,6 +111,8 @@ void HalSpiMax22200Comm::DelayUs(uint32_t us) {
 }
 
 void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal signal) {
+    if (!initialized_) return;
+
     BaseGpio* gpio = nullptr;
 
     switch (pin) {
@@ -76,14 +124,22 @@ void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal sig
 
     if (gpio == nullptr) return;
 
+    hf_gpio_err_t gpio_err = hf_gpio_err_t::GPIO_SUCCESS;
     if (signal == max22200::GpioSignal::ACTIVE) {
-        gpio->SetActive();
+        gpio_err = gpio->SetActive();
     } else {
-        gpio->SetInactive();
+        gpio_err = gpio->SetInactive();
+    }
+
+    if (gpio_err != hf_gpio_err_t::GPIO_SUCCESS) {
+        initialized_ = false;
+        Logger::GetInstance().Error(TAG, "GPIO control failed for MAX22200 control pin");
     }
 }
 
 bool HalSpiMax22200Comm::GpioRead(max22200::CtrlPin pin, max22200::GpioSignal& signal) {
+    if (!IsReady()) return false;
+
     BaseGpio* gpio = nullptr;
 
     switch (pin) {
@@ -191,6 +247,7 @@ bool Max22200Handler::ConfigureChannel(uint8_t channel,
                                         const max22200::ChannelConfig& config) noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_ || !driver_) return false;
+    if (channel >= kNumChannels) return false;
     return (driver_->ConfigureChannel(channel, config) == max22200::DriverStatus::OK);
 }
 
@@ -198,6 +255,7 @@ bool Max22200Handler::SetupCdrChannel(uint8_t channel, uint16_t hit_ma,
                                        uint16_t hold_ma, float hit_time_ms) noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_ || !driver_) return false;
+    if (channel >= kNumChannels) return false;
     auto s1 = driver_->SetHitCurrentMa(channel, hit_ma);
     if (s1 != max22200::DriverStatus::OK) return false;
     auto s2 = driver_->SetHoldCurrentMa(channel, hold_ma);
@@ -210,6 +268,7 @@ bool Max22200Handler::SetupVdrChannel(uint8_t channel, float hit_duty_pct,
                                        float hold_duty_pct, float hit_time_ms) noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_ || !driver_) return false;
+    if (channel >= kNumChannels) return false;
     auto s1 = driver_->SetHitDutyPercent(channel, hit_duty_pct);
     if (s1 != max22200::DriverStatus::OK) return false;
     auto s2 = driver_->SetHoldDutyPercent(channel, hold_duty_pct);
@@ -221,12 +280,14 @@ bool Max22200Handler::SetupVdrChannel(uint8_t channel, float hit_duty_pct,
 bool Max22200Handler::EnableChannel(uint8_t channel) noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_ || !driver_) return false;
+    if (channel >= kNumChannels) return false;
     return (driver_->EnableChannel(channel) == max22200::DriverStatus::OK);
 }
 
 bool Max22200Handler::DisableChannel(uint8_t channel) noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_ || !driver_) return false;
+    if (channel >= kNumChannels) return false;
     return (driver_->DisableChannel(channel) == max22200::DriverStatus::OK);
 }
 
@@ -245,6 +306,7 @@ bool Max22200Handler::DisableAllChannels() noexcept {
 bool Max22200Handler::IsChannelEnabled(uint8_t channel) noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_ || !driver_) return false;
+    if (channel >= kNumChannels) return false;
     // Read STATUS to check channels_on_mask
     max22200::StatusConfig status{};
     auto s = driver_->ReadStatus(status);
@@ -268,6 +330,7 @@ bool Max22200Handler::GetChannelFaults(uint8_t channel,
                                         max22200::FaultStatus& faults) noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_ || !driver_) return false;
+    if (channel >= kNumChannels) return false;
     // Read fault register (covers all channels)
     auto s = driver_->ReadFaultRegister(faults);
     (void)channel; // FaultStatus is device-wide
