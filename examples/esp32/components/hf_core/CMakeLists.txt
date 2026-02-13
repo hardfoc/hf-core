@@ -24,10 +24,14 @@ set(UTILS_ROOT "${CORE_ROOT}/hf-core-utils")
 file(GLOB HANDLER_SRCS
     "${HANDLER_ROOT}/as5047u/*.cpp"
     "${HANDLER_ROOT}/bno08x/*.cpp"
+    "${HANDLER_ROOT}/max22200/*.cpp"
     "${HANDLER_ROOT}/pca9685/*.cpp"
     "${HANDLER_ROOT}/pcal95555/*.cpp"
     "${HANDLER_ROOT}/ntc/*.cpp"
+    "${HANDLER_ROOT}/tle92466ed/*.cpp"
+    "${HANDLER_ROOT}/tmc5160/*.cpp"
     "${HANDLER_ROOT}/tmc9660/*.cpp"
+    "${HANDLER_ROOT}/ws2812/*.cpp"
     "${HANDLER_ROOT}/logger/*.cpp"
 )
 
@@ -115,10 +119,14 @@ idf_component_register(
         # Handler includes (each handler directory + parent for includes like "handlers/xxx/Xxx.h")
         "${HANDLER_ROOT}/as5047u"
         "${HANDLER_ROOT}/bno08x"
+        "${HANDLER_ROOT}/max22200"
         "${HANDLER_ROOT}/pca9685"
         "${HANDLER_ROOT}/pcal95555"
         "${HANDLER_ROOT}/ntc"
+        "${HANDLER_ROOT}/tle92466ed"
+        "${HANDLER_ROOT}/tmc5160"
         "${HANDLER_ROOT}/tmc9660"
+        "${HANDLER_ROOT}/ws2812"
         "${HANDLER_ROOT}/logger"
         # Internal interface — base abstract classes
         "${DRIVER_INT}/hf-internal-interface-wrap/inc"
@@ -176,12 +184,12 @@ idf_component_register(
         esp_driver_rmt
 )
 
-# ── C++20 for all component sources ──────────────────────────────────────
-set_property(TARGET ${COMPONENT_LIB} PROPERTY CXX_STANDARD 20)
+# ── C++23 for all component sources (required for std::expected in TLE driver) ─
+set_property(TARGET ${COMPONENT_LIB} PROPERTY CXX_STANDARD 23)
 set_property(TARGET ${COMPONENT_LIB} PROPERTY CXX_STANDARD_REQUIRED ON)
 
-# ── WS2812 Kconfig defaults (provided here for builds without menuconfig) ─
-target_compile_definitions(${COMPONENT_LIB} PRIVATE
+# ── WS2812 Kconfig defaults (PUBLIC so consumers that include WS2812 headers get them) ─
+target_compile_definitions(${COMPONENT_LIB} PUBLIC
     CONFIG_WS2812_NUM_LEDS=1
     CONFIG_WS2812_LED_TYPE_RGB=1
     CONFIG_WS2812_T0H=350

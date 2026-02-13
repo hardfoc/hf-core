@@ -130,6 +130,71 @@ apps:
     ci_enabled: true
     featured: true
 
+  # ── TMC5160 Stepper Motor Driver Handler ───────────────────────────────
+  tmc5160_handler_test:
+    description: >
+      Comprehensive test of Tmc5160Handler: CRTP SPI/UART comm adapters,
+      initialization with DriverConfig, motor enable/disable, motion control
+      (position/velocity/acceleration), visitDriver() subsystem access,
+      StallGuard readback, diagnostics dump, status checks (overtemp/stall/
+      standstill), and pre-init error handling.
+    source_file: "handler_tests/tmc5160_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "TMC5160 on SPI bus, DRV_ENN/DIAG0/DIAG1 GPIOs"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── TLE92466ED Gate Driver Handler ─────────────────────────────────────
+  tle92466ed_handler_test:
+    description: >
+      Comprehensive test of Tle92466edHandler: CRTP SPI comm adapter,
+      initialization with GlobalConfig, 6-channel enable/disable/current/PWM,
+      fault report, watchdog kick/disable, device ID readback, diagnostics,
+      channel diagnostics, and pre-init error handling.
+    source_file: "handler_tests/tle92466ed_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "TLE92466ED on SPI bus, RESN/EN/FAULTN GPIOs"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── MAX22200 Solenoid / Motor Driver Handler ───────────────────────────
+  max22200_handler_test:
+    description: >
+      Comprehensive test of Max22200Handler: CRTP SPI comm adapter with CMD
+      pin two-phase protocol, initialization with BoardConfig, 8-channel
+      enable/disable/mask, CDR/VDR channel setup, fault readback, device ID,
+      soft reset, diagnostics, and pre-init error handling.
+    source_file: "handler_tests/max22200_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "MAX22200 on SPI bus, ENABLE/CMD/FAULT GPIOs"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── WS2812 LED Strip Handler ───────────────────────────────────────────
+  ws2812_handler_test:
+    description: >
+      Comprehensive test of Ws2812Handler: RMT-based LED control, pixel set
+      (individual + all), clear, show, brightness, animation effects (rainbow,
+      chase, breathe), tick/step, direct strip/animator access, diagnostics,
+      and pre-init error handling.
+    source_file: "handler_tests/ws2812_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "WS2812B LED strip on GPIO data pin"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
   # ===========================================================================
   # UTILS TESTS — Exercise platform utilities on real FreeRTOS
   # ===========================================================================

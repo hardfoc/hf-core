@@ -132,3 +132,77 @@
 #ifndef TMC9660_SPI_CLOCK_HZ
 #define TMC9660_SPI_CLOCK_HZ 4000000  // 4 MHz
 #endif
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TMC5160 STEPPER MOTOR DRIVER (SPI)
+// ═══════════════════════════════════════════════════════════════════════════
+
+#ifndef PIN_TMC5160_CS
+#define PIN_TMC5160_CS 37
+#endif
+#ifndef PIN_TMC5160_DRV_ENN
+#define PIN_TMC5160_DRV_ENN 38
+#endif
+#ifndef PIN_TMC5160_DIAG0
+#define PIN_TMC5160_DIAG0 39
+#endif
+#ifndef PIN_TMC5160_DIAG1
+#define PIN_TMC5160_DIAG1 40
+#endif
+#ifndef TMC5160_SPI_CLOCK_HZ
+#define TMC5160_SPI_CLOCK_HZ 4000000  // 4 MHz
+#endif
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TLE92466ED SOLENOID DRIVER (SPI)
+// ═══════════════════════════════════════════════════════════════════════════
+
+#ifndef PIN_TLE92466ED_CS
+#define PIN_TLE92466ED_CS 41
+#endif
+#ifndef PIN_TLE92466ED_RESN
+#define PIN_TLE92466ED_RESN 42
+#endif
+#ifndef PIN_TLE92466ED_EN
+#define PIN_TLE92466ED_EN 2
+#endif
+#ifndef PIN_TLE92466ED_FAULTN
+#define PIN_TLE92466ED_FAULTN 1
+#endif
+#ifndef TLE92466ED_SPI_CLOCK_HZ
+#define TLE92466ED_SPI_CLOCK_HZ 5000000  // 5 MHz
+#endif
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MAX22200 SOLENOID / MOTOR DRIVER (SPI)
+// ═══════════════════════════════════════════════════════════════════════════
+
+#ifndef PIN_MAX22200_CS
+#define PIN_MAX22200_CS 36
+#endif
+#ifndef PIN_MAX22200_ENABLE
+#define PIN_MAX22200_ENABLE 35
+#endif
+#ifndef PIN_MAX22200_CMD
+#define PIN_MAX22200_CMD 45
+#endif
+#ifndef PIN_MAX22200_FAULT
+#define PIN_MAX22200_FAULT 48
+#endif
+#ifndef MAX22200_SPI_CLOCK_HZ
+#define MAX22200_SPI_CLOCK_HZ 5000000  // 5 MHz
+#endif
+
+// ═══════════════════════════════════════════════════════════════════════════
+// WS2812 ADDRESSABLE LED STRIP (RMT)
+// ═══════════════════════════════════════════════════════════════════════════
+
+#ifndef PIN_WS2812_DATA
+#define PIN_WS2812_DATA 48
+#endif
+#ifndef WS2812_NUM_LEDS
+#define WS2812_NUM_LEDS 8
+#endif
+#ifndef WS2812_RMT_CHANNEL
+#define WS2812_RMT_CHANNEL 0
+#endif
