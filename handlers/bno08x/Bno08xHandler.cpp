@@ -109,31 +109,25 @@ uint32_t HalI2cBno08xComm::GetTimeUs() noexcept {
     return static_cast<uint32_t>(RtosTime::GetCurrentTimeUs());
 }
 
-void HalI2cBno08xComm::SetReset(bool state) noexcept {
-    if (!reset_gpio_) return;
-    // RSTN is active-low: state=true means assert reset (drive LOW)
-    // Using active-low GPIO: ACTIVE = LOW, INACTIVE = HIGH
-    if (state) {
-        reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_ACTIVE);
-    } else {
-        reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
+void HalI2cBno08xComm::GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept {
+    switch (pin) {
+        case bno08x::CtrlPin::RSTN:
+            if (!reset_gpio_) return;
+            // RSTN is configured as active-low in Open()
+            // ACTIVE -> SetState(ACTIVE) -> drives GPIO LOW (assert reset)
+            // INACTIVE -> SetState(INACTIVE) -> drives GPIO HIGH (release)
+            if (signal == bno08x::GpioSignal::ACTIVE) {
+                reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_ACTIVE);
+            } else {
+                reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
+            }
+            break;
+        case bno08x::CtrlPin::BOOTN:
+        case bno08x::CtrlPin::WAKE:
+        case bno08x::CtrlPin::PS0:
+        case bno08x::CtrlPin::PS1:
+            break; // Not wired for I2C
     }
-}
-
-void HalI2cBno08xComm::SetBoot(bool /*state*/) noexcept {
-    // Boot pin control not typically wired for I2C
-}
-
-void HalI2cBno08xComm::SetWake(bool /*state*/) noexcept {
-    // Wake pin not used for I2C
-}
-
-void HalI2cBno08xComm::SetPS0(bool /*state*/) noexcept {
-    // PS pins are typically hard-wired
-}
-
-void HalI2cBno08xComm::SetPS1(bool /*state*/) noexcept {
-    // PS pins are typically hard-wired
 }
 
 // ============================================================================
@@ -221,35 +215,30 @@ uint32_t HalSpiBno08xComm::GetTimeUs() noexcept {
     return static_cast<uint32_t>(RtosTime::GetCurrentTimeUs());
 }
 
-void HalSpiBno08xComm::SetReset(bool state) noexcept {
-    if (!reset_gpio_) return;
-    if (state) {
-        reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_ACTIVE);
-    } else {
-        reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
+void HalSpiBno08xComm::GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept {
+    switch (pin) {
+        case bno08x::CtrlPin::RSTN:
+            if (!reset_gpio_) return;
+            if (signal == bno08x::GpioSignal::ACTIVE) {
+                reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_ACTIVE);
+            } else {
+                reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
+            }
+            break;
+        case bno08x::CtrlPin::WAKE:
+            if (!wake_gpio_) return;
+            // WAKE is configured as active-low in Open()
+            if (signal == bno08x::GpioSignal::ACTIVE) {
+                wake_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_ACTIVE);
+            } else {
+                wake_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
+            }
+            break;
+        case bno08x::CtrlPin::BOOTN:
+        case bno08x::CtrlPin::PS0:
+        case bno08x::CtrlPin::PS1:
+            break; // Not wired in this SPI implementation
     }
-}
-
-void HalSpiBno08xComm::SetBoot(bool /*state*/) noexcept {
-    // Boot pin not typically wired
-}
-
-void HalSpiBno08xComm::SetWake(bool state) noexcept {
-    if (!wake_gpio_) return;
-    // WAKE is active-low: state=true means assert (drive LOW)
-    if (state) {
-        wake_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_ACTIVE);
-    } else {
-        wake_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
-    }
-}
-
-void HalSpiBno08xComm::SetPS0(bool /*state*/) noexcept {
-    // PS pins typically hard-wired
-}
-
-void HalSpiBno08xComm::SetPS1(bool /*state*/) noexcept {
-    // PS pins typically hard-wired
 }
 
 // ============================================================================

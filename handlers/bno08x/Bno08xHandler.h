@@ -182,16 +182,8 @@ public:
     /** @return Monotonic time in microseconds */
     uint32_t GetTimeUs() noexcept;
 
-    /** RSTN pin: true = assert reset (LOW), false = release. @param state Assert reset */
-    void SetReset(bool state) noexcept;
-    /** BOOTN pin for DFU (no-op if not wired). @param state true = LOW */
-    void SetBoot(bool state) noexcept;
-    /** WAKE pin (I2C: no-op). @param state true = drive LOW */
-    void SetWake(bool state) noexcept;
-    /** PS0 protocol-select (no-op if hard-wired). @param state Logic level */
-    void SetPS0(bool state) noexcept;
-    /** PS1 protocol-select (no-op if hard-wired). @param state Logic level */
-    void SetPS1(bool state) noexcept;
+    /** Set control pin to specified signal state. @param pin CtrlPin to drive @param signal ACTIVE or INACTIVE */
+    void GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept;
 
 private:
     BaseI2c& i2c_;
@@ -239,16 +231,8 @@ public:
     /** @return Monotonic time in microseconds */
     uint32_t GetTimeUs() noexcept;
 
-    /** RSTN pin: true = assert reset (LOW), false = release. @param state Assert reset */
-    void SetReset(bool state) noexcept;
-    /** BOOTN pin for DFU (no-op if not wired). @param state true = LOW */
-    void SetBoot(bool state) noexcept;
-    /** WAKE pin: true = drive LOW (wake sensor). @param state Assert wake */
-    void SetWake(bool state) noexcept;
-    /** PS0 protocol-select (no-op if hard-wired). @param state Logic level */
-    void SetPS0(bool state) noexcept;
-    /** PS1 protocol-select (no-op if hard-wired). @param state Logic level */
-    void SetPS1(bool state) noexcept;
+    /** Set control pin to specified signal state. @param pin CtrlPin to drive @param signal ACTIVE or INACTIVE */
+    void GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept;
 
 private:
     BaseSpi& spi_;
