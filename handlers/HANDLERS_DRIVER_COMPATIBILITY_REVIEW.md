@@ -1,411 +1,254 @@
-# Handlers vs External Drivers Compatibility Review
+# Handlers vs External Drivers Compatibility Reanalysis
 
 Date: 2026-02-12  
-Branch: `cursor/handlers-drivers-compatibility-2013`
+Branch: `cursor/handlers-drivers-compatibility-2013`  
+Baseline after sync: rebased onto `origin/main` (`0d32fda`)
+
+## Reanalysis sync actions performed
+
+- `git fetch origin cursor/handlers-drivers-compatibility-2013 main`
+- `git pull origin cursor/handlers-drivers-compatibility-2013`
+- `git rebase origin/main`
+- `git submodule sync --recursive`
+- `git submodule update --init --recursive`
+
+Submodules are now aligned to the rebased superproject pointers.
+
+---
 
 ## Scope
-
-This review evaluates:
-
-1. How each handler maps to its underlying external driver contract.
-2. How well handlers expose functionality for wider manager-level systems using `Base*` interfaces.
-3. Build-time, runtime, and integration risks that impact portability and manager compatibility.
 
 Handlers reviewed:
 
 - `handlers/as5047u/As5047uHandler.*`
 - `handlers/bno08x/Bno08xHandler.*`
+- `handlers/max22200/Max22200Handler.*`
+- `handlers/ntc/NtcTemperatureHandler.*`
 - `handlers/pca9685/Pca9685Handler.*`
 - `handlers/pcal95555/Pcal95555Handler.*`
-- `handlers/ntc/NtcTemperatureHandler.*`
+- `handlers/tle92466ed/Tle92466edHandler.*`
+- `handlers/tmc5160/Tmc5160Handler.*`
 - `handlers/tmc9660/Tmc9660Handler.*`
 - `handlers/tmc9660/Tmc9660AdcWrapper.*`
+- `handlers/ws2812/Ws2812Handler.*`
 
-Base contracts reviewed:
+Review focus:
 
-- `BaseI2c`, `BaseSpi`, `BaseUart`, `BaseGpio`, `BasePwm`, `BaseAdc`, `BaseTemperature`, `BasePeriodicTimer`.
-
-Driver contracts reviewed:
-
-- `hf-as5047u-driver`
-- `hf-bno08x-driver`
-- `hf-pca9685-driver`
-- `hf-pcal95555-driver`
-- `hf-tmc9660-driver`
+1. Handler <-> external driver API correctness.
+2. Base-interface compatibility and manager integration behavior.
+3. Runtime safety, initialization semantics, and portability risks.
 
 ---
 
-## Executive Summary
+## Executive summary
 
-Overall design quality is strong in architecture patterns (bridge/CRTP/type erasure/wrappers), but compatibility is currently blocked by multiple critical issues:
+The rebase introduced substantial handler improvements; **most previously critical blockers are now fixed** (AS5047U API drift, NTC header/source divergence, PCAL ISR-heavy path, TMC9660 wrapper pre-init crash, PCA/PCAL I2C lazy-init no-op, PCA phase-shifted raw duty bug, and BNO config disable gap).
 
-- **AS5047U handler is not compatible with the current external driver API and include layout** (build-breaking).
-- **NTC handler header/source are out of sync** (build-breaking if compiled).
-- **PCAL95555 interrupt path performs heavy I2C + callback work in ISR context** (runtime hazard).
-- **TMC9660 wrapper access can dereference null internals before `Initialize()`** (runtime crash hazard).
-- **BNO08x freshness semantics are weakened** (stale data can be treated as valid by manager code).
+Remaining high-impact issues are now concentrated in:
 
-Submodule initialization status is healthy (`git submodule status --recursive` reports populated tree).
+1. **BNO08x data-freshness validity semantics** (self-contradictory valid flags).
+2. **PCAL95555 interrupt registration truthfulness** (success returned when callback path cannot actually work).
+3. **MAX22200/TLE92466ED comm adapter initialization contracts** (adapters report initialized without proving underlying BaseSpi/BaseGpio readiness).
+
+---
+
+## Resolved since previous review
+
+1. **AS5047U handler now matches current driver API/layout**
+   - Include path updated: `handlers/as5047u/As5047uHandler.h:39`
+   - PascalCase driver API in use (example): `handlers/as5047u/As5047uHandler.cpp:108,167,205`
+   - Correct frame format enum usage: `handlers/as5047u/As5047uHandler.cpp:654,779`
+
+2. **NTC header/source now coherent**
+   - Constructor/destructor declarations align with implementation:
+     - `handlers/ntc/NtcTemperatureHandler.h:179,186,211`
+     - `handlers/ntc/NtcTemperatureHandler.cpp:24,67,118`
+
+3. **PCAL95555 ISR path now deferred (no I2C in ISR)**
+   - ISR only sets atomic pending flag: `handlers/pcal95555/Pcal95555Handler.cpp:493-501`
+   - Deferred draining/processing in task context: `handlers/pcal95555/Pcal95555Handler.cpp:504-514`
+
+4. **TMC9660 wrapper pre-init null dereference fixed**
+   - Wrappers created eagerly in constructors:
+     - `handlers/tmc9660/Tmc9660Handler.cpp:313-316`
+     - `handlers/tmc9660/Tmc9660Handler.cpp:329-332`
+
+5. **PCA9685/PCAL95555 I2C adapter EnsureInitialized now delegates correctly**
+   - PCA: `handlers/pca9685/Pca9685Handler.cpp:68-69`
+   - PCAL: `handlers/pcal95555/Pcal95555Handler.cpp:67-68`
+
+6. **PCA9685 raw duty now respects phase offset**
+   - `handlers/pca9685/Pca9685Handler.cpp:475-477`
+
+7. **BNO08x ApplyConfiguration now disables sensors when flags are false**
+   - `handlers/bno08x/Bno08xHandler.cpp:638-645`
 
 ---
 
 ## Findings (ordered by severity)
 
-## CRITICAL
-
-### 1) AS5047U handler is API-incompatible with current external driver
-
-**Impact:** Build failure + unusable integration.
-
-Evidence:
-
-- Invalid include path:
-  - `handlers/as5047u/As5047uHandler.h:39` includes `.../hf-as5047u-driver/src/AS5047U.hpp` (file does not exist in current submodule).
-  - Current driver header is `hf-core-drivers/external/hf-as5047u-driver/inc/as5047u.hpp`.
-- Handler expects old class model:
-  - `handlers/as5047u/As5047uHandler.h:100` uses `AS5047U::spiBus`.
-  - Current driver uses CRTP `as5047u::SpiInterface<Derived>` and `template <typename SpiType> class AS5047U`:
-    - `hf-core-drivers/external/hf-as5047u-driver/inc/as5047u_spi_interface.hpp:39`
-    - `hf-core-drivers/external/hf-as5047u-driver/inc/as5047u.hpp:78-79`
-- Method naming mismatch (handler uses old lowercase API):
-  - e.g. `getAngle/getVelocity/setZeroPosition/...` in `handlers/as5047u/As5047uHandler.cpp`
-  - current driver exports `GetAngle/GetVelocity/SetZeroPosition/...`:
-    - `hf-core-drivers/external/hf-as5047u-driver/inc/as5047u.hpp:121,138,204,...`
-- Enum/string mismatch in diagnostics:
-  - `handlers/as5047u/As5047uHandler.cpp:766` checks `As5047uError::COMMUNICATION_ERROR` (not defined in enum).
-  - Frame-format names in diagnostics use `FRAME_16BIT` style:
-    - `handlers/as5047u/As5047uHandler.cpp:783-785`
-    - current driver uses `FrameFormat::SPI_16/SPI_24/SPI_32`:
-      - `hf-core-drivers/external/hf-as5047u-driver/inc/as5047u_types.hpp:15-20`
-
-Recommendation:
-
-- Rebase handler on current driver API:
-  - Use `as5047u::AS5047U<As5047uSpiAdapter>` and CRTP adapter.
-  - Update all API calls to current names/casing.
-  - Normalize frame-format enum usage.
-  - Replace ad-hoc error string ternary with `As5047uErrorToString`.
-
----
-
-### 2) NTC handler header/source divergence (ABI and symbol mismatch)
-
-**Impact:** Build failure if this handler is part of target build.
-
-Evidence:
-
-- Constructor signature mismatch:
-  - Header declares:
-    - `NtcTemperatureHandler(ntc_type_t, BaseAdc*, const char*)` and
-    - `NtcTemperatureHandler(const ntc_temp_handler_config_t&, BaseAdc*)`
-    - `handlers/ntc/NtcTemperatureHandler.h:108,115`
-  - Source defines:
-    - `NtcTemperatureHandler(BaseAdc*, const ntc_temp_handler_config_t&)`
-    - `handlers/ntc/NtcTemperatureHandler.cpp:26-27`
-- Destructor definition conflict:
-  - Header default-defines destructor inline:
-    - `handlers/ntc/NtcTemperatureHandler.h:140`
-  - Source defines destructor body again:
-    - `handlers/ntc/NtcTemperatureHandler.cpp:69`
-- Source references members not declared in header:
-  - `continuous_callback_`, `continuous_user_data_`, `monitoring_timer_`, `monitoring_active_`, etc.
-    - `handlers/ntc/NtcTemperatureHandler.cpp:34-37`
-  - Header has different members (`monitoring_callback_`, `continuous_monitoring_active_`, etc.):
-    - `handlers/ntc/NtcTemperatureHandler.h:337-340`
-- Source defines methods not declared in header (and vice versa), e.g.:
-  - `GetNtcReading`, `SetLastError`, `ContinuousMonitoringCallback`
-    - `handlers/ntc/NtcTemperatureHandler.cpp:535,563,674`
-
-Recommendation:
-
-- Treat this as a merge-drift emergency:
-  - Regenerate a single coherent API surface (header and source).
-  - Reconcile member names/types and callback model.
-  - Add compile gate in CI that explicitly builds this handler.
-
----
-
-### 3) PCAL95555 interrupt processing does heavy work in ISR path
-
-**Impact:** Potential hard faults, lockups, latency spikes, reentrancy issues.
-
-Evidence:
-
-- ISR callback states ISR context:
-  - `handlers/pcal95555/Pcal95555Handler.cpp:498-502`
-- ISR callback directly calls `ProcessInterrupts()`:
-  - `handlers/pcal95555/Pcal95555Handler.cpp:501`
-- `ProcessInterrupts()` performs:
-  - I2C operations (`GetInterruptStatus`, `ReadAllInputs`):
-    - `handlers/pcal95555/Pcal95555Handler.cpp:509,513`
-  - User callback invocation:
-    - `handlers/pcal95555/Pcal95555Handler.cpp:556-557`
-- No handler-level lock in this path while mutating shared state (`prev_input_state_`, registry access).
-
-Recommendation:
-
-- Move ISR to deferred work model:
-  - ISR only sets an atomic/event flag.
-  - Worker task/thread drains hardware status via I2C and dispatches callbacks.
-  - Protect shared state with `handler_mutex_` in worker context.
-
----
-
-### 4) TMC9660 wrapper access can dereference null internals before initialization
-
-**Impact:** Runtime crash (null dereference) in manager integration flows.
-
-Evidence:
-
-- Wrappers are only created in `Tmc9660Handler::Initialize()`:
-  - `handlers/tmc9660/Tmc9660Handler.cpp:368-373`
-- Accessors unconditionally dereference pointers:
-  - `handlers/tmc9660/Tmc9660Handler.cpp:613-619`
-- Delegation wrapper immediately uses `handler_.adc()`:
-  - `handlers/tmc9660/Tmc9660AdcWrapper.cpp:31-37`
-
-If manager constructs `Tmc9660AdcWrapper` before handler `Initialize()`, `handler_.adc()` dereferences `nullptr`.
-
-Recommendation:
-
-- Make accessor contract safe:
-  - Option A: `adc()/temperature()/gpio()` return pointer/optional and guard null.
-  - Option B: force-create wrappers in constructor.
-  - Option C: lazy-create wrappers inside accessors before dereference.
-
----
-
-### 5) PCA9685/PCAL95555 I2C adapters do not actually ensure BaseI2c init
-
-**Impact:** Lazy-init contract becomes non-deterministic for manager code.
-
-Evidence:
-
-- PCA adapter returns true without calling BaseI2c init:
-  - `handlers/pca9685/Pca9685Handler.cpp:68-71`
-- PCAL adapter same behavior:
-  - `handlers/pcal95555/Pcal95555Handler.cpp:67-70`
-- External drivers explicitly rely on adapter `EnsureInitialized()` to init bus:
-  - PCA driver:
-    - `hf-core-drivers/external/hf-pca9685-driver/src/pca9685.ipp:45`
-  - PCAL driver:
-    - `hf-core-drivers/external/hf-pcal95555-driver/src/pcal95555.ipp:82`
-
-Recommendation:
-
-- Adapter `EnsureInitialized()` should call `i2c_device_.EnsureInitialized()`.
-- Keep docs and behavior aligned (current docs claim delegation, implementation does not).
-
----
-
 ## HIGH
 
-### 6) BNO08x handler treats cached/stale data as valid without freshness gating
+### 1) BNO08x validity/freshness semantics are inconsistent and currently incorrect
 
-**Impact:** Managers can consume stale snapshots as fresh sensor data.
+**Impact:** manager code can mis-handle freshness (false negatives/false positives), breaking data-driven control logic.
 
 Evidence:
 
-- `readVectorSensor()` always marks output valid:
-  - `handlers/bno08x/Bno08xHandler.cpp:405-415`
-- `ReadImuData()` unconditionally sets `imu_data.valid = true`:
-  - `handlers/bno08x/Bno08xHandler.cpp:482-510`
-- External driver semantics:
-  - New-data flag is cleared by `GetLatest()` and should be checked via `HasNewData()`:
-    - `hf-core-drivers/external/hf-bno08x-driver/inc/bno08x.hpp:499-508,517-523`
+- `readVectorSensor()` does:
+  - `GetLatest(sensor)` then `HasNewData(sensor)`:
+    - `handlers/bno08x/Bno08xHandler.cpp:397,403`
+  - Driver contract: `GetLatest()` clears unread flag:
+    - `hf-core-drivers/external/hf-bno08x-driver/inc/bno08x.hpp:499-500,517`
+  - Result: vector `valid` is typically false immediately after reading.
+- `ReadImuData()` repeats same pattern for rotation:
+  - `handlers/bno08x/Bno08xHandler.cpp:485,492`
+- `ReadQuaternion()` unconditionally sets `valid = true`:
+  - `handlers/bno08x/Bno08xHandler.cpp:454`
 
 Recommendation:
 
-- Add freshness policy:
-  - Check `HasNewData(sensor)` before promoting data to valid.
-  - Optionally compare timestamps and reject unchanged snapshots.
-  - Return `Bno08xError::DATA_NOT_AVAILABLE` when no fresh data.
+- Capture freshness **before** `GetLatest()`.
+- Standardize policy across all read methods:
+  - if no fresh data: return `Bno08xError::DATA_NOT_AVAILABLE` (or explicit stale flag contract),
+  - if fresh: populate data and set valid true.
 
 ---
 
-### 7) BNO08x `ApplyConfiguration` does not disable sensors set false
+### 2) PCAL95555 interrupt registration can report success when callback delivery is impossible
 
-**Impact:** Config drift and unwanted sensor traffic.
+**Impact:** managers may believe interrupt callbacks are armed when they are not.
 
 Evidence:
 
-- `applyConfigLocked` helper only enables sensors when flag is true; no disable branch:
-  - `handlers/bno08x/Bno08xHandler.cpp:640-647`
+- `RegisterPinInterrupt()` only configures hardware ISR if `interrupt_pin_` exists:
+  - `handlers/pcal95555/Pcal95555Handler.cpp:436`
+  - Without `interrupt_pin_`, it still returns success.
+- Underlying driver interrupt enable result is ignored:
+  - `handlers/pcal95555/Pcal95555Handler.cpp:449,452`
+- Driver contract: `ConfigureInterrupt()` can fail on unsupported variant:
+  - `hf-core-drivers/external/hf-pcal95555-driver/inc/pcal95555.hpp:577-579`
+- Capability API already distinguishes hardware INT availability:
+  - `handlers/pcal95555/Pcal95555Handler.h:587`
 
 Recommendation:
 
-- If flag is false, call `DisableSensor(sensor)` to enforce configuration as source of truth.
+- In callback registration path, return `GPIO_ERR_UNSUPPORTED_OPERATION` if no interrupt pin is configured.
+- Propagate `ConfigureInterrupt()` failure instead of always returning success.
+- Keep `SupportsInterrupts()`/registration behavior aligned with both chip capability and wiring.
 
 ---
 
-### 8) PCAL95555 interrupt capability/signaling is misleading on PCA9555
+### 3) MAX22200 and TLE92466ED comm adapters do not perform meaningful hardware readiness initialization
 
-**Impact:** Manager may enable interrupt workflows that cannot work on detected chip.
+**Impact:** initialization appears successful even if underlying SPI/GPIO resources are not actually usable.
 
 Evidence:
 
-- Pin wrapper reports interrupt support unconditionally:
-  - `handlers/pcal95555/Pcal95555Handler.h:265-267`
-- `RegisterPinInterrupt()` ignores driver enable result:
-  - `handlers/pcal95555/Pcal95555Handler.cpp:449-451`
-- Driver requires Agile I/O for interrupts:
-  - `hf-core-drivers/external/hf-pcal95555-driver/src/pcal95555.ipp:690-696`
+- TLE comm init sets local flag only:
+  - `handlers/tle92466ed/Tle92466edHandler.cpp:27-31`
+- MAX comm init sets local flag only:
+  - `handlers/max22200/Max22200Handler.cpp:27-30`
+- Both adapters ignore GPIO operation return values in `GpioSet()`:
+  - TLE: `handlers/tle92466ed/Tle92466edHandler.cpp:136-142`
+  - MAX: `handlers/max22200/Max22200Handler.cpp:79-83`
+- Interface contracts expect real hardware init/readiness behavior:
+  - `hf-core-drivers/external/hf-tle92466ed-driver/inc/tle92466ed_spi_interface.hpp:416-423,532-541`
+  - `hf-core-drivers/external/hf-max22200-driver/inc/max22200_spi_interface.hpp:48-56,106-113`
 
 Recommendation:
 
-- `SupportsInterrupts()` should reflect both hardware INT availability and chip variant support.
-- Check and propagate `ConfigureInterrupt()` return status.
+- In comm `Init`/`Initialize`, explicitly ensure/configure required BaseSpi and BaseGpio resources.
+- Propagate GPIO set/read failures into comm error state.
+- Treat `IsReady()` as a true hardware readiness predicate, not only a local boolean.
 
 ---
 
-### 9) PCA9685 raw duty write ignores phase offset semantics
+### 4) TMC5160 active-level configuration is accepted but not applied
 
-**Impact:** Wrong effective pulse width when phase shift is used.
+**Impact:** inverted-pin board configurations may behave incorrectly despite passing `PinActiveLevels`.
 
 Evidence:
 
-- `SetDutyCycleRaw` uses `off_time = raw_value` directly:
-  - `handlers/pca9685/Pca9685Handler.cpp:476-480`
-- `SetDutyCycle` correctly uses `off_time = on_time + width`:
-  - `handlers/pca9685/Pca9685Handler.cpp:457-460`
+- `active_levels_` is stored only:
+  - `handlers/tmc5160/Tmc5160Handler.cpp:34,125`
+- `GpioSet()` / `GpioRead()` do not use it:
+  - SPI path: `handlers/tmc5160/Tmc5160Handler.cpp:48-83`
+  - UART path: `handlers/tmc5160/Tmc5160Handler.cpp:151-185`
+- Driver docs define `PinActiveLevels` specifically for inversion handling:
+  - `hf-core-drivers/external/hf-tmc5160-driver/inc/tmc51x0_comm_interface.hpp:330-335,354-400`
 
 Recommendation:
 
-- Align `SetDutyCycleRaw` with phase-aware math:
-  - `off_time = (on_time_cache_[channel] + raw_value) & kMaxRawValue`.
+- Map logical ACTIVE/INACTIVE to physical GPIO state using `active_levels_.GetActiveLevel(pin)` in both set and read paths.
 
 ---
 
 ## MEDIUM
 
-### 10) TMC9660 `BaseAdc` channel model is sparse/non-uniform for generic managers
+### 5) NTC continuous monitoring has 64-bit portability and high-rate edge-case issues
 
-**Impact:** Generic manager assumptions about contiguous channel IDs and voltage semantics can break.
+**Impact:** potential pointer truncation on 64-bit builds; timer period can become zero for high rates.
 
 Evidence:
 
-- Sparse ID scheme documented (`0-3`, `10-13`, `20-21`, `30-31`, `40-42`):
-  - `handlers/tmc9660/Tmc9660Handler.h:1026-1033`
-- Some channels return non-voltage physical values through `ReadChannelV`.
-- Signed motor values cast to unsigned raw:
-  - `handlers/tmc9660/Tmc9660Handler.cpp:970,976,982`
+- Pointer cast through 32-bit timer arg:
+  - `handlers/ntc/NtcTemperatureHandler.cpp:406,906`
+- Period uses integer division:
+  - `handlers/ntc/NtcTemperatureHandler.cpp:402`
+  - `sample_rate_hz > 1000` yields `period_ms == 0`.
 
 Recommendation:
 
-- Provide either:
-  - contiguous virtual channel mapping for manager-facing API, or
-  - channel metadata query API so manager can interpret units/encoding safely.
+- Clamp period to at least 1 ms.
+- Avoid pointer->`uint32_t` roundtrip for callback context (use safe indirection keyed by integer token or a timer API that supports pointer payloads).
 
 ---
 
-### 11) TMC9660 handler explicitly non-thread-safe
+### 6) Multiple handlers still contain platform-coupled busy-wait delay fallbacks
 
-**Impact:** Multi-threaded manager stacks must add external synchronization.
-
-Evidence:
-
-- Design note in docs:
-  - `handlers/tmc9660/Tmc9660Handler.h:66-68`
-
-Recommendation:
-
-- Add optional internal lock mode or publish strict thread-safety contract in manager docs.
-
----
-
-### 12) Platform coupling reduces portability of handler layer
-
-**Impact:** Wider-system reuse is constrained.
+**Impact:** reduced timing portability and potential drift under different CPU frequencies.
 
 Evidence:
 
-- BNO08x comm adapters use FreeRTOS delay directly:
-  - `handlers/bno08x/Bno08xHandler.cpp:104-106,216-218`
-- NTC uses ESP timer APIs directly:
-  - `handlers/ntc/NtcTemperatureHandler.cpp:350-371,394-395`
-- TMC microsecond delay fallback assumes fixed 240 MHz:
+- TMC9660 hardcoded 240 MHz assumption:
   - `handlers/tmc9660/Tmc9660Handler.cpp:157`
+- TMC5160 busy loops:
+  - `handlers/tmc5160/Tmc5160Handler.cpp:110,212`
+- TLE92466ED busy loop:
+  - `handlers/tle92466ed/Tle92466edHandler.cpp:95`
+- MAX22200 busy loop:
+  - `handlers/max22200/Max22200Handler.cpp:62`
 
 Recommendation:
 
-- Route timing/periodic work through abstract timer/thread services (`BasePeriodicTimer` or internal OS abstraction layer) for portability.
+- Route microsecond delays through a common OS abstraction that is frequency-aware across platforms.
 
 ---
 
-## Positive Patterns Worth Keeping
+## LOW
 
-- `Pca9685Handler` and `Pcal95555Handler` expose `BasePwm`/`BaseGpio` wrappers that are manager-friendly.
-- `Bno08xHandler` and `Tmc9660Handler` use type erasure/visitor patterns effectively to hide template complexity.
-- `Tmc9660AdcWrapper` is a strong ownership adapter concept for manager integration (needs init-safety hardening).
+### 7) Some public channel APIs rely on downstream validation and omit local bounds checks
 
----
+**Impact:** weaker API guardrails; undefined behavior risk in edge cases.
 
-## Prioritized Remediation Plan
+Evidence:
 
-1. **Build blockers first**
-   - Rework `As5047uHandler` to current driver API.
-   - Reconcile `NtcTemperatureHandler` header/source drift.
-2. **Runtime safety second**
-   - Defer PCAL interrupt processing out of ISR.
-   - Harden TMC wrapper access (`adc()/temperature()/gpio()` null-safe contract).
-3. **Manager compatibility third**
-   - Enforce BNO freshness semantics and proper disable path in `ApplyConfiguration`.
-   - Fix PCA raw duty phase handling.
-   - Correct adapter lazy-init behavior for PCA/PCAL.
-4. **Portability and consistency**
-   - Remove direct platform timer/RTOS coupling from handlers where practical.
-   - Add unit/integration tests for:
-     - freshness semantics
-     - interrupt registration and dispatch behavior
-     - lazy initialization path
-     - wrapper pre-init safety
+- `Max22200Handler::IsChannelEnabled()` shifts by caller-provided `channel` without local bounds check:
+  - `handlers/max22200/Max22200Handler.cpp:252`
+
+Recommendation:
+
+- Validate channel range at handler boundary (`0..kNumChannels-1`) for all per-channel methods.
 
 ---
 
-## Suggested Acceptance Criteria for "Manager-Ready" Handlers
+## Prioritized remediation plan
 
-A handler should be considered manager-ready only if:
-
-1. It compiles against the current external driver API.
-2. It exposes a stable `Base*` surface (or a wrapper) for manager ownership.
-3. Fresh/stale data semantics are explicit and test-covered.
-4. Interrupt callbacks are safe with respect to ISR/task context.
-5. Lazy initialization truly initializes underlying transport interfaces.
-6. Thread-safety expectations are explicit and test-covered.
-
----
-
-## Reanalysis Update (2026-02-12, sync check after requested "huge edits")
-
-### Git sync/delta result
-
-- Executed:
-  - `git fetch origin cursor/handlers-drivers-compatibility-2013`
-  - `git pull origin cursor/handlers-drivers-compatibility-2013`
-- Branch status after sync: clean and up to date with remote.
-- Diff against `origin/main...HEAD`: only this review document exists as branch delta.
-  - No new handler code modifications were present on this branch at reanalysis time.
-
-### Revalidated status of previously critical items
-
-- **AS5047U API/include drift**: still present.
-  - `handlers/as5047u/As5047uHandler.h:39,100`
-  - `handlers/as5047u/As5047uHandler.cpp:165,766,783`
-- **NTC header/source divergence**: still present.
-  - `handlers/ntc/NtcTemperatureHandler.h:140`
-  - `handlers/ntc/NtcTemperatureHandler.cpp:26,69,34,36,535,674`
-- **PCAL95555 ISR-heavy interrupt path**: still present.
-  - `handlers/pcal95555/Pcal95555Handler.cpp:494-513,556`
-- **TMC wrapper pre-init null dereference risk**: still present.
-  - `handlers/tmc9660/Tmc9660Handler.cpp:371-372,613-619`
-  - `handlers/tmc9660/Tmc9660AdcWrapper.cpp:31-37`
-- **BNO freshness/config semantics gaps**: still present.
-  - `handlers/bno08x/Bno08xHandler.cpp:405-415,488-510,636-647`
-- **PCA/PCAL adapter `EnsureInitialized()` no-op**: still present.
-  - `handlers/pca9685/Pca9685Handler.cpp:68-71`
-  - `handlers/pcal95555/Pcal95555Handler.cpp:67-70`
-
-### Practical interpretation
-
-No new code edits were available to re-score in this branch, so this reanalysis confirms that the original findings remain valid and unresolved.
+1. Fix BNO08x freshness semantics (single, explicit contract used everywhere).
+2. Make PCAL interrupt registration fail-fast when callback path cannot be fulfilled.
+3. Harden MAX/TLE comm adapter initialization and GPIO error propagation.
+4. Apply TMC5160 `PinActiveLevels` mapping in both SPI/UART adapters.
+5. Address NTC callback payload portability and timer period clamping.
+6. Consolidate busy-wait fallbacks behind a shared timing abstraction.
 
