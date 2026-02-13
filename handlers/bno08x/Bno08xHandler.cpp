@@ -23,6 +23,7 @@
 #include <cstdio>
 #include <cstring>
 #include "handlers/logger/Logger.h"
+#include "OsUtility.h"
 
 // SH-2 error codes for mapping
 extern "C" {
@@ -102,7 +103,7 @@ bool HalI2cBno08xComm::DataAvailable() noexcept {
 }
 
 void HalI2cBno08xComm::Delay(uint32_t ms) noexcept {
-    vTaskDelay(pdMS_TO_TICKS(ms));
+    os_delay_msec(static_cast<uint16_t>(ms));
 }
 
 uint32_t HalI2cBno08xComm::GetTimeUs() noexcept {
@@ -208,7 +209,7 @@ bool HalSpiBno08xComm::DataAvailable() noexcept {
 }
 
 void HalSpiBno08xComm::Delay(uint32_t ms) noexcept {
-    vTaskDelay(pdMS_TO_TICKS(ms));
+    os_delay_msec(static_cast<uint16_t>(ms));
 }
 
 uint32_t HalSpiBno08xComm::GetTimeUs() noexcept {
@@ -399,7 +400,7 @@ Bno08xError Bno08xHandler::readVectorSensor(BNO085Sensor sensor,
     out.z = event.vector.z;
     out.accuracy = event.vector.accuracy;
     out.timestamp_us = event.timestamp;
-    out.valid = true;
+    out.valid = driver_ops_->HasNewData(sensor);
     return Bno08xError::SUCCESS;
 }
 
@@ -488,13 +489,19 @@ Bno08xError Bno08xHandler::ReadImuData(Bno08xImuData& imu_data) noexcept {
     imu_data.rotation.z = rv_event.rotation.z;
     imu_data.rotation.accuracy = rv_event.rotation.accuracy;
     imu_data.rotation.timestamp_us = rv_event.timestamp;
-    imu_data.rotation.valid = true;
+    imu_data.rotation.valid = driver_ops_->HasNewData(BNO085Sensor::RotationVector);
 
     // Derive Euler angles from quaternion
     QuaternionToEuler(imu_data.rotation, imu_data.euler);
 
     imu_data.timestamp_us = rv_event.timestamp;
-    imu_data.valid = true;
+    // Aggregate: valid if any constituent sensor has fresh data
+    imu_data.valid = imu_data.acceleration.valid ||
+                     imu_data.gyroscope.valid ||
+                     imu_data.magnetometer.valid ||
+                     imu_data.linear_acceleration.valid ||
+                     imu_data.gravity.valid ||
+                     imu_data.rotation.valid;
 
     return Bno08xError::SUCCESS;
 }
@@ -630,6 +637,10 @@ bool Bno08xHandler::applyConfigLocked(const Bno08xConfig& config) noexcept {
                                uint32_t interval_ms, float sensitivity = 0.0f) {
         if (enable) {
             if (!driver_ops_->EnableSensor(sensor, interval_ms, sensitivity)) {
+                all_ok = false;
+            }
+        } else {
+            if (!driver_ops_->DisableSensor(sensor)) {
                 all_ok = false;
             }
         }

@@ -1,0 +1,70 @@
+# Doxyfile — HF-Core Platform API Documentation
+# =============================================================================
+# Generates API reference for handlers, utilities, and integration layer.
+# Uses doxygen-awesome-css theme for modern, dark-mode HTML output.
+# =============================================================================
+
+# --- Project ---
+PROJECT_NAME           = "HF-Core Platform"
+PROJECT_BRIEF          = "Hardware-Agnostic Handler Layer & RTOS Utilities for HardFOC"
+PROJECT_NUMBER         =
+OUTPUT_DIRECTORY       = docs
+
+# --- Input ---
+INPUT                  = handlers examples/esp32/main README.md
+FILE_PATTERNS          = *.c *.cpp *.h *.hpp
+RECURSIVE              = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+FILTER_PATTERNS        = *.md="sed -e '/^---$/,/^---$/d'"
+
+EXCLUDE                = *build* *cmake-build-* *managed_components* \
+                         *__pycache__* *.pyc
+
+EXCLUDE_PATTERNS       = */build/* */cmake-build-*/* */.git/* \
+                         */managed_components/* */__pycache__/*
+
+# --- Extraction ---
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_ANON_NSPACES   = YES
+FULL_PATH_NAMES        = NO
+
+# --- Build ---
+BUILTIN_STL_SUPPORT    = YES
+TYPEDEF_HIDES_STRUCT   = YES
+SORT_MEMBER_DOCS       = YES
+GENERATE_TODOLIST      = YES
+GENERATE_BUGLIST       = YES
+GENERATE_DEPRECATEDLIST = YES
+
+# --- Warnings ---
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = NO
+WARN_AS_ERROR          = NO
+
+# --- HTML ---
+GENERATE_HTML          = YES
+GENERATE_TREEVIEW      = YES
+PAGE_OUTLINE_PANEL     = NO
+HTML_COPY_CLIPBOARD    = NO
+SEARCHENGINE           = YES
+
+# --- Diagrams (Graphviz) ---
+HAVE_DOT               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+DOT_IMAGE_FORMAT       = svg
+DOT_TRANSPARENT        = YES
+
+# --- Disabled outputs ---
+GENERATE_LATEX         = NO
+GENERATE_RTF           = NO
+GENERATE_MAN           = NO
+GENERATE_XML           = NO
+GENERATE_DOCBOOK       = NO

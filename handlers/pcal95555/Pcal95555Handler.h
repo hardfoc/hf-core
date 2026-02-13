@@ -82,6 +82,7 @@
 #ifndef COMPONENT_HANDLER_PCAL95555_HANDLER_H_
 #define COMPONENT_HANDLER_PCAL95555_HANDLER_H_
 
+#include <atomic>
 #include <cstdint>
 #include <memory>
 #include <array>
@@ -261,10 +262,12 @@ public:
     /** @brief Returns a description string like "PCAL95555_PIN_5". */
     const char* GetDescription() const noexcept override;
 
-    /** @brief Returns GPIO_SUCCESS (PCAL9555A supports interrupts). */
-    hf_gpio_err_t SupportsInterrupts() const noexcept override {
-        return hf_gpio_err_t::GPIO_SUCCESS;
-    }
+    /**
+     * @brief Check if this pin supports interrupt configuration.
+     * @return GPIO_SUCCESS if the chip has Agile I/O (PCAL9555A),
+     *         GPIO_ERR_UNSUPPORTED_OPERATION for PCA9555 (no per-pin interrupt masking).
+     */
+    hf_gpio_err_t SupportsInterrupts() const noexcept override;
 
     /**
      * @brief Configure interrupt for this pin.
@@ -300,6 +303,9 @@ public:
      * @return GPIO_SUCCESS or GPIO_ERR_FAILURE.
      */
     hf_gpio_err_t SetInterruptMask(bool mask) noexcept;
+
+    /// Bring base-class GetInterruptStatus(InterruptStatus&) into scope.
+    using BaseGpio::GetInterruptStatus;
 
     /**
      * @brief Get the interrupt status for this pin.
@@ -585,6 +591,17 @@ public:
      * @return true if interrupt pin is actively monitoring.
      */
     bool IsInterruptConfigured() const noexcept { return interrupt_configured_; }
+
+    /**
+     * @brief Drain any pending interrupt that was deferred from ISR context.
+     *
+     * This method should be called from task context (e.g., a polling loop or
+     * a dedicated worker task). It checks the atomic interrupt_pending_ flag,
+     * and if set, performs the I2C reads and user callback dispatch safely.
+     *
+     * @return true if an interrupt was processed, false if none was pending.
+     */
+    bool DrainPendingInterrupts() noexcept;
 
     /**
      * @brief Get the interrupt mask for all 16 pins.
@@ -873,6 +890,7 @@ private:
     /// @{
     BaseGpio* interrupt_pin_;       ///< Hardware INT pin (optional, not owned).
     bool interrupt_configured_;     ///< Whether hardware interrupt is active.
+    std::atomic<bool> interrupt_pending_{false}; ///< Deferred interrupt flag (set in ISR, cleared in task context).
     /// @}
 
     /// @name Internal Pull Mode Tracking

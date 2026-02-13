@@ -65,8 +65,7 @@ bool HalI2cPcal95555Comm::Read(uint8_t addr, uint8_t reg,
 }
 
 bool HalI2cPcal95555Comm::EnsureInitialized() noexcept {
-    // BaseI2c device is expected to be initialized before the handler uses it.
-    return true;
+    return i2c_device_.EnsureInitialized();
 }
 
 bool HalI2cPcal95555Comm::RegisterInterruptHandler(
@@ -169,9 +168,9 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
                 if (!enabled) {
                     pull_mode_cache_[pin] = hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_FLOATING;
                 } else if (is_up) {
-                    pull_mode_cache_[pin] = hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_PULL_UP;
+                    pull_mode_cache_[pin] = hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_UP;
                 } else {
-                    pull_mode_cache_[pin] = hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_PULL_DOWN;
+                    pull_mode_cache_[pin] = hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_DOWN;
                 }
             }
         }
@@ -495,11 +494,21 @@ void Pcal95555Handler::HardwareInterruptCallback(
     BaseGpio* /*gpio*/,
     hf_gpio_interrupt_trigger_t /*trigger*/,
     void* user_data) noexcept {
-    // Called in ISR context -- keep minimal.
+    // Called in ISR context -- only set atomic flag, defer heavy work.
     auto* handler = static_cast<Pcal95555Handler*>(user_data);
     if (handler) {
-        handler->ProcessInterrupts();
+        handler->interrupt_pending_.store(true, std::memory_order_release);
     }
+}
+
+bool Pcal95555Handler::DrainPendingInterrupts() noexcept {
+    // Check and clear the atomic flag (task context only)
+    if (!interrupt_pending_.exchange(false, std::memory_order_acq_rel)) {
+        return false;
+    }
+    MutexLockGuard lock(handler_mutex_);
+    ProcessInterrupts();
+    return true;
 }
 
 void Pcal95555Handler::ProcessInterrupts() noexcept {
@@ -861,6 +870,13 @@ bool Pcal95555GpioPin::Deinitialize() noexcept {
 
 bool Pcal95555GpioPin::IsPinAvailable() const noexcept {
     return parent_handler_ && pin_ < 16;
+}
+
+hf_gpio_err_t Pcal95555GpioPin::SupportsInterrupts() const noexcept {
+    if (!parent_handler_) return hf_gpio_err_t::GPIO_ERR_NULL_POINTER;
+    return parent_handler_->HasAgileIO()
+               ? hf_gpio_err_t::GPIO_SUCCESS
+               : hf_gpio_err_t::GPIO_ERR_UNSUPPORTED_OPERATION;
 }
 
 const char* Pcal95555GpioPin::GetDescription() const noexcept {

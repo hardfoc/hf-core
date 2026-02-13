@@ -12,10 +12,8 @@
  */
 
 #include "NtcTemperatureHandler.h"
-#include "core/hf-core-drivers/external/hf-ntc-thermistor-driver/include/NtcThermistor.h"
-#include "core/hf-core-drivers/internal/hf-internal-interface-wrap/inc/base/BaseAdc.h"
 #include "handlers/logger/Logger.h"
-#include "core/hf-core-utils/hf-utils-rtos-wrap/include/OsAbstraction.h"
+#include "core/hf-core-utils/hf-utils-rtos-wrap/include/OsUtility.h"
 
 static const char* TAG = "NtcTempHandler";
 
@@ -26,18 +24,69 @@ static const char* TAG = "NtcTempHandler";
 NtcTemperatureHandler::NtcTemperatureHandler(BaseAdc* adc_interface, 
                                              const ntc_temp_handler_config_t& config) noexcept
     : BaseTemperature()
+    , ntc_thermistor_(nullptr)
     , adc_interface_(adc_interface)
     , config_(config)
-    , ntc_thermistor_(nullptr)
     , threshold_callback_(nullptr)
     , threshold_user_data_(nullptr)
+    , monitoring_active_(false)
     , continuous_callback_(nullptr)
     , continuous_user_data_(nullptr)
-    , monitoring_timer_(nullptr)
-    , monitoring_active_(false)
+    , monitoring_timer_()
     , calibration_offset_(0.0f)
     , statistics_({})
     , diagnostics_({}) {
+    
+    // Initialize statistics
+    statistics_.total_operations = 0;
+    statistics_.successful_operations = 0;
+    statistics_.failed_operations = 0;
+    statistics_.temperature_readings = 0;
+    statistics_.calibration_count = 0;
+    statistics_.threshold_violations = 0;
+    statistics_.average_operation_time_us = 0;
+    statistics_.max_operation_time_us = 0;
+    statistics_.min_operation_time_us = UINT32_MAX;
+    statistics_.min_temperature_celsius = FLT_MAX;
+    statistics_.max_temperature_celsius = -FLT_MAX;
+    statistics_.avg_temperature_celsius = 0.0f;
+    
+    // Initialize diagnostics
+    diagnostics_.sensor_healthy = true;
+    diagnostics_.last_error_code = TEMP_SUCCESS;
+    diagnostics_.last_error_timestamp = 0;
+    diagnostics_.consecutive_errors = 0;
+    diagnostics_.sensor_available = (adc_interface_ != nullptr);
+    diagnostics_.threshold_monitoring_supported = true;
+    diagnostics_.threshold_monitoring_enabled = false;
+    diagnostics_.continuous_monitoring_active = false;
+    diagnostics_.current_temperature_raw = 0;
+    diagnostics_.calibration_valid = false;
+}
+
+NtcTemperatureHandler::NtcTemperatureHandler(NtcType ntc_type, BaseAdc* adc_interface,
+                                             const char* sensor_name) noexcept
+    : BaseTemperature()
+    , ntc_thermistor_(nullptr)
+    , adc_interface_(adc_interface)
+    , config_({})
+    , threshold_callback_(nullptr)
+    , threshold_user_data_(nullptr)
+    , monitoring_active_(false)
+    , continuous_callback_(nullptr)
+    , continuous_user_data_(nullptr)
+    , monitoring_timer_()
+    , calibration_offset_(0.0f)
+    , statistics_({})
+    , diagnostics_({}) {
+    
+    // Apply default configuration and override NTC type / sensor name
+    ntc_temp_handler_config_t default_config = NTC_TEMP_HANDLER_CONFIG_DEFAULT();
+    config_ = default_config;
+    config_.ntc_type = ntc_type;
+    if (sensor_name != nullptr) {
+        config_.sensor_name = sensor_name;
+    }
     
     // Initialize statistics
     statistics_.total_operations = 0;
@@ -72,11 +121,8 @@ NtcTemperatureHandler::~NtcTemperatureHandler() noexcept {
         StopContinuousMonitoring();
     }
     
-    // Clean up timer
-    if (monitoring_timer_) {
-        esp_timer_delete(monitoring_timer_);
-        monitoring_timer_ = nullptr;
-    }
+    // Clean up timer (PeriodicTimer handles its own cleanup in destructor)
+    monitoring_timer_.Destroy();
     
     // Clean up thermistor
     if (ntc_thermistor_) {
@@ -86,7 +132,7 @@ NtcTemperatureHandler::~NtcTemperatureHandler() noexcept {
 }
 
 bool NtcTemperatureHandler::Initialize() noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     
     if (initialized_) {
         Logger::GetInstance().Warn(TAG, "Already initialized");
@@ -106,11 +152,20 @@ bool NtcTemperatureHandler::Initialize() noexcept {
         return false;
     }
     
+    // Create ADC adapter bridging BaseAdc to ntc::AdcInterface
+    ntc_adc_adapter_ = std::make_unique<NtcAdcAdapter>(
+        adc_interface_, config_.reference_voltage);
+    if (!ntc_adc_adapter_) {
+        Logger::GetInstance().Error(TAG, "Failed to create NTC ADC adapter");
+        SetLastError(TEMP_ERR_OUT_OF_MEMORY);
+        return false;
+    }
+    
     // Create NTC thermistor instance
-    try {
-        ntc_thermistor_ = std::make_unique<NtcThermistor>(config_.ntc_type, adc_interface_);
-    } catch (const std::exception& e) {
-        Logger::GetInstance().Error(TAG, "Failed to create NTC thermistor: %s", e.what());
+    ntc_thermistor_ = std::make_unique<NtcThermistorConcrete>(
+        config_.ntc_type, ntc_adc_adapter_.get());
+    if (!ntc_thermistor_) {
+        Logger::GetInstance().Error(TAG, "Failed to create NTC thermistor");
         SetLastError(TEMP_ERR_OUT_OF_MEMORY);
         return false;
     }
@@ -123,13 +178,12 @@ bool NtcTemperatureHandler::Initialize() noexcept {
     }
     
     // Apply configuration
-    if (config_.conversion_method != NTC_CONVERSION_METHOD_DEFAULT) {
+    if (config_.conversion_method != NtcConversionMethod::Auto) {
         ntc_thermistor_->SetConversionMethod(config_.conversion_method);
     }
     
     if (config_.voltage_divider_series_resistance > 0) {
-        ntc_thermistor_->SetVoltageDivider(config_.voltage_divider_series_resistance, 
-                                          config_.voltage_divider_parallel_resistance);
+        ntc_thermistor_->SetVoltageDivider(config_.voltage_divider_series_resistance);
     }
     
     if (config_.reference_voltage > 0) {
@@ -160,7 +214,7 @@ bool NtcTemperatureHandler::Initialize() noexcept {
 }
 
 bool NtcTemperatureHandler::Deinitialize() noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     
     if (!initialized_) {
         return true;
@@ -172,16 +226,14 @@ bool NtcTemperatureHandler::Deinitialize() noexcept {
     }
     
     // Clean up timer
-    if (monitoring_timer_) {
-        esp_timer_delete(monitoring_timer_);
-        monitoring_timer_ = nullptr;
-    }
+    monitoring_timer_.Destroy();
     
-    // Deinitialize thermistor
+    // Deinitialize thermistor (must happen before adapter reset)
     if (ntc_thermistor_) {
         ntc_thermistor_->Deinitialize();
         ntc_thermistor_.reset();
     }
+    ntc_adc_adapter_.reset();
     
     // Reset callbacks
     threshold_callback_ = nullptr;
@@ -203,18 +255,18 @@ hf_temp_err_t NtcTemperatureHandler::ReadTemperatureCelsiusImpl(float* temperatu
     
     const auto start_time = os_time_get();
     
-    ntc_err_t result = ntc_thermistor_->ReadTemperatureCelsius(temperature_celsius);
+    NtcError result = ntc_thermistor_->ReadTemperatureCelsius(temperature_celsius);
     
     const auto end_time = os_time_get();
     const auto operation_time = static_cast<hf_u32_t>(end_time - start_time);
     
-    if (result == NTC_SUCCESS) {
+    if (result == NtcError::Success) {
         UpdateStatistics(true, operation_time);
         UpdateDiagnostics(TEMP_SUCCESS);
         
         // Update diagnostics with raw reading
-        float raw_value;
-        if (ntc_thermistor_->GetRawAdcValue(&raw_value) == NTC_SUCCESS) {
+        uint32_t raw_value = 0;
+        if (ntc_thermistor_->GetRawAdcValue(&raw_value) == NtcError::Success) {
             diagnostics_.current_temperature_raw = static_cast<hf_u32_t>(raw_value);
         }
         
@@ -266,7 +318,7 @@ hf_u32_t NtcTemperatureHandler::GetCapabilities() const noexcept {
 }
 
 hf_temp_err_t NtcTemperatureHandler::SetThresholds(float low_threshold_celsius, float high_threshold_celsius) noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     
     if (!initialized_) {
         return TEMP_ERR_NOT_INITIALIZED;
@@ -299,7 +351,7 @@ hf_temp_err_t NtcTemperatureHandler::GetThresholds(float* low_threshold_celsius,
 }
 
 hf_temp_err_t NtcTemperatureHandler::EnableThresholdMonitoring(hf_temp_threshold_callback_t callback, void* user_data) noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     
     if (!initialized_) {
         return TEMP_ERR_NOT_INITIALIZED;
@@ -314,7 +366,7 @@ hf_temp_err_t NtcTemperatureHandler::EnableThresholdMonitoring(hf_temp_threshold
 }
 
 hf_temp_err_t NtcTemperatureHandler::DisableThresholdMonitoring() noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     
     threshold_callback_ = nullptr;
     threshold_user_data_ = nullptr;
@@ -327,7 +379,7 @@ hf_temp_err_t NtcTemperatureHandler::DisableThresholdMonitoring() noexcept {
 hf_temp_err_t NtcTemperatureHandler::StartContinuousMonitoring(hf_u32_t sample_rate_hz, 
                                                               hf_temp_reading_callback_t callback, 
                                                               void* user_data) noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     
     if (!initialized_) {
         return TEMP_ERR_NOT_INITIALIZED;
@@ -346,31 +398,14 @@ hf_temp_err_t NtcTemperatureHandler::StartContinuousMonitoring(hf_u32_t sample_r
         StopContinuousMonitoring();
     }
     
-    // Create timer for continuous monitoring
-    esp_timer_create_args_t timer_args = {
-        .callback = ContinuousMonitoringCallback,
-        .arg = this,
-        .dispatch_method = ESP_TIMER_TASK,
-        .name = "ntc_monitor",
-        .skip_unhandled_events = false
-    };
+    // Calculate period in milliseconds
+    const uint32_t period_ms = 1000U / sample_rate_hz;
     
-    esp_err_t esp_result = esp_timer_create(&timer_args, &monitoring_timer_);
-    if (esp_result != ESP_OK) {
-        Logger::GetInstance().Error(TAG, "Failed to create monitoring timer: %s", esp_err_to_name(esp_result));
+    // Create hardware-agnostic periodic timer
+    if (!monitoring_timer_.Create("ntc_monitor", ContinuousMonitoringCallback,
+                                  reinterpret_cast<uint32_t>(this), period_ms, true)) {
+        Logger::GetInstance().Error(TAG, "Failed to create monitoring timer");
         return TEMP_ERR_RESOURCE_UNAVAILABLE;
-    }
-    
-    // Calculate interval in microseconds
-    const uint64_t interval_us = 1000000ULL / sample_rate_hz;
-    
-    // Start timer
-    esp_result = esp_timer_start_periodic(monitoring_timer_, interval_us);
-    if (esp_result != ESP_OK) {
-        Logger::GetInstance().Error(TAG, "Failed to start monitoring timer: %s", esp_err_to_name(esp_result));
-        esp_timer_delete(monitoring_timer_);
-        monitoring_timer_ = nullptr;
-        return TEMP_ERR_FAILURE;
     }
     
     continuous_callback_ = callback;
@@ -383,18 +418,15 @@ hf_temp_err_t NtcTemperatureHandler::StartContinuousMonitoring(hf_u32_t sample_r
 }
 
 hf_temp_err_t NtcTemperatureHandler::StopContinuousMonitoring() noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     
     if (!monitoring_active_) {
         return TEMP_SUCCESS;
     }
     
-    // Stop timer
-    if (monitoring_timer_) {
-        esp_timer_stop(monitoring_timer_);
-        esp_timer_delete(monitoring_timer_);
-        monitoring_timer_ = nullptr;
-    }
+    // Stop and destroy timer
+    monitoring_timer_.Stop();
+    monitoring_timer_.Destroy();
     
     continuous_callback_ = nullptr;
     continuous_user_data_ = nullptr;
@@ -406,12 +438,12 @@ hf_temp_err_t NtcTemperatureHandler::StopContinuousMonitoring() noexcept {
 }
 
 bool NtcTemperatureHandler::IsMonitoringActive() const noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     return monitoring_active_;
 }
 
 hf_temp_err_t NtcTemperatureHandler::Calibrate(float reference_temperature_celsius) noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     
     if (!initialized_ || ntc_thermistor_ == nullptr) {
         return TEMP_ERR_NOT_INITIALIZED;
@@ -419,8 +451,8 @@ hf_temp_err_t NtcTemperatureHandler::Calibrate(float reference_temperature_celsi
     
     // Read current temperature
     float current_temperature;
-    ntc_err_t result = ntc_thermistor_->ReadTemperatureCelsius(&current_temperature);
-    if (result != NTC_SUCCESS) {
+    NtcError result = ntc_thermistor_->ReadTemperatureCelsius(&current_temperature);
+    if (result != NtcError::Success) {
         return ConvertNtcError(result);
     }
     
@@ -438,7 +470,7 @@ hf_temp_err_t NtcTemperatureHandler::Calibrate(float reference_temperature_celsi
 }
 
 hf_temp_err_t NtcTemperatureHandler::SetCalibrationOffset(float offset_celsius) noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     
     if (!initialized_ || ntc_thermistor_ == nullptr) {
         return TEMP_ERR_NOT_INITIALIZED;
@@ -466,7 +498,7 @@ hf_temp_err_t NtcTemperatureHandler::GetCalibrationOffset(float* offset_celsius)
 }
 
 hf_temp_err_t NtcTemperatureHandler::ResetCalibration() noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     
     if (!initialized_ || ntc_thermistor_ == nullptr) {
         return TEMP_ERR_NOT_INITIALIZED;
@@ -481,19 +513,19 @@ hf_temp_err_t NtcTemperatureHandler::ResetCalibration() noexcept {
 }
 
 hf_temp_err_t NtcTemperatureHandler::GetStatistics(hf_temp_statistics_t& statistics) noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     statistics = statistics_;
     return TEMP_SUCCESS;
 }
 
 hf_temp_err_t NtcTemperatureHandler::GetDiagnostics(hf_temp_diagnostics_t& diagnostics) noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     diagnostics = diagnostics_;
     return TEMP_SUCCESS;
 }
 
 hf_temp_err_t NtcTemperatureHandler::ResetStatistics() noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     
     statistics_ = {};
     statistics_.min_temperature_celsius = FLT_MAX;
@@ -505,7 +537,7 @@ hf_temp_err_t NtcTemperatureHandler::ResetStatistics() noexcept {
 }
 
 hf_temp_err_t NtcTemperatureHandler::ResetDiagnostics() noexcept {
-    std::lock_guard<std::mutex> lock(mutex_);
+    MutexLockGuard lock(mutex_);
     
     diagnostics_.last_error_code = TEMP_SUCCESS;
     diagnostics_.last_error_timestamp = 0;
@@ -520,40 +552,248 @@ hf_temp_err_t NtcTemperatureHandler::ResetDiagnostics() noexcept {
 //  NTC-Specific Methods
 //--------------------------------------
 
-NtcThermistor* NtcTemperatureHandler::GetNtcThermistor() const noexcept {
+void* NtcTemperatureHandler::GetNtcThermistor() noexcept {
     return ntc_thermistor_.get();
 }
 
-ntc_err_t NtcTemperatureHandler::GetNtcConfiguration(ntc_config_t* config) const noexcept {
+const void* NtcTemperatureHandler::GetNtcThermistor() const noexcept {
+    return ntc_thermistor_.get();
+}
+
+NtcError NtcTemperatureHandler::GetNtcConfiguration(ntc_config_t* config) const noexcept {
     if (config == nullptr || ntc_thermistor_ == nullptr) {
-        return NTC_ERR_NULL_POINTER;
+        return NtcError::NullPointer;
     }
     
     return ntc_thermistor_->GetConfiguration(config);
 }
 
-ntc_err_t NtcTemperatureHandler::GetNtcReading(ntc_reading_t* reading) const noexcept {
+NtcError NtcTemperatureHandler::GetNtcReading(ntc_reading_t* reading) noexcept {
     if (reading == nullptr || ntc_thermistor_ == nullptr) {
-        return NTC_ERR_NULL_POINTER;
+        return NtcError::NullPointer;
     }
     
-    return ntc_thermistor_->GetReading(reading);
+    return ntc_thermistor_->ReadTemperature(reading);
 }
 
-ntc_err_t NtcTemperatureHandler::GetNtcStatistics(ntc_statistics_t* statistics) const noexcept {
-    if (statistics == nullptr || ntc_thermistor_ == nullptr) {
-        return NTC_ERR_NULL_POINTER;
+// NOTE: GetNtcStatistics and GetNtcDiagnostics removed — the NtcThermistor
+// driver does not provide ntc_statistics_t / ntc_diagnostics_t types or
+// corresponding accessor methods.  Use the BaseTemperature-level
+// GetStatistics() / GetDiagnostics() instead.
+
+//--------------------------------------
+//  BaseTemperature Override Stubs
+//--------------------------------------
+
+hf_temp_err_t NtcTemperatureHandler::SetRange(float min_celsius, float max_celsius) noexcept {
+    MutexLockGuard lock(mutex_);
+    if (!initialized_) {
+        return TEMP_ERR_NOT_INITIALIZED;
     }
-    
-    return ntc_thermistor_->GetStatistics(statistics);
+    if (min_celsius >= max_celsius) {
+        return TEMP_ERR_INVALID_RANGE;
+    }
+    config_.min_temperature = min_celsius;
+    config_.max_temperature = max_celsius;
+    return TEMP_SUCCESS;
 }
 
-ntc_err_t NtcTemperatureHandler::GetNtcDiagnostics(ntc_diagnostics_t* diagnostics) const noexcept {
-    if (diagnostics == nullptr || ntc_thermistor_ == nullptr) {
-        return NTC_ERR_NULL_POINTER;
+hf_temp_err_t NtcTemperatureHandler::GetRange(float* min_celsius, float* max_celsius) const noexcept {
+    if (min_celsius == nullptr || max_celsius == nullptr) {
+        return TEMP_ERR_NULL_POINTER;
     }
-    
-    return ntc_thermistor_->GetDiagnostics(diagnostics);
+    if (!initialized_) {
+        return TEMP_ERR_NOT_INITIALIZED;
+    }
+    *min_celsius = config_.min_temperature;
+    *max_celsius = config_.max_temperature;
+    return TEMP_SUCCESS;
+}
+
+hf_temp_err_t NtcTemperatureHandler::GetResolution(float* resolution_celsius) const noexcept {
+    if (resolution_celsius == nullptr) {
+        return TEMP_ERR_NULL_POINTER;
+    }
+    if (!initialized_) {
+        return TEMP_ERR_NOT_INITIALIZED;
+    }
+    *resolution_celsius = 0.1f;  // Typical NTC resolution
+    return TEMP_SUCCESS;
+}
+
+hf_temp_err_t NtcTemperatureHandler::EnterSleepMode() noexcept {
+    MutexLockGuard lock(mutex_);
+    if (!initialized_) {
+        return TEMP_ERR_NOT_INITIALIZED;
+    }
+    // NTC thermistors are passive — no hardware sleep mode, but we track state
+    current_state_ = HF_TEMP_STATE_SLEEPING;
+    Logger::GetInstance().Info(TAG, "Entered sleep mode (passive sensor)");
+    return TEMP_SUCCESS;
+}
+
+hf_temp_err_t NtcTemperatureHandler::ExitSleepMode() noexcept {
+    MutexLockGuard lock(mutex_);
+    if (!initialized_) {
+        return TEMP_ERR_NOT_INITIALIZED;
+    }
+    current_state_ = HF_TEMP_STATE_INITIALIZED;
+    Logger::GetInstance().Info(TAG, "Exited sleep mode");
+    return TEMP_SUCCESS;
+}
+
+bool NtcTemperatureHandler::IsSleeping() const noexcept {
+    return current_state_ == HF_TEMP_STATE_SLEEPING;
+}
+
+hf_temp_err_t NtcTemperatureHandler::SelfTest() noexcept {
+    MutexLockGuard lock(mutex_);
+    if (!initialized_ || ntc_thermistor_ == nullptr) {
+        return TEMP_ERR_NOT_INITIALIZED;
+    }
+    // Basic self-test: attempt a temperature reading and validate range
+    float temperature = 0.0f;
+    NtcError result = ntc_thermistor_->ReadTemperatureCelsius(&temperature);
+    if (result != NtcError::Success) {
+        diagnostics_.sensor_healthy = false;
+        return ConvertNtcError(result);
+    }
+    if (temperature < config_.min_temperature || temperature > config_.max_temperature) {
+        diagnostics_.sensor_healthy = false;
+        return TEMP_ERR_OUT_OF_RANGE;
+    }
+    diagnostics_.sensor_healthy = true;
+    Logger::GetInstance().Info(TAG, "Self-test passed: %.2f°C", temperature);
+    return TEMP_SUCCESS;
+}
+
+hf_temp_err_t NtcTemperatureHandler::CheckHealth() noexcept {
+    MutexLockGuard lock(mutex_);
+    if (!initialized_) {
+        return TEMP_ERR_NOT_INITIALIZED;
+    }
+    if (!diagnostics_.sensor_healthy) {
+        return TEMP_ERR_HARDWARE_FAULT;
+    }
+    if (diagnostics_.consecutive_errors > 5) {
+        return TEMP_ERR_SENSOR_NOT_AVAILABLE;
+    }
+    return TEMP_SUCCESS;
+}
+
+//--------------------------------------
+//  NTC-Specific Method Implementations
+//--------------------------------------
+
+NtcError NtcTemperatureHandler::SetNtcConfiguration(const ntc_config_t& config) noexcept {
+    MutexLockGuard lock(mutex_);
+    if (ntc_thermistor_ == nullptr) {
+        return NtcError::NotInitialized;
+    }
+    return ntc_thermistor_->SetConfiguration(config);
+}
+
+NtcError NtcTemperatureHandler::GetResistance(float* resistance_ohms) noexcept {
+    MutexLockGuard lock(mutex_);
+    if (resistance_ohms == nullptr) {
+        return NtcError::NullPointer;
+    }
+    if (ntc_thermistor_ == nullptr) {
+        return NtcError::NotInitialized;
+    }
+    return ntc_thermistor_->GetResistance(resistance_ohms);
+}
+
+NtcError NtcTemperatureHandler::GetVoltage(float* voltage_volts) noexcept {
+    MutexLockGuard lock(mutex_);
+    if (voltage_volts == nullptr) {
+        return NtcError::NullPointer;
+    }
+    if (ntc_thermistor_ == nullptr) {
+        return NtcError::NotInitialized;
+    }
+    return ntc_thermistor_->GetVoltage(voltage_volts);
+}
+
+NtcError NtcTemperatureHandler::GetRawAdcValue(uint32_t* adc_value) noexcept {
+    MutexLockGuard lock(mutex_);
+    if (adc_value == nullptr) {
+        return NtcError::NullPointer;
+    }
+    if (ntc_thermistor_ == nullptr) {
+        return NtcError::NotInitialized;
+    }
+    return ntc_thermistor_->GetRawAdcValue(adc_value);
+}
+
+NtcError NtcTemperatureHandler::SetConversionMethod(NtcConversionMethod method) noexcept {
+    MutexLockGuard lock(mutex_);
+    if (ntc_thermistor_ == nullptr) {
+        return NtcError::NotInitialized;
+    }
+    return ntc_thermistor_->SetConversionMethod(method);
+}
+
+NtcError NtcTemperatureHandler::SetVoltageDivider(float series_resistance) noexcept {
+    MutexLockGuard lock(mutex_);
+    if (ntc_thermistor_ == nullptr) {
+        return NtcError::NotInitialized;
+    }
+    return ntc_thermistor_->SetVoltageDivider(series_resistance);
+}
+
+NtcError NtcTemperatureHandler::SetReferenceVoltage(float reference_voltage) noexcept {
+    MutexLockGuard lock(mutex_);
+    if (ntc_thermistor_ == nullptr) {
+        return NtcError::NotInitialized;
+    }
+    return ntc_thermistor_->SetReferenceVoltage(reference_voltage);
+}
+
+NtcError NtcTemperatureHandler::SetBetaValue(float beta_value) noexcept {
+    MutexLockGuard lock(mutex_);
+    if (ntc_thermistor_ == nullptr) {
+        return NtcError::NotInitialized;
+    }
+    return ntc_thermistor_->SetBetaValue(beta_value);
+}
+
+NtcError NtcTemperatureHandler::SetAdcChannel(uint8_t adc_channel) noexcept {
+    MutexLockGuard lock(mutex_);
+    config_.adc_channel = adc_channel;
+    if (ntc_thermistor_ == nullptr) {
+        return NtcError::NotInitialized;
+    }
+    return ntc_thermistor_->SetAdcChannel(adc_channel);
+}
+
+NtcError NtcTemperatureHandler::SetSamplingParameters(uint32_t sample_count,
+                                                      uint32_t sample_delay_ms) noexcept {
+    MutexLockGuard lock(mutex_);
+    config_.sample_count = sample_count;
+    config_.sample_delay_ms = sample_delay_ms;
+    if (ntc_thermistor_ == nullptr) {
+        return NtcError::NotInitialized;
+    }
+    return ntc_thermistor_->SetSamplingParameters(sample_count, sample_delay_ms);
+}
+
+NtcError NtcTemperatureHandler::SetFiltering(bool enable, float alpha) noexcept {
+    MutexLockGuard lock(mutex_);
+    config_.enable_filtering = enable;
+    config_.filter_alpha = alpha;
+    if (ntc_thermistor_ == nullptr) {
+        return NtcError::NotInitialized;
+    }
+    return ntc_thermistor_->SetFiltering(enable, alpha);
+}
+
+const char* NtcTemperatureHandler::GetSensorName() const noexcept {
+    return config_.sensor_name;
+}
+
+const char* NtcTemperatureHandler::GetSensorDescription() const noexcept {
+    return config_.sensor_description;
 }
 
 //--------------------------------------
@@ -622,46 +862,37 @@ void NtcTemperatureHandler::CheckThresholds(float temperature_celsius) noexcept 
     }
 }
 
-hf_temp_err_t NtcTemperatureHandler::ConvertNtcError(ntc_err_t ntc_error) const noexcept {
+hf_temp_err_t NtcTemperatureHandler::ConvertNtcError(NtcError ntc_error) const noexcept {
     switch (ntc_error) {
-        case NTC_SUCCESS:
+        case NtcError::Success:
             return TEMP_SUCCESS;
-        case NTC_ERR_NULL_POINTER:
+        case NtcError::NullPointer:
             return TEMP_ERR_NULL_POINTER;
-        case NTC_ERR_NOT_INITIALIZED:
+        case NtcError::NotInitialized:
             return TEMP_ERR_NOT_INITIALIZED;
-        case NTC_ERR_ALREADY_INITIALIZED:
+        case NtcError::AlreadyInitialized:
             return TEMP_ERR_ALREADY_INITIALIZED;
-        case NTC_ERR_INVALID_PARAMETER:
+        case NtcError::InvalidParameter:
             return TEMP_ERR_INVALID_PARAMETER;
-        case NTC_ERR_OUT_OF_MEMORY:
+        case NtcError::OutOfMemory:
             return TEMP_ERR_OUT_OF_MEMORY;
-        case NTC_ERR_READ_FAILED:
+        case NtcError::AdcReadFailed:
             return TEMP_ERR_READ_FAILED;
-        case NTC_ERR_INVALID_READING:
+        case NtcError::InvalidResistance:
             return TEMP_ERR_INVALID_READING;
-        case NTC_ERR_OUT_OF_RANGE:
+        case NtcError::TemperatureOutOfRange:
             return TEMP_ERR_OUT_OF_RANGE;
-        case NTC_ERR_TIMEOUT:
+        case NtcError::Timeout:
             return TEMP_ERR_TIMEOUT;
-        case NTC_ERR_CALIBRATION_FAILED:
+        case NtcError::CalibrationFailed:
             return TEMP_ERR_CALIBRATION_FAILED;
-        case NTC_ERR_COMMUNICATION_FAILED:
-            return TEMP_ERR_COMMUNICATION_FAILED;
-        case NTC_ERR_HARDWARE_FAULT:
+        case NtcError::HardwareFault:
             return TEMP_ERR_HARDWARE_FAULT;
-        case NTC_ERR_RESOURCE_BUSY:
-            return TEMP_ERR_RESOURCE_BUSY;
-        case NTC_ERR_RESOURCE_UNAVAILABLE:
-            return TEMP_ERR_RESOURCE_UNAVAILABLE;
-        case NTC_ERR_OPERATION_ABORTED:
-            return TEMP_ERR_OPERATION_ABORTED;
-        case NTC_ERR_INVALID_STATE:
-            return TEMP_ERR_INVALID_STATE;
-        case NTC_ERR_CONVERSION_FAILED:
+        case NtcError::ConversionFailed:
             return TEMP_ERR_CONVERSION_FAILED;
-        case NTC_ERR_DRIVER_ERROR:
-            return TEMP_ERR_DRIVER_ERROR;
+        case NtcError::LookupTableError:
+        case NtcError::UnsupportedOperation:
+        case NtcError::Failure:
         default:
             return TEMP_ERR_FAILURE;
     }
@@ -671,8 +902,8 @@ hf_temp_err_t NtcTemperatureHandler::ConvertNtcError(ntc_err_t ntc_error) const 
 //  Static Callback Functions
 //--------------------------------------
 
-void NtcTemperatureHandler::ContinuousMonitoringCallback(void* arg) {
-    auto* handler = static_cast<NtcTemperatureHandler*>(arg);
+void NtcTemperatureHandler::ContinuousMonitoringCallback(uint32_t arg) {
+    auto* handler = reinterpret_cast<NtcTemperatureHandler*>(arg);
     if (handler == nullptr) {
         return;
     }
@@ -680,6 +911,7 @@ void NtcTemperatureHandler::ContinuousMonitoringCallback(void* arg) {
     // Read temperature
     hf_temp_reading_t reading = {};
     hf_temp_err_t error = handler->ReadTemperature(&reading);
+    (void)error;
     
     // Call user callback if provided
     if (handler->continuous_callback_ != nullptr) {

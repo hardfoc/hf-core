@@ -15,10 +15,67 @@
 
 #include "core/hf-core-drivers/internal/hf-internal-interface-wrap/inc/base/BaseTemperature.h"
 #include "core/hf-core-drivers/internal/hf-internal-interface-wrap/inc/base/BaseAdc.h"
-#include "core/hf-core-drivers/external/hf-ntc-thermistor-driver/include/NtcThermistor.h"
+#include "core/hf-core-drivers/external/hf-ntc-thermistor-driver/inc/ntc_thermistor.hpp"
+#include "utils/RtosMutex.h"
+#include "core/hf-core-utils/hf-utils-rtos-wrap/include/PeriodicTimer.h"
 
 #include <memory>
-#include <mutex>
+#include <cfloat>
+
+//--------------------------------------
+//  NTC ADC Adapter (BaseAdc → ntc::AdcInterface bridge)
+//--------------------------------------
+
+/**
+ * @brief Adapter that bridges BaseAdc to the ntc::AdcInterface CRTP interface
+ *        required by the NtcThermistor template class.
+ *
+ * NtcThermistor<AdcType> requires AdcType to inherit from ntc::AdcInterface<AdcType>.
+ * BaseAdc uses a separate virtual interface. This adapter translates between them.
+ */
+class NtcAdcAdapter : public ntc::AdcInterface<NtcAdcAdapter> {
+public:
+    /**
+     * @brief Construct adapter wrapping a BaseAdc pointer.
+     * @param adc Pointer to BaseAdc (must outlive this adapter).
+     * @param ref_voltage ADC reference voltage in volts.
+     * @param res_bits ADC resolution in bits.
+     */
+    explicit NtcAdcAdapter(BaseAdc* adc, float ref_voltage = 3.3f, uint8_t res_bits = 12) noexcept
+        : adc_(adc), reference_voltage_(ref_voltage), resolution_bits_(res_bits) {}
+
+    [[nodiscard]] bool IsInitialized() const { return adc_ != nullptr && adc_->IsInitialized(); }
+    bool EnsureInitialized() { return adc_ != nullptr && adc_->EnsureInitialized(); }
+    [[nodiscard]] bool IsChannelAvailable(uint8_t channel) const {
+        return adc_ != nullptr && adc_->IsChannelAvailable(static_cast<hf_channel_id_t>(channel));
+    }
+    ntc::AdcError ReadChannelCount(uint8_t channel, uint32_t* count) {
+        if (adc_ == nullptr || count == nullptr) return ntc::AdcError::ReadFailed;
+        hf_u32_t raw = 0;
+        auto err = adc_->ReadChannelCount(static_cast<hf_channel_id_t>(channel), raw);
+        if (err != hf_adc_err_t::ADC_SUCCESS) return ntc::AdcError::ReadFailed;
+        *count = raw;
+        return ntc::AdcError::Success;
+    }
+    ntc::AdcError ReadChannelV(uint8_t channel, float* voltage_v) {
+        if (adc_ == nullptr || voltage_v == nullptr) return ntc::AdcError::ReadFailed;
+        float v = 0.0f;
+        auto err = adc_->ReadChannelV(static_cast<hf_channel_id_t>(channel), v);
+        if (err != hf_adc_err_t::ADC_SUCCESS) return ntc::AdcError::ReadFailed;
+        *voltage_v = v;
+        return ntc::AdcError::Success;
+    }
+    [[nodiscard]] float GetReferenceVoltage() const { return reference_voltage_; }
+    [[nodiscard]] uint8_t GetResolutionBits() const { return resolution_bits_; }
+
+private:
+    BaseAdc* adc_;
+    float reference_voltage_;
+    uint8_t resolution_bits_;
+};
+
+/// Convenience alias for the concrete NtcThermistor type used by this handler.
+using NtcThermistorConcrete = NtcThermistor<NtcAdcAdapter>;
 
 //--------------------------------------
 //  NTC Temperature Handler Configuration
@@ -28,18 +85,25 @@
  * @brief NTC temperature handler configuration structure
  */
 typedef struct {
-    ntc_type_t ntc_type;                    ///< NTC thermistor type
+    NtcType ntc_type;                       ///< NTC thermistor type (driver enum)
     uint8_t adc_channel;                    ///< ADC channel for voltage measurement
-    float series_resistance;                ///< Series resistance in voltage divider (ohms)
+    float voltage_divider_series_resistance; ///< Series resistance in voltage divider (ohms)
+    float voltage_divider_parallel_resistance; ///< Parallel resistance (ohms, 0 if none)
     float reference_voltage;                ///< Reference voltage (V)
     float calibration_offset;               ///< Calibration offset (°C)
-    ntc_conversion_method_t conversion_method; ///< Temperature conversion method
+    float beta_value;                       ///< Beta value override (0 = use default)
+    NtcConversionMethod conversion_method;  ///< Temperature conversion method (driver enum)
     uint32_t sample_count;                  ///< Number of samples to average
     uint32_t sample_delay_ms;               ///< Delay between samples (ms)
     float min_temperature;                  ///< Minimum temperature (°C)
     float max_temperature;                  ///< Maximum temperature (°C)
     bool enable_filtering;                  ///< Enable temperature filtering
     float filter_alpha;                     ///< Filter alpha value (0.0-1.0)
+    bool enable_threshold_monitoring;       ///< Enable threshold monitoring at init
+    float low_threshold_celsius;            ///< Low temperature threshold (°C)
+    float high_threshold_celsius;           ///< High temperature threshold (°C)
+    hf_temp_threshold_callback_t threshold_callback; ///< Threshold callback (optional)
+    void* threshold_user_data;              ///< Threshold callback user data
     const char* sensor_name;                ///< Sensor name/identifier
     const char* sensor_description;         ///< Sensor description
 } ntc_temp_handler_config_t;
@@ -48,18 +112,25 @@ typedef struct {
  * @brief Default NTC temperature handler configuration
  */
 #define NTC_TEMP_HANDLER_CONFIG_DEFAULT() { \
-    .ntc_type = NTC_TYPE_NTCG163JFT103FT1S, \
+    .ntc_type = NtcType::NtcG163Jft103Ft1S, \
     .adc_channel = 0, \
-    .series_resistance = 10000.0f, \
+    .voltage_divider_series_resistance = 10000.0f, \
+    .voltage_divider_parallel_resistance = 0.0f, \
     .reference_voltage = 3.3f, \
     .calibration_offset = 0.0f, \
-    .conversion_method = NTC_CONVERSION_AUTO, \
+    .beta_value = 0.0f, \
+    .conversion_method = NtcConversionMethod::Auto, \
     .sample_count = 1, \
     .sample_delay_ms = 0, \
     .min_temperature = -40.0f, \
     .max_temperature = 125.0f, \
     .enable_filtering = false, \
     .filter_alpha = 0.1f, \
+    .enable_threshold_monitoring = false, \
+    .low_threshold_celsius = -40.0f, \
+    .high_threshold_celsius = 125.0f, \
+    .threshold_callback = nullptr, \
+    .threshold_user_data = nullptr, \
     .sensor_name = "NTC_Temperature_Sensor", \
     .sensor_description = "NTC Thermistor Temperature Sensor" \
 }
@@ -105,14 +176,14 @@ public:
      * @param adc_interface Pointer to BaseAdc interface
      * @param sensor_name Optional sensor name
      */
-    NtcTemperatureHandler(ntc_type_t ntc_type, BaseAdc* adc_interface, const char* sensor_name = nullptr) noexcept;
+    NtcTemperatureHandler(NtcType ntc_type, BaseAdc* adc_interface, const char* sensor_name = nullptr) noexcept;
     
     /**
-     * @brief Constructor with configuration and ADC interface
-     * @param config NTC temperature handler configuration
+     * @brief Constructor with ADC interface and configuration
      * @param adc_interface Pointer to BaseAdc interface
+     * @param config NTC temperature handler configuration
      */
-    NtcTemperatureHandler(const ntc_temp_handler_config_t& config, BaseAdc* adc_interface) noexcept;
+    NtcTemperatureHandler(BaseAdc* adc_interface, const ntc_temp_handler_config_t& config) noexcept;
     
     /**
      * @brief Copy constructor is deleted
@@ -135,9 +206,9 @@ public:
     NtcTemperatureHandler& operator=(NtcTemperatureHandler&&) noexcept = default;
     
     /**
-     * @brief Virtual destructor
+     * @brief Virtual destructor - cleans up timer and thermistor resources
      */
-    virtual ~NtcTemperatureHandler() noexcept = default;
+    virtual ~NtcTemperatureHandler() noexcept;
     
     //==============================================================//
     // BASE TEMPERATURE INTERFACE IMPLEMENTATION
@@ -182,92 +253,101 @@ public:
     
     /**
      * @brief Get NTC thermistor instance
-     * @return Pointer to NtcThermistor instance
+     * @return Pointer to NtcThermistor instance (opaque)
+     * @note Returns raw pointer for observation only; handler retains ownership.
      */
-    NtcThermistor* GetNtcThermistor() noexcept;
+    void* GetNtcThermistor() noexcept;
     
     /**
      * @brief Get NTC thermistor instance (const)
      * @return Pointer to const NtcThermistor instance
+     * @note Returns raw pointer for observation only; handler retains ownership.
      */
-    const NtcThermistor* GetNtcThermistor() const noexcept;
+    const void* GetNtcThermistor() const noexcept;
+    
+    /**
+     * @brief Get NTC reading
+     * @param reading Pointer to store NTC reading
+     * @return NTC error code
+     */
+    NtcError GetNtcReading(ntc_reading_t* reading) noexcept;
     
     /**
      * @brief Get NTC configuration
      * @param config Pointer to store configuration
      * @return Error code
      */
-    ntc_err_t GetNtcConfiguration(ntc_config_t* config) const noexcept;
+    NtcError GetNtcConfiguration(ntc_config_t* config) const noexcept;
     
     /**
      * @brief Set NTC configuration
      * @param config New configuration
      * @return Error code
      */
-    ntc_err_t SetNtcConfiguration(const ntc_config_t& config) noexcept;
+    NtcError SetNtcConfiguration(const ntc_config_t& config) noexcept;
     
     /**
      * @brief Get thermistor resistance
      * @param resistance_ohms Pointer to store resistance
      * @return Error code
      */
-    ntc_err_t GetResistance(float* resistance_ohms) noexcept;
+    NtcError GetResistance(float* resistance_ohms) noexcept;
     
     /**
      * @brief Get voltage across thermistor
      * @param voltage_volts Pointer to store voltage
      * @return Error code
      */
-    ntc_err_t GetVoltage(float* voltage_volts) noexcept;
+    NtcError GetVoltage(float* voltage_volts) noexcept;
     
     /**
      * @brief Get raw ADC value
      * @param adc_value Pointer to store ADC value
      * @return Error code
      */
-    ntc_err_t GetRawAdcValue(uint32_t* adc_value) noexcept;
+    NtcError GetRawAdcValue(uint32_t* adc_value) noexcept;
     
     /**
      * @brief Calibrate the thermistor
      * @param reference_temperature_celsius Known reference temperature
      * @return Error code
      */
-    ntc_err_t Calibrate(float reference_temperature_celsius) noexcept;
+    hf_temp_err_t Calibrate(float reference_temperature_celsius) noexcept;
     
     /**
      * @brief Set conversion method
      * @param method Conversion method
      * @return Error code
      */
-    ntc_err_t SetConversionMethod(ntc_conversion_method_t method) noexcept;
+    NtcError SetConversionMethod(NtcConversionMethod method) noexcept;
     
     /**
      * @brief Set voltage divider parameters
      * @param series_resistance Series resistance (ohms)
      * @return Error code
      */
-    ntc_err_t SetVoltageDivider(float series_resistance) noexcept;
+    NtcError SetVoltageDivider(float series_resistance) noexcept;
     
     /**
      * @brief Set reference voltage
      * @param reference_voltage Reference voltage (V)
      * @return Error code
      */
-    ntc_err_t SetReferenceVoltage(float reference_voltage) noexcept;
+    NtcError SetReferenceVoltage(float reference_voltage) noexcept;
     
     /**
      * @brief Set beta value
      * @param beta_value Beta value (K)
      * @return Error code
      */
-    ntc_err_t SetBetaValue(float beta_value) noexcept;
+    NtcError SetBetaValue(float beta_value) noexcept;
     
     /**
      * @brief Set ADC channel
      * @param adc_channel ADC channel number
      * @return Error code
      */
-    ntc_err_t SetAdcChannel(uint8_t adc_channel) noexcept;
+    NtcError SetAdcChannel(uint8_t adc_channel) noexcept;
     
     /**
      * @brief Set sampling parameters
@@ -275,7 +355,7 @@ public:
      * @param sample_delay_ms Delay between samples (ms)
      * @return Error code
      */
-    ntc_err_t SetSamplingParameters(uint32_t sample_count, uint32_t sample_delay_ms) noexcept;
+    NtcError SetSamplingParameters(uint32_t sample_count, uint32_t sample_delay_ms) noexcept;
     
     /**
      * @brief Enable/disable filtering
@@ -283,21 +363,7 @@ public:
      * @param alpha Filter alpha value (0.0-1.0)
      * @return Error code
      */
-    ntc_err_t SetFiltering(bool enable, float alpha = 0.1f) noexcept;
-    
-    /**
-     * @brief Get NTC statistics
-     * @param statistics Pointer to store statistics
-     * @return Error code
-     */
-    ntc_err_t GetNtcStatistics(ntc_statistics_t* statistics) noexcept;
-    
-    /**
-     * @brief Get NTC diagnostics
-     * @param diagnostics Pointer to store diagnostics
-     * @return Error code
-     */
-    ntc_err_t GetNtcDiagnostics(ntc_diagnostics_t* diagnostics) noexcept;
+    NtcError SetFiltering(bool enable, float alpha = 0.1f) noexcept;
     
     /**
      * @brief Get sensor name
@@ -316,8 +382,9 @@ private:
     // PRIVATE MEMBER VARIABLES
     //==============================================================//
     
-    mutable std::mutex mutex_;              ///< Thread safety mutex
-    std::unique_ptr<NtcThermistor> ntc_thermistor_; ///< NTC thermistor instance
+    mutable RtosMutex mutex_;              ///< Thread safety mutex (hardware-agnostic)
+    std::unique_ptr<NtcAdcAdapter> ntc_adc_adapter_;       ///< ADC adapter (BaseAdc→ntc::AdcInterface)
+    std::unique_ptr<NtcThermistorConcrete> ntc_thermistor_; ///< NTC thermistor driver instance
     BaseAdc* adc_interface_;                ///< ADC interface pointer
     ntc_temp_handler_config_t config_;      ///< Handler configuration
     
@@ -333,11 +400,13 @@ private:
     hf_temp_threshold_callback_t threshold_callback_; ///< Threshold callback
     void* threshold_user_data_;             ///< Threshold callback user data
     
-    // Continuous monitoring
-    bool continuous_monitoring_active_;     ///< Continuous monitoring status
+    // Continuous monitoring (using hardware-agnostic PeriodicTimer)
+    bool monitoring_active_;               ///< Continuous monitoring status
     hf_u32_t sample_rate_hz_;               ///< Sample rate for continuous monitoring
-    hf_temp_reading_callback_t monitoring_callback_; ///< Monitoring callback
-    void* monitoring_user_data_;            ///< Monitoring callback user data
+    hf_temp_reading_callback_t continuous_callback_; ///< Continuous monitoring callback
+    void* continuous_user_data_;            ///< Continuous monitoring callback user data
+    PeriodicTimer monitoring_timer_;        ///< Hardware-agnostic periodic timer
+    float calibration_offset_;             ///< Current calibration offset
     
     // Statistics and diagnostics
     hf_temp_statistics_t statistics_;       ///< BaseTemperature statistics
@@ -346,6 +415,25 @@ private:
     //==============================================================//
     // PRIVATE HELPER METHODS
     //==============================================================//
+    
+    /**
+     * @brief Set last error in diagnostics
+     * @param error Error code to record
+     */
+    void SetLastError(hf_temp_err_t error) noexcept;
+    
+    /**
+     * @brief Update operation statistics
+     * @param operation_successful Whether operation was successful
+     * @param operation_time_us Operation time in microseconds
+     */
+    void UpdateStatistics(bool operation_successful, hf_u32_t operation_time_us) noexcept;
+    
+    /**
+     * @brief Update diagnostics with error code
+     * @param error Error code
+     */
+    void UpdateDiagnostics(hf_temp_err_t error) noexcept;
     
     /**
      * @brief Initialize NTC thermistor with current configuration
@@ -358,31 +446,7 @@ private:
      * @param ntc_error NTC error code
      * @return BaseTemperature error code
      */
-    hf_temp_err_t ConvertNtcError(ntc_err_t ntc_error) const noexcept;
-    
-    /**
-     * @brief Convert NTC reading to BaseTemperature reading
-     * @param ntc_reading NTC reading structure
-     * @param base_reading BaseTemperature reading structure
-     */
-    void ConvertNtcReadingToBaseReading(const ntc_reading_t& ntc_reading, 
-                                       hf_temp_reading_t& base_reading) noexcept;
-    
-    /**
-     * @brief Convert NTC statistics to BaseTemperature statistics
-     * @param ntc_stats NTC statistics structure
-     * @param base_stats BaseTemperature statistics structure
-     */
-    void ConvertNtcStatisticsToBaseStatistics(const ntc_statistics_t& ntc_stats, 
-                                             hf_temp_statistics_t& base_stats) noexcept;
-    
-    /**
-     * @brief Convert NTC diagnostics to BaseTemperature diagnostics
-     * @param ntc_diag NTC diagnostics structure
-     * @param base_diag BaseTemperature diagnostics structure
-     */
-    void ConvertNtcDiagnosticsToBaseDiagnostics(const ntc_diagnostics_t& ntc_diag, 
-                                               hf_temp_diagnostics_t& base_diag) noexcept;
+    hf_temp_err_t ConvertNtcError(NtcError ntc_error) const noexcept;
     
     /**
      * @brief Check thresholds and trigger callback if needed
@@ -391,12 +455,10 @@ private:
     void CheckThresholds(float temperature_celsius) noexcept;
     
     /**
-     * @brief Update BaseTemperature statistics
-     * @param operation_successful Whether operation was successful
-     * @param operation_time_us Operation time in microseconds
-     * @param temperature_celsius Temperature reading
+     * @brief Static callback for continuous monitoring timer
+     * @param arg Timer callback argument (pointer to handler instance)
      */
-    void UpdateBaseStatistics(bool operation_successful, hf_u32_t operation_time_us, float temperature_celsius) noexcept;
+    static void ContinuousMonitoringCallback(uint32_t arg);
     
     /**
      * @brief Update BaseTemperature diagnostics

@@ -1,0 +1,40 @@
+# Lychee Link Checker Configuration — HF-Core Documentation
+# =============================================================================
+
+timeout = 30
+max_retries = 3
+max_redirects = 10
+retry_wait_time = 1
+user_agent = "lychee/0.21.0"
+method = "get"
+insecure = false
+exclude_all_private = true
+include_mail = false
+include_verbatim = false
+skip_missing = false
+
+accept = ["200", "429", "403"]
+
+exclude = [
+  # GNU License URLs — frequently rate limited
+  '^https://www\.gnu\.org/licenses/gpl-3\.0/?$',
+  '^https://gnu\.org/licenses/gpl-3\.0/?$',
+  '^https://www\.gnu\.org/licenses/gpl-3\.0\.html$',
+
+  # License badge URLs
+  '^https://img\.shields\.io/badge/License-GPLv3-blue\.svg$',
+
+  # General patterns for GNU license URLs
+  '^https?://(www\.)?gnu\.org/licenses/.*',
+  '^https?://img\.shields\.io/badge/License-.*',
+
+  # GitHub Actions badge URLs (may not exist yet for hf-core)
+  '^https://github\.com/N3b3x/hf-hal-vortex-v1/actions/workflows/.*',
+
+  # Documentation site URLs (may not be published yet)
+  '^https://n3b3x\.github\.io/hf-hal-vortex-v1/.*',
+
+  # Submodule READMEs and internal cross-references
+  '^https://github\.com/N3b3x/hf-core-drivers.*',
+  '^https://github\.com/N3b3x/hf-core-utils.*',
+]

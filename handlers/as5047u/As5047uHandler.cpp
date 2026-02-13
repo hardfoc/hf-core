@@ -2,11 +2,11 @@
  * @file As5047uHandler.cpp
  * @brief Implementation of unified AS5047U magnetic rotary position sensor handler.
  *
- * This file implements the comprehensive AS5047U handler with bridge pattern SPI integration,
+ * This file implements the comprehensive AS5047U handler with CRTP SPI integration,
  * lazy initialization, shared pointer management, and complete exception-free design.
  * 
  * Key implementation features:
- * - As5047uSpiAdapter bridge connecting BaseSpi to AS5047U::spiBus interface
+ * - As5047uSpiAdapter CRTP connecting BaseSpi to as5047u::SpiInterface<As5047uSpiAdapter>
  * - Lazy initialization pattern with deferred object creation
  * - Shared pointer management for safe cross-component access
  * - Thread-safe operations with RtosMutex protection
@@ -81,7 +81,7 @@ As5047uError As5047uHandler::Initialize() noexcept {
         return last_error_;
     }
     
-    // Create SPI adapter (bridge pattern)
+    // Create SPI adapter (CRTP pattern)
     spi_adapter_ = std::make_unique<As5047uSpiAdapter>(spi_ref_);
     if (!spi_adapter_) {
         last_error_ = As5047uError::INITIALIZATION_FAILED;
@@ -89,7 +89,7 @@ As5047uError As5047uHandler::Initialize() noexcept {
     }
     
     // Create AS5047U sensor instance (lazy initialization)
-    as5047u_sensor_ = std::make_shared<AS5047U>(*spi_adapter_, config_.frame_format);
+    as5047u_sensor_ = std::make_shared<as5047u::AS5047U<As5047uSpiAdapter>>(*spi_adapter_, config_.frame_format);
     if (!as5047u_sensor_) {
         spi_adapter_.reset();
         last_error_ = As5047uError::INITIALIZATION_FAILED;
@@ -104,15 +104,17 @@ As5047uError As5047uHandler::Initialize() noexcept {
         return last_error_;
     }
     
-    // Test basic sensor communication
-    uint16_t test_angle = 0;
-    As5047uError comm_test = ReadAngle(test_angle);
-    if (comm_test != As5047uError::SUCCESS) {
+    // Test basic sensor communication (direct driver call, no recursive lock)
+    uint16_t test_angle = as5047u_sensor_->GetAngle(config_.crc_retries);
+    auto sticky = as5047u_sensor_->GetStickyErrorFlags();
+    if (static_cast<uint16_t>(sticky) & (static_cast<uint16_t>(AS5047U_Error::CrcError) |
+                                         static_cast<uint16_t>(AS5047U_Error::FramingError))) {
         as5047u_sensor_.reset();
         spi_adapter_.reset();
         last_error_ = As5047uError::SPI_COMMUNICATION_FAILED;
         return last_error_;
     }
+    (void)test_angle;
     
     // Initialize diagnostics
     UpdateDiagnostics();
@@ -144,7 +146,7 @@ bool As5047uHandler::IsSensorReady() const noexcept {
     return as5047u_sensor_ != nullptr;
 }
 
-std::shared_ptr<AS5047U> As5047uHandler::GetSensor() noexcept {
+std::shared_ptr<as5047u::AS5047U<As5047uSpiAdapter>> As5047uHandler::GetSensor() noexcept {
     MutexLockGuard lock(handler_mutex_);
     return as5047u_sensor_;
 }
@@ -162,15 +164,15 @@ As5047uError As5047uHandler::ReadMeasurement(As5047uMeasurement& measurement) no
     }
     
     // Read all measurement data (driver handles retries internally)
-    measurement.angle_compensated = as5047u_sensor_->getAngle(config_.crc_retries);
-    measurement.angle_raw = as5047u_sensor_->getRawAngle(config_.crc_retries);
-    measurement.velocity_raw = as5047u_sensor_->getVelocity(config_.crc_retries);
-    measurement.velocity_deg_per_sec = as5047u_sensor_->getVelocityDegPerSec(config_.crc_retries);
-    measurement.velocity_rad_per_sec = as5047u_sensor_->getVelocityRadPerSec(config_.crc_retries);
-    measurement.velocity_rpm = as5047u_sensor_->getVelocityRPM(config_.crc_retries);
-    measurement.agc_value = as5047u_sensor_->getAGC(config_.crc_retries);
-    measurement.magnitude = as5047u_sensor_->getMagnitude(config_.crc_retries);
-    measurement.error_flags = as5047u_sensor_->getErrorFlags(config_.crc_retries);
+    measurement.angle_compensated = as5047u_sensor_->GetAngle(config_.crc_retries);
+    measurement.angle_raw = as5047u_sensor_->GetRawAngle(config_.crc_retries);
+    measurement.velocity_raw = as5047u_sensor_->GetVelocity(config_.crc_retries);
+    measurement.velocity_deg_per_sec = as5047u_sensor_->GetVelocityDegPerSec(config_.crc_retries);
+    measurement.velocity_rad_per_sec = as5047u_sensor_->GetVelocityRadPerSec(config_.crc_retries);
+    measurement.velocity_rpm = as5047u_sensor_->GetVelocityRPM(config_.crc_retries);
+    measurement.agc_value = as5047u_sensor_->GetAGC(config_.crc_retries);
+    measurement.magnitude = as5047u_sensor_->GetMagnitude(config_.crc_retries);
+    measurement.error_flags = as5047u_sensor_->GetErrorFlags(config_.crc_retries);
     
     // Handle sensor errors
     HandleSensorErrors(measurement.error_flags);
@@ -200,10 +202,10 @@ As5047uError As5047uHandler::ReadAngle(uint16_t& angle) noexcept {
     }
     
     // The driver handles retries internally and returns the actual value
-    angle = as5047u_sensor_->getAngle(config_.crc_retries);
+    angle = as5047u_sensor_->GetAngle(config_.crc_retries);
     
     // Check for communication errors using sticky flags
-    auto error_flags = as5047u_sensor_->getStickyErrorFlags();
+    auto error_flags = as5047u_sensor_->GetStickyErrorFlags();
     if (static_cast<uint16_t>(error_flags) & (static_cast<uint16_t>(AS5047U_Error::CrcError) |
                                              static_cast<uint16_t>(AS5047U_Error::FramingError))) {
         last_error_ = As5047uError::CRC_ERROR;
@@ -223,10 +225,10 @@ As5047uError As5047uHandler::ReadRawAngle(uint16_t& raw_angle) noexcept {
     }
     
     // The driver handles retries internally and returns the actual value
-    raw_angle = as5047u_sensor_->getRawAngle(config_.crc_retries);
+    raw_angle = as5047u_sensor_->GetRawAngle(config_.crc_retries);
     
     // Check for communication errors using sticky flags
-    auto error_flags = as5047u_sensor_->getStickyErrorFlags();
+    auto error_flags = as5047u_sensor_->GetStickyErrorFlags();
     if (static_cast<uint16_t>(error_flags) & (static_cast<uint16_t>(AS5047U_Error::CrcError) |
                                              static_cast<uint16_t>(AS5047U_Error::FramingError))) {
         last_error_ = As5047uError::CRC_ERROR;
@@ -246,12 +248,12 @@ As5047uError As5047uHandler::ReadVelocity(int16_t& velocity_lsb) noexcept {
     }
     
     // The driver handles retries internally and returns the actual value
-    velocity_lsb = as5047u_sensor_->getVelocity(config_.crc_retries);
+    velocity_lsb = as5047u_sensor_->GetVelocity(config_.crc_retries);
     last_error_ = As5047uError::SUCCESS;
     return last_error_;
 }
 
-As5047uError As5047uHandler::ReadVelocityDegPerSec(double& velocity_deg_per_sec) noexcept {
+As5047uError As5047uHandler::ReadVelocityDegPerSec(float& velocity_deg_per_sec) noexcept {
     MutexLockGuard lock(handler_mutex_);
     
     if (!ValidateSensor()) {
@@ -260,12 +262,12 @@ As5047uError As5047uHandler::ReadVelocityDegPerSec(double& velocity_deg_per_sec)
     }
     
     // The driver handles retries internally and returns the actual value
-    velocity_deg_per_sec = as5047u_sensor_->getVelocityDegPerSec(config_.crc_retries);
+    velocity_deg_per_sec = as5047u_sensor_->GetVelocityDegPerSec(config_.crc_retries);
     last_error_ = As5047uError::SUCCESS;
     return last_error_;
 }
 
-As5047uError As5047uHandler::ReadVelocityRadPerSec(double& velocity_rad_per_sec) noexcept {
+As5047uError As5047uHandler::ReadVelocityRadPerSec(float& velocity_rad_per_sec) noexcept {
     MutexLockGuard lock(handler_mutex_);
     
     if (!ValidateSensor()) {
@@ -274,12 +276,12 @@ As5047uError As5047uHandler::ReadVelocityRadPerSec(double& velocity_rad_per_sec)
     }
     
     // The driver handles retries internally and returns the actual value
-    velocity_rad_per_sec = as5047u_sensor_->getVelocityRadPerSec(config_.crc_retries);
+    velocity_rad_per_sec = as5047u_sensor_->GetVelocityRadPerSec(config_.crc_retries);
     last_error_ = As5047uError::SUCCESS;
     return last_error_;
 }
 
-As5047uError As5047uHandler::ReadVelocityRPM(double& velocity_rpm) noexcept {
+As5047uError As5047uHandler::ReadVelocityRPM(float& velocity_rpm) noexcept {
     MutexLockGuard lock(handler_mutex_);
     
     if (!ValidateSensor()) {
@@ -288,7 +290,7 @@ As5047uError As5047uHandler::ReadVelocityRPM(double& velocity_rpm) noexcept {
     }
     
     // The driver handles retries internally and returns the actual value
-    velocity_rpm = as5047u_sensor_->getVelocityRPM(config_.crc_retries);
+    velocity_rpm = as5047u_sensor_->GetVelocityRPM(config_.crc_retries);
     last_error_ = As5047uError::SUCCESS;
     return last_error_;
 }
@@ -320,7 +322,7 @@ As5047uError As5047uHandler::ReadAGC(uint8_t& agc_value) noexcept {
     }
     
     // The driver handles retries internally and returns the actual value
-    agc_value = as5047u_sensor_->getAGC(config_.crc_retries);
+    agc_value = as5047u_sensor_->GetAGC(config_.crc_retries);
     last_error_ = As5047uError::SUCCESS;
     return last_error_;
 }
@@ -334,7 +336,7 @@ As5047uError As5047uHandler::ReadMagnitude(uint16_t& magnitude) noexcept {
     }
     
     // The driver handles retries internally and returns the actual value
-    magnitude = as5047u_sensor_->getMagnitude(config_.crc_retries);
+    magnitude = as5047u_sensor_->GetMagnitude(config_.crc_retries);
     last_error_ = As5047uError::SUCCESS;
     return last_error_;
 }
@@ -348,7 +350,7 @@ As5047uError As5047uHandler::ReadErrorFlags(uint16_t& error_flags) noexcept {
     }
     
     // The driver handles retries internally and returns the actual value
-    error_flags = as5047u_sensor_->getErrorFlags(config_.crc_retries);
+    error_flags = as5047u_sensor_->GetErrorFlags(config_.crc_retries);
     HandleSensorErrors(error_flags);
     last_error_ = As5047uError::SUCCESS;
     return last_error_;
@@ -386,7 +388,7 @@ As5047uError As5047uHandler::SetZeroPosition(uint16_t zero_position) noexcept {
     }
     
     // The driver returns true on success, false on communication failure
-    bool success = as5047u_sensor_->setZeroPosition(zero_position, config_.crc_retries);
+    bool success = as5047u_sensor_->SetZeroPosition(zero_position, config_.crc_retries);
     if (success) {
         config_.zero_position = zero_position;
         last_error_ = As5047uError::SUCCESS;
@@ -405,7 +407,7 @@ As5047uError As5047uHandler::GetZeroPosition(uint16_t& zero_position) noexcept {
     }
     
     // The driver handles retries internally and returns the actual value
-    zero_position = as5047u_sensor_->getZeroPosition(config_.crc_retries);
+    zero_position = as5047u_sensor_->GetZeroPosition(config_.crc_retries);
     last_error_ = As5047uError::SUCCESS;
     return last_error_;
 }
@@ -419,7 +421,7 @@ As5047uError As5047uHandler::SetRotationDirection(bool clockwise) noexcept {
     }
     
     // The driver returns true on success, false on communication failure
-    bool success = as5047u_sensor_->setDirection(clockwise, config_.crc_retries);
+    bool success = as5047u_sensor_->SetDirection(clockwise, config_.crc_retries);
     if (success) {
         last_error_ = As5047uError::SUCCESS;
     } else {
@@ -437,7 +439,7 @@ As5047uError As5047uHandler::SetDAEC(bool enable) noexcept {
     }
     
     // The driver returns true on success, false on communication failure
-    bool success = as5047u_sensor_->setDynamicAngleCompensation(enable, config_.crc_retries);
+    bool success = as5047u_sensor_->SetDynamicAngleCompensation(enable, config_.crc_retries);
     if (success) {
         config_.enable_daec = enable;
         last_error_ = As5047uError::SUCCESS;
@@ -456,7 +458,7 @@ As5047uError As5047uHandler::SetAdaptiveFilter(bool enable) noexcept {
     }
     
     // The driver returns true on success, false on communication failure
-    bool success = as5047u_sensor_->setAdaptiveFilter(enable, config_.crc_retries);
+    bool success = as5047u_sensor_->SetAdaptiveFilter(enable, config_.crc_retries);
     if (success) {
         config_.enable_adaptive_filter = enable;
         last_error_ = As5047uError::SUCCESS;
@@ -475,7 +477,7 @@ As5047uError As5047uHandler::ConfigureInterface(bool enable_abi, bool enable_uvw
     }
     
     // The driver returns true on success, false on communication failure
-    bool success = as5047u_sensor_->configureInterface(enable_abi, enable_uvw, enable_pwm, config_.crc_retries);
+    bool success = as5047u_sensor_->ConfigureInterface(enable_abi, enable_uvw, enable_pwm, config_.crc_retries);
     if (success) {
         config_.enable_abi_output = enable_abi;
         config_.enable_uvw_output = enable_uvw;
@@ -501,7 +503,7 @@ As5047uError As5047uHandler::SetABIResolution(uint8_t resolution_bits) noexcept 
     }
     
     // The driver returns true on success, false on communication failure
-    bool success = as5047u_sensor_->setABIResolution(resolution_bits, config_.crc_retries);
+    bool success = as5047u_sensor_->SetABIResolution(resolution_bits, config_.crc_retries);
     if (success) {
         config_.abi_resolution_bits = resolution_bits;
         last_error_ = As5047uError::SUCCESS;
@@ -525,7 +527,7 @@ As5047uError As5047uHandler::SetUVWPolePairs(uint8_t pole_pairs) noexcept {
     }
     
     // The driver returns true on success, false on communication failure
-    bool success = as5047u_sensor_->setUVWPolePairs(pole_pairs, config_.crc_retries);
+    bool success = as5047u_sensor_->SetUVWPolePairs(pole_pairs, config_.crc_retries);
     if (success) {
         config_.uvw_pole_pairs = pole_pairs;
         last_error_ = As5047uError::SUCCESS;
@@ -544,7 +546,7 @@ As5047uError As5047uHandler::SetHighTemperatureMode(bool enable) noexcept {
     }
     
     // The driver returns true on success, false on communication failure
-    bool success = as5047u_sensor_->set150CTemperatureMode(enable, config_.crc_retries);
+    bool success = as5047u_sensor_->Set150CTemperatureMode(enable, config_.crc_retries);
     if (success) {
         config_.high_temperature_mode = enable;
         last_error_ = As5047uError::SUCCESS;
@@ -567,7 +569,7 @@ As5047uError As5047uHandler::ProgramOTP() noexcept {
     }
     
     // The driver returns true on success, false on programming failure
-    bool success = as5047u_sensor_->programOTP();
+    bool success = as5047u_sensor_->ProgramOTP();
     if (success) {
         last_error_ = As5047uError::SUCCESS;
     } else {
@@ -585,10 +587,10 @@ As5047uError As5047uHandler::PerformCalibration() noexcept {
     }
     
     // Read current angle to use as zero reference
-    uint16_t current_angle = as5047u_sensor_->getAngle(config_.crc_retries);
+    uint16_t current_angle = as5047u_sensor_->GetAngle(config_.crc_retries);
     
     // Set current position as zero (driver returns true on success, false on failure)
-    bool success = as5047u_sensor_->setZeroPosition(current_angle, config_.crc_retries);
+    bool success = as5047u_sensor_->SetZeroPosition(current_angle, config_.crc_retries);
     if (success) {
         config_.zero_position = current_angle;
         last_error_ = As5047uError::SUCCESS;
@@ -699,7 +701,7 @@ void As5047uHandler::UpdateDiagnostics() noexcept {
     if (!as5047u_sensor_) return;
     
     // Read current error flags (driver handles retries internally)
-    uint16_t error_flags = as5047u_sensor_->getErrorFlags(config_.crc_retries);
+    uint16_t error_flags = as5047u_sensor_->GetErrorFlags(config_.crc_retries);
     HandleSensorErrors(error_flags);
 }
 
@@ -709,35 +711,35 @@ bool As5047uHandler::ApplyConfiguration(const As5047uConfig& config) noexcept {
     bool success = true;
     
     // Set frame format (no return value, always succeeds)
-    as5047u_sensor_->setFrameFormat(config.frame_format);
+    as5047u_sensor_->SetFrameFormat(config.frame_format);
     
     // Configure DAEC (driver returns true on success, false on failure)
-    success &= as5047u_sensor_->setDynamicAngleCompensation(config.enable_daec, config.crc_retries);
+    success &= as5047u_sensor_->SetDynamicAngleCompensation(config.enable_daec, config.crc_retries);
     
     // Configure adaptive filter (driver returns true on success, false on failure)
-    success &= as5047u_sensor_->setAdaptiveFilter(config.enable_adaptive_filter, config.crc_retries);
+    success &= as5047u_sensor_->SetAdaptiveFilter(config.enable_adaptive_filter, config.crc_retries);
     
     // Set zero position (driver returns true on success, false on failure)
-    success &= as5047u_sensor_->setZeroPosition(config.zero_position, config.crc_retries);
+    success &= as5047u_sensor_->SetZeroPosition(config.zero_position, config.crc_retries);
     
     // Configure interfaces (driver returns true on success, false on failure)
-    success &= as5047u_sensor_->configureInterface(config.enable_abi_output, 
+    success &= as5047u_sensor_->ConfigureInterface(config.enable_abi_output, 
                                                    config.enable_uvw_output, 
                                                    config.enable_pwm_output, 
                                                    config.crc_retries);
     
     // Set ABI resolution (driver returns true on success, false on failure)
     if (config.enable_abi_output) {
-        success &= as5047u_sensor_->setABIResolution(config.abi_resolution_bits, config.crc_retries);
+        success &= as5047u_sensor_->SetABIResolution(config.abi_resolution_bits, config.crc_retries);
     }
     
     // Set UVW pole pairs (driver returns true on success, false on failure)
     if (config.enable_uvw_output) {
-        success &= as5047u_sensor_->setUVWPolePairs(config.uvw_pole_pairs, config.crc_retries);
+        success &= as5047u_sensor_->SetUVWPolePairs(config.uvw_pole_pairs, config.crc_retries);
     }
     
     // Set temperature mode (driver returns true on success, false on failure)
-    success &= as5047u_sensor_->set150CTemperatureMode(config.high_temperature_mode, config.crc_retries);
+    success &= as5047u_sensor_->Set150CTemperatureMode(config.high_temperature_mode, config.crc_retries);
     
     return success;
 }
@@ -755,18 +757,12 @@ void As5047uHandler::DumpDiagnostics() const noexcept {
     
     Logger::GetInstance().Info(TAG, "=== AS5047U HANDLER DIAGNOSTICS ===");
     
-    RtosMutex::LockGuard lock(handler_mutex_);
+    MutexLockGuard lock(handler_mutex_);
     
     // System Health
     Logger::GetInstance().Info(TAG, "System Health:");
     Logger::GetInstance().Info(TAG, "  Initialized: %s", initialized_ ? "YES" : "NO");
-    Logger::GetInstance().Info(TAG, "  Last Error: %s", 
-        last_error_ == As5047uError::SUCCESS ? "SUCCESS" :
-        last_error_ == As5047uError::NOT_INITIALIZED ? "NOT_INITIALIZED" :
-        last_error_ == As5047uError::COMMUNICATION_ERROR ? "COMMUNICATION_ERROR" :
-        last_error_ == As5047uError::SENSOR_ERROR ? "SENSOR_ERROR" :
-        last_error_ == As5047uError::INVALID_PARAMETER ? "INVALID_PARAMETER" :
-        last_error_ == As5047uError::TIMEOUT ? "TIMEOUT" : "UNKNOWN");
+    Logger::GetInstance().Info(TAG, "  Last Error: %s", As5047uErrorToString(last_error_));
     
     // Sensor Status
     Logger::GetInstance().Info(TAG, "Sensor Status:");
@@ -780,9 +776,9 @@ void As5047uHandler::DumpDiagnostics() const noexcept {
     // Configuration
     Logger::GetInstance().Info(TAG, "Configuration:");
     Logger::GetInstance().Info(TAG, "  Frame Format: %s",
-        config_.frame_format == FrameFormat::FRAME_16BIT ? "16-bit" :
-        config_.frame_format == FrameFormat::FRAME_24BIT ? "24-bit" :
-        config_.frame_format == FrameFormat::FRAME_32BIT ? "32-bit" : "Unknown");
+        config_.frame_format == FrameFormat::SPI_16 ? "16-bit" :
+        config_.frame_format == FrameFormat::SPI_24 ? "24-bit" :
+        config_.frame_format == FrameFormat::SPI_32 ? "32-bit" : "Unknown");
     Logger::GetInstance().Info(TAG, "  CRC Retries: %d", config_.crc_retries);
     Logger::GetInstance().Info(TAG, "  DAEC Enabled: %s", config_.enable_daec ? "YES" : "NO");
     Logger::GetInstance().Info(TAG, "  Adaptive Filter: %s", config_.enable_adaptive_filter ? "YES" : "NO");
@@ -824,7 +820,7 @@ void As5047uHandler::DumpDiagnostics() const noexcept {
     // Memory Usage
     Logger::GetInstance().Info(TAG, "Memory Usage:");
     size_t estimated_memory = sizeof(*this);
-    if (as5047u_sensor_) estimated_memory += sizeof(AS5047U);
+    if (as5047u_sensor_) estimated_memory += sizeof(as5047u::AS5047U<As5047uSpiAdapter>);
     if (spi_adapter_) estimated_memory += sizeof(As5047uSpiAdapter);
     Logger::GetInstance().Info(TAG, "  Estimated Total: %d bytes", static_cast<int>(estimated_memory));
     

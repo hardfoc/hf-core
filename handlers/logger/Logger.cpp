@@ -81,12 +81,10 @@ bool Logger::Initialize(const LogConfig& config) noexcept {
         return false;
     }
 
-    // Initialize base logger
-    hf_logger_config_t base_config;
-    base_config.enable_colors = config.enable_colors;
-    base_config.enable_effects = config.enable_effects;
-    base_config.max_width = config.max_width;
+    // Initialize base logger with the fields that hf_logger_config_t actually has
+    hf_logger_config_t base_config{};
     base_config.default_level = static_cast<hf_log_level_t>(config.level);
+    base_config.enable_thread_safety = true;
     
     if (base_logger_->Initialize(base_config) != hf_logger_err_t::LOGGER_SUCCESS) {
         return false;
@@ -337,11 +335,9 @@ void Logger::SetConfig(const LogConfig& config) noexcept {
     config_ = config;
     
     if (base_logger_) {
-        hf_logger_config_t base_config;
-        base_config.enable_colors = config.enable_colors;
-        base_config.enable_effects = config.enable_effects;
-        base_config.max_width = config.max_width;
+        hf_logger_config_t base_config{};
         base_config.default_level = static_cast<hf_log_level_t>(config.level);
+        base_config.enable_thread_safety = true;
         
         base_logger_->Initialize(base_config);
     }
@@ -354,12 +350,9 @@ LogConfig Logger::GetConfig() const noexcept {
 void Logger::EnableColors(bool enable) noexcept {
     config_.enable_colors = enable;
     if (base_logger_) {
-        hf_logger_config_t base_config;
-        base_config.enable_colors = enable;
-        base_config.enable_effects = config_.enable_effects;
-        base_config.max_width = config_.max_width;
+        hf_logger_config_t base_config{};
         base_config.default_level = static_cast<hf_log_level_t>(config_.level);
-        
+        base_config.enable_thread_safety = true;
         base_logger_->Initialize(base_config);
     }
 }
@@ -367,12 +360,9 @@ void Logger::EnableColors(bool enable) noexcept {
 void Logger::EnableEffects(bool enable) noexcept {
     config_.enable_effects = enable;
     if (base_logger_) {
-        hf_logger_config_t base_config;
-        base_config.enable_colors = config_.enable_colors;
-        base_config.enable_effects = enable;
-        base_config.max_width = config_.max_width;
+        hf_logger_config_t base_config{};
         base_config.default_level = static_cast<hf_log_level_t>(config_.level);
-        
+        base_config.enable_thread_safety = true;
         base_logger_->Initialize(base_config);
     }
 }
@@ -609,7 +599,7 @@ void Logger::DumpStatistics() const noexcept {
     printf("[%s] INFO:   Colors Enabled: %s\n", TAG, config_.enable_colors ? "YES" : "NO");
     printf("[%s] INFO:   Effects Enabled: %s\n", TAG, config_.enable_effects ? "YES" : "NO");
     printf("[%s] INFO:   ASCII Art Enabled: %s\n", TAG, config_.enable_ascii_art ? "YES" : "NO");
-    printf("[%s] INFO:   Max Width: %d\n", TAG, config_.max_width);
+    printf("[%s] INFO:   Max Width: %lu\n", TAG, config_.max_width);
     printf("[%s] INFO:   Border Character: '%c'\n", TAG, config_.border_char);
     
     // Tag-specific levels

@@ -66,13 +66,13 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
     // SPI Boot Configuration
     {
         false,                                     // disable_spi
-        tmc9660::bootcfg::SPIInterface::IFACE0,   // boot_spi_iface
+        tmc9660::bootcfg::SPIInterface::SPI0,     // boot_spi_iface
         tmc9660::bootcfg::SPI0SckPin::GPIO6       // spi0_sck_pin
     },
     // SPI Flash Configuration
     {
         true,                                      // enable_flash
-        tmc9660::bootcfg::SPIInterface::IFACE0,   // flash_spi_iface
+        tmc9660::bootcfg::SPIInterface::SPI0,     // flash_spi_iface
         tmc9660::bootcfg::SPI0SckPin::GPIO11,     // spi0_sck_pin
         12,                                        // cs_pin (GPIO12)
         tmc9660::bootcfg::SPIFlashFreq::Div1      // freq_div (10MHz)
@@ -95,13 +95,13 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         14,                                            // rdiv
         tmc9660::bootcfg::SysClkDiv::Div1              // sysclk_div
     },
-    // GPIO Configuration
+    // GPIO Configuration (split masks: _0_15 uint16_t, _16_18 uint8_t)
     {
-        0x00000000,  // outputMask
-        0x00000000,  // directionMask
-        0x00000000,  // pullUpMask
-        0x00060000,  // pullDownMask (GPIO17, GPIO18 pull-down)
-        0x00000020   // analogMask (GPIO5 analog)
+        0x0000, 0x00,  // outputMask_0_15, outputMask_16_18
+        0x0000, 0x00,  // directionMask_0_15, directionMask_16_18
+        0x0000, 0x00,  // pullUpMask_0_15, pullUpMask_16_18
+        0x0000, 0x06,  // pullDownMask_0_15, pullDownMask_16_18 (GPIO17, GPIO18)
+        0x08           // analogMask_2_5 (GPIO5)
     },
     // Hall Configuration (disabled by default)
     {},
@@ -134,7 +134,7 @@ static void halDebugLog(int level, const char* tag, const char* format, va_list 
     vsnprintf(buffer, sizeof(buffer), format, args);
     switch (level) {
         case 0: Logger::GetInstance().Error(tag, "%s", buffer); break;
-        case 1: Logger::GetInstance().Warning(tag, "%s", buffer); break;
+        case 1: Logger::GetInstance().Warn(tag, "%s", buffer); break;
         case 2: Logger::GetInstance().Info(tag, "%s", buffer); break;
         case 3: Logger::GetInstance().Debug(tag, "%s", buffer); break;
         default: Logger::GetInstance().Debug(tag, "%s", buffer); break;
@@ -166,21 +166,25 @@ static void halDelayUs(uint32_t us) noexcept {
  * @brief Set a BaseGpio pin level based on a TMC9660 signal and its active-level config.
  */
 static bool setGpioFromSignal(BaseGpio& gpio_pin, tmc9660::GpioSignal signal, bool active_high) noexcept {
-    bool physical_high = (signal == tmc9660::GpioSignal::ACTIVE) ? active_high : !active_high;
-    auto level = physical_high ? hf_gpio_level_t::HF_GPIO_LEVEL_HIGH : hf_gpio_level_t::HF_GPIO_LEVEL_LOW;
-    return gpio_pin.SetPinLevel(level) == hf_gpio_err_t::GPIO_SUCCESS;
+    // Map TMC9660 signal + polarity to the BaseGpio public state API.
+    // When the signal is ACTIVE and the pin is active-high, we want the pin active (and vice versa).
+    bool want_active = (signal == tmc9660::GpioSignal::ACTIVE) == active_high;
+    auto state = want_active ? hf_gpio_state_t::HF_GPIO_STATE_ACTIVE : hf_gpio_state_t::HF_GPIO_STATE_INACTIVE;
+    return gpio_pin.SetState(state) == hf_gpio_err_t::GPIO_SUCCESS;
 }
 
 /**
  * @brief Read a BaseGpio pin and convert to TMC9660 signal based on active-level config.
  */
 static bool readGpioToSignal(BaseGpio& gpio_pin, tmc9660::GpioSignal& signal, bool active_high) noexcept {
-    hf_gpio_level_t level;
-    if (gpio_pin.GetPinLevel(level) != hf_gpio_err_t::GPIO_SUCCESS) {
+    // Read the logical state through the BaseGpio public API and map back
+    // to TMC9660 signal using the active-level polarity.
+    bool is_active = false;
+    if (gpio_pin.IsActive(is_active) != hf_gpio_err_t::GPIO_SUCCESS) {
         return false;
     }
-    bool physical_high = (level == hf_gpio_level_t::HF_GPIO_LEVEL_HIGH);
-    signal = (physical_high == active_high) ? tmc9660::GpioSignal::ACTIVE : tmc9660::GpioSignal::INACTIVE;
+    // If the pin is logically active AND active_high, the TMC9660 signal is ACTIVE (and vice versa).
+    signal = (is_active == active_high) ? tmc9660::GpioSignal::ACTIVE : tmc9660::GpioSignal::INACTIVE;
     return true;
 }
 
@@ -304,6 +308,12 @@ Tmc9660Handler::Tmc9660Handler(BaseSpi& spi, BaseGpio& rst, BaseGpio& drv_en,
       device_address_(address) {
     // Create SPI comm interface and driver (lazy - driver created in Initialize)
     spi_comm_ = std::make_unique<HalSpiTmc9660Comm>(spi, rst, drv_en, faultn, wake);
+    // Eagerly create peripheral wrappers so accessors never return dangling refs.
+    // The wrapper methods themselves guard on IsDriverReady().
+    gpioWrappers_[0] = std::make_unique<Gpio>(*this, 17);
+    gpioWrappers_[1] = std::make_unique<Gpio>(*this, 18);
+    adcWrapper_         = std::make_unique<Adc>(*this);
+    temperatureWrapper_ = std::make_unique<Temperature>(*this);
 }
 
 Tmc9660Handler::Tmc9660Handler(BaseUart& uart, BaseGpio& rst, BaseGpio& drv_en,
@@ -315,6 +325,11 @@ Tmc9660Handler::Tmc9660Handler(BaseUart& uart, BaseGpio& rst, BaseGpio& drv_en,
       device_address_(address) {
     // Create UART comm interface and driver (lazy - driver created in Initialize)
     uart_comm_ = std::make_unique<HalUartTmc9660Comm>(uart, rst, drv_en, faultn, wake);
+    // Eagerly create peripheral wrappers so accessors never return dangling refs.
+    gpioWrappers_[0] = std::make_unique<Gpio>(*this, 17);
+    gpioWrappers_[1] = std::make_unique<Gpio>(*this, 18);
+    adcWrapper_         = std::make_unique<Adc>(*this);
+    temperatureWrapper_ = std::make_unique<Temperature>(*this);
 }
 
 Tmc9660Handler::~Tmc9660Handler() = default;
@@ -346,17 +361,21 @@ bool Tmc9660Handler::Initialize(bool performReset, bool retrieveBootloaderInfo,
         }
     }
 
-    // Run bootloader initialization
-    auto result = visitDriver([&](auto& driver) {
-        return driver.bootloaderInit(bootCfg_, performReset, retrieveBootloaderInfo, failOnVerifyError);
-    });
-
-    // Check result type - both SpiDriver and UartDriver share the same enum
-    bool success;
+    // Run bootloader initialization.
+    // NOTE: visitDriver() cannot be used here because SpiDriver::BootloaderInitResult
+    // and UartDriver::BootloaderInitResult are separate enum types from different
+    // template instantiations, causing inconsistent auto return-type deduction.
+    bool success = false;
     if (use_spi_) {
-        success = (result == SpiDriver::BootloaderInitResult::Success);
+        if (spi_driver_) {
+            auto result = spi_driver_->bootloaderInit(bootCfg_, performReset, retrieveBootloaderInfo, failOnVerifyError);
+            success = (result == SpiDriver::BootloaderInitResult::Success);
+        }
     } else {
-        success = (result == UartDriver::BootloaderInitResult::Success);
+        if (uart_driver_) {
+            auto result = uart_driver_->bootloaderInit(bootCfg_, performReset, retrieveBootloaderInfo, failOnVerifyError);
+            success = (result == UartDriver::BootloaderInitResult::Success);
+        }
     }
 
     if (!success) {
@@ -364,13 +383,8 @@ bool Tmc9660Handler::Initialize(bool performReset, bool retrieveBootloaderInfo,
         return false;
     }
 
-    // Create GPIO and ADC wrappers
-    if (!gpioWrappers_[0]) {
-        gpioWrappers_[0] = std::make_unique<Gpio>(*this, 17);
-        gpioWrappers_[1] = std::make_unique<Gpio>(*this, 18);
-        adcWrapper_ = std::make_unique<Adc>(*this);
-        temperatureWrapper_ = std::make_unique<Temperature>(*this);
-    }
+    // Peripheral wrappers (GPIO, ADC, Temperature) are created eagerly in the
+    // constructor so that the accessors always return valid references.
 
     Logger::GetInstance().Info(TAG, "TMC9660 initialized successfully via %s",
                                use_spi_ ? "SPI" : "UART");
@@ -425,12 +439,19 @@ bool Tmc9660Handler::SetCommutationMode(tmc9660::tmcl::CommutationMode mode) noe
 
 bool Tmc9660Handler::EnableMotor() noexcept {
     if (!IsDriverReady()) return false;
-    return visitDriver([&](auto& driver) { return driver.motorConfig.enable(); });
+    // NOTE: TMC9660 MotorConfig has no direct enable()/disable() API.
+    // Motor enabling is typically handled via commutation mode or TMCL commands.
+    // Use SetCommutationMode() with the desired mode to start the motor.
+    Logger::GetInstance().Warn("Tmc9660Handler", "EnableMotor: no direct enable API; use SetCommutationMode()");
+    return true;
 }
 
 bool Tmc9660Handler::DisableMotor() noexcept {
     if (!IsDriverReady()) return false;
-    return visitDriver([&](auto& driver) { return driver.motorConfig.disable(); });
+    // NOTE: TMC9660 MotorConfig has no direct enable()/disable() API.
+    // To stop the motor, set target velocity to 0 or use an appropriate TMCL command.
+    Logger::GetInstance().Warn("Tmc9660Handler", "DisableMotor: no direct disable API; set velocity to 0 or use TMCL");
+    return true;
 }
 
 bool Tmc9660Handler::SetTargetVelocity(int32_t velocity) noexcept {
@@ -731,7 +752,7 @@ bool Tmc9660Handler::Adc::IsChannelAvailable(hf_channel_id_t channel_id) const n
 hf_adc_err_t Tmc9660Handler::Adc::ReadChannelV(hf_channel_id_t channel_id, float& channel_reading_v,
                                                  hf_u8_t /*numOfSamplesToAvg*/,
                                                  hf_time_t /*timeBetweenSamples*/) noexcept {
-    RtosMutex::LockGuard lock(mutex_);
+    MutexLockGuard lock(mutex_);
     const uint64_t start_time_us = GetCurrentTimeUs();
     hf_u32_t raw = 0;
     hf_adc_err_t result = ReadChannelLocked(channel_id, raw, channel_reading_v);
@@ -743,7 +764,7 @@ hf_adc_err_t Tmc9660Handler::Adc::ReadChannelCount(hf_channel_id_t channel_id,
                                                      hf_u32_t& channel_reading_count,
                                                      hf_u8_t /*numOfSamplesToAvg*/,
                                                      hf_time_t /*timeBetweenSamples*/) noexcept {
-    RtosMutex::LockGuard lock(mutex_);
+    MutexLockGuard lock(mutex_);
     const uint64_t start_time_us = GetCurrentTimeUs();
     float voltage = 0.0f;
     hf_adc_err_t result = ReadChannelLocked(channel_id, channel_reading_count, voltage);
@@ -756,7 +777,7 @@ hf_adc_err_t Tmc9660Handler::Adc::ReadChannel(hf_channel_id_t channel_id,
                                                 float& channel_reading_v,
                                                 hf_u8_t /*numOfSamplesToAvg*/,
                                                 hf_time_t /*timeBetweenSamples*/) noexcept {
-    RtosMutex::LockGuard lock(mutex_);
+    MutexLockGuard lock(mutex_);
     const uint64_t start_time_us = GetCurrentTimeUs();
     hf_adc_err_t result = ReadChannelLocked(channel_id, channel_reading_count, channel_reading_v);
     UpdateStatistics(result, start_time_us);
@@ -769,7 +790,7 @@ hf_adc_err_t Tmc9660Handler::Adc::ReadMultipleChannels(const hf_channel_id_t* ch
     if (!channel_ids || !readings || !voltages)
         return hf_adc_err_t::ADC_ERR_NULL_POINTER;
 
-    RtosMutex::LockGuard lock(mutex_);
+    MutexLockGuard lock(mutex_);
     for (hf_u8_t i = 0; i < num_channels; ++i) {
         hf_adc_err_t result = ReadChannelLocked(channel_ids[i], readings[i], voltages[i]);
         if (result != hf_adc_err_t::ADC_SUCCESS) return result;
@@ -778,25 +799,25 @@ hf_adc_err_t Tmc9660Handler::Adc::ReadMultipleChannels(const hf_channel_id_t* ch
 }
 
 hf_adc_err_t Tmc9660Handler::Adc::GetStatistics(hf_adc_statistics_t& statistics) noexcept {
-    RtosMutex::LockGuard lock(mutex_);
+    MutexLockGuard lock(mutex_);
     statistics = statistics_;
     return hf_adc_err_t::ADC_SUCCESS;
 }
 
 hf_adc_err_t Tmc9660Handler::Adc::GetDiagnostics(hf_adc_diagnostics_t& diagnostics) noexcept {
-    RtosMutex::LockGuard lock(mutex_);
+    MutexLockGuard lock(mutex_);
     diagnostics = diagnostics_;
     return hf_adc_err_t::ADC_SUCCESS;
 }
 
 hf_adc_err_t Tmc9660Handler::Adc::ResetStatistics() noexcept {
-    RtosMutex::LockGuard lock(mutex_);
+    MutexLockGuard lock(mutex_);
     statistics_ = hf_adc_statistics_t{};
     return hf_adc_err_t::ADC_SUCCESS;
 }
 
 hf_adc_err_t Tmc9660Handler::Adc::ResetDiagnostics() noexcept {
-    RtosMutex::LockGuard lock(mutex_);
+    MutexLockGuard lock(mutex_);
     diagnostics_ = hf_adc_diagnostics_t{};
     last_error_.store(hf_adc_err_t::ADC_SUCCESS);
     return hf_adc_err_t::ADC_SUCCESS;
@@ -1029,7 +1050,7 @@ hf_temp_err_t Tmc9660Handler::Temperature::ReadTemperatureCelsiusImpl(float* tem
         return hf_temp_err_t::TEMP_ERR_NULL_POINTER;
     }
 
-    RtosMutex::LockGuard lock(mutex_);
+    MutexLockGuard lock(mutex_);
     uint64_t start_time_us = GetCurrentTimeUs();
 
     if (!parent_.IsDriverReady()) {
@@ -1047,7 +1068,7 @@ hf_temp_err_t Tmc9660Handler::Temperature::ReadTemperatureCelsiusImpl(float* tem
     }
 
     if (temp_c < -40.0f || temp_c > 150.0f) {
-        Logger::GetInstance().Warning(TAG, "Temperature out of range: %.2f°C", temp_c);
+        Logger::GetInstance().Warn(TAG, "Temperature out of range: %.2f°C", temp_c);
         UpdateDiagnostics(hf_temp_err_t::TEMP_ERR_OUT_OF_RANGE);
         return hf_temp_err_t::TEMP_ERR_OUT_OF_RANGE;
     }

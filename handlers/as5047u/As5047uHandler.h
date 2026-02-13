@@ -36,7 +36,7 @@
 #include <cstdint>
 #include <memory>
 #include <string>
-#include "core/hf-core-drivers/external/hf-as5047u-driver/src/AS5047U.hpp"
+#include "core/hf-core-drivers/external/hf-as5047u-driver/inc/as5047u.hpp"
 #include "base/BaseSpi.h"
 #include "utils/RtosMutex.h"
 
@@ -88,16 +88,16 @@ constexpr const char* As5047uErrorToString(As5047uError error) noexcept {
 //======================================================//
 
 /**
- * @brief Bridge adapter connecting BaseSpi interface to AS5047U spiBus interface.
+ * @brief CRTP adapter connecting BaseSpi interface to AS5047U SpiInterface.
  * 
- * This adapter implements the AS5047U::spiBus virtual interface using a HardFOC
- * BaseSpi implementation, enabling the AS5047U driver to work with any SPI
- * controller that inherits from BaseSpi.
+ * This adapter implements the as5047u::SpiInterface<As5047uSpiAdapter> CRTP interface
+ * using a HardFOC BaseSpi implementation, enabling the AS5047U driver to work with
+ * any SPI controller that inherits from BaseSpi.
  * 
  * Thread Safety: This adapter is thread-safe when the underlying BaseSpi
  * implementation is thread-safe.
  */
-class As5047uSpiAdapter : public AS5047U::spiBus {
+class As5047uSpiAdapter : public as5047u::SpiInterface<As5047uSpiAdapter> {
 public:
     /**
      * @brief Construct SPI adapter with BaseSpi interface
@@ -106,12 +106,12 @@ public:
     explicit As5047uSpiAdapter(BaseSpi& spi_interface) noexcept;
 
     /**
-     * @brief Perform full-duplex SPI transfer
+     * @brief Perform full-duplex SPI transfer (CRTP dispatch target)
      * @param tx Transmit buffer (can be nullptr to send zeros)
      * @param rx Receive buffer (can be nullptr to discard received data)
      * @param len Number of bytes to transfer
      */
-    void transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept override;
+    void transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept;
 
 private:
     BaseSpi& spi_interface_;
@@ -128,9 +128,9 @@ struct As5047uMeasurement {
     uint16_t angle_raw;              ///< Raw angle (0-16383 LSB)
     uint16_t angle_compensated;      ///< DAEC compensated angle (0-16383 LSB)
     int16_t velocity_raw;            ///< Raw velocity (signed 14-bit)
-    double velocity_deg_per_sec;     ///< Velocity in degrees per second
-    double velocity_rad_per_sec;     ///< Velocity in radians per second
-    double velocity_rpm;             ///< Velocity in revolutions per minute
+    float velocity_deg_per_sec;      ///< Velocity in degrees per second
+    float velocity_rad_per_sec;      ///< Velocity in radians per second
+    float velocity_rpm;              ///< Velocity in revolutions per minute
     uint8_t agc_value;               ///< Automatic Gain Control value (0-255)
     uint16_t magnitude;              ///< Magnetic field magnitude (0-16383)
     uint16_t error_flags;            ///< Current error flags
@@ -180,7 +180,7 @@ struct As5047uConfig {
  * - Shared pointer management for safe cross-component sharing
  * - Complete exception-free design for embedded reliability
  * - Thread-safe operations with mutex protection
- * - Bridge pattern integration with BaseSpi
+ * - CRTP adapter integration with BaseSpi
  * - High-level sensor abstraction
  * - Advanced AS5047U features and diagnostics
  * 
@@ -253,7 +253,7 @@ public:
      * 
      * Note: Returns shared_ptr for safe cross-component sharing.
      */
-    std::shared_ptr<AS5047U> GetSensor() noexcept;
+    std::shared_ptr<as5047u::AS5047U<As5047uSpiAdapter>> GetSensor() noexcept;
 
     //======================================================//
     // SENSOR MEASUREMENTS
@@ -292,21 +292,21 @@ public:
      * @param velocity_deg_per_sec Output velocity in degrees/second
      * @return As5047uError::SUCCESS if successful
      */
-    As5047uError ReadVelocityDegPerSec(double& velocity_deg_per_sec) noexcept;
+    As5047uError ReadVelocityDegPerSec(float& velocity_deg_per_sec) noexcept;
 
     /**
      * @brief Read velocity in radians per second
      * @param velocity_rad_per_sec Output velocity in radians/second
      * @return As5047uError::SUCCESS if successful
      */
-    As5047uError ReadVelocityRadPerSec(double& velocity_rad_per_sec) noexcept;
+    As5047uError ReadVelocityRadPerSec(float& velocity_rad_per_sec) noexcept;
 
     /**
      * @brief Read velocity in revolutions per minute
      * @param velocity_rpm Output velocity in RPM
      * @return As5047uError::SUCCESS if successful
      */
-    As5047uError ReadVelocityRPM(double& velocity_rpm) noexcept;
+    As5047uError ReadVelocityRPM(float& velocity_rpm) noexcept;
 
     //======================================================//
     // SENSOR DIAGNOSTICS
@@ -525,8 +525,8 @@ private:
     //======================================================//
 
     BaseSpi& spi_ref_;                               ///< Reference to SPI interface
-    std::unique_ptr<As5047uSpiAdapter> spi_adapter_; ///< SPI bridge adapter
-    std::shared_ptr<AS5047U> as5047u_sensor_;        ///< AS5047U driver instance
+    std::unique_ptr<As5047uSpiAdapter> spi_adapter_; ///< SPI CRTP adapter
+    std::shared_ptr<as5047u::AS5047U<As5047uSpiAdapter>> as5047u_sensor_; ///< AS5047U driver instance
     As5047uConfig config_;                           ///< Sensor configuration
     mutable RtosMutex handler_mutex_;                ///< Thread safety mutex
     bool initialized_;                               ///< Initialization state

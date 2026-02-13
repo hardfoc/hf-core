@@ -20,10 +20,10 @@
  * @date 2025
  */
 
+#include <string.h>
+#include <cmath>
 #include "Pca9685Handler.h"
 #include "handlers/logger/Logger.h"
-#include <cstring>
-#include <cmath>
 
 // =====================================================================
 // HalI2cPca9685Comm Implementation
@@ -50,7 +50,7 @@ bool HalI2cPca9685Comm::Write(uint8_t addr, uint8_t reg,
 
     uint8_t command[kMaxBuf];
     command[0] = reg;
-    std::memcpy(&command[1], data, len);
+    memcpy(&command[1], data, len);
     return i2c_device_.Write(command, len + 1) == hf_i2c_err_t::I2C_SUCCESS;
 }
 
@@ -66,8 +66,7 @@ bool HalI2cPca9685Comm::Read(uint8_t addr, uint8_t reg,
 }
 
 bool HalI2cPca9685Comm::EnsureInitialized() noexcept {
-    // BaseI2c device is expected to be initialized before the handler uses it.
-    return true;
+    return i2c_device_.EnsureInitialized();
 }
 
 // =====================================================================
@@ -474,7 +473,7 @@ hf_pwm_err_t Pca9685PwmAdapter::SetDutyCycleRaw(hf_channel_id_t channel_id,
     if (!parent_handler_) return hf_pwm_err_t::PWM_ERR_NULL_POINTER;
 
     uint16_t on_time = on_time_cache_[channel_id];
-    auto off_time = static_cast<uint16_t>(raw_value);
+    auto off_time = static_cast<uint16_t>((on_time + raw_value) & kMaxRawValue);
 
     if (!parent_handler_->SetPwm(static_cast<uint8_t>(channel_id), on_time, off_time)) {
         return hf_pwm_err_t::PWM_ERR_COMMUNICATION_FAILURE;

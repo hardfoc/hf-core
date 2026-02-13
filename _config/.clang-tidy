@@ -1,0 +1,66 @@
+# =============================================================================
+# .clang-tidy Configuration File — HF-Core Handlers
+# =============================================================================
+# Configures clang-tidy static analysis for handler bridge code.
+# Handlers bridge BaseXxx interfaces to CRTP driver templates, so relaxations
+# are needed for template patterns, hardware constants, and RTOS integration.
+
+Checks: |
+  -*
+  clang-analyzer-*
+  bugprone-*
+  cppcoreguidelines-*
+  performance-*
+  portability-*
+  readability-*
+  modernize-*
+
+  # --- Disabled with justification ---
+
+  # pragma once is standard and widely supported
+  -portability-avoid-pragma-once
+
+  # CRTP pattern requires reference members
+  -cppcoreguidelines-avoid-const-or-ref-data-members
+
+  # Template code uses short names (T, U)
+  -readability-identifier-length
+
+  # Intentional .cpp includes for template implementations
+  -bugprone-suspicious-include
+
+  # Handlers manage lifecycle explicitly
+  -cppcoreguidelines-special-member-functions
+
+  # Trailing return types verbose for simple getters
+  -modernize-use-trailing-return-type
+
+  # Hardware constants (register offsets, addresses)
+  -cppcoreguidelines-avoid-magic-numbers
+  -readability-magic-numbers
+
+  # Array/pointer decay for SPI/I2C buffer access patterns
+  -cppcoreguidelines-pro-bounds-array-to-pointer-decay
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic
+
+  # Handler init sequences have necessary complexity
+  -readability-function-cognitive-complexity
+
+  # Union access needed for register frame structures
+  -cppcoreguidelines-pro-type-union-access
+
+  # Error-code mapping uses intentional branch cloning
+  -bugprone-branch-clone
+
+  # Variadic templates not practical for embedded logging
+  -cppcoreguidelines-pro-type-vararg
+
+  # Parameters clarified by naming convention (BaseXxx& interface)
+  -bugprone-easily-swappable-parameters
+
+WarningsAsErrors: ''
+
+# Analyze handler and logger headers
+HeaderFilterRegex: '(handlers|logger)/.*\.(h|hpp)$'
+
+FormatStyle: file

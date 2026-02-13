@@ -91,6 +91,7 @@
 #include "base/BaseSpi.h"
 #include "base/BaseUart.h"
 #include "core/hf-core-drivers/internal/hf-internal-interface-wrap/inc/utils/RtosMutex.h"
+#include <utility>  // for std::as_const
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @defgroup TMC9660_HAL_CommAdapters HAL Communication Adapters

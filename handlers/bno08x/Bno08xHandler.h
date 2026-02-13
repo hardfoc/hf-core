@@ -339,7 +339,7 @@ public:
 
 private:
     CommType comm_;                  ///< CRTP comm adapter (must outlive driver_)
-    BNO085<CommType> driver_;        ///< BNO085 driver instance
+    mutable BNO085<CommType> driver_;  ///< BNO085 driver instance (mutable: GetLatest clears internal flag)
 };
 
 // ============================================================================
