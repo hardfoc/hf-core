@@ -298,6 +298,11 @@ bool Tle92466edHandler::Initialize() noexcept {
     return true;
 }
 
+bool Tle92466edHandler::EnsureInitialized() noexcept {
+    MutexLockGuard lock(mutex_);
+    return EnsureInitializedLocked();
+}
+
 bool Tle92466edHandler::Initialize(const tle92466ed::GlobalConfig& config) noexcept {
     MutexLockGuard lock(mutex_);
     if (initialized_) {
@@ -333,6 +338,17 @@ bool Tle92466edHandler::Initialize(const tle92466ed::GlobalConfig& config) noexc
     return true;
 }
 
+bool Tle92466edHandler::EnsureInitializedLocked() noexcept {
+    if (initialized_ && driver_) {
+        return true;
+    }
+    if (!comm_) {
+        Logger::GetInstance().Error(TAG, "Comm adapter not created");
+        return false;
+    }
+    return Initialize();
+}
+
 bool Tle92466edHandler::Deinitialize() noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_) return true;
@@ -350,7 +366,7 @@ bool Tle92466edHandler::Deinitialize() noexcept {
 bool Tle92466edHandler::ConfigureChannel(uint8_t channel,
                                           const tle92466ed::ChannelConfig& config) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     if (channel >= kNumChannels) return false;
     auto result = driver_->ConfigureChannel(toChannel(channel), config);
     return result.has_value();
@@ -358,7 +374,7 @@ bool Tle92466edHandler::ConfigureChannel(uint8_t channel,
 
 bool Tle92466edHandler::EnableChannel(uint8_t channel) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     if (channel >= kNumChannels) return false;
     auto result = driver_->EnableChannel(toChannel(channel), true);
     return result.has_value();
@@ -366,7 +382,7 @@ bool Tle92466edHandler::EnableChannel(uint8_t channel) noexcept {
 
 bool Tle92466edHandler::DisableChannel(uint8_t channel) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     if (channel >= kNumChannels) return false;
     auto result = driver_->EnableChannel(toChannel(channel), false);
     return result.has_value();
@@ -374,21 +390,21 @@ bool Tle92466edHandler::DisableChannel(uint8_t channel) noexcept {
 
 bool Tle92466edHandler::EnableAllChannels() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     auto result = driver_->EnableAllChannels();
     return result.has_value();
 }
 
 bool Tle92466edHandler::DisableAllChannels() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     auto result = driver_->DisableAllChannels();
     return result.has_value();
 }
 
 bool Tle92466edHandler::SetChannelCurrent(uint8_t channel, uint16_t current_ma) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     if (channel >= kNumChannels) return false;
     auto result = driver_->SetCurrentSetpoint(toChannel(channel), current_ma);
     return result.has_value();
@@ -397,7 +413,7 @@ bool Tle92466edHandler::SetChannelCurrent(uint8_t channel, uint16_t current_ma) 
 bool Tle92466edHandler::ConfigurePwmRaw(uint8_t channel, uint8_t mantissa,
                                          uint8_t exponent, bool low_freq_range) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     if (channel >= kNumChannels) return false;
     auto result = driver_->ConfigurePwmPeriodRaw(toChannel(channel), mantissa,
                                                   exponent, low_freq_range);
@@ -406,27 +422,27 @@ bool Tle92466edHandler::ConfigurePwmRaw(uint8_t channel, uint8_t mantissa,
 
 bool Tle92466edHandler::EnterMissionMode() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     auto result = driver_->EnterMissionMode();
     return result.has_value();
 }
 
 bool Tle92466edHandler::EnterConfigMode() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     auto result = driver_->EnterConfigMode();
     return result.has_value();
 }
 
 bool Tle92466edHandler::IsMissionMode() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     return driver_->IsMissionMode();
 }
 
 bool Tle92466edHandler::GetStatus(tle92466ed::DeviceStatus& status) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     auto result = driver_->GetDeviceStatus();
     if (!result) return false;
     status = *result;
@@ -436,7 +452,7 @@ bool Tle92466edHandler::GetStatus(tle92466ed::DeviceStatus& status) noexcept {
 bool Tle92466edHandler::GetChannelDiagnostics(uint8_t channel,
                                                tle92466ed::ChannelDiagnostics& diag) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     if (channel >= kNumChannels) return false;
     auto result = driver_->GetChannelDiagnostics(toChannel(channel));
     if (!result) return false;
@@ -446,7 +462,7 @@ bool Tle92466edHandler::GetChannelDiagnostics(uint8_t channel,
 
 bool Tle92466edHandler::GetFaultReport(tle92466ed::FaultReport& report) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     auto result = driver_->GetAllFaults();
     if (!result) return false;
     report = *result;
@@ -455,14 +471,14 @@ bool Tle92466edHandler::GetFaultReport(tle92466ed::FaultReport& report) noexcept
 
 bool Tle92466edHandler::ClearFaults() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     auto result = driver_->ClearFaults();
     return result.has_value();
 }
 
 bool Tle92466edHandler::HasFault() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     auto result = driver_->HasAnyFault();
     if (!result) return false;
     return *result;
@@ -470,14 +486,14 @@ bool Tle92466edHandler::HasFault() noexcept {
 
 bool Tle92466edHandler::KickWatchdog(uint16_t reload_value) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     auto result = driver_->ReloadSpiWatchdog(reload_value);
     return result.has_value();
 }
 
 uint32_t Tle92466edHandler::GetChipId() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return 0;
+    if (!EnsureInitializedLocked() || !driver_) return 0;
     auto result = driver_->GetChipId();
     if (!result) return 0;
     // Combine first two 16-bit registers into a 32-bit ID
@@ -487,16 +503,29 @@ uint32_t Tle92466edHandler::GetChipId() noexcept {
 
 uint32_t Tle92466edHandler::GetIcVersion() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return 0;
+    if (!EnsureInitializedLocked() || !driver_) return 0;
     auto result = driver_->GetIcVersion();
     if (!result) return 0;
     return static_cast<uint32_t>(*result);
 }
 
+Tle92466edHandler::DriverType* Tle92466edHandler::GetDriver() noexcept {
+    MutexLockGuard lock(mutex_);
+    if (!EnsureInitializedLocked()) {
+        return nullptr;
+    }
+    return driver_.get();
+}
+
+const Tle92466edHandler::DriverType* Tle92466edHandler::GetDriver() const noexcept {
+    auto* self = const_cast<Tle92466edHandler*>(this);
+    return self->GetDriver();
+}
+
 void Tle92466edHandler::DumpDiagnostics() noexcept {
     MutexLockGuard lock(mutex_);
     auto& log = Logger::GetInstance();
-    if (!initialized_ || !driver_) {
+    if (!EnsureInitializedLocked() || !driver_) {
         log.Warn(TAG, "Not initialized — cannot dump diagnostics");
         return;
     }

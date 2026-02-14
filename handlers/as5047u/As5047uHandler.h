@@ -230,6 +230,12 @@ public:
     As5047uError Initialize() noexcept;
 
     /**
+     * @brief Ensure the handler is initialized (lazy init entrypoint).
+     * @return true if initialized and ready.
+     */
+    bool EnsureInitialized() noexcept;
+
+    /**
      * @brief Deinitialize the sensor and free resources
      * @return As5047uError::SUCCESS if successful
      */
@@ -542,7 +548,13 @@ private:
      * @brief Validate sensor parameters
      * @return True if sensor is in valid state
      */
-    bool ValidateSensor() const noexcept;
+    bool ValidateSensor() noexcept;
+
+    /**
+     * @brief Ensure initialized while mutex is already held.
+     * @return True if sensor is ready.
+     */
+    bool EnsureInitializedLocked() noexcept;
 
     /**
      * @brief Handle sensor errors and update diagnostics

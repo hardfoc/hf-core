@@ -289,6 +289,18 @@ bool Tmc5160Handler::Initialize(const tmc51x0::DriverConfig& config, bool verbos
     return true;
 }
 
+bool Tmc5160Handler::EnsureInitialized() noexcept {
+    MutexLockGuard lock(mutex_);
+    return EnsureInitializedLocked();
+}
+
+bool Tmc5160Handler::EnsureInitializedLocked() noexcept {
+    if (initialized_) {
+        return true;
+    }
+    return Initialize(config_, false);
+}
+
 bool Tmc5160Handler::Deinitialize() noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_) {
@@ -307,13 +319,39 @@ bool Tmc5160Handler::Deinitialize() noexcept {
     return true;
 }
 
+Tmc5160Handler::SpiDriver* Tmc5160Handler::spiDriver() noexcept {
+    MutexLockGuard lock(mutex_);
+    if (!EnsureInitializedLocked() || !is_spi_) {
+        return nullptr;
+    }
+    return spi_driver_.get();
+}
+
+const Tmc5160Handler::SpiDriver* Tmc5160Handler::spiDriver() const noexcept {
+    auto* self = const_cast<Tmc5160Handler*>(this);
+    return self->spiDriver();
+}
+
+Tmc5160Handler::UartDriver* Tmc5160Handler::uartDriver() noexcept {
+    MutexLockGuard lock(mutex_);
+    if (!EnsureInitializedLocked() || is_spi_) {
+        return nullptr;
+    }
+    return uart_driver_.get();
+}
+
+const Tmc5160Handler::UartDriver* Tmc5160Handler::uartDriver() const noexcept {
+    auto* self = const_cast<Tmc5160Handler*>(this);
+    return self->uartDriver();
+}
+
 //=============================================================================
 // Convenience Methods — Motor Control
 //=============================================================================
 
 bool Tmc5160Handler::EnableMotor() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return false;
+    if (!EnsureInitializedLocked()) return false;
     return visitDriverInternal([](auto& drv) -> bool {
         auto r = drv.motorControl.Enable();
         return r.IsOk();
@@ -322,7 +360,7 @@ bool Tmc5160Handler::EnableMotor() noexcept {
 
 bool Tmc5160Handler::DisableMotor() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return false;
+    if (!EnsureInitializedLocked()) return false;
     return visitDriverInternal([](auto& drv) -> bool {
         auto r = drv.motorControl.Disable();
         return r.IsOk();
@@ -331,7 +369,7 @@ bool Tmc5160Handler::DisableMotor() noexcept {
 
 bool Tmc5160Handler::IsMotorEnabled() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return false;
+    if (!EnsureInitializedLocked()) return false;
     return visitDriverInternal([](auto& drv) -> bool {
         auto r = drv.motorControl.IsEnabled();
         return r.IsOk() && r.Value();
@@ -340,7 +378,7 @@ bool Tmc5160Handler::IsMotorEnabled() noexcept {
 
 bool Tmc5160Handler::SetCurrent(uint8_t irun, uint8_t ihold) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return false;
+    if (!EnsureInitializedLocked()) return false;
     return visitDriverInternal([irun, ihold](auto& drv) -> bool {
         auto r = drv.motorControl.SetCurrent(irun, ihold);
         return r.IsOk();
@@ -353,7 +391,7 @@ bool Tmc5160Handler::SetCurrent(uint8_t irun, uint8_t ihold) noexcept {
 
 bool Tmc5160Handler::SetTargetPosition(int32_t position) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return false;
+    if (!EnsureInitializedLocked()) return false;
     return visitDriverInternal([position](auto& drv) -> bool {
         auto r = drv.rampControl.SetTargetPosition(
             static_cast<float>(position), tmc51x0::Unit::Steps);
@@ -363,7 +401,7 @@ bool Tmc5160Handler::SetTargetPosition(int32_t position) noexcept {
 
 bool Tmc5160Handler::SetTargetVelocity(int32_t velocity) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return false;
+    if (!EnsureInitializedLocked()) return false;
     return visitDriverInternal([velocity](auto& drv) -> bool {
         auto r = drv.rampControl.SetMaxSpeed(static_cast<float>(velocity), tmc51x0::Unit::Steps);
         return r.IsOk();
@@ -372,7 +410,7 @@ bool Tmc5160Handler::SetTargetVelocity(int32_t velocity) noexcept {
 
 bool Tmc5160Handler::SetMaxSpeed(float speed, tmc51x0::Unit unit) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return false;
+    if (!EnsureInitializedLocked()) return false;
     return visitDriverInternal([speed, unit](auto& drv) -> bool {
         auto r = drv.rampControl.SetMaxSpeed(speed, unit);
         return r.IsOk();
@@ -381,7 +419,7 @@ bool Tmc5160Handler::SetMaxSpeed(float speed, tmc51x0::Unit unit) noexcept {
 
 bool Tmc5160Handler::SetAcceleration(float accel, tmc51x0::Unit unit) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return false;
+    if (!EnsureInitializedLocked()) return false;
     return visitDriverInternal([accel, unit](auto& drv) -> bool {
         auto r = drv.rampControl.SetAcceleration(accel, unit);
         return r.IsOk();
@@ -390,7 +428,7 @@ bool Tmc5160Handler::SetAcceleration(float accel, tmc51x0::Unit unit) noexcept {
 
 bool Tmc5160Handler::Stop() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return false;
+    if (!EnsureInitializedLocked()) return false;
     return visitDriverInternal([](auto& drv) -> bool {
         auto r = drv.rampControl.Stop();
         return r.IsOk();
@@ -399,7 +437,7 @@ bool Tmc5160Handler::Stop() noexcept {
 
 int32_t Tmc5160Handler::GetCurrentPosition() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return 0;
+    if (!EnsureInitializedLocked()) return 0;
     return visitDriverInternal([](auto& drv) -> int32_t {
         auto r = drv.rampControl.GetCurrentPositionMicrosteps();
         return r.IsOk() ? r.Value() : 0;
@@ -408,7 +446,7 @@ int32_t Tmc5160Handler::GetCurrentPosition() noexcept {
 
 int32_t Tmc5160Handler::GetCurrentVelocity() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return 0;
+    if (!EnsureInitializedLocked()) return 0;
     return visitDriverInternal([](auto& drv) -> int32_t {
         auto r = drv.rampControl.GetCurrentSpeed(tmc51x0::Unit::Steps);
         return r.IsOk() ? static_cast<int32_t>(r.Value()) : 0;
@@ -417,7 +455,7 @@ int32_t Tmc5160Handler::GetCurrentVelocity() noexcept {
 
 bool Tmc5160Handler::IsTargetReached() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return false;
+    if (!EnsureInitializedLocked()) return false;
     return visitDriverInternal([](auto& drv) -> bool {
         auto r = drv.rampControl.IsTargetReached();
         return r.IsOk() && r.Value();
@@ -430,7 +468,7 @@ bool Tmc5160Handler::IsTargetReached() noexcept {
 
 bool Tmc5160Handler::IsStandstill() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return false;
+    if (!EnsureInitializedLocked()) return false;
     return visitDriverInternal([](auto& drv) -> bool {
         auto r = drv.rampControl.IsStandstill();
         return r.IsOk() && r.Value();
@@ -439,7 +477,7 @@ bool Tmc5160Handler::IsStandstill() noexcept {
 
 bool Tmc5160Handler::IsOvertemperature() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return false;
+    if (!EnsureInitializedLocked()) return false;
     return visitDriverInternal([](auto& drv) -> bool {
         auto r = drv.status.IsOvertemperature();
         return r.IsOk() && r.Value();
@@ -448,7 +486,7 @@ bool Tmc5160Handler::IsOvertemperature() noexcept {
 
 bool Tmc5160Handler::IsStallDetected() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return false;
+    if (!EnsureInitializedLocked()) return false;
     return visitDriverInternal([](auto& drv) -> bool {
         auto r = drv.stallGuard.IsStallDetected();
         return r.IsOk() && r.Value();
@@ -457,7 +495,7 @@ bool Tmc5160Handler::IsStallDetected() noexcept {
 
 int32_t Tmc5160Handler::GetStallGuardResult() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return -1;
+    if (!EnsureInitializedLocked()) return -1;
     return visitDriverInternal([](auto& drv) -> int32_t {
         auto r = drv.stallGuard.GetStallGuardResult();
         return r.IsOk() ? static_cast<int32_t>(r.Value()) : -1;
@@ -466,7 +504,7 @@ int32_t Tmc5160Handler::GetStallGuardResult() noexcept {
 
 uint32_t Tmc5160Handler::GetChipVersion() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return 0;
+    if (!EnsureInitializedLocked()) return 0;
     return visitDriverInternal([](auto& drv) -> uint32_t {
         return static_cast<uint32_t>(drv.status.GetChipVersion());
     });
@@ -474,7 +512,7 @@ uint32_t Tmc5160Handler::GetChipVersion() noexcept {
 
 void Tmc5160Handler::DumpDiagnostics() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) {
+    if (!EnsureInitializedLocked()) {
         Logger::GetInstance().Warn(TAG, "Not initialized — cannot dump diagnostics");
         return;
     }

@@ -259,7 +259,7 @@ bool NtcTemperatureHandler::Deinitialize() noexcept {
 }
 
 hf_temp_err_t NtcTemperatureHandler::ReadTemperatureCelsiusImpl(float* temperature_celsius) noexcept {
-    if (ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     
@@ -298,7 +298,8 @@ hf_temp_err_t NtcTemperatureHandler::GetSensorInfo(hf_temp_sensor_info_t* info) 
         return TEMP_ERR_NULL_POINTER;
     }
     
-    if (!initialized_) {
+    auto* self = const_cast<NtcTemperatureHandler*>(this);
+    if (!self->EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     
@@ -330,7 +331,7 @@ hf_u32_t NtcTemperatureHandler::GetCapabilities() const noexcept {
 hf_temp_err_t NtcTemperatureHandler::SetThresholds(float low_threshold_celsius, float high_threshold_celsius) noexcept {
     MutexLockGuard lock(mutex_);
     
-    if (!initialized_) {
+    if (!EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     
@@ -350,7 +351,8 @@ hf_temp_err_t NtcTemperatureHandler::GetThresholds(float* low_threshold_celsius,
         return TEMP_ERR_NULL_POINTER;
     }
     
-    if (!initialized_) {
+    auto* self = const_cast<NtcTemperatureHandler*>(this);
+    if (!self->EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     
@@ -363,7 +365,7 @@ hf_temp_err_t NtcTemperatureHandler::GetThresholds(float* low_threshold_celsius,
 hf_temp_err_t NtcTemperatureHandler::EnableThresholdMonitoring(hf_temp_threshold_callback_t callback, void* user_data) noexcept {
     MutexLockGuard lock(mutex_);
     
-    if (!initialized_) {
+    if (!EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     
@@ -391,7 +393,7 @@ hf_temp_err_t NtcTemperatureHandler::StartContinuousMonitoring(hf_u32_t sample_r
                                                               void* user_data) noexcept {
     MutexLockGuard lock(mutex_);
     
-    if (!initialized_) {
+    if (!EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     
@@ -467,7 +469,7 @@ bool NtcTemperatureHandler::IsMonitoringActive() const noexcept {
 hf_temp_err_t NtcTemperatureHandler::Calibrate(float reference_temperature_celsius) noexcept {
     MutexLockGuard lock(mutex_);
     
-    if (!initialized_ || ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     
@@ -494,7 +496,7 @@ hf_temp_err_t NtcTemperatureHandler::Calibrate(float reference_temperature_celsi
 hf_temp_err_t NtcTemperatureHandler::SetCalibrationOffset(float offset_celsius) noexcept {
     MutexLockGuard lock(mutex_);
     
-    if (!initialized_ || ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     
@@ -511,7 +513,8 @@ hf_temp_err_t NtcTemperatureHandler::GetCalibrationOffset(float* offset_celsius)
         return TEMP_ERR_NULL_POINTER;
     }
     
-    if (!initialized_) {
+    auto* self = const_cast<NtcTemperatureHandler*>(this);
+    if (!self->EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     
@@ -522,7 +525,7 @@ hf_temp_err_t NtcTemperatureHandler::GetCalibrationOffset(float* offset_celsius)
 hf_temp_err_t NtcTemperatureHandler::ResetCalibration() noexcept {
     MutexLockGuard lock(mutex_);
     
-    if (!initialized_ || ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     
@@ -575,24 +578,35 @@ hf_temp_err_t NtcTemperatureHandler::ResetDiagnostics() noexcept {
 //--------------------------------------
 
 void* NtcTemperatureHandler::GetNtcThermistor() noexcept {
+    if (!EnsureInitialized()) {
+        return nullptr;
+    }
     return ntc_thermistor_.get();
 }
 
 const void* NtcTemperatureHandler::GetNtcThermistor() const noexcept {
-    return ntc_thermistor_.get();
+    auto* self = const_cast<NtcTemperatureHandler*>(this);
+    return self->GetNtcThermistor();
 }
 
 NtcError NtcTemperatureHandler::GetNtcConfiguration(ntc_config_t* config) const noexcept {
-    if (config == nullptr || ntc_thermistor_ == nullptr) {
+    auto* self = const_cast<NtcTemperatureHandler*>(this);
+    if (config == nullptr) {
         return NtcError::NullPointer;
+    }
+    if (!self->EnsureInitialized() || ntc_thermistor_ == nullptr) {
+        return NtcError::NotInitialized;
     }
     
     return ntc_thermistor_->GetConfiguration(config);
 }
 
 NtcError NtcTemperatureHandler::GetNtcReading(ntc_reading_t* reading) noexcept {
-    if (reading == nullptr || ntc_thermistor_ == nullptr) {
+    if (reading == nullptr) {
         return NtcError::NullPointer;
+    }
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
+        return NtcError::NotInitialized;
     }
     
     return ntc_thermistor_->ReadTemperature(reading);
@@ -609,7 +623,7 @@ NtcError NtcTemperatureHandler::GetNtcReading(ntc_reading_t* reading) noexcept {
 
 hf_temp_err_t NtcTemperatureHandler::SetRange(float min_celsius, float max_celsius) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) {
+    if (!EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     if (min_celsius >= max_celsius) {
@@ -624,7 +638,8 @@ hf_temp_err_t NtcTemperatureHandler::GetRange(float* min_celsius, float* max_cel
     if (min_celsius == nullptr || max_celsius == nullptr) {
         return TEMP_ERR_NULL_POINTER;
     }
-    if (!initialized_) {
+    auto* self = const_cast<NtcTemperatureHandler*>(this);
+    if (!self->EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     *min_celsius = config_.min_temperature;
@@ -636,7 +651,8 @@ hf_temp_err_t NtcTemperatureHandler::GetResolution(float* resolution_celsius) co
     if (resolution_celsius == nullptr) {
         return TEMP_ERR_NULL_POINTER;
     }
-    if (!initialized_) {
+    auto* self = const_cast<NtcTemperatureHandler*>(this);
+    if (!self->EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     *resolution_celsius = 0.1f;  // Typical NTC resolution
@@ -645,7 +661,7 @@ hf_temp_err_t NtcTemperatureHandler::GetResolution(float* resolution_celsius) co
 
 hf_temp_err_t NtcTemperatureHandler::EnterSleepMode() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) {
+    if (!EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     // NTC thermistors are passive — no hardware sleep mode, but we track state
@@ -656,7 +672,7 @@ hf_temp_err_t NtcTemperatureHandler::EnterSleepMode() noexcept {
 
 hf_temp_err_t NtcTemperatureHandler::ExitSleepMode() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) {
+    if (!EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     current_state_ = HF_TEMP_STATE_INITIALIZED;
@@ -670,7 +686,7 @@ bool NtcTemperatureHandler::IsSleeping() const noexcept {
 
 hf_temp_err_t NtcTemperatureHandler::SelfTest() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     // Basic self-test: attempt a temperature reading and validate range
@@ -691,7 +707,7 @@ hf_temp_err_t NtcTemperatureHandler::SelfTest() noexcept {
 
 hf_temp_err_t NtcTemperatureHandler::CheckHealth() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) {
+    if (!EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
     if (!diagnostics_.sensor_healthy) {
@@ -709,7 +725,7 @@ hf_temp_err_t NtcTemperatureHandler::CheckHealth() noexcept {
 
 NtcError NtcTemperatureHandler::SetNtcConfiguration(const ntc_config_t& config) noexcept {
     MutexLockGuard lock(mutex_);
-    if (ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return NtcError::NotInitialized;
     }
     return ntc_thermistor_->SetConfiguration(config);
@@ -720,7 +736,7 @@ NtcError NtcTemperatureHandler::GetResistance(float* resistance_ohms) noexcept {
     if (resistance_ohms == nullptr) {
         return NtcError::NullPointer;
     }
-    if (ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return NtcError::NotInitialized;
     }
     return ntc_thermistor_->GetResistance(resistance_ohms);
@@ -731,7 +747,7 @@ NtcError NtcTemperatureHandler::GetVoltage(float* voltage_volts) noexcept {
     if (voltage_volts == nullptr) {
         return NtcError::NullPointer;
     }
-    if (ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return NtcError::NotInitialized;
     }
     return ntc_thermistor_->GetVoltage(voltage_volts);
@@ -742,7 +758,7 @@ NtcError NtcTemperatureHandler::GetRawAdcValue(uint32_t* adc_value) noexcept {
     if (adc_value == nullptr) {
         return NtcError::NullPointer;
     }
-    if (ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return NtcError::NotInitialized;
     }
     return ntc_thermistor_->GetRawAdcValue(adc_value);
@@ -750,7 +766,7 @@ NtcError NtcTemperatureHandler::GetRawAdcValue(uint32_t* adc_value) noexcept {
 
 NtcError NtcTemperatureHandler::SetConversionMethod(NtcConversionMethod method) noexcept {
     MutexLockGuard lock(mutex_);
-    if (ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return NtcError::NotInitialized;
     }
     return ntc_thermistor_->SetConversionMethod(method);
@@ -758,7 +774,7 @@ NtcError NtcTemperatureHandler::SetConversionMethod(NtcConversionMethod method) 
 
 NtcError NtcTemperatureHandler::SetVoltageDivider(float series_resistance) noexcept {
     MutexLockGuard lock(mutex_);
-    if (ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return NtcError::NotInitialized;
     }
     return ntc_thermistor_->SetVoltageDivider(series_resistance);
@@ -766,7 +782,7 @@ NtcError NtcTemperatureHandler::SetVoltageDivider(float series_resistance) noexc
 
 NtcError NtcTemperatureHandler::SetReferenceVoltage(float reference_voltage) noexcept {
     MutexLockGuard lock(mutex_);
-    if (ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return NtcError::NotInitialized;
     }
     return ntc_thermistor_->SetReferenceVoltage(reference_voltage);
@@ -774,7 +790,7 @@ NtcError NtcTemperatureHandler::SetReferenceVoltage(float reference_voltage) noe
 
 NtcError NtcTemperatureHandler::SetBetaValue(float beta_value) noexcept {
     MutexLockGuard lock(mutex_);
-    if (ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return NtcError::NotInitialized;
     }
     return ntc_thermistor_->SetBetaValue(beta_value);
@@ -783,7 +799,7 @@ NtcError NtcTemperatureHandler::SetBetaValue(float beta_value) noexcept {
 NtcError NtcTemperatureHandler::SetAdcChannel(uint8_t adc_channel) noexcept {
     MutexLockGuard lock(mutex_);
     config_.adc_channel = adc_channel;
-    if (ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return NtcError::NotInitialized;
     }
     return ntc_thermistor_->SetAdcChannel(adc_channel);
@@ -794,7 +810,7 @@ NtcError NtcTemperatureHandler::SetSamplingParameters(uint32_t sample_count,
     MutexLockGuard lock(mutex_);
     config_.sample_count = sample_count;
     config_.sample_delay_ms = sample_delay_ms;
-    if (ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return NtcError::NotInitialized;
     }
     return ntc_thermistor_->SetSamplingParameters(sample_count, sample_delay_ms);
@@ -804,7 +820,7 @@ NtcError NtcTemperatureHandler::SetFiltering(bool enable, float alpha) noexcept 
     MutexLockGuard lock(mutex_);
     config_.enable_filtering = enable;
     config_.filter_alpha = alpha;
-    if (ntc_thermistor_ == nullptr) {
+    if (!EnsureInitialized() || ntc_thermistor_ == nullptr) {
         return NtcError::NotInitialized;
     }
     return ntc_thermistor_->SetFiltering(enable, alpha);

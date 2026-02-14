@@ -124,6 +124,15 @@ As5047uError As5047uHandler::Initialize() noexcept {
     return last_error_;
 }
 
+bool As5047uHandler::EnsureInitialized() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!lock.IsLocked()) {
+        last_error_ = As5047uError::MUTEX_LOCK_FAILED;
+        return false;
+    }
+    return EnsureInitializedLocked();
+}
+
 As5047uError As5047uHandler::Deinitialize() noexcept {
     MutexLockGuard lock(handler_mutex_);
     
@@ -143,11 +152,18 @@ bool As5047uHandler::IsInitialized() const noexcept {
 
 bool As5047uHandler::IsSensorReady() const noexcept {
     MutexLockGuard lock(handler_mutex_);
-    return as5047u_sensor_ != nullptr;
+    return initialized_ && as5047u_sensor_ && spi_adapter_;
 }
 
 std::shared_ptr<as5047u::AS5047U<As5047uSpiAdapter>> As5047uHandler::GetSensor() noexcept {
     MutexLockGuard lock(handler_mutex_);
+    if (!lock.IsLocked()) {
+        last_error_ = As5047uError::MUTEX_LOCK_FAILED;
+        return nullptr;
+    }
+    if (!EnsureInitializedLocked()) {
+        return nullptr;
+    }
     return as5047u_sensor_;
 }
 
@@ -678,8 +694,17 @@ As5047uError As5047uHandler::GetLastError() const noexcept {
 // PRIVATE HELPER METHODS
 //======================================================//
 
-bool As5047uHandler::ValidateSensor() const noexcept {
-    return initialized_ && as5047u_sensor_ && spi_adapter_;
+bool As5047uHandler::ValidateSensor() noexcept {
+    return EnsureInitializedLocked();
+}
+
+bool As5047uHandler::EnsureInitializedLocked() noexcept {
+    if (initialized_ && as5047u_sensor_ && spi_adapter_) {
+        return true;
+    }
+
+    const As5047uError init_result = Initialize();
+    return init_result == As5047uError::SUCCESS;
 }
 
 void As5047uHandler::HandleSensorErrors(uint16_t sensor_errors) noexcept {

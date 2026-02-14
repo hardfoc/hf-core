@@ -320,6 +320,12 @@ public:
     bool Initialize(const tmc51x0::DriverConfig& config, bool verbose = true) noexcept;
 
     /**
+     * @brief Ensure driver is initialized (lazy init entrypoint).
+     * @return true if initialized and ready.
+     */
+    bool EnsureInitialized() noexcept;
+
+    /**
      * @brief Deinitialize — disable motor and release resources.
      * @return true if deinitialization succeeded.
      */
@@ -365,7 +371,7 @@ public:
     auto visitDriver(Fn&& fn) noexcept -> decltype(fn(std::declval<SpiDriver&>())) {
         using ReturnType = decltype(fn(std::declval<SpiDriver&>()));
         MutexLockGuard lock(mutex_);
-        if (!initialized_) {
+        if (!EnsureInitialized()) {
             if constexpr (std::is_void_v<ReturnType>) {
                 return;
             } else {
@@ -387,16 +393,14 @@ public:
     /**
      * @brief Get typed SPI driver pointer (null if UART mode or not initialized).
      */
-    [[nodiscard]] SpiDriver* spiDriver() noexcept {
-        return spi_driver_.get();
-    }
+    [[nodiscard]] SpiDriver* spiDriver() noexcept;
+    [[nodiscard]] const SpiDriver* spiDriver() const noexcept;
 
     /**
      * @brief Get typed UART driver pointer (null if SPI mode or not initialized).
      */
-    [[nodiscard]] UartDriver* uartDriver() noexcept {
-        return uart_driver_.get();
-    }
+    [[nodiscard]] UartDriver* uartDriver() noexcept;
+    [[nodiscard]] const UartDriver* uartDriver() const noexcept;
 
     //=========================================================================
     // Convenience Methods — Motor Control
@@ -513,6 +517,8 @@ public:
     [[nodiscard]] const tmc51x0::DriverConfig& GetDriverConfig() const noexcept { return config_; }
 
 private:
+    bool EnsureInitializedLocked() noexcept;
+
     /// @brief Communication mode flag
     bool is_spi_{true};
 

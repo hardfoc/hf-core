@@ -110,6 +110,12 @@ public:
     /** @brief Initialize the RMT channel and LED strip. */
     bool Initialize() noexcept;
 
+    /**
+     * @brief Ensure strip resources are initialized (lazy init entrypoint).
+     * @return true if initialized and ready.
+     */
+    bool EnsureInitialized() noexcept;
+
     /** @brief Deinitialize and release RMT resources. */
     bool Deinitialize() noexcept;
 
@@ -186,22 +192,22 @@ public:
      * @brief Get the underlying LED strip object.
      * @return Pointer to WS2812Strip, or nullptr if not initialized.
      */
-    [[nodiscard]] WS2812Strip* GetStrip() noexcept {
-        return strip_.get();
-    }
+    [[nodiscard]] WS2812Strip* GetStrip() noexcept;
+    [[nodiscard]] const WS2812Strip* GetStrip() const noexcept;
 
     /**
      * @brief Get the animator object.
      * @return Pointer to WS2812Animator, or nullptr if not initialized.
      */
-    [[nodiscard]] WS2812Animator* GetAnimator() noexcept {
-        return animator_.get();
-    }
+    [[nodiscard]] WS2812Animator* GetAnimator() noexcept;
+    [[nodiscard]] const WS2812Animator* GetAnimator() const noexcept;
 
     /** @brief Dump diagnostics to logger. */
     void DumpDiagnostics() noexcept;
 
 private:
+    bool EnsureInitializedLocked() noexcept;
+
     Config config_;
     bool initialized_{false};
     mutable RtosMutex mutex_;

@@ -301,7 +301,7 @@ hf_gpio_err_t Pcal95555Handler::GetPullMode(uint8_t pin,
                                             hf_gpio_pull_mode_t& pull_mode) noexcept {
     if (!ValidatePin(pin)) return hf_gpio_err_t::GPIO_ERR_INVALID_PIN;
     MutexLockGuard lock(handler_mutex_);
-    if (!initialized_) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    if (!EnsureInitializedLocked()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
 
     pull_mode = pull_mode_cache_[pin];
     return hf_gpio_err_t::GPIO_SUCCESS;

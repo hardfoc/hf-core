@@ -69,6 +69,18 @@ bool Ws2812Handler::Initialize() noexcept {
     return true;
 }
 
+bool Ws2812Handler::EnsureInitialized() noexcept {
+    MutexLockGuard lock(mutex_);
+    return EnsureInitializedLocked();
+}
+
+bool Ws2812Handler::EnsureInitializedLocked() noexcept {
+    if (initialized_ && strip_ && animator_) {
+        return true;
+    }
+    return Initialize();
+}
+
 bool Ws2812Handler::Deinitialize() noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_) return true;
@@ -90,7 +102,7 @@ bool Ws2812Handler::Deinitialize() noexcept {
 
 bool Ws2812Handler::SetPixel(uint32_t index, uint8_t r, uint8_t g, uint8_t b) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !strip_) return false;
+    if (!EnsureInitializedLocked() || !strip_) return false;
     if (index >= config_.num_leds) return false;
 
     // Pack RGB into uint32_t for the driver (0x00RRGGBB)
@@ -103,7 +115,7 @@ bool Ws2812Handler::SetPixel(uint32_t index, uint8_t r, uint8_t g, uint8_t b) no
 
 bool Ws2812Handler::SetAllPixels(uint8_t r, uint8_t g, uint8_t b) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !strip_) return false;
+    if (!EnsureInitializedLocked() || !strip_) return false;
 
     uint32_t color = (static_cast<uint32_t>(r) << 16) |
                      (static_cast<uint32_t>(g) << 8)  |
@@ -120,28 +132,28 @@ bool Ws2812Handler::Clear() noexcept {
 
 bool Ws2812Handler::Show() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !strip_) return false;
+    if (!EnsureInitializedLocked() || !strip_) return false;
     esp_err_t err = strip_->Show();
     return (err == ESP_OK);
 }
 
 bool Ws2812Handler::SetBrightness(uint8_t brightness) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !strip_) return false;
+    if (!EnsureInitializedLocked() || !strip_) return false;
     strip_->SetBrightness(brightness);
     return true;
 }
 
 bool Ws2812Handler::SetEffect(WS2812Animator::Effect effect, uint32_t color) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !animator_) return false;
+    if (!EnsureInitializedLocked() || !animator_) return false;
     animator_->SetEffect(effect, color);
     return true;
 }
 
 bool Ws2812Handler::Tick() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !animator_ || !strip_) return false;
+    if (!EnsureInitializedLocked() || !animator_ || !strip_) return false;
     animator_->Tick();
     esp_err_t err = strip_->Show();
     return (err == ESP_OK);
@@ -149,16 +161,43 @@ bool Ws2812Handler::Tick() noexcept {
 
 bool Ws2812Handler::Step() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !animator_ || !strip_) return false;
+    if (!EnsureInitializedLocked() || !animator_ || !strip_) return false;
     // Step() returns current step as uint16_t, but we ignore it here
     animator_->Step();
     esp_err_t err = strip_->Show();
     return (err == ESP_OK);
 }
 
+WS2812Strip* Ws2812Handler::GetStrip() noexcept {
+    MutexLockGuard lock(mutex_);
+    if (!EnsureInitializedLocked()) {
+        return nullptr;
+    }
+    return strip_.get();
+}
+
+const WS2812Strip* Ws2812Handler::GetStrip() const noexcept {
+    auto* self = const_cast<Ws2812Handler*>(this);
+    return self->GetStrip();
+}
+
+WS2812Animator* Ws2812Handler::GetAnimator() noexcept {
+    MutexLockGuard lock(mutex_);
+    if (!EnsureInitializedLocked()) {
+        return nullptr;
+    }
+    return animator_.get();
+}
+
+const WS2812Animator* Ws2812Handler::GetAnimator() const noexcept {
+    auto* self = const_cast<Ws2812Handler*>(this);
+    return self->GetAnimator();
+}
+
 void Ws2812Handler::DumpDiagnostics() noexcept {
     MutexLockGuard lock(mutex_);
     auto& log = Logger::GetInstance();
+    (void)EnsureInitializedLocked();
     log.Info(TAG, "=== WS2812 Diagnostics ===");
     log.Info(TAG, "  GPIO: %d", static_cast<int>(config_.gpio_pin));
     log.Info(TAG, "  LEDs: %lu", static_cast<unsigned long>(config_.num_leds));

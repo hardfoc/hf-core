@@ -201,6 +201,11 @@ bool Max22200Handler::Initialize() noexcept {
     return true;
 }
 
+bool Max22200Handler::EnsureInitialized() noexcept {
+    MutexLockGuard lock(mutex_);
+    return EnsureInitializedLocked();
+}
+
 bool Max22200Handler::Initialize(const max22200::BoardConfig& board_config) noexcept {
     MutexLockGuard lock(mutex_);
     if (initialized_) {
@@ -230,6 +235,17 @@ bool Max22200Handler::Initialize(const max22200::BoardConfig& board_config) noex
     return true;
 }
 
+bool Max22200Handler::EnsureInitializedLocked() noexcept {
+    if (initialized_ && driver_) {
+        return true;
+    }
+    if (!comm_) {
+        Logger::GetInstance().Error(TAG, "Comm adapter not created");
+        return false;
+    }
+    return Initialize();
+}
+
 bool Max22200Handler::Deinitialize() noexcept {
     MutexLockGuard lock(mutex_);
     if (!initialized_) return true;
@@ -246,7 +262,7 @@ bool Max22200Handler::Deinitialize() noexcept {
 bool Max22200Handler::ConfigureChannel(uint8_t channel,
                                         const max22200::ChannelConfig& config) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     if (channel >= kNumChannels) return false;
     return (driver_->ConfigureChannel(channel, config) == max22200::DriverStatus::OK);
 }
@@ -254,7 +270,7 @@ bool Max22200Handler::ConfigureChannel(uint8_t channel,
 bool Max22200Handler::SetupCdrChannel(uint8_t channel, uint16_t hit_ma,
                                        uint16_t hold_ma, float hit_time_ms) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     if (channel >= kNumChannels) return false;
     auto s1 = driver_->SetHitCurrentMa(channel, hit_ma);
     if (s1 != max22200::DriverStatus::OK) return false;
@@ -267,7 +283,7 @@ bool Max22200Handler::SetupCdrChannel(uint8_t channel, uint16_t hit_ma,
 bool Max22200Handler::SetupVdrChannel(uint8_t channel, float hit_duty_pct,
                                        float hold_duty_pct, float hit_time_ms) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     if (channel >= kNumChannels) return false;
     auto s1 = driver_->SetHitDutyPercent(channel, hit_duty_pct);
     if (s1 != max22200::DriverStatus::OK) return false;
@@ -279,33 +295,33 @@ bool Max22200Handler::SetupVdrChannel(uint8_t channel, float hit_duty_pct,
 
 bool Max22200Handler::EnableChannel(uint8_t channel) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     if (channel >= kNumChannels) return false;
     return (driver_->EnableChannel(channel) == max22200::DriverStatus::OK);
 }
 
 bool Max22200Handler::DisableChannel(uint8_t channel) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     if (channel >= kNumChannels) return false;
     return (driver_->DisableChannel(channel) == max22200::DriverStatus::OK);
 }
 
 bool Max22200Handler::EnableAllChannels() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     return (driver_->EnableAllChannels() == max22200::DriverStatus::OK);
 }
 
 bool Max22200Handler::DisableAllChannels() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     return (driver_->DisableAllChannels() == max22200::DriverStatus::OK);
 }
 
 bool Max22200Handler::IsChannelEnabled(uint8_t channel) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     if (channel >= kNumChannels) return false;
     // Read STATUS to check channels_on_mask
     max22200::StatusConfig status{};
@@ -316,20 +332,20 @@ bool Max22200Handler::IsChannelEnabled(uint8_t channel) noexcept {
 
 bool Max22200Handler::SetChannelsMask(uint8_t mask) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     return (driver_->SetChannelsOn(mask) == max22200::DriverStatus::OK);
 }
 
 bool Max22200Handler::GetStatus(max22200::StatusConfig& status) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     return (driver_->ReadStatus(status) == max22200::DriverStatus::OK);
 }
 
 bool Max22200Handler::GetChannelFaults(uint8_t channel,
                                         max22200::FaultStatus& faults) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     if (channel >= kNumChannels) return false;
     // Read fault register (covers all channels)
     auto s = driver_->ReadFaultRegister(faults);
@@ -339,7 +355,7 @@ bool Max22200Handler::GetChannelFaults(uint8_t channel,
 
 bool Max22200Handler::HasFault() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     max22200::StatusConfig status{};
     auto s = driver_->ReadFaultFlags(status);
     if (s != max22200::DriverStatus::OK) return false;
@@ -348,20 +364,33 @@ bool Max22200Handler::HasFault() noexcept {
 
 bool Max22200Handler::ClearFaults() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     return (driver_->ClearAllFaults() == max22200::DriverStatus::OK);
 }
 
 bool Max22200Handler::ReadFaultRegister(max22200::FaultStatus& faults) noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_ || !driver_) return false;
+    if (!EnsureInitializedLocked() || !driver_) return false;
     return (driver_->ReadFaultRegister(faults) == max22200::DriverStatus::OK);
+}
+
+Max22200Handler::DriverType* Max22200Handler::GetDriver() noexcept {
+    MutexLockGuard lock(mutex_);
+    if (!EnsureInitializedLocked()) {
+        return nullptr;
+    }
+    return driver_.get();
+}
+
+const Max22200Handler::DriverType* Max22200Handler::GetDriver() const noexcept {
+    auto* self = const_cast<Max22200Handler*>(this);
+    return self->GetDriver();
 }
 
 void Max22200Handler::DumpDiagnostics() noexcept {
     MutexLockGuard lock(mutex_);
     auto& log = Logger::GetInstance();
-    if (!initialized_ || !driver_) {
+    if (!EnsureInitializedLocked() || !driver_) {
         log.Warn(TAG, "Not initialized — cannot dump diagnostics");
         return;
     }
