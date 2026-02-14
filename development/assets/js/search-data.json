@@ -1,967 +1,981 @@
 {"0": {
-    "doc": "Home",
-    "title": "HardFOC Platform Core (hf-core)",
-    "content": ". Shared platform layer for all HardFOC boards: base interfaces, drivers, utilities, and handlers. No board-specific configuration — board HALs (e.g. hf-hal-vortex-v1) depend on this repo and add managers, API, and pin mapping. ",
-    "url": "/hf-hal-vortex-v1/development/README.html#hardfoc-platform-core-hf-core",
+    "doc": "HardFOC Core Platform",
+    "title": "HF-Core Platform",
+    "content": "Shared platform layer for HardFOC boards — handlers, RTOS utilities, driver integration, and CANopen for motor control systems . ",
+    "url": "/hf-core/development/README.html#hf-core-platform",
     
-    "relUrl": "/README.html#hardfoc-platform-core-hf-core"
+    "relUrl": "/README.html#hf-core-platform"
   },"1": {
-    "doc": "Home",
-    "title": "Features",
-    "content": ". | 7 Device Handlers — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, Logger | 30+ General Utilities — Buffers, filters, timers, CRC, interpolation, linked lists, flag sets, physical units | Full RTOS Abstraction — Mutex, semaphore, queue, event flags, threads, timers | CANopen Utilities — CAN frame, SDO protocol, NMT commands | ESP32 Test Suite — 11 test applications covering every handler, utility, and integration scenario | 8 CI Pipelines — Build, lint, analysis, documentation, release | . ",
-    "url": "/hf-hal-vortex-v1/development/README.html#features",
+    "doc": "HardFOC Core Platform",
+    "title": "📚 Table of Contents",
+    "content": ". | Overview | Features | Architecture | Quick Start | Handlers | Utilities | Repository Structure | Documentation | Contributing | License | . ",
+    "url": "/hf-core/development/README.html#-table-of-contents",
     
-    "relUrl": "/README.html#features"
+    "relUrl": "/README.html#-table-of-contents"
   },"2": {
-    "doc": "Home",
-    "title": "Architecture",
-    "content": "| 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 . | ┌─────────────────────────────────────────────────┐ │ Board HAL (Vortex) │ Managers + API ├─────────────────────────────────────────────────┤ │ hf-core (this repo) │ │ ┌──────────┐ ┌──────────────┐ ┌───────────┐ │ │ │ Handlers │ │ hf-core-utils│ │ Logger │ │ │ │ (adapt) │ │ (general, │ │(singleton)│ │ │ │ │ │ rtos, can) │ │ │ │ │ └────┬─────┘ └──────────────┘ └───────────┘ │ │ │ │ │ ┌────▼──────────────────────────────────────┐ │ │ │ hf-core-drivers (submodule) │ │ │ │ BaseI2c, BaseSpi, BaseGpio, BaseAdc │ │ │ │ AS5047U, BNO08x, PCA9685, TMC9660 ... │ │ │ └───────────────────────────────────────────┘ │ ├─────────────────────────────────────────────────┤ │ MCU Platform (ESP32, etc.) │ └─────────────────────────────────────────────────┘ . | . Handlers own their driver instances and translate base-interface calls into high-level operations. They never expose the raw driver — all access goes through handler methods. ",
-    "url": "/hf-hal-vortex-v1/development/README.html#architecture",
+    "doc": "HardFOC Core Platform",
+    "title": "📦 Overview",
+    "content": "📖 📚🌐 Live Complete Documentation — Architecture guides, per-handler API reference, and testing instructions . hf-core is the shared platform layer for all HardFOC boards. It provides the handler layer, RTOS utilities, and driver integration that form the backbone of the HardFOC motor control system. hf-core is the bridge layer between hardware-agnostic base interfaces (BaseI2c, BaseSpi, BaseGpio, BaseAdc, BaseTemperature) and CRTP-templated device drivers (hf-tmc9660-driver, hf-bno08x-driver, hf-as5047u-driver, etc.). No board-specific configuration lives here — board HALs (e.g. hf-hal-vortex-v1) depend on this repo and add managers, API, and pin mapping. ",
+    "url": "/hf-core/development/README.html#-overview",
     
-    "relUrl": "/README.html#architecture"
+    "relUrl": "/README.html#-overview"
   },"3": {
-    "doc": "Home",
-    "title": "Repository Structure",
-    "content": "| 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 . | hf-core/ ├── handlers/ # Device handler implementations │ ├── as5047u/ # Magnetic encoder (SPI) │ ├── bno08x/ # 9-axis IMU (I2C) │ ├── pca9685/ # 16-ch PWM controller (I2C) │ ├── pcal95555/ # 16-bit GPIO expander (I2C) │ ├── ntc/ # NTC thermistor (ADC) │ ├── tmc9660/ # Motor controller (SPI/UART) │ └── logger/ # Singleton logging ├── hf-core-drivers/ # [submodule] Base interfaces + external drivers ├── hf-core-utils/ # [submodule] General, RTOS, CANopen utilities ├── examples/ │ └── esp32/ # ESP-IDF test applications │ ├── app_config.yml # Test app registry (11 apps) │ ├── main/ │ │ ├── handler_tests/ # 6 handler test apps │ │ ├── utils_tests/ # 4 utility test apps │ │ └── integration_tests/ # 1 integration test │ └── components/ │ └── hf_core/ # ESP-IDF component wrapper ├── .github/workflows/ # 8 CI pipelines ├── _config/ # clang-format, clang-tidy, Jekyll, Doxygen, linters ├── docs/ # Jekyll documentation site └── README.md . | . ",
-    "url": "/hf-hal-vortex-v1/development/README.html#repository-structure",
+    "doc": "HardFOC Core Platform",
+    "title": "✨ Features",
+    "content": ". | ✅ 7 Device Handlers — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, Logger | ✅ 30+ General Utilities — Buffers, filters, timers, CRC, interpolation, linked lists, flag sets, physical units | ✅ Full RTOS Abstraction — Mutex, semaphore, queue, event flags, threads, timers | ✅ CANopen Utilities — CAN frame, SDO protocol, NMT commands | ✅ ESP32 Test Suite — 11 test applications covering every handler, utility, and integration scenario | ✅ 8 CI Pipelines — Build, lint, analysis, documentation, release | ✅ Thread-Safe — All handlers use RtosMutex for safe concurrent access | ✅ Modern C++20 — Type-safe APIs with CRTP-based design and zero-overhead abstractions | . ",
+    "url": "/hf-core/development/README.html#-features",
     
-    "relUrl": "/README.html#repository-structure"
+    "relUrl": "/README.html#-features"
   },"4": {
-    "doc": "Home",
-    "title": "Handlers",
-    "content": "| Handler | Device | Bus | Key Capabilities | . | As5047uHandler | AS5047U | SPI | Angle, velocity, DAEC, diagnostics, zero-position | . | Bno08xHandler | BNO08x | I2C | Sensor enable/disable, data read, freshness gating | . | Pca9685Handler | PCA9685 | I2C | PWM duty/frequency, phase offset, sleep/wake | . | Pcal95555Handler | PCAL95555 | I2C | GPIO read/write, toggle, batch, interrupt drain | . | NtcTemperatureHandler | NTC | ADC | Temperature, calibration, EMA filter, thresholds | . | Tmc9660Handler | TMC9660 | SPI/UART | Motor control, telemetry, GPIO/ADC/temp wrappers | . | Logger | — | — | Singleton, log levels, per-tag filter, formatted output | . ",
-    "url": "/hf-hal-vortex-v1/development/README.html#handlers",
+    "doc": "HardFOC Core Platform",
+    "title": "🏗️ Architecture",
+    "content": "| 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 . | ┌─────────────────────────────────────────────────┐ │ Board HAL (Vortex) │ Managers + API ├─────────────────────────────────────────────────┤ │ hf-core (this repo) │ │ ┌──────────┐ ┌──────────────┐ ┌───────────┐ │ │ │ Handlers │ │ hf-core-utils│ │ Logger │ │ │ │ (adapt) │ │ (general, │ │(singleton)│ │ │ │ │ │ rtos, can) │ │ │ │ │ └────┬─────┘ └──────────────┘ └───────────┘ │ │ │ │ │ ┌────▼──────────────────────────────────────┐ │ │ │ hf-core-drivers (submodule) │ │ │ │ BaseI2c, BaseSpi, BaseGpio, BaseAdc │ │ │ │ AS5047U, BNO08x, PCA9685, TMC9660 ... │ │ │ └───────────────────────────────────────────┘ │ ├─────────────────────────────────────────────────┤ │ MCU Platform (ESP32, etc.) │ └─────────────────────────────────────────────────┘ . | . Handlers own their driver instances and translate base-interface calls into high-level operations. They never expose the raw driver — all access goes through handler methods. ",
+    "url": "/hf-core/development/README.html#%EF%B8%8F-architecture",
     
-    "relUrl": "/README.html#handlers"
+    "relUrl": "/README.html#️-architecture"
   },"5": {
-    "doc": "Home",
-    "title": "Utilities",
-    "content": "| Library | Contents | . | hf-utils-general | CircularBuffer, RingBuffer, AveragingFilter, CRC, ActionTimer, IntervalAction, SoftwareVersion, LinearInterpolation, SimpleLinkedList, FlagSet, PhysicalUnit, and more | . | hf-utils-rtos-wrap | RtosMutex, MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags, OsSemaphore, OsRecursiveMutex, os_delay_msec | . | hf-utils-canopen | CanFrame, SDO helpers, NMT commands | . ",
-    "url": "/hf-hal-vortex-v1/development/README.html#utilities",
-    
-    "relUrl": "/README.html#utilities"
-  },"6": {
-    "doc": "Home",
-    "title": "Quick Start",
+    "doc": "HardFOC Core Platform",
+    "title": "🚀 Quick Start",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/README.html#quick-start",
+    "url": "/hf-core/development/README.html#-quick-start",
     
-    "relUrl": "/README.html#quick-start"
-  },"7": {
-    "doc": "Home",
+    "relUrl": "/README.html#-quick-start"
+  },"6": {
+    "doc": "HardFOC Core Platform",
     "title": "Clone",
-    "content": "| 1 . | git clone --recurse-submodules https://github.com/N3b3x/hf-core.git . | . Or after a shallow clone: . | 1 . | git submodule update --init --recursive . | . ",
-    "url": "/hf-hal-vortex-v1/development/README.html#clone",
+    "content": "| 1 . | git clone --recurse-submodules https://github.com/hardfoc/hf-core.git . | . Or after a shallow clone: . | 1 . | git submodule update --init --recursive . | . ",
+    "url": "/hf-core/development/README.html#clone",
     
     "relUrl": "/README.html#clone"
-  },"8": {
-    "doc": "Home",
+  },"7": {
+    "doc": "HardFOC Core Platform",
     "title": "Build and Flash a Test",
     "content": "| 1 2 3 4 5 6 7 . | cd examples/esp32/scripts # Build a utility test (no hardware needed) ./build_app.sh --app general_utils_test --build-type debug # Flash and monitor cd .. &amp;&amp; idf.py -p /dev/ttyUSB0 flash monitor . | . ",
-    "url": "/hf-hal-vortex-v1/development/README.html#build-and-flash-a-test",
+    "url": "/hf-core/development/README.html#build-and-flash-a-test",
     
     "relUrl": "/README.html#build-and-flash-a-test"
-  },"9": {
-    "doc": "Home",
+  },"8": {
+    "doc": "HardFOC Core Platform",
     "title": "Build All CI-Enabled Tests",
     "content": "| 1 . | ./build_app.sh --all --build-type debug . | . ",
-    "url": "/hf-hal-vortex-v1/development/README.html#build-all-ci-enabled-tests",
+    "url": "/hf-core/development/README.html#build-all-ci-enabled-tests",
     
     "relUrl": "/README.html#build-all-ci-enabled-tests"
+  },"9": {
+    "doc": "HardFOC Core Platform",
+    "title": "📖 Handlers",
+    "content": "| Handler | Device | Bus | Key Capabilities | . | As5047uHandler | AS5047U | SPI | Angle, velocity, DAEC, diagnostics, zero-position | . | Bno08xHandler | BNO08x | I2C | Sensor enable/disable, data read, freshness gating | . | Pca9685Handler | PCA9685 | I2C | PWM duty/frequency, phase offset, sleep/wake | . | Pcal95555Handler | PCAL95555 | I2C | GPIO read/write, toggle, batch, interrupt drain | . | NtcTemperatureHandler | NTC | ADC | Temperature, calibration, EMA filter, thresholds | . | Tmc9660Handler | TMC9660 | SPI/UART | Motor control, telemetry, GPIO/ADC/temp wrappers | . | Logger | — | — | Singleton, log levels, per-tag filter, formatted output | . ",
+    "url": "/hf-core/development/README.html#-handlers",
+    
+    "relUrl": "/README.html#-handlers"
   },"10": {
-    "doc": "Home",
-    "title": "Documentation",
-    "content": "Full documentation is available at the GitHub Pages site: . | Architecture — Layered design, handler pattern, ownership | Folder Structure — Complete tree with descriptions | Handler Reference — Per-handler API documentation | Utilities Reference — General, RTOS, CANopen utilities | Testing Guide — How to build and run tests | CI Pipelines — Workflow descriptions | . ",
-    "url": "/hf-hal-vortex-v1/development/README.html#documentation",
+    "doc": "HardFOC Core Platform",
+    "title": "🔧 Utilities",
+    "content": "| Library | Contents | . | hf-utils-general | CircularBuffer, RingBuffer, AveragingFilter, CRC, ActionTimer, IntervalAction, SoftwareVersion, LinearInterpolation, SimpleLinkedList, FlagSet, PhysicalUnit, and more | . | hf-utils-rtos-wrap | RtosMutex, MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags, OsSemaphore, OsRecursiveMutex, os_delay_msec | . | hf-utils-canopen | CanFrame, SDO helpers, NMT commands | . ",
+    "url": "/hf-core/development/README.html#-utilities",
     
-    "relUrl": "/README.html#documentation"
+    "relUrl": "/README.html#-utilities"
   },"11": {
-    "doc": "Home",
-    "title": "Contributing",
-    "content": ". | Create a feature branch from develop | Follow .clang-format and .clang-tidy (configs in _config/) | Add or update tests for any handler/utility changes | Ensure all CI checks pass | Open a pull request targeting develop | . ",
-    "url": "/hf-hal-vortex-v1/development/README.html#contributing",
+    "doc": "HardFOC Core Platform",
+    "title": "📂 Repository Structure",
+    "content": "| 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 . | hf-core/ ├── handlers/ # Device handler implementations │ ├── as5047u/ # Magnetic encoder (SPI) │ ├── bno08x/ # 9-axis IMU (I2C) │ ├── pca9685/ # 16-ch PWM controller (I2C) │ ├── pcal95555/ # 16-bit GPIO expander (I2C) │ ├── ntc/ # NTC thermistor (ADC) │ ├── tmc9660/ # Motor controller (SPI/UART) │ └── logger/ # Singleton logging ├── hf-core-drivers/ # [submodule] Base interfaces + external drivers ├── hf-core-utils/ # [submodule] General, RTOS, CANopen utilities ├── examples/ │ └── esp32/ # ESP-IDF test applications │ ├── app_config.yml # Test app registry (11 apps) │ ├── main/ │ │ ├── handler_tests/ # 6 handler test apps │ │ ├── utils_tests/ # 4 utility test apps │ │ └── integration_tests/ # 1 integration test │ └── components/ │ └── hf_core/ # ESP-IDF component wrapper ├── .github/workflows/ # 8 CI pipelines ├── _config/ # clang-format, clang-tidy, Jekyll, Doxygen, linters ├── docs/ # Jekyll documentation site └── README.md . | . ",
+    "url": "/hf-core/development/README.html#-repository-structure",
     
-    "relUrl": "/README.html#contributing"
+    "relUrl": "/README.html#-repository-structure"
   },"12": {
-    "doc": "Home",
-    "title": "License",
-    "content": "See LICENSE and per-submodule licenses. ",
-    "url": "/hf-hal-vortex-v1/development/README.html#license",
+    "doc": "HardFOC Core Platform",
+    "title": "📚 Documentation",
+    "content": "Full documentation is available at the GitHub Pages site: . | Architecture — Layered design, handler pattern, ownership | Folder Structure — Complete tree with descriptions | Handler Reference — Per-handler API documentation | Utilities Reference — General, RTOS, CANopen utilities | Testing Guide — How to build and run tests | CI Pipelines — Workflow descriptions | . ",
+    "url": "/hf-core/development/README.html#-documentation",
     
-    "relUrl": "/README.html#license"
+    "relUrl": "/README.html#-documentation"
   },"13": {
-    "doc": "Home",
-    "title": "Home",
+    "doc": "HardFOC Core Platform",
+    "title": "🤝 Contributing",
+    "content": ". | Create a feature branch from develop | Follow .clang-format and .clang-tidy (configs in _config/) | Add or update tests for any handler/utility changes | Ensure all CI checks pass | Open a pull request targeting develop | . ",
+    "url": "/hf-core/development/README.html#-contributing",
+    
+    "relUrl": "/README.html#-contributing"
+  },"14": {
+    "doc": "HardFOC Core Platform",
+    "title": "📄 License",
+    "content": "This project is licensed under the GNU General Public License v3.0. See the LICENSE file for details. Individual submodules may carry their own licenses — see per-submodule LICENSE files. ",
+    "url": "/hf-core/development/README.html#-license",
+    
+    "relUrl": "/README.html#-license"
+  },"15": {
+    "doc": "HardFOC Core Platform",
+    "title": "HardFOC Core Platform",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/README.html",
+    "url": "/hf-core/development/README.html",
     
     "relUrl": "/README.html"
-  },"14": {
+  },"16": {
     "doc": "Architecture",
     "title": "Architecture Overview",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/architecture.html#architecture-overview",
+    "url": "/hf-core/development/docs/architecture.html#architecture-overview",
     
     "relUrl": "/docs/architecture.html#architecture-overview"
-  },"15": {
+  },"17": {
     "doc": "Architecture",
     "title": "Layered Design",
     "content": "The HardFOC platform follows a strict layered architecture: . | 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 . | ┌──────────────────────────────────────────────────────┐ │ Application / API │ │ (Vortex.h, managers/*.h) │ ├──────────────────────────────────────────────────────┤ │ HANDLERS (hf-core) │ │ As5047uHandler Bno08xHandler Pca9685Handler │ │ Pcal95555Handler NtcTemperatureHandler │ │ Tmc9660Handler Logger │ ├──────────────────────────────────────────────────────┤ │ BASE INTERFACES (internal) │ │ BaseSpi BaseI2c BaseGpio BaseAdc │ │ BaseTemperature BaseEncoder BaseImu │ ├──────────────────────────────────────────────────────┤ │ CRTP DEVICE DRIVERS (external) │ │ hf-tmc9660-driver hf-bno08x-driver │ │ hf-as5047u-driver hf-pca9685-driver │ │ hf-pcal95555-driver hf-ntc-thermistor-driver │ ├──────────────────────────────────────────────────────┤ │ PLATFORM IMPLEMENTATIONS │ │ EspI2cBus/Device EspSpi EspGpio EspAdc │ │ (hf-internal-interface-wrap/inc/mcu/esp32/) │ └──────────────────────────────────────────────────────┘ . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/architecture.html#layered-design",
+    "url": "/hf-core/development/docs/architecture.html#layered-design",
     
     "relUrl": "/docs/architecture.html#layered-design"
-  },"16": {
+  },"18": {
     "doc": "Architecture",
     "title": "Handler Pattern",
     "content": "Each handler follows a consistent pattern: . | Construction — Accepts base interface references (not owned) | Lazy initialization — Initialize() or EnsureInitialized() creates the CRTP driver | Thread safety — RtosMutex protects all public methods | Error propagation — Maps driver errors to interface error codes | Zero overhead — CRTP dispatch means no virtual function overhead in the driver layer | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/architecture.html#handler-pattern",
+    "url": "/hf-core/development/docs/architecture.html#handler-pattern",
     
     "relUrl": "/docs/architecture.html#handler-pattern"
-  },"17": {
+  },"19": {
     "doc": "Architecture",
     "title": "Ownership Model",
     "content": "| 1 2 3 4 5 . | Manager (owns) → Handler (owns) → CRTP Driver Instance │ └── References (not owned) → BaseI2c/BaseSpi/BaseGpio │ └── Platform creates → EspI2c/EspSpi/EspGpio . | . Key rule: Handlers do NOT own their communication interfaces. The platform layer (or test setup) must ensure interfaces outlive the handler. ",
-    "url": "/hf-hal-vortex-v1/development/docs/architecture.html#ownership-model",
+    "url": "/hf-core/development/docs/architecture.html#ownership-model",
     
     "relUrl": "/docs/architecture.html#ownership-model"
-  },"18": {
+  },"20": {
     "doc": "Architecture",
     "title": "RTOS Integration",
     "content": ". | RtosMutex — Wrapper around xSemaphoreCreateMutex | MutexLockGuard — RAII lock guard | PeriodicTimer — Wrapper around FreeRTOS software timers | BaseThread — Abstract base for FreeRTOS tasks | OsQueue, OsEventFlags, OsSemaphore — Standard RTOS primitives | . All handlers use RtosMutex internally. The MutexLockGuard RAII pattern ensures deadlock-free operation even when exceptions or early returns occur. ",
-    "url": "/hf-hal-vortex-v1/development/docs/architecture.html#rtos-integration",
+    "url": "/hf-core/development/docs/architecture.html#rtos-integration",
     
     "relUrl": "/docs/architecture.html#rtos-integration"
-  },"19": {
+  },"21": {
     "doc": "Architecture",
     "title": "Communication Adapters (TMC9660 Example)",
     "content": "The TMC9660 is the most complex handler due to its multi-subsystem architecture: . | 1 2 3 4 5 6 7 . | Tmc9660Handler ├── HalSpiTmc9660Comm (CRTP adapter: BaseSpi → SpiCommInterface) │ └── Tmc9660CtrlPins (RST, DRV_EN, FAULTN, WAKE) ├── SpiDriver (tmc9660::TMC9660&lt;HalSpiTmc9660Comm&gt;) ├── Gpio wrappers (GPIO17, GPIO18 → BaseGpio) ├── Adc wrapper (multi-channel → BaseAdc) └── Temperature wrapper (chip temp → BaseTemperature) . | . The visitDriver() template pattern routes calls through a type-erased facade, keeping the public API non-templated while preserving zero-overhead dispatch internally. ",
-    "url": "/hf-hal-vortex-v1/development/docs/architecture.html#communication-adapters-tmc9660-example",
+    "url": "/hf-core/development/docs/architecture.html#communication-adapters-tmc9660-example",
     
     "relUrl": "/docs/architecture.html#communication-adapters-tmc9660-example"
-  },"20": {
+  },"22": {
     "doc": "Architecture",
     "title": "Architecture",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/architecture.html",
+    "url": "/hf-core/development/docs/architecture.html",
     
     "relUrl": "/docs/architecture.html"
-  },"21": {
+  },"23": {
     "doc": "AS5047U Handler",
     "title": "As5047uHandler",
     "content": "High-precision 14-bit magnetic rotary encoder handler. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/as5047u_handler.html#as5047uhandler",
+    "url": "/hf-core/development/docs/handlers/as5047u_handler.html#as5047uhandler",
     
     "relUrl": "/docs/handlers/as5047u_handler.html#as5047uhandler"
-  },"22": {
+  },"24": {
     "doc": "AS5047U Handler",
     "title": "Construction",
     "content": "| 1 . | As5047uHandler(BaseSpi&amp; spi, uint32_t spi_clock_hz = 1000000); . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/as5047u_handler.html#construction",
+    "url": "/hf-core/development/docs/handlers/as5047u_handler.html#construction",
     
     "relUrl": "/docs/handlers/as5047u_handler.html#construction"
-  },"23": {
+  },"25": {
     "doc": "AS5047U Handler",
     "title": "Key Methods",
     "content": "| Method | Description | . | EnsureInitialized() | Lazy init — creates CRTP driver on first call | . | GetAngleRaw() | 14-bit raw angle (0–16383) | . | GetAngleDegrees() | Angle in degrees (0.0–360.0) | . | GetVelocity() | Angular velocity from DAEC | . | GetDaecValue() | Dynamic Angle Error Compensation value | . | SetZeroPosition(uint16_t) | Program zero position offset | . | GetDiagnostics() | AGC, CORDIC magnitude, error flags | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/as5047u_handler.html#key-methods",
+    "url": "/hf-core/development/docs/handlers/as5047u_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/as5047u_handler.html#key-methods"
-  },"24": {
+  },"26": {
     "doc": "AS5047U Handler",
     "title": "Thread Safety",
     "content": "All methods are protected by an internal RtosMutex. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/as5047u_handler.html#thread-safety",
+    "url": "/hf-core/development/docs/handlers/as5047u_handler.html#thread-safety",
     
     "relUrl": "/docs/handlers/as5047u_handler.html#thread-safety"
-  },"25": {
+  },"27": {
     "doc": "AS5047U Handler",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/handler_tests/as5047u_handler_comprehensive_test.cpp — 8 test sections covering initialization, angle reading, velocity, DAEC, zero position, diagnostics, error handling, and concurrent access. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/as5047u_handler.html#test-coverage",
+    "url": "/hf-core/development/docs/handlers/as5047u_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/as5047u_handler.html#test-coverage"
-  },"26": {
+  },"28": {
     "doc": "AS5047U Handler",
     "title": "AS5047U Handler",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/as5047u_handler.html",
+    "url": "/hf-core/development/docs/handlers/as5047u_handler.html",
     
     "relUrl": "/docs/handlers/as5047u_handler.html"
-  },"27": {
+  },"29": {
     "doc": "BNO08x Handler",
     "title": "Bno08xHandler",
     "content": "9-DOF IMU handler supporting accelerometer, gyroscope, magnetometer, and fused orientation. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/bno08x_handler.html#bno08xhandler",
+    "url": "/hf-core/development/docs/handlers/bno08x_handler.html#bno08xhandler",
     
     "relUrl": "/docs/handlers/bno08x_handler.html#bno08xhandler"
-  },"28": {
+  },"30": {
     "doc": "BNO08x Handler",
     "title": "Construction",
     "content": "| 1 . | Bno08xHandler(BaseI2c&amp; i2c, BaseGpio* int_pin = nullptr, BaseGpio* rst_pin = nullptr); . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/bno08x_handler.html#construction",
+    "url": "/hf-core/development/docs/handlers/bno08x_handler.html#construction",
     
     "relUrl": "/docs/handlers/bno08x_handler.html#construction"
-  },"29": {
+  },"31": {
     "doc": "BNO08x Handler",
     "title": "Key Methods",
     "content": "| Method | Description | . | Initialize() | Full init: reset, configure SH2, enable default sensors | . | EnsureInitialized() | Lazy init delegation | . | EnableSensor(sensor, rate_us) | Enable a sensor report at given interval | . | DisableSensor(sensor) | Disable a sensor report | . | GetAcceleration(x, y, z) | Read accelerometer data (m/s²) | . | GetRotationVector(i, j, k, real) | Read fused rotation quaternion | . | GetGyroscope(x, y, z) | Read gyroscope data (rad/s) | . | HasNewData() | Freshness gating — true only when new data available | . | HardwareReset() | Pulse RST pin and re-initialize | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/bno08x_handler.html#key-methods",
+    "url": "/hf-core/development/docs/handlers/bno08x_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/bno08x_handler.html#key-methods"
-  },"30": {
+  },"32": {
     "doc": "BNO08x Handler",
     "title": "Freshness Gating",
     "content": "HasNewData() returns true only when the SH2 transport has delivered new sensor data since the last read. This prevents stale data from being consumed by the application layer. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/bno08x_handler.html#freshness-gating",
+    "url": "/hf-core/development/docs/handlers/bno08x_handler.html#freshness-gating",
     
     "relUrl": "/docs/handlers/bno08x_handler.html#freshness-gating"
-  },"31": {
+  },"33": {
     "doc": "BNO08x Handler",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/handler_tests/bno08x_handler_comprehensive_test.cpp — 9 test sections including sensor enable/disable, freshness gating validation, and hardware reset. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/bno08x_handler.html#test-coverage",
+    "url": "/hf-core/development/docs/handlers/bno08x_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/bno08x_handler.html#test-coverage"
-  },"32": {
+  },"34": {
     "doc": "BNO08x Handler",
     "title": "BNO08x Handler",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/bno08x_handler.html",
+    "url": "/hf-core/development/docs/handlers/bno08x_handler.html",
     
     "relUrl": "/docs/handlers/bno08x_handler.html"
-  },"33": {
+  },"35": {
     "doc": "CANopen",
     "title": "CANopen Utilities (hf-utils-canopen)",
     "content": "CAN frame construction and CANopen protocol helpers. ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/canopen.html#canopen-utilities-hf-utils-canopen",
+    "url": "/hf-core/development/docs/utils/canopen.html#canopen-utilities-hf-utils-canopen",
     
     "relUrl": "/docs/utils/canopen.html#canopen-utilities-hf-utils-canopen"
-  },"34": {
+  },"36": {
     "doc": "CANopen",
     "title": "Components",
     "content": "| Header | Description | . | CanFrame.h | CanOpen::CanFrame struct (ID, DLC, data, extended, RTR) | . | SdoProtocol.h | SDO COB-ID calculation, expedited download/upload frames | . | NmtProtocol.h | NMT commands and state machine enums | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/canopen.html#components",
+    "url": "/hf-core/development/docs/utils/canopen.html#components",
     
     "relUrl": "/docs/utils/canopen.html#components"
-  },"35": {
+  },"37": {
     "doc": "CANopen",
     "title": "Usage",
     "content": "| 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 . | #include \"CanFrame.h\" #include \"SdoProtocol.h\" #include \"NmtProtocol.h\" // Build an SDO write frame auto frame = CanOpen::BuildSdoDownloadExpedited( 0x01, // node_id 0x1017, // index (producer heartbeat time) 0x00, // sub-index 1000, // value (1000ms) 2 // data_size ); // Build an NMT start command auto nmt = CanOpen::BuildNmtCommand( CanOpen::NmtCommand::START_REMOTE_NODE, 0x01 ); . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/canopen.html#usage",
+    "url": "/hf-core/development/docs/utils/canopen.html#usage",
     
     "relUrl": "/docs/utils/canopen.html#usage"
-  },"36": {
+  },"38": {
     "doc": "CANopen",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/utils_tests/canopen_utils_comprehensive_test.cpp. ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/canopen.html#test-coverage",
+    "url": "/hf-core/development/docs/utils/canopen.html#test-coverage",
     
     "relUrl": "/docs/utils/canopen.html#test-coverage"
-  },"37": {
+  },"39": {
     "doc": "CANopen",
     "title": "CANopen",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/canopen.html",
+    "url": "/hf-core/development/docs/utils/canopen.html",
     
     "relUrl": "/docs/utils/canopen.html"
-  },"38": {
+  },"40": {
     "doc": "CI Pipelines",
     "title": "CI Pipelines",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html",
     
     "relUrl": "/docs/testing/ci_pipelines.html"
-  },"39": {
+  },"41": {
     "doc": "CI Pipelines",
     "title": "Overview",
-    "content": "hf-core uses 8 GitHub Actions workflows that mirror the standard CI pattern across all HardFOC repositories. Workflows use reusable workflow definitions from two shared CI tool repositories: . | Repository | Purpose | . | N3b3x/hf-espidf-ci-tools | ESP-IDF build, flash, release workflows | . | N3b3x/hf-general-ci-tools | C++ analysis, linting, documentation workflows | . All reusable workflows are pinned at @main. ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html#overview",
+    "content": "hf-core uses 8 GitHub Actions workflows that mirror the standard CI pattern across all HardFOC repositories. Workflows use reusable workflow definitions from two shared CI tool repositories: . | Repository | Purpose | . | hardfoc/hf-espidf-ci-tools | ESP-IDF build, flash, release workflows | . | hardfoc/hf-general-ci-tools | C++ analysis, linting, documentation workflows | . All reusable workflows are pinned at @main. ",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html#overview",
     
     "relUrl": "/docs/testing/ci_pipelines.html#overview"
-  },"40": {
+  },"42": {
     "doc": "CI Pipelines",
     "title": "Workflow Descriptions",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html#workflow-descriptions",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html#workflow-descriptions",
     
     "relUrl": "/docs/testing/ci_pipelines.html#workflow-descriptions"
-  },"41": {
+  },"43": {
     "doc": "CI Pipelines",
     "title": "1. ESP-IDF Build (esp32-examples-build-ci.yml)",
     "content": "Trigger: Push/PR to main, develop, feature/**, release/** . Pipeline stages: . | Validate — Checks app_config.yml structure and validates APP_TYPE entries | Build Matrix — generate_matrix.py reads app_config.yml, produces a matrix of {app_type, build_type, idf_version} combinations where ci_enabled: true | Build — Each matrix entry runs build_app.sh in a Docker container with ESP-IDF | Lint — Runs clang-format/clang-tidy on modified files (excludes submodule dirs) | . Only apps with ci_enabled: true in app_config.yml are included in the matrix. Currently, canopen_utils_test and full_integration_test are disabled because they require specific hardware or network configuration. ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html#1-esp-idf-build-esp32-examples-build-ciyml",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html#1-esp-idf-build-esp32-examples-build-ciyml",
     
     "relUrl": "/docs/testing/ci_pipelines.html#1-esp-idf-build-esp32-examples-build-ciyml"
-  },"42": {
+  },"44": {
     "doc": "CI Pipelines",
     "title": "2. C++ Static Analysis (ci-cpp-analysis.yml)",
     "content": "Trigger: Push/PR modifying handlers/** or _config/** . Runs Cppcheck with --std=c++20 on the handlers/ directory. Catches common bugs, undefined behavior, and style issues. ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html#2-c-static-analysis-ci-cpp-analysisyml",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html#2-c-static-analysis-ci-cpp-analysisyml",
     
     "relUrl": "/docs/testing/ci_pipelines.html#2-c-static-analysis-ci-cpp-analysisyml"
-  },"43": {
+  },"45": {
     "doc": "CI Pipelines",
     "title": "3. C++ Lint (ci-cpp-lint.yml)",
     "content": "Trigger: Push/PR modifying handlers/** or _config/** . Runs clang-format (style check) and clang-tidy (static analysis) using the configurations in _config/. Excludes hf-core-drivers/ and hf-core-utils/ submodules from analysis. ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html#3-c-lint-ci-cpp-lintyml",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html#3-c-lint-ci-cpp-lintyml",
     
     "relUrl": "/docs/testing/ci_pipelines.html#3-c-lint-ci-cpp-lintyml"
-  },"44": {
+  },"46": {
     "doc": "CI Pipelines",
     "title": "4. Documentation Link Check (ci-docs-linkcheck.yml)",
     "content": "Trigger: Push/PR modifying docs/** or README.md . Uses lychee to verify all hyperlinks in documentation are reachable. Configuration in _config/lychee.toml excludes known-flaky URLs (shields.io badges, GNU licenses). ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html#4-documentation-link-check-ci-docs-linkcheckyml",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html#4-documentation-link-check-ci-docs-linkcheckyml",
     
     "relUrl": "/docs/testing/ci_pipelines.html#4-documentation-link-check-ci-docs-linkcheckyml"
-  },"45": {
+  },"47": {
     "doc": "CI Pipelines",
     "title": "5. Documentation Publish (ci-docs-publish.yml)",
     "content": "Trigger: Push to main (deploy), PR to main (build-only) . Two-stage pipeline: . | Jekyll — Builds the docs site using _config/_config.yml (Just the Docs theme) | Doxygen — Generates API reference from handler source code, outputs to docs/api/ within the Jekyll site | . Deploys to GitHub Pages on push to main. ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html#5-documentation-publish-ci-docs-publishyml",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html#5-documentation-publish-ci-docs-publishyml",
     
     "relUrl": "/docs/testing/ci_pipelines.html#5-documentation-publish-ci-docs-publishyml"
-  },"46": {
+  },"48": {
     "doc": "CI Pipelines",
     "title": "6. Markdown Lint (ci-markdown-lint.yml)",
     "content": "Trigger: Push/PR modifying **/*.md . Validates Markdown files against .markdownlint.json rules. Excludes submodule directories (hf-core-drivers/**, hf-core-utils/**). ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html#6-markdown-lint-ci-markdown-lintyml",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html#6-markdown-lint-ci-markdown-lintyml",
     
     "relUrl": "/docs/testing/ci_pipelines.html#6-markdown-lint-ci-markdown-lintyml"
-  },"47": {
+  },"49": {
     "doc": "CI Pipelines",
     "title": "7. YAML Lint (ci-yaml-lint.yml)",
     "content": "Trigger: Push/PR modifying **/*.yml or **/*.yaml . Validates YAML files against .yamllint rules. Excludes submodule directories. ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html#7-yaml-lint-ci-yaml-lintyml",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html#7-yaml-lint-ci-yaml-lintyml",
     
     "relUrl": "/docs/testing/ci_pipelines.html#7-yaml-lint-ci-yaml-lintyml"
-  },"48": {
+  },"50": {
     "doc": "CI Pipelines",
     "title": "8. Release (release.yml)",
     "content": "Trigger: Push of a tag matching v* . Creates a GitHub Release with: . | Auto-generated changelog from commits since the last tag | Source archive attached as a release artifact | Release notes template | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html#8-release-releaseyml",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html#8-release-releaseyml",
     
     "relUrl": "/docs/testing/ci_pipelines.html#8-release-releaseyml"
-  },"49": {
+  },"51": {
     "doc": "CI Pipelines",
     "title": "Build Matrix Generation",
     "content": "The build matrix is generated from app_config.yml by generate_matrix.py: . | 1 2 3 4 5 6 7 . | # app_config.yml excerpt apps: handler_testing: as5047u_handler_test: source_file: \"handler_tests/as5047u_handler_comprehensive_test.cpp\" ci_enabled: true description: \"AS5047U magnetic encoder handler tests\" . | . The script produces a JSON matrix like: . | 1 2 3 4 . | [ {\"app_type\": \"as5047u_handler_test\", \"build_type\": \"debug\", \"idf_version\": \"v5.5\"}, {\"app_type\": \"as5047u_handler_test\", \"build_type\": \"release\", \"idf_version\": \"v5.4\"} ] . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html#build-matrix-generation",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html#build-matrix-generation",
     
     "relUrl": "/docs/testing/ci_pipelines.html#build-matrix-generation"
-  },"50": {
+  },"52": {
     "doc": "CI Pipelines",
     "title": "Running CI Locally",
     "content": "You can simulate the CI build locally: . | 1 2 3 4 5 6 7 8 9 10 . | cd examples/esp32/scripts # Build a single app ./build_app.sh --app general_utils_test --build-type debug # Build all CI-enabled apps ./build_app.sh --all --build-type debug # Generate the matrix (for debugging) python3 generate_matrix.py ../app_config.yml . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html#running-ci-locally",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html#running-ci-locally",
     
     "relUrl": "/docs/testing/ci_pipelines.html#running-ci-locally"
-  },"51": {
+  },"53": {
     "doc": "CI Pipelines",
     "title": "Adding a New CI-Tested App",
     "content": ". | Add the app entry to app_config.yml with ci_enabled: true | Create the source file under the appropriate main/ subdirectory | Add the APP_TYPE conditional to main/CMakeLists.txt | Push — the CI will automatically pick up the new app in the build matrix | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html#adding-a-new-ci-tested-app",
+    "url": "/hf-core/development/docs/testing/ci_pipelines.html#adding-a-new-ci-tested-app",
     
     "relUrl": "/docs/testing/ci_pipelines.html#adding-a-new-ci-tested-app"
-  },"52": {
+  },"54": {
     "doc": "Folder Structure",
     "title": "Folder Structure",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/folder_structure.html",
+    "url": "/hf-core/development/docs/folder_structure.html",
     
     "relUrl": "/docs/folder_structure.html"
-  },"53": {
+  },"55": {
     "doc": "Folder Structure",
     "title": "Repository Layout",
     "content": "| 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 . | lib/core/ ├── .github/ │ └── workflows/ # CI/CD pipeline definitions │ ├── esp32-examples-build-ci.yml # ESP32 build matrix │ ├── ci-cpp-analysis.yml # Cppcheck static analysis │ ├── ci-cpp-lint.yml # clang-format + clang-tidy │ ├── ci-docs-linkcheck.yml # Documentation link check │ ├── ci-docs-publish.yml # Jekyll + Doxygen publish │ ├── ci-markdown-lint.yml # Markdown linting │ ├── ci-yaml-lint.yml # YAML linting │ └── release.yml # Tagged release automation │ ├── _config/ # Code quality configurations │ ├── .clang-format # C++ formatting (LLVM, 120 col, 2-space) │ ├── .clang-tidy # Static analysis checks │ ├── .markdownlint.json # Markdown linting rules │ ├── .yamllint # YAML linting rules │ ├── _config.yml # Jekyll site configuration │ ├── Doxyfile # Doxygen API docs generation │ └── lychee.toml # Link checker config │ ├── docs/ # Documentation site source │ ├── index.md # Home page │ ├── architecture.md # System architecture overview │ ├── folder_structure.md # This file │ ├── handlers/ # Per-handler API documentation │ │ ├── index.md │ │ ├── as5047u_handler.md │ │ ├── bno08x_handler.md │ │ ├── pca9685_handler.md │ │ ├── pcal95555_handler.md │ │ ├── ntc_temperature_handler.md │ │ ├── tmc9660_handler.md │ │ └── logger.md │ ├── utils/ # Utility library documentation │ │ ├── index.md │ │ ├── general_utilities.md │ │ ├── rtos_wrappers.md │ │ └── canopen.md │ └── testing/ # Testing infrastructure docs │ ├── testing_guide.md │ └── ci_pipelines.md │ ├── examples/ # Platform-specific test projects │ └── esp32/ # ESP-IDF test project │ ├── CMakeLists.txt # Root CMake (APP_TYPE driven) │ ├── app_config.yml # Build matrix configuration │ ├── sdkconfig.defaults # ESP-IDF defaults │ ├── components/ │ │ └── hf_core/ # ESP-IDF component wrapper │ │ ├── CMakeLists.txt │ │ └── idf_component.yml │ ├── main/ │ │ ├── CMakeLists.txt # Source selection by APP_TYPE │ │ ├── TestFramework.h # Shared test macros │ │ ├── esp32_bus_setup.hpp # Shared bus factories │ │ ├── esp32_test_config.hpp # Pin/address constants │ │ ├── handler_tests/ # Handler test apps (6 files) │ │ ├── utils_tests/ # Utility test apps (4 files) │ │ └── integration_tests/ # System integration test │ └── scripts/ # Build tools (git submodule) │ ├── handlers/ # Handler source code │ ├── as5047u/ │ │ ├── As5047uHandler.cpp │ │ └── As5047uHandler.h │ ├── bno08x/ │ │ ├── Bno08xHandler.cpp │ │ └── Bno08xHandler.h │ ├── logger/ │ │ ├── Logger.cpp │ │ └── Logger.h │ ├── ntc/ │ │ ├── NtcTemperatureHandler.cpp │ │ └── NtcTemperatureHandler.h │ ├── pca9685/ │ │ ├── Pca9685Handler.cpp │ │ └── Pca9685Handler.h │ ├── pcal95555/ │ │ ├── Pcal95555Handler.cpp │ │ └── Pcal95555Handler.h │ └── tmc9660/ │ ├── Tmc9660AdcWrapper.cpp │ ├── Tmc9660AdcWrapper.h │ ├── Tmc9660Handler.cpp │ └── Tmc9660Handler.h │ ├── hf-core-drivers/ # Driver libraries (git submodule) │ ├── external/ # CRTP device drivers │ │ ├── hf-as5047u-driver/ │ │ ├── hf-bno08x-driver/ │ │ ├── hf-max22200-driver/ │ │ ├── hf-ntc-thermistor-driver/ │ │ ├── hf-pca9685-driver/ │ │ ├── hf-pcal95555-driver/ │ │ ├── hf-tle92466ed-driver/ │ │ ├── hf-tmc5160-driver/ │ │ ├── hf-tmc9660-driver/ │ │ └── hf-ws2812-rmt-driver/ │ └── internal/ # Platform abstractions │ ├── hf-internal-interface-wrap/ # Base interfaces + ESP32 impls │ └── hf-pincfg/ # Pin configuration │ ├── hf-core-utils/ # Utility libraries (git submodule) │ ├── hf-utils-general/ # Header-only data structures &amp; algorithms │ ├── hf-utils-rtos-wrap/ # FreeRTOS C++ wrappers │ └── hf-utils-canopen/ # CANopen protocol helpers │ └── README.md # Module overview . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/folder_structure.html#repository-layout",
+    "url": "/hf-core/development/docs/folder_structure.html#repository-layout",
     
     "relUrl": "/docs/folder_structure.html#repository-layout"
-  },"54": {
+  },"56": {
     "doc": "Folder Structure",
     "title": "Key Concepts",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/folder_structure.html#key-concepts",
+    "url": "/hf-core/development/docs/folder_structure.html#key-concepts",
     
     "relUrl": "/docs/folder_structure.html#key-concepts"
-  },"55": {
+  },"57": {
     "doc": "Folder Structure",
     "title": "APP_TYPE Build System",
     "content": "The examples/esp32/ project uses APP_TYPE to select which test application to build. Each app maps to a single .cpp source file: . | 1 2 . | # Build a specific test APP_TYPE=bno08x_handler_test ./scripts/build_app.sh --build-type debug . | . The app_config.yml file defines all available apps, their source files, categories, and CI enablement. ",
-    "url": "/hf-hal-vortex-v1/development/docs/folder_structure.html#app_type-build-system",
+    "url": "/hf-core/development/docs/folder_structure.html#app_type-build-system",
     
     "relUrl": "/docs/folder_structure.html#app_type-build-system"
-  },"56": {
+  },"58": {
     "doc": "Folder Structure",
     "title": "Component Wrapper",
     "content": "The components/hf_core/CMakeLists.txt wraps the entire hf-core platform as a single ESP-IDF component, collecting: . | All handler .cpp files | All external driver source files | All utility library source files | All ESP32 platform implementation files | . This allows any test app to #include any handler or utility directly. ",
-    "url": "/hf-hal-vortex-v1/development/docs/folder_structure.html#component-wrapper",
+    "url": "/hf-core/development/docs/folder_structure.html#component-wrapper",
     
     "relUrl": "/docs/folder_structure.html#component-wrapper"
-  },"57": {
+  },"59": {
     "doc": "Folder Structure",
     "title": "Git Submodules",
     "content": "Both hf-core-drivers/ and hf-core-utils/ are git submodules. Clone recursively: . | 1 2 3 . | git clone --recursive &lt;repo-url&gt; # or git submodule update --init --recursive . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/folder_structure.html#git-submodules",
+    "url": "/hf-core/development/docs/folder_structure.html#git-submodules",
     
     "relUrl": "/docs/folder_structure.html#git-submodules"
-  },"58": {
+  },"60": {
     "doc": "General Utilities",
     "title": "General Utilities (hf-utils-general)",
     "content": "Header-only C++ utility library with no platform dependencies. ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/general_utilities.html#general-utilities-hf-utils-general",
+    "url": "/hf-core/development/docs/utils/general_utilities.html#general-utilities-hf-utils-general",
     
     "relUrl": "/docs/utils/general_utilities.html#general-utilities-hf-utils-general"
-  },"59": {
+  },"61": {
     "doc": "General Utilities",
     "title": "Data Structures",
     "content": "| Class | Description | . | CircularBuffer&lt;T, N&gt; | Fixed-size FIFO buffer with overflow semantics | . | RingBuffer&lt;T, N&gt; | Ring buffer with Front/Back access | . | SimpleLinkedList&lt;T&gt; | Minimal singly-linked list | . | FlagSet&lt;T&gt; | Bitfield flag management | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/general_utilities.html#data-structures",
+    "url": "/hf-core/development/docs/utils/general_utilities.html#data-structures",
     
     "relUrl": "/docs/utils/general_utilities.html#data-structures"
-  },"60": {
+  },"62": {
     "doc": "General Utilities",
     "title": "Filters &amp; Math",
     "content": "| Class | Description | . | AveragingFilter&lt;T, N&gt; | Sliding-window moving average | . | LinearInterpolation | Point-based linear interpolation | . | PiecewiseLinearSegment | Multi-segment piecewise linear functions | . | CrcUtil | CRC-8 calculation | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/general_utilities.html#filters--math",
+    "url": "/hf-core/development/docs/utils/general_utilities.html#filters--math",
     
     "relUrl": "/docs/utils/general_utilities.html#filters--math"
-  },"61": {
+  },"63": {
     "doc": "General Utilities",
     "title": "Timing &amp; Scheduling",
     "content": "| Class | Description | . | ActionTimer | Start/stop duration measurement | . | IntervalAction | Periodic action execution at fixed intervals | . | TaskScheduler | Multi-task cooperative scheduler | . | DeferredAction | RAII deferred execution (like Go’s defer) | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/general_utilities.html#timing--scheduling",
+    "url": "/hf-core/development/docs/utils/general_utilities.html#timing--scheduling",
     
     "relUrl": "/docs/utils/general_utilities.html#timing--scheduling"
-  },"62": {
+  },"64": {
     "doc": "General Utilities",
     "title": "State Management",
     "content": "| Class | Description | . | StateMachineBase | Abstract state machine with transitions | . | ExtendedStateMachine | State machine with guard conditions | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/general_utilities.html#state-management",
+    "url": "/hf-core/development/docs/utils/general_utilities.html#state-management",
     
     "relUrl": "/docs/utils/general_utilities.html#state-management"
-  },"63": {
+  },"65": {
     "doc": "General Utilities",
     "title": "Other",
     "content": "| Class | Description | . | SoftwareVersion | Semantic versioning (major.minor.build) | . | PhysicalUnit | Value + unit string container | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/general_utilities.html#other",
+    "url": "/hf-core/development/docs/utils/general_utilities.html#other",
     
     "relUrl": "/docs/utils/general_utilities.html#other"
-  },"64": {
+  },"66": {
     "doc": "General Utilities",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/utils_tests/general_utils_comprehensive_test.cpp. ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/general_utilities.html#test-coverage",
+    "url": "/hf-core/development/docs/utils/general_utilities.html#test-coverage",
     
     "relUrl": "/docs/utils/general_utilities.html#test-coverage"
-  },"65": {
+  },"67": {
     "doc": "General Utilities",
     "title": "General Utilities",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/general_utilities.html",
+    "url": "/hf-core/development/docs/utils/general_utilities.html",
     
     "relUrl": "/docs/utils/general_utilities.html"
-  },"66": {
+  },"68": {
     "doc": "Handlers",
     "title": "Handler Reference",
     "content": "Handlers are the bridge layer between platform-agnostic base interfaces and CRTP-templated device drivers. Each handler: . | Accepts BaseXxx&amp; references (I2C, SPI, GPIO, ADC) at construction | Performs lazy initialization of the underlying driver | Provides a thread-safe public API via RtosMutex | Maps driver-specific errors to interface error codes | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/#handler-reference",
+    "url": "/hf-core/development/docs/handlers/#handler-reference",
     
     "relUrl": "/docs/handlers/#handler-reference"
-  },"67": {
+  },"69": {
     "doc": "Handlers",
     "title": "Handler Summary",
     "content": "| Handler | Driver | Interface | Key Features | . | As5047uHandler | hf-as5047u-driver | BaseSpi | 14-bit angle, velocity, DAEC, zero position | . | Bno08xHandler | hf-bno08x-driver | BaseI2c | 9-DOF IMU, sensor enable/disable, freshness gating | . | Pca9685Handler | hf-pca9685-driver | BaseI2c | 16-ch PWM, duty + phase, sleep/wake, PwmAdapter | . | Pcal95555Handler | hf-pcal95555-driver | BaseI2c | 16-pin GPIO expander, interrupts, Agile I/O, batch ops | . | NtcTemperatureHandler | hf-ntc-thermistor-driver | BaseAdc | Temperature sensing, EMA filter, thresholds, monitoring | . | Tmc9660Handler | hf-tmc9660-driver | BaseSpi | Motor control, GPIO/ADC/Temp wrappers, bootloader | . | Logger | — | — | Singleton, colors, ASCII art, per-tag filtering | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/#handler-summary",
+    "url": "/hf-core/development/docs/handlers/#handler-summary",
     
     "relUrl": "/docs/handlers/#handler-summary"
-  },"68": {
+  },"70": {
     "doc": "Handlers",
     "title": "Handlers",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/",
+    "url": "/hf-core/development/docs/handlers/",
     
     "relUrl": "/docs/handlers/"
-  },"69": {
+  },"71": {
     "doc": "Utilities",
     "title": "Utility Libraries",
     "content": "hf-core includes three utility libraries providing reusable infrastructure: . | Library | Description | Header Count | . | General Utilities | Data structures, algorithms, filters | ~30 headers | . | RTOS Wrappers | FreeRTOS C++ abstractions | ~22 headers | . | CANopen | CAN frame + protocol helpers | 3 headers | . All utilities are designed to be: . | Platform-portable — General utilities are header-only with no RTOS dependency | Thread-safe — RTOS wrappers manage synchronization internally | Zero-allocation — Fixed-size containers, no dynamic memory in hot paths | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/#utility-libraries",
+    "url": "/hf-core/development/docs/utils/#utility-libraries",
     
     "relUrl": "/docs/utils/#utility-libraries"
-  },"70": {
+  },"72": {
     "doc": "Utilities",
     "title": "Utilities",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/",
+    "url": "/hf-core/development/docs/utils/",
     
     "relUrl": "/docs/utils/"
-  },"71": {
+  },"73": {
     "doc": "Home",
     "title": "HF-Core Platform Documentation",
     "content": "Welcome to the HardFOC Core Platform (hf-core) documentation. This module provides the handler layer, RTOS utilities, and driver integration that form the backbone of the HardFOC motor control system. ",
-    "url": "/hf-hal-vortex-v1/development/#hf-core-platform-documentation",
+    "url": "/hf-core/development/#hf-core-platform-documentation",
     
     "relUrl": "/#hf-core-platform-documentation"
-  },"72": {
+  },"74": {
     "doc": "Home",
     "title": "What is hf-core?",
     "content": "hf-core is the bridge layer between hardware-agnostic base interfaces (BaseI2c, BaseSpi, BaseGpio, BaseAdc, BaseTemperature) and the CRTP-templated device drivers (hf-tmc9660-driver, hf-bno08x-driver, hf-as5047u-driver, etc.). It provides: . | 6 Device Handlers — Thread-safe facades for AS5047U, BNO08x, PCA9685, PCAL95555, NTC, and TMC9660 | Logger — Singleton logging with color, ASCII art, and per-tag filtering | RTOS Wrappers — FreeRTOS C++ abstractions (mutex, timer, thread, queue, semaphore) | General Utilities — Circular buffers, filters, state machines, interpolation, CRC, and more | CANopen Utilities — Frame construction, SDO/NMT protocol helpers | . ",
-    "url": "/hf-hal-vortex-v1/development/#what-is-hf-core",
+    "url": "/hf-core/development/#what-is-hf-core",
     
     "relUrl": "/#what-is-hf-core"
-  },"73": {
+  },"75": {
     "doc": "Home",
     "title": "Quick Navigation",
     "content": "| Section | Description | . | Architecture | System design, ownership model, layering | . | Folder Structure | Repository organization | . | Handlers | Per-handler API reference | . | Utilities | RTOS wrappers, general utils, CANopen | . | Testing | Test infrastructure, CI pipelines | . ",
-    "url": "/hf-hal-vortex-v1/development/#quick-navigation",
+    "url": "/hf-core/development/#quick-navigation",
     
     "relUrl": "/#quick-navigation"
-  },"74": {
+  },"76": {
     "doc": "Home",
     "title": "Getting Started",
-    "content": "| 1 2 3 4 5 6 7 . | # Clone with submodules git clone --recursive https://github.com/N3b3x/hf-hal-vortex-v1.git cd hf-hal-vortex-v1/lib/core # Build a specific test app cd examples/esp32/scripts ./build_app.sh --app as5047u_handler_test --build-type debug . | . See the Testing Guide for detailed instructions. ",
-    "url": "/hf-hal-vortex-v1/development/#getting-started",
+    "content": "| 1 2 3 4 5 6 7 . | # Clone with submodules git clone --recursive https://github.com/hardfoc/hf-hal-vortex-v1.git cd hf-hal-vortex-v1/lib/core # Build a specific test app cd examples/esp32/scripts ./build_app.sh --app as5047u_handler_test --build-type debug . | . See the Testing Guide for detailed instructions. ",
+    "url": "/hf-core/development/#getting-started",
     
     "relUrl": "/#getting-started"
-  },"75": {
+  },"77": {
     "doc": "Home",
     "title": "Home",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/",
+    "url": "/hf-core/development/",
     
     "relUrl": "/"
-  },"76": {
+  },"78": {
     "doc": "Logger",
     "title": "Logger",
     "content": "Singleton logging system with color output, ASCII art, and per-tag filtering. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/logger.html",
+    "url": "/hf-core/development/docs/handlers/logger.html",
     
     "relUrl": "/docs/handlers/logger.html"
-  },"77": {
+  },"79": {
     "doc": "Logger",
     "title": "Access",
     "content": "| 1 2 . | auto&amp; logger = Logger::GetInstance(); logger.Initialize(); // Optional config: Logger::GetInstance().Initialize(config); . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/logger.html#access",
+    "url": "/hf-core/development/docs/handlers/logger.html#access",
     
     "relUrl": "/docs/handlers/logger.html#access"
-  },"78": {
+  },"80": {
     "doc": "Logger",
     "title": "Log Methods",
     "content": "| 1 2 3 4 5 . | logger.Error(\"MyTag\", \"Error: code %d\", err); logger.Warn(\"MyTag\", \"Warning: value %.2f\", val); logger.Info(\"MyTag\", \"Info: initialized\"); logger.Debug(\"MyTag\", \"Debug: state=%d\", state); logger.Verbose(\"MyTag\", \"Verbose: raw=0x%04X\", raw); . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/logger.html#log-methods",
+    "url": "/hf-core/development/docs/handlers/logger.html#log-methods",
     
     "relUrl": "/docs/handlers/logger.html#log-methods"
-  },"79": {
+  },"81": {
     "doc": "Logger",
     "title": "Formatted Output",
     "content": "| 1 2 . | logger.Info(\"Tag\", LogColor::LOG_COLOR_GREEN, LogStyle::LOG_STYLE_BOLD, \"Bold green: %d\", value); . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/logger.html#formatted-output",
+    "url": "/hf-core/development/docs/handlers/logger.html#formatted-output",
     
     "relUrl": "/docs/handlers/logger.html#formatted-output"
-  },"80": {
+  },"82": {
     "doc": "Logger",
     "title": "ASCII Art",
     "content": "| 1 2 3 4 5 . | logger.LogBanner(\"Tag\", R\"( _ _ _____ _____ _____ | | ___| _ | _ | |_| |__ | | |_| )\"); . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/logger.html#ascii-art",
+    "url": "/hf-core/development/docs/handlers/logger.html#ascii-art",
     
     "relUrl": "/docs/handlers/logger.html#ascii-art"
-  },"81": {
+  },"83": {
     "doc": "Logger",
     "title": "Per-Tag Filtering",
     "content": "| 1 . | logger.SetLogLevel(\"NoisyModule\", LogLevel::LOG_WARN); // Only WARN+ for this tag . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/logger.html#per-tag-filtering",
+    "url": "/hf-core/development/docs/handlers/logger.html#per-tag-filtering",
     
     "relUrl": "/docs/handlers/logger.html#per-tag-filtering"
-  },"82": {
+  },"84": {
     "doc": "Logger",
     "title": "Convenience Macros",
     "content": "| 1 2 3 4 5 . | LOG_ERROR(\"tag\", \"message %d\", val); LOG_WARN(\"tag\", \"message\"); LOG_INFO(\"tag\", \"message\"); LOG_DEBUG(\"tag\", \"message\"); LOG_VERBOSE(\"tag\", \"message\"); . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/logger.html#convenience-macros",
+    "url": "/hf-core/development/docs/handlers/logger.html#convenience-macros",
     
     "relUrl": "/docs/handlers/logger.html#convenience-macros"
-  },"83": {
+  },"85": {
     "doc": "Logger",
     "title": "Thread Safety",
     "content": "The Logger is thread-safe and can be called from any RTOS task or ISR context (for short messages). ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/logger.html#thread-safety",
+    "url": "/hf-core/development/docs/handlers/logger.html#thread-safety",
     
     "relUrl": "/docs/handlers/logger.html#thread-safety"
-  },"84": {
+  },"86": {
     "doc": "Logger",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/utils_tests/logger_comprehensive_test.cpp. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/logger.html#test-coverage",
+    "url": "/hf-core/development/docs/handlers/logger.html#test-coverage",
     
     "relUrl": "/docs/handlers/logger.html#test-coverage"
-  },"85": {
+  },"87": {
     "doc": "NTC Temperature Handler",
     "title": "NtcTemperatureHandler",
     "content": "NTC thermistor temperature sensor handler implementing the full BaseTemperature interface. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/ntc_temperature_handler.html#ntctemperaturehandler",
+    "url": "/hf-core/development/docs/handlers/ntc_temperature_handler.html#ntctemperaturehandler",
     
     "relUrl": "/docs/handlers/ntc_temperature_handler.html#ntctemperaturehandler"
-  },"86": {
+  },"88": {
     "doc": "NTC Temperature Handler",
     "title": "Construction",
     "content": "| 1 2 . | NtcTemperatureHandler(NtcType ntc_type, BaseAdc* adc, const char* name = nullptr); NtcTemperatureHandler(BaseAdc* adc, const ntc_temp_handler_config_t&amp; config); . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/ntc_temperature_handler.html#construction",
+    "url": "/hf-core/development/docs/handlers/ntc_temperature_handler.html#construction",
     
     "relUrl": "/docs/handlers/ntc_temperature_handler.html#construction"
-  },"87": {
+  },"89": {
     "doc": "NTC Temperature Handler",
     "title": "Key Methods",
     "content": "| Method | Description | . | Initialize() / Deinitialize() | Lifecycle management | . | ReadTemperatureCelsius(float*) | Read temperature via ADC → NTC conversion | . | SetCalibrationOffset(float) | Apply constant calibration offset | . | ResetCalibration() | Remove calibration offset | . | SetFiltering(enable, alpha) | Enable/disable EMA (Exponential Moving Average) filter | . | SetThresholds(low, high) | Configure temperature thresholds | . | EnableThresholdMonitoring(cb, data) | Enable threshold callbacks | . | StartContinuousMonitoring(hz, cb, data) | Periodic sampling via PeriodicTimer | . | StopContinuousMonitoring() | Stop periodic sampling | . | EnterSleepMode() / ExitSleepMode() | Power management | . | SelfTest() / CheckHealth() | Diagnostic checks | . | GetStatistics() / GetDiagnostics() | Operational metrics | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/ntc_temperature_handler.html#key-methods",
+    "url": "/hf-core/development/docs/handlers/ntc_temperature_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/ntc_temperature_handler.html#key-methods"
-  },"88": {
+  },"90": {
     "doc": "NTC Temperature Handler",
     "title": "Configuration",
     "content": "Use NTC_TEMP_HANDLER_CONFIG_DEFAULT() and override fields: . | 1 2 3 4 5 6 7 . | ntc_temp_handler_config_t config = NTC_TEMP_HANDLER_CONFIG_DEFAULT(); config.ntc_type = NtcType::NTCG163JFT103FT1S; config.adc_channel = 0; config.voltage_divider_series_resistance = 10000.0f; config.reference_voltage = 3.3f; config.enable_filtering = true; config.filter_alpha = 0.1f; . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/ntc_temperature_handler.html#configuration",
+    "url": "/hf-core/development/docs/handlers/ntc_temperature_handler.html#configuration",
     
     "relUrl": "/docs/handlers/ntc_temperature_handler.html#configuration"
-  },"89": {
+  },"91": {
     "doc": "NTC Temperature Handler",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/handler_tests/ntc_handler_comprehensive_test.cpp — tests temperature reading, calibration, EMA filtering, threshold monitoring, continuous monitoring with PeriodicTimer, statistics, sleep mode, and self-test. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/ntc_temperature_handler.html#test-coverage",
+    "url": "/hf-core/development/docs/handlers/ntc_temperature_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/ntc_temperature_handler.html#test-coverage"
-  },"90": {
+  },"92": {
     "doc": "NTC Temperature Handler",
     "title": "NTC Temperature Handler",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/ntc_temperature_handler.html",
+    "url": "/hf-core/development/docs/handlers/ntc_temperature_handler.html",
     
     "relUrl": "/docs/handlers/ntc_temperature_handler.html"
-  },"91": {
+  },"93": {
     "doc": "PCA9685 Handler",
     "title": "Pca9685Handler",
     "content": "16-channel, 12-bit PWM driver handler with phase offset support. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/pca9685_handler.html#pca9685handler",
+    "url": "/hf-core/development/docs/handlers/pca9685_handler.html#pca9685handler",
     
     "relUrl": "/docs/handlers/pca9685_handler.html#pca9685handler"
-  },"92": {
+  },"94": {
     "doc": "PCA9685 Handler",
     "title": "Construction",
     "content": "| 1 . | Pca9685Handler(BaseI2c&amp; i2c); . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/pca9685_handler.html#construction",
+    "url": "/hf-core/development/docs/handlers/pca9685_handler.html#construction",
     
     "relUrl": "/docs/handlers/pca9685_handler.html#construction"
-  },"93": {
+  },"95": {
     "doc": "PCA9685 Handler",
     "title": "Key Methods",
     "content": "| Method | Description | . | EnsureInitialized() | Lazy init — delegates to driver’s EnsureInitialized() | . | SetDuty(channel, duty_float) | Set PWM duty cycle (0.0–1.0) | . | SetRawDuty(channel, on_tick, off_tick) | Set raw 12-bit on/off ticks with phase | . | SetFrequency(freq_hz) | Set PWM frequency (24–1526 Hz) | . | Sleep() / Wake() | Enter/exit low-power mode | . | GetPwmAdapter(channel) | Returns a PwmAdapter for BaseMotor integration | . | GetGpioPinWrapper(channel) | Returns a GpioPin wrapper for digital I/O | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/pca9685_handler.html#key-methods",
+    "url": "/hf-core/development/docs/handlers/pca9685_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/pca9685_handler.html#key-methods"
-  },"94": {
+  },"96": {
     "doc": "PCA9685 Handler",
     "title": "Phase Offset",
     "content": "The SetRawDuty(channel, on_tick, off_tick) method supports phase-shifted PWM by allowing the ON tick to be non-zero. This reduces current surge when driving multiple channels simultaneously (e.g., LED arrays, servo banks). ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/pca9685_handler.html#phase-offset",
+    "url": "/hf-core/development/docs/handlers/pca9685_handler.html#phase-offset",
     
     "relUrl": "/docs/handlers/pca9685_handler.html#phase-offset"
-  },"95": {
+  },"97": {
     "doc": "PCA9685 Handler",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/handler_tests/pca9685_handler_comprehensive_test.cpp — 8 test sections covering initialization, float/raw duty, frequency, sleep/wake, adapters, and phase offset validation. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/pca9685_handler.html#test-coverage",
+    "url": "/hf-core/development/docs/handlers/pca9685_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/pca9685_handler.html#test-coverage"
-  },"96": {
+  },"98": {
     "doc": "PCA9685 Handler",
     "title": "PCA9685 Handler",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/pca9685_handler.html",
+    "url": "/hf-core/development/docs/handlers/pca9685_handler.html",
     
     "relUrl": "/docs/handlers/pca9685_handler.html"
-  },"97": {
+  },"99": {
     "doc": "PCAL95555 Handler",
     "title": "Pcal95555Handler",
     "content": "16-pin I²C GPIO expander handler with interrupt support and Agile I/O features. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/pcal95555_handler.html#pcal95555handler",
+    "url": "/hf-core/development/docs/handlers/pcal95555_handler.html#pcal95555handler",
     
     "relUrl": "/docs/handlers/pcal95555_handler.html#pcal95555handler"
-  },"98": {
+  },"100": {
     "doc": "PCAL95555 Handler",
     "title": "Construction",
     "content": "| 1 . | Pcal95555Handler(BaseI2c&amp; i2c, BaseGpio* int_pin = nullptr); . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/pcal95555_handler.html#construction",
+    "url": "/hf-core/development/docs/handlers/pcal95555_handler.html#construction",
     
     "relUrl": "/docs/handlers/pcal95555_handler.html#construction"
-  },"99": {
+  },"101": {
     "doc": "PCAL95555 Handler",
     "title": "Key Methods",
     "content": "| Method | Description | . | EnsureInitialized() | Lazy init, delegates to driver | . | SetPinDirection(pin, dir) | Configure individual pin as input/output | . | ReadPin(pin, level) | Read a single pin level | . | WritePin(pin, level) | Write a single pin level | . | TogglePin(pin) | Toggle a pin output | . | SetMultipleDirections(mask, dir) | Batch direction config (16-bit mask) | . | WritePins(mask, value) | Batch write (16-bit mask + value) | . | GetChipVariant() | Detect PCA9555 vs PCAL9555A | . | HasAgileIO() | Check for extended (PCAL) features | . | SupportsInterrupts() | Check interrupt capability | . | DrainPendingInterrupts() | Deferred ISR processing via atomic flag | . | GetPin(pin) | Get a GpioPin wrapper for BaseGpio integration | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/pcal95555_handler.html#key-methods",
+    "url": "/hf-core/development/docs/handlers/pcal95555_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/pcal95555_handler.html#key-methods"
-  },"100": {
+  },"102": {
     "doc": "PCAL95555 Handler",
     "title": "Chip Variant Detection",
     "content": "The handler auto-detects the chip variant at initialization: . | PCA9555 — Basic 16-pin GPIO expander | PCAL9555A — Extended with Agile I/O, interrupt masking, output drive strength | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/pcal95555_handler.html#chip-variant-detection",
+    "url": "/hf-core/development/docs/handlers/pcal95555_handler.html#chip-variant-detection",
     
     "relUrl": "/docs/handlers/pcal95555_handler.html#chip-variant-detection"
-  },"101": {
+  },"103": {
     "doc": "PCAL95555 Handler",
     "title": "Interrupt Handling",
     "content": "Interrupt handling uses a deferred ISR pattern: . | ISR sets an std::atomic&lt;bool&gt; flag | Application calls DrainPendingInterrupts() from task context | Handler reads the interrupt status register and processes | . This avoids I²C communication in ISR context. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/pcal95555_handler.html#interrupt-handling",
+    "url": "/hf-core/development/docs/handlers/pcal95555_handler.html#interrupt-handling",
     
     "relUrl": "/docs/handlers/pcal95555_handler.html#interrupt-handling"
-  },"102": {
+  },"104": {
     "doc": "PCAL95555 Handler",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/handler_tests/pcal95555_handler_comprehensive_test.cpp. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/pcal95555_handler.html#test-coverage",
+    "url": "/hf-core/development/docs/handlers/pcal95555_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/pcal95555_handler.html#test-coverage"
-  },"103": {
+  },"105": {
     "doc": "PCAL95555 Handler",
     "title": "PCAL95555 Handler",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/pcal95555_handler.html",
+    "url": "/hf-core/development/docs/handlers/pcal95555_handler.html",
     
     "relUrl": "/docs/handlers/pcal95555_handler.html"
-  },"104": {
+  },"106": {
     "doc": "RTOS Wrappers",
     "title": "RTOS Wrappers (hf-utils-rtos-wrap)",
     "content": "C++ abstractions over FreeRTOS primitives for thread-safe embedded development. ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/rtos_wrappers.html#rtos-wrappers-hf-utils-rtos-wrap",
+    "url": "/hf-core/development/docs/utils/rtos_wrappers.html#rtos-wrappers-hf-utils-rtos-wrap",
     
     "relUrl": "/docs/utils/rtos_wrappers.html#rtos-wrappers-hf-utils-rtos-wrap"
-  },"105": {
+  },"107": {
     "doc": "RTOS Wrappers",
     "title": "Synchronization",
     "content": "| Class | Description | . | RtosMutex | Named mutex wrapper (xSemaphoreCreateMutex) | . | MutexLockGuard | RAII lock guard for RtosMutex | . | OsRecursiveMutex | Recursive mutex (same-thread re-entrant) | . | OsSemaphore | Counting semaphore | . | SemaphoreLockGuard | RAII guard for semaphores | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/rtos_wrappers.html#synchronization",
+    "url": "/hf-core/development/docs/utils/rtos_wrappers.html#synchronization",
     
     "relUrl": "/docs/utils/rtos_wrappers.html#synchronization"
-  },"106": {
+  },"108": {
     "doc": "RTOS Wrappers",
     "title": "Communication",
     "content": "| Class | Description | . | OsQueue&lt;T&gt; | Type-safe FreeRTOS queue wrapper | . | OsEventFlags | Event group with set/wait/clear operations | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/rtos_wrappers.html#communication",
+    "url": "/hf-core/development/docs/utils/rtos_wrappers.html#communication",
     
     "relUrl": "/docs/utils/rtos_wrappers.html#communication"
-  },"107": {
+  },"109": {
     "doc": "RTOS Wrappers",
     "title": "Tasks &amp; Timers",
     "content": "| Class | Description | . | BaseThread | Abstract FreeRTOS task with Setup/Loop/Cleanup lifecycle | . | PeriodicTimer | FreeRTOS software timer wrapper | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/rtos_wrappers.html#tasks--timers",
+    "url": "/hf-core/development/docs/utils/rtos_wrappers.html#tasks--timers",
     
     "relUrl": "/docs/utils/rtos_wrappers.html#tasks--timers"
-  },"108": {
+  },"110": {
     "doc": "RTOS Wrappers",
     "title": "Delay Functions",
     "content": "| Function | Description | . | os_delay_msec(ms) | Blocking delay (milliseconds) | . | os_delay_usec(us) | Busy-wait delay (microseconds) | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/rtos_wrappers.html#delay-functions",
+    "url": "/hf-core/development/docs/utils/rtos_wrappers.html#delay-functions",
     
     "relUrl": "/docs/utils/rtos_wrappers.html#delay-functions"
-  },"109": {
+  },"111": {
     "doc": "RTOS Wrappers",
     "title": "Usage Patterns",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/rtos_wrappers.html#usage-patterns",
+    "url": "/hf-core/development/docs/utils/rtos_wrappers.html#usage-patterns",
     
     "relUrl": "/docs/utils/rtos_wrappers.html#usage-patterns"
-  },"110": {
+  },"112": {
     "doc": "RTOS Wrappers",
     "title": "Mutex-Protected Resource",
     "content": "| 1 2 3 4 5 6 . | RtosMutex mtx(\"sensor_guard\"); void read_sensor() { MutexLockGuard guard(mtx); // Protected access here } . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/rtos_wrappers.html#mutex-protected-resource",
+    "url": "/hf-core/development/docs/utils/rtos_wrappers.html#mutex-protected-resource",
     
     "relUrl": "/docs/utils/rtos_wrappers.html#mutex-protected-resource"
-  },"111": {
+  },"113": {
     "doc": "RTOS Wrappers",
     "title": "Periodic Task",
     "content": "| 1 2 3 4 5 6 7 8 9 10 . | class SensorTask : public BaseThread { public: SensorTask() : BaseThread(\"Sensor\", 4096, 5) {} protected: void Setup() override { sensor_.Initialize(); } void Loop() override { sensor_.Read(); vTaskDelay(pdMS_TO_TICKS(100)); } void Cleanup() override { sensor_.Deinitialize(); } void OnStop() override {} void ResetVariables() override {} }; . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/rtos_wrappers.html#periodic-task",
+    "url": "/hf-core/development/docs/utils/rtos_wrappers.html#periodic-task",
     
     "relUrl": "/docs/utils/rtos_wrappers.html#periodic-task"
-  },"112": {
+  },"114": {
     "doc": "RTOS Wrappers",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/utils_tests/rtos_wrap_comprehensive_test.cpp — tests all synchronization primitives, queues, event flags, periodic timers, threads, and delays. ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/rtos_wrappers.html#test-coverage",
+    "url": "/hf-core/development/docs/utils/rtos_wrappers.html#test-coverage",
     
     "relUrl": "/docs/utils/rtos_wrappers.html#test-coverage"
-  },"113": {
+  },"115": {
     "doc": "RTOS Wrappers",
     "title": "RTOS Wrappers",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/utils/rtos_wrappers.html",
+    "url": "/hf-core/development/docs/utils/rtos_wrappers.html",
     
     "relUrl": "/docs/utils/rtos_wrappers.html"
-  },"114": {
+  },"116": {
     "doc": "Testing Guide",
     "title": "Testing Guide",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html",
+    "url": "/hf-core/development/docs/testing/testing_guide.html",
     
     "relUrl": "/docs/testing/testing_guide.html"
-  },"115": {
+  },"117": {
     "doc": "Testing Guide",
     "title": "Overview",
     "content": "hf-core uses an ESP32-based testing infrastructure that mirrors the pattern used by all external HardFOC drivers. Each test is a standalone ESP-IDF application selected at build time via the APP_TYPE mechanism. ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html#overview",
+    "url": "/hf-core/development/docs/testing/testing_guide.html#overview",
     
     "relUrl": "/docs/testing/testing_guide.html#overview"
-  },"116": {
+  },"118": {
     "doc": "Testing Guide",
     "title": "Test Applications",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html#test-applications",
+    "url": "/hf-core/development/docs/testing/testing_guide.html#test-applications",
     
     "relUrl": "/docs/testing/testing_guide.html#test-applications"
-  },"117": {
+  },"119": {
     "doc": "Testing Guide",
     "title": "Handler Tests",
     "content": "| APP_TYPE | Source File | Hardware Required | . | as5047u_handler_test | handler_tests/as5047u_handler_comprehensive_test.cpp | AS5047U + SPI | . | bno08x_handler_test | handler_tests/bno08x_handler_comprehensive_test.cpp | BNO08x + I2C | . | pca9685_handler_test | handler_tests/pca9685_handler_comprehensive_test.cpp | PCA9685 + I2C | . | pcal95555_handler_test | handler_tests/pcal95555_handler_comprehensive_test.cpp | PCAL95555 + I2C | . | ntc_handler_test | handler_tests/ntc_handler_comprehensive_test.cpp | NTC + ADC | . | tmc9660_handler_test | handler_tests/tmc9660_handler_comprehensive_test.cpp | TMC9660 + SPI | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html#handler-tests",
+    "url": "/hf-core/development/docs/testing/testing_guide.html#handler-tests",
     
     "relUrl": "/docs/testing/testing_guide.html#handler-tests"
-  },"118": {
+  },"120": {
     "doc": "Testing Guide",
     "title": "Utility Tests",
     "content": "| APP_TYPE | Source File | Hardware Required | . | general_utils_test | utils_tests/general_utils_comprehensive_test.cpp | None | . | rtos_wrap_test | utils_tests/rtos_wrap_comprehensive_test.cpp | None (FreeRTOS only) | . | logger_test | utils_tests/logger_comprehensive_test.cpp | None | . | canopen_utils_test | utils_tests/canopen_utils_comprehensive_test.cpp | None | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html#utility-tests",
+    "url": "/hf-core/development/docs/testing/testing_guide.html#utility-tests",
     
     "relUrl": "/docs/testing/testing_guide.html#utility-tests"
-  },"119": {
+  },"121": {
     "doc": "Testing Guide",
     "title": "Integration Tests",
     "content": "| APP_TYPE | Source File | Hardware Required | . | full_integration_test | integration_tests/full_system_integration_test.cpp | All peripherals | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html#integration-tests",
+    "url": "/hf-core/development/docs/testing/testing_guide.html#integration-tests",
     
     "relUrl": "/docs/testing/testing_guide.html#integration-tests"
-  },"120": {
+  },"122": {
     "doc": "Testing Guide",
     "title": "Building a Test",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html#building-a-test",
+    "url": "/hf-core/development/docs/testing/testing_guide.html#building-a-test",
     
     "relUrl": "/docs/testing/testing_guide.html#building-a-test"
-  },"121": {
+  },"123": {
     "doc": "Testing Guide",
     "title": "Using build_app.sh",
     "content": "| 1 2 . | cd examples/esp32/scripts ./build_app.sh --app as5047u_handler_test --build-type debug . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html#using-build_appsh",
+    "url": "/hf-core/development/docs/testing/testing_guide.html#using-build_appsh",
     
     "relUrl": "/docs/testing/testing_guide.html#using-build_appsh"
-  },"122": {
+  },"124": {
     "doc": "Testing Guide",
     "title": "Using idf.py directly",
     "content": "| 1 2 3 4 . | cd examples/esp32 export APP_TYPE=general_utils_test export BUILD_TYPE=debug idf.py build . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html#using-idfpy-directly",
+    "url": "/hf-core/development/docs/testing/testing_guide.html#using-idfpy-directly",
     
     "relUrl": "/docs/testing/testing_guide.html#using-idfpy-directly"
-  },"123": {
+  },"125": {
     "doc": "Testing Guide",
     "title": "Using VS Code ESP-IDF Extension",
     "content": ". | Set APP_TYPE environment variable in your workspace settings | Use the ESP-IDF build command | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html#using-vs-code-esp-idf-extension",
+    "url": "/hf-core/development/docs/testing/testing_guide.html#using-vs-code-esp-idf-extension",
     
     "relUrl": "/docs/testing/testing_guide.html#using-vs-code-esp-idf-extension"
-  },"124": {
+  },"126": {
     "doc": "Testing Guide",
     "title": "Flashing and Monitoring",
     "content": "| 1 . | idf.py -p /dev/ttyUSB0 flash monitor . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html#flashing-and-monitoring",
+    "url": "/hf-core/development/docs/testing/testing_guide.html#flashing-and-monitoring",
     
     "relUrl": "/docs/testing/testing_guide.html#flashing-and-monitoring"
-  },"125": {
+  },"127": {
     "doc": "Testing Guide",
     "title": "Pin Configuration",
     "content": "Pin assignments are defined in esp32_test_config.hpp and can be overridden with compile-time -D flags. See the file for the complete pin map. ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html#pin-configuration",
+    "url": "/hf-core/development/docs/testing/testing_guide.html#pin-configuration",
     
     "relUrl": "/docs/testing/testing_guide.html#pin-configuration"
-  },"126": {
+  },"128": {
     "doc": "Testing Guide",
     "title": "Test Framework",
     "content": "All tests use TestFramework.h — a shared header providing: . | RUN_TEST(name, fn) — Run a test function, track pass/fail | RUN_TEST_IN_TASK(name, fn, stack, timeout) — Run in a FreeRTOS task with timeout | RUN_TEST_SECTION_IF_ENABLED(flag, name, ...) — Conditionally run test groups | flip_test_progress_indicator() — Toggle GPIO14 for visual progress | print_test_summary(results, name, tag) — Print final pass/fail report | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html#test-framework",
+    "url": "/hf-core/development/docs/testing/testing_guide.html#test-framework",
     
     "relUrl": "/docs/testing/testing_guide.html#test-framework"
-  },"127": {
+  },"129": {
     "doc": "Testing Guide",
     "title": "Writing New Tests",
     "content": "Follow the existing pattern: . | 1 2 3 4 5 6 7 8 9 10 11 12 13 . | #include \"TestFramework.h\" static TestResults g_test_results; static bool test_my_feature() noexcept { // ... test logic ... return success; } extern \"C\" void app_main(void) { RUN_TEST(\"my_feature\", test_my_feature); print_test_summary(g_test_results, \"MY TEST SUITE\", \"MyTag\"); while (true) { vTaskDelay(pdMS_TO_TICKS(10000)); } } . | . Then add the app to app_config.yml and update main/CMakeLists.txt. ",
-    "url": "/hf-hal-vortex-v1/development/docs/testing/testing_guide.html#writing-new-tests",
+    "url": "/hf-core/development/docs/testing/testing_guide.html#writing-new-tests",
     
     "relUrl": "/docs/testing/testing_guide.html#writing-new-tests"
-  },"128": {
+  },"130": {
     "doc": "TMC9660 Handler",
     "title": "Tmc9660Handler",
     "content": "Unified handler for the TMC9660 3-phase BLDC motor controller with SPI/UART communication, GPIO, ADC, and temperature peripheral wrappers. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/tmc9660_handler.html#tmc9660handler",
+    "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#tmc9660handler",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#tmc9660handler"
-  },"129": {
+  },"131": {
     "doc": "TMC9660 Handler",
     "title": "Construction",
     "content": "| 1 2 3 4 5 6 7 8 9 10 11 . | // SPI mode Tmc9660Handler(BaseSpi&amp; spi, BaseGpio&amp; rst, BaseGpio&amp; drv_en, BaseGpio&amp; faultn, BaseGpio&amp; wake, uint8_t address = 0, const tmc9660::BootloaderConfig* bootCfg = &amp;kDefaultBootConfig); // UART mode Tmc9660Handler(BaseUart&amp; uart, BaseGpio&amp; rst, BaseGpio&amp; drv_en, BaseGpio&amp; faultn, BaseGpio&amp; wake, uint8_t address = 0, const tmc9660::BootloaderConfig* bootCfg = &amp;kDefaultBootConfig); . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/tmc9660_handler.html#construction",
+    "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#construction",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#construction"
-  },"130": {
+  },"132": {
     "doc": "TMC9660 Handler",
     "title": "Key Methods",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/tmc9660_handler.html#key-methods",
+    "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#key-methods"
-  },"131": {
+  },"133": {
     "doc": "TMC9660 Handler",
     "title": "Initialization",
     "content": "| Method | Description | . | Initialize(reset, bootInfo, failOnVerify) | Reset → bootloader config → parameter mode | . | IsDriverReady() | Check if driver instance exists and initialized | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/tmc9660_handler.html#initialization",
+    "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#initialization",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#initialization"
-  },"132": {
+  },"134": {
     "doc": "TMC9660 Handler",
     "title": "Motor Control",
     "content": "| Method | Description | . | SetMotorType(type, polePairs) | Configure motor type (BLDC, DC, Stepper) | . | SetCommutationMode(mode) | Set FOC, block, or open-loop commutation | . | EnableMotor() / DisableMotor() | Software enable/disable | . | SetTargetVelocity(int32_t) | Velocity control target | . | SetTargetPosition(int32_t) | Position control target | . | SetTargetTorque(int16_t) | Torque (current) control target | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/tmc9660_handler.html#motor-control",
+    "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#motor-control",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#motor-control"
-  },"133": {
+  },"135": {
     "doc": "TMC9660 Handler",
     "title": "Telemetry",
     "content": "| Method | Description | . | GetSupplyVoltage() | Motor supply voltage (V) | . | GetChipTemperature() | Internal chip temperature (°C) | . | GetMotorCurrent() | Phase current (mA) | . | GetActualVelocity() | Measured velocity | . | GetStatusFlags(uint32_t&amp;) | General status register | . | GetErrorFlags(uint32_t&amp;) | Error flags register | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/tmc9660_handler.html#telemetry",
+    "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#telemetry",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#telemetry"
-  },"134": {
+  },"136": {
     "doc": "TMC9660 Handler",
     "title": "Peripheral Wrappers",
     "content": "| 1 2 3 . | handler.gpio(17).SetPinLevel(HF_GPIO_LEVEL_HIGH); // TMC9660 GPIO17 handler.adc().ReadChannelV(20, voltage); // Supply voltage ADC handler.temperature().ReadTemperatureCelsius(&amp;temp); // Chip temperature . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/tmc9660_handler.html#peripheral-wrappers",
+    "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#peripheral-wrappers",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#peripheral-wrappers"
-  },"135": {
+  },"137": {
     "doc": "TMC9660 Handler",
     "title": "Advanced Access",
     "content": "| 1 2 3 4 . | handler.visitDriver([](auto&amp; driver) { driver.feedbackSense.configureHallSensor(1, 2, 3); driver.protection.setOvertemperatureLimit(120.0f); }); . | . ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/tmc9660_handler.html#advanced-access",
+    "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#advanced-access",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#advanced-access"
-  },"136": {
+  },"138": {
     "doc": "TMC9660 Handler",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/handler_tests/tmc9660_handler_comprehensive_test.cpp — 10 test sections covering construction state, initialization, parameters, motor control, telemetry, GPIO/ADC/Temperature wrappers, driver enable, and error handling. ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/tmc9660_handler.html#test-coverage",
+    "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#test-coverage"
-  },"137": {
+  },"139": {
     "doc": "TMC9660 Handler",
     "title": "TMC9660 Handler",
     "content": " ",
-    "url": "/hf-hal-vortex-v1/development/docs/handlers/tmc9660_handler.html",
+    "url": "/hf-core/development/docs/handlers/tmc9660_handler.html",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html"
   }

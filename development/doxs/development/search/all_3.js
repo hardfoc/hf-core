@@ -30,7 +30,7 @@ var searchData=
   ['disablemotor_27',['DisableMotor',['../classTmc5160Handler.html#a30cf2ab584290fadfcb7d7cc6603444b',1,'Tmc5160Handler::DisableMotor()'],['../classTmc9660Handler.html#ad2004d275f9578a1530ad9eb49ff7afb',1,'Tmc9660Handler::DisableMotor()']]],
   ['disablesensor_28',['DisableSensor',['../classIBno08xDriverOps.html#ab62ac5137487fe6f6ab3386684681857',1,'IBno08xDriverOps::DisableSensor()'],['../classBno08xDriverImpl.html#a92a939a92cd8823c217526efa265d032',1,'Bno08xDriverImpl::DisableSensor()'],['../classBno08xHandler.html#ae2bd85f70a1a455427c7c0aa2e4e3f5b',1,'Bno08xHandler::DisableSensor()']]],
   ['disablethresholdmonitoring_29',['DisableThresholdMonitoring',['../classNtcTemperatureHandler.html#a3991d34f48052ae90f6bfc1ad0d5c1cb',1,'NtcTemperatureHandler']]],
-  ['documentation_30',['Documentation',['../index.html#autotoc_md39',1,'']]],
+  ['documentation_30',['📚 Documentation',['../index.html#autotoc_md41',1,'']]],
   ['double_5ftap_31',['double_tap',['../structBno08xActivityData.html#a80f5838ee8748e4b3f6de39cebd990b9',1,'Bno08xActivityData']]],
   ['double_5funderline_32',['DOUBLE_UNDERLINE',['../Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a2cbaca391380e64473b1302e72a32347',1,'Logger.h']]],
   ['drainpendinginterrupts_33',['DrainPendingInterrupts',['../classPcal95555Handler.html#a2e8fc9ad39143e2cc26a2e6a9d711a7e',1,'Pcal95555Handler']]],

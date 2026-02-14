@@ -59,7 +59,7 @@ var searchData=
   ['pin_5fws2812_5fdata_56',['PIN_WS2812_DATA',['../esp32__test__config_8hpp.html#a6e70c494b43ea9b014d2acdcf3fe4701',1,'esp32_test_config.hpp']]],
   ['pincount_57',['PinCount',['../classPcal95555Handler.html#a8635d65049f9d416d201b47614a4b024',1,'Pcal95555Handler']]],
   ['pitch_58',['pitch',['../structBno08xEulerAngles.html#ae2dba92a3a192db0b30c290fed76934d',1,'Bno08xEulerAngles']]],
-  ['platform_20core_20hf_20core_59',['HardFOC Platform Core (hf-core)',['../index.html',1,'']]],
+  ['platform_59',['HF-Core Platform',['../index.html',1,'']]],
   ['polarity_60',['Control Pin Polarity',['../classHalSpiTmc9660Comm.html#autotoc_md25',1,'']]],
   ['prev_5finput_5fstate_5f_61',['prev_input_state_',['../classPcal95555Handler.html#a41f16f23becbbc45984e1adfed1320b0',1,'Pcal95555Handler']]],
   ['print_5ftest_5fsection_5ffooter_62',['print_test_section_footer',['../TestFramework_8h.html#a5fe4d7658c49a1f3999cd09c0db952c0',1,'TestFramework.h']]],

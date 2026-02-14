@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['a_20test_0',['Build and Flash a Test',['../index.html#autotoc_md37',1,'']]],
+  ['a_20test_0',['Build and Flash a Test',['../index.html#autotoc_md36',1,'']]],
   ['abi_5fresolution_5fbits_1',['abi_resolution_bits',['../structAs5047uConfig.html#a078c980d2b3827e7686a5b39baea4162',1,'As5047uConfig']]],
   ['acceleration_2',['acceleration',['../structBno08xImuData.html#a5ed6cd044cac92af0fc8b116a0781379',1,'Bno08xImuData']]],
   ['accelerometer_5faccuracy_3',['accelerometer_accuracy',['../structBno08xCalibrationStatus.html#a115a17c08837ca2ac2512c3e7816c5e8',1,'Bno08xCalibrationStatus']]],
@@ -21,9 +21,9 @@ var searchData=
   ['address_5f_18',['address_',['../classTmc5160Handler.html#a43ccc6febdbf53eb85fcec87cc9a8c99',1,'Tmc5160Handler']]],
   ['agc_5fvalue_19',['agc_value',['../structAs5047uMeasurement.html#ac4ca209ff2462bcbbee2d2c14ab40f11',1,'As5047uMeasurement']]],
   ['agc_5fwarning_20',['agc_warning',['../structAs5047uDiagnostics.html#a8b59af0c7aebe5939e36098a0b7a7fd8',1,'As5047uDiagnostics']]],
-  ['all_20ci_20enabled_20tests_21',['Build All CI-Enabled Tests',['../index.html#autotoc_md38',1,'']]],
+  ['all_20ci_20enabled_20tests_21',['Build All CI-Enabled Tests',['../index.html#autotoc_md37',1,'']]],
   ['analogous_20patterns_22',['Analogous Patterns',['../Tmc9660AdcWrapper_8h.html#autotoc_md20',1,'']]],
-  ['and_20flash_20a_20test_23',['Build and Flash a Test',['../index.html#autotoc_md37',1,'']]],
+  ['and_20flash_20a_20test_23',['Build and Flash a Test',['../index.html#autotoc_md36',1,'']]],
   ['angle_5fcompensated_24',['angle_compensated',['../structAs5047uMeasurement.html#ab1abcdd7a68fbaa6560058774e94122a',1,'As5047uMeasurement']]],
   ['angle_5fraw_25',['angle_raw',['../structAs5047uMeasurement.html#a90d827bdb1b61fe2defee715c92be2f6',1,'As5047uMeasurement']]],
   ['animator_5f_26',['animator_',['../classWs2812Handler.html#aba9a27e605659de49f6b8c745cebf050',1,'Ws2812Handler']]],
@@ -31,7 +31,7 @@ var searchData=
   ['app_5fmain_28',['app_main',['../as5047u__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;as5047u_handler_comprehensive_test.cpp'],['../bno08x__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;bno08x_handler_comprehensive_test.cpp'],['../max22200__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;max22200_handler_comprehensive_test.cpp'],['../ntc__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;ntc_handler_comprehensive_test.cpp'],['../pca9685__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;pca9685_handler_comprehensive_test.cpp'],['../pcal95555__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;pcal95555_handler_comprehensive_test.cpp'],['../tle92466ed__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;tle92466ed_handler_comprehensive_test.cpp'],['../tmc5160__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;tmc5160_handler_comprehensive_test.cpp'],['../tmc9660__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;tmc9660_handler_comprehensive_test.cpp'],['../ws2812__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;ws2812_handler_comprehensive_test.cpp'],['../full__system__integration__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;full_system_integration_test.cpp'],['../canopen__utils__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;canopen_utils_comprehensive_test.cpp'],['../general__utils__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;general_utils_comprehensive_test.cpp'],['../logger__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;logger_comprehensive_test.cpp'],['../rtos__wrap__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;rtos_wrap_comprehensive_test.cpp']]],
   ['applyconfiglocked_29',['applyConfigLocked',['../classBno08xHandler.html#ada3191d2a5676e02773024e52589a1ed',1,'Bno08xHandler']]],
   ['applyconfiguration_30',['ApplyConfiguration',['../classAs5047uHandler.html#a0e7c20d4fd883c55ff9091041ec04c39',1,'As5047uHandler::ApplyConfiguration()'],['../classBno08xHandler.html#aa9246407f7c5b670d3cb43ca5fa116a3',1,'Bno08xHandler::ApplyConfiguration()']]],
-  ['architecture_31',['Architecture',['../index.html#autotoc_md31',1,'']]],
+  ['architecture_31',['🏗️ Architecture',['../index.html#autotoc_md33',1,'']]],
   ['architecture_20overview_32',['Architecture Overview',['../Bno08xHandler_8h.html#autotoc_md0',1,'Architecture Overview'],['../Pca9685Handler_8h.html#autotoc_md4',1,'Architecture Overview'],['../Pcal95555Handler_8h.html#autotoc_md10',1,'Architecture Overview'],['../Tmc5160Handler_8h.html#autotoc_md15',1,'Architecture Overview'],['../Tmc9660Handler_8h.html#autotoc_md21',1,'Architecture Overview']]],
   ['as5047u_5fhandler_5fcomprehensive_5ftest_2ecpp_33',['as5047u_handler_comprehensive_test.cpp',['../as5047u__handler__comprehensive__test_8cpp.html',1,'']]],
   ['as5047u_5fsensor_5f_34',['as5047u_sensor_',['../classAs5047uHandler.html#a232e1035d175ca7bb90b8fe7ee870c39',1,'As5047uHandler']]],

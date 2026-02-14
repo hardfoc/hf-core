@@ -86,7 +86,7 @@ function disableHeadStyleSheets() {
 
 function initSearch() {
   var request = new XMLHttpRequest();
-  request.open('GET', '/hf-hal-vortex-v1/development/assets/js/search-data.json', true);
+  request.open('GET', '/hf-core/development/assets/js/search-data.json', true);
 
   request.onload = function(){
     if (request.status >= 200 && request.status < 400) {
@@ -484,7 +484,7 @@ jtd.getTheme = function() {
 
 jtd.setTheme = function(theme) {
   var cssFile = document.querySelector('[rel="stylesheet"]');
-  cssFile.setAttribute('href', '/hf-hal-vortex-v1/development/assets/css/just-the-docs-' + theme + '.css');
+  cssFile.setAttribute('href', '/hf-core/development/assets/css/just-the-docs-' + theme + '.css');
 }
 
 // Note: pathname can have a trailing slash on a local jekyll server
