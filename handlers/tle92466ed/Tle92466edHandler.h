@@ -140,6 +140,12 @@ public:
     bool Initialize() noexcept;
 
     /**
+     * @brief Ensure driver is initialized (lazy init entrypoint).
+     * @return true if initialized and ready.
+     */
+    bool EnsureInitialized() noexcept;
+
+    /**
      * @brief Initialize with global configuration.
      * @param config Global device configuration.
      */
@@ -261,14 +267,15 @@ public:
      * @brief Get the underlying driver for advanced operations.
      * @return Pointer to driver, or nullptr if not initialized.
      */
-    [[nodiscard]] DriverType* GetDriver() noexcept {
-        return driver_.get();
-    }
+    [[nodiscard]] DriverType* GetDriver() noexcept;
+    [[nodiscard]] const DriverType* GetDriver() const noexcept;
 
     /** @brief Dump diagnostics to logger. */
     void DumpDiagnostics() noexcept;
 
 private:
+    bool EnsureInitializedLocked() noexcept;
+
     bool initialized_{false};
     mutable RtosMutex mutex_;
     std::unique_ptr<HalSpiTle92466edComm> comm_;

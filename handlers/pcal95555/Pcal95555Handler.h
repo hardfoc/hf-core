@@ -264,8 +264,10 @@ public:
 
     /**
      * @brief Check if this pin supports interrupt configuration.
-     * @return GPIO_SUCCESS if the chip has Agile I/O (PCAL9555A),
-     *         GPIO_ERR_UNSUPPORTED_OPERATION for PCA9555 (no per-pin interrupt masking).
+     * @return GPIO_SUCCESS only when both:
+     *         - the detected chip has Agile I/O (PCAL9555A), and
+     *         - a hardware INT pin was provided to the handler.
+     *         Otherwise returns GPIO_ERR_UNSUPPORTED_OPERATION.
      */
     hf_gpio_err_t SupportsInterrupts() const noexcept override;
 

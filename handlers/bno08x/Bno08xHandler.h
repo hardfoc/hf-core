@@ -535,6 +535,12 @@ public:
     Bno08xError Initialize() noexcept;
 
     /**
+     * @brief Ensure the BNO08x is initialized (lazy init entrypoint).
+     * @return true if initialized and ready.
+     */
+    bool EnsureInitialized() noexcept;
+
+    /**
      * @brief Deinitialize the sensor.
      * @return Bno08xError::SUCCESS if successful
      */
@@ -768,10 +774,10 @@ public:
      *
      * @return Non-owning pointer to the driver interface, or nullptr if not constructed
      */
-    IBno08xDriverOps* GetSensor() noexcept { return driver_ops_.get(); }
+    IBno08xDriverOps* GetSensor() noexcept;
 
     /** @brief Const overload of GetSensor(). */
-    const IBno08xDriverOps* GetSensor() const noexcept { return driver_ops_.get(); }
+    const IBno08xDriverOps* GetSensor() const noexcept;
 
     /**
      * @brief Get the last handler error code.
@@ -830,6 +836,11 @@ private:
      * @brief Internal: apply configuration (assumes mutex is held).
      */
     bool applyConfigLocked(const Bno08xConfig& config) noexcept;
+
+    /**
+     * @brief Internal: ensure initialized (assumes mutex is held).
+     */
+    bool ensureInitializedLocked() noexcept;
 
     /**
      * @brief Internal: map SH-2 error code to Bno08xError.

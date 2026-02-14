@@ -135,6 +135,12 @@ public:
     bool Initialize() noexcept;
 
     /**
+     * @brief Ensure driver is initialized (lazy init entrypoint).
+     * @return true if initialized and ready.
+     */
+    bool EnsureInitialized() noexcept;
+
+    /**
      * @brief Initialize with board configuration.
      * @param board_config Board-specific IFS and safety limits.
      */
@@ -243,14 +249,15 @@ public:
      * @brief Get the underlying driver for advanced operations.
      * @return Pointer to driver, or nullptr if not initialized.
      */
-    [[nodiscard]] DriverType* GetDriver() noexcept {
-        return driver_.get();
-    }
+    [[nodiscard]] DriverType* GetDriver() noexcept;
+    [[nodiscard]] const DriverType* GetDriver() const noexcept;
 
     /** @brief Dump diagnostics to logger. */
     void DumpDiagnostics() noexcept;
 
 private:
+    bool EnsureInitializedLocked() noexcept;
+
     bool initialized_{false};
     mutable RtosMutex mutex_;
     std::unique_ptr<HalSpiMax22200Comm> comm_;

@@ -342,6 +342,10 @@ bool Tmc9660Handler::Initialize(bool performReset, bool retrieveBootloaderInfo,
                                  bool failOnVerifyError) {
     static constexpr const char* TAG = "Tmc9660Handler";
 
+    if (IsDriverReady()) {
+        return true;
+    }
+
     // Create driver instance if not already created
     if (use_spi_) {
         if (!spi_comm_) {
@@ -391,6 +395,13 @@ bool Tmc9660Handler::Initialize(bool performReset, bool retrieveBootloaderInfo,
     return true;
 }
 
+bool Tmc9660Handler::EnsureInitialized() noexcept {
+    if (IsDriverReady()) {
+        return true;
+    }
+    return Initialize();
+}
+
 bool Tmc9660Handler::IsDriverReady() const noexcept {
     if (use_spi_) return spi_driver_ != nullptr;
     return uart_driver_ != nullptr;
@@ -402,19 +413,19 @@ bool Tmc9660Handler::IsDriverReady() const noexcept {
 
 bool Tmc9660Handler::WriteParameter(tmc9660::tmcl::Parameters id, uint32_t value,
                                      uint8_t motorIndex) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.writeParameter(id, value, motorIndex); });
 }
 
 bool Tmc9660Handler::ReadParameter(tmc9660::tmcl::Parameters id, uint32_t& value,
                                     uint8_t motorIndex) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.readParameter(id, value, motorIndex); });
 }
 
 bool Tmc9660Handler::SendCommand(tmc9660::tmcl::Op opcode, uint16_t type, uint8_t motor,
                                   uint32_t value, uint32_t* reply) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.sendCommand(opcode, type, motor, value, reply); });
 }
 
@@ -423,22 +434,22 @@ bool Tmc9660Handler::SendCommand(tmc9660::tmcl::Op opcode, uint16_t type, uint8_
 //==============================================================================
 
 bool Tmc9660Handler::SetMotorType(tmc9660::tmcl::MotorType type, uint8_t polePairs) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.motorConfig.setType(type, polePairs); });
 }
 
 bool Tmc9660Handler::SetPWMFrequency(uint32_t freq_hz) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.motorConfig.setPWMFrequency(freq_hz); });
 }
 
 bool Tmc9660Handler::SetCommutationMode(tmc9660::tmcl::CommutationMode mode) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.motorConfig.setCommutationMode(mode); });
 }
 
 bool Tmc9660Handler::EnableMotor() noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     // NOTE: TMC9660 MotorConfig has no direct enable()/disable() API.
     // Motor enabling is typically handled via commutation mode or TMCL commands.
     // Use SetCommutationMode() with the desired mode to start the motor.
@@ -447,7 +458,7 @@ bool Tmc9660Handler::EnableMotor() noexcept {
 }
 
 bool Tmc9660Handler::DisableMotor() noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     // NOTE: TMC9660 MotorConfig has no direct enable()/disable() API.
     // To stop the motor, set target velocity to 0 or use an appropriate TMCL command.
     Logger::GetInstance().Warn("Tmc9660Handler", "DisableMotor: no direct disable API; set velocity to 0 or use TMCL");
@@ -455,17 +466,17 @@ bool Tmc9660Handler::DisableMotor() noexcept {
 }
 
 bool Tmc9660Handler::SetTargetVelocity(int32_t velocity) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.velocityControl.setTargetVelocity(velocity); });
 }
 
 bool Tmc9660Handler::SetTargetPosition(int32_t position) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.positionControl.setTargetPosition(position); });
 }
 
 bool Tmc9660Handler::SetTargetTorque(int16_t torque_ma) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.torqueFluxControl.setTargetTorque(torque_ma); });
 }
 
@@ -474,14 +485,14 @@ bool Tmc9660Handler::SetTargetTorque(int16_t torque_ma) noexcept {
 //------------------------------------------------------------------------------
 
 bool Tmc9660Handler::EnableDriverOutput() noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([](auto& driver) {
         return driver.comm().gpioSetActive(tmc9660::TMC9660CtrlPin::DRV_EN);
     });
 }
 
 bool Tmc9660Handler::DisableDriverOutput() noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([](auto& driver) {
         return driver.comm().gpioSetInactive(tmc9660::TMC9660CtrlPin::DRV_EN);
     });
@@ -496,7 +507,7 @@ bool Tmc9660Handler::ConfigureHallSensor(
         tmc9660::tmcl::Direction inverted,
         tmc9660::tmcl::EnableDisable enable_extrapolation,
         uint8_t filter_length) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) {
         return driver.feedbackSense.configureHall(
             sector_offset, inverted, enable_extrapolation, filter_length);
@@ -507,7 +518,7 @@ bool Tmc9660Handler::ConfigureABNEncoder(
         uint32_t counts_per_rev,
         tmc9660::tmcl::Direction inverted,
         tmc9660::tmcl::EnableDisable n_channel_inverted) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) {
         return driver.feedbackSense.configureABNEncoder(
             counts_per_rev, inverted, n_channel_inverted);
@@ -520,7 +531,7 @@ bool Tmc9660Handler::ConfigureABNEncoder(
 
 bool Tmc9660Handler::CalibrateCurrentSensing(bool wait_for_completion,
                                               uint32_t timeout_ms) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) {
         return driver.currentSensing.calibrateOffsets(wait_for_completion, timeout_ms);
     });
@@ -533,21 +544,21 @@ bool Tmc9660Handler::CalibrateCurrentSensing(bool wait_for_completion,
 bool Tmc9660Handler::SetCurrentLoopGains(uint16_t p, uint16_t i,
                                           bool separate,
                                           uint16_t flux_p, uint16_t flux_i) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) {
         return driver.torqueFluxControl.setCurrentLoopGains(p, i, separate, flux_p, flux_i);
     });
 }
 
 bool Tmc9660Handler::SetVelocityLoopGains(uint16_t p, uint16_t i) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) {
         return driver.velocityControl.setVelocityLoopGains(p, i);
     });
 }
 
 bool Tmc9660Handler::SetPositionLoopGains(uint16_t p, uint16_t i) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) {
         return driver.positionControl.setPositionLoopGains(p, i);
     });
@@ -558,57 +569,57 @@ bool Tmc9660Handler::SetPositionLoopGains(uint16_t p, uint16_t i) noexcept {
 //==============================================================================
 
 float Tmc9660Handler::GetSupplyVoltage() noexcept {
-    if (!IsDriverReady()) return std::nanf("");
+    if (!EnsureInitialized()) return std::nanf("");
     return visitDriver([](auto& driver) { return driver.telemetry.getSupplyVoltage(); });
 }
 
 float Tmc9660Handler::GetChipTemperature() noexcept {
-    if (!IsDriverReady()) return std::nanf("");
+    if (!EnsureInitialized()) return std::nanf("");
     return visitDriver([](auto& driver) { return driver.telemetry.getChipTemperature(); });
 }
 
 int16_t Tmc9660Handler::GetMotorCurrent() noexcept {
-    if (!IsDriverReady()) return 0;
+    if (!EnsureInitialized()) return 0;
     return visitDriver([](auto& driver) { return driver.telemetry.getMotorCurrent(); });
 }
 
 int32_t Tmc9660Handler::GetActualVelocity() noexcept {
-    if (!IsDriverReady()) return 0;
+    if (!EnsureInitialized()) return 0;
     return visitDriver([](auto& driver) { return driver.telemetry.getActualVelocity(); });
 }
 
 int32_t Tmc9660Handler::GetActualPosition() noexcept {
-    if (!IsDriverReady()) return 0;
+    if (!EnsureInitialized()) return 0;
     return visitDriver([](auto& driver) { return driver.telemetry.getActualPosition(); });
 }
 
 uint16_t Tmc9660Handler::GetExternalTemperature() noexcept {
-    if (!IsDriverReady()) return 0;
+    if (!EnsureInitialized()) return 0;
     return visitDriver([](auto& driver) { return driver.telemetry.getExternalTemperature(); });
 }
 
 bool Tmc9660Handler::GetStatusFlags(uint32_t& flags) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.telemetry.getGeneralStatusFlags(flags); });
 }
 
 bool Tmc9660Handler::GetErrorFlags(uint32_t& flags) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.telemetry.getGeneralErrorFlags(flags); });
 }
 
 bool Tmc9660Handler::ClearErrorFlags(uint32_t mask) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.telemetry.clearGeneralErrorFlags(mask); });
 }
 
 bool Tmc9660Handler::GetGateDriverErrorFlags(uint32_t& flags) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.telemetry.getGateDriverErrorFlags(flags); });
 }
 
 bool Tmc9660Handler::ClearGateDriverErrorFlags(uint32_t mask) noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([&](auto& driver) { return driver.telemetry.clearGateDriverErrorFlags(mask); });
 }
 
@@ -617,7 +628,7 @@ bool Tmc9660Handler::ClearGateDriverErrorFlags(uint32_t mask) noexcept {
 //==============================================================================
 
 bool Tmc9660Handler::EnterBootloaderMode() noexcept {
-    if (!IsDriverReady()) return false;
+    if (!EnsureInitialized()) return false;
     return visitDriver([](auto& driver) { return driver.enterBootloaderMode(); });
 }
 
@@ -626,16 +637,19 @@ bool Tmc9660Handler::EnterBootloaderMode() noexcept {
 //==============================================================================
 
 Tmc9660Handler::Gpio& Tmc9660Handler::gpio(uint8_t gpioNumber) {
+    (void)EnsureInitialized();
     if (gpioNumber == 17) return *gpioWrappers_[0];
     if (gpioNumber == 18) return *gpioWrappers_[1];
     return *gpioWrappers_[0]; // Fallback
 }
 
 Tmc9660Handler::Adc& Tmc9660Handler::adc() {
+    (void)EnsureInitialized();
     return *adcWrapper_;
 }
 
 Tmc9660Handler::Temperature& Tmc9660Handler::temperature() {
+    (void)EnsureInitialized();
     return *temperatureWrapper_;
 }
 
@@ -645,6 +659,30 @@ Tmc9660Handler::Temperature& Tmc9660Handler::temperature() {
 
 tmc9660::CommMode Tmc9660Handler::GetCommMode() const noexcept {
     return use_spi_ ? tmc9660::CommMode::SPI : tmc9660::CommMode::UART;
+}
+
+Tmc9660Handler::SpiDriver* Tmc9660Handler::spiDriver() noexcept {
+    if (!EnsureInitialized() || !use_spi_) {
+        return nullptr;
+    }
+    return spi_driver_.get();
+}
+
+const Tmc9660Handler::SpiDriver* Tmc9660Handler::spiDriver() const noexcept {
+    auto* self = const_cast<Tmc9660Handler*>(this);
+    return self->spiDriver();
+}
+
+Tmc9660Handler::UartDriver* Tmc9660Handler::uartDriver() noexcept {
+    if (!EnsureInitialized() || use_spi_) {
+        return nullptr;
+    }
+    return uart_driver_.get();
+}
+
+const Tmc9660Handler::UartDriver* Tmc9660Handler::uartDriver() const noexcept {
+    auto* self = const_cast<Tmc9660Handler*>(this);
+    return self->uartDriver();
 }
 
 //==============================================================================
@@ -658,7 +696,7 @@ Tmc9660Handler::Gpio::Gpio(Tmc9660Handler& parent, uint8_t gpioNumber)
 }
 
 bool Tmc9660Handler::Gpio::Initialize() noexcept {
-    if (!parent_.IsDriverReady()) return false;
+    if (!parent_.EnsureInitialized()) return false;
     return parent_.visitDriver([&](auto& driver) {
         return driver.gpio.setMode(gpioNumber_, true, false, true);
     });
@@ -667,7 +705,7 @@ bool Tmc9660Handler::Gpio::Initialize() noexcept {
 bool Tmc9660Handler::Gpio::Deinitialize() noexcept { return true; }
 
 hf_gpio_err_t Tmc9660Handler::Gpio::SetPinLevelImpl(hf_gpio_level_t level) noexcept {
-    if (!parent_.IsDriverReady()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    if (!parent_.EnsureInitialized()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
     if (direction_ != hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT)
         return hf_gpio_err_t::GPIO_ERR_INVALID_CONFIGURATION;
     bool pin_high = (level == hf_gpio_level_t::HF_GPIO_LEVEL_HIGH);
@@ -678,7 +716,7 @@ hf_gpio_err_t Tmc9660Handler::Gpio::SetPinLevelImpl(hf_gpio_level_t level) noexc
 }
 
 hf_gpio_err_t Tmc9660Handler::Gpio::GetPinLevelImpl(hf_gpio_level_t& level) noexcept {
-    if (!parent_.IsDriverReady()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    if (!parent_.EnsureInitialized()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
     bool pin_state = false;
     bool ok = parent_.visitDriver([&](auto& driver) {
         return driver.gpio.readDigital(gpioNumber_, pin_state);
@@ -689,7 +727,7 @@ hf_gpio_err_t Tmc9660Handler::Gpio::GetPinLevelImpl(hf_gpio_level_t& level) noex
 }
 
 hf_gpio_err_t Tmc9660Handler::Gpio::SetDirectionImpl(hf_gpio_direction_t direction) noexcept {
-    if (!parent_.IsDriverReady()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    if (!parent_.EnsureInitialized()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
 
     bool is_output = (direction == hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT);
     bool ok = parent_.visitDriver([&](auto& driver) {
@@ -905,7 +943,7 @@ void Tmc9660Handler::Adc::UpdateDiagnostics(hf_adc_err_t error) noexcept {
 // TMC9660-specific ADC channel methods
 hf_adc_err_t Tmc9660Handler::Adc::ReadAinChannel(uint8_t ain_channel,
                                                     hf_u32_t& raw_value, float& voltage) noexcept {
-    if (!parent_.IsDriverReady()) return hf_adc_err_t::ADC_ERR_CHANNEL_READ_ERR;
+    if (!parent_.EnsureInitialized()) return hf_adc_err_t::ADC_ERR_CHANNEL_READ_ERR;
 
     uint16_t analog_value = 0;
     bool ok = parent_.visitDriver([&](auto& driver) {
@@ -920,7 +958,7 @@ hf_adc_err_t Tmc9660Handler::Adc::ReadAinChannel(uint8_t ain_channel,
 
 hf_adc_err_t Tmc9660Handler::Adc::ReadCurrentSenseChannel(uint8_t current_channel,
                                                             hf_u32_t& raw_value, float& voltage) noexcept {
-    if (!parent_.IsDriverReady()) return hf_adc_err_t::ADC_ERR_CHANNEL_READ_ERR;
+    if (!parent_.EnsureInitialized()) return hf_adc_err_t::ADC_ERR_CHANNEL_READ_ERR;
 
     tmc9660::tmcl::Parameters param;
     switch (current_channel) {
@@ -941,7 +979,7 @@ hf_adc_err_t Tmc9660Handler::Adc::ReadCurrentSenseChannel(uint8_t current_channe
 
 hf_adc_err_t Tmc9660Handler::Adc::ReadVoltageChannel(uint8_t voltage_channel,
                                                        hf_u32_t& raw_value, float& voltage) noexcept {
-    if (!parent_.IsDriverReady()) return hf_adc_err_t::ADC_ERR_CHANNEL_READ_ERR;
+    if (!parent_.EnsureInitialized()) return hf_adc_err_t::ADC_ERR_CHANNEL_READ_ERR;
 
     switch (voltage_channel) {
         case 0: // Supply voltage
@@ -960,7 +998,7 @@ hf_adc_err_t Tmc9660Handler::Adc::ReadVoltageChannel(uint8_t voltage_channel,
 
 hf_adc_err_t Tmc9660Handler::Adc::ReadTemperatureChannel(uint8_t temp_channel,
                                                            hf_u32_t& raw_value, float& voltage) noexcept {
-    if (!parent_.IsDriverReady()) return hf_adc_err_t::ADC_ERR_CHANNEL_READ_ERR;
+    if (!parent_.EnsureInitialized()) return hf_adc_err_t::ADC_ERR_CHANNEL_READ_ERR;
 
     switch (temp_channel) {
         case 0: { // Chip temperature
@@ -983,7 +1021,7 @@ hf_adc_err_t Tmc9660Handler::Adc::ReadTemperatureChannel(uint8_t temp_channel,
 
 hf_adc_err_t Tmc9660Handler::Adc::ReadMotorDataChannel(uint8_t motor_channel,
                                                          hf_u32_t& raw_value, float& voltage) noexcept {
-    if (!parent_.IsDriverReady()) return hf_adc_err_t::ADC_ERR_CHANNEL_READ_ERR;
+    if (!parent_.EnsureInitialized()) return hf_adc_err_t::ADC_ERR_CHANNEL_READ_ERR;
 
     switch (motor_channel) {
         case 0: { // Motor current
@@ -1032,7 +1070,7 @@ Tmc9660Handler::Temperature::Temperature(Tmc9660Handler& parent)
 bool Tmc9660Handler::Temperature::Initialize() noexcept {
     static constexpr const char* TAG = "Tmc9660Handler::Temperature";
     if (IsInitialized()) return true;
-    if (!parent_.IsDriverReady()) {
+    if (!parent_.EnsureInitialized()) {
         Logger::GetInstance().Error(TAG, "Parent TMC9660 driver not ready");
         return false;
     }
@@ -1053,7 +1091,7 @@ hf_temp_err_t Tmc9660Handler::Temperature::ReadTemperatureCelsiusImpl(float* tem
     MutexLockGuard lock(mutex_);
     uint64_t start_time_us = GetCurrentTimeUs();
 
-    if (!parent_.IsDriverReady()) {
+    if (!parent_.EnsureInitialized()) {
         UpdateDiagnostics(hf_temp_err_t::TEMP_ERR_NOT_INITIALIZED);
         return hf_temp_err_t::TEMP_ERR_NOT_INITIALIZED;
     }
@@ -1152,13 +1190,14 @@ void Tmc9660Handler::Temperature::UpdateDiagnostics(hf_temp_err_t error) noexcep
 
 void Tmc9660Handler::DumpDiagnostics() noexcept {
     static constexpr const char* TAG = "Tmc9660Handler";
+    const bool ready = EnsureInitialized();
 
     Logger::GetInstance().Info(TAG, "=== TMC9660 HANDLER DIAGNOSTICS ===");
-    Logger::GetInstance().Info(TAG, "Driver Ready: %s", IsDriverReady() ? "YES" : "NO");
+    Logger::GetInstance().Info(TAG, "Driver Ready: %s", ready ? "YES" : "NO");
     Logger::GetInstance().Info(TAG, "Comm Mode: %s", use_spi_ ? "SPI" : "UART");
     Logger::GetInstance().Info(TAG, "Device Address: %d", device_address_);
 
-    if (IsDriverReady()) {
+    if (ready) {
         uint32_t status_flags = 0, error_flags = 0;
         float voltage = GetSupplyVoltage();
         float temp = GetChipTemperature();

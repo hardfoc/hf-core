@@ -324,6 +324,15 @@ Bno08xError Bno08xHandler::Initialize() noexcept {
     return last_error_;
 }
 
+bool Bno08xHandler::EnsureInitialized() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!lock.IsLocked()) {
+        last_error_ = Bno08xError::MUTEX_LOCK_FAILED;
+        return false;
+    }
+    return ensureInitializedLocked();
+}
+
 Bno08xError Bno08xHandler::Deinitialize() noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) {
@@ -352,6 +361,26 @@ bool Bno08xHandler::IsInitialized() const noexcept {
     return lock.IsLocked() && initialized_;
 }
 
+bool Bno08xHandler::ensureInitializedLocked() noexcept {
+    if (initialized_ && driver_ops_) {
+        last_error_ = Bno08xError::SUCCESS;
+        return true;
+    }
+    if (!driver_ops_) {
+        last_error_ = Bno08xError::INITIALIZATION_FAILED;
+        return false;
+    }
+
+    const Bno08xError init_result = Initialize();
+    if (init_result == Bno08xError::SUCCESS) {
+        return true;
+    }
+
+    // Initialize() can return a non-fatal communication error after partial
+    // sensor enables while the driver itself is ready for use.
+    return initialized_ && driver_ops_;
+}
+
 // --- Update ---
 
 Bno08xError Bno08xHandler::Update() noexcept {
@@ -361,8 +390,7 @@ Bno08xError Bno08xHandler::Update() noexcept {
         return last_error_;
     }
 
-    if (!initialized_ || !driver_ops_) {
-        last_error_ = Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked()) {
         return last_error_;
     }
 
@@ -382,7 +410,11 @@ Bno08xError Bno08xHandler::Update() noexcept {
 
 bool Bno08xHandler::HasNewData(BNO085Sensor sensor) const noexcept {
     MutexLockGuard lock(handler_mutex_);
-    if (!lock.IsLocked() || !initialized_ || !driver_ops_) {
+    if (!lock.IsLocked()) {
+        return false;
+    }
+    auto* self = const_cast<Bno08xHandler*>(this);
+    if (!self->ensureInitializedLocked() || !driver_ops_) {
         return false;
     }
     return driver_ops_->HasNewData(sensor);
@@ -394,55 +426,67 @@ bool Bno08xHandler::HasNewData(BNO085Sensor sensor) const noexcept {
 
 Bno08xError Bno08xHandler::readVectorSensor(BNO085Sensor sensor,
                                              Bno08xVector3& out) const noexcept {
+    const bool has_fresh_data = driver_ops_->HasNewData(sensor);
+    if (!has_fresh_data) {
+        out = {};
+        return Bno08xError::DATA_NOT_AVAILABLE;
+    }
+
     SensorEvent event = driver_ops_->GetLatest(sensor);
     out.x = event.vector.x;
     out.y = event.vector.y;
     out.z = event.vector.z;
     out.accuracy = event.vector.accuracy;
     out.timestamp_us = event.timestamp;
-    out.valid = driver_ops_->HasNewData(sensor);
+    out.valid = true;
     return Bno08xError::SUCCESS;
 }
 
 Bno08xError Bno08xHandler::ReadAcceleration(Bno08xVector3& acceleration) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!initialized_ || !driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
     return readVectorSensor(BNO085Sensor::Accelerometer, acceleration);
 }
 
 Bno08xError Bno08xHandler::ReadGyroscope(Bno08xVector3& gyroscope) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!initialized_ || !driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
     return readVectorSensor(BNO085Sensor::Gyroscope, gyroscope);
 }
 
 Bno08xError Bno08xHandler::ReadMagnetometer(Bno08xVector3& magnetometer) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!initialized_ || !driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
     return readVectorSensor(BNO085Sensor::Magnetometer, magnetometer);
 }
 
 Bno08xError Bno08xHandler::ReadLinearAcceleration(Bno08xVector3& linear_accel) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!initialized_ || !driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
     return readVectorSensor(BNO085Sensor::LinearAcceleration, linear_accel);
 }
 
 Bno08xError Bno08xHandler::ReadGravity(Bno08xVector3& gravity) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!initialized_ || !driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
     return readVectorSensor(BNO085Sensor::Gravity, gravity);
 }
 
 Bno08xError Bno08xHandler::ReadQuaternion(Bno08xQuaternion& quaternion) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!initialized_ || !driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
+
+    const bool has_fresh_data = driver_ops_->HasNewData(BNO085Sensor::RotationVector);
+    if (!has_fresh_data) {
+        quaternion = {};
+        return Bno08xError::DATA_NOT_AVAILABLE;
+    }
 
     SensorEvent event = driver_ops_->GetLatest(BNO085Sensor::RotationVector);
     quaternion.w = event.rotation.w;
@@ -472,36 +516,59 @@ Bno08xError Bno08xHandler::ReadEulerAngles(Bno08xEulerAngles& euler_angles) noex
 Bno08xError Bno08xHandler::ReadImuData(Bno08xImuData& imu_data) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!initialized_ || !driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
 
-    // Read all available sensor data (no extra mutex needed, already locked)
-    readVectorSensor(BNO085Sensor::Accelerometer, imu_data.acceleration);
-    readVectorSensor(BNO085Sensor::Gyroscope, imu_data.gyroscope);
-    readVectorSensor(BNO085Sensor::Magnetometer, imu_data.magnetometer);
-    readVectorSensor(BNO085Sensor::LinearAcceleration, imu_data.linear_acceleration);
-    readVectorSensor(BNO085Sensor::Gravity, imu_data.gravity);
+    imu_data = {};
+
+    auto readOptionalVector = [&](BNO085Sensor sensor, Bno08xVector3& out) {
+        Bno08xError result = readVectorSensor(sensor, out);
+        return result == Bno08xError::SUCCESS;
+    };
+
+    bool has_any_fresh_data = false;
+    has_any_fresh_data |= readOptionalVector(BNO085Sensor::Accelerometer, imu_data.acceleration);
+    has_any_fresh_data |= readOptionalVector(BNO085Sensor::Gyroscope, imu_data.gyroscope);
+    has_any_fresh_data |= readOptionalVector(BNO085Sensor::Magnetometer, imu_data.magnetometer);
+    has_any_fresh_data |= readOptionalVector(BNO085Sensor::LinearAcceleration, imu_data.linear_acceleration);
+    has_any_fresh_data |= readOptionalVector(BNO085Sensor::Gravity, imu_data.gravity);
 
     // Read rotation quaternion
-    SensorEvent rv_event = driver_ops_->GetLatest(BNO085Sensor::RotationVector);
-    imu_data.rotation.w = rv_event.rotation.w;
-    imu_data.rotation.x = rv_event.rotation.x;
-    imu_data.rotation.y = rv_event.rotation.y;
-    imu_data.rotation.z = rv_event.rotation.z;
-    imu_data.rotation.accuracy = rv_event.rotation.accuracy;
-    imu_data.rotation.timestamp_us = rv_event.timestamp;
-    imu_data.rotation.valid = driver_ops_->HasNewData(BNO085Sensor::RotationVector);
+    const bool rotation_fresh = driver_ops_->HasNewData(BNO085Sensor::RotationVector);
+    if (rotation_fresh) {
+        SensorEvent rv_event = driver_ops_->GetLatest(BNO085Sensor::RotationVector);
+        imu_data.rotation.w = rv_event.rotation.w;
+        imu_data.rotation.x = rv_event.rotation.x;
+        imu_data.rotation.y = rv_event.rotation.y;
+        imu_data.rotation.z = rv_event.rotation.z;
+        imu_data.rotation.accuracy = rv_event.rotation.accuracy;
+        imu_data.rotation.timestamp_us = rv_event.timestamp;
+        imu_data.rotation.valid = true;
+        has_any_fresh_data = true;
+    } else {
+        imu_data.rotation = {};
+    }
 
     // Derive Euler angles from quaternion
     QuaternionToEuler(imu_data.rotation, imu_data.euler);
 
-    imu_data.timestamp_us = rv_event.timestamp;
-    // Aggregate: valid if any constituent sensor has fresh data
-    imu_data.valid = imu_data.acceleration.valid ||
-                     imu_data.gyroscope.valid ||
-                     imu_data.magnetometer.valid ||
-                     imu_data.linear_acceleration.valid ||
-                     imu_data.gravity.valid ||
-                     imu_data.rotation.valid;
+    if (imu_data.rotation.valid) {
+        imu_data.timestamp_us = imu_data.rotation.timestamp_us;
+    } else if (imu_data.acceleration.valid) {
+        imu_data.timestamp_us = imu_data.acceleration.timestamp_us;
+    } else if (imu_data.gyroscope.valid) {
+        imu_data.timestamp_us = imu_data.gyroscope.timestamp_us;
+    } else if (imu_data.magnetometer.valid) {
+        imu_data.timestamp_us = imu_data.magnetometer.timestamp_us;
+    } else if (imu_data.linear_acceleration.valid) {
+        imu_data.timestamp_us = imu_data.linear_acceleration.timestamp_us;
+    } else if (imu_data.gravity.valid) {
+        imu_data.timestamp_us = imu_data.gravity.timestamp_us;
+    }
+
+    imu_data.valid = has_any_fresh_data;
+    if (!has_any_fresh_data) {
+        return Bno08xError::DATA_NOT_AVAILABLE;
+    }
 
     return Bno08xError::SUCCESS;
 }
@@ -513,7 +580,22 @@ Bno08xError Bno08xHandler::ReadImuData(Bno08xImuData& imu_data) noexcept {
 Bno08xError Bno08xHandler::ReadActivityData(Bno08xActivityData& activity_data) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!initialized_ || !driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
+
+    const bool tap_fresh = driver_ops_->HasNewData(BNO085Sensor::TapDetector);
+    const bool step_count_fresh = driver_ops_->HasNewData(BNO085Sensor::StepCounter);
+    const bool step_detect_fresh = driver_ops_->HasNewData(BNO085Sensor::StepDetector);
+    const bool shake_fresh = driver_ops_->HasNewData(BNO085Sensor::ShakeDetector);
+    const bool pickup_fresh = driver_ops_->HasNewData(BNO085Sensor::PickupDetector);
+    const bool motion_fresh = driver_ops_->HasNewData(BNO085Sensor::SignificantMotion);
+    const bool stability_fresh = driver_ops_->HasNewData(BNO085Sensor::StabilityClassifier);
+    const bool any_fresh = tap_fresh || step_count_fresh || step_detect_fresh ||
+                           shake_fresh || pickup_fresh || motion_fresh || stability_fresh;
+
+    activity_data = {};
+    if (!any_fresh) {
+        return Bno08xError::DATA_NOT_AVAILABLE;
+    }
 
     // Read tap detector
     SensorEvent tap_event = driver_ops_->GetLatest(BNO085Sensor::TapDetector);
@@ -545,7 +627,22 @@ Bno08xError Bno08xHandler::ReadActivityData(Bno08xActivityData& activity_data) n
     SensorEvent stability_event = driver_ops_->GetLatest(BNO085Sensor::StabilityClassifier);
     activity_data.stability_class = static_cast<uint8_t>(stability_event.vector.x);
 
-    activity_data.timestamp_us = tap_event.timestamp;
+    if (tap_fresh) {
+        activity_data.timestamp_us = tap_event.timestamp;
+    } else if (step_count_fresh) {
+        activity_data.timestamp_us = step_event.timestamp;
+    } else if (step_detect_fresh) {
+        activity_data.timestamp_us = step_det.timestamp;
+    } else if (shake_fresh) {
+        activity_data.timestamp_us = shake_event.timestamp;
+    } else if (pickup_fresh) {
+        activity_data.timestamp_us = pickup_event.timestamp;
+    } else if (motion_fresh) {
+        activity_data.timestamp_us = motion_event.timestamp;
+    } else if (stability_fresh) {
+        activity_data.timestamp_us = stability_event.timestamp;
+    }
+
     activity_data.valid = true;
 
     return Bno08xError::SUCCESS;
@@ -558,7 +655,7 @@ Bno08xError Bno08xHandler::ReadActivityData(Bno08xActivityData& activity_data) n
 Bno08xError Bno08xHandler::ReadCalibrationStatus(Bno08xCalibrationStatus& status) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!initialized_ || !driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
 
     // Accuracy is embedded in each sensor report's accuracy field
     SensorEvent accel = driver_ops_->GetLatest(BNO085Sensor::Accelerometer);
@@ -588,7 +685,7 @@ Bno08xError Bno08xHandler::EnableSensor(BNO085Sensor sensor, uint32_t interval_m
                                          float sensitivity) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!initialized_ || !driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
 
     if (driver_ops_->EnableSensor(sensor, interval_ms, sensitivity)) {
         return Bno08xError::SUCCESS;
@@ -602,7 +699,7 @@ Bno08xError Bno08xHandler::EnableSensor(BNO085Sensor sensor, uint32_t interval_m
 Bno08xError Bno08xHandler::DisableSensor(BNO085Sensor sensor) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!initialized_ || !driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
 
     if (driver_ops_->DisableSensor(sensor)) {
         return Bno08xError::SUCCESS;
@@ -616,7 +713,7 @@ Bno08xError Bno08xHandler::DisableSensor(BNO085Sensor sensor) noexcept {
 Bno08xError Bno08xHandler::ApplyConfiguration(const Bno08xConfig& config) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!initialized_ || !driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
 
     config_ = config;
     if (applyConfigLocked(config)) {
@@ -688,7 +785,7 @@ bool Bno08xHandler::applyConfigLocked(const Bno08xConfig& config) noexcept {
 Bno08xError Bno08xHandler::HardwareReset(uint32_t reset_duration_ms) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
 
     driver_ops_->HardwareReset(reset_duration_ms);
     return Bno08xError::SUCCESS;
@@ -697,7 +794,7 @@ Bno08xError Bno08xHandler::HardwareReset(uint32_t reset_duration_ms) noexcept {
 Bno08xError Bno08xHandler::SetBootPin(bool boot_state) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
 
     driver_ops_->SetBootPin(boot_state);
     return Bno08xError::SUCCESS;
@@ -706,7 +803,7 @@ Bno08xError Bno08xHandler::SetBootPin(bool boot_state) noexcept {
 Bno08xError Bno08xHandler::SetWakePin(bool wake_state) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) return Bno08xError::MUTEX_LOCK_FAILED;
-    if (!driver_ops_) return Bno08xError::NOT_INITIALIZED;
+    if (!ensureInitializedLocked() || !driver_ops_) return last_error_;
 
     driver_ops_->SetWakePin(wake_state);
     return Bno08xError::SUCCESS;
@@ -773,6 +870,24 @@ BNO085Interface Bno08xHandler::GetInterfaceType() const noexcept {
     return interface_type_;
 }
 
+IBno08xDriverOps* Bno08xHandler::GetSensor() noexcept {
+    if (!EnsureInitialized()) {
+        return nullptr;
+    }
+
+    MutexLockGuard lock(handler_mutex_);
+    if (!lock.IsLocked()) {
+        last_error_ = Bno08xError::MUTEX_LOCK_FAILED;
+        return nullptr;
+    }
+    return driver_ops_.get();
+}
+
+const IBno08xDriverOps* Bno08xHandler::GetSensor() const noexcept {
+    auto* self = const_cast<Bno08xHandler*>(this);
+    return self->GetSensor();
+}
+
 Bno08xError Bno08xHandler::GetLastError() const noexcept {
     MutexLockGuard lock(handler_mutex_);
     return lock.IsLocked() ? last_error_ : Bno08xError::MUTEX_LOCK_FAILED;
@@ -780,7 +895,9 @@ Bno08xError Bno08xHandler::GetLastError() const noexcept {
 
 int Bno08xHandler::GetLastDriverError() const noexcept {
     MutexLockGuard lock(handler_mutex_);
-    if (!lock.IsLocked() || !driver_ops_) return -1;
+    if (!lock.IsLocked()) return -1;
+    auto* self = const_cast<Bno08xHandler*>(this);
+    if (!self->ensureInitializedLocked() || !driver_ops_) return -1;
     return driver_ops_->GetLastError();
 }
 

@@ -573,6 +573,12 @@ public:
                     bool failOnVerifyError = false);
 
     /**
+     * @brief Ensure driver is initialized (lazy init entrypoint).
+     * @return true if initialized and ready.
+     */
+    bool EnsureInitialized() noexcept;
+
+    /**
      * @brief Check if the TMC9660 driver has been initialized and is ready.
      *
      * @return true if Initialize() has completed successfully and the driver
@@ -1412,10 +1418,10 @@ public:
      * drv->protection.configureVoltage(48000, 10000);
      * @endcode
      */
-    SpiDriver* spiDriver() noexcept { return spi_driver_.get(); }
+    SpiDriver* spiDriver() noexcept;
 
     /** @brief Const version of spiDriver(). */
-    const SpiDriver* spiDriver() const noexcept { return spi_driver_.get(); }
+    const SpiDriver* spiDriver() const noexcept;
 
     /**
      * @brief Get the UART-mode driver instance (nullptr if constructed with SPI).
@@ -1428,10 +1434,10 @@ public:
      * drv->feedbackSense.configureABNEncoder(1024);
      * @endcode
      */
-    UartDriver* uartDriver() noexcept { return uart_driver_.get(); }
+    UartDriver* uartDriver() noexcept;
 
     /** @brief Const version of uartDriver(). */
-    const UartDriver* uartDriver() const noexcept { return uart_driver_.get(); }
+    const UartDriver* uartDriver() const noexcept;
 
     /// @}
 
@@ -1457,6 +1463,14 @@ public:
      */
     template <typename Func>
     auto visitDriver(Func&& func) {
+        if (!EnsureInitialized()) {
+            using ReturnType = decltype(func(*spi_driver_));
+            if constexpr (std::is_void_v<ReturnType>) {
+                return;
+            } else {
+                return ReturnType{};
+            }
+        }
         if (use_spi_) {
             if (spi_driver_) return func(*spi_driver_);
         } else {
@@ -1473,6 +1487,15 @@ public:
     /** @brief Const overload of visitDriver(). */
     template <typename Func>
     auto visitDriver(Func&& func) const {
+        auto* self = const_cast<Tmc9660Handler*>(this);
+        if (!self->EnsureInitialized()) {
+            using ReturnType = decltype(func(std::as_const(*spi_driver_)));
+            if constexpr (std::is_void_v<ReturnType>) {
+                return;
+            } else {
+                return ReturnType{};
+            }
+        }
         if (use_spi_) {
             if (spi_driver_) return func(*spi_driver_);
         } else {
