@@ -1,0 +1,5 @@
+<map id="HalUartTmc5160Comm::DebugLog" name="HalUartTmc5160Comm::DebugLog">
+<area shape="rect" id="Node000001" title="Debug logging." alt="" coords="5,5,180,45"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="228,13,380,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,23,214,23,214,28,180,28"/>
+</map>

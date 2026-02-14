@@ -1,0 +1,35 @@
+<map id="Pcal95555Handler.cpp" name="Pcal95555Handler.cpp">
+<area shape="rect" id="Node000001" title="Implementation of the PCAL95555 GPIO expander handler." alt="" coords="550,5,717,31"/>
+<area shape="rect" id="Node000002" href="$Pcal95555Handler_8h.html" title="Unified handler for the PCA9555 / PCAL9555A 16&#45;bit I2C GPIO expander." alt="" coords="558,79,709,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="636,31,636,65,631,65,631,31"/>
+<area shape="rect" id="Node000012" href="$Logger_8h.html" title="Advanced logging system with formatting capabilities." alt="" coords="151,79,334,104"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="571,33,320,79,319,74,570,28"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="733,79,800,104"/>
+<area shape="poly" id="edge17_Node000001_Node000016" title=" " alt="" coords="656,28,734,70,732,74,654,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="251,167,317,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="558,103,449,121,389,136,330,154,314,162,312,157,328,150,387,131,448,116,557,98"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="1304,167,1371,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="709,100,722,101,809,108,883,110,1010,107,1072,108,1136,114,1209,127,1293,149,1311,157,1309,162,1291,155,1208,132,1136,119,1071,113,1010,112,883,115,808,113,721,107,708,105"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="341,167,419,192"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="586,107,512,127,432,154,413,163,411,158,430,150,511,122,584,102"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="443,167,499,192"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="609,107,513,154,501,161,498,157,511,150,607,102"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="523,167,610,192"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="626,106,587,157,582,154,622,103"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="635,167,765,192"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="644,103,684,154,680,157,640,106"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="789,167,909,192"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="663,102,809,159,807,164,661,107"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="933,152,1120,207"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="692,101,920,149,919,154,691,107"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="1144,167,1280,192"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="709,100,722,101,837,113,928,119,1018,128,1133,149,1170,160,1168,165,1131,155,1017,134,928,124,837,118,721,107,708,105"/>
+<area shape="poly" id="edge15_Node000012_Node000003" title=" " alt="" coords="251,103,275,153,270,155,246,105"/>
+<area shape="poly" id="edge14_Node000012_Node000005" title=" " alt="" coords="263,102,351,157,348,162,260,106"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="5,167,64,192"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="204,107,143,127,77,154,64,162,61,157,75,150,141,122,202,102"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="89,167,151,192"/>
+<area shape="poly" id="edge13_Node000012_Node000014" title=" " alt="" coords="228,106,150,161,147,156,225,102"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="176,167,227,192"/>
+<area shape="poly" id="edge16_Node000012_Node000015" title=" " alt="" coords="239,105,215,155,211,153,235,103"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Pcal95555Handler::ConfigureHardwareInterrupt" name="Pcal95555Handler::ConfigureHardwareInterrupt">
+<area shape="rect" id="Node000001" title="Configure the hardware interrupt pin (falling edge, active&#45;low)." alt="" coords="5,5,216,45"/>
+<area shape="rect" id="Node000002" href="$classPcal95555Handler.html#a87e8b50faf5d3d815227068ff26b1a6b" title="Static ISR callback for the hardware interrupt pin." alt="" coords="264,5,475,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,23,251,23,251,28,216,28"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Bno08xHandler::mapDriverError" name="Bno08xHandler::mapDriverError">
+<area shape="rect" id="Node000001" title="Internal: map SH&#45;2 error code to Bno08xError." alt="" coords="231,5,429,45"/>
+<area shape="rect" id="Node000002" href="$classBno08xHandler.html#a74cdf0328224c1a3fad944bbf1312e7e" title="Update sensor &#45; must be called regularly to pump the SH&#45;2 service loop." alt="" coords="5,13,183,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,28,183,28,183,23,217,23"/>
+</map>

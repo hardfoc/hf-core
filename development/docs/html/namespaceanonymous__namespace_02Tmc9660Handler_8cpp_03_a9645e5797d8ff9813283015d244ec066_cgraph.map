@@ -1,0 +1,23 @@
+<map id="anonymous_namespace{Tmc9660Handler::cpp}::halDebugLog" name="anonymous_namespace{Tmc9660Handler::cpp}::halDebugLog">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,89,185,144"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#a9811dd7acd0992cdc9ed6c5125a3fe1d" title="Log debug message." alt="" coords="251,55,367,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,93,239,81,241,86,186,98"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#a5e4bcdaea60b9ac227b564d780388769" title="Log error message." alt="" coords="257,104,362,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="186,114,243,114,243,119,186,119"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="233,203,385,228"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="143,142,234,189,252,196,250,201,232,194,141,146"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="260,153,359,179"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="186,135,247,149,245,154,185,140"/>
+<area shape="rect" id="Node000008" href="$classLogger.html#a8c19c14724b0be1d2be63da4258c001a" title="Log warning message." alt="" coords="256,5,363,31"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="141,87,232,40,250,33,252,38,234,44,143,92"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="433,55,605,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="368,65,420,65,420,70,368,70"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="446,104,593,129"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="365,77,452,98,451,103,363,83"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="362,102,451,81,452,86,363,107"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="362,114,432,114,432,119,362,119"/>
+<area shape="poly" id="edge9_Node000007_Node000003" title=" " alt="" coords="358,152,384,140,398,128,407,115,416,102,432,89,444,83,446,88,435,94,420,106,411,118,402,131,387,144,360,157"/>
+<area shape="poly" id="edge10_Node000007_Node000004" title=" " alt="" coords="358,152,451,130,452,135,359,157"/>
+<area shape="poly" id="edge12_Node000008_Node000003" title=" " alt="" coords="364,28,452,49,451,54,362,33"/>
+<area shape="poly" id="edge13_Node000008_Node000004" title=" " alt="" coords="363,28,387,40,402,52,411,65,420,77,435,89,449,96,447,101,432,94,417,81,407,68,398,56,384,44,361,33"/>
+</map>

@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['magenta_0',['MAGENTA',['../Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2eac634ffea7195608364671ac52ee59a61',1,'MAGENTA:&#160;Logger.h'],['../Logger_8h.html#a96718db9ec196b0ccd6f8d9517b45ea1ac634ffea7195608364671ac52ee59a61',1,'MAGENTA:&#160;Logger.h']]],
+  ['magnetic_5ffield_5fok_1',['magnetic_field_ok',['../structAs5047uDiagnostics.html#ab6d5b5b629f8c8a47607276b4e56ee55',1,'As5047uDiagnostics']]],
+  ['magnetometer_2',['magnetometer',['../structBno08xImuData.html#a615841bc51167785bedcc6fac397fbee',1,'Bno08xImuData']]],
+  ['magnetometer_5faccuracy_3',['magnetometer_accuracy',['../structBno08xCalibrationStatus.html#a3d84d0ced6d22135f0654d2ba2a3bbe6',1,'Bno08xCalibrationStatus']]],
+  ['magnetometer_5finterval_5fms_4',['magnetometer_interval_ms',['../structBno08xConfig.html#acc63542b675482d61aa2709337e300ee',1,'Bno08xConfig']]],
+  ['magnitude_5',['magnitude',['../structAs5047uMeasurement.html#a6f233a35bd987a4053c3c89ce9f2fd26',1,'As5047uMeasurement']]],
+  ['main_20handler_20class_6',['Main Handler Class',['../group__MAX22200__Handler.html',1,'Main Handler Class'],['../group__TLE92466ED__Handler.html',1,'Main Handler Class'],['../group__TMC5160__Handler.html',1,'Main Handler Class']]],
+  ['mapdrivererror_7',['mapDriverError',['../classBno08xHandler.html#a6e91ad7cdb2e1bb9a57eb797cf7d8e96',1,'Bno08xHandler']]],
+  ['max22200_5fhandler_5fcomprehensive_5ftest_2ecpp_8',['max22200_handler_comprehensive_test.cpp',['../max22200__handler__comprehensive__test_8cpp.html',1,'']]],
+  ['max22200_5fspi_5fclock_5fhz_9',['MAX22200_SPI_CLOCK_HZ',['../esp32__test__config_8hpp.html#a42b3ef2726e0ebe6595009ab120373c7',1,'esp32_test_config.hpp']]],
+  ['max22200handler_10',['Max22200Handler',['../classMax22200Handler.html',1,'Max22200Handler'],['../classMax22200Handler.html#a980ab91fe8af480657541343c4f1eb90',1,'Max22200Handler::Max22200Handler(BaseSpi &amp;spi, BaseGpio &amp;enable, BaseGpio &amp;cmd, BaseGpio *fault=nullptr) noexcept'],['../classMax22200Handler.html#a2e66dfcba97f15e640743125f640b0d9',1,'Max22200Handler::Max22200Handler(const Max22200Handler &amp;)=delete']]],
+  ['max22200handler_2ecpp_11',['Max22200Handler.cpp',['../Max22200Handler_8cpp.html',1,'']]],
+  ['max22200handler_2eh_12',['Max22200Handler.h',['../Max22200Handler_8h.html',1,'']]],
+  ['max_5ftemperature_13',['max_temperature',['../structntc__temp__handler__config__t.html#a71caa44219cb7b02284922e7841835ac',1,'ntc_temp_handler_config_t']]],
+  ['max_5fwidth_14',['max_width',['../structLogConfig.html#a1b6aafe5e326ebeeb603560b0e6a8a6b',1,'LogConfig::max_width'],['../structAsciiArtFormat.html#ab73c6d828b65d8d31c0f50a89582234d',1,'AsciiArtFormat::max_width']]],
+  ['min_5ftemperature_15',['min_temperature',['../structntc__temp__handler__config__t.html#a6566ae0df558de5dcf441bd8b80c46d8',1,'ntc_temp_handler_config_t']]],
+  ['model_16',['Model',['../Bno08xHandler_8h.html#autotoc_md1',1,'Ownership Model'],['../Pca9685Handler_8h.html#autotoc_md5',1,'Ownership Model'],['../Pcal95555Handler_8h.html#autotoc_md11',1,'Ownership Model'],['../Tmc9660Handler_8h.html#autotoc_md22',1,'Ownership Model']]],
+  ['monitoring_5factive_5f_17',['monitoring_active_',['../classNtcTemperatureHandler.html#af312fddeecba9fcccef5edf9d05b1c91',1,'NtcTemperatureHandler']]],
+  ['monitoring_5ftimer_5f_18',['monitoring_timer_',['../classNtcTemperatureHandler.html#ab71fd7339661fe72a7f7760883fd8e38',1,'NtcTemperatureHandler']]],
+  ['multi_20channel_20pwm_20adapter_19',['Multi-Channel PWM Adapter',['../group__PCA9685__HAL__PwmAdapter.html',1,'']]],
+  ['mutex_5f_20',['mutex_',['../classMax22200Handler.html#a08079ccf08dd0068f39e2a4a208de9a4',1,'Max22200Handler::mutex_'],['../classNtcTemperatureHandler.html#a13433ca31eb877b27d39f398ee5b0d6a',1,'NtcTemperatureHandler::mutex_'],['../classTle92466edHandler.html#af0921ac446c5c577bcd10f56bfe744e1',1,'Tle92466edHandler::mutex_'],['../classTmc5160Handler.html#ae5cc2c89041026e9627b3f2defe2b75c',1,'Tmc5160Handler::mutex_'],['../classTmc9660Handler_1_1Adc.html#afd6a0c0ecf16ede28863879da6826c03',1,'Tmc9660Handler::Adc::mutex_'],['../classTmc9660Handler_1_1Temperature.html#a7db458c4691ee7be8671d97191531a10',1,'Tmc9660Handler::Temperature::mutex_'],['../classWs2812Handler.html#ab05395f0e7509f80ed86011bddd09d73',1,'Ws2812Handler::mutex_']]],
+  ['mutex_5flock_5ffailed_21',['MUTEX_LOCK_FAILED',['../As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665ca13d0255d66b368703af734c8ca5ae227',1,'MUTEX_LOCK_FAILED:&#160;As5047uHandler.h'],['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a13d0255d66b368703af734c8ca5ae227',1,'MUTEX_LOCK_FAILED:&#160;Bno08xHandler.h']]]
+];

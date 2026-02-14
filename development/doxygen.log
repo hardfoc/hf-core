@@ -1,0 +1,2520 @@
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.eN67Px
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.eN67Px' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
+Searching for include files...
+Searching for example files...
+Searching for images...
+Searching for dot files...
+Searching for msc files...
+Searching for dia files...
+Searching for files to exclude
+Searching INPUT for files to process...
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/logger
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tle92466ed
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/pcal95555
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/max22200
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ntc
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ws2812
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/pca9685
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tmc9660
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tmc5160
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/bno08x
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/as5047u
+Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main
+Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests
+Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests
+Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/integration_tests
+Reading and parsing tag files
+Parsing files
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/as5047u/As5047uHandler.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/as5047u/As5047uHandler.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/as5047u/As5047uHandler.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/as5047u/As5047uHandler.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/bno08x/Bno08xHandler.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/bno08x/Bno08xHandler.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/bno08x/Bno08xHandler.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/bno08x/Bno08xHandler.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/logger/Logger.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/logger/Logger.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/logger/Logger.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/logger/Logger.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/max22200/Max22200Handler.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/max22200/Max22200Handler.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/max22200/Max22200Handler.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/max22200/Max22200Handler.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/ntc/NtcTemperatureHandler.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/ntc/NtcTemperatureHandler.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/ntc/NtcTemperatureHandler.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/ntc/NtcTemperatureHandler.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/pca9685/Pca9685Handler.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/pca9685/Pca9685Handler.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/pca9685/Pca9685Handler.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/pca9685/Pca9685Handler.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/pcal95555/Pcal95555Handler.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/pcal95555/Pcal95555Handler.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/pcal95555/Pcal95555Handler.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/pcal95555/Pcal95555Handler.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/tle92466ed/Tle92466edHandler.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/tle92466ed/Tle92466edHandler.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/tle92466ed/Tle92466edHandler.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/tle92466ed/Tle92466edHandler.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/tmc5160/Tmc5160Handler.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/tmc5160/Tmc5160Handler.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/tmc5160/Tmc5160Handler.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/tmc5160/Tmc5160Handler.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660Handler.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660Handler.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660Handler.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660Handler.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/ws2812/Ws2812Handler.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/ws2812/Ws2812Handler.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/ws2812/Ws2812Handler.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/ws2812/Ws2812Handler.h...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/esp32_bus_setup.hpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/esp32_bus_setup.hpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/esp32_test_config.hpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/esp32_test_config.hpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/as5047u_handler_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/as5047u_handler_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/bno08x_handler_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/bno08x_handler_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/max22200_handler_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/max22200_handler_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/ntc_handler_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/ntc_handler_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/pca9685_handler_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/pca9685_handler_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/pcal95555_handler_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/pcal95555_handler_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tle92466ed_handler_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tle92466ed_handler_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tmc5160_handler_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tmc5160_handler_compr/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:116: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannel' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:134: warning: @copybrief or @copydoc target 'BaseAdc::ResetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:106: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelV' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:111: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelCount' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:128: warning: @copybrief or @copydoc target 'BaseAdc::GetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:125: warning: @copybrief or @copydoc target 'BaseAdc::GetStatistics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:121: warning: @copybrief or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
+ehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tmc9660_handler_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tmc9660_handler_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/ws2812_handler_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/ws2812_handler_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/integration_tests/full_system_integration_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/integration_tests/full_system_integration_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/canopen_utils_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/canopen_utils_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/general_utils_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/general_utils_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/logger_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/logger_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/rtos_wrap_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/rtos_wrap_comprehensive_test.cpp...
+Reading /home/runner/work/hf-core/hf-core/README.md...
+Building macro definition list...
+Building group list...
+Building directory list...
+Building namespace list...
+Building file list...
+Building class list...
+Building concept list...
+Computing nesting relations for classes...
+Associating documentation with classes...
+Associating documentation with concepts...
+Associating documentation with modules...
+Building example list...
+Searching for enumerations...
+Searching for documented typedefs...
+Searching for members imported via using declarations...
+Searching for included using directives...
+Searching for documented variables...
+Building interface member list...
+Building member list...
+Searching for friends...
+Searching for documented defines...
+Computing class inheritance relations...
+Computing class usage relations...
+Flushing cached template relations that have become invalid...
+Computing class relations...
+Add enum values to enums...
+Searching for member function documentation...
+Creating members for template instances...
+Building page list...
+Search for main page...
+Computing page relations...
+Determining the scope of groups...
+Computing module relations...
+Sorting lists...
+Determining which enums are documented
+Computing member relations...
+Building full member lists recursively...
+Adding members to member groups.
+Computing member references...
+Inheriting documentation...
+Generating disk names...
+Adding source references...
+Adding xrefitems...
+Sorting member lists...
+Setting anonymous enum type...
+Computing dependencies between directories...
+Generating citations page...
+Counting members...
+Counting data structures...
+Resolving user defined references...
+Finding anchors and sections in the documentation...
+Transferring function references...
+Combining using relations...
+Adding members to index pages...
+Correcting members for VHDL...
+Computing tooltip texts...
+Generating style sheet...
+Generating search indices...
+Generating example documentation...
+Generating file sources...
+Generating code for file esp32_bus_setup.hpp...
+Generating code for file esp32_test_config.hpp...
+Parsing code for file as5047u_handler_comprehensive_test.cpp...
+Parsing code for file bno08x_handler_comprehensive_test.cpp...
+Parsing code for file max22200_handler_comprehensive_test.cpp...
+Parsing code for file ntc_handler_comprehensive_test.cpp...
+Parsing code for file pca9685_handler_comprehensive_test.cpp...
+Parsing code for file pcal95555_handler_comprehensive_test.cpp...
+Parsing code for file tle92466ed_handler_comprehensive_test.cpp...
+Parsing code for file tmc5160_handler_comprehensive_test.cpp...
+Parsing code for file tmc9660_handler_comprehensive_test.cpp...
+Parsing code for file ws2812_handler_comprehensive_test.cpp...
+Parsing code for file full_system_integration_test.cpp...
+Generating code for file TestFramework.h...
+Parsing code for file canopen_utils_comprehensive_test.cpp...
+Parsing code for file general_utils_comprehensive_test.cpp...
+Parsing code for file logger_comprehensive_test.cpp...
+Parsing code for file rtos_wrap_comprehensive_test.cpp...
+Parsing code for file As5047uHandler.cpp...
+Generating code for file As5047uHandler.h...
+Parsing code for file Bno08xHandler.cpp...
+Generating code for file Bno08xHandler.h...
+Parsing code for file Logger.cpp...
+Generating code for file Logger.h...
+Parsing code for file Max22200Handler.cpp...
+Generating code for file Max22200Handler.h...
+Parsing code for file NtcTemperatureHandler.cpp...
+Generating code for file NtcTemperatureHandler.h...
+Parsing code for file Pca9685Handler.cpp...
+Generating code for file Pca9685Handler.h...
+Parsing code for file Pcal95555Handler.cpp...
+Generating code for file Pcal95555Handler.h...
+Parsing code for file Tle92466edHandler.cpp...
+Generating code for file Tle92466edHandler.h...
+Parsing code for file Tmc5160Handler.cpp...
+Generating code for file Tmc5160Handler.h...
+Parsing code for file Tmc9660AdcWrapper.cpp...
+Generating code for file Tmc9660AdcWrapper.h...
+Parsing code for file Tmc9660Handler.cpp...
+Generating code for file Tmc9660Handler.h...
+Parsing code for file Ws2812Handler.cpp...
+Generating code for file Ws2812Handler.h...
+Parsing code for file README.md...
+Generating file documentation...
+Generating docs for file esp32_bus_setup.hpp...
+Generating caller graph for function create_gpio
+Generating call graph for function get_i2c_device
+Generating caller graph for function get_i2c_device
+Generating caller graph for function get_shared_adc
+Generating caller graph for function get_shared_i2c_bus
+Generating caller graph for function get_shared_spi_bus
+Generating caller graph for function scan_i2c_bus
+Generating docs for file esp32_test_config.hpp...
+Generating docs for file as5047u_handler_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating call graph for function concurrent_reader_task
+Generating caller graph for function concurrent_reader_task
+Generating call graph for function create_handler
+Generating caller graph for function create_handler
+Generating call graph for function test_concurrent_access
+Generating caller graph for function test_concurrent_access
+Generating caller graph for function test_daec_enable_disable
+Generating caller graph for function test_dump_diagnostics
+Generating caller graph for function test_get_sensor
+Generating call graph for function test_handler_construction
+Generating caller graph for function test_handler_construction
+Generating caller graph for function test_initialize
+Generating caller graph for function test_is_initialized
+Generating call graph for function test_operations_before_init
+Generating caller graph for function test_operations_before_init
+Generating call graph for function test_read_angle_consistency
+Generating caller graph for function test_read_angle_consistency
+Generating call graph for function test_read_angle_degrees
+Generating caller graph for function test_read_angle_degrees
+Generating caller graph for function test_read_angle_raw
+Generating caller graph for function test_read_velocity
+Generating call graph for function test_set_zero_position
+Generating caller graph for function test_set_zero_position
+Generating docs for file bno08x_handler_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating call graph for function create_handler
+Generating caller graph for function create_handler
+Generating caller graph for function test_construction
+Generating caller graph for function test_disable_sensor
+Generating caller graph for function test_enable_accelerometer
+Generating caller graph for function test_freshness_gating
+Generating caller graph for function test_full_config
+Generating caller graph for function test_hardware_reset
+Generating caller graph for function test_initialize
+Generating caller graph for function test_is_initialized
+Generating call graph for function test_operations_before_init
+Generating caller graph for function test_operations_before_init
+Generating caller graph for function test_read_acceleration
+Generating caller graph for function test_read_imu_data
+Generating docs for file max22200_handler_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating call graph for function create_handler
+Generating caller graph for function create_handler
+Generating caller graph for function test_channel_range_guard
+Generating caller graph for function test_clear_faults
+Generating caller graph for function test_construction
+Generating caller graph for function test_deinitialize
+Generating caller graph for function test_disable_all_channels
+Generating caller graph for function test_disable_channel
+Generating caller graph for function test_dump_diagnostics
+Generating caller graph for function test_enable_all_channels
+Generating caller graph for function test_enable_channel
+Generating caller graph for function test_enable_disable_device
+Generating caller graph for function test_get_channel_faults
+Generating caller graph for function test_get_driver_access
+Generating caller graph for function test_get_status
+Generating caller graph for function test_has_fault
+Generating caller graph for function test_initialize
+Generating caller graph for function test_is_channel_enabled
+Generating caller graph for function test_is_initialized
+Generating caller graph for function test_operations_before_init
+Generating caller graph for function test_read_fault_register
+Generating caller graph for function test_set_channels_mask
+Generating caller graph for function test_setup_cdr_channel
+Generating caller graph for function test_setup_vdr_channel
+Generating docs for file ntc_handler_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating caller graph for function continuous_callback
+Generating call graph for function create_handler
+Generating caller graph for function create_handler
+Generating caller graph for function test_capabilities
+Generating call graph for function test_continuous_monitoring
+Generating caller graph for function test_continuous_monitoring
+Generating caller graph for function test_diagnostics
+Generating caller graph for function test_enable_filtering
+Generating caller graph for function test_health_check
+Generating caller graph for function test_initialize
+Generating caller graph for function test_read_temperature
+Generating caller graph for function test_read_temperature_consistency
+Generating caller graph for function test_self_test
+Generating caller graph for function test_sensor_info
+Generating caller graph for function test_set_calibration_offset
+Generating caller graph for function test_sleep_mode
+Generating caller graph for function test_statistics
+Generating call graph for function test_threshold_monitoring
+Generating caller graph for function test_threshold_monitoring
+Generating caller graph for function threshold_callback
+Generating docs for file pca9685_handler_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating call graph for function create_handler
+Generating caller graph for function create_handler
+Generating caller graph for function test_error_invalid_channel
+Generating caller graph for function test_frequency
+Generating caller graph for function test_gpio_pin_wrapper
+Generating caller graph for function test_initialize
+Generating caller graph for function test_set_duty_cycle
+Generating caller graph for function test_set_duty_raw
+Generating caller graph for function test_sleep_wake
+Generating docs for file pcal95555_handler_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating call graph for function create_handler
+Generating caller graph for function create_handler
+Generating caller graph for function test_batch_write
+Generating caller graph for function test_chip_variant
+Generating caller graph for function test_drain_pending_interrupts
+Generating caller graph for function test_error_invalid_pin
+Generating caller graph for function test_gpio_pin_wrapper
+Generating caller graph for function test_initialize
+Generating caller graph for function test_pin_direction
+Generating caller graph for function test_pin_write_read
+Generating caller graph for function test_supports_interrupts
+Generating caller graph for function test_toggle_pin
+Generating docs for file tle92466ed_handler_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating call graph for function create_handler
+Generating caller graph for function create_handler
+Generating caller graph for function test_channel_range_guard
+Generating caller graph for function test_clear_faults
+Generating caller graph for function test_configure_pwm_raw
+Generating caller graph for function test_construction
+Generating caller graph for function test_deinitialize
+Generating caller graph for function test_disable_all_channels
+Generating caller graph for function test_disable_channel
+Generating caller graph for function test_dump_diagnostics
+Generating caller graph for function test_enable_all_channels
+Generating caller graph for function test_enable_channel
+Generating caller graph for function test_enter_mission_mode
+Generating caller graph for function test_get_channel_diagnostics
+Generating caller graph for function test_get_chip_id
+Generating caller graph for function test_get_driver_access
+Generating caller graph for function test_get_fault_report
+Generating caller graph for function test_get_status
+Generating caller graph for function test_has_fault
+Generating caller graph for function test_initialize
+Generating caller graph for function test_is_initialized
+Generating caller graph for function test_kick_watchdog
+Generating caller graph for function test_operations_before_init
+Generating caller graph for function test_set_channel_current
+Generating docs for file tmc5160_handler_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating call graph for function create_handler
+Generating caller graph for function create_handler
+Generating caller graph for function test_chip_version
+Generating caller graph for function test_construction
+Generating caller graph for function test_deinitialize
+Generating caller graph for function test_disable_motor
+Generating caller graph for function test_driver_config_snapshot
+Generating caller graph for function test_dump_diagnostics
+Generating caller graph for function test_enable_motor
+Generating caller graph for function test_get_current_position
+Generating caller graph for function test_get_current_velocity
+Generating caller graph for function test_initialize
+Generating caller graph for function test_is_initialized
+Generating caller graph for function test_is_motor_enabled
+Generating caller graph for function test_is_overtemperature
+Generating caller graph for function test_is_stall_detected
+Generating caller graph for function test_is_standstill
+Generating caller graph for function test_is_target_reached
+Generating caller graph for function test_operations_before_init
+Generating caller graph for function test_set_current
+Generating caller graph for function test_set_target_position
+Generating caller graph for function test_set_target_velocity
+Generating caller graph for function test_stallguard_result
+Generating caller graph for function test_stop
+Generating caller graph for function test_visit_driver_communication
+Generating caller graph for function test_visit_driver_encoder
+Generating caller graph for function test_visit_driver_motor_control
+Generating caller graph for function test_visit_driver_ramp_control
+Generating docs for/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:412: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
+  parameter 'tag'
+/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:386: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:
+  parameter 'tag'
+/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:370: warning: argument 'test_results' of command @param is not found in the argument list of print_test_section_status(const char *tag, const char *test_suite_name)
+/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:370: warning: The following parameter of print_test_section_status(const char *tag, const char *test_suite_name) is not documented:
+  parameter 'tag'
+/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:350: warning: The following parameter of print_test_summary(const TestResults &test_results, const char *test_suite_name, const char *tag) is not documented:
+  parameter 'tag'
+ file tmc9660_handler_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating call graph for function create_handler
+Generating caller graph for function create_handler
+Generating caller graph for function test_adc_wrapper
+Generating caller graph for function test_adc_wrapper_delegation
+Generating caller graph for function test_chip_temperature
+Generating caller graph for function test_construction
+Generating caller graph for function test_driver_enable
+Generating caller graph for function test_error_flags
+Generating caller graph for function test_gpio17_wrapper
+Generating caller graph for function test_gpio18_wrapper
+Generating caller graph for function test_initialize
+Generating caller graph for function test_is_ready
+Generating caller graph for function test_motor_current
+Generating caller graph for function test_operations_before_init
+Generating caller graph for function test_read_parameter
+Generating caller graph for function test_set_target_position
+Generating caller graph for function test_set_target_velocity
+Generating caller graph for function test_status_flags
+Generating caller graph for function test_supply_voltage
+Generating caller graph for function test_temperature_wrapper
+Generating caller graph for function test_write_parameter
+Generating docs for file ws2812_handler_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating caller graph for function create_handler
+Generating caller graph for function test_brightness_range
+Generating caller graph for function test_clear
+Generating caller graph for function test_color_sequence
+Generating caller graph for function test_construction
+Generating caller graph for function test_deinitialize
+Generating caller graph for function test_dump_diagnostics
+Generating caller graph for function test_get_animator
+Generating caller graph for function test_get_num_leds
+Generating caller graph for function test_get_strip
+Generating caller graph for function test_initialize
+Generating caller graph for function test_is_initialized
+Generating caller graph for function test_operations_before_init
+Generating caller graph for function test_pixel_out_of_range
+Generating caller graph for function test_set_all_pixels
+Generating caller graph for function test_set_brightness
+Generating caller graph for function test_set_effect_rainbow
+Generating caller graph for function test_set_pixel
+Generating caller graph for function test_show
+Generating caller graph for function test_step
+Generating caller graph for function test_tick
+Generating docs for file full_system_integration_test.cpp...
+Generating call graph for function app_main
+Generating call graph for function i2c_handler_task
+Generating caller graph for function i2c_handler_task
+Generating call graph for function test_concurrent_i2c_access
+Generating caller graph for function test_concurrent_i2c_access
+Generating call graph for function test_i2c_bus_scan
+Generating caller graph for function test_i2c_bus_scan
+Generating call graph for function test_i2c_multi_device_init
+Generating caller graph for function test_i2c_multi_device_init
+Generating call graph for function test_logger_singleton_across_handlers
+Generating caller graph for function test_logger_singleton_across_handlers
+Generating caller graph for function test_mutex_protected_handler
+Generating docs for file TestFramework.h...
+Generating call graph for function ensure_gpio14_initialized
+Generating caller graph for function ensure_gpio14_initialized
+Generating caller graph for function flip_test_progress_indicator
+Generating caller graph for function init_test_progress_indicator
+Generating call graph for function print_test_section_status
+Generating caller graph for function print_test_section_status
+Generating call graph for function print_test_summary
+Generating caller graph for function print_test_summary
+Generating call graph for function test_task_trampoline
+Generating docs for file canopen_utils_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating caller graph for function test_can_frame_data
+Generating caller graph for function test_can_frame_default
+Generating caller graph for function test_nmt_commands
+Generating caller graph for function test_sdo_download_frame
+Generating docs for file general_utils_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating caller graph for function test_action_timer
+Generating caller graph for function test_averaging_filter
+Generating caller graph for function test_averaging_filter_partial
+Generating caller graph for function test_circular_buffer_basic
+Generating caller graph for function test_circular_buffer_overflow
+Generating caller graph for function test_crc_functions
+Generating caller graph for function test_ring_buffer_basic
+Generating caller graph for function test_software_version
+Generating docs for file logger_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating call graph for function test_ascii_art
+Generating caller graph for function test_ascii_art
+Generating call graph for function test_concurrent_logging
+Generating caller graph for function test_concurrent_logging
+Generating call graph for function test_enable_disable_features
+Generating caller graph for function test_enable_disable_features
+Generating call graph for function test_formatted_output
+Generating caller graph for function test_formatted_output
+Generating call graph for function test_initialize
+Generating caller graph for function test_initialize
+Generating call graph for function test_log_all_levels
+Generating caller graph for function test_log_all_levels
+Generating call graph for function test_reinitialize
+Generating caller graph for function test_reinitialize
+Generating call graph for function test_set_log_level
+Generating caller graph for function test_set_log_level
+Generating call graph for function test_singleton_access
+Generating caller graph for function test_singleton_access
+Generating docs for file rtos_wrap_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating call graph for function test_base_thread
+Generating caller graph for function test_base_thread
+Generating caller graph for function test_event_flags
+Generating caller graph for function test_lock_guard_scoped
+Generating caller graph for function test_mutex_contention
+Generating caller graph for function test_mutex_create
+Generating caller graph for function test_mutex_lock_unlock
+Generating call graph for function test_os_delay
+Generating caller graph for function test_os_delay
+Generating caller graph for function test_os_queue
+Generating caller graph for function test_os_queue_full
+Generating call graph for function test_periodic_timer
+Generating caller graph for function test_periodic_timer
+Generating caller graph for function test_semaphore
+Generating caller graph for function timer_callback
+Generating docs for file As5047uHandler.cpp...
+Generating docs for file As5047uHandler.h...
+Generating caller graph for function As5047uErrorToString
+Generating docs for file Bno08xHandler.cpp...
+Generating docs for file Bno08xHandler.h...
+Generating caller graph for function Bno08xErrorToString
+Generating docs for file Logger.cpp...
+Generating docs for file Logger.h...
+Generating docs for file Max22200Handler.cpp...
+Generating docs for file Max22200Handler.h...
+Generating docs for file NtcTemperatureHandler.cpp...
+Generating docs for file NtcTemperatureHandler.h...
+Generating docs for file Pca9685Handler.cpp...
+Generating docs for file Pca9685Handler.h...
+Generating docs for file Pcal95555Handler.cpp...
+Generating docs for file Pcal95555Handler.h...
+Generating docs for file Tle92466edHandler.cpp...
+Generating caller graph for function toChannel
+Generating docs for file Tle92466edHandler.h...
+Generating docs for file Tmc5160Handler.cpp...
+Generating caller graph for function os_delay_msec
+Generating docs for file Tmc5160Handler.h...
+Generating docs for file Tmc9660AdcWrapper.cpp...
+Generating docs for file Tmc9660AdcWrapper.h...
+Generating docs for file Tmc9660Handler.cpp...
+Generating docs for file Tmc9660Handler.h...
+Generating docs for file Ws2812Handler.cpp...
+Generating docs for file Ws2812Handler.h...
+Generating docs for file README.md...
+Generating page documentation...
+Generating group documentation...
+Generating class documentation...
+Generating docs for compound As5047uConfig...
+Generating docs for compound As5047uDiagnostics...
+Generating docs for compound As5047uHandler...
+Generating caller graph for function As5047uHandler::ApplyConfiguration
+Generating call graph for function As5047uHandler::DumpDiagnostics
+Generating caller graph for function As5047uHandler::GetDefaultConfig
+Generating caller graph for function As5047uHandler::HandleSensorErrors
+Generating call graph for function As5047uHandler::Initialize
+Generating caller graph for function As5047uHandler::LSBToDegrees
+Generating call graph for function As5047uHandler::PerformCalibration
+Generating call graph for function As5047uHandler::ProgramOTP
+Generating caller graph for function As5047uHandler::ReadAngle
+Generating call graph for function As5047uHandler::ResetToDefaults
+Generating call graph for function As5047uHandler::UpdateDiagnostics
+Generating caller graph for function As5047uHandler::UpdateDiagnostics
+Generating caller graph for function As5047uHandler::ValidateSensor
+Generating docs for compound As5047uMeasurement...
+Generating docs for compound As5047uSpiAdapter...
+Generating docs for compound AsciiArtFormat...
+Generating docs for compound Bno08xActivityData...
+Generating docs for compound Bno08xCalibrationStatus...
+Generating docs for compound Bno08xConfig...
+Generating docs for compound Bno08xDriverImpl...
+Generating docs for compound Bno08xEulerAngles...
+Generating docs for compound Bno08xHandler...
+Generating caller graph for function Bno08xHandler::applyConfigLocked
+Generating call graph for function Bno08xHandler::Deinitialize
+Generating call graph for function Bno08xHandler::DumpDiagnostics
+Generating call graph for function Bno08xHandler::GetLastDriverError
+Generating call graph for function Bno08xHandler::Initialize
+Generating caller graph for function Bno08xHandler::mapDriverError
+Generating call graph for function Bno08xHandler::Update
+Generating docs for compound Bno08xImuData...
+Generating docs for compound Bno08xQuaternion...
+Generating docs for compound Bno08xVector3...
+Generating docs for compound HalI2cBno08xComm...
+Generating call graph for function HalI2cBno08xComm::Delay
+Generating docs for compound HalI2cPca9685Comm...
+Generating docs for compound HalI2cPcal95555Comm...
+Generating docs for compound HalSpiBno08xComm...
+Generating call graph for function HalSpiBno08xComm::Delay
+Generating docs for compound HalSpiMax22200Comm...
+Generating docs for compound HalSpiTle92466edComm...
+Generating call graph for function HalSpiTle92466edComm::Log
+Generating docs for compound HalSpiTmc5160Comm...
+Generating call graph for function HalSpiTmc5160Comm::DebugLog
+Generating call graph for function HalSpiTmc5160Comm::DelayMs
+Generating docs for compound HalSpiTmc9660Comm...
+Generating call graph for function HalSpiTmc9660Comm::debugLog
+Generating call graph for function HalSpiTmc9660Comm::delayMs
+Generating call graph for function HalSpiTmc9660Comm::delayUs
+Generating call graph for function HalSpiTmc9660Comm::gpioRead
+Generating call graph for function HalSpiTmc9660Comm::gpioSet
+Generating docs for compound HalUartTmc5160Comm...
+Generating call graph for function HalUartTmc5160Comm::DebugLog
+Generating call graph for function HalUartTmc5160Comm::DelayMs
+Generating docs for compound HalUartTmc9660Comm...
+Generating call graph for function HalUartTmc9660Comm::debugLog
+Generating call graph for function HalUartTmc9660Comm::delayMs
+Generating call graph for function HalUartTmc9660Comm::delayUs
+Generating call graph for function HalUartTmc9660Comm::gpioRead
+Generating call graph for function HalUartTmc9660Comm::gpioSet
+Generating docs for compound HandlerTaskArgs...
+Generating docs for compound IBno08xDriverOps...
+Generating caller graph for function IBno08xDriverOps::Begin
+Generating caller graph for function IBno08xDriverOps::GetLastError
+Generating caller graph for function IBno08xDriverOps::GetLatwarning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (60), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
+est
+Generating caller graph for function IBno08xDriverOps::HardwareReset
+Generating caller graph for function IBno08xDriverOps::SetCallback
+Generating caller graph for function IBno08xDriverOps::Update
+Generating docs for compound LogConfig...
+Generating docs for compound Logger...
+Generating call graph for function Logger::~Logger
+Generating call graph for function Logger::Debug
+Generating caller graph for function Logger::Debug
+Generating call graph for function Logger::Debug
+Generating caller graph for function Logger::Deinitialize
+Generating call graph for function Logger::Error
+Generating caller graph for function Logger::Error
+Generating call graph for function Logger::Error
+Generating call graph for function Logger::Info
+Generating caller graph for function Logger::Info
+Generating call graph for function Logger::Info
+Generating caller graph for function Logger::Initialize
+Generating caller graph for function Logger::IsLevelEnabled
+Generating caller graph for function Logger::LogInternal
+Generating call graph for function Logger::Verbose
+Generating call graph for function Logger::Verbose
+Generating call graph for function Logger::Warn
+Generating caller graph for function Logger::Warn
+Generating call graph for function Logger::Warn
+Generating docs for compound Max22200Handler...
+Generating call graph for function Max22200Handler::Max22200Handler
+Generating call graph for function Max22200Handler::~Max22200Handler
+Generating call graph for function Max22200Handler::Deinitialize
+Generating caller graph for function Max22200Handler::Deinitialize
+Generating call graph for function Max22200Handler::DumpDiagnostics
+Generating call graph for function Max22200Handler::Initialize
+Generating call graph for function Max22200Handler::Initialize
+Generating docs for compound ntc_temp_handler_config_t...
+Generating docs for compound NtcAdcAdapter...
+Generating docs for compound NtcTemperatureHandler...
+Generating call graph for function NtcTemperatureHandler::~NtcTemperatureHandler
+Generating call graph for function NtcTemperatureHandler::Calibrate
+Generating caller graph for function NtcTemperatureHandler::ConvertNtcError
+Generating call graph for function NtcTemperatureHandler::Deinitialize
+Generating call graph for function NtcTemperatureHandler::DisableThresholdMonitoring
+Generating call graph for function NtcTemperatureHandler::EnableThresholdMonitoring
+Generating caller graph for function NtcTemperatureHandler::EnableThresholdMonitoring
+Generating call graph for function NtcTemperatureHandler::EnterSleepMode
+Generating call graph for function NtcTemperatureHandler::ExitSleepMode
+Generating call graph for function NtcTemperatureHandler::Initialize
+Generating call graph for function NtcTemperatureHandler::ResetCalibration
+Generating call graph for function NtcTemperatureHandler::ResetDiagnostics
+Generating call graph for function NtcTemperatureHandler::ResetStatistics
+Generating call graph for function NtcTemperatureHandler::SelfTest
+Generating call graph for function NtcTemperatureHandler::SetCalibrationOffset
+Generating caller graph for function NtcTemperatureHandler::SetLastError
+Generating call graph for function NtcTemperatureHandler::SetThresholds
+Generating caller graph for function NtcTemperatureHandler::SetThresholds
+Generating call graph for function NtcTemperatureHandler::StartContinuousMonitoring
+Generating call graph for function NtcTemperatureHandler::StopContinuousMonitoring
+Generating caller graph for function NtcTemperatureHandler::StopContinuousMonitoring
+Generating docs for compound Pca9685GpioPin...
+Generating call graph for function Pca9685GpioPin::Initialize
+Generating call graph for function Pca9685GpioPin::SetPinLevelImpl
+Generating docs for compound Pca9685Handler...
+Generating caller graph for function Pca9685Handler::deinitializeInternal
+Generating call graph for function Pca9685Handler::DumpDiagnostics
+Generating call graph for function Pca9685Handler::EnsureDeinitialized
+Generating call graph for function Pca9685Handler::EnsureInitialized
+Generating caller graph for function Pca9685Handler::EnsureInitialized
+Generating call graph for function Pca9685Handler::ensureInitializedLocked
+Generating caller graph for function Pca9685Handler::ensureInitializedLocked
+Generating call graph for function Pca9685Handler::GetPwmAdapter
+Generating caller graph for function Pca9685Handler::initializeInternal
+Generating caller graph for function Pca9685Handler::IsInitialized
+Generating caller graph for function Pca9685Handler::SetChannelFullOff
+Generating caller graph for function Pca9685Handler::SetChannelFullOn
+Generating call graph for function Pca9685Handler::Sleep
+Generating caller graph for function Pca9685Handler::Sleep
+Generating call graph for function Pca9685Handler::Wake
+Generating caller graph for function Pca9685Handler::Wake
+Generating docs for compound Pca9685PwmAdapter...
+Generating call graph for function Pca9685PwmAdapter::Initialize
+Generating caller graph for function Pca9685PwmAdapter::Initialize
+Generating call graph for function Pca9685PwmAdapter::StartAll
+Generating call graph for function Pca9685PwmAdapter::StopAll
+Generating docs for compound Pcal95555GpioPin...
+Generating call graph for function Pcal95555GpioPin::GetPullModeImpl
+Generating call graph for function Pcal95555GpioPin::Initialize
+Generating call graph for function Pcal95555GpioPin::SupportsInterrupts
+Generating docs for compound Pcal95555Handler...
+Generating call graph for function Pcal95555Handler::ConfigureHardwareInterrupt
+Generating caller graph for function Pcal95555Handler::ConfigureHardwareInterrupt
+Generating caller graph for function Pcal95555Handler::Deinitialize
+Generating call graph for function Pcal95555Handler::DrainPendingInterrupts
+Generating call graph for function Pcal95555Handler::DumpDiagnostics
+Generating call graph for function Pcal95555Handler::EnsureDeinitialized
+Generating call graph for function Pcal95555Handler::EnsureInitialized
+Generating caller graph for function Pcal95555Handler::EnsureInitialized
+Generating call graph for function Pcal95555Handler::EnsureInitializedLocked
+Generating caller graph for function Pcal95555Handler::EnsureInitializedLocked
+Generating caller graph for function Pcal95555Handler::GetPullMode
+Generating caller graph for function Pcal95555Handler::HardwareInterruptCallback
+Generating caller graph for function Pcal95555Handler::HasAgileIO
+Generating call graph for function Pcal95555Handler::Initialize
+Generating caller graph for function Pcal95555Handler::Initialize
+Generating caller graph for function Pcal95555Handler::ProcessInterrupts
+Generating call graph for function Pcal95555Handler::ResetToDefault
+Generating caller graph for function Pcal95555Handler::SetDirection
+Generating caller graph for function Pcal95555Handler::SetPullMode
+Generating docs for compound TestResults...
+Generating caller graph for function TestResults::add_result
+Generating docs for compound TestTaskContext...
+Generating docs for compound TestThread...
+Generating caller graph for function TestThread::GetRunCount
+Generating docs for compound Tle92466edHandler...
+Generating call graph for function Tle92466edHandler::Tle92466edHandler
+Generating call graph for function Tle92466edHandler::~Tle92466edHandler
+Generating call graph for function Tle92466edHandler::ConfigureChannel
+Generating call graph for function Tle92466edHandler::ConfigurePwmRaw
+Generating call graph for function Tle92466edHandler::Deinitialize
+Generating caller graph for function Tle92466edHandler::Deinitialize
+Generating call graph for function Tle92466edHandler::DisableChannel
+Generating call graph for function Tle92466edHandler::DumpDiagnostics
+Generating call graph for function Tle92466edHandler::EnableChannel
+Generating call graph for function Tle92466edHandler::GetChannelDiagnostics
+Generating call graph for function Tle92466edHandler::Initialize
+Generating call graph for function Tle92466edHandler::Initialize
+Generating call graph for function Tle92466edHandler::SetChannelCurrent
+Generating docs for compound Tmc5160CtrlPins...
+Generating docs for compound Tmc5160Handler...
+Generating call graph for function Tmc5160Handler::Tmc5160Handler
+Gener/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:106: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelV' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:111: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelCount' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:116: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannel' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:121: warning: @copybrief or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:125: warning: @copybrief or @copydoc target 'BaseAdc::GetStatistics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:128: warning: @copybrief or @copydoc target 'BaseAdc::GetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:134: warning: @copybrief or @copydoc target 'BaseAdc::ResetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:98: warning: @copydetails or @copydoc target 'BaseAdc::Deinitialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:128: warning: @copybrief or @copydoc target 'BaseAdc::GetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:129: warning: @copydetails or @copydoc target 'BaseAdc::GetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:101: warning: @copydetails or @copydoc target 'BaseAdc::GetMaxChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:125: warning: @copybrief or @copydoc target 'BaseAdc::GetStatistics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:126: warning: @copydetails or @copydoc target 'BaseAdc::GetStatistics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:95: warning: @copydetails or @copydoc target 'BaseAdc::Initialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:104: warning: @copydetails or @copydoc target 'BaseAdc::IsChannelAvailable' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:116: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannel' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:117: warning: @copydetails or @copydoc target 'BaseAdc::ReadChannel' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:111: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelCount' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:112: warning: @copydetails or @copydoc target 'BaseAdc::ReadChannelCount' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:106: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelV' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:107: warning: @copydetails or @copydoc target 'BaseAdc::ReadChannelV' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:121: warning: @copybrief or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:122: warning: @copydetails or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:134: warning: @copybrief or @copydoc target 'BaseAdc::ResetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:135: warning: @copydetails or @copydoc target 'BaseAdc::ResetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:132: warning: @copydetails or @copydoc target 'BaseAdc::ResetStatistics' not found
+warning: Caller graph for 'Tmc9660Handler::temperature' not generated, too many nodes (51), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
+ating call graph for function Tmc5160Handler::Tmc5160Handler
+Generating call graph for function Tmc5160Handler::~Tmc5160Handler
+Generating call graph for function Tmc5160Handler::Deinitialize
+Generating caller graph for function Tmc5160Handler::Deinitialize
+Generating call graph for function Tmc5160Handler::DisableMotor
+Generating call graph for function Tmc5160Handler::DumpDiagnostics
+Generating call graph for function Tmc5160Handler::EnableMotor
+Generating call graph for function Tmc5160Handler::GetChipVersion
+Generating call graph for function Tmc5160Handler::GetCurrentPosition
+Generating call graph for function Tmc5160Handler::GetCurrentVelocity
+Generating call graph for function Tmc5160Handler::GetStallGuardResult
+Generating call graph for function Tmc5160Handler::Initialize
+Generating call graph for function Tmc5160Handler::IsMotorEnabled
+Generating call graph for function Tmc5160Handler::IsOvertemperature
+Generating call graph for function Tmc5160Handler::IsStallDetected
+Generating call graph for function Tmc5160Handler::IsStandstill
+Generating call graph for function Tmc5160Handler::IsTargetReached
+Generating call graph for function Tmc5160Handler::Stop
+Generating caller graph for function Tmc5160Handler::visitDriverInternal
+Generating docs for compound Tmc9660AdcWrapper...
+Generating call graph for function Tmc9660AdcWrapper::Deinitialize
+Generating call graph for function Tmc9660AdcWrapper::GetMaxChannels
+Generating call graph for function Tmc9660AdcWrapper::Initialize
+Generating call graph for function Tmc9660AdcWrapper::ResetDiagnostics
+Generating call graph for function Tmc9660AdcWrapper::ResetStatistics
+Generating docs for compound Tmc9660CtrlPins...
+Generating docs for compound Tmc9660Handler...
+Generating call graph for function Tmc9660Handler::Tmc9660Handler
+Generating call graph for function Tmc9660Handler::Tmc9660Handler
+Generating caller graph for function Tmc9660Handler::adc
+Generating call graph for function Tmc9660Handler::DisableDriverOutput
+Generating call graph for function Tmc9660Handler::DisableMotor
+Generating call graph for function Tmc9660Handler::DumpDiagnostics
+Generating call graph for function Tmc9660Handler::EnableDriverOutput
+Generating call graph for function Tmc9660Handler::EnableMotor
+Generating call graph for function Tmc9660Handler::EnterBootloaderMode
+Generating call graph for function Tmc9660Handler::GetActualPosition
+Generating call graph for function Tmc9660Handler::GetActualVelocity
+Generating call graph for function Tmc9660Handler::GetChipTemperature
+Generating caller graph for function Tmc9660Handler::GetChipTemperature
+Generating caller graph for function Tmc9660Handler::GetErrorFlags
+Generating call graph for function Tmc9660Handler::GetExternalTemperature
+Generating call graph for function Tmc9660Handler::GetMotorCurrent
+Generating caller graph for function Tmc9660Handler::GetStatusFlags
+Generating call graph for function Tmc9660Handler::GetSupplyVoltage
+Generating caller graph for function Tmc9660Handler::GetSupplyVoltage
+Generating call graph for function Tmc9660Handler::gpio
+Generating call graph for function Tmc9660Handler::Initialize
+Generating caller graph for function Tmc9660Handler::IsDriverReady
+Generating call graph for function Tmc9660Handler::visitDriver
+Generating caller graph for function Tmc9660Handler::visitDriver
+Generating call graph for function Tmc9660Handler::visitDriver
+Generating docs for nested compound Tmc9660Handler::Adc...
+Generating caller graph for function Tmc9660Handler::Adc::Deinitialize
+Generating call graph for function Tmc9660Handler::Adc::GetChannelTypeString
+Generating call graph for function Tmc9660Handler::Adc::GetCurrentTimeUs
+Generating call graph for function Tmc9660Handler::Adc::GetDiagnostics
+Generating caller graph for function Tmc9660Handler::Adc::GetMaxChannels
+Generating call graph for function Tmc9660Handler::Adc::GetStatistics
+Generating caller graph for function Tmc9660Handler::Adc::Initialize
+Generating call graph for function Tmc9660Handler::Adc::IsChannelAvailable
+Generating call graph for function Tmc9660Handler::Ad/home/runner/work/hf-core/hf-core/handlers/ws2812/Ws2812Handler.h:165: warning: argument 'speed' of command @param is not found in the argument list of Ws2812Handler::SetEffect(WS2812Animator::Effect effect, uint32_t color=0xFFFFFF)
+c::ReadAinChannel
+Generating call graph for function Tmc9660Handler::Adc::ReadChannel
+Generating call graph for function Tmc9660Handler::Adc::ReadChannelCount
+Generating call graph for function Tmc9660Handler::Adc::ReadChannelLocked
+Generating call graph for function Tmc9660Handler::Adc::ReadChannelV
+Generating call graph for function Tmc9660Handler::Adc::ReadCurrentSenseChannel
+Generating call graph for function Tmc9660Handler::Adc::ReadMotorDataChannel
+Generating call graph for function Tmc9660Handler::Adc::ReadMultipleChannels
+Generating call graph for function Tmc9660Handler::Adc::ReadTemperatureChannel
+Generating call graph for function Tmc9660Handler::Adc::ReadVoltageChannel
+Generating call graph for function Tmc9660Handler::Adc::ResetDiagnostics
+Generating caller graph for function Tmc9660Handler::Adc::ResetDiagnostics
+Generating call graph for function Tmc9660Handler::Adc::ResetStatistics
+Generating caller graph for function Tmc9660Handler::Adc::ResetStatistics
+Generating call graph for function Tmc9660Handler::Adc::UpdateDiagnostics
+Generating call graph for function Tmc9660Handler::Adc::UpdateStatistics
+Generating call graph for function Tmc9660Handler::Adc::ValidateChannelId
+Generating docs for nested compound Tmc9660Handler::Gpio...
+Generating call graph for function Tmc9660Handler::Gpio::GetDirectionImpl
+Generating call graph for function Tmc9660Handler::Gpio::GetOutputModeImpl
+Generating call graph for function Tmc9660Handler::Gpio::GetPinLevelImpl
+Generating call graph for function Tmc9660Handler::Gpio::Initialize
+Generating call graph for function Tmc9660Handler::Gpio::SetDirectionImpl
+Generating call graph for function Tmc9660Handler::Gpio::SetOutputModeImpl
+Generating call graph for function Tmc9660Handler::Gpio::SetPinLevelImpl
+Generating call graph for function Tmc9660Handler::Gpio::SetPullModeImpl
+Generating docs for nested compound Tmc9660Handler::Temperature...
+Generating call graph for function Tmc9660Handler::Temperature::Temperature
+Generating call graph for function Tmc9660Handler::Temperature::GetCapabilities
+Generating call graph for function Tmc9660Handler::Temperature::GetCurrentTimeUs
+Generating call graph for function Tmc9660Handler::Temperature::GetSensorInfo
+Generating call graph for function Tmc9660Handler::Temperature::Initialize
+Generating call graph for function Tmc9660Handler::Temperature::ReadTemperatureCelsiusImpl
+Generating call graph for function Tmc9660Handler::Temperature::UpdateDiagnostics
+Generating call graph for function Tmc9660Handler::Temperature::UpdateStatistics
+Generating docs for compound Ws2812Handler...
+Generating call graph for function Ws2812Handler::Ws2812Handler
+Generating call graph for function Ws2812Handler::~Ws2812Handler
+Generating call graph for function Ws2812Handler::Clear
+Generating call graph for function Ws2812Handler::Deinitialize
+Generating caller graph for function Ws2812Handler::Deinitialize
+Generating call graph for function Ws2812Handler::DumpDiagnostics
+Generating call graph for function Ws2812Handler::Initialize
+Generating caller graph for function Ws2812Handler::SetAllPixels
+Generating docs for nested compound Ws2812Handler::Config...
+Generating concept documentation...
+Generating module documentation...
+Generating namespace documentation...
+Generating docs for namespace anonymous_namespace{Tmc9660Handler.cpp}
+Generating call graph for function anonymous_namespace{Tmc9660Handler.cpp}::halDebugLog
+Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::halDebugLog
+Generating call graph for function anonymous_namespace{Tmc9660Handler.cpp}::halDelayMs
+Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::halDelayMs
+Generating call graph for function anonymous_namespace{Tmc9660Handler.cpp}::halDelayUs
+Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::halDelayUs
+Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::readGpioToSignal
+Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::setGpioFromSignal
+Generating graph info p/home/runner/work/hf-core/hf-core/README.md:140: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/architecture.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:141: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/folder_structure.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:142: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/handlers/index.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:143: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:144: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:145: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
+age...
+Generating directory documentation...
+Generating dependency graph for directory as5047u
+Generating dependency graph for directory bno08x
+Generating dependency graph for directory esp32
+Generating dependency graph for directory examples
+Generating dependency graph for directory handler_tests
+Generating dependency graph for directory handlers
+Generating dependency graph for directory integration_tests
+Generating dependency graph for directory logger
+Generating dependency graph for directory main
+Generating dependency graph for directory max22200
+Generating dependency graph for directory ntc
+Generating dependency graph for directory pca9685
+Generating dependency graph for directory pcal95555
+Generating dependency graph for directory tle92466ed
+Generating dependency graph for directory tmc5160
+Generating dependency graph for directory tmc9660
+Generating dependency graph for directory utils_tests
+Generating dependency graph for directory ws2812
+Generating index page...
+Generating main page...
+Generating page index...
+Generating topic index...
+Generating module index...
+Generating module member index...
+Generating namespace index...
+Generating namespace member index...
+Generating concept index...
+Generating annotated compound index...
+Generating alphabetical compound index...
+Generating hierarchical class index...
+Generating graphical class hierarchy...
+Generating member index...
+Generating file index...
+Generating file member index...
+Generating example index...
+finalizing index lists...
+writing tag file...
+Running plantuml with JAVA...
+Running dot...
+Generating dot graphs using 5 parallel threads...
+Running dot for graph 1/723
+Running dot for graph 2/723
+Running dot for graph 3/723
+Running dot for graph 4/723
+Running dot for graph 5/723
+Running dot for graph 6/723
+Running dot for graph 7/723
+Running dot for graph 8/723
+Running dot for graph 9/723
+Running dot for graph 10/723
+Running dot for graph 11/723
+Running dot for graph 12/723
+Running dot for graph 13/723
+Running dot for graph 14/723
+Running dot for graph 15/723
+Running dot for graph 16/723
+Running dot for graph 17/723
+Running dot for graph 18/723
+Running dot for graph 19/723
+Running dot for graph 20/723
+Running dot for graph 21/723
+Running dot for graph 22/723
+Running dot for graph 23/723
+Running dot for graph 24/723
+Running dot for graph 25/723
+Running dot for graph 26/723
+Running dot for graph 27/723
+Running dot for graph 28/723
+Running dot for graph 29/723
+Running dot for graph 30/723
+Running dot for graph 31/723
+Running dot for graph 32/723
+Running dot for graph 33/723
+Running dot for graph 34/723
+Running dot for graph 35/723
+Running dot for graph 36/723
+Running dot for graph 37/723
+Running dot for graph 38/723
+Running dot for graph 39/723
+Running dot for graph 40/723
+Running dot for graph 41/723
+Running dot for graph 42/723
+Running dot for graph 43/723
+Running dot for graph 44/723
+Running dot for graph 45/723
+Running dot for graph 46/723
+Running dot for graph 47/723
+Running dot for graph 48/723
+Running dot for graph 49/723
+Running dot for graph 50/723
+Running dot for graph 51/723
+Running dot for graph 52/723
+Running dot for graph 53/723
+Running dot for graph 54/723
+Running dot for graph 55/723
+Running dot for graph 56/723
+Running dot for graph 57/723
+Running dot for graph 58/723
+Running dot for graph 59/723
+Running dot for graph 60/723
+Running dot for graph 61/723
+Running dot for graph 62/723
+Running dot for graph 63/723
+Running dot for graph 64/723
+Running dot for graph 65/723
+Running dot for graph 66/723
+Running dot for graph 67/723
+Running dot for graph 68/723
+Running dot for graph 69/723
+Running dot for graph 70/723
+Running dot for graph 71/723
+Running dot for graph 72/723
+Running dot for graph 73/723
+Running dot for graph 74/723
+Running dot for graph 75/723
+Running dot for graph 76/723
+Running dot for graph 77/723
+Running dot for graph 78/723
+Running dot for graph 79/723
+Running dot for graph 80/723
+Running dot for graph 81/723
+Running dot for graph 82/723
+Running dot for graph 83/723
+Running dot for graph 84/723
+Running dot for graph 85/723
+Running dot for graph 86/723
+Running dot for graph 87/723
+Running dot for graph 88/723
+Running dot for graph 89/723
+Running dot for graph 90/723
+Running dot for graph 91/723
+Running dot for graph 92/723
+Running dot for graph 93/723
+Running dot for graph 94/723
+Running dot for graph 95/723
+Running dot for graph 96/723
+Running dot for graph 97/723
+Running dot for graph 98/723
+Running dot for graph 99/723
+Running dot for graph 100/723
+Running dot for graph 101/723
+Running dot for graph 102/723
+Running dot for graph 103/723
+Running dot for graph 104/723
+Running dot for graph 105/723
+Running dot for graph 106/723
+Running dot for graph 107/723
+Running dot for graph 108/723
+Running dot for graph 109/723
+Running dot for graph 110/723
+Running dot for graph 111/723
+Running dot for graph 112/723
+Running dot for graph 113/723
+Running dot for graph 114/723
+Running dot for graph 115/723
+Running dot for graph 116/723
+Running dot for graph 117/723
+Running dot for graph 118/723
+Running dot for graph 119/723
+Running dot for graph 120/723
+Running dot for graph 121/723
+Running dot for graph 122/723
+Running dot for graph 123/723
+Running dot for graph 124/723
+Running dot for graph 125/723
+Running dot for graph 126/723
+Running dot for graph 127/723
+Running dot for graph 128/723
+Running dot for graph 129/723
+Running dot for graph 130/723
+Running dot for graph 131/723
+Running dot for graph 132/723
+Running dot for graph 133/723
+Running dot for graph 134/723
+Running dot for graph 135/723
+Running dot for graph 136/723
+Running dot for graph 137/723
+Running dot for graph 138/723
+Running dot for graph 139/723
+Running dot for graph 140/723
+Running dot for graph 141/723
+Running dot for graph 142/723
+Running dot for graph 143/723
+Running dot for graph 144/723
+Running dot for graph 145/723
+Running dot for graph 146/723
+Running dot for graph 147/723
+Running dot for graph 148/723
+Running dot for graph 149/723
+Running dot for graph 150/723
+Running dot for graph 151/723
+Running dot for graph 152/723
+Running dot for graph 153/723
+Running dot for graph 154/723
+Running dot for graph 155/723
+Running dot for graph 156/723
+Running dot for graph 157/723
+Running dot for graph 158/723
+Running dot for graph 159/723
+Running dot for graph 160/723
+Running dot for graph 161/723
+Running dot for graph 162/723
+Running dot for graph 163/723
+Running dot for graph 164/723
+Running dot for graph 165/723
+Running dot for graph 166/723
+Running dot for graph 167/723
+Running dot for graph 168/723
+Running dot for graph 169/723
+Running dot for graph 170/723
+Running dot for graph 171/723
+Running dot for graph 172/723
+Running dot for graph 173/723
+Running dot for graph 174/723
+Running dot for graph 175/723
+Running dot for graph 176/723
+Running dot for graph 177/723
+Running dot for graph 178/723
+Running dot for graph 179/723
+Running dot for graph 180/723
+Running dot for graph 181/723
+Running dot for graph 182/723
+Running dot for graph 183/723
+Running dot for graph 184/723
+Running dot for graph 185/723
+Running dot for graph 186/723
+Running dot for graph 187/723
+Running dot for graph 188/723
+Running dot for graph 189/723
+Running dot for graph 190/723
+Running dot for graph 191/723
+Running dot for graph 192/723
+Running dot for graph 193/723
+Running dot for graph 194/723
+Running dot for graph 195/723
+Running dot for graph 196/723
+Running dot for graph 197/723
+Running dot for graph 198/723
+Running dot for graph 199/723
+Running dot for graph 200/723
+Running dot for graph 201/723
+Running dot for graph 202/723
+Running dot for graph 203/723
+Running dot for graph 204/723
+Running dot for graph 205/723
+Running dot for graph 206/723
+Running dot for graph 207/723
+Running dot for graph 208/723
+Running dot for graph 209/723
+Running dot for graph 210/723
+Running dot for graph 211/723
+Running dot for graph 212/723
+Running dot for graph 213/723
+Running dot for graph 214/723
+Running dot for graph 215/723
+Running dot for graph 216/723
+Running dot for graph 217/723
+Running dot for graph 218/723
+Running dot for graph 219/723
+Running dot for graph 220/723
+Running dot for graph 221/723
+Running dot for graph 222/723
+Running dot for graph 223/723
+Running dot for graph 224/723
+Running dot for graph 225/723
+Running dot for graph 226/723
+Running dot for graph 227/723
+Running dot for graph 228/723
+Running dot for graph 229/723
+Running dot for graph 230/723
+Running dot for graph 231/723
+Running dot for graph 232/723
+Running dot for graph 233/723
+Running dot for graph 234/723
+Running dot for graph 235/723
+Running dot for graph 236/723
+Running dot for graph 237/723
+Running dot for graph 238/723
+Running dot for graph 239/723
+Running dot for graph 240/723
+Running dot for graph 241/723
+Running dot for graph 242/723
+Running dot for graph 243/723
+Running dot for graph 244/723
+Running dot for graph 245/723
+Running dot for graph 246/723
+Running dot for graph 247/723
+Running dot for graph 248/723
+Running dot for graph 249/723
+Running dot for graph 250/723
+Running dot for graph 251/723
+Running dot for graph 252/723
+Running dot for graph 253/723
+Running dot for graph 254/723
+Running dot for graph 255/723
+Running dot for graph 256/723
+Running dot for graph 257/723
+Running dot for graph 258/723
+Running dot for graph 259/723
+Running dot for graph 260/723
+Running dot for graph 261/723
+Running dot for graph 262/723
+Running dot for graph 263/723
+Running dot for graph 264/723
+Running dot for graph 265/723
+Running dot for graph 266/723
+Running dot for graph 267/723
+Running dot for graph 268/723
+Running dot for graph 269/723
+Running dot for graph 270/723
+Running dot for graph 271/723
+Running dot for graph 272/723
+Running dot for graph 273/723
+Running dot for graph 274/723
+Running dot for graph 275/723
+Running dot for graph 276/723
+Running dot for graph 277/723
+Running dot for graph 278/723
+Running dot for graph 279/723
+Running dot for graph 280/723
+Running dot for graph 281/723
+Running dot for graph 282/723
+Running dot for graph 283/723
+Running dot for graph 284/723
+Running dot for graph 285/723
+Running dot for graph 286/723
+Running dot for graph 287/723
+Running dot for graph 288/723
+Running dot for graph 289/723
+Running dot for graph 290/723
+Running dot for graph 291/723
+Running dot for graph 292/723
+Running dot for graph 293/723
+Running dot for graph 294/723
+Running dot for graph 295/723
+Running dot for graph 296/723
+Running dot for graph 297/723
+Running dot for graph 298/723
+Running dot for graph 299/723
+Running dot for graph 300/723
+Running dot for graph 301/723
+Running dot for graph 302/723
+Running dot for graph 303/723
+Running dot for graph 304/723
+Running dot for graph 305/723
+Running dot for graph 306/723
+Running dot for graph 307/723
+Running dot for graph 308/723
+Running dot for graph 309/723
+Running dot for graph 310/723
+Running dot for graph 311/723
+Running dot for graph 312/723
+Running dot for graph 313/723
+Running dot for graph 314/723
+Running dot for graph 315/723
+Running dot for graph 316/723
+Running dot for graph 317/723
+Running dot for graph 318/723
+Running dot for graph 319/723
+Running dot for graph 320/723
+Running dot for graph 321/723
+Running dot for graph 322/723
+Running dot for graph 323/723
+Running dot for graph 324/723
+Running dot for graph 325/723
+Running dot for graph 326/723
+Running dot for graph 327/723
+Running dot for graph 328/723
+Running dot for graph 329/723
+Running dot for graph 330/723
+Running dot for graph 331/723
+Running dot for graph 332/723
+Running dot for graph 333/723
+Running dot for graph 334/723
+Running dot for graph 335/723
+Running dot for graph 336/723
+Running dot for graph 337/723
+Running dot for graph 338/723
+Running dot for graph 339/723
+Running dot for graph 340/723
+Running dot for graph 341/723
+Running dot for graph 342/723
+Running dot for graph 343/723
+Running dot for graph 344/723
+Running dot for graph 345/723
+Running dot for graph 346/723
+Running dot for graph 347/723
+Running dot for graph 348/723
+Running dot for graph 349/723
+Running dot for graph 350/723
+Running dot for graph 351/723
+Running dot for graph 352/723
+Running dot for graph 353/723
+Running dot for graph 354/723
+Running dot for graph 355/723
+Running dot for graph 356/723
+Running dot for graph 357/723
+Running dot for graph 358/723
+Running dot for graph 359/723
+Running dot for graph 360/723
+Running dot for graph 361/723
+Running dot for graph 362/723
+Running dot for graph 363/723
+Running dot for graph 364/723
+Running dot for graph 365/723
+Running dot for graph 366/723
+Running dot for graph 367/723
+Running dot for graph 368/723
+Running dot for graph 369/723
+Running dot for graph 370/723
+Running dot for graph 371/723
+Running dot for graph 372/723
+Running dot for graph 373/723
+Running dot for graph 374/723
+Running dot for graph 375/723
+Running dot for graph 376/723
+Running dot for graph 377/723
+Running dot for graph 378/723
+Running dot for graph 379/723
+Running dot for graph 380/723
+Running dot for graph 381/723
+Running dot for graph 382/723
+Running dot for graph 383/723
+Running dot for graph 384/723
+Running dot for graph 385/723
+Running dot for graph 386/723
+Running dot for graph 387/723
+Running dot for graph 388/723
+Running dot for graph 389/723
+Running dot for graph 390/723
+Running dot for graph 391/723
+Running dot for graph 392/723
+Running dot for graph 393/723
+Running dot for graph 394/723
+Running dot for graph 395/723
+Running dot for graph 396/723
+Running dot for graph 397/723
+Running dot for graph 398/723
+Running dot for graph 399/723
+Running dot for graph 400/723
+Running dot for graph 401/723
+Running dot for graph 402/723
+Running dot for graph 403/723
+Running dot for graph 404/723
+Running dot for graph 405/723
+Running dot for graph 406/723
+Running dot for graph 407/723
+Running dot for graph 408/723
+Running dot for graph 409/723
+Running dot for graph 410/723
+Running dot for graph 411/723
+Running dot for graph 412/723
+Running dot for graph 413/723
+Running dot for graph 414/723
+Running dot for graph 415/723
+Running dot for graph 416/723
+Running dot for graph 417/723
+Running dot for graph 418/723
+Running dot for graph 419/723
+Running dot for graph 420/723
+Running dot for graph 421/723
+Running dot for graph 422/723
+Running dot for graph 423/723
+Running dot for graph 424/723
+Running dot for graph 425/723
+Running dot for graph 426/723
+Running dot for graph 427/723
+Running dot for graph 428/723
+Running dot for graph 429/723
+Running dot for graph 430/723
+Running dot for graph 431/723
+Running dot for graph 432/723
+Running dot for graph 433/723
+Running dot for graph 434/723
+Running dot for graph 435/723
+Running dot for graph 436/723
+Running dot for graph 437/723
+Running dot for graph 438/723
+Running dot for graph 439/723
+Running dot for graph 440/723
+Running dot for graph 441/723
+Running dot for graph 442/723
+Running dot for graph 443/723
+Running dot for graph 444/723
+Running dot for graph 445/723
+Running dot for graph 446/723
+Running dot for graph 447/723
+Running dot for graph 448/723
+Running dot for graph 449/723
+Running dot for graph 450/723
+Running dot for graph 451/723
+Running dot for graph 452/723
+Running dot for graph 453/723
+Running dot for graph 454/723
+Running dot for graph 455/723
+Running dot for graph 456/723
+Running dot for graph 457/723
+Running dot for graph 458/723
+Running dot for graph 459/723
+Running dot for graph 460/723
+Running dot for graph 461/723
+Running dot for graph 462/723
+Running dot for graph 463/723
+Running dot for graph 464/723
+Running dot for graph 465/723
+Running dot for graph 466/723
+Running dot for graph 467/723
+Running dot for graph 468/723
+Running dot for graph 469/723
+Running dot for graph 470/723
+Running dot for graph 471/723
+Running dot for graph 472/723
+Running dot for graph 473/723
+Running dot for graph 474/723
+Running dot for graph 475/723
+Running dot for graph 476/723
+Running dot for graph 477/723
+Running dot for graph 478/723
+Running dot for graph 479/723
+Running dot for graph 480/723
+Running dot for graph 481/723
+Running dot for graph 482/723
+Running dot for graph 483/723
+Running dot for graph 484/723
+Running dot for graph 485/723
+Running dot for graph 486/723
+Running dot for graph 487/723
+Running dot for graph 488/723
+Running dot for graph 489/723
+Running dot for graph 490/723
+Running dot for graph 491/723
+Running dot for graph 492/723
+Running dot for graph 493/723
+Running dot for graph 494/723
+Running dot for graph 495/723
+Running dot for graph 496/723
+Running dot for graph 497/723
+Running dot for graph 498/723
+Running dot for graph 499/723
+Running dot for graph 500/723
+Running dot for graph 501/723
+Running dot for graph 502/723
+Running dot for graph 503/723
+Running dot for graph 504/723
+Running dot for graph 505/723
+Running dot for graph 506/723
+Running dot for graph 507/723
+Running dot for graph 508/723
+Running dot for graph 509/723
+Running dot for graph 510/723
+Running dot for graph 511/723
+Running dot for graph 512/723
+Running dot for graph 513/723
+Running dot for graph 514/723
+Running dot for graph 515/723
+Running dot for graph 516/723
+Running dot for graph 517/723
+Running dot for graph 518/723
+Running dot for graph 519/723
+Running dot for graph 520/723
+Running dot for graph 521/723
+Running dot for graph 522/723
+Running dot for graph 523/723
+Running dot for graph 524/723
+Running dot for graph 525/723
+Running dot for graph 526/723
+Running dot for graph 527/723
+Running dot for graph 528/723
+Running dot for graph 529/723
+Running dot for graph 530/723
+Running dot for graph 531/723
+Running dot for graph 532/723
+Running dot for graph 533/723
+Running dot for graph 534/723
+Running dot for graph 535/723
+Running dot for graph 536/723
+Running dot for graph 537/723
+Running dot for graph 538/723
+Running dot for graph 539/723
+Running dot for graph 540/723
+Running dot for graph 541/723
+Running dot for graph 542/723
+Running dot for graph 543/723
+Running dot for graph 544/723
+Running dot for graph 545/723
+Running dot for graph 546/723
+Running dot for graph 547/723
+Running dot for graph 548/723
+Running dot for graph 549/723
+Running dot for graph 550/723
+Running dot for graph 551/723
+Running dot for graph 552/723
+Running dot for graph 553/723
+Running dot for graph 554/723
+Running dot for graph 555/723
+Running dot for graph 556/723
+Running dot for graph 557/723
+Running dot for graph 558/723
+Running dot for graph 559/723
+Running dot for graph 560/723
+Running dot for graph 561/723
+Running dot for graph 562/723
+Running dot for graph 563/723
+Running dot for graph 564/723
+Running dot for graph 565/723
+Running dot for graph 566/723
+Running dot for graph 567/723
+Running dot for graph 568/723
+Running dot for graph 569/723
+Running dot for graph 570/723
+Running dot for graph 571/723
+Running dot for graph 572/723
+Running dot for graph 573/723
+Running dot for graph 574/723
+Running dot for graph 575/723
+Running dot for graph 576/723
+Running dot for graph 577/723
+Running dot for graph 578/723
+Running dot for graph 579/723
+Running dot for graph 580/723
+Running dot for graph 581/723
+Running dot for graph 582/723
+Running dot for graph 583/723
+Running dot for graph 584/723
+Running dot for graph 585/723
+Running dot for graph 586/723
+Running dot for graph 587/723
+Running dot for graph 588/723
+Running dot for graph 589/723
+Running dot for graph 590/723
+Running dot for graph 591/723
+Running dot for graph 592/723
+Running dot for graph 593/723
+Running dot for graph 594/723
+Running dot for graph 595/723
+Running dot for graph 596/723
+Running dot for graph 597/723
+Running dot for graph 598/723
+Running dot for graph 599/723
+Running dot for graph 600/723
+Running dot for graph 601/723
+Running dot for graph 602/723
+Running dot for graph 603/723
+Running dot for graph 604/723
+Running dot for graph 605/723
+Running dot for graph 606/723
+Running dot for graph 607/723
+Running dot for graph 608/723
+Running dot for graph 609/723
+Running dot for graph 610/723
+Running dot for graph 611/723
+Running dot for graph 612/723
+Running dot for graph 613/723
+Running dot for graph 614/723
+Running dot for graph 615/723
+Running dot for graph 616/723
+Running dot for graph 617/723
+Running dot for graph 618/723
+Running dot for graph 619/723
+Running dot for graph 620/723
+Running dot for graph 621/723
+Running dot for graph 622/723
+Running dot for graph 623/723
+Running dot for graph 624/723
+Running dot for graph 625/723
+Running dot for graph 626/723
+Running dot for graph 627/723
+Running dot for graph 628/723
+Running dot for graph 629/723
+Running dot for graph 630/723
+Running dot for graph 631/723
+Running dot for graph 632/723
+Running dot for graph 633/723
+Running dot for graph 634/723
+Running dot for graph 635/723
+Running dot for graph 636/723
+Running dot for graph 637/723
+Running dot for graph 638/723
+Running dot for graph 639/723
+Running dot for graph 640/723
+Running dot for graph 641/723
+Running dot for graph 642/723
+Running dot for graph 643/723
+Running dot for graph 644/723
+Running dot for graph 645/723
+Running dot for graph 646/723
+Running dot for graph 647/723
+Running dot for graph 648/723
+Running dot for graph 649/723
+Running dot for graph 650/723
+Running dot for graph 651/723
+Running dot for graph 652/723
+Running dot for graph 653/723
+Running dot for graph 654/723
+Running dot for graph 655/723
+Running dot for graph 656/723
+Running dot for graph 657/723
+Running dot for graph 658/723
+Running dot for graph 659/723
+Running dot for graph 660/723
+Running dot for graph 661/723
+Running dot for graph 662/723
+Running dot for graph 663/723
+Running dot for graph 664/723
+Running dot for graph 665/723
+Running dot for graph 666/723
+Running dot for graph 667/723
+Running dot for graph 668/723
+Running dot for graph 669/723
+Running dot for graph 670/723
+Running dot for graph 671/723
+Running dot for graph 672/723
+Running dot for graph 673/723
+Running dot for graph 674/723
+Running dot for graph 675/723
+Running dot for graph 676/723
+Running dot for graph 677/723
+Running dot for graph 678/723
+Running dot for graph 679/723
+Running dot for graph 680/723
+Running dot for graph 681/723
+Running dot for graph 682/723
+Running dot for graph 683/723
+Running dot for graph 684/723
+Running dot for graph 685/723
+Running dot for graph 686/723
+Running dot for graph 687/723
+Running dot for graph 688/723
+Running dot for graph 689/723
+Running dot for graph 690/723
+Running dot for graph 691/723
+Running dot for graph 692/723
+Running dot for graph 693/723
+Running dot for graph 694/723
+Running dot for graph 695/723
+Running dot for graph 696/723
+Running dot for graph 697/723
+Running dot for graph 698/723
+Running dot for graph 699/723
+Running dot for graph 700/723
+Running dot for graph 701/723
+Running dot for graph 702/723
+Running dot for graph 703/723
+Running dot for graph 704/723
+Running dot for graph 705/723
+Running dot for graph 706/723
+Running dot for graph 707/723
+Running dot for graph 708/723
+Running dot for graph 709/723
+Running dot for graph 710/723
+Running dot for graph 711/723
+Running dot for graph 712/723
+Running dot for graph 713/723
+Running dot for graph 714/723
+Running dot for graph 715/723
+Running dot for graph 716/723
+Running dot for graph 717/723
+Running dot for graph 718/723
+Running dot for graph 719/723
+Running dot for graph 720/723
+Running dot for graph 721/723
+Running dot for graph 722/723
+Running dot for graph 723/723
+Patching output file 1/822
+Patching output file 2/822
+Patching output file 3/822
+Patching output file 4/822
+Patching output file 5/822
+Patching output file 6/822
+Patching output file 7/822
+Patching output file 8/822
+Patching output file 9/822
+Patching output file 10/822
+Patching output file 11/822
+Patching output file 12/822
+Patching output file 13/822
+Patching output file 14/822
+Patching output file 15/822
+Patching output file 16/822
+Patching output file 17/822
+Patching output file 18/822
+Patching output file 19/822
+Patching output file 20/822
+Patching output file 21/822
+Patching output file 22/822
+Patching output file 23/822
+Patching output file 24/822
+Patching output file 25/822
+Patching output file 26/822
+Patching output file 27/822
+Patching output file 28/822
+Patching output file 29/822
+Patching output file 30/822
+Patching output file 31/822
+Patching output file 32/822
+Patching output file 33/822
+Patching output file 34/822
+Patching output file 35/822
+Patching output file 36/822
+Patching output file 37/822
+Patching output file 38/822
+Patching output file 39/822
+Patching output file 40/822
+Patching output file 41/822
+Patching output file 42/822
+Patching output file 43/822
+Patching output file 44/822
+Patching output file 45/822
+Patching output file 46/822
+Patching output file 47/822
+Patching output file 48/822
+Patching output file 49/822
+Patching output file 50/822
+Patching output file 51/822
+Patching output file 52/822
+Patching output file 53/822
+Patching output file 54/822
+Patching output file 55/822
+Patching output file 56/822
+Patching output file 57/822
+Patching output file 58/822
+Patching output file 59/822
+Patching output file 60/822
+Patching output file 61/822
+Patching output file 62/822
+Patching output file 63/822
+Patching output file 64/822
+Patching output file 65/822
+Patching output file 66/822
+Patching output file 67/822
+Patching output file 68/822
+Patching output file 69/822
+Patching output file 70/822
+Patching output file 71/822
+Patching output file 72/822
+Patching output file 73/822
+Patching output file 74/822
+Patching output file 75/822
+Patching output file 76/822
+Patching output file 77/822
+Patching output file 78/822
+Patching output file 79/822
+Patching output file 80/822
+Patching output file 81/822
+Patching output file 82/822
+Patching output file 83/822
+Patching output file 84/822
+Patching output file 85/822
+Patching output file 86/822
+Patching output file 87/822
+Patching output file 88/822
+Patching output file 89/822
+Patching output file 90/822
+Patching output file 91/822
+Patching output file 92/822
+Patching output file 93/822
+Patching output file 94/822
+Patching output file 95/822
+Patching output file 96/822
+Patching output file 97/822
+Patching output file 98/822
+Patching output file 99/822
+Patching output file 100/822
+Patching output file 101/822
+Patching output file 102/822
+Patching output file 103/822
+Patching output file 104/822
+Patching output file 105/822
+Patching output file 106/822
+Patching output file 107/822
+Patching output file 108/822
+Patching output file 109/822
+Patching output file 110/822
+Patching output file 111/822
+Patching output file 112/822
+Patching output file 113/822
+Patching output file 114/822
+Patching output file 115/822
+Patching output file 116/822
+Patching output file 117/822
+Patching output file 118/822
+Patching output file 119/822
+Patching output file 120/822
+Patching output file 121/822
+Patching output file 122/822
+Patching output file 123/822
+Patching output file 124/822
+Patching output file 125/822
+Patching output file 126/822
+Patching output file 127/822
+Patching output file 128/822
+Patching output file 129/822
+Patching output file 130/822
+Patching output file 131/822
+Patching output file 132/822
+Patching output file 133/822
+Patching output file 134/822
+Patching output file 135/822
+Patching output file 136/822
+Patching output file 137/822
+Patching output file 138/822
+Patching output file 139/822
+Patching output file 140/822
+Patching output file 141/822
+Patching output file 142/822
+Patching output file 143/822
+Patching output file 144/822
+Patching output file 145/822
+Patching output file 146/822
+Patching output file 147/822
+Patching output file 148/822
+Patching output file 149/822
+Patching output file 150/822
+Patching output file 151/822
+Patching output file 152/822
+Patching output file 153/822
+Patching output file 154/822
+Patching output file 155/822
+Patching output file 156/822
+Patching output file 157/822
+Patching output file 158/822
+Patching output file 159/822
+Patching output file 160/822
+Patching output file 161/822
+Patching output file 162/822
+Patching output file 163/822
+Patching output file 164/822
+Patching output file 165/822
+Patching output file 166/822
+Patching output file 167/822
+Patching output file 168/822
+Patching output file 169/822
+Patching output file 170/822
+Patching output file 171/822
+Patching output file 172/822
+Patching output file 173/822
+Patching output file 174/822
+Patching output file 175/822
+Patching output file 176/822
+Patching output file 177/822
+Patching output file 178/822
+Patching output file 179/822
+Patching output file 180/822
+Patching output file 181/822
+Patching output file 182/822
+Patching output file 183/822
+Patching output file 184/822
+Patching output file 185/822
+Patching output file 186/822
+Patching output file 187/822
+Patching output file 188/822
+Patching output file 189/822
+Patching output file 190/822
+Patching output file 191/822
+Patching output file 192/822
+Patching output file 193/822
+Patching output file 194/822
+Patching output file 195/822
+Patching output file 196/822
+Patching output file 197/822
+Patching output file 198/822
+Patching output file 199/822
+Patching output file 200/822
+Patching output file 201/822
+Patching output file 202/822
+Patching output file 203/822
+Patching output file 204/822
+Patching output file 205/822
+Patching output file 206/822
+Patching output file 207/822
+Patching output file 208/822
+Patching output file 209/822
+Patching output file 210/822
+Patching output file 211/822
+Patching output file 212/822
+Patching output file 213/822
+Patching output file 214/822
+Patching output file 215/822
+Patching output file 216/822
+Patching output file 217/822
+Patching output file 218/822
+Patching output file 219/822
+Patching output file 220/822
+Patching output file 221/822
+Patching output file 222/822
+Patching output file 223/822
+Patching output file 224/822
+Patching output file 225/822
+Patching output file 226/822
+Patching output file 227/822
+Patching output file 228/822
+Patching output file 229/822
+Patching output file 230/822
+Patching output file 231/822
+Patching output file 232/822
+Patching output file 233/822
+Patching output file 234/822
+Patching output file 235/822
+Patching output file 236/822
+Patching output file 237/822
+Patching output file 238/822
+Patching output file 239/822
+Patching output file 240/822
+Patching output file 241/822
+Patching output file 242/822
+Patching output file 243/822
+Patching output file 244/822
+Patching output file 245/822
+Patching output file 246/822
+Patching output file 247/822
+Patching output file 248/822
+Patching output file 249/822
+Patching output file 250/822
+Patching output file 251/822
+Patching output file 252/822
+Patching output file 253/822
+Patching output file 254/822
+Patching output file 255/822
+Patching output file 256/822
+Patching output file 257/822
+Patching output file 258/822
+Patching output file 259/822
+Patching output file 260/822
+Patching output file 261/822
+Patching output file 262/822
+Patching output file 263/822
+Patching output file 264/822
+Patching output file 265/822
+Patching output file 266/822
+Patching output file 267/822
+Patching output file 268/822
+Patching output file 269/822
+Patching output file 270/822
+Patching output file 271/822
+Patching output file 272/822
+Patching output file 273/822
+Patching output file 274/822
+Patching output file 275/822
+Patching output file 276/822
+Patching output file 277/822
+Patching output file 278/822
+Patching output file 279/822
+Patching output file 280/822
+Patching output file 281/822
+Patching output file 282/822
+Patching output file 283/822
+Patching output file 284/822
+Patching output file 285/822
+Patching output file 286/822
+Patching output file 287/822
+Patching output file 288/822
+Patching output file 289/822
+Patching output file 290/822
+Patching output file 291/822
+Patching output file 292/822
+Patching output file 293/822
+Patching output file 294/822
+Patching output file 295/822
+Patching output file 296/822
+Patching output file 297/822
+Patching output file 298/822
+Patching output file 299/822
+Patching output file 300/822
+Patching output file 301/822
+Patching output file 302/822
+Patching output file 303/822
+Patching output file 304/822
+Patching output file 305/822
+Patching output file 306/822
+Patching output file 307/822
+Patching output file 308/822
+Patching output file 309/822
+Patching output file 310/822
+Patching output file 311/822
+Patching output file 312/822
+Patching output file 313/822
+Patching output file 314/822
+Patching output file 315/822
+Patching output file 316/822
+Patching output file 317/822
+Patching output file 318/822
+Patching output file 319/822
+Patching output file 320/822
+Patching output file 321/822
+Patching output file 322/822
+Patching output file 323/822
+Patching output file 324/822
+Patching output file 325/822
+Patching output file 326/822
+Patching output file 327/822
+Patching output file 328/822
+Patching output file 329/822
+Patching output file 330/822
+Patching output file 331/822
+Patching output file 332/822
+Patching output file 333/822
+Patching output file 334/822
+Patching output file 335/822
+Patching output file 336/822
+Patching output file 337/822
+Patching output file 338/822
+Patching output file 339/822
+Patching output file 340/822
+Patching output file 341/822
+Patching output file 342/822
+Patching output file 343/822
+Patching output file 344/822
+Patching output file 345/822
+Patching output file 346/822
+Patching output file 347/822
+Patching output file 348/822
+Patching output file 349/822
+Patching output file 350/822
+Patching output file 351/822
+Patching output file 352/822
+Patching output file 353/822
+Patching output file 354/822
+Patching output file 355/822
+Patching output file 356/822
+Patching output file 357/822
+Patching output file 358/822
+Patching output file 359/822
+Patching output file 360/822
+Patching output file 361/822
+Patching output file 362/822
+Patching output file 363/822
+Patching output file 364/822
+Patching output file 365/822
+Patching output file 366/822
+Patching output file 367/822
+Patching output file 368/822
+Patching output file 369/822
+Patching output file 370/822
+Patching output file 371/822
+Patching output file 372/822
+Patching output file 373/822
+Patching output file 374/822
+Patching output file 375/822
+Patching output file 376/822
+Patching output file 377/822
+Patching output file 378/822
+Patching output file 379/822
+Patching output file 380/822
+Patching output file 381/822
+Patching output file 382/822
+Patching output file 383/822
+Patching output file 384/822
+Patching output file 385/822
+Patching output file 386/822
+Patching output file 387/822
+Patching output file 388/822
+Patching output file 389/822
+Patching output file 390/822
+Patching output file 391/822
+Patching output file 392/822
+Patching output file 393/822
+Patching output file 394/822
+Patching output file 395/822
+Patching output file 396/822
+Patching output file 397/822
+Patching output file 398/822
+Patching output file 399/822
+Patching output file 400/822
+Patching output file 401/822
+Patching output file 402/822
+Patching output file 403/822
+Patching output file 404/822
+Patching output file 405/822
+Patching output file 406/822
+Patching output file 407/822
+Patching output file 408/822
+Patching output file 409/822
+Patching output file 410/822
+Patching output file 411/822
+Patching output file 412/822
+Patching output file 413/822
+Patching output file 414/822
+Patching output file 415/822
+Patching output file 416/822
+Patching output file 417/822
+Patching output file 418/822
+Patching output file 419/822
+Patching output file 420/822
+Patching output file 421/822
+Patching output file 422/822
+Patching output file 423/822
+Patching output file 424/822
+Patching output file 425/822
+Patching output file 426/822
+Patching output file 427/822
+Patching output file 428/822
+Patching output file 429/822
+Patching output file 430/822
+Patching output file 431/822
+Patching output file 432/822
+Patching output file 433/822
+Patching output file 434/822
+Patching output file 435/822
+Patching output file 436/822
+Patching output file 437/822
+Patching output file 438/822
+Patching output file 439/822
+Patching output file 440/822
+Patching output file 441/822
+Patching output file 442/822
+Patching output file 443/822
+Patching output file 444/822
+Patching output file 445/822
+Patching output file 446/822
+Patching output file 447/822
+Patching output file 448/822
+Patching output file 449/822
+Patching output file 450/822
+Patching output file 451/822
+Patching output file 452/822
+Patching output file 453/822
+Patching output file 454/822
+Patching output file 455/822
+Patching output file 456/822
+Patching output file 457/822
+Patching output file 458/822
+Patching output file 459/822
+Patching output file 460/822
+Patching output file 461/822
+Patching output file 462/822
+Patching output file 463/822
+Patching output file 464/822
+Patching output file 465/822
+Patching output file 466/822
+Patching output file 467/822
+Patching output file 468/822
+Patching output file 469/822
+Patching output file 470/822
+Patching output file 471/822
+Patching output file 472/822
+Patching output file 473/822
+Patching output file 474/822
+Patching output file 475/822
+Patching output file 476/822
+Patching output file 477/822
+Patching output file 478/822
+Patching output file 479/822
+Patching output file 480/822
+Patching output file 481/822
+Patching output file 482/822
+Patching output file 483/822
+Patching output file 484/822
+Patching output file 485/822
+Patching output file 486/822
+Patching output file 487/822
+Patching output file 488/822
+Patching output file 489/822
+Patching output file 490/822
+Patching output file 491/822
+Patching output file 492/822
+Patching output file 493/822
+Patching output file 494/822
+Patching output file 495/822
+Patching output file 496/822
+Patching output file 497/822
+Patching output file 498/822
+Patching output file 499/822
+Patching output file 500/822
+Patching output file 501/822
+Patching output file 502/822
+Patching output file 503/822
+Patching output file 504/822
+Patching output file 505/822
+Patching output file 506/822
+Patching output file 507/822
+Patching output file 508/822
+Patching output file 509/822
+Patching output file 510/822
+Patching output file 511/822
+Patching output file 512/822
+Patching output file 513/822
+Patching output file 514/822
+Patching output file 515/822
+Patching output file 516/822
+Patching output file 517/822
+Patching output file 518/822
+Patching output file 519/822
+Patching output file 520/822
+Patching output file 521/822
+Patching output file 522/822
+Patching output file 523/822
+Patching output file 524/822
+Patching output file 525/822
+Patching output file 526/822
+Patching output file 527/822
+Patching output file 528/822
+Patching output file 529/822
+Patching output file 530/822
+Patching output file 531/822
+Patching output file 532/822
+Patching output file 533/822
+Patching output file 534/822
+Patching output file 535/822
+Patching output file 536/822
+Patching output file 537/822
+Patching output file 538/822
+Patching output file 539/822
+Patching output file 540/822
+Patching output file 541/822
+Patching output file 542/822
+Patching output file 543/822
+Patching output file 544/822
+Patching output file 545/822
+Patching output file 546/822
+Patching output file 547/822
+Patching output file 548/822
+Patching output file 549/822
+Patching output file 550/822
+Patching output file 551/822
+Patching output file 552/822
+Patching output file 553/822
+Patching output file 554/822
+Patching output file 555/822
+Patching output file 556/822
+Patching output file 557/822
+Patching output file 558/822
+Patching output file 559/822
+Patching output file 560/822
+Patching output file 561/822
+Patching output file 562/822
+Patching output file 563/822
+Patching output file 564/822
+Patching output file 565/822
+Patching output file 566/822
+Patching output file 567/822
+Patching output file 568/822
+Patching output file 569/822
+Patching output file 570/822
+Patching output file 571/822
+Patching output file 572/822
+Patching output file 573/822
+Patching output file 574/822
+Patching output file 575/822
+Patching output file 576/822
+Patching output file 577/822
+Patching output file 578/822
+Patching output file 579/822
+Patching output file 580/822
+Patching output file 581/822
+Patching output file 582/822
+Patching output file 583/822
+Patching output file 584/822
+Patching output file 585/822
+Patching output file 586/822
+Patching output file 587/822
+Patching output file 588/822
+Patching output file 589/822
+Patching output file 590/822
+Patching output file 591/822
+Patching output file 592/822
+Patching output file 593/822
+Patching output file 594/822
+Patching output file 595/822
+Patching output file 596/822
+Patching output file 597/822
+Patching output file 598/822
+Patching output file 599/822
+Patching output file 600/822
+Patching output file 601/822
+Patching output file 602/822
+Patching output file 603/822
+Patching output file 604/822
+Patching output file 605/822
+Patching output file 606/822
+Patching output file 607/822
+Patching output file 608/822
+Patching output file 609/822
+Patching output file 610/822
+Patching output file 611/822
+Patching output file 612/822
+Patching output file 613/822
+Patching output file 614/822
+Patching output file 615/822
+Patching output file 616/822
+Patching output file 617/822
+Patching output file 618/822
+Patching output file 619/822
+Patching output file 620/822
+Patching output file 621/822
+Patching output file 622/822
+Patching output file 623/822
+Patching output file 624/822
+Patching output file 625/822
+Patching output file 626/822
+Patching output file 627/822
+Patching output file 628/822
+Patching output file 629/822
+Patching output file 630/822
+Patching output file 631/822
+Patching output file 632/822
+Patching output file 633/822
+Patching output file 634/822
+Patching output file 635/822
+Patching output file 636/822
+Patching output file 637/822
+Patching output file 638/822
+Patching output file 639/822
+Patching output file 640/822
+Patching output file 641/822
+Patching output file 642/822
+Patching output file 643/822
+Patching output file 644/822
+Patching output file 645/822
+Patching output file 646/822
+Patching output file 647/822
+Patching output file 648/822
+Patching output file 649/822
+Patching output file 650/822
+Patching output file 651/822
+Patching output file 652/822
+Patching output file 653/822
+Patching output file 654/822
+Patching output file 655/822
+Patching output file 656/822
+Patching output file 657/822
+Patching output file 658/822
+Patching output file 659/822
+Patching output file 660/822
+Patching output file 661/822
+Patching output file 662/822
+Patching output file 663/822
+Patching output file 664/822
+Patching output file 665/822
+Patching output file 666/822
+Patching output file 667/822
+Patching output file 668/822
+Patching output file 669/822
+Patching output file 670/822
+Patching output file 671/822
+Patching output file 672/822
+Patching output file 673/822
+Patching output file 674/822
+Patching output file 675/822
+Patching output file 676/822
+Patching output file 677/822
+Patching output file 678/822
+Patching output file 679/822
+Patching output file 680/822
+Patching output file 681/822
+Patching output file 682/822
+Patching output file 683/822
+Patching output file 684/822
+Patching output file 685/822
+Patching output file 686/822
+Patching output file 687/822
+Patching output file 688/822
+Patching output file 689/822
+Patching output file 690/822
+Patching output file 691/822
+Patching output file 692/822
+Patching output file 693/822
+Patching output file 694/822
+Patching output file 695/822
+Patching output file 696/822
+Patching output file 697/822
+Patching output file 698/822
+Patching output file 699/822
+Patching output file 700/822
+Patching output file 701/822
+Patching output file 702/822
+Patching output file 703/822
+Patching output file 704/822
+Patching output file 705/822
+Patching output file 706/822
+Patching output file 707/822
+Patching output file 708/822
+Patching output file 709/822
+Patching output file 710/822
+Patching output file 711/822
+Patching output file 712/822
+Patching output file 713/822
+Patching output file 714/822
+Patching output file 715/822
+Patching output file 716/822
+Patching output file 717/822
+Patching output file 718/822
+Patching output file 719/822
+Patching output file 720/822
+Patching output file 721/822
+Patching output file 722/822
+Patching output file 723/822
+Patching output file 724/822
+Patching output file 725/822
+Patching output file 726/822
+Patching output file 727/822
+Patching output file 728/822
+Patching output file 729/822
+Patching output file 730/822
+Patching output file 731/822
+Patching output file 732/822
+Patching output file 733/822
+Patching output file 734/822
+Patching output file 735/822
+Patching output file 736/822
+Patching output file 737/822
+Patching output file 738/822
+Patching output file 739/822
+Patching output file 740/822
+Patching output file 741/822
+Patching output file 742/822
+Patching output file 743/822
+Patching output file 744/822
+Patching output file 745/822
+Patching output file 746/822
+Patching output file 747/822
+Patching output file 748/822
+Patching output file 749/822
+Patching output file 750/822
+Patching output file 751/822
+Patching output file 752/822
+Patching output file 753/822
+Patching output file 754/822
+Patching output file 755/822
+Patching output file 756/822
+Patching output file 757/822
+Patching output file 758/822
+Patching output file 759/822
+Patching output file 760/822
+Patching output file 761/822
+Patching output file 762/822
+Patching output file 763/822
+Patching output file 764/822
+Patching output file 765/822
+Patching output file 766/822
+Patching output file 767/822
+Patching output file 768/822
+Patching output file 769/822
+Patching output file 770/822
+Patching output file 771/822
+Patching output file 772/822
+Patching output file 773/822
+Patching output file 774/822
+Patching output file 775/822
+Patching output file 776/822
+Patching output file 777/822
+Patching output file 778/822
+Patching output file 779/822
+Patching output file 780/822
+Patching output file 781/822
+Patching output file 782/822
+Patching output file 783/822
+Patching output file 784/822
+Patching output file 785/822
+Patching output file 786/822
+Patching output file 787/822
+Patching output file 788/822
+Patching output file 789/822
+Patching output file 790/822
+Patching output file 791/822
+Patching output file 792/822
+Patching output file 793/822
+Patching output file 794/822
+Patching output file 795/822
+Patching output file 796/822
+Patching output file 797/822
+Patching output file 798/822
+Patching output file 799/822
+Patching output file 800/822
+Patching output file 801/822
+Patching output file 802/822
+Patching output file 803/822
+Patching output file 804/822
+Patching output file 805/822
+Patching output file 806/822
+Patching output file 807/822
+Patching output file 808/822
+Patching output file 809/822
+Patching output file 810/822
+Patching output file 811/822
+Patching output file 812/822
+Patching output file 813/822
+Patching output file 814/822
+Patching output file 815/822
+Patching output file 816/822
+Patching output file 817/822
+Patching output file 818/822
+Patching output file 819/822
+Patching output file 820/822
+Patching output file 821/822
+Patching output file 822/822
+type lookup cache used 5245/65536 hits=28779 misses=5588
+symbol lookup cache used 7035/65536 hits=32724 misses=7035
+finished...

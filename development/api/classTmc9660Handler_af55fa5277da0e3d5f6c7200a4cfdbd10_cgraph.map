@@ -1,0 +1,10 @@
+<map id="Tmc9660Handler::DisableDriverOutput" name="Tmc9660Handler::DisableDriverOutput">
+<area shape="rect" id="Node000001" title="De&#45;assert the DRV_EN control pin (disable the TMC9660 power stage hardware)." alt="" coords="5,63,236,103"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f" title="Check if the TMC9660 driver has been initialized and is ready." alt="" coords="293,5,485,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,60,281,46,282,51,215,65"/>
+<area shape="rect" id="Node000003" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="541,95,764,121"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="236,85,528,99,528,105,236,91"/>
+<area shape="rect" id="Node000004" href="$classTmc9660Handler.html#a4360829b58deda85e9da4b9cebee96f0" title="Execute a function on the underlying typed TMC9660 driver." alt="" coords="284,121,493,146"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="227,100,308,115,307,121,226,105"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="493,121,527,117,528,123,494,126"/>
+</map>

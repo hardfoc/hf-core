@@ -1,0 +1,7 @@
+<map id="NtcTemperatureHandler::StopContinuousMonitoring" name="NtcTemperatureHandler::StopContinuousMonitoring">
+<area shape="rect" id="Node000001" title=" " alt="" coords="249,37,452,77"/>
+<area shape="rect" id="Node000002" href="$classNtcTemperatureHandler.html#a8c1949119402a748e1000e473e263703" title=" " alt="" coords="15,5,192,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="235,45,192,39,193,34,236,40"/>
+<area shape="rect" id="Node000003" href="$classNtcTemperatureHandler.html#aac69a65bcccfecfc2bfca99f7ac2aeb3" title="Virtual destructor &#45; cleans up timer and thermistor resources." alt="" coords="5,69,201,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="236,75,202,79,201,74,235,70"/>
+</map>

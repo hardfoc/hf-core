@@ -1,0 +1,18 @@
+<map id="Pca9685Handler::EnsureInitialized" name="Pca9685Handler::EnsureInitialized">
+<area shape="rect" id="Node000001" title="Ensure the handler is initialized (lazy initialization)." alt="" coords="669,99,913,125"/>
+<area shape="rect" id="Node000002" href="$full__system__integration__test_8cpp.html#a0ffcd10e1f0034357e4d75e4e19504be" title=" " alt="" coords="460,13,592,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="744,97,621,53,577,41,579,36,622,48,746,92"/>
+<area shape="rect" id="Node000005" href="$classPca9685PwmAdapter.html#a4444ef91c028f448f8fd2d06a4d90992" title="Initialize the PWM adapter (ensures parent handler is initialized)." alt="" coords="442,63,610,103"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="662,100,610,95,611,89,663,95"/>
+<area shape="rect" id="Node000007" href="$classPca9685GpioPin.html#aad888b977f799ca7c4f1f35eb9644311" title="Initialize the GPIO pin (sets channel to full&#45;off by default)." alt="" coords="431,127,621,153"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="658,129,622,133,621,127,657,123"/>
+<area shape="rect" id="Node000008" href="$full__system__integration__test_8cpp.html#a5a65d07819438b3ffa159258ea42a9ea" title=" " alt="" coords="165,149,357,174"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="748,132,689,152,622,168,553,175,484,178,358,173,358,168,484,172,553,170,621,163,687,147,746,127"/>
+<area shape="rect" id="Node000003" href="$full__system__integration__test_8cpp.html#ab02326456d9f2a9466cae859c06f9f1a" title=" " alt="" coords="187,5,336,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="446,28,336,28,336,23,446,23"/>
+<area shape="rect" id="Node000004" href="$full__system__integration__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,95,92,121"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="174,48,141,60,103,78,71,98,68,93,100,74,139,55,172,43"/>
+<area shape="rect" id="Node000006" href="$classPca9685Handler.html#a3f5b93ead4b85c137c94a0d0e8d9bb12" title="Get or create the BasePwm adapter for all 16 channels." alt="" coords="140,70,383,95"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="428,85,383,85,383,80,428,80"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="196,148,91,121,93,116,197,143"/>
+</map>

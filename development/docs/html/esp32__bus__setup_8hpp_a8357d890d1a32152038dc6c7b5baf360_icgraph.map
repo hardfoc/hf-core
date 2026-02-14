@@ -1,0 +1,26 @@
+<map id="get_shared_spi_bus" name="get_shared_spi_bus">
+<area shape="rect" id="Node000001" title="Create and initialize the shared SPI bus." alt="" coords="545,129,696,155"/>
+<area shape="rect" id="Node000002" href="$as5047u__handler__comprehensive__test_8cpp.html#ad7178bfd7bed244bfbb8045f77e478bb" title=" " alt="" coords="379,31,497,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="587,124,496,70,472,59,474,54,499,65,590,119"/>
+<area shape="rect" id="Node000005" href="$max22200__handler__comprehensive__test_8cpp.html#ad7178bfd7bed244bfbb8045f77e478bb" title=" " alt="" coords="379,80,497,105"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="559,128,485,108,487,103,561,123"/>
+<area shape="rect" id="Node000007" href="$tle92466ed__handler__comprehensive__test_8cpp.html#ad7178bfd7bed244bfbb8045f77e478bb" title=" " alt="" coords="379,129,497,155"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="532,145,497,145,497,139,532,139"/>
+<area shape="rect" id="Node000009" href="$tmc5160__handler__comprehensive__test_8cpp.html#ad7178bfd7bed244bfbb8045f77e478bb" title=" " alt="" coords="379,179,497,204"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="561,161,487,181,485,176,559,156"/>
+<area shape="rect" id="Node000011" href="$tmc9660__handler__comprehensive__test_8cpp.html#ad7178bfd7bed244bfbb8045f77e478bb" title=" " alt="" coords="379,228,497,253"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="590,165,499,219,474,230,472,225,496,214,587,160"/>
+<area shape="rect" id="Node000003" href="$as5047u__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,5,92,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="380,30,330,21,265,16,200,14,92,18,92,12,200,9,266,10,331,15,381,25"/>
+<area shape="rect" id="Node000004" href="$as5047u__handler__comprehensive__test_8cpp.html#a5844cf1754ee73d31a05039be52231b3" title=" " alt="" coords="140,31,331,56"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="365,46,331,46,331,41,365,41"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="128,31,92,26,93,21,129,26"/>
+<area shape="rect" id="Node000006" href="$max22200__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="192,80,279,105"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="365,95,279,95,279,90,365,90"/>
+<area shape="rect" id="Node000008" href="$tle92466ed__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="192,129,279,155"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="365,145,279,145,279,139,365,139"/>
+<area shape="rect" id="Node000010" href="$tmc5160__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="192,179,279,204"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="365,194,279,194,279,189,365,189"/>
+<area shape="rect" id="Node000012" href="$tmc9660__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="192,228,279,253"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="365,243,279,243,279,238,365,238"/>
+</map>

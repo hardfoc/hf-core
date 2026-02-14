@@ -1,0 +1,5 @@
+<map id="Pcal95555Handler::ProcessInterrupts" name="Pcal95555Handler::ProcessInterrupts">
+<area shape="rect" id="Node000001" title="Process pending interrupts by reading status and dispatching callbacks." alt="" coords="288,5,487,45"/>
+<area shape="rect" id="Node000002" href="$classPcal95555Handler.html#a2e8fc9ad39143e2cc26a2e6a9d711a7e" title="Drain any pending interrupt that was deferred from ISR context." alt="" coords="5,5,240,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="274,28,240,28,240,23,274,23"/>
+</map>

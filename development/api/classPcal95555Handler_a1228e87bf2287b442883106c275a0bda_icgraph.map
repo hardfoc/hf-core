@@ -1,0 +1,5 @@
+<map id="Pcal95555Handler::GetPullMode" name="Pcal95555Handler::GetPullMode">
+<area shape="rect" id="Node000001" title="Get the pull resistor mode for a single pin (tracked internally)." alt="" coords="248,13,479,38"/>
+<area shape="rect" id="Node000002" href="$classPcal95555GpioPin.html#a85cd9e01dbca0dda8433f0f2a361f3a6" title="Get current pull mode (tracked internally)." alt="" coords="5,5,200,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="234,28,200,28,200,23,234,23"/>
+</map>

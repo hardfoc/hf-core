@@ -1,0 +1,24 @@
+<map id="Pcal95555Handler" name="Pcal95555Handler">
+<area shape="rect" id="Node000001" title="Unified, non&#45;templated handler for a single PCA9555 / PCAL9555A device." alt="" coords="919,106,1059,131"/>
+<area shape="rect" id="Node000008" href="$classPcal95555GpioPin.html" title="BaseGpio adapter for a single PCAL95555 GPIO expander pin." alt="" coords="1216,63,1355,89"/>
+<area shape="poly" id="edge9_Node000008_Node000001" title=" " alt="" coords="1072,104,1215,83,1216,89,1073,109"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="501,5,744,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="758,45,895,79,960,103,958,108,894,84,757,51"/>
+<area shape="rect" id="Node000003" href="$classHalI2cPcal95555Comm.html" title="Concrete I2C communication adapter for PCAL95555 using BaseI2c." alt="" coords="257,13,431,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="445,23,501,23,501,28,445,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,5,208,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="222,23,257,23,257,28,222,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="522,69,723,109"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="738,96,918,110,918,116,737,101"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="1807,85,1985,139"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1793,115,1059,121,1059,115,1793,110"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1492,56,1693,96"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1707,87,1807,99,1806,104,1707,92"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1369,73,1492,73,1492,79,1369,79"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="947,42,1031,67"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1045,56,1216,68,1216,74,1044,61"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="546,134,699,159"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="713,142,894,131,918,128,919,133,895,136,713,147"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="549,184,697,224"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="710,194,800,181,894,159,931,145,963,129,966,134,933,150,895,164,801,186,711,199"/>
+</map>

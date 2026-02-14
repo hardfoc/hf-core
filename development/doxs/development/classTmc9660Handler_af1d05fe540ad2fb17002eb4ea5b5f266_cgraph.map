@@ -1,0 +1,10 @@
+<map id="Tmc9660Handler::EnterBootloaderMode" name="Tmc9660Handler::EnterBootloaderMode">
+<area shape="rect" id="Node000001" title="Command the TMC9660 to leave parameter mode and enter bootloader mode." alt="" coords="5,70,288,95"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f" title="Check if the TMC9660 driver has been initialized and is ready." alt="" coords="345,5,537,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,67,331,44,332,49,213,73"/>
+<area shape="rect" id="Node000003" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="593,95,816,121"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="288,86,580,100,579,105,288,92"/>
+<area shape="rect" id="Node000004" href="$classTmc9660Handler.html#a4360829b58deda85e9da4b9cebee96f0" title="Execute a function on the underlying typed TMC9660 driver." alt="" coords="336,121,545,146"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="222,93,353,116,352,121,221,98"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="545,121,579,117,580,123,546,126"/>
+</map>

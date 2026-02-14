@@ -1,0 +1,39 @@
+<map id="app_main" name="app_main">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,283,92,309"/>
+<area shape="rect" id="Node000002" href="$TestFramework_8h.html#a7bb80345e5681c19686df292fa897daf" title="Flip the test progression indicator to show next test." alt="" coords="161,5,298,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="49,283,55,240,70,179,96,114,115,83,138,55,147,48,151,52,142,59,119,86,101,116,75,181,60,241,54,284"/>
+<area shape="rect" id="Node000003" href="$TestFramework_8h.html#ab7e4c076755ecdf2ad6212cb8f6578ab" title="Print standardized test summary." alt="" coords="153,70,306,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="50,283,58,247,75,199,101,148,118,125,138,105,145,100,148,104,142,109,122,128,105,151,79,201,63,249,55,284"/>
+<area shape="rect" id="Node000006" href="$logger__comprehensive__test_8cpp.html#a86a1ffe58d3d4a46e5aa2c86d864e098" title=" " alt="" coords="175,119,284,145"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="52,282,81,221,107,185,138,154,160,142,163,147,142,158,111,188,86,223,57,284"/>
+<area shape="rect" id="Node000008" href="$logger__comprehensive__test_8cpp.html#a121a66db63fc436e57c4e23cabd3a6a8" title=" " alt="" coords="140,169,319,194"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="58,281,91,243,113,222,139,204,154,196,157,201,141,209,117,226,94,247,62,285"/>
+<area shape="rect" id="Node000009" href="$logger__comprehensive__test_8cpp.html#ad415f93657d99418910b1e209291efdd" title=" " alt="" coords="153,219,305,259"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="89,281,152,260,154,265,90,286"/>
+<area shape="rect" id="Node000010" href="$logger__comprehensive__test_8cpp.html#aa3eec9edd2cb6d63a4a0e25e755ec9b7" title=" " alt="" coords="145,283,313,309"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="92,293,132,293,132,299,92,299"/>
+<area shape="rect" id="Node000011" href="$logger__comprehensive__test_8cpp.html#ac314755c1abd2475ff52f823949f3122" title=" " alt="" coords="174,333,285,358"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="93,305,169,326,168,331,91,310"/>
+<area shape="rect" id="Node000012" href="$logger__comprehensive__test_8cpp.html#a0ef301d3e05cd1ad419b3960e1cf8e64" title=" " alt="" coords="158,382,301,407"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="64,307,97,337,141,367,159,375,157,380,139,372,94,341,60,311"/>
+<area shape="rect" id="Node000013" href="$logger__comprehensive__test_8cpp.html#a3d0de398e5efe6c520def499e4ef8148" title=" " alt="" coords="168,431,291,457"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="58,308,89,361,113,391,142,417,156,425,154,430,138,421,109,395,85,364,54,310"/>
+<area shape="rect" id="Node000014" href="$logger__comprehensive__test_8cpp.html#abb683f84ebb2997730a8f0a9971ab81e" title=" " alt="" coords="159,481,299,506"/>
+<area shape="poly" id="edge19_Node000001_Node000014" title=" " alt="" coords="56,308,65,340,82,383,107,428,142,466,150,472,147,476,138,470,103,431,77,385,60,342,50,310"/>
+<area shape="rect" id="Node000015" href="$logger__comprehensive__test_8cpp.html#a1cf5761a09d135571a5b64c07c4fd94f" title=" " alt="" coords="147,530,312,555"/>
+<area shape="poly" id="edge21_Node000001_Node000015" title=" " alt="" coords="54,308,60,349,75,405,101,465,120,493,142,517,147,521,144,525,138,521,115,496,97,468,70,407,55,350,49,309"/>
+<area shape="rect" id="Node000004" href="$TestFramework_8h.html#a57a48f91a141d98e45f82937581e1a97" title="Automatically initialize GPIO14 test indicator if not already done." alt="" coords="367,70,555,95"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="306,80,353,80,353,85,306,85"/>
+<area shape="rect" id="Node000005" href="$TestFramework_8h.html#a3967179ac699a5b02ef9787b549409fe" title="Initialize the test progression indicator on GPIO14." alt="" coords="603,63,741,103"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="555,80,589,80,589,85,555,85"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="385,333,537,358"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="285,138,320,154,364,192,401,237,430,282,450,319,445,321,425,285,397,240,361,196,317,158,283,143"/>
+<area shape="poly" id="edge8_Node000008_Node000007" title=" " alt="" coords="291,192,320,204,358,231,392,262,444,320,440,324,389,266,355,235,317,209,289,196"/>
+<area shape="poly" id="edge10_Node000009_Node000007" title=" " alt="" coords="290,256,320,268,427,323,424,328,318,273,288,261"/>
+<area shape="poly" id="edge12_Node000010_Node000007" title=" " alt="" coords="290,306,388,327,387,332,289,311"/>
+<area shape="poly" id="edge14_Node000011_Node000007" title=" " alt="" coords="285,343,371,343,371,348,285,348"/>
+<area shape="poly" id="edge16_Node000012_Node000007" title=" " alt="" coords="289,379,387,358,388,364,290,385"/>
+<area shape="poly" id="edge18_Node000013_Node000007" title=" " alt="" coords="281,429,318,416,375,390,425,363,427,367,377,395,320,421,282,434"/>
+<area shape="poly" id="edge20_Node000014_Node000007" title=" " alt="" coords="287,478,317,466,353,443,386,416,437,366,441,370,389,420,356,447,320,470,289,483"/>
+<area shape="poly" id="edge22_Node000015_Node000007" title=" " alt="" coords="294,528,317,516,359,482,395,442,423,402,444,369,448,371,428,405,399,446,363,486,320,521,297,532"/>
+</map>

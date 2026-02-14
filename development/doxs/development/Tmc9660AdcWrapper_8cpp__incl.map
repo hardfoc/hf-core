@@ -1,0 +1,36 @@
+<map id="Tmc9660AdcWrapper.cpp" name="Tmc9660AdcWrapper.cpp">
+<area shape="rect" id="Node000001" title="Implementation of the TMC9660 ADC delegation wrapper." alt="" coords="301,5,488,31"/>
+<area shape="rect" id="Node000002" href="$Tmc9660AdcWrapper_8h.html" title="Thin BaseAdc delegation wrapper for manager&#45;layer ownership of TMC9660 ADC." alt="" coords="218,79,390,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="382,33,331,72,328,68,378,29"/>
+<area shape="rect" id="Node000004" href="$Tmc9660Handler_8h.html" title="Unified handler for TMC9660 motor controller with GPIO, ADC, and temperature integration." alt="" coords="651,79,795,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="448,28,657,73,656,78,447,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,174,131,199"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="272,107,144,154,106,171,104,166,142,150,270,102"/>
+<area shape="poly" id="edge12_Node000004_Node000003" title=" " alt="" coords="650,95,549,99,422,108,282,126,143,155,102,170,100,165,142,149,281,120,421,103,549,93,650,90"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="155,174,221,199"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="651,100,426,119,314,135,234,154,212,168,209,163,232,150,313,129,425,114,650,94"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="245,174,323,199"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="651,97,583,102,503,112,418,129,336,154,310,168,308,164,334,150,417,124,502,107,582,97,650,92"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="347,174,403,199"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="651,99,597,105,537,115,475,132,416,154,397,167,394,162,413,150,473,126,536,110,597,100,650,94"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="427,174,493,199"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="657,107,583,125,507,154,485,167,483,163,504,150,582,120,656,102"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="518,174,610,199"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="705,106,597,169,594,165,702,102"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="634,159,811,214"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="725,104,725,146,720,146,720,104"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="836,152,1033,221"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="750,102,847,144,845,149,748,106"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="1057,174,1188,199"/>
+<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="795,99,914,118,1046,149,1089,166,1087,171,1045,155,913,123,794,104"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1213,174,1395,199"/>
+<area shape="poly" id="edge13_Node000004_Node000013" title=" " alt="" coords="795,95,980,113,1091,129,1201,149,1261,167,1260,172,1199,155,1090,134,979,118,795,100"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="1419,174,1541,199"/>
+<area shape="poly" id="edge14_Node000004_Node000014" title=" " alt="" coords="795,93,1116,112,1286,129,1356,139,1409,149,1449,165,1447,170,1407,155,1355,144,1285,134,1115,118,795,98"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="1565,174,1694,199"/>
+<area shape="poly" id="edge15_Node000004_Node000015" title=" " alt="" coords="795,92,1186,109,1399,126,1487,137,1554,149,1597,166,1596,171,1553,155,1487,142,1399,132,1186,115,795,97"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="1718,152,1895,221"/>
+<area shape="poly" id="edge16_Node000004_Node000016" title=" " alt="" coords="795,92,1247,110,1506,126,1616,137,1704,149,1704,154,1616,142,1505,132,1247,115,795,97"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="1919,174,1979,199"/>
+<area shape="poly" id="edge17_Node000004_Node000017" title=" " alt="" coords="795,91,1056,96,1403,107,1724,124,1841,136,1909,150,1930,162,1928,167,1907,154,1840,141,1724,129,1403,112,1056,101,795,96"/>
+</map>

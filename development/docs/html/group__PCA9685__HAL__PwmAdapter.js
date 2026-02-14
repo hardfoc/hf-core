@@ -1,0 +1,34 @@
+var group__PCA9685__HAL__PwmAdapter =
+[
+    [ "Pca9685PwmAdapter", "classPca9685PwmAdapter.html", [
+      [ "Pca9685PwmAdapter", "classPca9685PwmAdapter.html#aff11c1ac9e63fd735a76497582a54bf0", null ],
+      [ "~Pca9685PwmAdapter", "classPca9685PwmAdapter.html#a8aa0dc4cc7676d3208761debd9d22b91", null ],
+      [ "Deinitialize", "classPca9685PwmAdapter.html#aca699f9fffd3ddf238ca3e833e85b919", null ],
+      [ "DisableChannel", "classPca9685PwmAdapter.html#ae561cd717f09691cd9c45961ef739eb9", null ],
+      [ "EnableChannel", "classPca9685PwmAdapter.html#a1ae2b30150d427183e7f171daf0af720", null ],
+      [ "GetDutyCycle", "classPca9685PwmAdapter.html#ad8f8441e2fc34f1d1331f79e37bc80af", null ],
+      [ "GetFrequency", "classPca9685PwmAdapter.html#aac49436a3981c258dab38f8770d8d827", null ],
+      [ "Initialize", "classPca9685PwmAdapter.html#a4444ef91c028f448f8fd2d06a4d90992", null ],
+      [ "IsChannelEnabled", "classPca9685PwmAdapter.html#a5bdbecb058703d5b5f6f59fac8daa5b2", null ],
+      [ "SetComplementaryOutput", "classPca9685PwmAdapter.html#a0442088d54116c40d4644aa59307f5c0", null ],
+      [ "SetDutyCycle", "classPca9685PwmAdapter.html#a2f565d01eb539c60ef8266688bc3824c", null ],
+      [ "SetDutyCycleRaw", "classPca9685PwmAdapter.html#aefb37b4910fa3c338f25ddf88b0a1f5f", null ],
+      [ "SetFrequency", "classPca9685PwmAdapter.html#a849333230ae977939266c075d5830a38", null ],
+      [ "SetPhaseShift", "classPca9685PwmAdapter.html#a6cd746620e622a273998807c6a260b7d", null ],
+      [ "StartAll", "classPca9685PwmAdapter.html#aabd9412420647133c10651ec3caed0d4", null ],
+      [ "StopAll", "classPca9685PwmAdapter.html#a825a19eb0b16cbf9ebb93a7b6da115d8", null ],
+      [ "UpdateAll", "classPca9685PwmAdapter.html#a20b32c0131c0265e0c50b2f7d66677f3", null ],
+      [ "validateChannel", "classPca9685PwmAdapter.html#a33dc3b0fc7647b69a384329c1d3b1841", null ],
+      [ "Pca9685Handler", "classPca9685PwmAdapter.html#ab0f74b52dfc8f21be1f8fa9c791f5970", null ],
+      [ "channel_enabled_", "classPca9685PwmAdapter.html#ae66c071510d76dedf3c0eca2eeb6a5f0", null ],
+      [ "current_frequency_hz_", "classPca9685PwmAdapter.html#aee02c1bfca7d8dae6d0c1bf6e662b9a4", null ],
+      [ "duty_cache_", "classPca9685PwmAdapter.html#a5bf85e1725e3bb94fd5ee76d6e71c185", null ],
+      [ "kMaxChannels", "classPca9685PwmAdapter.html#af55760adbbae32af83d3d4f68219f822", null ],
+      [ "kMaxFrequencyHz", "classPca9685PwmAdapter.html#a99fbcd37f8ec3a7147f09895b6c8d0ce", null ],
+      [ "kMaxRawValue", "classPca9685PwmAdapter.html#a4fae40d04fe23c1bda49465a724ca260", null ],
+      [ "kMinFrequencyHz", "classPca9685PwmAdapter.html#a2625228b6dc6f6edb8bebb4f69f668da", null ],
+      [ "kResolutionBits", "classPca9685PwmAdapter.html#ab14fef2196431d10dc3c4347ba3a7d67", null ],
+      [ "on_time_cache_", "classPca9685PwmAdapter.html#a0938303a73472f97cb89bd38247ec8a6", null ],
+      [ "parent_handler_", "classPca9685PwmAdapter.html#a813045693ec697af5a3dde89a1b1ba74", null ]
+    ] ]
+];

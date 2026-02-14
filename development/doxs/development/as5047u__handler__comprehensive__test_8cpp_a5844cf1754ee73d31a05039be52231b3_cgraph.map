@@ -1,0 +1,7 @@
+<map id="test_handler_construction" name="test_handler_construction">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,196,31"/>
+<area shape="rect" id="Node000002" href="$as5047u__handler__comprehensive__test_8cpp.html#ad7178bfd7bed244bfbb8045f77e478bb" title=" " alt="" coords="244,5,363,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,15,230,15,230,21,196,21"/>
+<area shape="rect" id="Node000003" href="$esp32__bus__setup_8hpp.html#a8357d890d1a32152038dc6c7b5baf360" title="Create and initialize the shared SPI bus." alt="" coords="411,5,561,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="363,15,397,15,397,21,363,21"/>
+</map>

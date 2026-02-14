@@ -1,0 +1,22 @@
+<map id="Tmc5160Handler" name="Tmc5160Handler">
+<area shape="rect" id="Node000001" title="Unified handler for TMC5160/TMC5130 stepper motor driver." alt="" coords="951,137,1084,162"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="581,31,817,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="799,72,928,109,989,134,987,139,926,115,797,77"/>
+<area shape="rect" id="Node000003" href="$classHalSpiTmc5160Comm.html" title="Concrete SPI communication adapter for TMC5160 using BaseSpi and BaseGpio." alt="" coords="340,38,507,63"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="520,48,581,48,581,53,520,53"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="9,5,217,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="231,32,340,41,340,47,231,38"/>
+<area shape="rect" id="Node000005" href="$structTmc5160CtrlPins.html" title="Shared helper holding TMC5160 host&#45;side control pin references." alt="" coords="47,74,179,99"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="193,75,339,58,340,63,193,80"/>
+<area shape="rect" id="Node000007" href="$classHalUartTmc5160Comm.html" title="Concrete UART communication adapter for TMC5160 using BaseUart and BaseGpio." alt="" coords="336,102,511,127"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="193,95,246,101,336,108,335,113,245,107,193,101"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="607,95,791,135"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="805,123,951,139,950,145,804,129"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="524,112,607,112,607,117,524,117"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="5,129,221,169"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="235,133,335,122,336,127,236,138"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="595,159,804,185"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="818,169,926,163,951,159,952,165,927,168,818,174"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="591,209,808,234"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="822,210,874,202,926,189,962,176,993,160,996,164,964,180,927,195,875,207,822,215"/>
+</map>

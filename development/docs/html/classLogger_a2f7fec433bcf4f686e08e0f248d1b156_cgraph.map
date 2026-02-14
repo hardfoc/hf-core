@@ -1,0 +1,7 @@
+<map id="Logger::Debug" name="Logger::Debug">
+<area shape="rect" id="Node000001" title="Log debug message with formatting." alt="" coords="5,31,121,56"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="169,5,341,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,33,156,28,156,34,122,38"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="182,55,329,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="122,48,169,54,168,59,121,53"/>
+</map>

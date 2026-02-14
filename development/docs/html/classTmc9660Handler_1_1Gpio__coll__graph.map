@@ -1,0 +1,49 @@
+<map id="Tmc9660Handler::Gpio" name="Tmc9660Handler::Gpio">
+<area shape="rect" id="Node000001" title="BaseGpio adapter for a single TMC9660 internal GPIO channel." alt="" coords="161,314,332,339"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="469,271,664,311"/>
+<area shape="poly" id="edge15_Node000014_Node000001" title=" " alt="" coords="345,313,469,299,469,304,346,318"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,314,89,339"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,324,161,324,161,329,103,329"/>
+<area shape="rect" id="Node000003" href="$classTmc9660Handler.html" title="Unified, non&#45;templated handler for a single TMC9660 motor controller device." alt="" coords="1178,185,1311,210"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1219,221,1181,249,1132,280,1075,308,1014,328,921,344,825,354,729,358,635,359,464,352,332,340,333,335,465,347,635,354,729,353,824,348,920,338,1013,323,1073,304,1129,275,1178,244,1216,217"/>
+<area shape="rect" id="Node000016" href="$classTmc9660Handler_1_1Adc.html" title="BaseAdc adapter for all TMC9660 ADC channels." alt="" coords="1477,87,1642,113"/>
+<area shape="poly" id="edge19_Node000016_Node000003" title=" " alt="" coords="1282,176,1350,148,1423,126,1493,110,1494,115,1425,132,1352,153,1284,181"/>
+<area shape="rect" id="Node000020" href="$classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor." alt="" coords="1448,286,1671,311"/>
+<area shape="poly" id="edge24_Node000020_Node000003" title=" " alt="" coords="1275,216,1310,239,1352,259,1399,274,1448,284,1447,289,1398,279,1350,264,1308,243,1272,220"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="777,31,1013,71"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1012,72,1076,91,1140,118,1192,150,1231,183,1228,187,1189,155,1137,122,1074,96,1010,77"/>
+<area shape="rect" id="Node000005" href="$classHalSpiTmc9660Comm.html" title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio." alt="" coords="483,38,650,63"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="664,48,777,48,777,53,664,53"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="143,5,351,45"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="365,32,483,41,483,47,365,37"/>
+<area shape="rect" id="Node000007" href="$structTmc9660CtrlPins.html" title="Shared helper holding the four TMC9660 host&#45;side control pin references." alt="" coords="181,74,313,99"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="326,75,483,57,483,63,327,80"/>
+<area shape="rect" id="Node000009" href="$classHalUartTmc9660Comm.html" title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio." alt="" coords="479,102,654,127"/>
+<area shape="poly" id="edge10_Node000009_Node000007" title=" " alt="" coords="327,95,379,101,479,108,479,114,378,107,326,101"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="803,95,987,135"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="1002,130,1139,160,1209,182,1207,187,1138,165,1001,135"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="668,112,803,112,803,117,668,117"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="139,129,355,169"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="368,134,479,121,480,127,369,139"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="791,159,1000,185"/>
+<area shape="poly" id="edge11_Node000003_Node000011" title=" " alt="" coords="1014,178,1178,190,1178,195,1013,183"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="787,209,1004,234"/>
+<area shape="poly" id="edge12_Node000003_Node000012" title=" " alt="" coords="1017,220,1138,213,1181,207,1181,213,1139,219,1018,225"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="805,258,986,313"/>
+<area shape="poly" id="edge13_Node000003_Node000013" title=" " alt="" coords="999,270,1068,258,1138,240,1180,225,1217,208,1220,212,1182,229,1139,245,1069,263,1000,275"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="678,286,804,284,804,289,678,292"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="1741,137,1936,177"/>
+<area shape="poly" id="edge16_Node000003_Node000015" title=" " alt="" coords="1728,167,1312,196,1311,190,1728,162"/>
+<area shape="poly" id="edge17_Node000015_Node000016" title=" " alt="" coords="1636,113,1742,135,1741,140,1635,118"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="1205,74,1284,99"/>
+<area shape="poly" id="edge18_Node000016_Node000017" title=" " alt="" coords="1298,86,1476,94,1476,99,1298,92"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="1168,9,1321,49"/>
+<area shape="poly" id="edge20_Node000016_Node000018" title=" " alt="" coords="1335,47,1502,85,1501,90,1334,52"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="1741,217,1936,257"/>
+<area shape="poly" id="edge21_Node000003_Node000019" title=" " alt="" coords="1728,233,1311,204,1312,199,1728,227"/>
+<area shape="poly" id="edge22_Node000019_Node000020" title=" " alt="" coords="1630,280,1746,255,1747,260,1632,286"/>
+<area shape="rect" id="Node000021" title=" " alt="" coords="1177,353,1313,378"/>
+<area shape="poly" id="edge23_Node000020_Node000021" title=" " alt="" coords="1318,347,1498,309,1499,314,1319,352"/>
+<area shape="rect" id="Node000022" title=" " alt="" coords="1163,288,1327,328"/>
+<area shape="poly" id="edge25_Node000020_Node000022" title=" " alt="" coords="1340,306,1424,304,1448,303,1448,308,1424,309,1341,311"/>
+</map>

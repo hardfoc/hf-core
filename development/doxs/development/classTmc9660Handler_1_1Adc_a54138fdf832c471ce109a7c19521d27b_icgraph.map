@@ -1,0 +1,5 @@
+<map id="Tmc9660Handler::Adc::GetMaxChannels" name="Tmc9660Handler::Adc::GetMaxChannels">
+<area shape="rect" id="Node000001" title="Returns the total number of readable channels (15)." alt="" coords="223,5,388,45"/>
+<area shape="rect" id="Node000002" href="$classTmc9660AdcWrapper.html#a7f754c5432b29313fb09f3cc353a4e6f" title=" " alt="" coords="5,5,175,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,28,175,28,175,23,209,23"/>
+</map>

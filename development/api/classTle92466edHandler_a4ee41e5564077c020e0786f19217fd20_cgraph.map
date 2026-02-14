@@ -1,0 +1,13 @@
+<map id="Tle92466edHandler::~Tle92466edHandler" name="Tle92466edHandler::~Tle92466edHandler">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,165,63"/>
+<area shape="rect" id="Node000002" href="$classTle92466edHandler.html#a671266be309eb76e3dedeef3426ffdfe" title="Deinitialize — disable channels and shut down." alt="" coords="213,23,371,63"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,41,199,41,199,46,166,46"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="419,5,571,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="371,31,405,27,405,32,372,36"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="445,55,544,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="372,50,432,57,431,63,371,55"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="619,29,791,55"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="544,59,604,51,605,57,544,64"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="631,79,778,104"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="544,70,618,79,617,84,544,76"/>
+</map>

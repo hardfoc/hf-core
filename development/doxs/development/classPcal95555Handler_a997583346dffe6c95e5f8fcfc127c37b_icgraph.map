@@ -1,0 +1,7 @@
+<map id="Pcal95555Handler::HasAgileIO" name="Pcal95555Handler::HasAgileIO">
+<area shape="rect" id="Node000001" title="Check if the detected chip supports Agile I/O features." alt="" coords="257,35,477,60"/>
+<area shape="rect" id="Node000002" href="$classPcal95555GpioPin.html#a49b393914fbb14d0a5f32e4a597babb2" title="Initialize the pin (configures direction and pull mode on the expander)." alt="" coords="6,5,209,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="243,36,209,32,209,27,244,31"/>
+<area shape="rect" id="Node000003" href="$classPcal95555GpioPin.html#a4b3f3c93b648f3d6cd3142078cba0575" title="Check if this pin supports interrupt configuration." alt="" coords="5,55,209,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="244,63,210,67,209,62,244,58"/>
+</map>

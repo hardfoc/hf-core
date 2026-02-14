@@ -1,0 +1,5 @@
+<map id="Max22200Handler::DumpDiagnostics" name="Max22200Handler::DumpDiagnostics">
+<area shape="rect" id="Node000001" title="Dump diagnostics to logger." alt="" coords="5,5,269,31"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="317,5,469,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="269,15,303,15,303,21,269,21"/>
+</map>

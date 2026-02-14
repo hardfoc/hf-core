@@ -1,0 +1,15 @@
+<map id="test_concurrent_i2c_access" name="test_concurrent_i2c_access">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,61,155,101"/>
+<area shape="rect" id="Node000002" href="$full__system__integration__test_8cpp.html#a0ffcd10e1f0034357e4d75e4e19504be" title=" " alt="" coords="203,69,335,94"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,79,189,79,189,84,155,84"/>
+<area shape="rect" id="Node000003" href="$classPca9685Handler.html#a088d4c2eecbd5c39480a5dddf73d91d3" title="Ensure the handler is initialized (lazy initialization)." alt="" coords="383,15,627,41"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="325,66,434,41,435,46,326,71"/>
+<area shape="rect" id="Node000005" href="$esp32__bus__setup_8hpp.html#a7024544c8de144283c563c05320b05bf" title="Get an I2C device handle for a specific address on the shared bus." alt="" coords="445,69,564,94"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="335,79,431,79,431,84,335,84"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="429,118,581,143"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="326,92,383,104,425,113,424,118,382,109,325,97"/>
+<area shape="rect" id="Node000004" href="$classPca9685Handler.html#ab7b5cd2320a6bb69ff6a2869051e9d5e" title="Internal initialization (called under mutex)." alt="" coords="675,5,867,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="627,24,661,24,661,29,627,29"/>
+<area shape="rect" id="Node000006" href="$esp32__bus__setup_8hpp.html#a34120f53f38b468eb02c353cd79d5b0b" title="Create and initialize the shared I2C bus." alt="" coords="695,70,846,95"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="564,79,682,80,682,85,564,84"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="IBno08xDriverOps::SetCallback" name="IBno08xDriverOps::SetCallback">
+<area shape="rect" id="Node000001" title=" " alt="" coords="257,31,483,56"/>
+<area shape="rect" id="Node000002" href="$classBno08xHandler.html#a2019941b7d9fa00ffe08630fee9ef340" title="Deinitialize the sensor." alt="" coords="5,5,209,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,34,209,30,210,25,244,29"/>
+<area shape="rect" id="Node000003" href="$classBno08xHandler.html#ac1a1ff0d56324dcc09d9b48ca2e132e6" title="Initialize the BNO08x sensor." alt="" coords="14,55,201,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="244,58,201,61,201,56,243,52"/>
+</map>

@@ -1,0 +1,25 @@
+<map id="esp32_bus_setup.hpp" name="esp32_bus_setup.hpp">
+<area shape="rect" id="Node000001" title="Shared ESP32 bus initialization for hf&#45;core handler tests." alt="" coords="1276,5,1439,31"/>
+<area shape="rect" id="Node000002" href="$as5047u__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for As5047uHandler." alt="" coords="5,79,245,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1262,24,827,41,544,58,258,81,246,83,245,77,257,76,544,53,827,36,1262,19"/>
+<area shape="rect" id="Node000003" href="$bno08x__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for Bno08xHandler." alt="" coords="270,79,503,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1262,26,932,46,725,62,516,81,504,83,503,77,516,76,724,56,932,41,1262,21"/>
+<area shape="rect" id="Node000004" href="$full__system__integration__test_8cpp.html" title="Full system integration test for hf&#45;core." alt="" coords="528,79,704,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1262,28,1015,48,716,81,705,83,704,78,716,76,1014,43,1262,23"/>
+<area shape="rect" id="Node000005" href="$max22200__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for Max22200Handler." alt="" coords="729,79,983,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1272,35,976,81,976,76,1271,30"/>
+<area shape="rect" id="Node000006" href="$ntc__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for NtcTemperatureHandler." alt="" coords="1008,79,1213,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1309,37,1171,81,1169,76,1308,32"/>
+<area shape="rect" id="Node000007" href="$pca9685__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for Pca9685Handler." alt="" coords="1237,79,1477,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1360,44,1360,79,1355,79,1355,44"/>
+<area shape="rect" id="Node000008" href="$pcal95555__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for Pcal95555Handler." alt="" coords="1502,79,1754,119"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1410,32,1564,76,1562,81,1409,37"/>
+<area shape="rect" id="Node000009" href="$tle92466ed__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for Tle92466edHandler." alt="" coords="1778,79,1966,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1453,30,1767,76,1778,78,1777,83,1766,81,1452,35"/>
+<area shape="rect" id="Node000010" href="$tmc5160__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for Tmc5160Handler." alt="" coords="1991,79,2233,119"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1452,24,1692,46,1979,76,1991,77,1990,83,1978,81,1691,51,1452,30"/>
+<area shape="rect" id="Node000011" href="$tmc9660__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for Tmc9660Handler." alt="" coords="2257,79,2500,119"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1453,21,1802,40,2023,56,2246,76,2257,77,2257,83,2245,81,2023,61,1802,45,1453,26"/>
+<area shape="rect" id="Node000012" href="$ws2812__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for Ws2812Handler." alt="" coords="2524,79,2759,119"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1453,19,1909,35,2209,52,2512,76,2524,77,2523,83,2512,81,2209,57,1909,40,1452,24"/>
+</map>

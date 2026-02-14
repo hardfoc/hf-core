@@ -1,0 +1,13 @@
+<map id="i2c_handler_task" name="i2c_handler_task">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,137,94"/>
+<area shape="rect" id="Node000002" href="$classPca9685Handler.html#a088d4c2eecbd5c39480a5dddf73d91d3" title="Ensure the handler is initialized (lazy initialization)." alt="" coords="185,15,429,41"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,66,237,41,238,46,129,71"/>
+<area shape="rect" id="Node000004" href="$esp32__bus__setup_8hpp.html#a7024544c8de144283c563c05320b05bf" title="Get an I2C device handle for a specific address on the shared bus." alt="" coords="248,69,367,94"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="138,79,234,79,234,84,138,84"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="231,118,383,143"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="129,92,186,104,228,113,226,118,185,109,128,97"/>
+<area shape="rect" id="Node000003" href="$classPca9685Handler.html#ab7b5cd2320a6bb69ff6a2869051e9d5e" title="Internal initialization (called under mutex)." alt="" coords="477,5,669,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="430,24,464,24,464,29,430,29"/>
+<area shape="rect" id="Node000005" href="$esp32__bus__setup_8hpp.html#a34120f53f38b468eb02c353cd79d5b0b" title="Create and initialize the shared I2C bus." alt="" coords="498,70,649,95"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="367,79,484,80,484,85,367,84"/>
+</map>

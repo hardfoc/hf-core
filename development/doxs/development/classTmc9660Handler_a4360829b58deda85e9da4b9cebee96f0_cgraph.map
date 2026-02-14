@@ -1,0 +1,5 @@
+<map id="Tmc9660Handler::visitDriver" name="Tmc9660Handler::visitDriver">
+<area shape="rect" id="Node000001" title="Execute a function on the underlying typed TMC9660 driver." alt="" coords="5,5,215,31"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="263,5,485,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,15,249,15,249,21,215,21"/>
+</map>

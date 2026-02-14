@@ -1,0 +1,35 @@
+var Bno08xHandler_8h =
+[
+    [ "HalI2cBno08xComm", "classHalI2cBno08xComm.html", "classHalI2cBno08xComm" ],
+    [ "HalSpiBno08xComm", "classHalSpiBno08xComm.html", "classHalSpiBno08xComm" ],
+    [ "IBno08xDriverOps", "classIBno08xDriverOps.html", "classIBno08xDriverOps" ],
+    [ "Bno08xDriverImpl< CommType >", "classBno08xDriverImpl.html", "classBno08xDriverImpl" ],
+    [ "Bno08xVector3", "structBno08xVector3.html", "structBno08xVector3" ],
+    [ "Bno08xQuaternion", "structBno08xQuaternion.html", "structBno08xQuaternion" ],
+    [ "Bno08xEulerAngles", "structBno08xEulerAngles.html", "structBno08xEulerAngles" ],
+    [ "Bno08xImuData", "structBno08xImuData.html", "structBno08xImuData" ],
+    [ "Bno08xActivityData", "structBno08xActivityData.html", "structBno08xActivityData" ],
+    [ "Bno08xCalibrationStatus", "structBno08xCalibrationStatus.html", "structBno08xCalibrationStatus" ],
+    [ "Bno08xConfig", "structBno08xConfig.html", "structBno08xConfig" ],
+    [ "Bno08xHandler", "classBno08xHandler.html", "classBno08xHandler" ],
+    [ "Bno08xError", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832", [
+      [ "SUCCESS", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c", null ],
+      [ "NOT_INITIALIZED", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a02de9649e258d1dd94056e676061e969", null ],
+      [ "INITIALIZATION_FAILED", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832afdd2c3274e42cbf32d77a90e764f1faf", null ],
+      [ "INVALID_PARAMETER", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832afeb1a30cb74c35aaf4ea067736109e30", null ],
+      [ "COMMUNICATION_FAILED", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a4f66ca42362b83f362b57f7f0aec26d2", null ],
+      [ "SENSOR_NOT_RESPONDING", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832aefa317621a7a5d359894d432ec948b31", null ],
+      [ "CALIBRATION_FAILED", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a9cb6ce703e04781843950948b1f80f0f", null ],
+      [ "FIRMWARE_UPDATE_FAILED", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832aac29fd5ddf8878cb5d667746a83acbff", null ],
+      [ "TIMEOUT", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a070a0fb40f6c308ab544b227660aadff", null ],
+      [ "MUTEX_LOCK_FAILED", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a13d0255d66b368703af734c8ca5ae227", null ],
+      [ "INVALID_INTERFACE", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a2eca914413e779cbfd9655005a0128c8", null ],
+      [ "SENSOR_NOT_ENABLED", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832adefa7c21c79061d81f201f471ac484b9", null ],
+      [ "DATA_NOT_AVAILABLE", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ae86293582656c525e100c3c7628f607f", null ],
+      [ "HARDWARE_ERROR", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a89fe56ed105248667fe799031276ab23", null ],
+      [ "UNSUPPORTED_OPERATION", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a5a2ff7a2f2c3b40268e57995408f8e9d", null ]
+    ] ],
+    [ "Bno08xErrorToString", "Bno08xHandler_8h.html#a929bff75c00c4ce529177b0640cdf58c", null ],
+    [ "CreateBno08xHandlerI2c", "Bno08xHandler_8h.html#a00118ff1c99ae958c092ed6d21b59135", null ],
+    [ "CreateBno08xHandlerSpi", "Bno08xHandler_8h.html#a1bd813a8294732698f36232c4b9ed0af", null ]
+];

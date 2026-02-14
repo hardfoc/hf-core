@@ -1,0 +1,313 @@
+# ===========================================================================
+# app_config.yml — Centralized build & CI configuration for hf-core tests
+# ===========================================================================
+# Single source of truth for all test applications, build settings, and CI
+# matrix generation. Used by build_app.sh and generate_matrix.py.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (c) 2025-2026 HardFOC Team
+# ===========================================================================
+
+version: "1.0"
+
+metadata:
+  project: "ESP32 HardFOC Core — Handler & Utils Tests"
+  description: >
+    Comprehensive test suite for the hf-core platform layer.
+    Tests all handlers (exercising underlying drivers), RTOS utilities,
+    general utilities, and cross-component integration scenarios on
+    real ESP32 hardware.
+  default_app: "general_utils_test"
+  default_build_type: "Debug"
+  target: "esp32s3"
+  idf_versions:
+    - "release/v5.5"
+    - "release/v5.4"
+  build_types:
+    - ["Debug", "Release"]
+    - ["Debug"]
+
+# ===========================================================================
+# HANDLER TESTS — Each tests one handler (and its underlying driver)
+# ===========================================================================
+
+apps:
+
+  # ── AS5047U Magnetic Encoder Handler ────────────────────────────────────
+  as5047u_handler_test:
+    description: >
+      Comprehensive test of As5047uHandler: CRTP SPI adapter, initialization,
+      angle/velocity reading, DAEC configuration, zero position, diagnostics,
+      OTP readback, error handling, and thread safety.
+    source_file: "handler_tests/as5047u_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "AS5047U encoder on SPI bus, magnet in range"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── BNO08x IMU Handler ─────────────────────────────────────────────────
+  bno08x_handler_test:
+    description: >
+      Comprehensive test of Bno08xHandler: I2C/SPI comm adapter, sensor
+      enable/disable, accelerometer/gyroscope/magnetometer reading, rotation
+      vectors, activity detection, freshness gating, callback management,
+      hardware reset, configuration persistence, and error mapping.
+    source_file: "handler_tests/bno08x_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "BNO085/BNO080 on I2C bus (0x4A or 0x4B), INT + RST GPIOs"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── PCA9685 PWM Controller Handler ─────────────────────────────────────
+  pca9685_handler_test:
+    description: >
+      Comprehensive test of Pca9685Handler: I2C comm adapter, EnsureInitialized
+      delegation, PWM duty cycle (float + raw), frequency control, sleep/wake,
+      PwmAdapter multi-channel interface, GpioPin wrapper, phase offset, output
+      configuration, and error handling.
+    source_file: "handler_tests/pca9685_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "PCA9685 on I2C bus (default 0x40)"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── PCAL95555 GPIO Expander Handler ────────────────────────────────────
+  pcal95555_handler_test:
+    description: >
+      Comprehensive test of Pcal95555Handler: I2C comm adapter, EnsureInitialized,
+      per-pin direction/read/write/toggle, batch mask operations, interrupt
+      management (deferred ISR via atomic flag), chip variant detection
+      (PCA9555 vs PCAL9555A), Agile I/O features, pull mode, drive strength,
+      output mode, and GpioPin wrapper.
+    source_file: "handler_tests/pcal95555_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "PCAL9555A on I2C bus, optional INT GPIO"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── NTC Temperature Handler ────────────────────────────────────────────
+  ntc_handler_test:
+    description: >
+      Comprehensive test of NtcTemperatureHandler: ADC reading, temperature
+      conversion (lookup + math), calibration offset, EMA filtering,
+      continuous monitoring via PeriodicTimer, threshold callbacks,
+      statistics/diagnostics, and RtosMutex thread safety.
+    source_file: "handler_tests/ntc_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "NTC thermistor on ADC channel via voltage divider"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── TMC9660 Motor Controller Handler ───────────────────────────────────
+  tmc9660_handler_test:
+    description: >
+      Comprehensive test of Tmc9660Handler: SPI/UART comm adapter, bootloader
+      initialization, TMCL parameter access, motor control (velocity/position/
+      torque), telemetry readback, GPIO wrapper (GPIO17/GPIO18), ADC wrapper
+      (multi-channel), Temperature wrapper, error flag management, and
+      peripheral accessor null safety.
+    source_file: "handler_tests/tmc9660_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "TMC9660 on SPI bus, RST/DRV_EN/FAULTN/WAKE GPIOs"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── TMC5160 Stepper Motor Driver Handler ───────────────────────────────
+  tmc5160_handler_test:
+    description: >
+      Comprehensive test of Tmc5160Handler: CRTP SPI/UART comm adapters,
+      initialization with DriverConfig, motor enable/disable, motion control
+      (position/velocity/acceleration), visitDriver() subsystem access,
+      StallGuard readback, diagnostics dump, status checks (overtemp/stall/
+      standstill), and pre-init error handling.
+    source_file: "handler_tests/tmc5160_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "TMC5160 on SPI bus, DRV_ENN/DIAG0/DIAG1 GPIOs"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── TLE92466ED Gate Driver Handler ─────────────────────────────────────
+  tle92466ed_handler_test:
+    description: >
+      Comprehensive test of Tle92466edHandler: CRTP SPI comm adapter,
+      initialization with GlobalConfig, 6-channel enable/disable/current/PWM,
+      fault report, watchdog kick/disable, device ID readback, diagnostics,
+      channel diagnostics, and pre-init error handling.
+    source_file: "handler_tests/tle92466ed_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "TLE92466ED on SPI bus, RESN/EN/FAULTN GPIOs"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── MAX22200 Solenoid / Motor Driver Handler ───────────────────────────
+  max22200_handler_test:
+    description: >
+      Comprehensive test of Max22200Handler: CRTP SPI comm adapter with CMD
+      pin two-phase protocol, initialization with BoardConfig, 8-channel
+      enable/disable/mask, CDR/VDR channel setup, fault readback, device ID,
+      soft reset, diagnostics, and pre-init error handling.
+    source_file: "handler_tests/max22200_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "MAX22200 on SPI bus, ENABLE/CMD/FAULT GPIOs"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── WS2812 LED Strip Handler ───────────────────────────────────────────
+  ws2812_handler_test:
+    description: >
+      Comprehensive test of Ws2812Handler: RMT-based LED control, pixel set
+      (individual + all), clear, show, brightness, animation effects (rainbow,
+      chase, breathe), tick/step, direct strip/animator access, diagnostics,
+      and pre-init error handling.
+    source_file: "handler_tests/ws2812_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "WS2812B LED strip on GPIO data pin"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ===========================================================================
+  # UTILS TESTS — Exercise platform utilities on real FreeRTOS
+  # ===========================================================================
+
+  # ── General Utilities ──────────────────────────────────────────────────
+  general_utils_test:
+    description: >
+      Comprehensive test of hf-utils-general on ESP32/FreeRTOS: CircularBuffer,
+      RingBuffer, AveragingFilter, SimpleStateMachine, SlightlyAdvancedStateMachine,
+      CrcCalculator, ActionTimer, ActionRunLimiter, DynamicArray, EnumArray,
+      BoundedLinearCurve, PiecewiseLinearCurve, LineEstimator, MultiReadings,
+      TimestampedVariable, VariableMonitor, VariableAnomalyMonitor, SoftwareVersion,
+      TestManager, and platform_compat.
+    source_file: "utils_tests/general_utils_comprehensive_test.cpp"
+    category: "utils_testing"
+    hardware_required: false
+    idf_versions: ["release/v5.5", "release/v5.4"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── RTOS Wrappers ──────────────────────────────────────────────────────
+  rtos_wrap_test:
+    description: >
+      Comprehensive test of hf-utils-rtos-wrap on ESP32/FreeRTOS: RtosMutex,
+      MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags,
+      SignalSemaphore, CriticalGuard, OsUtility (os_delay_msec, os_time_get),
+      OsAbstraction, ErrorSaver, FlagsSaver, EventDrivenDataMultiThread,
+      and Utility (WaitForCondition).
+    source_file: "utils_tests/rtos_wrap_comprehensive_test.cpp"
+    category: "utils_testing"
+    hardware_required: false
+    idf_versions: ["release/v5.5", "release/v5.4"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
+  # ── Logger ─────────────────────────────────────────────────────────────
+  logger_test:
+    description: >
+      Test of Logger system: log levels, ANSI formatting (font styles,
+      foreground/background colors), configuration, singleton access,
+      level filtering, and output correctness.
+    source_file: "utils_tests/logger_comprehensive_test.cpp"
+    category: "utils_testing"
+    hardware_required: false
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug"]
+    ci_enabled: true
+    featured: false
+
+  # ── CANopen Utilities ──────────────────────────────────────────────────
+  canopen_utils_test:
+    description: >
+      Test of hf-utils-canopen: CANopen protocol stack utilities.
+      Requires CAN bus hardware.
+    source_file: "utils_tests/canopen_utils_comprehensive_test.cpp"
+    category: "utils_testing"
+    hardware_required: true
+    hardware_notes: "CAN transceiver connected to ESP32 TWAI peripheral"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug"]
+    ci_enabled: false
+    featured: false
+
+  # ===========================================================================
+  # INTEGRATION TESTS — Cross-component scenarios
+  # ===========================================================================
+
+  # ── Full System Integration ────────────────────────────────────────────
+  full_integration_test:
+    description: >
+      End-to-end integration test exercising multiple handlers and utilities
+      together: I2C bus sharing (PCA9685 + PCAL95555 + BNO08x), SPI bus
+      sharing (AS5047U + TMC9660), RTOS threading with handlers, Logger
+      integration, PeriodicTimer-driven monitoring, and multi-handler
+      concurrent access.
+    source_file: "integration_tests/full_system_integration_test.cpp"
+    category: "integration"
+    hardware_required: true
+    hardware_notes: "Full HardFOC Vortex board or equivalent multi-device setup"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug"]
+    ci_enabled: false
+    featured: true
+
+# ===========================================================================
+# BUILD CONFIGURATION
+# ===========================================================================
+
+build_config:
+  build_types:
+    Debug:
+      optimization: "-O0"
+      debug_level: "-g3"
+      defines: ["DEBUG"]
+    Release:
+      optimization: "-O2"
+      debug_level: "-g0"
+      defines: ["NDEBUG"]
+  build_directory_pattern: "build-app-{app_type}-type-{build_type}-target-{target}-idf-{idf_version}"
+  project_name_pattern: "esp32_hf_core_{app_type}_app"
+
+# ===========================================================================
+# CI CONFIGURATION
+# ===========================================================================
+
+ci_config:
+  timeout_minutes: 45
+  fail_fast: false
+  artifact_patterns:
+    - "fw-.*"
+  exclude_from_lint:
+    - "hf-core-drivers"
+    - "hf-core-utils"
+    - "build"

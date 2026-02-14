@@ -1,0 +1,5 @@
+<map id="Tmc9660Handler::Tmc9660Handler" name="Tmc9660Handler::Tmc9660Handler">
+<area shape="rect" id="Node000001" title="Construct a handler for a TMC9660 connected via SPI." alt="" coords="5,5,257,31"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="305,5,528,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="257,15,291,15,291,21,257,21"/>
+</map>

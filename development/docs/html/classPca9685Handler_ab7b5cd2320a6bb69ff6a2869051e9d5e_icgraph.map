@@ -1,0 +1,31 @@
+<map id="Pca9685Handler::initializeInternal" name="Pca9685Handler::initializeInternal">
+<area shape="rect" id="Node000001" title="Internal initialization (called under mutex)." alt="" coords="961,197,1153,237"/>
+<area shape="rect" id="Node000002" href="$classPca9685Handler.html#a088d4c2eecbd5c39480a5dddf73d91d3" title="Ensure the handler is initialized (lazy initialization)." alt="" coords="669,125,913,150"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="976,196,834,153,835,147,978,191"/>
+<area shape="rect" id="Node000010" href="$classPca9685Handler.html#abc72cbb1c0ffd4410143d52c605e0e49" title="Check init under already&#45;held handler_mutex_." alt="" coords="669,251,913,291"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="948,242,892,253,891,248,947,237"/>
+<area shape="rect" id="Node000003" href="$full__system__integration__test_8cpp.html#a0ffcd10e1f0034357e4d75e4e19504be" title=" " alt="" coords="460,14,592,39"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="750,121,620,64,563,42,565,37,622,59,752,116"/>
+<area shape="rect" id="Node000006" href="$classPca9685PwmAdapter.html#a4444ef91c028f448f8fd2d06a4d90992" title="Initialize the PWM adapter (ensures parent handler is initialized)." alt="" coords="442,117,610,157"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="655,140,610,140,610,135,655,135"/>
+<area shape="rect" id="Node000008" href="$classPca9685GpioPin.html#aad888b977f799ca7c4f1f35eb9644311" title="Initialize the GPIO pin (sets channel to full&#45;off by default)." alt="" coords="431,182,621,207"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="719,156,586,185,585,179,718,150"/>
+<area shape="rect" id="Node000009" href="$full__system__integration__test_8cpp.html#a5a65d07819438b3ffa159258ea42a9ea" title=" " alt="" coords="165,70,357,95"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="719,124,621,108,483,95,357,88,358,83,483,90,622,103,720,119"/>
+<area shape="rect" id="Node000004" href="$full__system__integration__test_8cpp.html#ab02326456d9f2a9466cae859c06f9f1a" title=" " alt="" coords="187,5,336,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="446,29,336,28,336,23,446,24"/>
+<area shape="rect" id="Node000005" href="$full__system__integration__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,42,92,67"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="173,40,93,51,92,46,173,35"/>
+<area shape="rect" id="Node000007" href="$classPca9685Handler.html#a3f5b93ead4b85c137c94a0d0e8d9bb12" title="Get or create the BasePwm adapter for all 16 channels." alt="" coords="140,173,383,198"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="429,158,332,175,331,170,428,152"/>
+<area shape="poly" id="edge9_Node000009_Node000005" title=" " alt="" coords="151,71,92,63,93,58,151,66"/>
+<area shape="poly" id="edge11_Node000010_Node000007" title=" " alt="" coords="655,256,430,221,322,201,323,195,431,216,656,250"/>
+<area shape="rect" id="Node000011" href="$classPca9685Handler.html#a989c4b1a8260c7af0bf210103d13cc7b" title="Put PCA9685 into low&#45;power sleep mode." alt="" coords="440,283,612,309"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="656,286,612,290,612,285,655,281"/>
+<area shape="rect" id="Node000013" href="$classPca9685Handler.html#abfea96039e525e253d0eab9234cdfa5f" title="Wake PCA9685 from sleep mode." alt="" coords="441,337,611,362"/>
+<area shape="poly" id="edge14_Node000010_Node000013" title=" " alt="" coords="711,297,622,324,571,339,570,334,621,319,710,292"/>
+<area shape="rect" id="Node000012" href="$classPca9685PwmAdapter.html#a825a19eb0b16cbf9ebb93a7b6da115d8" title="Put the PCA9685 into sleep mode (stop all outputs)." alt="" coords="177,272,345,312"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="426,297,346,296,346,291,426,292"/>
+<area shape="rect" id="Node000014" href="$classPca9685PwmAdapter.html#aabd9412420647133c10651ec3caed0d4" title="Wake the PCA9685 from sleep (start all channels)." alt="" coords="177,336,345,376"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="427,354,346,357,345,351,427,349"/>
+</map>

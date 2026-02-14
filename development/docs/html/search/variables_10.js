@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['sample_5fcount_0',['sample_count',['../structntc__temp__handler__config__t.html#a45b7f94d6946c1a44c1582fa52cf488b',1,'ntc_temp_handler_config_t']]],
+  ['sample_5fdelay_5fms_1',['sample_delay_ms',['../structntc__temp__handler__config__t.html#a7d7a099da75dfe23c6e2655ff69e2bf3',1,'ntc_temp_handler_config_t']]],
+  ['sample_5frate_5fhz_5f_2',['sample_rate_hz_',['../classNtcTemperatureHandler.html#a4970e4b901d824cd772fa331e03db063',1,'NtcTemperatureHandler']]],
+  ['sensor_5fdescription_3',['sensor_description',['../structntc__temp__handler__config__t.html#a4368245a90e7dab56f447327930f8e82',1,'ntc_temp_handler_config_t']]],
+  ['sensor_5fname_4',['sensor_name',['../structntc__temp__handler__config__t.html#ad472c99be0f43c23de2d9e73d2415acd',1,'ntc_temp_handler_config_t']]],
+  ['shake_5fdetected_5',['shake_detected',['../structBno08xActivityData.html#ae6cb112a5271167eecb90f73e75f2a1d',1,'Bno08xActivityData']]],
+  ['significant_5fmotion_6',['significant_motion',['../structBno08xActivityData.html#a4622038469ea55dfadafb46a302df001',1,'Bno08xActivityData']]],
+  ['spi_5f_7',['spi_',['../classHalSpiBno08xComm.html#a216981250a3ea8a94b4df383610353b8',1,'HalSpiBno08xComm::spi_'],['../classHalSpiMax22200Comm.html#ab995505356aaba21bef34c994bf5c78a',1,'HalSpiMax22200Comm::spi_'],['../classHalSpiTle92466edComm.html#acfa2ec7048c1041eabd9d904d0adddf8',1,'HalSpiTle92466edComm::spi_'],['../classHalSpiTmc5160Comm.html#a1c7479ef6289f49ac4cc4056f53fe2e0',1,'HalSpiTmc5160Comm::spi_'],['../classHalSpiTmc9660Comm.html#a79247e058a5250b805f60de3c2e58ced',1,'HalSpiTmc9660Comm::spi_']]],
+  ['spi_5fadapter_5f_8',['spi_adapter_',['../classAs5047uHandler.html#a345768a88cb50d8751d7818a99d78991',1,'As5047uHandler']]],
+  ['spi_5fcomm_5f_9',['spi_comm_',['../classTmc5160Handler.html#aa8d3ce7658218be523c82e0abcf83161',1,'Tmc5160Handler::spi_comm_'],['../classTmc9660Handler.html#abec7689d1093da18106e90c32f427188',1,'Tmc9660Handler::spi_comm_']]],
+  ['spi_5fdriver_5f_10',['spi_driver_',['../classTmc5160Handler.html#ab348f2967109fd94a2d80bc6ac907e17',1,'Tmc5160Handler::spi_driver_'],['../classTmc9660Handler.html#a29bbecb3a580ddad61ce19a18f23c77d',1,'Tmc9660Handler::spi_driver_']]],
+  ['spi_5finterface_5f_11',['spi_interface_',['../classAs5047uSpiAdapter.html#a37cd11da2a833789f8880fc2e3dfe55b',1,'As5047uSpiAdapter']]],
+  ['spi_5fref_5f_12',['spi_ref_',['../classAs5047uHandler.html#afa515ec63a07cc2a19020e53673fc0cf',1,'As5047uHandler']]],
+  ['stability_5fclass_13',['stability_class',['../structBno08xActivityData.html#aa1d976419c7241f5c47be2bf71f4413e',1,'Bno08xActivityData']]],
+  ['stack_5f_14',['stack_',['../classTestThread.html#ae65a7026498c48897b80d38a4c8fe4ca',1,'TestThread']]],
+  ['statistics_5f_15',['statistics_',['../classNtcTemperatureHandler.html#a3ccd083e07c279322e87a4202edcf09d',1,'NtcTemperatureHandler::statistics_'],['../classTmc9660Handler_1_1Adc.html#a528e613422995ab34e5d923ed01c3dc0',1,'Tmc9660Handler::Adc::statistics_'],['../classTmc9660Handler_1_1Temperature.html#ac2902d7ec338a30c9cd641b5b0493884',1,'Tmc9660Handler::Temperature::statistics_']]],
+  ['step_5fcount_16',['step_count',['../structBno08xActivityData.html#a7272bb2b981d3ead3f826cf7eb2c0dc2',1,'Bno08xActivityData']]],
+  ['step_5fdetected_17',['step_detected',['../structBno08xActivityData.html#a554f7cf1ce6d617a05e6357f34760825',1,'Bno08xActivityData']]],
+  ['strip_5f_18',['strip_',['../classWs2812Handler.html#a4387bbc8038b920f3a2f5851f63307b2',1,'Ws2812Handler']]],
+  ['style_19',['style',['../structLogConfig.html#aed58684ab39633b59b907f6b3ab58b84',1,'LogConfig::style'],['../structAsciiArtFormat.html#adeeb1aebe6628af741fa7a24b140ddc9',1,'AsciiArtFormat::style']]],
+  ['success_5fcount_20',['success_count',['../structHandlerTaskArgs.html#a23a9a22a9e3346fc09227f7dd3410aae',1,'HandlerTaskArgs']]]
+];

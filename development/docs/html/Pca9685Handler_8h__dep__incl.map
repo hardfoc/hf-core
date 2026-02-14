@@ -1,0 +1,9 @@
+<map id="Pca9685Handler.h" name="Pca9685Handler.h">
+<area shape="rect" id="Node000001" title="Unified handler for the PCA9685 16&#45;channel 12&#45;bit PWM controller." alt="" coords="203,5,341,31"/>
+<area shape="rect" id="Node000002" href="$Pca9685Handler_8cpp.html" title="Implementation of the PCA9685 PWM controller handler." alt="" coords="5,86,160,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="233,38,111,88,109,84,231,33"/>
+<area shape="rect" id="Node000003" href="$full__system__integration__test_8cpp.html" title="Full system integration test for hf&#45;core." alt="" coords="184,79,360,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="275,44,275,79,269,79,269,44"/>
+<area shape="rect" id="Node000004" href="$pca9685__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for Pca9685Handler." alt="" coords="384,79,624,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="320,33,449,76,447,81,318,38"/>
+</map>

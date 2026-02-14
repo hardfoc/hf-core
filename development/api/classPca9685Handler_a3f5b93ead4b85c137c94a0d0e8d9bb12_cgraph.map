@@ -1,0 +1,14 @@
+<map id="Pca9685Handler::GetPwmAdapter" name="Pca9685Handler::GetPwmAdapter">
+<area shape="rect" id="Node000001" title="Get or create the BasePwm adapter for all 16 channels." alt="" coords="5,45,248,70"/>
+<area shape="rect" id="Node000002" href="$classPca9685Handler.html#abc72cbb1c0ffd4410143d52c605e0e49" title="Check init under already&#45;held handler_mutex_." alt="" coords="296,5,540,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="242,42,282,38,283,43,243,47"/>
+<area shape="rect" id="Node000004" href="$classPca9685PwmAdapter.html#a4444ef91c028f448f8fd2d06a4d90992" title="Initialize the PWM adapter (ensures parent handler is initialized)." alt="" coords="334,69,502,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="243,67,321,76,320,81,242,73"/>
+<area shape="rect" id="Node000003" href="$classPca9685Handler.html#ab7b5cd2320a6bb69ff6a2869051e9d5e" title="Internal initialization (called under mutex)." alt="" coords="880,31,1072,71"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="540,28,866,43,866,48,540,34"/>
+<area shape="rect" id="Node000005" href="$classPca9685Handler.html#a088d4c2eecbd5c39480a5dddf73d91d3" title="Ensure the handler is initialized (lazy initialization)." alt="" coords="588,63,832,89"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="502,83,574,80,574,85,502,88"/>
+<area shape="rect" id="Node000006" href="$classPca9685Handler.html#ae9ec3bcf1629765a26d627e48afc10b1" title="Check if the handler has been initialized." alt="" coords="605,113,815,138"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="503,97,594,108,593,114,502,102"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="832,62,866,58,866,64,832,67"/>
+</map>

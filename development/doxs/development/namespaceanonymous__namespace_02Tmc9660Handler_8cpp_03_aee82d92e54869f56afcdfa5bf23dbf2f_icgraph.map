@@ -1,0 +1,7 @@
+<map id="anonymous_namespace{Tmc9660Handler::cpp}::readGpioToSignal" name="anonymous_namespace{Tmc9660Handler::cpp}::readGpioToSignal">
+<area shape="rect" id="Node000001" title="Read a BaseGpio pin and convert to TMC9660 signal based on active&#45;level config." alt="" coords="228,30,408,85"/>
+<area shape="rect" id="Node000002" href="$classHalSpiTmc9660Comm.html#aa7c3ebc1dfe70f3012ce352c0e881ca3" title="Read a TMC9660 control pin&#39;s current logical signal state." alt="" coords="5,5,180,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,45,180,40,180,35,214,40"/>
+<area shape="rect" id="Node000003" href="$classHalUartTmc9660Comm.html#af2f8bd1ec3ad0a3c3d59b97e13babff2" title="Read a TMC9660 control pin&#39;s current logical signal state." alt="" coords="5,69,180,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="214,75,180,80,180,74,214,69"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="HalUartTmc9660Comm::gpioSet" name="HalUartTmc9660Comm::gpioSet">
+<area shape="rect" id="Node000001" title="Set a TMC9660 control pin to a given logical signal state." alt="" coords="5,13,180,53"/>
+<area shape="rect" id="Node000002" href="$namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a91f1b4322a75b8ac25a8890110ec9af6" title="Set a BaseGpio pin level based on a TMC9660 signal and its active&#45;level config." alt="" coords="228,5,408,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,30,214,30,214,35,180,35"/>
+</map>

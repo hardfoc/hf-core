@@ -1,0 +1,11 @@
+<map id="Tmc9660Handler.h" name="Tmc9660Handler.h">
+<area shape="rect" id="Node000001" title="Unified handler for TMC9660 motor controller with GPIO, ADC, and temperature integration." alt="" coords="320,5,464,31"/>
+<area shape="rect" id="Node000002" href="$Tmc9660AdcWrapper_8cpp.html" title="Implementation of the TMC9660 ADC delegation wrapper." alt="" coords="5,86,192,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="337,37,142,89,141,83,336,32"/>
+<area shape="rect" id="Node000003" href="$Tmc9660Handler_8cpp.html" title=" " alt="" coords="217,86,375,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="369,41,312,88,309,84,366,37"/>
+<area shape="rect" id="Node000004" href="$full__system__integration__test_8cpp.html" title="Full system integration test for hf&#45;core." alt="" coords="400,79,576,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="418,37,467,76,463,81,415,41"/>
+<area shape="rect" id="Node000005" href="$tmc9660__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for Tmc9660Handler." alt="" coords="600,79,843,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="454,31,643,76,642,81,452,36"/>
+</map>

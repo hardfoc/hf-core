@@ -1,0 +1,5 @@
+<map id="Tmc9660Handler::Adc::ResetDiagnostics" name="Tmc9660Handler::Adc::ResetDiagnostics">
+<area shape="rect" id="Node000001" title="Reset diagnostics counters and health flags." alt="" coords="223,5,388,45"/>
+<area shape="rect" id="Node000002" href="$classTmc9660AdcWrapper.html#a3a7e9bf27e3cf27497ecbed63209fbdf" title=" " alt="" coords="5,5,175,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,28,175,28,175,23,209,23"/>
+</map>

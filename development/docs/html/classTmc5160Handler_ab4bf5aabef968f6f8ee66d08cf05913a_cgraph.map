@@ -1,0 +1,13 @@
+<map id="Tmc5160Handler::DumpDiagnostics" name="Tmc5160Handler::DumpDiagnostics">
+<area shape="rect" id="Node000001" title="Dump diagnostic information to logger." alt="" coords="5,63,261,88"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="338,5,490,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,60,337,31,338,36,197,65"/>
+<area shape="rect" id="Node000003" href="$classTmc5160Handler.html#a439a68f9d3f6785e0a493f9ed3821325" title="Helper: execute a visitor on the active driver (no lock, internal use)" alt="" coords="309,55,519,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="261,73,295,73,295,78,261,78"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#a8c19c14724b0be1d2be63da4258c001a" title="Log warning message." alt="" coords="361,120,467,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="197,85,347,116,346,122,196,91"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="567,95,739,120"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="467,124,553,115,554,121,468,130"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="579,144,726,169"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="468,135,566,145,565,151,467,141"/>
+</map>

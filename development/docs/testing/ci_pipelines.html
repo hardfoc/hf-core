@@ -1,0 +1,519 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <link rel="stylesheet" href="/hf-hal-vortex-v1/development/assets/css/just-the-docs-default.css">
+
+  <link rel="stylesheet" href="/hf-hal-vortex-v1/development/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+
+  <style id="jtd-nav-activation">
+  
+    .site-nav ul li a {
+      background-image: none;
+    }
+
+  </style>
+
+  
+
+  
+    <script src="/hf-hal-vortex-v1/development/assets/js/vendor/lunr.min.js"></script>
+  
+
+  <script src="/hf-hal-vortex-v1/development/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CI Pipelines | HardFOC Core Platform (hf-core) - development</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="CI Pipelines" />
+<meta name="author" content="N3b3x" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Hardware-Agnostic Handler Layer, RTOS Utilities, and Driver Integration for the HardFOC Motor Control Platform — bridging base interfaces to CRTP drivers with thread-safe, platform-portable handlers." />
+<meta property="og:description" content="Hardware-Agnostic Handler Layer, RTOS Utilities, and Driver Integration for the HardFOC Motor Control Platform — bridging base interfaces to CRTP drivers with thread-safe, platform-portable handlers." />
+<link rel="canonical" href="https://n3b3x.github.io/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html" />
+<meta property="og:url" content="https://n3b3x.github.io/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html" />
+<meta property="og:site_name" content="HardFOC Core Platform (hf-core) - development" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CI Pipelines" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Hardware-Agnostic Handler Layer, RTOS Utilities, and Driver Integration for the HardFOC Motor Control Platform — bridging base interfaces to CRTP drivers with thread-safe, platform-portable handlers.","headline":"CI Pipelines","url":"https://n3b3x.github.io/hf-hal-vortex-v1/development/docs/testing/ci_pipelines.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+</head>
+
+<body>
+  <a class="skip-to-main" href="#main-content">Skip to main content</a>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="svg-link" viewBox="0 0 24 24">
+  <title>Link</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+  </svg>
+</symbol>
+
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+  <title>Menu</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+    <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</symbol>
+
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+  <title>Expand</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+</symbol>
+
+  <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE -->
+<symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+  <title id="svg-external-link-title">(external link)</title>
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+</symbol>
+
+  
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+  <title>Document</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+  </svg>
+</symbol>
+
+    <symbol id="svg-search" viewBox="0 0 24 24">
+  <title>Search</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</symbol>
+
+  
+  
+    <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md -->
+<symbol id="svg-copy" viewBox="0 0 16 16">
+  <title>Copy</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg>
+</symbol>
+<symbol id="svg-copied" viewBox="0 0 16 16">
+  <title>Copied</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/>
+  </svg>
+</symbol>
+
+  
+</svg>
+
+  
+    <header class="side-bar">
+  <div class="site-header">
+    <a href="/hf-hal-vortex-v1/development/" class="site-title lh-tight">
+  HardFOC Core Platform (hf-core) - development
+
+</a>
+    <button id="menu-button" class="site-button btn-reset" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
+    </button>
+  </div>
+
+  <nav aria-label="Main" id="site-nav" class="site-nav">
+  
+  
+    <ul class="nav-list"><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/README.html" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/docs/architecture.html" class="nav-list-link">Architecture</a></li><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/docs/folder_structure.html" class="nav-list-link">Folder Structure</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Handlers submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-hal-vortex-v1/development/docs/handlers/" class="nav-list-link">Handlers</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/docs/handlers/as5047u_handler.html" class="nav-list-link">AS5047U Handler</a></li><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/docs/handlers/bno08x_handler.html" class="nav-list-link">BNO08x Handler</a></li><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/docs/handlers/pca9685_handler.html" class="nav-list-link">PCA9685 Handler</a></li><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/docs/handlers/pcal95555_handler.html" class="nav-list-link">PCAL95555 Handler</a></li><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/docs/handlers/ntc_temperature_handler.html" class="nav-list-link">NTC Temperature Handler</a></li><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/docs/handlers/tmc9660_handler.html" class="nav-list-link">TMC9660 Handler</a></li><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/docs/handlers/logger.html" class="nav-list-link">Logger</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Utilities submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-hal-vortex-v1/development/docs/utils/" class="nav-list-link">Utilities</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/docs/utils/general_utilities.html" class="nav-list-link">General Utilities</a></li><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/docs/utils/rtos_wrappers.html" class="nav-list-link">RTOS Wrappers</a></li><li class="nav-list-item"><a href="/hf-hal-vortex-v1/development/docs/utils/canopen.html" class="nav-list-link">CANopen</a></li></ul></li></ul>
+  
+</nav>
+
+
+<div class="d-md-block d-none site-footer">
+  
+  
+    This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+  
+  </div>
+</header>
+
+  
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+  
+    
+
+<div class="search" role="search">
+  <div class="search-input-wrap">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search HardFOC Core Platform (hf-core) - development" autocomplete="off">
+    <label for="search-input" class="search-label">
+      <span class="sr-only">Search HardFOC Core Platform (hf-core) - development</span>
+      <svg viewBox="0 0 24 24" class="search-icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg>
+    </label>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+  
+  
+  
+    <nav aria-label="Auxiliary" class="aux-nav">
+  <ul class="aux-nav-list">
+    
+      <li class="aux-nav-list-item">
+        <a href="/hf-core/development/api/index.html" class="site-button"
+          
+        >
+          📖 API Reference
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://github.com/n3b3x/hf-hal-vortex-v1" class="site-button"
+          
+        >
+          📚 GitHub Repository
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://github.com/n3b3x/hf-hal-vortex-v1/issues" class="site-button"
+          
+        >
+          🐛 Report Issues
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+  
+</div>
+
+    <div class="main-content-wrap">
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb-nav-list">
+    <li class="breadcrumb-nav-list-item"><span>CI Pipelines</span></li>
+  </ol>
+</nav>
+
+
+      <div id="main-content" class="main-content">
+        <main>
+          
+            <h1 id="ci-pipelines">
+  
+  
+    <a href="#ci-pipelines" class="anchor-heading" aria-labelledby="ci-pipelines"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> CI Pipelines
+  
+  
+</h1>
+    
+<h2 id="overview">
+  
+  
+    <a href="#overview" class="anchor-heading" aria-labelledby="overview"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Overview
+  
+  
+</h2>
+    
+
+<p>hf-core uses <strong>8 GitHub Actions workflows</strong> that mirror the standard CI pattern across
+all HardFOC repositories. Workflows use reusable workflow definitions from two shared
+CI tool repositories:</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Repository</th>
+      <th style="text-align: left">Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">N3b3x/hf-espidf-ci-tools</code></td>
+      <td style="text-align: left">ESP-IDF build, flash, release workflows</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">N3b3x/hf-general-ci-tools</code></td>
+      <td style="text-align: left">C++ analysis, linting, documentation workflows</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p>All reusable workflows are pinned at <code class="language-plaintext highlighter-rouge">@main</code>.</p><hr />
+<h2 id="workflow-descriptions">
+  
+  
+    <a href="#workflow-descriptions" class="anchor-heading" aria-labelledby="workflow-descriptions"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Workflow Descriptions
+  
+  
+</h2>
+    
+<h3 id="1-esp-idf-build-esp32-examples-build-ciyml">
+  
+  
+    <a href="#1-esp-idf-build-esp32-examples-build-ciyml" class="anchor-heading" aria-labelledby="1-esp-idf-build-esp32-examples-build-ciyml"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1. ESP-IDF Build (<code class="language-plaintext highlighter-rouge">esp32-examples-build-ci.yml</code>)
+  
+  
+</h3>
+    
+
+<p><strong>Trigger:</strong> Push/PR to <code class="language-plaintext highlighter-rouge">main</code>, <code class="language-plaintext highlighter-rouge">develop</code>, <code class="language-plaintext highlighter-rouge">feature/**</code>, <code class="language-plaintext highlighter-rouge">release/**</code></p>
+
+<p>Pipeline stages:</p>
+<ol>
+  <li><strong>Validate</strong> — Checks <code class="language-plaintext highlighter-rouge">app_config.yml</code> structure and validates APP_TYPE entries</li>
+  <li><strong>Build Matrix</strong> — <code class="language-plaintext highlighter-rouge">generate_matrix.py</code> reads <code class="language-plaintext highlighter-rouge">app_config.yml</code>, produces a matrix of
+<code class="language-plaintext highlighter-rouge">{app_type, build_type, idf_version}</code> combinations where <code class="language-plaintext highlighter-rouge">ci_enabled: true</code></li>
+  <li><strong>Build</strong> — Each matrix entry runs <code class="language-plaintext highlighter-rouge">build_app.sh</code> in a Docker container with ESP-IDF</li>
+  <li><strong>Lint</strong> — Runs clang-format/clang-tidy on modified files (excludes submodule dirs)</li>
+</ol>
+
+<p>Only apps with <code class="language-plaintext highlighter-rouge">ci_enabled: true</code> in <code class="language-plaintext highlighter-rouge">app_config.yml</code> are included in the matrix.
+Currently, <code class="language-plaintext highlighter-rouge">canopen_utils_test</code> and <code class="language-plaintext highlighter-rouge">full_integration_test</code> are disabled because they
+require specific hardware or network configuration.</p>
+<h3 id="2-c-static-analysis-ci-cpp-analysisyml">
+  
+  
+    <a href="#2-c-static-analysis-ci-cpp-analysisyml" class="anchor-heading" aria-labelledby="2-c-static-analysis-ci-cpp-analysisyml"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 2. C++ Static Analysis (<code class="language-plaintext highlighter-rouge">ci-cpp-analysis.yml</code>)
+  
+  
+</h3>
+    
+
+<p><strong>Trigger:</strong> Push/PR modifying <code class="language-plaintext highlighter-rouge">handlers/**</code> or <code class="language-plaintext highlighter-rouge">_config/**</code></p>
+
+<p>Runs <strong>Cppcheck</strong> with <code class="language-plaintext highlighter-rouge">--std=c++20</code> on the <code class="language-plaintext highlighter-rouge">handlers/</code> directory. Catches common
+bugs, undefined behavior, and style issues.</p>
+<h3 id="3-c-lint-ci-cpp-lintyml">
+  
+  
+    <a href="#3-c-lint-ci-cpp-lintyml" class="anchor-heading" aria-labelledby="3-c-lint-ci-cpp-lintyml"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 3. C++ Lint (<code class="language-plaintext highlighter-rouge">ci-cpp-lint.yml</code>)
+  
+  
+</h3>
+    
+
+<p><strong>Trigger:</strong> Push/PR modifying <code class="language-plaintext highlighter-rouge">handlers/**</code> or <code class="language-plaintext highlighter-rouge">_config/**</code></p>
+
+<p>Runs <strong>clang-format</strong> (style check) and <strong>clang-tidy</strong> (static analysis) using the
+configurations in <code class="language-plaintext highlighter-rouge">_config/</code>. Excludes <code class="language-plaintext highlighter-rouge">hf-core-drivers/</code> and <code class="language-plaintext highlighter-rouge">hf-core-utils/</code>
+submodules from analysis.</p>
+<h3 id="4-documentation-link-check-ci-docs-linkcheckyml">
+  
+  
+    <a href="#4-documentation-link-check-ci-docs-linkcheckyml" class="anchor-heading" aria-labelledby="4-documentation-link-check-ci-docs-linkcheckyml"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 4. Documentation Link Check (<code class="language-plaintext highlighter-rouge">ci-docs-linkcheck.yml</code>)
+  
+  
+</h3>
+    
+
+<p><strong>Trigger:</strong> Push/PR modifying <code class="language-plaintext highlighter-rouge">docs/**</code> or <code class="language-plaintext highlighter-rouge">README.md</code></p>
+
+<p>Uses <strong>lychee</strong> to verify all hyperlinks in documentation are reachable. Configuration
+in <code class="language-plaintext highlighter-rouge">_config/lychee.toml</code> excludes known-flaky URLs (shields.io badges, GNU licenses).</p>
+<h3 id="5-documentation-publish-ci-docs-publishyml">
+  
+  
+    <a href="#5-documentation-publish-ci-docs-publishyml" class="anchor-heading" aria-labelledby="5-documentation-publish-ci-docs-publishyml"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 5. Documentation Publish (<code class="language-plaintext highlighter-rouge">ci-docs-publish.yml</code>)
+  
+  
+</h3>
+    
+
+<p><strong>Trigger:</strong> Push to <code class="language-plaintext highlighter-rouge">main</code> (deploy), PR to <code class="language-plaintext highlighter-rouge">main</code> (build-only)</p>
+
+<p>Two-stage pipeline:</p>
+<ol>
+  <li><strong>Jekyll</strong> — Builds the docs site using <code class="language-plaintext highlighter-rouge">_config/_config.yml</code> (Just the Docs theme)</li>
+  <li><strong>Doxygen</strong> — Generates API reference from handler source code, outputs to
+<code class="language-plaintext highlighter-rouge">docs/api/</code> within the Jekyll site</li>
+</ol>
+
+<p>Deploys to GitHub Pages on push to <code class="language-plaintext highlighter-rouge">main</code>.</p>
+<h3 id="6-markdown-lint-ci-markdown-lintyml">
+  
+  
+    <a href="#6-markdown-lint-ci-markdown-lintyml" class="anchor-heading" aria-labelledby="6-markdown-lint-ci-markdown-lintyml"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 6. Markdown Lint (<code class="language-plaintext highlighter-rouge">ci-markdown-lint.yml</code>)
+  
+  
+</h3>
+    
+
+<p><strong>Trigger:</strong> Push/PR modifying <code class="language-plaintext highlighter-rouge">**/*.md</code></p>
+
+<p>Validates Markdown files against <code class="language-plaintext highlighter-rouge">.markdownlint.json</code> rules. Excludes submodule
+directories (<code class="language-plaintext highlighter-rouge">hf-core-drivers/**</code>, <code class="language-plaintext highlighter-rouge">hf-core-utils/**</code>).</p>
+<h3 id="7-yaml-lint-ci-yaml-lintyml">
+  
+  
+    <a href="#7-yaml-lint-ci-yaml-lintyml" class="anchor-heading" aria-labelledby="7-yaml-lint-ci-yaml-lintyml"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 7. YAML Lint (<code class="language-plaintext highlighter-rouge">ci-yaml-lint.yml</code>)
+  
+  
+</h3>
+    
+
+<p><strong>Trigger:</strong> Push/PR modifying <code class="language-plaintext highlighter-rouge">**/*.yml</code> or <code class="language-plaintext highlighter-rouge">**/*.yaml</code></p>
+
+<p>Validates YAML files against <code class="language-plaintext highlighter-rouge">.yamllint</code> rules. Excludes submodule directories.</p>
+<h3 id="8-release-releaseyml">
+  
+  
+    <a href="#8-release-releaseyml" class="anchor-heading" aria-labelledby="8-release-releaseyml"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 8. Release (<code class="language-plaintext highlighter-rouge">release.yml</code>)
+  
+  
+</h3>
+    
+
+<p><strong>Trigger:</strong> Push of a tag matching <code class="language-plaintext highlighter-rouge">v*</code></p>
+
+<p>Creates a GitHub Release with:</p>
+<ul>
+  <li>Auto-generated changelog from commits since the last tag</li>
+  <li>Source archive attached as a release artifact</li>
+  <li>Release notes template</li>
+</ul><hr />
+<h2 id="build-matrix-generation">
+  
+  
+    <a href="#build-matrix-generation" class="anchor-heading" aria-labelledby="build-matrix-generation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Build Matrix Generation
+  
+  
+</h2>
+    
+
+<p>The build matrix is generated from <code class="language-plaintext highlighter-rouge">app_config.yml</code> by <code class="language-plaintext highlighter-rouge">generate_matrix.py</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="c1"># app_config.yml excerpt</span>
+<span class="na">apps</span><span class="pi">:</span>
+  <span class="na">handler_testing</span><span class="pi">:</span>
+    <span class="na">as5047u_handler_test</span><span class="pi">:</span>
+      <span class="na">source_file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">handler_tests/as5047u_handler_comprehensive_test.cpp"</span>
+      <span class="na">ci_enabled</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">AS5047U</span><span class="nv"> </span><span class="s">magnetic</span><span class="nv"> </span><span class="s">encoder</span><span class="nv"> </span><span class="s">handler</span><span class="nv"> </span><span class="s">tests"</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>The script produces a JSON matrix like:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="nl">"app_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"as5047u_handler_test"</span><span class="p">,</span><span class="w"> </span><span class="nl">"build_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"debug"</span><span class="p">,</span><span class="w"> </span><span class="nl">"idf_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v5.5"</span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="nl">"app_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"as5047u_handler_test"</span><span class="p">,</span><span class="w"> </span><span class="nl">"build_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"release"</span><span class="p">,</span><span class="w"> </span><span class="nl">"idf_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v5.4"</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h2 id="running-ci-locally">
+  
+  
+    <a href="#running-ci-locally" class="anchor-heading" aria-labelledby="running-ci-locally"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Running CI Locally
+  
+  
+</h2>
+    
+
+<p>You can simulate the CI build locally:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="nb">cd </span>examples/esp32/scripts
+
+<span class="c"># Build a single app</span>
+./build_app.sh <span class="nt">--app</span> general_utils_test <span class="nt">--build-type</span> debug
+
+<span class="c"># Build all CI-enabled apps</span>
+./build_app.sh <span class="nt">--all</span> <span class="nt">--build-type</span> debug
+
+<span class="c"># Generate the matrix (for debugging)</span>
+python3 generate_matrix.py ../app_config.yml
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h2 id="adding-a-new-ci-tested-app">
+  
+  
+    <a href="#adding-a-new-ci-tested-app" class="anchor-heading" aria-labelledby="adding-a-new-ci-tested-app"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Adding a New CI-Tested App
+  
+  
+</h2>
+    
+
+<ol>
+  <li>Add the app entry to <code class="language-plaintext highlighter-rouge">app_config.yml</code> with <code class="language-plaintext highlighter-rouge">ci_enabled: true</code></li>
+  <li>Create the source file under the appropriate <code class="language-plaintext highlighter-rouge">main/</code> subdirectory</li>
+  <li>Add the <code class="language-plaintext highlighter-rouge">APP_TYPE</code> conditional to <code class="language-plaintext highlighter-rouge">main/CMakeLists.txt</code></li>
+  <li>Push — the CI will automatically pick up the new app in the build matrix</li>
+</ol>
+
+          
+
+          
+            
+          
+        </main>
+        
+<hr>
+<footer>
+  
+
+  <p class="text-small mb-0">Built with ❤️ using <a href='https://just-the-docs.github.io/just-the-docs/'>Just the Docs</a> • <a href='https://github.com/n3b3x/hf-hal-vortex-v1/blob/main/LICENSE'>GPL v3 License</a> • <a href='https://github.com/n3b3x/hf-hal-vortex-v1'>View on GitHub</a>
+</p>
+
+  <div class="d-md-none mt-4 fs-2">
+    
+    
+      This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    
+  </div>
+</footer>
+
+      </div>
+    </div>
+    
+      
+<button id="search-button" class="search-button btn-reset" aria-label="Focus on search">
+  <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg>
+</button>
+
+
+<div class="search-overlay"></div>
+
+    
+  </div>
+
+  
+</body>
+</html>
+

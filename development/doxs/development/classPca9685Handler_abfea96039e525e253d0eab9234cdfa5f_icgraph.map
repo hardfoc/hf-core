@@ -1,0 +1,5 @@
+<map id="Pca9685Handler::Wake" name="Pca9685Handler::Wake">
+<area shape="rect" id="Node000001" title="Wake PCA9685 from sleep mode." alt="" coords="221,13,392,38"/>
+<area shape="rect" id="Node000002" href="$classPca9685PwmAdapter.html#aabd9412420647133c10651ec3caed0d4" title="Wake the PCA9685 from sleep (start all channels)." alt="" coords="5,5,173,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,28,174,28,174,23,207,23"/>
+</map>

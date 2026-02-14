@@ -1,0 +1,9 @@
+<map id="Pca9685PwmAdapter::StopAll" name="Pca9685PwmAdapter::StopAll">
+<area shape="rect" id="Node000001" title="Put the PCA9685 into sleep mode (stop all outputs)." alt="" coords="5,5,173,45"/>
+<area shape="rect" id="Node000002" href="$classPca9685Handler.html#a989c4b1a8260c7af0bf210103d13cc7b" title="Put PCA9685 into low&#45;power sleep mode." alt="" coords="221,13,393,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,23,208,23,208,28,174,28"/>
+<area shape="rect" id="Node000003" href="$classPca9685Handler.html#abc72cbb1c0ffd4410143d52c605e0e49" title="Check init under already&#45;held handler_mutex_." alt="" coords="441,5,685,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="393,23,428,23,428,28,393,28"/>
+<area shape="rect" id="Node000004" href="$classPca9685Handler.html#ab7b5cd2320a6bb69ff6a2869051e9d5e" title="Internal initialization (called under mutex)." alt="" coords="733,5,925,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="686,23,720,23,720,28,686,28"/>
+</map>

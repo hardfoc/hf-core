@@ -1,0 +1,35 @@
+# ESP-IDF SDK Configuration Defaults for hf-core tests
+# These provide sensible defaults; override in sdkconfig or menuconfig.
+
+# ── FreeRTOS ──────────────────────────────────────────────────────────────
+CONFIG_FREERTOS_HZ=1000
+CONFIG_FREERTOS_TIMER_TASK_STACK_DEPTH=4096
+CONFIG_FREERTOS_IDLE_TASK_STACKSIZE=2048
+CONFIG_FREERTOS_ENABLE_BACKWARD_COMPATIBILITY=y
+CONFIG_FREERTOS_WATCHPOINT_END_OF_STACK=y
+
+# ── Task stack sizes ─────────────────────────────────────────────────────
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=16384
+
+# ── Partition table ──────────────────────────────────────────────────────
+CONFIG_PARTITION_TABLE_SINGLE_APP_LARGE=y
+
+# ── Serial flasher ──────────────────────────────────────────────────────
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+CONFIG_ESPTOOLPY_FLASHFREQ_80M=y
+
+# ── Logging ──────────────────────────────────────────────────────────────
+CONFIG_LOG_DEFAULT_LEVEL_DEBUG=y
+CONFIG_LOG_MAXIMUM_LEVEL_VERBOSE=y
+
+# ── Watchdog ─────────────────────────────────────────────────────────────
+CONFIG_ESP_TASK_WDT_TIMEOUT_S=30
+
+# ── I2C (used by BNO08x, PCA9685, PCAL95555 handlers) ────────────────────
+CONFIG_I2C_ISR_IRAM_SAFE=n
+
+# ── SPI (used by AS5047U, TMC9660 handlers) ──────────────────────────────
+CONFIG_SPI_MASTER_ISR_IN_IRAM=n
+
+# ── ADC (used by NTC handler) ────────────────────────────────────────────
+CONFIG_ADC_CONTINUOUS_ISR_IRAM_SAFE=n

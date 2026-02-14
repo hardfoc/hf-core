@@ -1,0 +1,15 @@
+## IDF Component description file
+## https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-component-manager.html
+
+version: "1.0.0"
+description: "HardFOC Core Platform — handlers, drivers, and utilities"
+url: "https://github.com/hardfoc/hf-core"
+
+targets:
+  - esp32
+  - esp32s3
+  - esp32c6
+  - esp32c3
+
+dependencies:
+  idf: ">=5.0.0"

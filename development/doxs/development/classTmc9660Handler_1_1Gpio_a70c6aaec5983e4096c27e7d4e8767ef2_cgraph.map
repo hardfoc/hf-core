@@ -1,0 +1,5 @@
+<map id="Tmc9660Handler::Gpio::GetPinLevelImpl" name="Tmc9660Handler::Gpio::GetPinLevelImpl">
+<area shape="rect" id="Node000001" title="Read the current level of the TMC9660 GPIO pin via the driver." alt="" coords="5,5,176,45"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="224,13,447,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,23,210,23,210,28,176,28"/>
+</map>

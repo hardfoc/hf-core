@@ -1,0 +1,5 @@
+<map id="Tmc5160Handler::Stop" name="Tmc5160Handler::Stop">
+<area shape="rect" id="Node000001" title="Stop motor immediately." alt="" coords="5,13,176,38"/>
+<area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a439a68f9d3f6785e0a493f9ed3821325" title="Helper: execute a visitor on the active driver (no lock, internal use)" alt="" coords="224,5,433,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,23,210,23,210,28,176,28"/>
+</map>

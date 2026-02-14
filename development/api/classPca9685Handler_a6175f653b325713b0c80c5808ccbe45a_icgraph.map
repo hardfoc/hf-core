@@ -1,0 +1,5 @@
+<map id="Pca9685Handler::SetChannelFullOff" name="Pca9685Handler::SetChannelFullOff">
+<area shape="rect" id="Node000001" title="Set a channel to fully OFF (0% duty)." alt="" coords="244,5,455,45"/>
+<area shape="rect" id="Node000002" href="$classPca9685GpioPin.html#aad888b977f799ca7c4f1f35eb9644311" title="Initialize the GPIO pin (sets channel to full&#45;off by default)." alt="" coords="5,13,196,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,28,196,28,196,23,230,23"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="Pcal95555Handler::EnsureInitializedLocked" name="Pcal95555Handler::EnsureInitializedLocked">
+<area shape="rect" id="Node000001" title="Check init state under already&#45;held handler_mutex_." alt="" coords="5,5,197,45"/>
+<area shape="rect" id="Node000002" href="$classPcal95555Handler.html#a5c2e68d6c9e39e373d40e94f5e951558" title="Internal initialization (called by EnsureInitialized under mutex)." alt="" coords="245,13,449,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,23,232,23,232,28,197,28"/>
+<area shape="rect" id="Node000003" href="$classPcal95555Handler.html#add6bf45bbac47b7d8d579fbd9bc50d2e" title="Configure the hardware interrupt pin (falling edge, active&#45;low)." alt="" coords="497,5,708,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="450,23,484,23,484,28,450,28"/>
+<area shape="rect" id="Node000004" href="$classPcal95555Handler.html#a87e8b50faf5d3d815227068ff26b1a6b" title="Static ISR callback for the hardware interrupt pin." alt="" coords="756,5,967,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="708,23,743,23,743,28,708,28"/>
+</map>

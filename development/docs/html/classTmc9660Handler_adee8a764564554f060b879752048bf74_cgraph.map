@@ -1,0 +1,31 @@
+<map id="Tmc9660Handler::DumpDiagnostics" name="Tmc9660Handler::DumpDiagnostics">
+<area shape="rect" id="Node000001" title="Dump comprehensive diagnostics to the system log." alt="" coords="5,251,261,277"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#ac7549efc59aeedcc3c29e39f13a529fa" title="Read the TMC9660 internal chip temperature." alt="" coords="309,79,584,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,249,214,194,259,162,308,134,379,106,381,111,310,138,262,167,217,199,151,253"/>
+<area shape="rect" id="Node000003" href="$classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f" title="Check if the TMC9660 driver has been initialized and is ready." alt="" coords="641,5,833,45"/>
+<area shape="poly" id="edge16_Node000001_Node000003" title=" " alt="" coords="139,250,162,211,199,160,248,107,277,83,308,64,347,47,387,34,471,18,553,11,627,12,627,17,553,17,472,23,389,39,349,52,311,69,280,88,252,111,203,163,166,214,144,252"/>
+<area shape="rect" id="Node000004" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="889,146,1112,171"/>
+<area shape="poly" id="edge17_Node000001_Node000004" title=" " alt="" coords="239,249,882,170,882,176,239,254"/>
+<area shape="rect" id="Node000006" href="$classTmc9660Handler.html#abf940d362343d814f6233e5d7c5deec6" title="Read the TMC9660 general error flags register." alt="" coords="349,272,544,312"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="262,273,336,279,335,285,261,278"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="371,337,523,362"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="168,274,233,298,310,321,358,332,357,337,309,327,231,303,166,279"/>
+<area shape="rect" id="Node000008" href="$classTmc9660Handler.html#ac567ae5400150e93dc770baac13355e2" title="Read the TMC9660 general status flags register." alt="" coords="344,387,549,427"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="153,275,219,322,264,349,310,372,332,380,330,385,308,377,261,354,216,327,149,279"/>
+<area shape="rect" id="Node000009" href="$classTmc9660Handler.html#a3d6437320844ff3ffe77eada12ad7ea7" title="Read the motor supply voltage." alt="" coords="343,148,551,188"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="175,249,366,190,368,195,177,254"/>
+<area shape="rect" id="Node000010" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="397,451,496,477"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="145,275,170,308,207,353,255,399,311,436,347,450,384,458,383,463,345,455,308,441,252,403,203,356,166,312,141,278"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="502,77,635,46,636,51,503,82"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="584,86,710,90,842,105,902,120,956,138,954,144,901,125,841,111,709,95,584,91"/>
+<area shape="rect" id="Node000005" href="$classTmc9660Handler.html#a4360829b58deda85e9da4b9cebee96f0" title="Execute a function on the underlying typed TMC9660 driver." alt="" coords="632,121,841,146"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="537,102,634,116,633,121,536,107"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="842,141,876,144,875,149,841,146"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="506,145,583,114,641,82,693,50,696,55,644,87,585,118,508,150"/>
+<area shape="poly" id="edge11_Node000009_Node000004" title=" " alt="" coords="551,164,876,158,876,163,551,169"/>
+<area shape="poly" id="edge12_Node000009_Node000005" title=" " alt="" coords="551,153,618,145,618,150,551,158"/>
+<area shape="rect" id="Node000011" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="651,475,823,501"/>
+<area shape="poly" id="edge14_Node000010_Node000011" title=" " alt="" coords="496,465,637,477,636,482,496,471"/>
+<area shape="rect" id="Node000012" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="663,426,810,451"/>
+<area shape="poly" id="edge15_Node000010_Node000012" title=" " alt="" coords="496,457,649,444,649,449,496,462"/>
+</map>

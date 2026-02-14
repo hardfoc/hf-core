@@ -1,0 +1,5 @@
+<map id="Tmc9660AdcWrapper" name="Tmc9660AdcWrapper">
+<area shape="rect" id="Node000001" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership." alt="" coords="5,79,167,104"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="47,5,125,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,44,89,79,83,79,83,44"/>
+</map>

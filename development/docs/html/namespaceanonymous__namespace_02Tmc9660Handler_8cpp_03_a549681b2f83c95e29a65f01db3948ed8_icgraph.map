@@ -1,0 +1,7 @@
+<map id="anonymous_namespace{Tmc9660Handler::cpp}::halDelayMs" name="anonymous_namespace{Tmc9660Handler::cpp}::halDelayMs">
+<area shape="rect" id="Node000001" title=" " alt="" coords="228,30,408,85"/>
+<area shape="rect" id="Node000002" href="$classHalSpiTmc9660Comm.html#a1f4360b2fe821d797fc4a8d771150656" title="Delay execution for the specified number of milliseconds." alt="" coords="5,5,180,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,45,180,40,180,35,214,40"/>
+<area shape="rect" id="Node000003" href="$classHalUartTmc9660Comm.html#ac4e3272567e3486a74e62d53ccd814d9" title="Delay execution for the specified number of milliseconds." alt="" coords="5,69,180,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="214,75,180,80,180,74,214,69"/>
+</map>

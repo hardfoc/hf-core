@@ -1,0 +1,5 @@
+<map id="Pca9685Handler::SetChannelFullOn" name="Pca9685Handler::SetChannelFullOn">
+<area shape="rect" id="Node000001" title="Set a channel to fully ON (100% duty, no PWM)." alt="" coords="293,5,504,45"/>
+<area shape="rect" id="Node000002" href="$classPca9685GpioPin.html#a2775690e26ad55ca12be078f7a7867de" title="Write pin level via the PCA9685 driver." alt="" coords="5,13,245,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="280,28,246,28,246,23,280,23"/>
+</map>

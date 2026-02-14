@@ -1,0 +1,13 @@
+<map id="As5047uHandler::LSBToDegrees" name="As5047uHandler::LSBToDegrees">
+<area shape="rect" id="Node000001" title="Convert angle LSB to degrees." alt="" coords="399,55,628,80"/>
+<area shape="rect" id="Node000002" href="$as5047u__handler__comprehensive__test_8cpp.html#ad3a7324df7618ad71a625be571cfc342" title=" " alt="" coords="140,5,351,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="430,55,315,33,316,28,431,50"/>
+<area shape="rect" id="Node000004" href="$as5047u__handler__comprehensive__test_8cpp.html#ae748208ee2c6327a34a5041ad68af5a0" title=" " alt="" coords="153,55,338,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="385,70,338,70,338,65,385,65"/>
+<area shape="rect" id="Node000005" href="$as5047u__handler__comprehensive__test_8cpp.html#a153219dbdbf2b72e8928235f1197942d" title=" " alt="" coords="161,104,329,129"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="431,85,316,107,315,101,430,80"/>
+<area shape="rect" id="Node000003" href="$as5047u__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,55,92,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="174,36,141,45,93,58,91,52,139,39,173,31"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="138,70,92,70,92,65,138,65"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="177,103,139,94,91,81,93,76,141,89,178,98"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Tmc5160Handler::IsMotorEnabled" name="Tmc5160Handler::IsMotorEnabled">
+<area shape="rect" id="Node000001" title="Check if motor is enabled." alt="" coords="5,13,248,38"/>
+<area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a439a68f9d3f6785e0a493f9ed3821325" title="Helper: execute a visitor on the active driver (no lock, internal use)" alt="" coords="296,5,505,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,23,282,23,282,28,248,28"/>
+</map>

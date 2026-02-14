@@ -1,0 +1,13 @@
+<map id="Tmc9660Handler::EnableMotor" name="Tmc9660Handler::EnableMotor">
+<area shape="rect" id="Node000001" title="Enable the motor driver output stage." alt="" coords="5,63,228,88"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="296,5,448,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,60,301,31,302,36,175,65"/>
+<area shape="rect" id="Node000003" href="$classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f" title="Check if the TMC9660 driver has been initialized and is ready." alt="" coords="276,55,468,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="228,73,262,73,262,78,228,78"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#a8c19c14724b0be1d2be63da4258c001a" title="Log warning message." alt="" coords="319,120,425,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="175,85,306,115,305,120,173,91"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="516,95,688,120"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="425,124,502,116,503,121,426,130"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="529,144,675,169"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="426,136,515,145,515,150,425,141"/>
+</map>

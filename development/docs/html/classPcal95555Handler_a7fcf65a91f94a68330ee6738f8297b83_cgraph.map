@@ -1,0 +1,11 @@
+<map id="Pcal95555Handler::DumpDiagnostics" name="Pcal95555Handler::DumpDiagnostics">
+<area shape="rect" id="Node000001" title="Dump comprehensive diagnostics to the system log." alt="" coords="5,31,268,56"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="316,5,468,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,28,302,24,303,30,265,33"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="343,55,441,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="268,53,329,59,329,64,268,58"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="516,29,688,55"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="441,59,502,51,502,57,442,64"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="529,79,675,104"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="442,70,515,79,515,84,441,76"/>
+</map>

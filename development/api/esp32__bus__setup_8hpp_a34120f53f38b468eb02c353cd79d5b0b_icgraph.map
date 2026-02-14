@@ -1,0 +1,32 @@
+<map id="get_shared_i2c_bus" name="get_shared_i2c_bus">
+<area shape="rect" id="Node000001" title="Create and initialize the shared I2C bus." alt="" coords="816,232,967,257"/>
+<area shape="rect" id="Node000002" href="$esp32__bus__setup_8hpp.html#a7024544c8de144283c563c05320b05bf" title="Get an I2C device handle for a specific address on the shared bus." alt="" coords="639,153,757,179"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="846,229,729,181,731,176,848,224"/>
+<area shape="rect" id="Node000014" href="$full__system__integration__test_8cpp.html#a6a25aa0fccf0625f8e3cae773904ab38" title=" " alt="" coords="628,256,768,281"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="803,258,768,263,768,257,802,253"/>
+<area shape="rect" id="Node000003" href="$bno08x__handler__comprehensive__test_8cpp.html#ad7178bfd7bed244bfbb8045f77e478bb" title=" " alt="" coords="421,5,539,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="679,144,637,93,610,66,579,44,539,29,541,24,581,40,613,62,641,89,683,140"/>
+<area shape="rect" id="Node000005" href="$pca9685__handler__comprehensive__test_8cpp.html#ad7178bfd7bed244bfbb8045f77e478bb" title=" " alt="" coords="421,104,539,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="627,153,536,132,538,127,629,148"/>
+<area shape="rect" id="Node000007" href="$pcal95555__handler__comprehensive__test_8cpp.html#ad7178bfd7bed244bfbb8045f77e478bb" title=" " alt="" coords="421,153,539,179"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="625,169,540,169,540,163,625,163"/>
+<area shape="rect" id="Node000009" href="$full__system__integration__test_8cpp.html#a0ffcd10e1f0034357e4d75e4e19504be" title=" " alt="" coords="414,203,546,228"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="629,184,538,205,536,200,627,179"/>
+<area shape="rect" id="Node000012" href="$full__system__integration__test_8cpp.html#a5a65d07819438b3ffa159258ea42a9ea" title=" " alt="" coords="140,260,332,285"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="673,189,631,218,581,242,518,259,452,270,332,278,332,272,452,264,517,254,579,237,629,213,670,185"/>
+<area shape="rect" id="Node000013" href="$bno08x__handler__comprehensive__test_8cpp.html#ac83f97b7754666b5e7733941b37c5630" title=" " alt="" coords="380,55,580,80"/>
+<area shape="poly" id="edge13_Node000002_Node000013" title=" " alt="" coords="668,147,627,120,579,94,546,83,548,78,581,89,630,115,671,143"/>
+<area shape="rect" id="Node000004" href="$bno08x__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="193,27,279,52"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="407,27,280,38,279,33,406,22"/>
+<area shape="rect" id="Node000006" href="$pca9685__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="193,96,279,121"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="406,117,279,113,279,107,407,112"/>
+<area shape="rect" id="Node000008" href="$pcal95555__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="193,145,279,171"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="406,166,279,162,279,157,407,161"/>
+<area shape="rect" id="Node000010" href="$full__system__integration__test_8cpp.html#ab02326456d9f2a9466cae859c06f9f1a" title=" " alt="" coords="161,195,311,235"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="401,218,311,218,311,213,401,213"/>
+<area shape="rect" id="Node000011" href="$full__system__integration__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,260,92,285"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="158,242,92,262,90,257,156,237"/>
+<area shape="poly" id="edge12_Node000012_Node000011" title=" " alt="" coords="126,275,92,275,92,270,126,270"/>
+<area shape="poly" id="edge14_Node000013_Node000004" title=" " alt="" coords="366,57,279,47,280,42,367,52"/>
+<area shape="poly" id="edge16_Node000014_Node000011" title=" " alt="" coords="614,279,580,282,457,296,360,307,263,311,140,301,86,288,87,283,140,295,263,306,359,302,456,290,580,277,614,274"/>
+</map>

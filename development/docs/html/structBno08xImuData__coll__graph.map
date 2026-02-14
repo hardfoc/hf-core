@@ -1,0 +1,9 @@
+<map id="Bno08xImuData" name="Bno08xImuData">
+<area shape="rect" id="Node000001" title="Complete IMU sensor data structure." alt="" coords="158,152,285,177"/>
+<area shape="rect" id="Node000002" href="$structBno08xVector3.html" title="Enhanced vector with timestamp and accuracy." alt="" coords="5,5,125,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,44,72,86,80,108,93,126,123,147,159,157,157,162,121,151,89,130,75,110,67,88,62,45"/>
+<area shape="rect" id="Node000003" href="$structBno08xQuaternion.html" title="Enhanced quaternion with timestamp and accuracy." alt="" coords="150,5,293,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="224,45,224,152,219,152,219,45"/>
+<area shape="rect" id="Node000004" href="$structBno08xEulerAngles.html" title="Euler angles derived from quaternion." alt="" coords="317,5,465,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="374,43,335,85,284,130,246,154,243,150,281,126,331,81,370,39"/>
+</map>

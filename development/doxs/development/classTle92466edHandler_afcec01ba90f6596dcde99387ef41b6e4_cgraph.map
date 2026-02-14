@@ -1,0 +1,7 @@
+<map id="Tle92466edHandler::DumpDiagnostics" name="Tle92466edHandler::DumpDiagnostics">
+<area shape="rect" id="Node000001" title="Dump diagnostics to logger." alt="" coords="5,23,163,63"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="211,5,363,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,31,197,27,197,32,164,36"/>
+<area shape="rect" id="Node000003" href="$Tle92466edHandler_8cpp.html#a5c86099f760a9845d5fa0e65f8b57fb5" title=" " alt="" coords="243,55,331,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="164,50,229,58,229,63,163,55"/>
+</map>
