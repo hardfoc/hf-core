@@ -113,7 +113,7 @@ var searchData=
   ['enableasciiart_110',['EnableAsciiArt',['../classLogger.html#aac24f377445cbd2597aeb9c72fb6327b',1,'Logger']]],
   ['enablechannel_111',['EnableChannel',['../classMax22200Handler.html#afe9b10baf5484ab2616204728cd1e9fd',1,'Max22200Handler::EnableChannel()'],['../classPca9685PwmAdapter.html#a1ae2b30150d427183e7f171daf0af720',1,'Pca9685PwmAdapter::EnableChannel()'],['../classTle92466edHandler.html#a74163648a3e412ca1b99f5cd1ea2b6e8',1,'Tle92466edHandler::EnableChannel()']]],
   ['enablecolors_112',['EnableColors',['../classLogger.html#a18d970d2f45661f20decd61c4c7283fd',1,'Logger']]],
-  ['enabled_20tests_113',['Build All CI-Enabled Tests',['../index.html#autotoc_md38',1,'']]],
+  ['enabled_20tests_113',['Build All CI-Enabled Tests',['../index.html#autotoc_md37',1,'']]],
   ['enabledriveroutput_114',['EnableDriverOutput',['../classTmc9660Handler.html#af200e87a8fb2f4cf42861a5410b6a995',1,'Tmc9660Handler']]],
   ['enableeffects_115',['EnableEffects',['../classLogger.html#a218ded86af8f2fe90dcd027bda3e3aae',1,'Logger']]],
   ['enableinputlatch_116',['EnableInputLatch',['../classPcal95555Handler.html#a47322f791f1f79bd741ab66a6c6ac800',1,'Pcal95555Handler']]],

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>HF-Core Platform: HardFOC Platform Core (hf-core)</title>
+<title>HF-Core Platform: HF-Core Platform</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -91,23 +91,46 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">HardFOC Platform Core (hf-core) </div></div>
+  <div class="headertitle"><div class="title">HF-Core Platform </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a> <a href="https://github.com/N3b3x/hf-core/actions/workflows/esp32-examples-build-ci.yml"><img src="https://github.com/N3b3x/hf-core/actions/workflows/esp32-examples-build-ci.yml/badge.svg" alt="ESP-IDF Build" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/N3b3x/hf-core/actions/workflows/ci-cpp-analysis.yml"><img src="https://github.com/N3b3x/hf-core/actions/workflows/ci-cpp-analysis.yml/badge.svg" alt="C++ Analysis" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/N3b3x/hf-core/actions/workflows/ci-cpp-lint.yml"><img src="https://github.com/N3b3x/hf-core/actions/workflows/ci-cpp-lint.yml/badge.svg" alt="C++ Lint" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/N3b3x/hf-core/actions/workflows/ci-docs-publish.yml"><img src="https://github.com/N3b3x/hf-core/actions/workflows/ci-docs-publish.yml/badge.svg" alt="Docs" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/N3b3x/hf-core/actions/workflows/ci-markdown-lint.yml"><img src="https://github.com/N3b3x/hf-core/actions/workflows/ci-markdown-lint.yml/badge.svg" alt="Markdown Lint" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/N3b3x/hf-core/actions/workflows/ci-yaml-lint.yml"><img src="https://github.com/N3b3x/hf-core/actions/workflows/ci-yaml-lint.yml/badge.svg" alt="YAML Lint" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/N3b3x/hf-core/actions/workflows/ci-docs-linkcheck.yml"><img src="https://github.com/N3b3x/hf-core/actions/workflows/ci-docs-linkcheck.yml/badge.svg" alt="Link Check" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/N3b3x/hf-core/actions/workflows/release.yml"><img src="https://github.com/N3b3x/hf-core/actions/workflows/release.yml/badge.svg" alt="Release" style="pointer-events: none;" class="inline"/></a></p>
-<p>Shared platform layer for all HardFOC boards: base interfaces, drivers, utilities, and handlers. No board-specific configuration — board HALs (e.g. <code>hf-hal-vortex-v1</code>) depend on this repo and add managers, API, and pin mapping.</p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a> <b>Shared platform layer for HardFOC boards — handlers, RTOS utilities, driver integration, and CANopen for motor control systems</b></p>
+<p><a href="https://en.cppreference.com/w/cpp/20"><img src="https://img.shields.io/badge/C%2B%2B-20-blue.svg" alt="C++" style="pointer-events: none;" class="inline"/></a> <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/hardfoc/hf-core/actions/workflows/esp32-examples-build-ci.yml"><img src="https://github.com/hardfoc/hf-core/actions/workflows/esp32-examples-build-ci.yml/badge.svg" alt="ESP-IDF Build" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/hardfoc/hf-core/actions/workflows/ci-cpp-analysis.yml"><img src="https://github.com/hardfoc/hf-core/actions/workflows/ci-cpp-analysis.yml/badge.svg" alt="C++ Analysis" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/hardfoc/hf-core/actions/workflows/ci-cpp-lint.yml"><img src="https://github.com/hardfoc/hf-core/actions/workflows/ci-cpp-lint.yml/badge.svg" alt="C++ Lint" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/hardfoc/hf-core/actions/workflows/ci-docs-publish.yml"><img src="https://github.com/hardfoc/hf-core/actions/workflows/ci-docs-publish.yml/badge.svg" alt="Docs" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/hardfoc/hf-core/actions/workflows/ci-markdown-lint.yml"><img src="https://github.com/hardfoc/hf-core/actions/workflows/ci-markdown-lint.yml/badge.svg" alt="Markdown Lint" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/hardfoc/hf-core/actions/workflows/ci-yaml-lint.yml"><img src="https://github.com/hardfoc/hf-core/actions/workflows/ci-yaml-lint.yml/badge.svg" alt="YAML Lint" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/hardfoc/hf-core/actions/workflows/ci-docs-linkcheck.yml"><img src="https://github.com/hardfoc/hf-core/actions/workflows/ci-docs-linkcheck.yml/badge.svg" alt="Link Check" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/hardfoc/hf-core/actions/workflows/release.yml"><img src="https://github.com/hardfoc/hf-core/actions/workflows/release.yml/badge.svg" alt="Release" style="pointer-events: none;" class="inline"/></a></p>
 <h1><a class="anchor" id="autotoc_md30"></a>
-Features</h1>
-<ul>
-<li><b>7 Device Handlers</b> — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, <a class="el" href="classLogger.html" title="Advanced logging system with formatting capabilities.">Logger</a></li>
-<li><b>30+ General Utilities</b> — Buffers, filters, timers, CRC, interpolation, linked lists, flag sets, physical units</li>
-<li><b>Full RTOS Abstraction</b> — Mutex, semaphore, queue, event flags, threads, timers</li>
-<li><b>CANopen Utilities</b> — CAN frame, SDO protocol, NMT commands</li>
-<li><b>ESP32 Test Suite</b> — 11 test applications covering every handler, utility, and integration scenario</li>
-<li><b>8 CI Pipelines</b> — Build, lint, analysis, documentation, release</li>
-</ul>
+📚 Table of Contents</h1>
+<ol type="1">
+<li>Overview</li>
+<li>Features</li>
+<li>Architecture</li>
+<li>Quick Start</li>
+<li>Handlers</li>
+<li>Utilities</li>
+<li>Repository Structure</li>
+<li>Documentation</li>
+<li>Contributing</li>
+<li>License</li>
+</ol>
 <h1><a class="anchor" id="autotoc_md31"></a>
-Architecture</h1>
+📦 Overview</h1>
+<blockquote class="doxtable">
+<p>&zwj;<b>📖 <a href="https://hardfoc.github.io/hf-core/">📚🌐 Live Complete Documentation</a></b> — Architecture guides, per-handler API reference, and testing instructions </p>
+</blockquote>
+<p><b>hf-core</b> is the shared platform layer for all HardFOC boards. It provides the handler layer, RTOS utilities, and driver integration that form the backbone of the HardFOC motor control system.</p>
+<p>hf-core is the <b>bridge layer</b> between hardware-agnostic base interfaces (<code>BaseI2c</code>, <code>BaseSpi</code>, <code>BaseGpio</code>, <code>BaseAdc</code>, <code>BaseTemperature</code>) and CRTP-templated device drivers (<code>hf-tmc9660-driver</code>, <code>hf-bno08x-driver</code>, <code>hf-as5047u-driver</code>, etc.). No board-specific configuration lives here — board HALs (e.g. <code>hf-hal-vortex-v1</code>) depend on this repo and add managers, API, and pin mapping.</p>
+<h1><a class="anchor" id="autotoc_md32"></a>
+✨ Features</h1>
+<ul>
+<li>✅ <b>7 Device Handlers</b> — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, <a class="el" href="classLogger.html" title="Advanced logging system with formatting capabilities.">Logger</a></li>
+<li>✅ <b>30+ General Utilities</b> — Buffers, filters, timers, CRC, interpolation, linked lists, flag sets, physical units</li>
+<li>✅ <b>Full RTOS Abstraction</b> — Mutex, semaphore, queue, event flags, threads, timers</li>
+<li>✅ <b>CANopen Utilities</b> — CAN frame, SDO protocol, NMT commands</li>
+<li>✅ <b>ESP32 Test Suite</b> — 11 test applications covering every handler, utility, and integration scenario</li>
+<li>✅ <b>8 CI Pipelines</b> — Build, lint, analysis, documentation, release</li>
+<li>✅ <b>Thread-Safe</b> — All handlers use <code>RtosMutex</code> for safe concurrent access</li>
+<li>✅ <b>Modern C++20</b> — Type-safe APIs with CRTP-based design and zero-overhead abstractions</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md33"></a>
+🏗️ Architecture</h1>
 <div class="fragment"><div class="line">┌─────────────────────────────────────────────────┐</div>
 <div class="line">│                Board HAL (Vortex)                │  Managers + API</div>
 <div class="line">├─────────────────────────────────────────────────┤</div>
@@ -127,8 +150,59 @@ Architecture</h1>
 <div class="line">│          MCU Platform (ESP32, etc.)             │</div>
 <div class="line">└─────────────────────────────────────────────────┘</div>
 </div><!-- fragment --><p>Handlers <b>own</b> their driver instances and translate base-interface calls into high-level operations. They never expose the raw driver — all access goes through handler methods.</p>
-<h1><a class="anchor" id="autotoc_md32"></a>
-Repository Structure</h1>
+<h1><a class="anchor" id="autotoc_md34"></a>
+🚀 Quick Start</h1>
+<h2><a class="anchor" id="autotoc_md35"></a>
+Clone</h2>
+<div class="fragment"><div class="line">git clone --recurse-submodules https://github.com/hardfoc/hf-core.git</div>
+</div><!-- fragment --><p>Or after a shallow clone:</p>
+<div class="fragment"><div class="line">git submodule update --init --recursive</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md36"></a>
+Build and Flash a Test</h2>
+<div class="fragment"><div class="line">cd examples/esp32/scripts</div>
+<div class="line"> </div>
+<div class="line"># Build a utility test (no hardware needed)</div>
+<div class="line">./build_app.sh --app general_utils_test --build-type debug</div>
+<div class="line"> </div>
+<div class="line"># Flash and monitor</div>
+<div class="line">cd .. &amp;&amp; idf.py -p /dev/ttyUSB0 flash monitor</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md37"></a>
+Build All CI-Enabled Tests</h2>
+<div class="fragment"><div class="line">./build_app.sh --all --build-type debug</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md38"></a>
+📖 Handlers</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Handler   </th><th class="markdownTableHeadLeft">Device   </th><th class="markdownTableHeadLeft">Bus   </th><th class="markdownTableHeadLeft">Key Capabilities    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classAs5047uHandler.html" title="Unified handler for AS5047U magnetic rotary position sensor.">As5047uHandler</a></code>   </td><td class="markdownTableBodyLeft">AS5047U   </td><td class="markdownTableBodyLeft">SPI   </td><td class="markdownTableBodyLeft">Angle, velocity, DAEC, diagnostics, zero-position    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classBno08xHandler.html" title="Unified handler for BNO08x IMU sensor family.">Bno08xHandler</a></code>   </td><td class="markdownTableBodyLeft">BNO08x   </td><td class="markdownTableBodyLeft">I2C   </td><td class="markdownTableBodyLeft">Sensor enable/disable, data read, freshness gating    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classPca9685Handler.html" title="Unified, non-templated handler for a single PCA9685 PWM controller.">Pca9685Handler</a></code>   </td><td class="markdownTableBodyLeft">PCA9685   </td><td class="markdownTableBodyLeft">I2C   </td><td class="markdownTableBodyLeft">PWM duty/frequency, phase offset, sleep/wake    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classPcal95555Handler.html" title="Unified, non-templated handler for a single PCA9555 / PCAL9555A device.">Pcal95555Handler</a></code>   </td><td class="markdownTableBodyLeft">PCAL95555   </td><td class="markdownTableBodyLeft">I2C   </td><td class="markdownTableBodyLeft">GPIO read/write, toggle, batch, interrupt drain    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classNtcTemperatureHandler.html" title="NTC temperature sensor handler implementing BaseTemperature interface.">NtcTemperatureHandler</a></code>   </td><td class="markdownTableBodyLeft">NTC   </td><td class="markdownTableBodyLeft">ADC   </td><td class="markdownTableBodyLeft">Temperature, calibration, EMA filter, thresholds    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a></code>   </td><td class="markdownTableBodyLeft">TMC9660   </td><td class="markdownTableBodyLeft">SPI/UART   </td><td class="markdownTableBodyLeft">Motor control, telemetry, GPIO/ADC/temp wrappers    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classLogger.html" title="Advanced logging system with formatting capabilities.">Logger</a></code>   </td><td class="markdownTableBodyLeft">—   </td><td class="markdownTableBodyLeft">—   </td><td class="markdownTableBodyLeft">Singleton, log levels, per-tag filter, formatted output   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md39"></a>
+🔧 Utilities</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Library   </th><th class="markdownTableHeadLeft">Contents    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>hf-utils-general</code>   </td><td class="markdownTableBodyLeft">CircularBuffer, RingBuffer, AveragingFilter, CRC, ActionTimer, IntervalAction, SoftwareVersion, LinearInterpolation, SimpleLinkedList, FlagSet, PhysicalUnit, and more    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code>hf-utils-rtos-wrap</code>   </td><td class="markdownTableBodyLeft">RtosMutex, MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags, OsSemaphore, OsRecursiveMutex, os_delay_msec    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code>hf-utils-canopen</code>   </td><td class="markdownTableBodyLeft">CanFrame, SDO helpers, NMT commands   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md40"></a>
+📂 Repository Structure</h1>
 <div class="fragment"><div class="line">hf-core/</div>
 <div class="line">├── handlers/           # Device handler implementations</div>
 <div class="line">│   ├── as5047u/        #   Magnetic encoder (SPI)</div>
@@ -153,60 +227,9 @@ Repository Structure</h1>
 <div class="line">├── _config/            # clang-format, clang-tidy, Jekyll, Doxygen, linters</div>
 <div class="line">├── docs/               # Jekyll documentation site</div>
 <div class="line">└── README.md</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md33"></a>
-Handlers</h1>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">Handler   </th><th class="markdownTableHeadLeft">Device   </th><th class="markdownTableHeadLeft">Bus   </th><th class="markdownTableHeadLeft">Key Capabilities    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code><a class="el" href="classAs5047uHandler.html" title="Unified handler for AS5047U magnetic rotary position sensor.">As5047uHandler</a></code>   </td><td class="markdownTableBodyLeft">AS5047U   </td><td class="markdownTableBodyLeft">SPI   </td><td class="markdownTableBodyLeft">Angle, velocity, DAEC, diagnostics, zero-position    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code><a class="el" href="classBno08xHandler.html" title="Unified handler for BNO08x IMU sensor family.">Bno08xHandler</a></code>   </td><td class="markdownTableBodyLeft">BNO08x   </td><td class="markdownTableBodyLeft">I2C   </td><td class="markdownTableBodyLeft">Sensor enable/disable, data read, freshness gating    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code><a class="el" href="classPca9685Handler.html" title="Unified, non-templated handler for a single PCA9685 PWM controller.">Pca9685Handler</a></code>   </td><td class="markdownTableBodyLeft">PCA9685   </td><td class="markdownTableBodyLeft">I2C   </td><td class="markdownTableBodyLeft">PWM duty/frequency, phase offset, sleep/wake    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code><a class="el" href="classPcal95555Handler.html" title="Unified, non-templated handler for a single PCA9555 / PCAL9555A device.">Pcal95555Handler</a></code>   </td><td class="markdownTableBodyLeft">PCAL95555   </td><td class="markdownTableBodyLeft">I2C   </td><td class="markdownTableBodyLeft">GPIO read/write, toggle, batch, interrupt drain    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code><a class="el" href="classNtcTemperatureHandler.html" title="NTC temperature sensor handler implementing BaseTemperature interface.">NtcTemperatureHandler</a></code>   </td><td class="markdownTableBodyLeft">NTC   </td><td class="markdownTableBodyLeft">ADC   </td><td class="markdownTableBodyLeft">Temperature, calibration, EMA filter, thresholds    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code><a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a></code>   </td><td class="markdownTableBodyLeft">TMC9660   </td><td class="markdownTableBodyLeft">SPI/UART   </td><td class="markdownTableBodyLeft">Motor control, telemetry, GPIO/ADC/temp wrappers    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code><a class="el" href="classLogger.html" title="Advanced logging system with formatting capabilities.">Logger</a></code>   </td><td class="markdownTableBodyLeft">—   </td><td class="markdownTableBodyLeft">—   </td><td class="markdownTableBodyLeft">Singleton, log levels, per-tag filter, formatted output   </td></tr>
-</table>
-<h1><a class="anchor" id="autotoc_md34"></a>
-Utilities</h1>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">Library   </th><th class="markdownTableHeadLeft">Contents    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code>hf-utils-general</code>   </td><td class="markdownTableBodyLeft">CircularBuffer, RingBuffer, AveragingFilter, CRC, ActionTimer, IntervalAction, SoftwareVersion, LinearInterpolation, SimpleLinkedList, FlagSet, PhysicalUnit, and more    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code>hf-utils-rtos-wrap</code>   </td><td class="markdownTableBodyLeft">RtosMutex, MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags, OsSemaphore, OsRecursiveMutex, os_delay_msec    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><code>hf-utils-canopen</code>   </td><td class="markdownTableBodyLeft">CanFrame, SDO helpers, NMT commands   </td></tr>
-</table>
-<h1><a class="anchor" id="autotoc_md35"></a>
-Quick Start</h1>
-<h2><a class="anchor" id="autotoc_md36"></a>
-Clone</h2>
-<div class="fragment"><div class="line">git clone --recurse-submodules https://github.com/N3b3x/hf-core.git</div>
-</div><!-- fragment --><p>Or after a shallow clone:</p>
-<div class="fragment"><div class="line">git submodule update --init --recursive</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md37"></a>
-Build and Flash a Test</h2>
-<div class="fragment"><div class="line">cd examples/esp32/scripts</div>
-<div class="line"> </div>
-<div class="line"># Build a utility test (no hardware needed)</div>
-<div class="line">./build_app.sh --app general_utils_test --build-type debug</div>
-<div class="line"> </div>
-<div class="line"># Flash and monitor</div>
-<div class="line">cd .. &amp;&amp; idf.py -p /dev/ttyUSB0 flash monitor</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md38"></a>
-Build All CI-Enabled Tests</h2>
-<div class="fragment"><div class="line">./build_app.sh --all --build-type debug</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md39"></a>
-Documentation</h1>
-<p>Full documentation is available at the <a href="https://n3b3x.github.io/hf-core/">GitHub Pages site</a>:</p>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md41"></a>
+📚 Documentation</h1>
+<p>Full documentation is available at the <a href="https://hardfoc.github.io/hf-core/">GitHub Pages site</a>:</p>
 <ul>
 <li>Architecture — Layered design, handler pattern, ownership</li>
 <li>Folder Structure — Complete tree with descriptions</li>
@@ -215,8 +238,8 @@ Documentation</h1>
 <li>Testing Guide — How to build and run tests</li>
 <li>CI Pipelines — Workflow descriptions</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md40"></a>
-Contributing</h1>
+<h1><a class="anchor" id="autotoc_md42"></a>
+🤝 Contributing</h1>
 <ol type="1">
 <li>Create a feature branch from <code>develop</code></li>
 <li>Follow <code>.clang-format</code> and <code>.clang-tidy</code> (configs in <code>_config/</code>)</li>
@@ -224,9 +247,9 @@ Contributing</h1>
 <li>Ensure all CI checks pass</li>
 <li>Open a pull request targeting <code>develop</code></li>
 </ol>
-<h1><a class="anchor" id="autotoc_md41"></a>
-License</h1>
-<p>See LICENSE and per-submodule licenses. </p>
+<h1><a class="anchor" id="autotoc_md43"></a>
+📄 License</h1>
+<p>This project is licensed under the <b>GNU General Public License v3.0</b>. See the [LICENSE](LICENSE) file for details. Individual submodules may carry their own licenses — see per-submodule LICENSE files. </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"/>
 </div><!-- contents -->

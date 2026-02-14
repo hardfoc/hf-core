@@ -25,7 +25,21 @@
 var NAVTREE =
 [
   [ "HF-Core Platform", "index.html", [
-    [ "HardFOC Platform Core (hf-core)", "index.html", "index" ],
+    [ "📚 Table of Contents", "index.html#autotoc_md30", null ],
+    [ "📦 Overview", "index.html#autotoc_md31", null ],
+    [ "✨ Features", "index.html#autotoc_md32", null ],
+    [ "🏗️ Architecture", "index.html#autotoc_md33", null ],
+    [ "🚀 Quick Start", "index.html#autotoc_md34", [
+      [ "Clone", "index.html#autotoc_md35", null ],
+      [ "Build and Flash a Test", "index.html#autotoc_md36", null ],
+      [ "Build All CI-Enabled Tests", "index.html#autotoc_md37", null ]
+    ] ],
+    [ "📖 Handlers", "index.html#autotoc_md38", null ],
+    [ "🔧 Utilities", "index.html#autotoc_md39", null ],
+    [ "📂 Repository Structure", "index.html#autotoc_md40", null ],
+    [ "📚 Documentation", "index.html#autotoc_md41", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md42", null ],
+    [ "📄 License", "index.html#autotoc_md43", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -68,8 +82,8 @@ var NAVTREEINDEX =
 "classPca9685Handler.html#a989c4b1a8260c7af0bf210103d13cc7b",
 "classTmc9660AdcWrapper.html#a887fd3f85f165cfe128f9ff1bb226883",
 "full__system__integration__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70",
-"ntc__handler__comprehensive__test_8cpp.html#a7b9ef4d0344c0da67881e38fb5db17e8",
-"structTmc9660CtrlPins.html#ace66f983fb92571fe12361a803cad705"
+"ntc__handler__comprehensive__test_8cpp.html#a7b7f7f165c1004e17e04cf7b6be7ce5a",
+"structTmc9660CtrlPins.html#a89d2aea877e8da13a1c26364801630fd"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

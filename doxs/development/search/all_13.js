@@ -23,6 +23,6 @@ var searchData=
   ['usage_20example_20',['Usage Example',['../Tmc5160Handler_8h.html#autotoc_md17',1,'Usage Example'],['../classTmc9660Handler.html#autotoc_md27',1,'Usage Example'],['../Ws2812Handler_8h.html#autotoc_md28',1,'Usage Example']]],
   ['use_5fspi_5f_21',['use_spi_',['../classTmc9660Handler.html#a01828de5ad5685ee4baac83943be3440',1,'Tmc9660Handler']]],
   ['user_5fcallback_5f_22',['user_callback_',['../classBno08xHandler.html#ab4be91e6bd9492c1824aa747db733c0f',1,'Bno08xHandler']]],
-  ['utilities_23',['Utilities',['../index.html#autotoc_md34',1,'']]],
+  ['utilities_23',['🔧 Utilities',['../index.html#autotoc_md39',1,'']]],
   ['uvw_5fpole_5fpairs_24',['uvw_pole_pairs',['../structAs5047uConfig.html#a5938deaf6c6b4684bd829bfa47792357',1,'As5047uConfig']]]
 ];
