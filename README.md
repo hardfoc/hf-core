@@ -9,7 +9,7 @@ nav_order: 1
 
 **Shared platform layer for HardFOC boards — handlers, RTOS utilities, driver integration, and CANopen for motor control systems**
 
-[![C++](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.cppreference.com/w/cpp/20)
+[![C++](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.cppreference.com/w/cpp/20.html)
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![ESP-IDF Build](https://github.com/hardfoc/hf-core/actions/workflows/esp32-examples-build-ci.yml/badge.svg)](https://github.com/hardfoc/hf-core/actions/workflows/esp32-examples-build-ci.yml)
 [![C++ Analysis](https://github.com/hardfoc/hf-core/actions/workflows/ci-cpp-analysis.yml/badge.svg)](https://github.com/hardfoc/hf-core/actions/workflows/ci-cpp-analysis.yml)
@@ -191,5 +191,5 @@ Full documentation is available at the [GitHub Pages site](https://hardfoc.githu
 ## 📄 License
 
 This project is licensed under the **GNU General Public License v3.0**.
-See the [LICENSE](LICENSE) file for details. Individual submodules may carry
-their own licenses — see per-submodule LICENSE files.
+See the [GPL v3 license](https://www.gnu.org/licenses/gpl-3.0) for details.
+Individual submodules may carry their own licenses — see per-submodule LICENSE files.
