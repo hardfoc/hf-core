@@ -1,0 +1,5 @@
+<map id="Bno08xHandler::GetSensor" name="Bno08xHandler::GetSensor">
+<area shape="rect" id="Node000001" title="Get direct access to the underlying sensor driver (type&#45;erased)." alt="" coords="251,5,448,31"/>
+<area shape="rect" id="Node000002" href="$classBno08xHandler.html#abf3a81e646ebd6dd0a10890e5be21d6d" title="Const overload of GetSensor()." alt="" coords="5,5,203,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="237,21,203,21,203,15,237,15"/>
+</map>

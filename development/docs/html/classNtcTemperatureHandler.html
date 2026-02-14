@@ -96,6 +96,7 @@ $(function(){initNavTree('classNtcTemperatureHandler.html',''); initResizable();
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classNtcTemperatureHandler-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">NtcTemperatureHandler Class Reference</div></div>
 </div><!--header-->
@@ -113,7 +114,7 @@ Inheritance diagram for NtcTemperatureHandler:</div>
 <div class="dynheader">
 Collaboration diagram for NtcTemperatureHandler:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler__coll__graph.svg" width="983" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler__coll__graph.svg" width="1422" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -280,6 +281,13 @@ Static Private Member Functions</h2></td></tr>
 <tr class="memitem:aaaef3aab6d69f967a416db9f858c9d1c" id="r_aaaef3aab6d69f967a416db9f858c9d1c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaaef3aab6d69f967a416db9f858c9d1c">ContinuousMonitoringCallback</a> (uint32_t arg)</td></tr>
 <tr class="memdesc:aaaef3aab6d69f967a416db9f858c9d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static callback for continuous monitoring timer.  <br /></td></tr>
 <tr class="separator:aaaef3aab6d69f967a416db9f858c9d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae173c55a63a51d2344798dd785b25ebe" id="r_ae173c55a63a51d2344798dd785b25ebe"><td class="memItemLeft" align="right" valign="top">static hf_u32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae173c55a63a51d2344798dd785b25ebe">RegisterMonitoringContext</a> (<a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> *handler) noexcept</td></tr>
+<tr class="memdesc:ae173c55a63a51d2344798dd785b25ebe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register/unregister callback context IDs for timer callbacks.  <br /></td></tr>
+<tr class="separator:ae173c55a63a51d2344798dd785b25ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b3fba99650d0b01b1347eae0c86abba" id="r_a0b3fba99650d0b01b1347eae0c86abba"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b3fba99650d0b01b1347eae0c86abba">UnregisterMonitoringContext</a> (hf_u32_t context_id) noexcept</td></tr>
+<tr class="separator:a0b3fba99650d0b01b1347eae0c86abba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a459d108af3fc0c29d518c62cb791fe" id="r_a2a459d108af3fc0c29d518c62cb791fe"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a459d108af3fc0c29d518c62cb791fe">ResolveMonitoringContext</a> (hf_u32_t context_id) noexcept</td></tr>
+<tr class="separator:a2a459d108af3fc0c29d518c62cb791fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adffe3f391437c3d39a56bd632ff8807e" id="r_adffe3f391437c3d39a56bd632ff8807e"><td class="memItemLeft" align="right" valign="top">static hf_u64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adffe3f391437c3d39a56bd632ff8807e">GetCurrentTimeUs</a> () noexcept</td></tr>
 <tr class="memdesc:adffe3f391437c3d39a56bd632ff8807e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current timestamp in microseconds.  <br /></td></tr>
 <tr class="separator:adffe3f391437c3d39a56bd632ff8807e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -340,6 +348,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ab71fd7339661fe72a7f7760883fd8e38" id="r_ab71fd7339661fe72a7f7760883fd8e38"><td class="memItemLeft" align="right" valign="top">PeriodicTimer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab71fd7339661fe72a7f7760883fd8e38">monitoring_timer_</a></td></tr>
 <tr class="memdesc:ab71fd7339661fe72a7f7760883fd8e38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hardware-agnostic periodic timer.  <br /></td></tr>
 <tr class="separator:ab71fd7339661fe72a7f7760883fd8e38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a335b006f6f0c150dd53bf38052067cc5" id="r_a335b006f6f0c150dd53bf38052067cc5"><td class="memItemLeft" align="right" valign="top">hf_u32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a335b006f6f0c150dd53bf38052067cc5">monitoring_context_id_</a></td></tr>
+<tr class="memdesc:a335b006f6f0c150dd53bf38052067cc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer callback context ID (0 = unassigned)  <br /></td></tr>
+<tr class="separator:a335b006f6f0c150dd53bf38052067cc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00691e05139ae9348465decef54b1a66" id="r_a00691e05139ae9348465decef54b1a66"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00691e05139ae9348465decef54b1a66">calibration_offset_</a></td></tr>
 <tr class="memdesc:a00691e05139ae9348465decef54b1a66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current calibration offset.  <br /></td></tr>
 <tr class="separator:a00691e05139ae9348465decef54b1a66"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -349,6 +360,15 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a6f1cba555ce4adf0309324532dfb60e8" id="r_a6f1cba555ce4adf0309324532dfb60e8"><td class="memItemLeft" align="right" valign="top">hf_temp_diagnostics_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f1cba555ce4adf0309324532dfb60e8">diagnostics_</a></td></tr>
 <tr class="memdesc:a6f1cba555ce4adf0309324532dfb60e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">BaseTemperature diagnostics.  <br /></td></tr>
 <tr class="separator:a6f1cba555ce4adf0309324532dfb60e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:ae2f7041f1b34c60db7afb47f3cb9f6a0" id="r_ae2f7041f1b34c60db7afb47f3cb9f6a0"><td class="memItemLeft" align="right" valign="top">static constexpr hf_u32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2f7041f1b34c60db7afb47f3cb9f6a0">kMonitoringContextSlots</a> = 8</td></tr>
+<tr class="separator:ae2f7041f1b34c60db7afb47f3cb9f6a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7445e75a00f245e9a74ee1d846d3248e" id="r_a7445e75a00f245e9a74ee1d846d3248e"><td class="memItemLeft" align="right" valign="top">static RtosMutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7445e75a00f245e9a74ee1d846d3248e">callback_registry_mutex_</a> {}</td></tr>
+<tr class="separator:a7445e75a00f245e9a74ee1d846d3248e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c7c1fa912406565388527569f87cc98" id="r_a9c7c1fa912406565388527569f87cc98"><td class="memItemLeft" align="right" valign="top">static std::array&lt; <a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> *, <a class="el" href="#ae2f7041f1b34c60db7afb47f3cb9f6a0">kMonitoringContextSlots</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c7c1fa912406565388527569f87cc98">callback_registry_</a> = {}</td></tr>
+<tr class="separator:a9c7c1fa912406565388527569f87cc98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>NTC temperature sensor handler implementing BaseTemperature interface. </p>
@@ -534,7 +554,7 @@ Supports all BaseTemperature features including threshold and continuous monitor
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_aac69a65bcccfecfc2bfca99f7ac2aeb3_cgraph.svg" width="878" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_aac69a65bcccfecfc2bfca99f7ac2aeb3_cgraph.svg" width="944" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -663,10 +683,15 @@ Here is the call graph for this function:</div>
 <p>Static callback for continuous monitoring timer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arg</td><td>Timer callback argument (pointer to handler instance) </td></tr>
+    <tr><td class="paramname">arg</td><td>Timer callback argument (registered context ID) </td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_aaaef3aab6d69f967a416db9f858c9d1c_cgraph.svg" width="491" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -734,7 +759,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a8c1949119402a748e1000e473e263703_cgraph.svg" width="859" height="114"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a8c1949119402a748e1000e473e263703_cgraph.svg" width="926" height="159"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1065,6 +1090,11 @@ Here is the call graph for this function:</div>
 <p>Get NTC thermistor instance (const) </p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to const NtcThermistor instance </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Returns raw pointer for observation only; handler retains ownership. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_ad65823c5d4324a1c92445c36cdac3feb_cgraph.svg" width="414" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1094,6 +1124,11 @@ Here is the call graph for this function:</div>
 <p>Get NTC thermistor instance. </p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to NtcThermistor instance (opaque) </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Returns raw pointer for observation only; handler retains ownership. </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a5cf221687209404add0524dc3022d1b7_icgraph.svg" width="414" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1575,6 +1610,33 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="ae173c55a63a51d2344798dd785b25ebe" name="ae173c55a63a51d2344798dd785b25ebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae173c55a63a51d2344798dd785b25ebe">&#9670;&#160;</a></span>RegisterMonitoringContext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">hf_u32_t NtcTemperatureHandler::RegisterMonitoringContext </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> *</td>          <td class="paramname"><span class="paramname"><em>handler</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Register/unregister callback context IDs for timer callbacks. </p>
+
+</div>
+</div>
 <a id="afbd49ab0a549ce22cada91fcd498b6d7" name="afbd49ab0a549ce22cada91fcd498b6d7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afbd49ab0a549ce22cada91fcd498b6d7">&#9670;&#160;</a></span>ResetCalibration()</h2>
 
@@ -1661,6 +1723,36 @@ Here is the call graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a20cfb11a0f83dda45e22ee4815b2c6d7_cgraph.svg" width="608" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a2a459d108af3fc0c29d518c62cb791fe" name="a2a459d108af3fc0c29d518c62cb791fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a459d108af3fc0c29d518c62cb791fe">&#9670;&#160;</a></span>ResolveMonitoringContext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> * NtcTemperatureHandler::ResolveMonitoringContext </td>
+          <td>(</td>
+          <td class="paramtype">hf_u32_t</td>          <td class="paramname"><span class="paramname"><em>context_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a2a459d108af3fc0c29d518c62cb791fe_icgraph.svg" width="491" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -2177,12 +2269,42 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a7cd3aa59989bec0514d6717d345d8466_cgraph.svg" width="634" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a7cd3aa59989bec0514d6717d345d8466_cgraph.svg" width="700" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a7cd3aa59989bec0514d6717d345d8466_icgraph.svg" width="458" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a0b3fba99650d0b01b1347eae0c86abba" name="a0b3fba99650d0b01b1347eae0c86abba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b3fba99650d0b01b1347eae0c86abba">&#9670;&#160;</a></span>UnregisterMonitoringContext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NtcTemperatureHandler::UnregisterMonitoringContext </td>
+          <td>(</td>
+          <td class="paramtype">hf_u32_t</td>          <td class="paramname"><span class="paramname"><em>context_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a0b3fba99650d0b01b1347eae0c86abba_icgraph.svg" width="724" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -2398,6 +2520,50 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a9c7c1fa912406565388527569f87cc98" name="a9c7c1fa912406565388527569f87cc98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c7c1fa912406565388527569f87cc98">&#9670;&#160;</a></span>callback_registry_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt; <a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> *, <a class="el" href="#ae2f7041f1b34c60db7afb47f3cb9f6a0">NtcTemperatureHandler::kMonitoringContextSlots</a> &gt; NtcTemperatureHandler::callback_registry_ = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7445e75a00f245e9a74ee1d846d3248e" name="a7445e75a00f245e9a74ee1d846d3248e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7445e75a00f245e9a74ee1d846d3248e">&#9670;&#160;</a></span>callback_registry_mutex_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RtosMutex NtcTemperatureHandler::callback_registry_mutex_ {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a1c8980812318a321753cd5ba821f35a5" name="a1c8980812318a321753cd5ba821f35a5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1c8980812318a321753cd5ba821f35a5">&#9670;&#160;</a></span>config_</h2>
 
@@ -2566,6 +2732,28 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="ae2f7041f1b34c60db7afb47f3cb9f6a0" name="ae2f7041f1b34c60db7afb47f3cb9f6a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2f7041f1b34c60db7afb47f3cb9f6a0">&#9670;&#160;</a></span>kMonitoringContextSlots</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr hf_u32_t NtcTemperatureHandler::kMonitoringContextSlots = 8</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a433bfb281cb15b6c1e1f57224b8bd7a5" name="a433bfb281cb15b6c1e1f57224b8bd7a5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a433bfb281cb15b6c1e1f57224b8bd7a5">&#9670;&#160;</a></span>low_threshold_celsius_</h2>
 
@@ -2611,6 +2799,30 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Continuous monitoring status. </p>
+
+</div>
+</div>
+<a id="a335b006f6f0c150dd53bf38052067cc5" name="a335b006f6f0c150dd53bf38052067cc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a335b006f6f0c150dd53bf38052067cc5">&#9670;&#160;</a></span>monitoring_context_id_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">hf_u32_t NtcTemperatureHandler::monitoring_context_id_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Timer callback context ID (0 = unassigned) </p>
 
 </div>
 </div>

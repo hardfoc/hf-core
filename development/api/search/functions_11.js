@@ -80,7 +80,7 @@ var searchData=
   ['setzeroposition_77',['SetZeroPosition',['../classAs5047uHandler.html#ad84f592c2fa7d913cd395f4a5777b520',1,'As5047uHandler']]],
   ['show_78',['Show',['../classWs2812Handler.html#ad67002bf517195998950ed6d8385ee89',1,'Ws2812Handler']]],
   ['sleep_79',['Sleep',['../classPca9685Handler.html#a989c4b1a8260c7af0bf210103d13cc7b',1,'Pca9685Handler']]],
-  ['spidriver_80',['spiDriver',['../classTmc5160Handler.html#abc0f0914a2756377a29f4af1cc95fab0',1,'Tmc5160Handler::spiDriver()'],['../classTmc9660Handler.html#a35b7e53bc3c8ec41ab3a85d5c5a83596',1,'Tmc9660Handler::spiDriver() noexcept'],['../classTmc9660Handler.html#ab51845a507e3e9c28a5a2619d8f9b5a0',1,'Tmc9660Handler::spiDriver() const noexcept']]],
+  ['spidriver_80',['spiDriver',['../classTmc5160Handler.html#a1e9298992489ed84fcd61ddfbb9a0e3c',1,'Tmc5160Handler::spiDriver() noexcept'],['../classTmc5160Handler.html#a214ed8c8b7fe84660afe995980744e47',1,'Tmc5160Handler::spiDriver() const noexcept'],['../classTmc9660Handler.html#aaa9d4b9630bda35f008330367018f3fb',1,'Tmc9660Handler::spiDriver() noexcept'],['../classTmc9660Handler.html#a9862c730e4c760eeb4dbe34f86d8cf8d',1,'Tmc9660Handler::spiDriver() const noexcept']]],
   ['spitransfer_81',['SpiTransfer',['../classHalSpiTmc5160Comm.html#ad2c09e34483d07e2a11ee5438ef6c3c7',1,'HalSpiTmc5160Comm']]],
   ['spitransferbootloader_82',['spiTransferBootloader',['../classHalSpiTmc9660Comm.html#a691d8a1d66cf606952d11afc73bffda0',1,'HalSpiTmc9660Comm']]],
   ['spitransfertmcl_83',['spiTransferTMCL',['../classHalSpiTmc9660Comm.html#a84b3ab081c7b9cab86432945ca9e3f6e',1,'HalSpiTmc9660Comm']]],

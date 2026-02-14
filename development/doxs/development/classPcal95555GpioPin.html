@@ -359,6 +359,11 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>GPIO_SUCCESS or error code. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555GpioPin_adfadb2f35d756b7660c28fd419120c01_cgraph.svg" width="471" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -849,11 +854,15 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Check if this pin supports interrupt configuration. </p>
-<dl class="section return"><dt>Returns</dt><dd>GPIO_SUCCESS if the chip has Agile I/O (PCAL9555A), GPIO_ERR_UNSUPPORTED_OPERATION for PCA9555 (no per-pin interrupt masking). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>GPIO_SUCCESS only when both:<ul>
+<li>the detected chip has Agile I/O (PCAL9555A), and</li>
+<li>a hardware INT pin was provided to the handler. Otherwise returns GPIO_ERR_UNSUPPORTED_OPERATION. </li>
+</ul>
+</dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555GpioPin_a4b3f3c93b648f3d6cd3142078cba0575_cgraph.svg" width="483" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555GpioPin_a4b3f3c93b648f3d6cd3142078cba0575_cgraph.svg" width="492" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

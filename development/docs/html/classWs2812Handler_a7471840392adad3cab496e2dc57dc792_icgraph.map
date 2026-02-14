@@ -1,0 +1,5 @@
+<map id="Ws2812Handler::GetStrip" name="Ws2812Handler::GetStrip">
+<area shape="rect" id="Node000001" title="Get the underlying LED strip object." alt="" coords="240,5,427,31"/>
+<area shape="rect" id="Node000002" href="$classWs2812Handler.html#af97f5cc26ad1fb0f4722e72346ca7caa" title=" " alt="" coords="5,5,192,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,21,192,21,192,15,227,15"/>
+</map>

@@ -153,6 +153,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adc564847f8ae26c47412aaee0758991c" id="r_adc564847f8ae26c47412aaee0758991c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc564847f8ae26c47412aaee0758991c">Initialize</a> (<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">performReset</a>=<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">true</a>, <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">retrieveBootloaderInfo</a>=<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">true</a>, <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">failOnVerifyError</a>=<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">false</a>)</td></tr>
 <tr class="memdesc:adc564847f8ae26c47412aaee0758991c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the TMC9660 device.  <br /></td></tr>
 <tr class="separator:adc564847f8ae26c47412aaee0758991c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a279ae9d4b5a8e0d71cb24577ad88ea" id="r_a5a279ae9d4b5a8e0d71cb24577ad88ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a279ae9d4b5a8e0d71cb24577ad88ea">EnsureInitialized</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memdesc:a5a279ae9d4b5a8e0d71cb24577ad88ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure driver is initialized (lazy init entrypoint).  <br /></td></tr>
+<tr class="separator:a5a279ae9d4b5a8e0d71cb24577ad88ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13db97d201a287d8aa60384e04070b9f" id="r_a13db97d201a287d8aa60384e04070b9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13db97d201a287d8aa60384e04070b9f">IsDriverReady</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
 <tr class="memdesc:a13db97d201a287d8aa60384e04070b9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the TMC9660 driver has been initialized and is ready.  <br /></td></tr>
 <tr class="separator:a13db97d201a287d8aa60384e04070b9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -285,18 +288,18 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Typed Driver Access</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Direct access to the underlying typed TMC9660 driver instance. </p>
 </div></td></tr>
-<tr class="memitem:a35b7e53bc3c8ec41ab3a85d5c5a83596" id="r_a35b7e53bc3c8ec41ab3a85d5c5a83596"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35b7e53bc3c8ec41ab3a85d5c5a83596">spiDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
-<tr class="memdesc:a35b7e53bc3c8ec41ab3a85d5c5a83596"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the SPI-mode driver instance (nullptr if constructed with UART).  <br /></td></tr>
-<tr class="separator:a35b7e53bc3c8ec41ab3a85d5c5a83596"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab51845a507e3e9c28a5a2619d8f9b5a0" id="r_ab51845a507e3e9c28a5a2619d8f9b5a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab51845a507e3e9c28a5a2619d8f9b5a0">spiDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
-<tr class="memdesc:ab51845a507e3e9c28a5a2619d8f9b5a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const version of <a class="el" href="#a35b7e53bc3c8ec41ab3a85d5c5a83596" title="Get the SPI-mode driver instance (nullptr if constructed with UART).">spiDriver()</a>.  <br /></td></tr>
-<tr class="separator:ab51845a507e3e9c28a5a2619d8f9b5a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2f238a937f011ee46a2380f9871bf09" id="r_ad2f238a937f011ee46a2380f9871bf09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2f238a937f011ee46a2380f9871bf09">uartDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
-<tr class="memdesc:ad2f238a937f011ee46a2380f9871bf09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the UART-mode driver instance (nullptr if constructed with SPI).  <br /></td></tr>
-<tr class="separator:ad2f238a937f011ee46a2380f9871bf09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d4119e8b8316eebb0c253990936f86a" id="r_a4d4119e8b8316eebb0c253990936f86a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d4119e8b8316eebb0c253990936f86a">uartDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
-<tr class="memdesc:a4d4119e8b8316eebb0c253990936f86a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const version of <a class="el" href="#ad2f238a937f011ee46a2380f9871bf09" title="Get the UART-mode driver instance (nullptr if constructed with SPI).">uartDriver()</a>.  <br /></td></tr>
-<tr class="separator:a4d4119e8b8316eebb0c253990936f86a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa9d4b9630bda35f008330367018f3fb" id="r_aaa9d4b9630bda35f008330367018f3fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa9d4b9630bda35f008330367018f3fb">spiDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memdesc:aaa9d4b9630bda35f008330367018f3fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the SPI-mode driver instance (nullptr if constructed with UART).  <br /></td></tr>
+<tr class="separator:aaa9d4b9630bda35f008330367018f3fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9862c730e4c760eeb4dbe34f86d8cf8d" id="r_a9862c730e4c760eeb4dbe34f86d8cf8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9862c730e4c760eeb4dbe34f86d8cf8d">spiDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memdesc:a9862c730e4c760eeb4dbe34f86d8cf8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const version of <a class="el" href="#aaa9d4b9630bda35f008330367018f3fb" title="Get the SPI-mode driver instance (nullptr if constructed with UART).">spiDriver()</a>.  <br /></td></tr>
+<tr class="separator:a9862c730e4c760eeb4dbe34f86d8cf8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71d3255fb10ae237644d594531e5cb27" id="r_a71d3255fb10ae237644d594531e5cb27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71d3255fb10ae237644d594531e5cb27">uartDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memdesc:a71d3255fb10ae237644d594531e5cb27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the UART-mode driver instance (nullptr if constructed with SPI).  <br /></td></tr>
+<tr class="separator:a71d3255fb10ae237644d594531e5cb27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe40d7a962227a46cfee82155b05d59e" id="r_afe40d7a962227a46cfee82155b05d59e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe40d7a962227a46cfee82155b05d59e">uartDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memdesc:afe40d7a962227a46cfee82155b05d59e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const version of <a class="el" href="#a71d3255fb10ae237644d594531e5cb27" title="Get the UART-mode driver instance (nullptr if constructed with SPI).">uartDriver()</a>.  <br /></td></tr>
+<tr class="separator:afe40d7a962227a46cfee82155b05d59e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Driver Visitor Pattern</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Generic access when comm mode is not known at the call site. </p>
 </div></td></tr>
@@ -405,9 +408,9 @@ Usage Example</h2>
 <div class="line">});</div>
 <div class="ttc" id="aclassLogger_html_a5789d11f8f1356e2192c0023a089cbc4"><div class="ttname"><a href="classLogger.html#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a></div><div class="ttdeci">static Logger &amp; GetInstance() noexcept</div><div class="ttdoc">Get singleton instance.</div><div class="ttdef"><b>Definition</b> Logger.cpp:62</div></div>
 <div class="ttc" id="aclassLogger_html_a5e4bcdaea60b9ac227b564d780388769"><div class="ttname"><a href="classLogger.html#a5e4bcdaea60b9ac227b564d780388769">Logger::Error</a></div><div class="ttdeci">void Error(const std::string &amp;tag, const char *format,...) noexcept</div><div class="ttdoc">Log error message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:148</div></div>
-<div class="ttc" id="aclassTmc9660Handler_1_1Temperature_html_a8019acd874c13ba0e175224a367bf370"><div class="ttname"><a href="classTmc9660Handler_1_1Temperature.html#a8019acd874c13ba0e175224a367bf370">Tmc9660Handler::Temperature::Initialize</a></div><div class="ttdeci">bool Initialize() noexcept override</div><div class="ttdoc">Initialize (verifies parent driver is ready).</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.cpp:1032</div></div>
+<div class="ttc" id="aclassTmc9660Handler_1_1Temperature_html_a8019acd874c13ba0e175224a367bf370"><div class="ttname"><a href="classTmc9660Handler_1_1Temperature.html#a8019acd874c13ba0e175224a367bf370">Tmc9660Handler::Temperature::Initialize</a></div><div class="ttdeci">bool Initialize() noexcept override</div><div class="ttdoc">Initialize (verifies parent driver is ready).</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.cpp:1070</div></div>
 <div class="ttc" id="aclassTmc9660Handler_html"><div class="ttname"><a href="classTmc9660Handler.html">Tmc9660Handler</a></div><div class="ttdoc">Unified, non-templated handler for a single TMC9660 motor controller device.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:442</div></div>
-<div class="ttc" id="aclassTmc9660Handler_html_a393382194d0602e7aa02da6a8fd7a20a"><div class="ttname"><a href="#a393382194d0602e7aa02da6a8fd7a20a">Tmc9660Handler::temperature</a></div><div class="ttdeci">Temperature &amp; temperature()</div><div class="ttdoc">Get a reference to the Temperature wrapper.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.cpp:638</div></div>
+<div class="ttc" id="aclassTmc9660Handler_html_a393382194d0602e7aa02da6a8fd7a20a"><div class="ttname"><a href="#a393382194d0602e7aa02da6a8fd7a20a">Tmc9660Handler::temperature</a></div><div class="ttdeci">Temperature &amp; temperature()</div><div class="ttdoc">Get a reference to the Temperature wrapper.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.cpp:651</div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classHalSpiTmc9660Comm.html" title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">HalSpiTmc9660Comm</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">SPI</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">communication</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">adapter</a> </dd>
 <dd>
 <a class="el" href="classHalUartTmc9660Comm.html" title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.">HalUartTmc9660Comm</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">UART</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">communication</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">adapter</a> </dd>
@@ -511,7 +514,7 @@ Usage Example</h2>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a33c5f6adfbd116fd717ac96c3e00fb0b_cgraph.svg" width="534" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a33c5f6adfbd116fd717ac96c3e00fb0b_cgraph.svg" width="1536" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -577,7 +580,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_aed1c579c5456e85070601f22b3f39a01_cgraph.svg" width="534" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_aed1c579c5456e85070601f22b3f39a01_cgraph.svg" width="1536" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -655,6 +658,11 @@ Here is the call graph for this function:</div>
 <p>Get a reference to the ADC wrapper. </p>
 <dl class="section return"><dt>Returns</dt><dd>Reference to the internal <a class="el" href="classTmc9660Handler_1_1Adc.html" title="BaseAdc adapter for all TMC9660 ADC channels.">Adc</a> instance. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>The returned reference is valid only as long as this handler exists. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a7fe382c4dbf6bf84ed31586e52ec2e6e_cgraph.svg" width="1208" height="274"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -927,7 +935,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_af55fa5277da0e3d5f6c7200a4cfdbd10_cgraph.svg" width="770" height="152"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_af55fa5277da0e3d5f6c7200a4cfdbd10_cgraph.svg" width="1532" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -960,7 +968,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ad2004d275f9578a1530ad9eb49ff7afb_cgraph.svg" width="699" height="175"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ad2004d275f9578a1530ad9eb49ff7afb_cgraph.svg" width="1272" height="323"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -994,7 +1002,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adee8a764564554f060b879752048bf74_cgraph.svg" width="1118" height="507"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adee8a764564554f060b879752048bf74_cgraph.svg" width="1880" height="484"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1035,7 +1043,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_af200e87a8fb2f4cf42861a5410b6a995_cgraph.svg" width="764" height="152"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_af200e87a8fb2f4cf42861a5410b6a995_cgraph.svg" width="1527" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1068,7 +1076,45 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_aee0edc3320de8f590480ed4546254fc2_cgraph.svg" width="694" height="175"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_aee0edc3320de8f590480ed4546254fc2_cgraph.svg" width="1267" height="323"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a5a279ae9d4b5a8e0d71cb24577ad88ea" name="a5a279ae9d4b5a8e0d71cb24577ad88ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a279ae9d4b5a8e0d71cb24577ad88ea">&#9670;&#160;</a></span>EnsureInitialized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a> Tmc9660Handler::EnsureInitialized </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ensure driver is initialized (lazy init entrypoint). </p>
+<dl class="section return"><dt>Returns</dt><dd>true if initialized and ready. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a5a279ae9d4b5a8e0d71cb24577ad88ea_cgraph.svg" width="996" height="274"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a5a279ae9d4b5a8e0d71cb24577ad88ea_icgraph.svg" width="1442" height="3094"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1102,7 +1148,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_af1d05fe540ad2fb17002eb4ea5b5f266_cgraph.svg" width="822" height="152"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_af1d05fe540ad2fb17002eb4ea5b5f266_cgraph.svg" width="1584" height="276"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1135,7 +1181,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac3a19e67fd802fdcbea05a056ec797e5_cgraph.svg" width="744" height="152"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac3a19e67fd802fdcbea05a056ec797e5_cgraph.svg" width="1507" height="279"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1168,7 +1214,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a4c49d0ada65dbdfa8e2888de6dd33d9a_cgraph.svg" width="744" height="152"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a4c49d0ada65dbdfa8e2888de6dd33d9a_cgraph.svg" width="1507" height="279"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1201,7 +1247,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac7549efc59aeedcc3c29e39f13a529fa_cgraph.svg" width="814" height="152"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac7549efc59aeedcc3c29e39f13a529fa_cgraph.svg" width="1576" height="276"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1307,7 +1353,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a3049dd3b79c6d340eb7b8a81604f0406_cgraph.svg" width="758" height="152"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a3049dd3b79c6d340eb7b8a81604f0406_cgraph.svg" width="1520" height="278"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1374,7 +1420,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a097e8a8930006294be7fc11ecccb48fd_cgraph.svg" width="742" height="152"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a097e8a8930006294be7fc11ecccb48fd_cgraph.svg" width="1504" height="279"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1446,7 +1492,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a3d6437320844ff3ffe77eada12ad7ea7_cgraph.svg" width="747" height="152"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a3d6437320844ff3ffe77eada12ad7ea7_cgraph.svg" width="1510" height="279"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1484,7 +1530,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_acf7d1583239c9f767f82b42fc03b56cf_cgraph.svg" width="451" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_acf7d1583239c9f767f82b42fc03b56cf_cgraph.svg" width="1214" height="274"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1539,7 +1585,12 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adc564847f8ae26c47412aaee0758991c_cgraph.svg" width="699" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adc564847f8ae26c47412aaee0758991c_cgraph.svg" width="1016" height="295"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adc564847f8ae26c47412aaee0758991c_icgraph.svg" width="1687" height="2896"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1572,7 +1623,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a13db97d201a287d8aa60384e04070b9f_icgraph.svg" width="838" height="687"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a13db97d201a287d8aa60384e04070b9f_icgraph.svg" width="1682" height="2994"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -2056,8 +2107,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ab51845a507e3e9c28a5a2619d8f9b5a0" name="ab51845a507e3e9c28a5a2619d8f9b5a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab51845a507e3e9c28a5a2619d8f9b5a0">&#9670;&#160;</a></span>spiDriver() <span class="overload">[1/2]</span></h2>
+<a id="a9862c730e4c760eeb4dbe34f86d8cf8d" name="a9862c730e4c760eeb4dbe34f86d8cf8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9862c730e4c760eeb4dbe34f86d8cf8d">&#9670;&#160;</a></span>spiDriver() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2066,7 +2117,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> * Tmc9660Handler::spiDriver </td>
+          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">Tmc9660Handler::SpiDriver</a> * Tmc9660Handler::spiDriver </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -2074,17 +2125,22 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Const version of <a class="el" href="#a35b7e53bc3c8ec41ab3a85d5c5a83596" title="Get the SPI-mode driver instance (nullptr if constructed with UART).">spiDriver()</a>. </p>
+<p>Const version of <a class="el" href="#aaa9d4b9630bda35f008330367018f3fb" title="Get the SPI-mode driver instance (nullptr if constructed with UART).">spiDriver()</a>. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a9862c730e4c760eeb4dbe34f86d8cf8d_cgraph.svg" width="1484" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
-<a id="a35b7e53bc3c8ec41ab3a85d5c5a83596" name="a35b7e53bc3c8ec41ab3a85d5c5a83596"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35b7e53bc3c8ec41ab3a85d5c5a83596">&#9670;&#160;</a></span>spiDriver() <span class="overload">[2/2]</span></h2>
+<a id="aaa9d4b9630bda35f008330367018f3fb" name="aaa9d4b9630bda35f008330367018f3fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa9d4b9630bda35f008330367018f3fb">&#9670;&#160;</a></span>spiDriver() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2093,7 +2149,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> * Tmc9660Handler::spiDriver </td>
+          <td class="memname"><a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">Tmc9660Handler::SpiDriver</a> * Tmc9660Handler::spiDriver </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -2101,7 +2157,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2116,7 +2172,12 @@ Here is the caller graph for this function:</div>
 <div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);</div>
 <div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;velocityControl.setTargetVelocity(1000);</div>
 <div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;protection.configureVoltage(48000, 10000);</div>
-</div><!-- fragment --> 
+</div><!-- fragment --> <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_aaa9d4b9630bda35f008330367018f3fb_cgraph.svg" width="1244" height="274"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
 </div>
 </div>
 <a id="a393382194d0602e7aa02da6a8fd7a20a" name="a393382194d0602e7aa02da6a8fd7a20a"></a>
@@ -2137,11 +2198,16 @@ Here is the caller graph for this function:</div>
 <p>Get a reference to the <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a> wrapper. </p>
 <dl class="section return"><dt>Returns</dt><dd>Reference to the internal <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a> instance. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>The returned reference is valid only as long as this handler exists. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a393382194d0602e7aa02da6a8fd7a20a_cgraph.svg" width="1236" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
-<a id="a4d4119e8b8316eebb0c253990936f86a" name="a4d4119e8b8316eebb0c253990936f86a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d4119e8b8316eebb0c253990936f86a">&#9670;&#160;</a></span>uartDriver() <span class="overload">[1/2]</span></h2>
+<a id="afe40d7a962227a46cfee82155b05d59e" name="afe40d7a962227a46cfee82155b05d59e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe40d7a962227a46cfee82155b05d59e">&#9670;&#160;</a></span>uartDriver() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2150,7 +2216,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> * Tmc9660Handler::uartDriver </td>
+          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">Tmc9660Handler::UartDriver</a> * Tmc9660Handler::uartDriver </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -2158,17 +2224,22 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Const version of <a class="el" href="#ad2f238a937f011ee46a2380f9871bf09" title="Get the UART-mode driver instance (nullptr if constructed with SPI).">uartDriver()</a>. </p>
+<p>Const version of <a class="el" href="#a71d3255fb10ae237644d594531e5cb27" title="Get the UART-mode driver instance (nullptr if constructed with SPI).">uartDriver()</a>. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_afe40d7a962227a46cfee82155b05d59e_cgraph.svg" width="1491" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
-<a id="ad2f238a937f011ee46a2380f9871bf09" name="ad2f238a937f011ee46a2380f9871bf09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2f238a937f011ee46a2380f9871bf09">&#9670;&#160;</a></span>uartDriver() <span class="overload">[2/2]</span></h2>
+<a id="a71d3255fb10ae237644d594531e5cb27" name="a71d3255fb10ae237644d594531e5cb27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71d3255fb10ae237644d594531e5cb27">&#9670;&#160;</a></span>uartDriver() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2177,7 +2248,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> * Tmc9660Handler::uartDriver </td>
+          <td class="memname"><a class="el" href="#a68a5549c74095516db249e2c2d4afed7">Tmc9660Handler::UartDriver</a> * Tmc9660Handler::uartDriver </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -2185,7 +2256,7 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -2194,7 +2265,12 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the UART driver, or nullptr if using SPI mode or <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a> has not been called.</dd></dl>
 <div class="fragment"><div class="line"><span class="keyword">auto</span>* <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>-&gt;uartDriver();</div>
 <div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;feedbackSense.configureABNEncoder(1024);</div>
-</div><!-- fragment --> 
+</div><!-- fragment --> <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a71d3255fb10ae237644d594531e5cb27_cgraph.svg" width="1251" height="274"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
 </div>
 </div>
 <a id="a4360829b58deda85e9da4b9cebee96f0" name="a4360829b58deda85e9da4b9cebee96f0"></a>
@@ -2223,7 +2299,7 @@ template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a>
 </div><div class="memdoc">
 
 <p>Execute a function on the underlying typed TMC9660 driver. </p>
-<p>For most use cases, prefer <a class="el" href="#a35b7e53bc3c8ec41ab3a85d5c5a83596" title="Get the SPI-mode driver instance (nullptr if constructed with UART).">spiDriver()</a> or <a class="el" href="#ad2f238a937f011ee46a2380f9871bf09" title="Get the UART-mode driver instance (nullptr if constructed with SPI).">uartDriver()</a> for direct typed access. Use <a class="el" href="#a4360829b58deda85e9da4b9cebee96f0" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a> only when writing generic code that must work with either communication mode (e.g., in manager-level code that doesn't know the comm type).</p>
+<p>For most use cases, prefer <a class="el" href="#aaa9d4b9630bda35f008330367018f3fb" title="Get the SPI-mode driver instance (nullptr if constructed with UART).">spiDriver()</a> or <a class="el" href="#a71d3255fb10ae237644d594531e5cb27" title="Get the UART-mode driver instance (nullptr if constructed with SPI).">uartDriver()</a> for direct typed access. Use <a class="el" href="#a4360829b58deda85e9da4b9cebee96f0" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a> only when writing generic code that must work with either communication mode (e.g., in manager-level code that doesn't know the comm type).</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Func</td><td>Callable type with signature <code>ReturnType(auto&amp; driver)</code>. </td></tr>
@@ -2240,7 +2316,7 @@ template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a4360829b58deda85e9da4b9cebee96f0_cgraph.svg" width="491" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a4360829b58deda85e9da4b9cebee96f0_cgraph.svg" width="1254" height="274"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -2279,7 +2355,7 @@ template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a154e359681e33fde2179e91cdbee0b6d_cgraph.svg" width="491" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a154e359681e33fde2179e91cdbee0b6d_cgraph.svg" width="1494" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

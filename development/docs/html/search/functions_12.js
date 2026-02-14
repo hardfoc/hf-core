@@ -169,8 +169,8 @@ var searchData=
   ['tmc9660handler_166',['Tmc9660Handler',['../classTmc9660Handler.html#a33c5f6adfbd116fd717ac96c3e00fb0b',1,'Tmc9660Handler::Tmc9660Handler(BaseSpi &amp;spi, BaseGpio &amp;rst, BaseGpio &amp;drv_en, BaseGpio &amp;faultn, BaseGpio &amp;wake, uint8_t address=0, const tmc9660::BootloaderConfig *bootCfg=&amp;kDefaultBootConfig)'],['../classTmc9660Handler.html#aed1c579c5456e85070601f22b3f39a01',1,'Tmc9660Handler::Tmc9660Handler(BaseUart &amp;uart, BaseGpio &amp;rst, BaseGpio &amp;drv_en, BaseGpio &amp;faultn, BaseGpio &amp;wake, uint8_t address=0, const tmc9660::BootloaderConfig *bootCfg=&amp;kDefaultBootConfig)'],['../classTmc9660Handler.html#abcae1e86438604b16a5e92312e7eb8e5',1,'Tmc9660Handler::Tmc9660Handler(const Tmc9660Handler &amp;)=delete']]],
   ['tochannel_167',['toChannel',['../Tle92466edHandler_8cpp.html#a5c86099f760a9845d5fa0e65f8b57fb5',1,'Tle92466edHandler.cpp']]],
   ['toggle_168',['Toggle',['../classPcal95555Handler.html#adb6abd365588fa5386e4bf78ac913f05',1,'Pcal95555Handler']]],
-  ['transfer_169',['Transfer',['../classHalSpiMax22200Comm.html#addc2143fa1a98f70a034f1d01daf550b',1,'HalSpiMax22200Comm']]],
-  ['transfer_170',['transfer',['../classAs5047uSpiAdapter.html#a5c90fccf33a360042821dcd5f94aa941',1,'As5047uSpiAdapter']]],
+  ['transfer_169',['transfer',['../classAs5047uSpiAdapter.html#a5c90fccf33a360042821dcd5f94aa941',1,'As5047uSpiAdapter']]],
+  ['transfer_170',['Transfer',['../classHalSpiMax22200Comm.html#addc2143fa1a98f70a034f1d01daf550b',1,'HalSpiMax22200Comm']]],
   ['transfer32_171',['Transfer32',['../classHalSpiTle92466edComm.html#a63f84b0db1a338f4c02e76e8d01c8b65',1,'HalSpiTle92466edComm']]],
   ['transfermulti_172',['TransferMulti',['../classHalSpiTle92466edComm.html#a058b8f150542b2e746f08a1f3b84208b',1,'HalSpiTle92466edComm']]]
 ];

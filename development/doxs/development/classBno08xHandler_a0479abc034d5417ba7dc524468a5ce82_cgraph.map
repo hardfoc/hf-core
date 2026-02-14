@@ -1,0 +1,13 @@
+<map id="Bno08xHandler::ensureInitializedLocked" name="Bno08xHandler::ensureInitializedLocked">
+<area shape="rect" id="Node000001" title="Internal: ensure initialized (assumes mutex is held)." alt="" coords="5,92,244,132"/>
+<area shape="rect" id="Node000002" href="$classBno08xHandler.html#ac1a1ff0d56324dcc09d9b48ca2e132e6" title="Initialize the BNO08x sensor." alt="" coords="292,99,479,125"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,109,278,109,278,115,244,115"/>
+<area shape="rect" id="Node000003" href="$classBno08xHandler.html#ada3191d2a5676e02773024e52589a1ed" title="Internal: apply configuration (assumes mutex is held)." alt="" coords="536,5,743,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="416,97,526,55,551,47,552,52,528,60,418,102"/>
+<area shape="rect" id="Node000004" href="$classIBno08xDriverOps.html#a0ca90c1a5664ab3eb83f691aff34faa0" title=" " alt="" coords="547,70,732,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="479,99,532,92,533,98,479,104"/>
+<area shape="rect" id="Node000005" href="$classIBno08xDriverOps.html#a66418ccb85cd8eb8eea327fa979a2b6a" title=" " alt="" coords="534,120,745,160"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="479,120,521,124,520,130,479,125"/>
+<area shape="rect" id="Node000006" href="$classIBno08xDriverOps.html#a04816a487d80027e6d6fe435f651b265" title=" " alt="" coords="527,185,752,210"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="414,122,466,146,528,169,560,179,559,184,526,175,464,151,411,127"/>
+</map>

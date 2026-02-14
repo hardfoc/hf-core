@@ -1,0 +1,5 @@
+<map id="NtcTemperatureHandler::GetNtcThermistor" name="NtcTemperatureHandler::GetNtcThermistor">
+<area shape="rect" id="Node000001" title="Get NTC thermistor instance (const)" alt="" coords="5,5,183,45"/>
+<area shape="rect" id="Node000002" href="$classNtcTemperatureHandler.html#a5cf221687209404add0524dc3022d1b7" title="Get NTC thermistor instance." alt="" coords="231,5,408,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,23,217,23,217,28,183,28"/>
+</map>

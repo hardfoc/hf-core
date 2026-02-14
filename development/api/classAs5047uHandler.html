@@ -130,6 +130,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4dcfcea95fe8114ca7e0e5554d21ebc0" id="r_a4dcfcea95fe8114ca7e0e5554d21ebc0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4dcfcea95fe8114ca7e0e5554d21ebc0">Initialize</a> () noexcept</td></tr>
 <tr class="memdesc:a4dcfcea95fe8114ca7e0e5554d21ebc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the AS5047U sensor (lazy initialization)  <br /></td></tr>
 <tr class="separator:a4dcfcea95fe8114ca7e0e5554d21ebc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f16efc74198279ee63c46d2b55825fa" id="r_a7f16efc74198279ee63c46d2b55825fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f16efc74198279ee63c46d2b55825fa">EnsureInitialized</a> () noexcept</td></tr>
+<tr class="memdesc:a7f16efc74198279ee63c46d2b55825fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure the handler is initialized (lazy init entrypoint).  <br /></td></tr>
+<tr class="separator:a7f16efc74198279ee63c46d2b55825fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c09ae598f3e49e55247198e18dff352" id="r_a8c09ae598f3e49e55247198e18dff352"><td class="memItemLeft" align="right" valign="top"><a class="el" href="As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c09ae598f3e49e55247198e18dff352">Deinitialize</a> () noexcept</td></tr>
 <tr class="memdesc:a8c09ae598f3e49e55247198e18dff352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deinitialize the sensor and free resources.  <br /></td></tr>
 <tr class="separator:a8c09ae598f3e49e55247198e18dff352"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -250,9 +253,12 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:addb535ba454de53261b075c057339879" id="r_addb535ba454de53261b075c057339879"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addb535ba454de53261b075c057339879">ValidateSensor</a> () const noexcept</td></tr>
-<tr class="memdesc:addb535ba454de53261b075c057339879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate sensor parameters.  <br /></td></tr>
-<tr class="separator:addb535ba454de53261b075c057339879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10eeb015c791ff484935168e3683c053" id="r_a10eeb015c791ff484935168e3683c053"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10eeb015c791ff484935168e3683c053">ValidateSensor</a> () noexcept</td></tr>
+<tr class="memdesc:a10eeb015c791ff484935168e3683c053"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate sensor parameters.  <br /></td></tr>
+<tr class="separator:a10eeb015c791ff484935168e3683c053"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a040ba453eb7892ab3189631d73a2f683" id="r_a040ba453eb7892ab3189631d73a2f683"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a040ba453eb7892ab3189631d73a2f683">EnsureInitializedLocked</a> () noexcept</td></tr>
+<tr class="memdesc:a040ba453eb7892ab3189631d73a2f683"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure initialized while mutex is already held.  <br /></td></tr>
+<tr class="separator:a040ba453eb7892ab3189631d73a2f683"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b29b6418f7b2d19cbdcc65aa6eb9756" id="r_a6b29b6418f7b2d19cbdcc65aa6eb9756"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b29b6418f7b2d19cbdcc65aa6eb9756">HandleSensorErrors</a> (uint16_t sensor_errors) noexcept</td></tr>
 <tr class="memdesc:a6b29b6418f7b2d19cbdcc65aa6eb9756"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle sensor errors and update diagnostics.  <br /></td></tr>
 <tr class="separator:a6b29b6418f7b2d19cbdcc65aa6eb9756"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -457,7 +463,7 @@ Private Attributes</h2></td></tr>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a0e7c20d4fd883c55ff9091041ec04c39_icgraph.svg" width="563" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a0e7c20d4fd883c55ff9091041ec04c39_icgraph.svg" width="1408" height="196"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -597,6 +603,77 @@ Here is the caller graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a4b24bfde6fe7f29e66b61828f44d2dff_cgraph.svg" width="692" height="159"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a7f16efc74198279ee63c46d2b55825fa" name="a7f16efc74198279ee63c46d2b55825fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f16efc74198279ee63c46d2b55825fa">&#9670;&#160;</a></span>EnsureInitialized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool As5047uHandler::EnsureInitialized </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ensure the handler is initialized (lazy init entrypoint). </p>
+<dl class="section return"><dt>Returns</dt><dd>true if initialized and ready. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a7f16efc74198279ee63c46d2b55825fa_cgraph.svg" width="1375" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a040ba453eb7892ab3189631d73a2f683" name="a040ba453eb7892ab3189631d73a2f683"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a040ba453eb7892ab3189631d73a2f683">&#9670;&#160;</a></span>EnsureInitializedLocked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool As5047uHandler::EnsureInitializedLocked </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ensure initialized while mutex is already held. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if sensor is ready. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a040ba453eb7892ab3189631d73a2f683_cgraph.svg" width="1082" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a040ba453eb7892ab3189631d73a2f683_icgraph.svg" width="858" height="192"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -750,6 +827,11 @@ Here is the caller graph for this function:</div>
 <p>Get shared pointer to AS5047U driver for advanced operations. </p>
 <dl class="section return"><dt>Returns</dt><dd>Shared pointer to AS5047U driver or nullptr if not initialized</dd></dl>
 <p>Note: Returns shared_ptr for safe cross-component sharing. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_af9f3e8b34d3a3deb337718aa7a8c420b_cgraph.svg" width="1334" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -820,7 +902,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a6b29b6418f7b2d19cbdcc65aa6eb9756_icgraph.svg" width="787" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a6b29b6418f7b2d19cbdcc65aa6eb9756_icgraph.svg" width="1682" height="192"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -855,6 +937,11 @@ Here is the caller graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a4dcfcea95fe8114ca7e0e5554d21ebc0_cgraph.svg" width="788" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a4dcfcea95fe8114ca7e0e5554d21ebc0_icgraph.svg" width="1099" height="192"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1100,7 +1187,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a80e3768bb4a51e121f786b1b348e550e_cgraph.svg" width="510" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a80e3768bb4a51e121f786b1b348e550e_cgraph.svg" width="1628" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1134,7 +1221,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a02a98f0125d0d80e41b0708658e112a3_cgraph.svg" width="468" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a02a98f0125d0d80e41b0708658e112a3_cgraph.svg" width="1587" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1580,7 +1667,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a7cbd322b961c33b684227abd9581bd4b_cgraph.svg" width="563" height="166"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a7cbd322b961c33b684227abd9581bd4b_cgraph.svg" width="1628" height="162"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1889,13 +1976,13 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a6854be00365afbb2eeddfb3177939456_icgraph.svg" width="512" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a6854be00365afbb2eeddfb3177939456_icgraph.svg" width="1407" height="192"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="addb535ba454de53261b075c057339879" name="addb535ba454de53261b075c057339879"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#addb535ba454de53261b075c057339879">&#9670;&#160;</a></span>ValidateSensor()</h2>
+<a id="a10eeb015c791ff484935168e3683c053" name="a10eeb015c791ff484935168e3683c053"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10eeb015c791ff484935168e3683c053">&#9670;&#160;</a></span>ValidateSensor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1907,7 +1994,7 @@ Here is the caller graph for this function:</div>
           <td class="memname">bool As5047uHandler::ValidateSensor </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -1920,9 +2007,14 @@ Here is the caller graph for this function:</div>
 <p>Validate sensor parameters. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if sensor is in valid state </dd></dl>
 <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a10eeb015c791ff484935168e3683c053_cgraph.svg" width="1320" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_addb535ba454de53261b075c057339879_icgraph.svg" width="510" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a10eeb015c791ff484935168e3683c053_icgraph.svg" width="510" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

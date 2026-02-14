@@ -1,0 +1,5 @@
+<map id="Tmc5160Handler::EnsureInitialized" name="Tmc5160Handler::EnsureInitialized">
+<area shape="rect" id="Node000001" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="263,5,512,31"/>
+<area shape="rect" id="Node000002" href="$classTmc5160Handler.html#adf1b6ae5b680756f1b68169789cf0c1f" title="Visit the typed driver with a callable." alt="" coords="5,5,215,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="249,21,215,21,215,15,249,15"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="NtcTemperatureHandler::UnregisterMonitoringContext" name="NtcTemperatureHandler::UnregisterMonitoringContext">
+<area shape="rect" id="Node000001" title=" " alt="" coords="500,49,719,89"/>
+<area shape="rect" id="Node000002" href="$classNtcTemperatureHandler.html#a8c1949119402a748e1000e473e263703" title=" " alt="" coords="15,5,192,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="510,49,452,40,315,30,192,27,192,22,316,24,452,35,511,44"/>
+<area shape="rect" id="Node000003" href="$classNtcTemperatureHandler.html#a7cd3aa59989bec0514d6717d345d8466" title=" " alt="" coords="249,49,452,89"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="486,72,452,72,452,67,486,67"/>
+<area shape="rect" id="Node000004" href="$classNtcTemperatureHandler.html#aac69a65bcccfecfc2bfca99f7ac2aeb3" title="Virtual destructor &#45; cleans up timer and thermistor resources." alt="" coords="5,81,201,121"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="513,95,452,104,321,111,201,109,202,104,321,105,452,99,512,89"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="235,52,192,44,193,38,236,46"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="236,87,202,91,201,86,235,82"/>
+</map>

@@ -215,8 +215,8 @@ var searchData=
   ['total_5fexecution_5ftime_5fus_212',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
   ['total_5fmeasurements_213',['total_measurements',['../structAs5047uDiagnostics.html#a15245dd4b501df7cc4d5c1d10a297771',1,'As5047uDiagnostics']]],
   ['total_5ftests_214',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
-  ['transfer_215',['Transfer',['../classHalSpiMax22200Comm.html#addc2143fa1a98f70a034f1d01daf550b',1,'HalSpiMax22200Comm']]],
-  ['transfer_216',['transfer',['../classAs5047uSpiAdapter.html#a5c90fccf33a360042821dcd5f94aa941',1,'As5047uSpiAdapter']]],
+  ['transfer_215',['transfer',['../classAs5047uSpiAdapter.html#a5c90fccf33a360042821dcd5f94aa941',1,'As5047uSpiAdapter']]],
+  ['transfer_216',['Transfer',['../classHalSpiMax22200Comm.html#addc2143fa1a98f70a034f1d01daf550b',1,'HalSpiMax22200Comm']]],
   ['transfer32_217',['Transfer32',['../classHalSpiTle92466edComm.html#a63f84b0db1a338f4c02e76e8d01c8b65',1,'HalSpiTle92466edComm']]],
   ['transfermulti_218',['TransferMulti',['../classHalSpiTle92466edComm.html#a058b8f150542b2e746f08a1f3b84208b',1,'HalSpiTle92466edComm']]]
 ];

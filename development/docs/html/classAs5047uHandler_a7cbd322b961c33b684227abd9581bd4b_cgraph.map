@@ -1,9 +1,18 @@
 <map id="As5047uHandler::ResetToDefaults" name="As5047uHandler::ResetToDefaults">
-<area shape="rect" id="Node000001" title="Reset sensor to default configuration." alt="" coords="5,63,248,88"/>
-<area shape="rect" id="Node000002" href="$classAs5047uHandler.html#a0e7c20d4fd883c55ff9091041ec04c39" title="Apply configuration to sensor." alt="" coords="296,5,557,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,60,345,31,346,36,194,65"/>
-<area shape="rect" id="Node000003" href="$classAs5047uHandler.html#a5cfe5bb285cb087d078e5f248ccd0d82" title="Get default sensor configuration." alt="" coords="323,55,531,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="248,73,309,73,309,78,248,78"/>
-<area shape="rect" id="Node000004" href="$classAs5047uHandler.html#addb535ba454de53261b075c057339879" title="Validate sensor parameters." alt="" coords="331,119,522,159"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="188,85,319,114,318,119,187,91"/>
+<area shape="rect" id="Node000001" title="Reset sensor to default configuration." alt="" coords="5,59,248,84"/>
+<area shape="rect" id="Node000002" href="$classAs5047uHandler.html#a0e7c20d4fd883c55ff9091041ec04c39" title="Apply configuration to sensor." alt="" coords="1087,5,1348,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,56,296,37,507,20,719,12,914,10,1073,11,1073,17,914,15,719,17,508,25,296,42,183,61"/>
+<area shape="rect" id="Node000003" href="$classAs5047uHandler.html#a5cfe5bb285cb087d078e5f248ccd0d82" title="Get default sensor configuration." alt="" coords="296,51,504,91"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="248,69,282,69,282,74,248,74"/>
+<area shape="rect" id="Node000004" href="$classAs5047uHandler.html#a10eeb015c791ff484935168e3683c053" title="Validate sensor parameters." alt="" coords="305,115,495,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="183,82,301,110,300,115,182,87"/>
+<area shape="rect" id="Node000005" href="$classAs5047uHandler.html#a040ba453eb7892ab3189631d73a2f683" title="Ensure initialized while mutex is already held." alt="" coords="552,83,797,123"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="495,122,538,117,539,122,496,127"/>
+<area shape="rect" id="Node000006" href="$classAs5047uHandler.html#a4dcfcea95fe8114ca7e0e5554d21ebc0" title="Initialize the AS5047U sensor (lazy initialization)" alt="" coords="845,55,1039,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="797,84,834,79,834,85,798,89"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="1013,52,1132,31,1133,36,1014,57"/>
+<area shape="rect" id="Node000007" href="$classAs5047uHandler.html#a6854be00365afbb2eeddfb3177939456" title="Update cached diagnostics." alt="" coords="1087,55,1347,80"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="1039,65,1074,65,1074,70,1039,70"/>
+<area shape="rect" id="Node000008" href="$classAs5047uHandler.html#a6b29b6418f7b2d19cbdcc65aa6eb9756" title="Handle sensor errors and update diagnostics." alt="" coords="1396,47,1623,87"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="1348,65,1382,65,1382,70,1348,70"/>
 </map>

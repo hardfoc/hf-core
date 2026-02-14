@@ -4,7 +4,7 @@ var searchData=
   ['validatechannelid_1',['ValidateChannelId',['../classTmc9660Handler_1_1Adc.html#a5f9cfbbb92986ee7368b8301ff39525e',1,'Tmc9660Handler::Adc']]],
   ['validateconfiguration_2',['ValidateConfiguration',['../classNtcTemperatureHandler.html#a4a54d746f5c2b474bf66e4ad7e3bb37d',1,'NtcTemperatureHandler']]],
   ['validatepin_3',['ValidatePin',['../classPcal95555Handler.html#a8211811d3e4416232fe534f8c5652740',1,'Pcal95555Handler']]],
-  ['validatesensor_4',['ValidateSensor',['../classAs5047uHandler.html#addb535ba454de53261b075c057339879',1,'As5047uHandler']]],
+  ['validatesensor_4',['ValidateSensor',['../classAs5047uHandler.html#a10eeb015c791ff484935168e3683c053',1,'As5047uHandler']]],
   ['verbose_5',['Verbose',['../classLogger.html#aba8cc3a6e35fe5174c5786995d968997',1,'Logger::Verbose(const std::string &amp;tag, const char *format,...) noexcept'],['../classLogger.html#a157dee727926d422d84886c6ac20a00a',1,'Logger::Verbose(const std::string &amp;tag, LogColor color, LogStyle style, const char *format,...) noexcept']]],
   ['visitdriver_6',['visitDriver',['../classTmc5160Handler.html#adf1b6ae5b680756f1b68169789cf0c1f',1,'Tmc5160Handler::visitDriver()'],['../classTmc9660Handler.html#a4360829b58deda85e9da4b9cebee96f0',1,'Tmc9660Handler::visitDriver(Func &amp;&amp;func)'],['../classTmc9660Handler.html#a154e359681e33fde2179e91cdbee0b6d',1,'Tmc9660Handler::visitDriver(Func &amp;&amp;func) const']]],
   ['visitdriverinternal_7',['visitDriverInternal',['../classTmc5160Handler.html#a439a68f9d3f6785e0a493f9ed3821325',1,'Tmc5160Handler']]]

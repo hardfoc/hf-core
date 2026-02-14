@@ -63,13 +63,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "As5047uHandler_8cpp.html",
-"classAs5047uHandler.html#a0e5cbf5a7969e1038f7bc8ad2cf5fd86",
-"classHalUartTmc9660Comm.html#a7d842bccb7b871b4fa3367935b3c4024",
-"classPca9685Handler.html#addfe3b4c674c0b59eaba2945035ac13d",
-"classTmc9660Handler.html#a3049dd3b79c6d340eb7b8a81604f0406",
-"functions_func_l.html",
-"pca9685__handler__comprehensive__test_8cpp.html#a1b1b4bd2393c7244f343aa5816f5019f",
-"structntc__temp__handler__config__t.html#a95bb304af9a3de1f85dc6f271b8a97ce"
+"classAs5047uHandler.html#a09741985578dc791a5f2dc1473581f6a",
+"classHalUartTmc9660Comm.html#a0df8ee2b226b44eb2e21728e4b7c44d7",
+"classPca9685Handler.html#a989c4b1a8260c7af0bf210103d13cc7b",
+"classTmc9660AdcWrapper.html#a887fd3f85f165cfe128f9ff1bb226883",
+"full__system__integration__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70",
+"ntc__handler__comprehensive__test_8cpp.html#a7b9ef4d0344c0da67881e38fb5db17e8",
+"structTmc9660CtrlPins.html#ace66f983fb92571fe12361a803cad705"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

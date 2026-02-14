@@ -12,6 +12,8 @@ var classBno08xHandler =
     [ "DisableSensor", "classBno08xHandler.html#ae2bd85f70a1a455427c7c0aa2e4e3f5b", null ],
     [ "DumpDiagnostics", "classBno08xHandler.html#a58384d1dfa272ba616140abb9fa55c2b", null ],
     [ "EnableSensor", "classBno08xHandler.html#a5327a9e31b53441c6a2a2d94e251156f", null ],
+    [ "EnsureInitialized", "classBno08xHandler.html#afab341345c8ed8fed1a218e0df18c4aa", null ],
+    [ "ensureInitializedLocked", "classBno08xHandler.html#a0479abc034d5417ba7dc524468a5ce82", null ],
     [ "GetConfiguration", "classBno08xHandler.html#a6611b9ff2cab99824bff165396691301", null ],
     [ "GetDefaultConfig", "classBno08xHandler.html#a7ab2e3756b7a6e17879bc95ba2125e8b", null ],
     [ "GetDescription", "classBno08xHandler.html#ab349a1edff7b5d84230704274bb3d966", null ],

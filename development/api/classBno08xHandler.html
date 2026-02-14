@@ -133,6 +133,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac1a1ff0d56324dcc09d9b48ca2e132e6" id="r_ac1a1ff0d56324dcc09d9b48ca2e132e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1a1ff0d56324dcc09d9b48ca2e132e6">Initialize</a> () noexcept</td></tr>
 <tr class="memdesc:ac1a1ff0d56324dcc09d9b48ca2e132e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the BNO08x sensor.  <br /></td></tr>
 <tr class="separator:ac1a1ff0d56324dcc09d9b48ca2e132e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afab341345c8ed8fed1a218e0df18c4aa" id="r_afab341345c8ed8fed1a218e0df18c4aa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afab341345c8ed8fed1a218e0df18c4aa">EnsureInitialized</a> () noexcept</td></tr>
+<tr class="memdesc:afab341345c8ed8fed1a218e0df18c4aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure the BNO08x is initialized (lazy init entrypoint).  <br /></td></tr>
+<tr class="separator:afab341345c8ed8fed1a218e0df18c4aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2019941b7d9fa00ffe08630fee9ef340" id="r_a2019941b7d9fa00ffe08630fee9ef340"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2019941b7d9fa00ffe08630fee9ef340">Deinitialize</a> () noexcept</td></tr>
 <tr class="memdesc:a2019941b7d9fa00ffe08630fee9ef340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deinitialize the sensor.  <br /></td></tr>
 <tr class="separator:a2019941b7d9fa00ffe08630fee9ef340"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -241,6 +244,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:ada3191d2a5676e02773024e52589a1ed" id="r_ada3191d2a5676e02773024e52589a1ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada3191d2a5676e02773024e52589a1ed">applyConfigLocked</a> (const <a class="el" href="structBno08xConfig.html">Bno08xConfig</a> &amp;config) noexcept</td></tr>
 <tr class="memdesc:ada3191d2a5676e02773024e52589a1ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: apply configuration (assumes mutex is held).  <br /></td></tr>
 <tr class="separator:ada3191d2a5676e02773024e52589a1ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0479abc034d5417ba7dc524468a5ce82" id="r_a0479abc034d5417ba7dc524468a5ce82"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0479abc034d5417ba7dc524468a5ce82">ensureInitializedLocked</a> () noexcept</td></tr>
+<tr class="memdesc:a0479abc034d5417ba7dc524468a5ce82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: ensure initialized (assumes mutex is held).  <br /></td></tr>
+<tr class="separator:a0479abc034d5417ba7dc524468a5ce82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -497,7 +503,7 @@ Private Attributes</h2></td></tr>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ada3191d2a5676e02773024e52589a1ed_icgraph.svg" width="452" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ada3191d2a5676e02773024e52589a1ed_icgraph.svg" width="1516" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -708,6 +714,81 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="afab341345c8ed8fed1a218e0df18c4aa" name="afab341345c8ed8fed1a218e0df18c4aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afab341345c8ed8fed1a218e0df18c4aa">&#9670;&#160;</a></span>EnsureInitialized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Bno08xHandler::EnsureInitialized </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ensure the BNO08x is initialized (lazy init entrypoint). </p>
+<dl class="section return"><dt>Returns</dt><dd>true if initialized and ready. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_afab341345c8ed8fed1a218e0df18c4aa_cgraph.svg" width="1044" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_afab341345c8ed8fed1a218e0df18c4aa_icgraph.svg" width="740" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a0479abc034d5417ba7dc524468a5ce82" name="a0479abc034d5417ba7dc524468a5ce82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0479abc034d5417ba7dc524468a5ce82">&#9670;&#160;</a></span>ensureInitializedLocked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Bno08xHandler::ensureInitializedLocked </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Internal: ensure initialized (assumes mutex is held). </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a0479abc034d5417ba7dc524468a5ce82_cgraph.svg" width="758" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a0479abc034d5417ba7dc524468a5ce82_icgraph.svg" width="1027" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="a6611b9ff2cab99824bff165396691301" name="a6611b9ff2cab99824bff165396691301"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6611b9ff2cab99824bff165396691301">&#9670;&#160;</a></span>GetConfiguration()</h2>
 
@@ -899,12 +980,17 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Const overload of <a class="el" href="#a57e2952c0438e800c091cd0e3ebcdaf5" title="Get direct access to the underlying sensor driver (type-erased).">GetSensor()</a>. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_abf3a81e646ebd6dd0a10890e5be21d6d_cgraph.svg" width="1535" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -926,7 +1012,7 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -934,6 +1020,16 @@ Here is the call graph for this function:</div>
 <p>Get direct access to the underlying sensor driver (type-erased). </p>
 <p>The returned pointer exposes the same SH-2 API as the concrete BNO085 driver: <a class="el" href="#a74cdf0328224c1a3fad944bbf1312e7e" title="Update sensor - must be called regularly to pump the SH-2 service loop.">Update()</a>, <a class="el" href="#a5327a9e31b53441c6a2a2d94e251156f" title="Enable a specific sensor with the given interval.">EnableSensor()</a>, <a class="el" href="#ae2bd85f70a1a455427c7c0aa2e4e3f5b" title="Disable a specific sensor.">DisableSensor()</a>, SetCallback(), <a class="el" href="#a9a5d778fc61897d3d5d02b59812f51de" title="Check if new data is available for a specific sensor.">HasNewData()</a>, GetLatest(), <a class="el" href="#abf7206fa6caf5e8cf5132b02cd7a62bc" title="Get the last handler error code.">GetLastError()</a>, <a class="el" href="#a7c927165a6c2d3508239f3f0f71d6c4c" title="Perform hardware reset via RSTN pin.">HardwareReset()</a>, etc. Use it when you need to call driver methods directly (e.g. custom callbacks, low-level control). Valid for the lifetime of this handler.</p>
 <dl class="section return"><dt>Returns</dt><dd>Non-owning pointer to the driver interface, or nullptr if not constructed </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a57e2952c0438e800c091cd0e3ebcdaf5_cgraph.svg" width="1290" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a57e2952c0438e800c091cd0e3ebcdaf5_icgraph.svg" width="454" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1003,6 +1099,16 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if new unread data is available </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a9a5d778fc61897d3d5d02b59812f51de_cgraph.svg" width="226" height="60"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a9a5d778fc61897d3d5d02b59812f51de_icgraph.svg" width="226" height="60"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1036,6 +1142,11 @@ Here is the call graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ac1a1ff0d56324dcc09d9b48ca2e132e6_cgraph.svg" width="471" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ac1a1ff0d56324dcc09d9b48ca2e132e6_icgraph.svg" width="1262" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1689,7 +1800,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a74cdf0328224c1a3fad944bbf1312e7e_cgraph.svg" width="435" height="166"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a74cdf0328224c1a3fad944bbf1312e7e_cgraph.svg" width="983" height="316"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

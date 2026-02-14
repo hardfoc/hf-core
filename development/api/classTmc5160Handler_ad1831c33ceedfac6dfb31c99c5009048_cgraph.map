@@ -1,5 +1,25 @@
 <map id="Tmc5160Handler::IsTargetReached" name="Tmc5160Handler::IsTargetReached">
-<area shape="rect" id="Node000001" title="Check if target position has been reached." alt="" coords="5,5,197,45"/>
-<area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a439a68f9d3f6785e0a493f9ed3821325" title="Helper: execute a visitor on the active driver (no lock, internal use)" alt="" coords="245,5,455,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,23,232,23,232,28,197,28"/>
+<area shape="rect" id="Node000001" title="Check if target position has been reached." alt="" coords="5,105,197,145"/>
+<area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a6d4fce2433e03bb11b05a4278ef66fd0" title=" " alt="" coords="245,73,495,113"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,111,231,107,232,112,198,116"/>
+<area shape="rect" id="Node000010" href="$classTmc5160Handler.html#a439a68f9d3f6785e0a493f9ed3821325" title="Helper: execute a visitor on the active driver (no lock, internal use)" alt="" coords="265,137,475,177"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="198,133,252,140,251,145,197,139"/>
+<area shape="rect" id="Node000003" href="$classTmc5160Handler.html#a64755f326176b0a38485acf5ca69fd0c" title="Initialize the TMC5160 driver with full configuration." alt="" coords="543,80,740,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="495,90,529,90,529,95,495,95"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#a5e4bcdaea60b9ac227b564d780388769" title="Log error message." alt="" coords="811,5,917,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="678,77,787,39,809,32,810,37,789,45,679,82"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="788,153,940,179"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="682,103,812,146,811,151,680,108"/>
+<area shape="rect" id="Node000008" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="815,55,913,80"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="740,79,801,72,802,77,741,84"/>
+<area shape="rect" id="Node000009" href="$classLogger.html#a8c19c14724b0be1d2be63da4258c001a" title="Log warning message." alt="" coords="811,104,917,129"/>
+<area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="741,101,797,107,796,112,740,106"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="988,31,1160,56"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="917,22,974,29,974,34,917,27"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="1001,80,1147,105"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="910,28,941,40,989,65,1012,73,1010,78,987,70,939,44,908,33"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="913,59,974,52,974,57,914,64"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="914,71,987,80,987,85,913,76"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="905,101,939,89,987,65,1008,57,1010,62,989,70,941,94,907,106"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="917,108,986,100,987,105,918,113"/>
 </map>

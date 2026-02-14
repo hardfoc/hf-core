@@ -1,5 +1,15 @@
 <map id="As5047uHandler::ProgramOTP" name="As5047uHandler::ProgramOTP">
-<area shape="rect" id="Node000001" title="Program current settings to OTP memory (One&#45;Time Programmable)" alt="" coords="5,13,224,38"/>
-<area shape="rect" id="Node000002" href="$classAs5047uHandler.html#addb535ba454de53261b075c057339879" title="Validate sensor parameters." alt="" coords="272,5,463,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,23,258,23,258,28,224,28"/>
+<area shape="rect" id="Node000001" title="Program current settings to OTP memory (One&#45;Time Programmable)" alt="" coords="5,31,224,56"/>
+<area shape="rect" id="Node000002" href="$classAs5047uHandler.html#a10eeb015c791ff484935168e3683c053" title="Validate sensor parameters." alt="" coords="272,23,463,63"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,41,258,41,258,46,224,46"/>
+<area shape="rect" id="Node000003" href="$classAs5047uHandler.html#a040ba453eb7892ab3189631d73a2f683" title="Ensure initialized while mutex is already held." alt="" coords="511,23,756,63"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="463,41,497,41,497,46,463,46"/>
+<area shape="rect" id="Node000004" href="$classAs5047uHandler.html#a4dcfcea95fe8114ca7e0e5554d21ebc0" title="Initialize the AS5047U sensor (lazy initialization)" alt="" coords="804,31,997,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="756,41,790,41,790,46,756,46"/>
+<area shape="rect" id="Node000005" href="$classAs5047uHandler.html#a0e7c20d4fd883c55ff9091041ec04c39" title="Apply configuration to sensor." alt="" coords="1045,5,1307,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="997,32,1031,29,1032,34,998,37"/>
+<area shape="rect" id="Node000006" href="$classAs5047uHandler.html#a6854be00365afbb2eeddfb3177939456" title="Update cached diagnostics." alt="" coords="1046,55,1306,80"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="998,49,1033,52,1032,57,997,54"/>
+<area shape="rect" id="Node000007" href="$classAs5047uHandler.html#a6b29b6418f7b2d19cbdcc65aa6eb9756" title="Handle sensor errors and update diagnostics." alt="" coords="1355,47,1581,87"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1306,65,1341,65,1341,70,1306,70"/>
 </map>

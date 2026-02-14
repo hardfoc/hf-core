@@ -1,0 +1,5 @@
+<map id="Pcal95555GpioPin::ConfigureInterrupt" name="Pcal95555GpioPin::ConfigureInterrupt">
+<area shape="rect" id="Node000001" title="Configure interrupt for this pin." alt="" coords="5,5,215,45"/>
+<area shape="rect" id="Node000002" href="$classPcal95555Handler.html#a59b2dcc6d426c19a487175e8a83ed999" title="Register a per&#45;pin interrupt callback (called by Pcal95555GpioPin)." alt="" coords="263,5,465,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,23,249,23,249,28,215,28"/>
+</map>

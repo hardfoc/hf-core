@@ -5,7 +5,7 @@ var searchData=
   ['validatechannelid_2',['ValidateChannelId',['../classTmc9660Handler_1_1Adc.html#a5f9cfbbb92986ee7368b8301ff39525e',1,'Tmc9660Handler::Adc']]],
   ['validateconfiguration_3',['ValidateConfiguration',['../classNtcTemperatureHandler.html#a4a54d746f5c2b474bf66e4ad7e3bb37d',1,'NtcTemperatureHandler']]],
   ['validatepin_4',['ValidatePin',['../classPcal95555Handler.html#a8211811d3e4416232fe534f8c5652740',1,'Pcal95555Handler']]],
-  ['validatesensor_5',['ValidateSensor',['../classAs5047uHandler.html#addb535ba454de53261b075c057339879',1,'As5047uHandler']]],
+  ['validatesensor_5',['ValidateSensor',['../classAs5047uHandler.html#a10eeb015c791ff484935168e3683c053',1,'As5047uHandler']]],
   ['velocity_5fdeg_5fper_5fsec_6',['velocity_deg_per_sec',['../structAs5047uMeasurement.html#ad225b2b6862308ff0e6c99f7214afd99',1,'As5047uMeasurement']]],
   ['velocity_5frad_5fper_5fsec_7',['velocity_rad_per_sec',['../structAs5047uMeasurement.html#a5ac093437fbd32c0779631f3264efab2',1,'As5047uMeasurement']]],
   ['velocity_5fraw_8',['velocity_raw',['../structAs5047uMeasurement.html#a4556c5d147003c5ad22d364350569a09',1,'As5047uMeasurement']]],

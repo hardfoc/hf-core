@@ -1,0 +1,5 @@
+<map id="Tmc5160Handler::spiDriver" name="Tmc5160Handler::spiDriver">
+<area shape="rect" id="Node000001" title="Get typed SPI driver pointer (null if UART mode or not initialized)." alt="" coords="253,5,453,31"/>
+<area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a214ed8c8b7fe84660afe995980744e47" title=" " alt="" coords="5,5,205,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,21,206,21,206,15,240,15"/>
+</map>
