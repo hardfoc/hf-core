@@ -29,17 +29,17 @@ It provides:
 
 | Section | Description |
 |:--------|:------------|
-| [Architecture](docs/architecture) | System design, ownership model, layering |
-| [Folder Structure](docs/folder_structure) | Repository organization |
-| [Handlers](docs/handlers/) | Per-handler API reference |
-| [Utilities](docs/utils/) | RTOS wrappers, general utils, CANopen |
-| [Testing](docs/testing/) | Test infrastructure, CI pipelines |
+| [Architecture](architecture.md) | System design, ownership model, layering |
+| [Folder Structure](folder_structure.md) | Repository organization |
+| [Handlers](handlers/index.md) | Per-handler API reference |
+| [Utilities](utils/index.md) | RTOS wrappers, general utils, CANopen |
+| [Testing](testing/testing_guide.md) | Test infrastructure, CI pipelines |
 
 ## Getting Started
 
 ```bash
 # Clone with submodules
-git clone --recursive https://github.com/N3b3x/hf-hal-vortex-v1.git
+git clone --recursive https://github.com/hardfoc/hf-hal-vortex-v1.git
 cd hf-hal-vortex-v1/lib/core
 
 # Build a specific test app
@@ -47,4 +47,4 @@ cd examples/esp32/scripts
 ./build_app.sh --app as5047u_handler_test --build-type debug
 ```
 
-See the [Testing Guide](docs/testing/testing_guide) for detailed instructions.
+See the [Testing Guide](testing/testing_guide.md) for detailed instructions.

@@ -10,14 +10,14 @@ description: >
   for the HardFOC Motor Control Platform — bridging base interfaces to
   CRTP drivers with thread-safe, platform-portable handlers.
 
-baseurl: "/hf-hal-vortex-v1"
-url: "https://n3b3x.github.io"
+baseurl: "/hf-core"
+url: "https://hardfoc.github.io"
 
 # Author
 author:
-  name: "N3b3x"
+  name: "hardfoc"
   email: "n3b3x@example.com"
-  url: "https://github.com/n3b3x"
+  url: "https://github.com/hardfoc"
 
 # Directory Configuration
 layouts_dir: _config/_layouts
@@ -94,22 +94,22 @@ toggle_auto_mode: true
 # Auxiliary Links
 aux_links:
   "📚 GitHub Repository":
-    - "https://github.com/n3b3x/hf-hal-vortex-v1"
+    - "https://github.com/hardfoc/hf-hal-vortex-v1"
   "🐛 Report Issues":
-    - "https://github.com/n3b3x/hf-hal-vortex-v1/issues"
+    - "https://github.com/hardfoc/hf-hal-vortex-v1/issues"
 
 footer_content: >
   Built with ❤️ using <a href='https://just-the-docs.github.io/just-the-docs/'>Just the Docs</a> •
-  <a href='https://github.com/n3b3x/hf-hal-vortex-v1/blob/main/LICENSE'>GPL v3 License</a> •
-  <a href='https://github.com/n3b3x/hf-hal-vortex-v1'>View on GitHub</a>
+  <a href='https://github.com/hardfoc/hf-hal-vortex-v1/blob/main/LICENSE'>GPL v3 License</a> •
+  <a href='https://github.com/hardfoc/hf-hal-vortex-v1'>View on GitHub</a>
 
 just_the_docs:
   nav_fold: true
   nav_external_links:
     - title: "📚 GitHub Repository"
-      url: "https://github.com/n3b3x/hf-hal-vortex-v1"
+      url: "https://github.com/hardfoc/hf-hal-vortex-v1"
     - title: "🐛 Issues"
-      url: "https://github.com/n3b3x/hf-hal-vortex-v1/issues"
+      url: "https://github.com/hardfoc/hf-hal-vortex-v1/issues"
 
 # Exclusions
 exclude:
@@ -143,7 +143,7 @@ seo:
   description: >
     Hardware-Agnostic Handler Layer, RTOS Utilities, and Driver Integration
     for the HardFOC Motor Control Platform
-  url: "https://n3b3x.github.io/hf-hal-vortex-v1"
+  url: "https://hardfoc.github.io/hf-core"
 
 compress_html:
   clippings: all

@@ -11,9 +11,9 @@ hf-core includes three utility libraries providing reusable infrastructure:
 
 | Library | Description | Header Count |
 |:--------|:------------|:------------|
-| [General Utilities](general_utilities) | Data structures, algorithms, filters | ~30 headers |
-| [RTOS Wrappers](rtos_wrappers) | FreeRTOS C++ abstractions | ~22 headers |
-| [CANopen](canopen) | CAN frame + protocol helpers | 3 headers |
+| [General Utilities](general_utilities.md) | Data structures, algorithms, filters | ~30 headers |
+| [RTOS Wrappers](rtos_wrappers.md) | FreeRTOS C++ abstractions | ~22 headers |
+| [CANopen](canopen.md) | CAN frame + protocol helpers | 3 headers |
 
 All utilities are designed to be:
 

@@ -15,8 +15,8 @@ CI tool repositories:
 
 | Repository | Purpose |
 |:-----------|:--------|
-| `N3b3x/hf-espidf-ci-tools` | ESP-IDF build, flash, release workflows |
-| `N3b3x/hf-general-ci-tools` | C++ analysis, linting, documentation workflows |
+| `hardfoc/hf-espidf-ci-tools` | ESP-IDF build, flash, release workflows |
+| `hardfoc/hf-general-ci-tools` | C++ analysis, linting, documentation workflows |
 
 All reusable workflows are pinned at `@main`.
 

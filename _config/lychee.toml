@@ -29,12 +29,12 @@ exclude = [
   '^https?://img\.shields\.io/badge/License-.*',
 
   # GitHub Actions badge URLs (may not exist yet for hf-core)
-  '^https://github\.com/N3b3x/hf-hal-vortex-v1/actions/workflows/.*',
+  '^https://github\.com/hardfoc/hf-hal-vortex-v1/actions/workflows/.*',
 
   # Documentation site URLs (may not be published yet)
-  '^https://n3b3x\.github\.io/hf-hal-vortex-v1/.*',
+  '^https://hardfoc\.github\.io/hf-core/.*',
 
   # Submodule READMEs and internal cross-references
-  '^https://github\.com/N3b3x/hf-core-drivers.*',
-  '^https://github\.com/N3b3x/hf-core-utils.*',
+  '^https://github\.com/hardfoc/hf-core-drivers.*',
+  '^https://github\.com/hardfoc/hf-core-utils.*',
 ]
