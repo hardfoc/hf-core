@@ -4,7 +4,7 @@
 The ESP32 Examples Build CI workflow (run ID: 22011748464) failed due to a config parsing issue in the `examples/esp32/scripts` submodule.
 
 **Error Messages:**
-```
+```text
 Warning: yq not found. Falling back to basic parsing.
 ERROR: Could not extract build types from config
 ERROR: Invalid build type: Debug
