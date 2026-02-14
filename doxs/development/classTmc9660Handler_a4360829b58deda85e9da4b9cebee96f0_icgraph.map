@@ -1,0 +1,24 @@
+<map id="Tmc9660Handler::visitDriver" name="Tmc9660Handler::visitDriver">
+<area shape="rect" id="Node000001" title="Execute a function on the underlying typed TMC9660 driver." alt="" coords="640,255,849,281"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#af55fa5277da0e3d5f6c7200a4cfdbd10" title="De&#45;assert the DRV_EN control pin (disable the TMC9660 power stage hardware)." alt="" coords="335,5,566,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="730,244,710,203,679,153,639,102,616,79,591,60,565,46,567,42,593,55,619,75,643,98,684,150,714,200,735,242"/>
+<area shape="rect" id="Node000003" href="$classTmc9660Handler.html#af200e87a8fb2f4cf42861a5410b6a995" title="Assert the DRV_EN control pin (enable the TMC9660 power stage hardware)." alt="" coords="338,69,563,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="724,246,669,184,632,151,591,124,562,111,564,106,593,119,635,147,673,180,728,242"/>
+<area shape="rect" id="Node000004" href="$classTmc9660Handler.html#af1d05fe540ad2fb17002eb4ea5b5f266" title="Command the TMC9660 to leave parameter mode and enter bootloader mode." alt="" coords="309,134,592,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="715,249,660,210,626,191,591,174,549,162,551,157,593,170,629,186,663,206,718,245"/>
+<area shape="rect" id="Node000005" href="$classTmc9660Handler.html#ac3a19e67fd802fdcbea05a056ec797e5" title="Read the actual (measured) motor position." alt="" coords="348,184,553,224"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="672,255,542,227,544,221,673,250"/>
+<area shape="rect" id="Node000006" href="$classTmc9660Handler.html#a4c49d0ada65dbdfa8e2888de6dd33d9a" title="Read the actual (measured) motor velocity." alt="" coords="348,248,553,288"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="626,271,554,271,554,265,626,265"/>
+<area shape="rect" id="Node000007" href="$classTmc9660Handler.html#ac7549efc59aeedcc3c29e39f13a529fa" title="Read the TMC9660 internal chip temperature." alt="" coords="313,313,588,338"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="673,286,593,303,525,315,524,310,591,297,671,281"/>
+<area shape="rect" id="Node000009" href="$classTmc9660Handler.html#a3049dd3b79c6d340eb7b8a81604f0406" title="Read the external temperature sensor raw value." alt="" coords="341,363,560,403"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="713,290,658,322,593,352,551,365,550,360,591,347,656,317,711,286"/>
+<area shape="rect" id="Node000010" href="$classTmc9660Handler.html#a097e8a8930006294be7fc11ecccb48fd" title="Read the instantaneous motor phase current." alt="" coords="349,427,552,467"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="728,294,673,356,635,389,593,417,553,433,551,428,591,412,632,385,669,352,724,290"/>
+<area shape="rect" id="Node000011" href="$classTmc9660Handler.html#a3d6437320844ff3ffe77eada12ad7ea7" title="Read the motor supply voltage." alt="" coords="347,491,555,531"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="735,294,714,336,684,386,643,438,619,461,593,481,556,499,554,494,591,476,616,457,639,434,679,383,710,333,730,292"/>
+<area shape="rect" id="Node000008" href="$classTmc9660Handler.html#adee8a764564554f060b879752048bf74" title="Dump comprehensive diagnostics to the system log." alt="" coords="5,406,261,431"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="352,343,310,353,230,381,164,408,162,403,228,376,309,348,350,338"/>
+<area shape="poly" id="edge11_Node000011_Node000008" title=" " alt="" coords="341,490,309,481,168,434,169,429,310,476,343,485"/>
+</map>

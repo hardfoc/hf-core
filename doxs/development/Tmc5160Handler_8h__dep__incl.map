@@ -1,0 +1,7 @@
+<map id="Tmc5160Handler.h" name="Tmc5160Handler.h">
+<area shape="rect" id="Node000001" title="Unified handler for TMC5160/TMC5130 stepper motor driver with SPI/UART integration." alt="" coords="125,5,269,31"/>
+<area shape="rect" id="Node000002" href="$Tmc5160Handler_8cpp.html" title="Implementation of TMC5160 handler with SPI/UART communication adapters." alt="" coords="5,86,164,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,41,103,88,100,84,167,37"/>
+<area shape="rect" id="Node000003" href="$tmc5160__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for Tmc5160Handler." alt="" coords="189,79,431,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="226,36,284,76,281,81,223,41"/>
+</map>

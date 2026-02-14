@@ -1,0 +1,5 @@
+<map id="Pca9685PwmAdapter::Initialize" name="Pca9685PwmAdapter::Initialize">
+<area shape="rect" id="Node000001" title="Initialize the PWM adapter (ensures parent handler is initialized)." alt="" coords="296,5,464,45"/>
+<area shape="rect" id="Node000002" href="$classPca9685Handler.html#a3f5b93ead4b85c137c94a0d0e8d9bb12" title="Get or create the BasePwm adapter for all 16 channels." alt="" coords="5,13,248,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="282,28,248,28,248,23,282,23"/>
+</map>

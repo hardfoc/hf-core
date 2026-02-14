@@ -1,0 +1,15 @@
+<map id="NtcTemperatureHandler" name="NtcTemperatureHandler">
+<area shape="rect" id="Node000001" title="NTC temperature sensor handler implementing BaseTemperature interface." alt="" coords="800,84,977,109"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="442,5,578,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="592,25,681,39,777,58,853,81,852,86,775,63,680,44,591,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="387,55,633,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="647,75,800,87,800,92,647,81"/>
+<area shape="rect" id="Node000004" href="$classNtcAdcAdapter.html" title="Adapter that bridges BaseAdc to the ntc::AdcInterface CRTP interface required by the NtcThermistor te..." alt="" coords="197,55,316,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="330,65,387,65,387,70,330,70"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,47,148,87"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="162,65,197,65,197,70,162,70"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="397,105,623,145"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="637,122,776,114,825,107,826,112,776,119,637,127"/>
+<area shape="rect" id="Node000007" href="$structntc__temp__handler__config__t.html" title="NTC temperature handler configuration structure." alt="" coords="411,169,609,195"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="622,170,698,159,775,142,822,125,862,107,864,112,824,130,777,147,699,165,622,176"/>
+</map>

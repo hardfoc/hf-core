@@ -1,0 +1,7 @@
+<map id="Tmc9660AdcWrapper.h" name="Tmc9660AdcWrapper.h">
+<area shape="rect" id="Node000001" title="Thin BaseAdc delegation wrapper for manager&#45;layer ownership of TMC9660 ADC." alt="" coords="131,5,303,31"/>
+<area shape="rect" id="Node000002" href="$Tmc9660AdcWrapper_8cpp.html" title="Implementation of the TMC9660 ADC delegation wrapper." alt="" coords="5,86,192,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,41,118,88,115,84,187,36"/>
+<area shape="rect" id="Node000003" href="$tmc9660__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for Tmc9660Handler." alt="" coords="216,79,459,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="248,36,310,76,307,81,245,41"/>
+</map>

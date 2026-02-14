@@ -1,0 +1,9 @@
+<map id="As5047uHandler.h" name="As5047uHandler.h">
+<area shape="rect" id="Node000001" title="Unified handler for AS5047U magnetic rotary position sensor with SPI integration." alt="" coords="234,5,374,31"/>
+<area shape="rect" id="Node000002" href="$As5047uHandler_8cpp.html" title="Implementation of unified AS5047U magnetic rotary position sensor handler." alt="" coords="5,86,160,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,38,116,88,114,83,258,33"/>
+<area shape="rect" id="Node000003" href="$as5047u__handler__comprehensive__test_8cpp.html" title="Comprehensive test suite for As5047uHandler." alt="" coords="184,79,424,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="307,44,307,79,301,79,301,44"/>
+<area shape="rect" id="Node000004" href="$full__system__integration__test_8cpp.html" title="Full system integration test for hf&#45;core." alt="" coords="448,79,624,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="352,33,481,76,479,81,350,38"/>
+</map>

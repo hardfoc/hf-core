@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['uart_5f_0',['uart_',['../classHalUartTmc5160Comm.html#a26bfc4fc96f6bd0f453873729ab4d1c5',1,'HalUartTmc5160Comm::uart_'],['../classHalUartTmc9660Comm.html#ad5eebb3f68eb20fe923a9370d6120ece',1,'HalUartTmc9660Comm::uart_']]],
+  ['uart_5fcomm_5f_1',['uart_comm_',['../classTmc5160Handler.html#aeb7ebf11e1b2aaf3cdb6531b23dad290',1,'Tmc5160Handler::uart_comm_'],['../classTmc9660Handler.html#a45d218c71e268fd627dcdd1f20e37313',1,'Tmc9660Handler::uart_comm_']]],
+  ['uart_5fdriver_5f_2',['uart_driver_',['../classTmc5160Handler.html#af16b467bb1410def2c8a835f13a8bbe0',1,'Tmc5160Handler::uart_driver_'],['../classTmc9660Handler.html#a0bedb4612372da6ec2f5f01cd1b11f8c',1,'Tmc9660Handler::uart_driver_']]],
+  ['uartdriver_3',['UartDriver',['../classTmc5160Handler.html#a31e66827548c966a076877961d3e852f',1,'Tmc5160Handler::UartDriver'],['../classTmc9660Handler.html#a68a5549c74095516db249e2c2d4afed7',1,'Tmc9660Handler::UartDriver']]],
+  ['uartdriver_4',['uartDriver',['../classTmc5160Handler.html#aefcab2ea8fb154efd8ac27eb3df86574',1,'Tmc5160Handler::uartDriver()'],['../classTmc9660Handler.html#ad2f238a937f011ee46a2380f9871bf09',1,'Tmc9660Handler::uartDriver() noexcept'],['../classTmc9660Handler.html#a4d4119e8b8316eebb0c253990936f86a',1,'Tmc9660Handler::uartDriver() const noexcept']]],
+  ['uartreceive_5',['UartReceive',['../classHalUartTmc5160Comm.html#a8549a4cd0f5427fcba59c0b41c0ac9e6',1,'HalUartTmc5160Comm']]],
+  ['uartreceivetmcl_6',['uartReceiveTMCL',['../classHalUartTmc9660Comm.html#a0df8ee2b226b44eb2e21728e4b7c44d7',1,'HalUartTmc9660Comm']]],
+  ['uartsend_7',['UartSend',['../classHalUartTmc5160Comm.html#abeca3028fb6b1007c2457b08d3dfe113',1,'HalUartTmc5160Comm']]],
+  ['uartsendtmcl_8',['uartSendTMCL',['../classHalUartTmc9660Comm.html#a213dfdf5041d1d98372413b9cd3a9b53',1,'HalUartTmc9660Comm']]],
+  ['uarttransferbootloader_9',['uartTransferBootloader',['../classHalUartTmc9660Comm.html#a044f4af1242b3fb2a9412523e575447a',1,'HalUartTmc9660Comm']]],
+  ['underline_10',['UNDERLINE',['../Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a0086c73c90c261db630b4dc8aea09bcf',1,'Logger.h']]],
+  ['unregisterpininterrupt_11',['UnregisterPinInterrupt',['../classPcal95555Handler.html#a49e5b18fcbd6762701009b564b90d481',1,'Pcal95555Handler']]],
+  ['unsupported_5foperation_12',['UNSUPPORTED_OPERATION',['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a5a2ff7a2f2c3b40268e57995408f8e9d',1,'Bno08xHandler.h']]],
+  ['update_13',['Update',['../classIBno08xDriverOps.html#acf715744d1f45d38c44b6cbe6a2f56a4',1,'IBno08xDriverOps::Update()'],['../classBno08xDriverImpl.html#a6ad40347e415a1524b585498c87b4233',1,'Bno08xDriverImpl::Update()'],['../classBno08xHandler.html#a74cdf0328224c1a3fad944bbf1312e7e',1,'Bno08xHandler::Update()']]],
+  ['updateall_14',['UpdateAll',['../classPca9685PwmAdapter.html#a20b32c0131c0265e0c50b2f7d66677f3',1,'Pca9685PwmAdapter']]],
+  ['updatebasediagnostics_15',['UpdateBaseDiagnostics',['../classNtcTemperatureHandler.html#addc61cbd9e69f84bb6014a92b1c63496',1,'NtcTemperatureHandler']]],
+  ['updateconfiguration_16',['UpdateConfiguration',['../classAs5047uHandler.html#a1094dba293ffb48d720dcac621493868',1,'As5047uHandler']]],
+  ['updatediagnostics_17',['UpdateDiagnostics',['../classAs5047uHandler.html#a6854be00365afbb2eeddfb3177939456',1,'As5047uHandler::UpdateDiagnostics()'],['../classNtcTemperatureHandler.html#ab867e35301fff064ce0e76dd85033f8c',1,'NtcTemperatureHandler::UpdateDiagnostics()'],['../classTmc9660Handler_1_1Adc.html#a95192f5ef76ba77cc2abce2581f44801',1,'Tmc9660Handler::Adc::UpdateDiagnostics()'],['../classTmc9660Handler_1_1Temperature.html#a824232f839a3c46684de17dabaca8b79',1,'Tmc9660Handler::Temperature::UpdateDiagnostics()']]],
+  ['updatestatistics_18',['UpdateStatistics',['../classNtcTemperatureHandler.html#a2c8404fac12fa3e3d3655cd4430d2049',1,'NtcTemperatureHandler::UpdateStatistics()'],['../classTmc9660Handler_1_1Adc.html#a8f7aa9ea8e16d94e1a4166af1e3821d0',1,'Tmc9660Handler::Adc::UpdateStatistics()'],['../classTmc9660Handler_1_1Temperature.html#a909be22915a36d0ef677558f3c00c8c4',1,'Tmc9660Handler::Temperature::UpdateStatistics()']]],
+  ['usage_20example_19',['Usage Example',['../Tmc5160Handler_8h.html#autotoc_md17',1,'Usage Example'],['../classTmc9660Handler.html#autotoc_md27',1,'Usage Example'],['../Ws2812Handler_8h.html#autotoc_md28',1,'Usage Example']]],
+  ['use_5fspi_5f_20',['use_spi_',['../classTmc9660Handler.html#a01828de5ad5685ee4baac83943be3440',1,'Tmc9660Handler']]],
+  ['user_5fcallback_5f_21',['user_callback_',['../classBno08xHandler.html#ab4be91e6bd9492c1824aa747db733c0f',1,'Bno08xHandler']]],
+  ['utilities_22',['Utilities',['../index.html#autotoc_md34',1,'']]],
+  ['uvw_5fpole_5fpairs_23',['uvw_pole_pairs',['../structAs5047uConfig.html#a5938deaf6c6b4684bd829bfa47792357',1,'As5047uConfig']]]
+];

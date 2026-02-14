@@ -1,0 +1,7 @@
+<map id="Logger::Warn" name="Logger::Warn">
+<area shape="rect" id="Node000001" title="Log warning message." alt="" coords="5,31,112,56"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="160,5,332,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,33,146,29,147,34,113,39"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="173,55,319,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="113,48,160,54,159,59,112,53"/>
+</map>

@@ -1,0 +1,29 @@
+<map id="NtcTemperatureHandler::Initialize" name="NtcTemperatureHandler::Initialize">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,128,183,168"/>
+<area shape="rect" id="Node000002" href="$classNtcTemperatureHandler.html#ae3ed02cf4cd05dd73a3e9a42f9219f3e" title=" " alt="" coords="231,64,439,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,125,245,105,246,110,171,130"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="487,75,639,100"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="113,126,163,84,195,64,230,49,268,40,307,36,385,39,456,52,515,68,513,73,455,57,384,44,307,41,269,45,232,54,198,69,166,89,117,130"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="513,128,612,154"/>
+<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="167,165,231,177,335,186,380,185,438,177,508,155,509,161,439,182,381,190,335,192,230,182,166,170"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a5e4bcdaea60b9ac227b564d780388769" title="Log error message." alt="" coords="510,178,615,203"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="142,165,185,180,231,192,301,200,372,202,496,195,496,201,373,207,301,205,230,197,183,186,140,170"/>
+<area shape="rect" id="Node000008" href="$classNtcTemperatureHandler.html#a5b148f36777ccff9fb633e3f4e99050f" title="Set last error in diagnostics." alt="" coords="246,293,423,333"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="114,166,164,218,197,247,232,272,257,285,254,290,229,277,193,251,160,222,110,170"/>
+<area shape="rect" id="Node000009" href="$classNtcTemperatureHandler.html#a275ae5ee2756034dcaa99f3877d8e1f0" title=" " alt="" coords="246,128,423,168"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="183,145,232,145,232,150,183,150"/>
+<area shape="rect" id="Node000010" href="$classLogger.html#a8c19c14724b0be1d2be63da4258c001a" title="Log warning message." alt="" coords="509,26,616,51"/>
+<area shape="poly" id="edge15_Node000001_Node000010" title=" " alt="" coords="108,126,157,72,191,44,230,24,265,13,301,7,374,3,444,9,502,20,501,25,443,15,374,9,302,12,266,18,232,29,194,49,161,76,112,129"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="439,83,473,84,473,89,439,88"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="415,101,501,123,499,128,414,106"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="687,104,859,130"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="612,133,672,126,673,131,612,138"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="699,154,846,179"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="612,144,686,153,685,159,612,150"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="604,175,638,163,686,139,707,131,709,136,688,144,640,168,606,180"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="615,182,685,174,686,179,616,187"/>
+<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="411,125,500,101,501,106,412,130"/>
+<area shape="poly" id="edge14_Node000009_Node000004" title=" " alt="" coords="424,142,499,140,499,146,424,148"/>
+<area shape="poly" id="edge16_Node000010_Node000005" title=" " alt="" coords="607,49,640,60,731,96,729,101,638,65,605,54"/>
+<area shape="poly" id="edge17_Node000010_Node000006" title=" " alt="" coords="618,48,640,60,657,81,665,101,672,120,688,139,698,146,696,150,685,143,668,123,660,103,653,83,637,64,615,52"/>
+</map>

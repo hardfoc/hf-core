@@ -1,0 +1,15 @@
+<map id="NtcTemperatureHandler::Deinitialize" name="NtcTemperatureHandler::Deinitialize">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,25,183,65"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="481,5,633,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,22,230,10,354,4,467,8,467,13,354,9,231,15,167,27"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="508,59,607,84"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,62,231,74,301,79,372,80,494,75,495,80,372,85,301,85,230,79,166,67"/>
+<area shape="rect" id="Node000006" href="$classNtcTemperatureHandler.html#a7cd3aa59989bec0514d6717d345d8466" title=" " alt="" coords="231,25,433,65"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="183,42,217,42,217,47,183,47"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="681,33,853,59"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="606,63,667,55,668,61,607,68"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="694,83,841,108"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="607,74,681,83,680,88,606,80"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="433,30,467,26,468,31,434,35"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="434,54,495,61,494,67,433,59"/>
+</map>

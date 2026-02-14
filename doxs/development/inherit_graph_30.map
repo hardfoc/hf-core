@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,180,31"/>
+<area shape="rect" id="Node000001" href="$classHalI2cPcal95555Comm.html" title="Concrete I2C communication adapter for PCAL95555 using BaseI2c." alt="" coords="228,5,401,31"/>
+<area shape="poly" id="edge17_Node000000_Node000001" title=" " alt="" coords="193,15,228,15,228,21,193,21"/>
+</map>

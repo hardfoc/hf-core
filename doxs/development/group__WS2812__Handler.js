@@ -1,0 +1,40 @@
+var group__WS2812__Handler =
+[
+    [ "Ws2812Handler", "classWs2812Handler.html", [
+      [ "Config", "structWs2812Handler_1_1Config.html", [
+        [ "brightness", "structWs2812Handler_1_1Config.html#a34b3e52bebb8a93793f35f0cd5b551c1", null ],
+        [ "gpio_pin", "structWs2812Handler_1_1Config.html#acfd7c925abeb4af12fbddd986082d66f", null ],
+        [ "led_type", "structWs2812Handler_1_1Config.html#a241ed81954221fa96164b11099439d44", null ],
+        [ "num_leds", "structWs2812Handler_1_1Config.html#a7506ba4e8c14cf26a114594cb77357bc", null ],
+        [ "rmt_channel", "structWs2812Handler_1_1Config.html#a1f59004470961fc7f42f5d416f02654d", null ],
+        [ "t0h", "structWs2812Handler_1_1Config.html#abbb51d05f423a9b8ccb820c8f416b5c9", null ],
+        [ "t0l", "structWs2812Handler_1_1Config.html#ab38c01cedf6037e1d99df6e002dbbd0b", null ],
+        [ "t1h", "structWs2812Handler_1_1Config.html#aa0a0d32c028be876a8da5c962c519d71", null ],
+        [ "t1l", "structWs2812Handler_1_1Config.html#a15159e3080965a04ac08325c18ddd435", null ]
+      ] ],
+      [ "Ws2812Handler", "classWs2812Handler.html#adffc9bfd3774c28bdd2d9fe72f2e40ad", null ],
+      [ "~Ws2812Handler", "classWs2812Handler.html#a681653a0596ee282296caf6a3dc4a070", null ],
+      [ "Ws2812Handler", "classWs2812Handler.html#a96c9334a0dbbd5155e83bcb80a393802", null ],
+      [ "Clear", "classWs2812Handler.html#a37ff8b5df8b1304d0e432fdd90c75a0d", null ],
+      [ "Deinitialize", "classWs2812Handler.html#a608af1984272e2924da68109e7985c4e", null ],
+      [ "DumpDiagnostics", "classWs2812Handler.html#a586683dcf63f17194b77c026972c7b2b", null ],
+      [ "GetAnimator", "classWs2812Handler.html#a3e09ba2c15d5b0e7d6d254e22f634ae8", null ],
+      [ "GetNumLeds", "classWs2812Handler.html#ae1c94f58ab9ca971f6801c10556192f9", null ],
+      [ "GetStrip", "classWs2812Handler.html#a7471840392adad3cab496e2dc57dc792", null ],
+      [ "Initialize", "classWs2812Handler.html#a172ae173d1e2bd93c9808452aad6e4cd", null ],
+      [ "IsInitialized", "classWs2812Handler.html#adcaf3eab4374c5907f332a8892884b44", null ],
+      [ "operator=", "classWs2812Handler.html#ace55144ab23456289f57c2ff118bd062", null ],
+      [ "SetAllPixels", "classWs2812Handler.html#a752c5487d4b3e4cec99d12e16a99c916", null ],
+      [ "SetBrightness", "classWs2812Handler.html#a636158d833c558332d670b0fd12f0996", null ],
+      [ "SetEffect", "classWs2812Handler.html#a14ca796a159b66b578a48d396ffa62f6", null ],
+      [ "SetPixel", "classWs2812Handler.html#a708944a4dd8c4a807a8009b8bd35c2a7", null ],
+      [ "Show", "classWs2812Handler.html#ad67002bf517195998950ed6d8385ee89", null ],
+      [ "Step", "classWs2812Handler.html#a60ee1479e87c2ddb672a03a053be0c59", null ],
+      [ "Tick", "classWs2812Handler.html#af74a184df9277227e6d2b593d13c4501", null ],
+      [ "animator_", "classWs2812Handler.html#aba9a27e605659de49f6b8c745cebf050", null ],
+      [ "config_", "classWs2812Handler.html#ac0a3dc379fcdb7964fe6e6995c37598e", null ],
+      [ "initialized_", "classWs2812Handler.html#a4a5ea3c76506c449dc37c70d664aa033", null ],
+      [ "mutex_", "classWs2812Handler.html#ab05395f0e7509f80ed86011bddd09d73", null ],
+      [ "strip_", "classWs2812Handler.html#a4387bbc8038b920f3a2f5851f63307b2", null ]
+    ] ]
+];

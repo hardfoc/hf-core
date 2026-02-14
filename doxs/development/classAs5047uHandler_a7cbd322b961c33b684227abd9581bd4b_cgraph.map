@@ -1,0 +1,9 @@
+<map id="As5047uHandler::ResetToDefaults" name="As5047uHandler::ResetToDefaults">
+<area shape="rect" id="Node000001" title="Reset sensor to default configuration." alt="" coords="5,63,248,88"/>
+<area shape="rect" id="Node000002" href="$classAs5047uHandler.html#a0e7c20d4fd883c55ff9091041ec04c39" title="Apply configuration to sensor." alt="" coords="296,5,557,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,60,345,31,346,36,194,65"/>
+<area shape="rect" id="Node000003" href="$classAs5047uHandler.html#a5cfe5bb285cb087d078e5f248ccd0d82" title="Get default sensor configuration." alt="" coords="323,55,531,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="248,73,309,73,309,78,248,78"/>
+<area shape="rect" id="Node000004" href="$classAs5047uHandler.html#addb535ba454de53261b075c057339879" title="Validate sensor parameters." alt="" coords="331,119,522,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="188,85,319,114,318,119,187,91"/>
+</map>

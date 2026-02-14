@@ -1,0 +1,5 @@
+<map id="Tmc9660Handler::Gpio::Initialize" name="Tmc9660Handler::Gpio::Initialize">
+<area shape="rect" id="Node000001" title="Initialize the GPIO pin (configures as output by default on the TMC9660)." alt="" coords="5,5,176,45"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="224,13,447,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,23,210,23,210,28,176,28"/>
+</map>

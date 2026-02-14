@@ -1,0 +1,7 @@
+<map id="test_i2c_bus_scan" name="test_i2c_bus_scan">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,145,56"/>
+<area shape="rect" id="Node000002" href="$esp32__bus__setup_8hpp.html#a34120f53f38b468eb02c353cd79d5b0b" title="Create and initialize the shared I2C bus." alt="" coords="193,5,344,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,32,179,27,180,32,146,37"/>
+<area shape="rect" id="Node000003" href="$esp32__bus__setup_8hpp.html#a821a151721a0a19f59e6177184b68d50" title="Scan the I2C bus for responding devices." alt="" coords="215,55,323,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="146,49,201,56,200,62,145,55"/>
+</map>

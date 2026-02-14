@@ -1,0 +1,21 @@
+<map id="Tle92466edHandler.h" name="Tle92466edHandler.h">
+<area shape="rect" id="Node000001" title="Unified handler for TLE92466ED six&#45;channel low&#45;side solenoid driver IC." alt="" coords="388,5,548,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,101,72,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="388,23,321,28,244,38,163,55,85,81,63,94,60,90,83,76,161,50,243,33,320,23,388,18"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="96,101,173,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="388,31,290,49,237,63,186,81,161,95,159,90,184,76,236,58,289,44,387,25"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="198,101,269,126"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="419,33,353,53,283,81,260,95,257,90,280,76,351,48,418,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="293,101,347,126"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="444,33,404,54,360,81,344,93,341,89,357,76,401,49,442,29"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="371,86,565,141"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="471,31,471,72,465,72,465,31"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="589,79,763,148"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="495,28,590,71,587,75,492,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="787,101,909,126"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="549,27,658,46,777,76,815,92,813,97,775,81,657,51,548,32"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="933,101,1064,126"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="549,20,722,37,823,53,922,76,965,92,963,97,921,81,822,59,721,43,548,26"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="1089,79,1266,148"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="548,19,651,24,781,34,927,51,1076,76,1075,81,926,56,781,39,651,29,548,24"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,31,141,56"/>
+<area shape="rect" id="Node000001" href="$classNtcTemperatureHandler.html" title="NTC temperature sensor handler implementing BaseTemperature interface." alt="" coords="212,5,389,31"/>
+<area shape="poly" id="edge8_Node000000_Node000001" title=" " alt="" coords="154,32,212,25,212,31,155,37"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor." alt="" coords="189,55,412,80"/>
+<area shape="poly" id="edge9_Node000000_Node000002" title=" " alt="" coords="155,49,189,53,189,58,154,55"/>
+</map>

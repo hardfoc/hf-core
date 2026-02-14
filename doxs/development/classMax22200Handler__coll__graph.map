@@ -1,0 +1,11 @@
+<map id="Max22200Handler" name="Max22200Handler">
+<area shape="rect" id="Node000001" title="Unified handler for MAX22200 octal solenoid/motor driver." alt="" coords="185,285,326,311"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,183,249,223"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,229,241,283,238,287,163,233"/>
+<area shape="rect" id="Node000003" href="$classHalSpiMax22200Comm.html" title="CRTP SPI communication adapter for MAX22200 using BaseSpi and BaseGpio." alt="" coords="40,95,215,120"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="130,134,130,182,125,182,125,134"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="25,5,230,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="130,59,130,94,125,94,125,59"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="274,190,493,215"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="358,225,273,287,270,283,355,221"/>
+</map>

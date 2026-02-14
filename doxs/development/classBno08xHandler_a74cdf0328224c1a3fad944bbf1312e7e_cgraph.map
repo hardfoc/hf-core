@@ -1,0 +1,9 @@
+<map id="Bno08xHandler::Update" name="Bno08xHandler::Update">
+<area shape="rect" id="Node000001" title="Update sensor &#45; must be called regularly to pump the SH&#45;2 service loop." alt="" coords="5,77,183,102"/>
+<area shape="rect" id="Node000002" href="$classIBno08xDriverOps.html#ade5ca399da28b49b2b9b1851cd189ede" title=" " alt="" coords="231,5,429,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,74,241,46,243,52,143,79"/>
+<area shape="rect" id="Node000003" href="$classBno08xHandler.html#a6e91ad7cdb2e1bb9a57eb797cf7d8e96" title="Internal: map SH&#45;2 error code to Bno08xError." alt="" coords="231,69,429,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,87,217,87,217,92,183,92"/>
+<area shape="rect" id="Node000004" href="$classIBno08xDriverOps.html#acf715744d1f45d38c44b6cbe6a2f56a4" title=" " alt="" coords="233,134,427,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="148,99,265,128,263,133,146,105"/>
+</map>

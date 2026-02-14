@@ -1,0 +1,9 @@
+<map id="create_handler" name="create_handler">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,124,56"/>
+<area shape="rect" id="Node000002" href="$esp32__bus__setup_8hpp.html#ac35786de67943f429d4ead245b81c664" title="Create an EspGpio for a specific pin." alt="" coords="182,5,281,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,32,168,25,169,30,125,37"/>
+<area shape="rect" id="Node000003" href="$esp32__bus__setup_8hpp.html#a7024544c8de144283c563c05320b05bf" title="Get an I2C device handle for a specific address on the shared bus." alt="" coords="172,55,291,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="125,49,159,54,158,60,124,55"/>
+<area shape="rect" id="Node000004" href="$esp32__bus__setup_8hpp.html#a34120f53f38b468eb02c353cd79d5b0b" title="Create and initialize the shared I2C bus." alt="" coords="339,55,489,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="291,65,325,65,325,70,291,70"/>
+</map>

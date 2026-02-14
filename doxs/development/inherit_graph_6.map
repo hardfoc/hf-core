@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,31,84,56"/>
+<area shape="rect" id="Node000001" href="$classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership." alt="" coords="134,5,295,31"/>
+<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="97,33,133,27,134,33,98,38"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler_1_1Adc.html" title="BaseAdc adapter for all TMC9660 ADC channels." alt="" coords="132,55,297,80"/>
+<area shape="poly" id="edge3_Node000000_Node000002" title=" " alt="" coords="98,48,132,53,131,58,97,53"/>
+</map>

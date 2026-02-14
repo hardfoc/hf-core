@@ -1,0 +1,5 @@
+<map id="Tmc9660Handler::Adc::ReadTemperatureChannel" name="Tmc9660Handler::Adc::ReadTemperatureChannel">
+<area shape="rect" id="Node000001" title="Read a temperature channel." alt="" coords="5,5,204,45"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="252,13,475,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,23,238,23,238,28,204,28"/>
+</map>

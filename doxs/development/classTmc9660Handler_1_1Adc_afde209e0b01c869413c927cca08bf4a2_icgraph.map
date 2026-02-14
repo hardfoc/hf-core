@@ -1,0 +1,5 @@
+<map id="Tmc9660Handler::Adc::Deinitialize" name="Tmc9660Handler::Adc::Deinitialize">
+<area shape="rect" id="Node000001" title="Deinitialize ADC wrapper (no&#45;op)." alt="" coords="223,5,388,45"/>
+<area shape="rect" id="Node000002" href="$classTmc9660AdcWrapper.html#a9d61893186aaa1d768cf61038ab285cb" title=" " alt="" coords="5,5,175,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,28,175,28,175,23,209,23"/>
+</map>

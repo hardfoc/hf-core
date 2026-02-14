@@ -1,0 +1,9 @@
+<map id="As5047uHandler::ValidateSensor" name="As5047uHandler::ValidateSensor">
+<area shape="rect" id="Node000001" title="Validate sensor parameters." alt="" coords="313,47,504,87"/>
+<area shape="rect" id="Node000002" href="$classAs5047uHandler.html#a80e3768bb4a51e121f786b1b348e550e" title="Perform sensor calibration." alt="" coords="5,5,265,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="299,50,206,33,207,28,300,45"/>
+<area shape="rect" id="Node000003" href="$classAs5047uHandler.html#a02a98f0125d0d80e41b0708658e112a3" title="Program current settings to OTP memory (One&#45;Time Programmable)" alt="" coords="26,55,245,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="299,70,245,70,245,65,299,65"/>
+<area shape="rect" id="Node000004" href="$classAs5047uHandler.html#a7cbd322b961c33b684227abd9581bd4b" title="Reset sensor to default configuration." alt="" coords="14,104,257,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="300,90,207,107,206,101,299,84"/>
+</map>

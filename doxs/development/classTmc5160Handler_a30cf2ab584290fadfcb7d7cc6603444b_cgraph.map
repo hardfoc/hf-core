@@ -1,0 +1,5 @@
+<map id="Tmc5160Handler::DisableMotor" name="Tmc5160Handler::DisableMotor">
+<area shape="rect" id="Node000001" title="Disable the motor driver power stage." alt="" coords="5,13,233,38"/>
+<area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a439a68f9d3f6785e0a493f9ed3821325" title="Helper: execute a visitor on the active driver (no lock, internal use)" alt="" coords="281,5,491,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="233,23,267,23,267,28,233,28"/>
+</map>

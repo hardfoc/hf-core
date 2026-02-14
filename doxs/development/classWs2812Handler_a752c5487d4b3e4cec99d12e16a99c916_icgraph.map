@@ -1,0 +1,5 @@
+<map id="Ws2812Handler::SetAllPixels" name="Ws2812Handler::SetAllPixels">
+<area shape="rect" id="Node000001" title="Set all pixels to the same color." alt="" coords="220,5,429,31"/>
+<area shape="rect" id="Node000002" href="$classWs2812Handler.html#a37ff8b5df8b1304d0e432fdd90c75a0d" title="Clear all pixels (set to black)." alt="" coords="5,5,172,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,21,172,21,172,15,206,15"/>
+</map>

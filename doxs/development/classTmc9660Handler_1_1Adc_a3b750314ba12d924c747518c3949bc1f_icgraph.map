@@ -1,0 +1,5 @@
+<map id="Tmc9660Handler::Adc::Initialize" name="Tmc9660Handler::Adc::Initialize">
+<area shape="rect" id="Node000001" title="Initialize ADC wrapper (no&#45;op; TMC9660 ADC is always available)." alt="" coords="223,5,388,45"/>
+<area shape="rect" id="Node000002" href="$classTmc9660AdcWrapper.html#aebe0e2cd94c5db2d70ef05c5cffd1913" title=" " alt="" coords="5,5,175,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,28,175,28,175,23,209,23"/>
+</map>
