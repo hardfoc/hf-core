@@ -99,7 +99,7 @@
   },"14": {
     "doc": "HardFOC Core Platform",
     "title": "📄 License",
-    "content": "This project is licensed under the GNU General Public License v3.0. See the LICENSE file for details. Individual submodules may carry their own licenses — see per-submodule LICENSE files. ",
+    "content": "This project is licensed under the GNU General Public License v3.0. See the GPL v3 license for details. Individual submodules may carry their own licenses — see per-submodule LICENSE files. ",
     "url": "/hf-core/development/README.html#-license",
     
     "relUrl": "/README.html#-license"
