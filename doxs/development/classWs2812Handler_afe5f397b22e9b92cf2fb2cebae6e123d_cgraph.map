@@ -1,0 +1,21 @@
+<map id="Ws2812Handler::EnsureInitializedLocked" name="Ws2812Handler::EnsureInitializedLocked">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,73,247,113"/>
+<area shape="rect" id="Node000002" href="$classWs2812Handler.html#a172ae173d1e2bd93c9808452aad6e4cd" title="Initialize the RMT channel and LED strip." alt="" coords="295,80,484,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="247,90,281,90,281,95,247,95"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a5e4bcdaea60b9ac227b564d780388769" title="Log error message." alt="" coords="555,5,661,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="425,77,531,39,553,32,554,37,533,45,426,82"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="532,153,684,179"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="427,103,533,139,554,147,553,152,531,145,426,108"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="559,55,657,80"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="484,79,545,72,545,77,484,84"/>
+<area shape="rect" id="Node000008" href="$classLogger.html#a8c19c14724b0be1d2be63da4258c001a" title="Log warning message." alt="" coords="555,104,661,129"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="484,100,541,107,541,112,484,106"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="732,31,904,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="661,22,718,29,718,34,661,27"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="745,80,891,105"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="654,28,685,40,733,65,756,73,754,78,731,70,683,44,652,33"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="657,59,718,52,718,57,658,64"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="658,71,731,80,731,85,657,76"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="649,101,683,89,731,65,752,57,754,62,733,70,685,94,651,106"/>
+<area shape="poly" id="edge11_Node000008_Node000005" title=" " alt="" coords="661,108,730,100,731,105,662,113"/>
+</map>

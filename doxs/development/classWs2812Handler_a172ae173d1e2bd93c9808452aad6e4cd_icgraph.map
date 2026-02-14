@@ -1,0 +1,23 @@
+<map id="Ws2812Handler::Initialize" name="Ws2812Handler::Initialize">
+<area shape="rect" id="Node000001" title="Initialize the RMT channel and LED strip." alt="" coords="855,153,1044,179"/>
+<area shape="rect" id="Node000002" href="$classWs2812Handler.html#afe5f397b22e9b92cf2fb2cebae6e123d" title=" " alt="" coords="565,146,807,186"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="841,169,807,169,807,163,841,163"/>
+<area shape="rect" id="Node000003" href="$classWs2812Handler.html#a586683dcf63f17194b77c026972c7b2b" title="Dump diagnostics to logger." alt="" coords="269,5,517,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="652,139,592,89,555,65,516,44,484,33,485,28,518,40,558,60,595,85,656,135"/>
+<area shape="rect" id="Node000004" href="$classWs2812Handler.html#a764cc93c64a81844a284ac7515ea8366" title="Ensure strip resources are initialized (lazy init entrypoint)." alt="" coords="273,55,514,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="633,142,578,117,517,94,473,83,475,78,518,89,580,112,635,137"/>
+<area shape="rect" id="Node000005" href="$classWs2812Handler.html#a3e09ba2c15d5b0e7d6d254e22f634ae8" title="Get the animator object." alt="" coords="285,104,501,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="553,146,469,132,470,127,554,141"/>
+<area shape="rect" id="Node000007" href="$classWs2812Handler.html#a7471840392adad3cab496e2dc57dc792" title="Get the underlying LED strip object." alt="" coords="300,153,487,179"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="552,169,487,169,487,163,552,163"/>
+<area shape="rect" id="Node000009" href="$classWs2812Handler.html#ad67002bf517195998950ed6d8385ee89" title="Transmit pixel data to the LED strip." alt="" coords="309,203,477,228"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="554,191,470,205,469,200,553,186"/>
+<area shape="rect" id="Node000010" href="$classWs2812Handler.html#a60ee1479e87c2ddb672a03a053be0c59" title="Advance animation by one step." alt="" coords="312,252,475,277"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="634,194,579,219,518,242,470,254,469,249,517,237,577,214,632,190"/>
+<area shape="rect" id="Node000011" href="$classWs2812Handler.html#af74a184df9277227e6d2b593d13c4501" title="Advance animation by time delta (call periodically)." alt="" coords="313,301,473,327"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="655,198,595,246,558,271,518,291,474,305,473,300,516,286,555,266,591,242,652,193"/>
+<area shape="rect" id="Node000006" href="$classWs2812Handler.html#ad564e91a669c0a06f5abde5a3ae8a6a6" title=" " alt="" coords="5,104,221,129"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="272,119,221,119,221,114,272,114"/>
+<area shape="rect" id="Node000008" href="$classWs2812Handler.html#af97f5cc26ad1fb0f4722e72346ca7caa" title=" " alt="" coords="20,153,207,179"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="286,169,207,169,207,163,286,163"/>
+</map>

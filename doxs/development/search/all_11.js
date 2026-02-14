@@ -100,7 +100,7 @@ var searchData=
   ['spi_5fhost_5fid_97',['SPI_HOST_ID',['../esp32__test__config_8hpp.html#a906fc067289d6f5d4bd4ba065f5076f4',1,'esp32_test_config.hpp']]],
   ['spi_5finterface_5f_98',['spi_interface_',['../classAs5047uSpiAdapter.html#a37cd11da2a833789f8880fc2e3dfe55b',1,'As5047uSpiAdapter']]],
   ['spi_5fref_5f_99',['spi_ref_',['../classAs5047uHandler.html#afa515ec63a07cc2a19020e53673fc0cf',1,'As5047uHandler']]],
-  ['spidriver_100',['spiDriver',['../classTmc5160Handler.html#abc0f0914a2756377a29f4af1cc95fab0',1,'Tmc5160Handler::spiDriver()'],['../classTmc9660Handler.html#a35b7e53bc3c8ec41ab3a85d5c5a83596',1,'Tmc9660Handler::spiDriver() noexcept'],['../classTmc9660Handler.html#ab51845a507e3e9c28a5a2619d8f9b5a0',1,'Tmc9660Handler::spiDriver() const noexcept']]],
+  ['spidriver_100',['spiDriver',['../classTmc5160Handler.html#a1e9298992489ed84fcd61ddfbb9a0e3c',1,'Tmc5160Handler::spiDriver() noexcept'],['../classTmc5160Handler.html#a214ed8c8b7fe84660afe995980744e47',1,'Tmc5160Handler::spiDriver() const noexcept'],['../classTmc9660Handler.html#aaa9d4b9630bda35f008330367018f3fb',1,'Tmc9660Handler::spiDriver() noexcept'],['../classTmc9660Handler.html#a9862c730e4c760eeb4dbe34f86d8cf8d',1,'Tmc9660Handler::spiDriver() const noexcept']]],
   ['spidriver_101',['SpiDriver',['../classTmc5160Handler.html#a93e7a35d8a8b4dc3ec97bb1a9d26c3a1',1,'Tmc5160Handler::SpiDriver'],['../classTmc9660Handler.html#a65d00ffe3eba7aef1cb05ccef5feb619',1,'Tmc9660Handler::SpiDriver']]],
   ['spitransfer_102',['SpiTransfer',['../classHalSpiTmc5160Comm.html#ad2c09e34483d07e2a11ee5438ef6c3c7',1,'HalSpiTmc5160Comm']]],
   ['spitransferbootloader_103',['spiTransferBootloader',['../classHalSpiTmc9660Comm.html#a691d8a1d66cf606952d11afc73bffda0',1,'HalSpiTmc9660Comm']]],

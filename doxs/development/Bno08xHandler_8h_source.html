@@ -487,155 +487,159 @@ $(function(){initNavTree('Bno08xHandler_8h_source.html',''); initResizable(); })
 <div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span> </div>
 <div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Initialize() noexcept;</div>
 <div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span> </div>
-<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Deinitialize() noexcept;</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>    <span class="keywordtype">bool</span> EnsureInitialized() noexcept;</div>
 <div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span> </div>
-<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>    <span class="keywordtype">bool</span> IsInitialized() const noexcept;</div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Deinitialize() noexcept;</div>
 <div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span> </div>
-<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Update() noexcept;</div>
-<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span> </div>
-<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>    <span class="keywordtype">bool</span> HasNewData(BNO085Sensor sensor) const noexcept;</div>
-<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span> </div>
-<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>    <span class="comment">//  SENSOR DATA READING</span></div>
-<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span> </div>
-<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadImuData(<a class="code hl_struct" href="structBno08xImuData.html">Bno08xImuData</a>&amp; imu_data) noexcept;</div>
-<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span> </div>
-<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadAcceleration(<a class="code hl_struct" href="structBno08xVector3.html">Bno08xVector3</a>&amp; acceleration) noexcept;</div>
-<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span> </div>
-<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadGyroscope(<a class="code hl_struct" href="structBno08xVector3.html">Bno08xVector3</a>&amp; gyroscope) noexcept;</div>
-<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span> </div>
-<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadMagnetometer(<a class="code hl_struct" href="structBno08xVector3.html">Bno08xVector3</a>&amp; magnetometer) noexcept;</div>
-<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span> </div>
-<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadQuaternion(<a class="code hl_struct" href="structBno08xQuaternion.html">Bno08xQuaternion</a>&amp; quaternion) noexcept;</div>
-<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span> </div>
-<div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadEulerAngles(<a class="code hl_struct" href="structBno08xEulerAngles.html">Bno08xEulerAngles</a>&amp; euler_angles) noexcept;</div>
-<div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span> </div>
-<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadLinearAcceleration(<a class="code hl_struct" href="structBno08xVector3.html">Bno08xVector3</a>&amp; linear_accel) noexcept;</div>
-<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span> </div>
-<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadGravity(<a class="code hl_struct" href="structBno08xVector3.html">Bno08xVector3</a>&amp; gravity) noexcept;</div>
-<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span> </div>
-<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>    <span class="comment">//  ACTIVITY AND GESTURE DETECTION</span></div>
-<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span> </div>
-<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadActivityData(<a class="code hl_struct" href="structBno08xActivityData.html">Bno08xActivityData</a>&amp; activity_data) noexcept;</div>
-<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span> </div>
-<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>    <span class="comment">//  CALIBRATION STATUS</span></div>
-<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span> </div>
-<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadCalibrationStatus(<a class="code hl_struct" href="structBno08xCalibrationStatus.html">Bno08xCalibrationStatus</a>&amp; status) noexcept;</div>
-<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> </div>
-<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>    <span class="comment">//  SENSOR CONFIGURATION</span></div>
-<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span> </div>
-<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> EnableSensor(BNO085Sensor sensor, uint32_t interval_ms,</div>
-<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span>                             <span class="keywordtype">float</span> sensitivity = 0.0f) noexcept;</div>
-<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span> </div>
-<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> DisableSensor(BNO085Sensor sensor) noexcept;</div>
-<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span> </div>
-<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ApplyConfiguration(const <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>&amp; config) noexcept;</div>
-<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span> </div>
-<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span>    const <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>&amp; GetConfiguration() const noexcept;</div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>    <span class="keywordtype">bool</span> IsInitialized() const noexcept;</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span> </div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Update() noexcept;</div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span> </div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>    <span class="keywordtype">bool</span> HasNewData(BNO085Sensor sensor) const noexcept;</div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span> </div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>    <span class="comment">//  SENSOR DATA READING</span></div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span> </div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadImuData(<a class="code hl_struct" href="structBno08xImuData.html">Bno08xImuData</a>&amp; imu_data) noexcept;</div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span> </div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadAcceleration(<a class="code hl_struct" href="structBno08xVector3.html">Bno08xVector3</a>&amp; acceleration) noexcept;</div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span> </div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadGyroscope(<a class="code hl_struct" href="structBno08xVector3.html">Bno08xVector3</a>&amp; gyroscope) noexcept;</div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span> </div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadMagnetometer(<a class="code hl_struct" href="structBno08xVector3.html">Bno08xVector3</a>&amp; magnetometer) noexcept;</div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span> </div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadQuaternion(<a class="code hl_struct" href="structBno08xQuaternion.html">Bno08xQuaternion</a>&amp; quaternion) noexcept;</div>
+<div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span> </div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadEulerAngles(<a class="code hl_struct" href="structBno08xEulerAngles.html">Bno08xEulerAngles</a>&amp; euler_angles) noexcept;</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span> </div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadLinearAcceleration(<a class="code hl_struct" href="structBno08xVector3.html">Bno08xVector3</a>&amp; linear_accel) noexcept;</div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span> </div>
+<div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadGravity(<a class="code hl_struct" href="structBno08xVector3.html">Bno08xVector3</a>&amp; gravity) noexcept;</div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span> </div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span>    <span class="comment">//  ACTIVITY AND GESTURE DETECTION</span></div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span> </div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadActivityData(<a class="code hl_struct" href="structBno08xActivityData.html">Bno08xActivityData</a>&amp; activity_data) noexcept;</div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span> </div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>    <span class="comment">//  CALIBRATION STATUS</span></div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span> </div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ReadCalibrationStatus(<a class="code hl_struct" href="structBno08xCalibrationStatus.html">Bno08xCalibrationStatus</a>&amp; status) noexcept;</div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span> </div>
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>    <span class="comment">//  SENSOR CONFIGURATION</span></div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span> </div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> EnableSensor(BNO085Sensor sensor, uint32_t interval_ms,</div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>                             <span class="keywordtype">float</span> sensitivity = 0.0f) noexcept;</div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span> </div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> DisableSensor(BNO085Sensor sensor) noexcept;</div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span> </div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> ApplyConfiguration(const <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>&amp; config) noexcept;</div>
 <div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span> </div>
-<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span>    <span class="comment">//  HARDWARE CONTROL</span></div>
-<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span> </div>
-<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> HardwareReset(uint32_t reset_duration_ms = 10) noexcept;</div>
-<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span> </div>
-<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> SetBootPin(<span class="keywordtype">bool</span> boot_state) noexcept;</div>
+<div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span>    const <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>&amp; GetConfiguration() const noexcept;</div>
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span> </div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span>    <span class="comment">//  HARDWARE CONTROL</span></div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span> </div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> HardwareReset(uint32_t reset_duration_ms = 10) noexcept;</div>
 <div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span> </div>
-<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> SetWakePin(<span class="keywordtype">bool</span> wake_state) noexcept;</div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> SetBootPin(<span class="keywordtype">bool</span> boot_state) noexcept;</div>
 <div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span> </div>
-<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span>    <span class="comment">//  CALLBACK MANAGEMENT</span></div>
-<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span> </div>
-<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>    <span class="keywordtype">void</span> SetSensorCallback(SensorCallback callback) noexcept;</div>
-<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span> </div>
-<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>    <span class="keywordtype">void</span> ClearSensorCallback() noexcept;</div>
-<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span> </div>
-<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span>    <span class="comment">//  UTILITY METHODS</span></div>
-<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span> </div>
-<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>    static <span class="keywordtype">void</span> QuaternionToEuler(const <a class="code hl_struct" href="structBno08xQuaternion.html">Bno08xQuaternion</a>&amp; quaternion,</div>
-<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>                                  <a class="code hl_struct" href="structBno08xEulerAngles.html">Bno08xEulerAngles</a>&amp; euler_angles) noexcept;</div>
-<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span> </div>
-<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>    BNO085Interface GetInterfaceType() const noexcept;</div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> SetWakePin(<span class="keywordtype">bool</span> wake_state) noexcept;</div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span> </div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>    <span class="comment">//  CALLBACK MANAGEMENT</span></div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span> </div>
+<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span>    <span class="keywordtype">void</span> SetSensorCallback(SensorCallback callback) noexcept;</div>
+<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span> </div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>    <span class="keywordtype">void</span> ClearSensorCallback() noexcept;</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span> </div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span>    <span class="comment">//  UTILITY METHODS</span></div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span> </div>
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span>    static <span class="keywordtype">void</span> QuaternionToEuler(const <a class="code hl_struct" href="structBno08xQuaternion.html">Bno08xQuaternion</a>&amp; quaternion,</div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>                                  <a class="code hl_struct" href="structBno08xEulerAngles.html">Bno08xEulerAngles</a>&amp; euler_angles) noexcept;</div>
 <div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span> </div>
-<div class="line"><a id="l00771" name="l00771"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#a57e2952c0438e800c091cd0e3ebcdaf5">  771</a></span>    <a class="code hl_class" href="classIBno08xDriverOps.html">IBno08xDriverOps</a>* GetSensor() noexcept { <span class="keywordflow">return</span> driver_ops_.get(); }</div>
-<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span> </div>
-<div class="line"><a id="l00774" name="l00774"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#abf3a81e646ebd6dd0a10890e5be21d6d">  774</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classIBno08xDriverOps.html">IBno08xDriverOps</a>* <a class="code hl_function" href="classBno08xHandler.html#abf3a81e646ebd6dd0a10890e5be21d6d">GetSensor</a>() const noexcept { <span class="keywordflow">return</span> driver_ops_.get(); }</div>
-<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span> </div>
-<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> GetLastError() const noexcept;</div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>    BNO085Interface GetInterfaceType() const noexcept;</div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span> </div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span>    <a class="code hl_class" href="classIBno08xDriverOps.html">IBno08xDriverOps</a>* GetSensor() noexcept;</div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span> </div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>    const <a class="code hl_class" href="classIBno08xDriverOps.html">IBno08xDriverOps</a>* GetSensor() const noexcept;</div>
 <div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span> </div>
-<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>    <span class="keywordtype">int</span> GetLastDriverError() const noexcept;</div>
+<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> GetLastError() const noexcept;</div>
 <div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span> </div>
-<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span>    const <span class="keywordtype">char</span>* GetDescription() const noexcept;</div>
+<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span>    <span class="keywordtype">int</span> GetLastDriverError() const noexcept;</div>
 <div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span> </div>
-<div class="line"><a id="l00798" name="l00798"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#a7ab2e3756b7a6e17879bc95ba2125e8b">  798</a></span>    static <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a> GetDefaultConfig() noexcept { <span class="keywordflow">return</span> <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>{}; }</div>
+<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span>    const <span class="keywordtype">char</span>* GetDescription() const noexcept;</div>
 <div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span> </div>
-<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span>    <span class="keywordtype">void</span> DumpDiagnostics() const noexcept;</div>
-<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span> </div>
-<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>private:</div>
-<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>    <span class="comment">//  PRIVATE MEMBERS</span></div>
-<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span> </div>
-<div class="line"><a id="l00810" name="l00810"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#af43f44ede1cc408c5141588a4b965fea">  810</a></span>    std::unique_ptr&lt;<a class="code hl_class" href="classIBno08xDriverOps.html">IBno08xDriverOps</a>&gt; driver_ops_; </div>
-<div class="line"><a id="l00811" name="l00811"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#a04876261e622b918bd759f042ce025fc">  811</a></span>    <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a> config_;                          </div>
-<div class="line"><a id="l00812" name="l00812"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#aa17448183bf8a9205830538ce86a3e1a">  812</a></span>    mutable RtosMutex handler_mutex_;              </div>
-<div class="line"><a id="l00813" name="l00813"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#a4f2e5fdd78f9f3fbb737bed060478287">  813</a></span>    <span class="keywordtype">bool</span> initialized_{<span class="keyword">false</span>};                      </div>
-<div class="line"><a id="l00814" name="l00814"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#ae17c70536ddb4a4ae8931807347c9001">  814</a></span>    <span class="keyword">mutable</span> <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> last_error_{<a class="code hl_enumvalue" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c">Bno08xError::SUCCESS</a>}; </div>
-<div class="line"><a id="l00815" name="l00815"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#a6a6864399d79e0363da35bd3e684c123">  815</a></span>    BNO085Interface <a class="code hl_variable" href="classBno08xHandler.html#a6a6864399d79e0363da35bd3e684c123">interface_type_</a>;               </div>
-<div class="line"><a id="l00816" name="l00816"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#ab4be91e6bd9492c1824aa747db733c0f">  816</a></span>    SensorCallback <a class="code hl_variable" href="classBno08xHandler.html#ab4be91e6bd9492c1824aa747db733c0f">user_callback_</a>;                 </div>
-<div class="line"><a id="l00817" name="l00817"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#a8a2f0bb1bca336b49c6292c10475f64d">  817</a></span>    <span class="keywordtype">char</span> description_[64]{};                       </div>
-<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span> </div>
-<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span>    <span class="comment">//  PRIVATE HELPERS</span></div>
-<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span>    <span class="comment">// ========================================================================</span></div>
-<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span> </div>
-<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> readVectorSensor(BNO085Sensor sensor,</div>
-<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span>                                 <a class="code hl_struct" href="structBno08xVector3.html">Bno08xVector3</a>&amp; out) <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00804" name="l00804"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#a7ab2e3756b7a6e17879bc95ba2125e8b">  804</a></span>    static <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a> GetDefaultConfig() noexcept { <span class="keywordflow">return</span> <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>{}; }</div>
+<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span> </div>
+<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span>    <span class="keywordtype">void</span> DumpDiagnostics() const noexcept;</div>
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span> </div>
+<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>private:</div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>    <span class="comment">//  PRIVATE MEMBERS</span></div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span> </div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#af43f44ede1cc408c5141588a4b965fea">  816</a></span>    std::unique_ptr&lt;<a class="code hl_class" href="classIBno08xDriverOps.html">IBno08xDriverOps</a>&gt; driver_ops_; </div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#a04876261e622b918bd759f042ce025fc">  817</a></span>    <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a> config_;                          </div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#aa17448183bf8a9205830538ce86a3e1a">  818</a></span>    mutable RtosMutex handler_mutex_;              </div>
+<div class="line"><a id="l00819" name="l00819"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#a4f2e5fdd78f9f3fbb737bed060478287">  819</a></span>    <span class="keywordtype">bool</span> initialized_{<span class="keyword">false</span>};                      </div>
+<div class="line"><a id="l00820" name="l00820"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#ae17c70536ddb4a4ae8931807347c9001">  820</a></span>    <span class="keyword">mutable</span> <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> last_error_{<a class="code hl_enumvalue" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c">Bno08xError::SUCCESS</a>}; </div>
+<div class="line"><a id="l00821" name="l00821"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#a6a6864399d79e0363da35bd3e684c123">  821</a></span>    BNO085Interface <a class="code hl_variable" href="classBno08xHandler.html#a6a6864399d79e0363da35bd3e684c123">interface_type_</a>;               </div>
+<div class="line"><a id="l00822" name="l00822"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#ab4be91e6bd9492c1824aa747db733c0f">  822</a></span>    SensorCallback <a class="code hl_variable" href="classBno08xHandler.html#ab4be91e6bd9492c1824aa747db733c0f">user_callback_</a>;                 </div>
+<div class="line"><a id="l00823" name="l00823"></a><span class="lineno"><a class="line" href="classBno08xHandler.html#a8a2f0bb1bca336b49c6292c10475f64d">  823</a></span>    <span class="keywordtype">char</span> description_[64]{};                       </div>
+<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span> </div>
+<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span>    <span class="comment">//  PRIVATE HELPERS</span></div>
+<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span>    <span class="comment">// ========================================================================</span></div>
 <div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span> </div>
-<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span>    <span class="keywordtype">bool</span> applyConfigLocked(<span class="keyword">const</span> <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>&amp; config) <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span> </div>
-<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span>    <span class="keyword">static</span> <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> mapDriverError(<span class="keywordtype">int</span> sh2_error) <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>};</div>
-</div>
+<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span>    <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> readVectorSensor(BNO085Sensor sensor,</div>
+<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span>                                 <a class="code hl_struct" href="structBno08xVector3.html">Bno08xVector3</a>&amp; out) <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span> </div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>    <span class="keywordtype">bool</span> applyConfigLocked(<span class="keyword">const</span> <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>&amp; config) <span class="keyword">noexcept</span>;</div>
 <div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span> </div>
-<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span><span class="comment">// ============================================================================</span></div>
-<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span><span class="comment">//  FACTORY METHODS</span></div>
-<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span><span class="comment">// ============================================================================</span></div>
-<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span> </div>
-<div class="foldopen" id="foldopen00852" data-start="{" data-end="}">
-<div class="line"><a id="l00852" name="l00852"></a><span class="lineno"><a class="line" href="Bno08xHandler_8h.html#a00118ff1c99ae958c092ed6d21b59135">  852</a></span><span class="keyword">inline</span> std::unique_ptr&lt;Bno08xHandler&gt; <a class="code hl_function" href="Bno08xHandler_8h.html#a00118ff1c99ae958c092ed6d21b59135">CreateBno08xHandlerI2c</a>(</div>
-<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>    BaseI2c&amp; i2c_device,</div>
-<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>&amp; config = <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>{},</div>
-<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>    BaseGpio* reset_gpio = <span class="keyword">nullptr</span>,</div>
-<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>    BaseGpio* int_gpio = <span class="keyword">nullptr</span>) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>    <span class="keywordflow">return</span> std::make_unique&lt;Bno08xHandler&gt;(i2c_device, config, reset_gpio, int_gpio);</div>
-<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span>}</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>    <span class="keywordtype">bool</span> ensureInitializedLocked() noexcept;</div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span> </div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span>    static <a class="code hl_enumeration" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> mapDriverError(<span class="keywordtype">int</span> sh2_error) noexcept;</div>
+<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>};</div>
 </div>
-<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span> </div>
-<div class="foldopen" id="foldopen00869" data-start="{" data-end="}">
-<div class="line"><a id="l00869" name="l00869"></a><span class="lineno"><a class="line" href="Bno08xHandler_8h.html#a1bd813a8294732698f36232c4b9ed0af">  869</a></span><span class="keyword">inline</span> std::unique_ptr&lt;Bno08xHandler&gt; <a class="code hl_function" href="Bno08xHandler_8h.html#a1bd813a8294732698f36232c4b9ed0af">CreateBno08xHandlerSpi</a>(</div>
-<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>    BaseSpi&amp; spi_device,</div>
-<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>&amp; config = <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>{},</div>
-<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>    BaseGpio* reset_gpio = <span class="keyword">nullptr</span>,</div>
-<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span>    BaseGpio* int_gpio = <span class="keyword">nullptr</span>,</div>
-<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span>    BaseGpio* wake_gpio = <span class="keyword">nullptr</span>) <span class="keyword">noexcept</span> {</div>
-<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span>    <span class="keywordflow">return</span> std::make_unique&lt;Bno08xHandler&gt;(spi_device, config, reset_gpio, int_gpio, wake_gpio);</div>
-<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>}</div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span> </div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span><span class="comment">//  FACTORY METHODS</span></div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span> </div>
+<div class="foldopen" id="foldopen00863" data-start="{" data-end="}">
+<div class="line"><a id="l00863" name="l00863"></a><span class="lineno"><a class="line" href="Bno08xHandler_8h.html#a00118ff1c99ae958c092ed6d21b59135">  863</a></span>inline std::unique_ptr&lt;<a class="code hl_class" href="classBno08xHandler.html">Bno08xHandler</a>&gt; <a class="code hl_function" href="Bno08xHandler_8h.html#a00118ff1c99ae958c092ed6d21b59135">CreateBno08xHandlerI2c</a>(</div>
+<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span>    BaseI2c&amp; i2c_device,</div>
+<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span>    const <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>&amp; config = <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>{},</div>
+<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span>    BaseGpio* reset_gpio = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span>    BaseGpio* int_gpio = <span class="keyword">nullptr</span>) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span>    <span class="keywordflow">return</span> std::make_unique&lt;Bno08xHandler&gt;(i2c_device, config, reset_gpio, int_gpio);</div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span>}</div>
 </div>
-<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span> </div>
-<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span><span class="preprocessor">#endif </span><span class="comment">// COMPONENT_HANDLER_BNO08X_HANDLER_H_</span></div>
-<div class="ttc" id="aBno08xHandler_8h_html_a00118ff1c99ae958c092ed6d21b59135"><div class="ttname"><a href="Bno08xHandler_8h.html#a00118ff1c99ae958c092ed6d21b59135">CreateBno08xHandlerI2c</a></div><div class="ttdeci">std::unique_ptr&lt; Bno08xHandler &gt; CreateBno08xHandlerI2c(BaseI2c &amp;i2c_device, const Bno08xConfig &amp;config=Bno08xConfig{}, BaseGpio *reset_gpio=nullptr, BaseGpio *int_gpio=nullptr) noexcept</div><div class="ttdoc">Create BNO08x handler with I2C interface.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:852</div></div>
-<div class="ttc" id="aBno08xHandler_8h_html_a1bd813a8294732698f36232c4b9ed0af"><div class="ttname"><a href="Bno08xHandler_8h.html#a1bd813a8294732698f36232c4b9ed0af">CreateBno08xHandlerSpi</a></div><div class="ttdeci">std::unique_ptr&lt; Bno08xHandler &gt; CreateBno08xHandlerSpi(BaseSpi &amp;spi_device, const Bno08xConfig &amp;config=Bno08xConfig{}, BaseGpio *reset_gpio=nullptr, BaseGpio *int_gpio=nullptr, BaseGpio *wake_gpio=nullptr) noexcept</div><div class="ttdoc">Create BNO08x handler with SPI interface.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:869</div></div>
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span> </div>
+<div class="foldopen" id="foldopen00880" data-start="{" data-end="}">
+<div class="line"><a id="l00880" name="l00880"></a><span class="lineno"><a class="line" href="Bno08xHandler_8h.html#a1bd813a8294732698f36232c4b9ed0af">  880</a></span><span class="keyword">inline</span> std::unique_ptr&lt;Bno08xHandler&gt; <a class="code hl_function" href="Bno08xHandler_8h.html#a1bd813a8294732698f36232c4b9ed0af">CreateBno08xHandlerSpi</a>(</div>
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>    BaseSpi&amp; spi_device,</div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>&amp; config = <a class="code hl_struct" href="structBno08xConfig.html">Bno08xConfig</a>{},</div>
+<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span>    BaseGpio* reset_gpio = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span>    BaseGpio* int_gpio = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span>    BaseGpio* wake_gpio = <span class="keyword">nullptr</span>) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span>    <span class="keywordflow">return</span> std::make_unique&lt;Bno08xHandler&gt;(spi_device, config, reset_gpio, int_gpio, wake_gpio);</div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>}</div>
+</div>
+<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span> </div>
+<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span><span class="preprocessor">#endif </span><span class="comment">// COMPONENT_HANDLER_BNO08X_HANDLER_H_</span></div>
+<div class="ttc" id="aBno08xHandler_8h_html_a00118ff1c99ae958c092ed6d21b59135"><div class="ttname"><a href="Bno08xHandler_8h.html#a00118ff1c99ae958c092ed6d21b59135">CreateBno08xHandlerI2c</a></div><div class="ttdeci">std::unique_ptr&lt; Bno08xHandler &gt; CreateBno08xHandlerI2c(BaseI2c &amp;i2c_device, const Bno08xConfig &amp;config=Bno08xConfig{}, BaseGpio *reset_gpio=nullptr, BaseGpio *int_gpio=nullptr) noexcept</div><div class="ttdoc">Create BNO08x handler with I2C interface.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:863</div></div>
+<div class="ttc" id="aBno08xHandler_8h_html_a1bd813a8294732698f36232c4b9ed0af"><div class="ttname"><a href="Bno08xHandler_8h.html#a1bd813a8294732698f36232c4b9ed0af">CreateBno08xHandlerSpi</a></div><div class="ttdeci">std::unique_ptr&lt; Bno08xHandler &gt; CreateBno08xHandlerSpi(BaseSpi &amp;spi_device, const Bno08xConfig &amp;config=Bno08xConfig{}, BaseGpio *reset_gpio=nullptr, BaseGpio *int_gpio=nullptr, BaseGpio *wake_gpio=nullptr) noexcept</div><div class="ttdoc">Create BNO08x handler with SPI interface.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:880</div></div>
 <div class="ttc" id="aBno08xHandler_8h_html_a929bff75c00c4ce529177b0640cdf58c"><div class="ttname"><a href="Bno08xHandler_8h.html#a929bff75c00c4ce529177b0640cdf58c">Bno08xErrorToString</a></div><div class="ttdeci">constexpr const char * Bno08xErrorToString(Bno08xError error) noexcept</div><div class="ttdoc">Convert Bno08xError to string for debugging.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:121</div></div>
 <div class="ttc" id="aBno08xHandler_8h_html_a93eba6be08e06b6dcc1d9800dcc4a832"><div class="ttname"><a href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a></div><div class="ttdeci">Bno08xError</div><div class="ttdoc">BNO08x handler error codes for consistent error reporting.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:100</div></div>
 <div class="ttc" id="aBno08xHandler_8h_html_a93eba6be08e06b6dcc1d9800dcc4a832a02de9649e258d1dd94056e676061e969"><div class="ttname"><a href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a02de9649e258d1dd94056e676061e969">Bno08xError::NOT_INITIALIZED</a></div><div class="ttdeci">@ NOT_INITIALIZED</div><div class="ttdoc">Handler or sensor not initialized.</div></div>
@@ -672,9 +676,8 @@ $(function(){initNavTree('Bno08xHandler_8h_source.html',''); initResizable(); })
 <div class="ttc" id="aclassBno08xDriverImpl_html_aefa8b67017e373c9fbdc5d00a882a58f"><div class="ttname"><a href="classBno08xDriverImpl.html#aefa8b67017e373c9fbdc5d00a882a58f">Bno08xDriverImpl::GetInterfaceType</a></div><div class="ttdeci">BNO085Interface GetInterfaceType() noexcept override</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:336</div></div>
 <div class="ttc" id="aclassBno08xHandler_html"><div class="ttname"><a href="classBno08xHandler.html">Bno08xHandler</a></div><div class="ttdoc">Unified handler for BNO08x IMU sensor family.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:481</div></div>
 <div class="ttc" id="aclassBno08xHandler_html_a4bdec4a51e6c90b2354db27fbc8b3251"><div class="ttname"><a href="classBno08xHandler.html#a4bdec4a51e6c90b2354db27fbc8b3251">Bno08xHandler::~Bno08xHandler</a></div><div class="ttdeci">~Bno08xHandler() noexcept=default</div></div>
-<div class="ttc" id="aclassBno08xHandler_html_a6a6864399d79e0363da35bd3e684c123"><div class="ttname"><a href="classBno08xHandler.html#a6a6864399d79e0363da35bd3e684c123">Bno08xHandler::interface_type_</a></div><div class="ttdeci">BNO085Interface interface_type_</div><div class="ttdoc">I2C or SPI.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:815</div></div>
-<div class="ttc" id="aclassBno08xHandler_html_ab4be91e6bd9492c1824aa747db733c0f"><div class="ttname"><a href="classBno08xHandler.html#ab4be91e6bd9492c1824aa747db733c0f">Bno08xHandler::user_callback_</a></div><div class="ttdeci">SensorCallback user_callback_</div><div class="ttdoc">User's sensor callback.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:816</div></div>
-<div class="ttc" id="aclassBno08xHandler_html_abf3a81e646ebd6dd0a10890e5be21d6d"><div class="ttname"><a href="classBno08xHandler.html#abf3a81e646ebd6dd0a10890e5be21d6d">Bno08xHandler::GetSensor</a></div><div class="ttdeci">const IBno08xDriverOps * GetSensor() const noexcept</div><div class="ttdoc">Const overload of GetSensor().</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:774</div></div>
+<div class="ttc" id="aclassBno08xHandler_html_a6a6864399d79e0363da35bd3e684c123"><div class="ttname"><a href="classBno08xHandler.html#a6a6864399d79e0363da35bd3e684c123">Bno08xHandler::interface_type_</a></div><div class="ttdeci">BNO085Interface interface_type_</div><div class="ttdoc">I2C or SPI.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:821</div></div>
+<div class="ttc" id="aclassBno08xHandler_html_ab4be91e6bd9492c1824aa747db733c0f"><div class="ttname"><a href="classBno08xHandler.html#ab4be91e6bd9492c1824aa747db733c0f">Bno08xHandler::user_callback_</a></div><div class="ttdeci">SensorCallback user_callback_</div><div class="ttdoc">User's sensor callback.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:822</div></div>
 <div class="ttc" id="aclassHalI2cBno08xComm_html"><div class="ttname"><a href="classHalI2cBno08xComm.html">HalI2cBno08xComm</a></div><div class="ttdoc">I2C CRTP communication adapter for BNO08x.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:152</div></div>
 <div class="ttc" id="aclassHalI2cBno08xComm_html_a28e5cc1f58852b5ce443c067b2a475ba"><div class="ttname"><a href="classHalI2cBno08xComm.html#a28e5cc1f58852b5ce443c067b2a475ba">HalI2cBno08xComm::GetTimeUs</a></div><div class="ttdeci">uint32_t GetTimeUs() noexcept</div><div class="ttdef"><b>Definition</b> Bno08xHandler.cpp:109</div></div>
 <div class="ttc" id="aclassHalI2cBno08xComm_html_a2a9ae5ca94b8d5ce08d9dab1c04c6fc4"><div class="ttname"><a href="classHalI2cBno08xComm.html#a2a9ae5ca94b8d5ce08d9dab1c04c6fc4">HalI2cBno08xComm::int_gpio_</a></div><div class="ttdeci">BaseGpio * int_gpio_</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:191</div></div>

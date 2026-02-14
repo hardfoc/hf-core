@@ -40,11 +40,13 @@ var searchData=
   ['readvelocityrpm_37',['ReadVelocityRPM',['../classAs5047uHandler.html#a5b3ca99cb427d982ff49d8f2afb326e8',1,'As5047uHandler']]],
   ['readvoltagechannel_38',['ReadVoltageChannel',['../classTmc9660Handler_1_1Adc.html#ade0515c993fff08763b61988923df9cb',1,'Tmc9660Handler::Adc']]],
   ['registerinterrupthandler_39',['RegisterInterruptHandler',['../classHalI2cPcal95555Comm.html#a8a5517910e3a771091471f2843ea26ed',1,'HalI2cPcal95555Comm']]],
-  ['registerpininterrupt_40',['RegisterPinInterrupt',['../classPcal95555Handler.html#a59b2dcc6d426c19a487175e8a83ed999',1,'Pcal95555Handler']]],
-  ['resetcalibration_41',['ResetCalibration',['../classNtcTemperatureHandler.html#afbd49ab0a549ce22cada91fcd498b6d7',1,'NtcTemperatureHandler']]],
-  ['resetdiagnostics_42',['ResetDiagnostics',['../classNtcTemperatureHandler.html#adb609ac3f90e26a005a28c0d0056f638',1,'NtcTemperatureHandler::ResetDiagnostics()'],['../classTmc9660AdcWrapper.html#a3a7e9bf27e3cf27497ecbed63209fbdf',1,'Tmc9660AdcWrapper::ResetDiagnostics()'],['../classTmc9660Handler_1_1Adc.html#a4ac45d019ddc392ca9e04194e81cc3ae',1,'Tmc9660Handler::Adc::ResetDiagnostics()']]],
-  ['resetstatistics_43',['ResetStatistics',['../classNtcTemperatureHandler.html#a20cfb11a0f83dda45e22ee4815b2c6d7',1,'NtcTemperatureHandler::ResetStatistics()'],['../classTmc9660AdcWrapper.html#abccc374da45807cc0d2cf7ddedfd88bc',1,'Tmc9660AdcWrapper::ResetStatistics()'],['../classTmc9660Handler_1_1Adc.html#aeb392d8c266f3183dbce1f31f7bff568',1,'Tmc9660Handler::Adc::ResetStatistics()']]],
-  ['resettodefault_44',['ResetToDefault',['../classPcal95555Handler.html#aeb2c5589355cb9ae970fdf2d10b545e8',1,'Pcal95555Handler']]],
-  ['resettodefaults_45',['ResetToDefaults',['../classAs5047uHandler.html#a7cbd322b961c33b684227abd9581bd4b',1,'As5047uHandler']]],
-  ['resetvariables_46',['ResetVariables',['../classTestThread.html#abaf68689b014106872445278fdfcd1fa',1,'TestThread']]]
+  ['registermonitoringcontext_40',['RegisterMonitoringContext',['../classNtcTemperatureHandler.html#ae173c55a63a51d2344798dd785b25ebe',1,'NtcTemperatureHandler']]],
+  ['registerpininterrupt_41',['RegisterPinInterrupt',['../classPcal95555Handler.html#a59b2dcc6d426c19a487175e8a83ed999',1,'Pcal95555Handler']]],
+  ['resetcalibration_42',['ResetCalibration',['../classNtcTemperatureHandler.html#afbd49ab0a549ce22cada91fcd498b6d7',1,'NtcTemperatureHandler']]],
+  ['resetdiagnostics_43',['ResetDiagnostics',['../classNtcTemperatureHandler.html#adb609ac3f90e26a005a28c0d0056f638',1,'NtcTemperatureHandler::ResetDiagnostics()'],['../classTmc9660AdcWrapper.html#a3a7e9bf27e3cf27497ecbed63209fbdf',1,'Tmc9660AdcWrapper::ResetDiagnostics()'],['../classTmc9660Handler_1_1Adc.html#a4ac45d019ddc392ca9e04194e81cc3ae',1,'Tmc9660Handler::Adc::ResetDiagnostics()']]],
+  ['resetstatistics_44',['ResetStatistics',['../classNtcTemperatureHandler.html#a20cfb11a0f83dda45e22ee4815b2c6d7',1,'NtcTemperatureHandler::ResetStatistics()'],['../classTmc9660AdcWrapper.html#abccc374da45807cc0d2cf7ddedfd88bc',1,'Tmc9660AdcWrapper::ResetStatistics()'],['../classTmc9660Handler_1_1Adc.html#aeb392d8c266f3183dbce1f31f7bff568',1,'Tmc9660Handler::Adc::ResetStatistics()']]],
+  ['resettodefault_45',['ResetToDefault',['../classPcal95555Handler.html#aeb2c5589355cb9ae970fdf2d10b545e8',1,'Pcal95555Handler']]],
+  ['resettodefaults_46',['ResetToDefaults',['../classAs5047uHandler.html#a7cbd322b961c33b684227abd9581bd4b',1,'As5047uHandler']]],
+  ['resetvariables_47',['ResetVariables',['../classTestThread.html#abaf68689b014106872445278fdfcd1fa',1,'TestThread']]],
+  ['resolvemonitoringcontext_48',['ResolveMonitoringContext',['../classNtcTemperatureHandler.html#a2a459d108af3fc0c29d518c62cb791fe',1,'NtcTemperatureHandler']]]
 ];

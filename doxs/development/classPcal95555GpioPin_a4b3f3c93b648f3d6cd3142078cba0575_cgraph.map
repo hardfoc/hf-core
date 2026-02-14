@@ -1,5 +1,7 @@
 <map id="Pcal95555GpioPin::SupportsInterrupts" name="Pcal95555GpioPin::SupportsInterrupts">
-<area shape="rect" id="Node000001" title="Check if this pin supports interrupt configuration." alt="" coords="5,5,209,45"/>
-<area shape="rect" id="Node000002" href="$classPcal95555Handler.html#a997583346dffe6c95e5f8fcfc127c37b" title="Check if the detected chip supports Agile I/O features." alt="" coords="257,13,477,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,23,244,23,244,28,210,28"/>
+<area shape="rect" id="Node000001" title="Check if this pin supports interrupt configuration." alt="" coords="5,27,209,67"/>
+<area shape="rect" id="Node000002" href="$classPcal95555Handler.html#a997583346dffe6c95e5f8fcfc127c37b" title="Check if the detected chip supports Agile I/O features." alt="" coords="262,5,482,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,33,248,29,249,34,210,39"/>
+<area shape="rect" id="Node000003" href="$classPcal95555Handler.html#a582a8375e50b2df78dfd91aa132955af" title="Check if hardware interrupt support is available." alt="" coords="257,55,487,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="210,55,244,59,243,64,209,61"/>
 </map>

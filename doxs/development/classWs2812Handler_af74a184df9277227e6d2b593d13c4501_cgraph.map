@@ -1,0 +1,23 @@
+<map id="Ws2812Handler::Tick" name="Ws2812Handler::Tick">
+<area shape="rect" id="Node000001" title="Advance animation by time delta (call periodically)." alt="" coords="5,80,165,105"/>
+<area shape="rect" id="Node000002" href="$classWs2812Handler.html#afe5f397b22e9b92cf2fb2cebae6e123d" title=" " alt="" coords="213,73,455,113"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,90,199,90,199,95,166,95"/>
+<area shape="rect" id="Node000003" href="$classWs2812Handler.html#a172ae173d1e2bd93c9808452aad6e4cd" title="Initialize the RMT channel and LED strip." alt="" coords="503,80,692,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="455,90,489,90,489,95,455,95"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#a5e4bcdaea60b9ac227b564d780388769" title="Log error message." alt="" coords="763,5,869,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="633,77,739,39,761,32,762,37,741,45,634,82"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="740,153,892,179"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="635,103,741,139,762,147,761,152,739,145,634,108"/>
+<area shape="rect" id="Node000008" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="767,55,865,80"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="692,79,753,72,753,77,692,84"/>
+<area shape="rect" id="Node000009" href="$classLogger.html#a8c19c14724b0be1d2be63da4258c001a" title="Log warning message." alt="" coords="763,104,869,129"/>
+<area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="692,100,749,107,749,112,692,106"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="940,31,1112,56"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="869,22,926,29,926,34,869,27"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="953,80,1099,105"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="862,28,893,40,941,65,964,73,962,78,939,70,891,44,860,33"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="865,59,926,52,926,57,866,64"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="866,71,939,80,939,85,865,76"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="857,101,891,89,939,65,960,57,962,62,941,70,893,94,859,106"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="869,108,938,100,939,105,870,113"/>
+</map>
