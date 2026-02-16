@@ -120,11 +120,11 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 <h1><a class="anchor" id="autotoc_md32"></a>
 ✨ Features</h1>
 <ul>
-<li>✅ <b>7 Device Handlers</b> — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, <a class="el" href="classLogger.html" title="Advanced logging system with formatting capabilities.">Logger</a></li>
+<li>✅ <b>11 Device Handlers</b> — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, TMC5160, TLE92466ED, MAX22200, WS2812, <a class="el" href="classLogger.html" title="Advanced logging system with formatting capabilities.">Logger</a></li>
 <li>✅ <b>30+ General Utilities</b> — Buffers, filters, timers, CRC, interpolation, linked lists, flag sets, physical units</li>
 <li>✅ <b>Full RTOS Abstraction</b> — Mutex, semaphore, queue, event flags, threads, timers</li>
 <li>✅ <b>CANopen Utilities</b> — CAN frame, SDO protocol, NMT commands</li>
-<li>✅ <b>ESP32 Test Suite</b> — 11 test applications covering every handler, utility, and integration scenario</li>
+<li>✅ <b>ESP32 Test Suite</b> — 15 test applications covering every handler, utility, and integration scenario</li>
 <li>✅ <b>8 CI Pipelines</b> — Build, lint, analysis, documentation, release</li>
 <li>✅ <b>Thread-Safe</b> — All handlers use <code>RtosMutex</code> for safe concurrent access</li>
 <li>✅ <b>Modern C++20</b> — Type-safe APIs with CRTP-based design and zero-overhead abstractions</li>
@@ -187,6 +187,14 @@ Build All CI-Enabled Tests</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft"><code><a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a></code>   </td><td class="markdownTableBodyLeft">TMC9660   </td><td class="markdownTableBodyLeft">SPI/UART   </td><td class="markdownTableBodyLeft">Motor control, telemetry, GPIO/ADC/temp wrappers    </td></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classTmc5160Handler.html" title="Unified handler for TMC5160/TMC5130 stepper motor driver.">Tmc5160Handler</a></code>   </td><td class="markdownTableBodyLeft">TMC5160   </td><td class="markdownTableBodyLeft">SPI/UART   </td><td class="markdownTableBodyLeft">Stepper motor, ramp generator, StallGuard, visitDriver    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classTle92466edHandler.html" title="Unified handler for TLE92466ED six-channel solenoid driver.">Tle92466edHandler</a></code>   </td><td class="markdownTableBodyLeft">TLE92466ED   </td><td class="markdownTableBodyLeft">SPI   </td><td class="markdownTableBodyLeft">6-ch solenoid driver, PWM, diagnostics, watchdog    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classMax22200Handler.html" title="Unified handler for MAX22200 octal solenoid/motor driver.">Max22200Handler</a></code>   </td><td class="markdownTableBodyLeft">MAX22200   </td><td class="markdownTableBodyLeft">SPI   </td><td class="markdownTableBodyLeft">8-ch solenoid/motor, CDR/VDR, HIT/HOLD, DPM    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><code><a class="el" href="classWs2812Handler.html" title="Unified handler for WS2812 addressable LED strips.">Ws2812Handler</a></code>   </td><td class="markdownTableBodyLeft">WS2812   </td><td class="markdownTableBodyLeft">RMT   </td><td class="markdownTableBodyLeft">Addressable LED strip, pixel control, animations    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code><a class="el" href="classLogger.html" title="Advanced logging system with formatting capabilities.">Logger</a></code>   </td><td class="markdownTableBodyLeft">—   </td><td class="markdownTableBodyLeft">—   </td><td class="markdownTableBodyLeft">Singleton, log levels, per-tag filter, formatted output   </td></tr>
 </table>
 <h1><a class="anchor" id="autotoc_md39"></a>
@@ -207,18 +215,23 @@ Build All CI-Enabled Tests</h2>
 <div class="line">├── handlers/           # Device handler implementations</div>
 <div class="line">│   ├── as5047u/        #   Magnetic encoder (SPI)</div>
 <div class="line">│   ├── bno08x/         #   9-axis IMU (I2C)</div>
+<div class="line">│   ├── common/         #   Shared handler utilities (HandlerCommon.h)</div>
+<div class="line">│   ├── logger/         #   Singleton logging</div>
+<div class="line">│   ├── max22200/       #   8-ch solenoid/motor driver (SPI)</div>
+<div class="line">│   ├── ntc/            #   NTC thermistor (ADC)</div>
 <div class="line">│   ├── pca9685/        #   16-ch PWM controller (I2C)</div>
 <div class="line">│   ├── pcal95555/      #   16-bit GPIO expander (I2C)</div>
-<div class="line">│   ├── ntc/            #   NTC thermistor (ADC)</div>
+<div class="line">│   ├── tle92466ed/     #   6-ch solenoid driver (SPI)</div>
+<div class="line">│   ├── tmc5160/        #   Stepper motor driver (SPI/UART)</div>
 <div class="line">│   ├── tmc9660/        #   Motor controller (SPI/UART)</div>
-<div class="line">│   └── logger/         #   Singleton logging</div>
+<div class="line">│   └── ws2812/         #   Addressable LED strip (RMT)</div>
 <div class="line">├── hf-core-drivers/    # [submodule] Base interfaces + external drivers</div>
 <div class="line">├── hf-core-utils/      # [submodule] General, RTOS, CANopen utilities</div>
 <div class="line">├── examples/</div>
 <div class="line">│   └── esp32/          # ESP-IDF test applications</div>
-<div class="line">│       ├── app_config.yml      # Test app registry (11 apps)</div>
+<div class="line">│       ├── app_config.yml      # Test app registry (15 apps)</div>
 <div class="line">│       ├── main/</div>
-<div class="line">│       │   ├── handler_tests/  # 6 handler test apps</div>
+<div class="line">│       │   ├── handler_tests/  # 10 handler test apps</div>
 <div class="line">│       │   ├── utils_tests/    # 4 utility test apps</div>
 <div class="line">│       │   └── integration_tests/  # 1 integration test</div>
 <div class="line">│       └── components/</div>

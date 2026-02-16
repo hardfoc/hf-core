@@ -155,7 +155,7 @@
   
     <ul class="nav-list"><li class="nav-list-item"><a href="/hf-core/development/README.html" class="nav-list-link">HardFOC Core Platform</a></li><li class="nav-list-item"><a href="/hf-core/development/" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/architecture.html" class="nav-list-link">Architecture</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/folder_structure.html" class="nav-list-link">Folder Structure</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Handlers submenu" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-core/development/docs/handlers/" class="nav-list-link">Handlers</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/as5047u_handler.html" class="nav-list-link">AS5047U Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/bno08x_handler.html" class="nav-list-link">BNO08x Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/pca9685_handler.html" class="nav-list-link">PCA9685 Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/pcal95555_handler.html" class="nav-list-link">PCAL95555 Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/ntc_temperature_handler.html" class="nav-list-link">NTC Temperature Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/tmc9660_handler.html" class="nav-list-link">TMC9660 Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/logger.html" class="nav-list-link">Logger</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Utilities submenu" aria-expanded="false">
+      </button><a href="/hf-core/development/docs/handlers/" class="nav-list-link">Handlers</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/as5047u_handler.html" class="nav-list-link">AS5047U Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/bno08x_handler.html" class="nav-list-link">BNO08x Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/pca9685_handler.html" class="nav-list-link">PCA9685 Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/pcal95555_handler.html" class="nav-list-link">PCAL95555 Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/ntc_temperature_handler.html" class="nav-list-link">NTC Temperature Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/tmc9660_handler.html" class="nav-list-link">TMC9660 Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/logger.html" class="nav-list-link">Logger</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/tmc5160_handler.html" class="nav-list-link">TMC5160 Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/tle92466ed_handler.html" class="nav-list-link">TLE92466ED Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/max22200_handler.html" class="nav-list-link">MAX22200 Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/ws2812_handler.html" class="nav-list-link">WS2812 Handler</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Utilities submenu" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
       </button><a href="/hf-core/development/docs/utils/" class="nav-list-link">Utilities</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-core/development/docs/utils/general_utilities.html" class="nav-list-link">General Utilities</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/utils/rtos_wrappers.html" class="nav-list-link">RTOS Wrappers</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/utils/canopen.html" class="nav-list-link">CANopen</a></li></ul></li></ul>
   
@@ -303,12 +303,12 @@ depend on this repo and add managers, API, and pin mapping.</p>
     
 
 <ul>
-  <li>✅ <strong>7 Device Handlers</strong> — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, Logger</li>
+  <li>✅ <strong>11 Device Handlers</strong> — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, TMC5160, TLE92466ED, MAX22200, WS2812, Logger</li>
   <li>✅ <strong>30+ General Utilities</strong> — Buffers, filters, timers, CRC, interpolation, linked
 lists, flag sets, physical units</li>
   <li>✅ <strong>Full RTOS Abstraction</strong> — Mutex, semaphore, queue, event flags, threads, timers</li>
   <li>✅ <strong>CANopen Utilities</strong> — CAN frame, SDO protocol, NMT commands</li>
-  <li>✅ <strong>ESP32 Test Suite</strong> — 11 test applications covering every handler, utility, and
+  <li>✅ <strong>ESP32 Test Suite</strong> — 15 test applications covering every handler, utility, and
 integration scenario</li>
   <li>✅ <strong>8 CI Pipelines</strong> — Build, lint, analysis, documentation, release</li>
   <li>✅ <strong>Thread-Safe</strong> — All handlers use <code class="language-plaintext highlighter-rouge">RtosMutex</code> for safe concurrent access</li>
@@ -482,6 +482,30 @@ handler methods.</p>
       <td style="text-align: left">Motor control, telemetry, GPIO/ADC/temp wrappers</td>
     </tr>
     <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Tmc5160Handler</code></td>
+      <td style="text-align: left">TMC5160</td>
+      <td style="text-align: left">SPI/UART</td>
+      <td style="text-align: left">Stepper motor, ramp generator, StallGuard, visitDriver</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Tle92466edHandler</code></td>
+      <td style="text-align: left">TLE92466ED</td>
+      <td style="text-align: left">SPI</td>
+      <td style="text-align: left">6-ch solenoid driver, PWM, diagnostics, watchdog</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Max22200Handler</code></td>
+      <td style="text-align: left">MAX22200</td>
+      <td style="text-align: left">SPI</td>
+      <td style="text-align: left">8-ch solenoid/motor, CDR/VDR, HIT/HOLD, DPM</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Ws2812Handler</code></td>
+      <td style="text-align: left">WS2812</td>
+      <td style="text-align: left">RMT</td>
+      <td style="text-align: left">Addressable LED strip, pixel control, animations</td>
+    </tr>
+    <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Logger</code></td>
       <td style="text-align: left">—</td>
       <td style="text-align: left">—</td>
@@ -553,22 +577,32 @@ handler methods.</p>
 22
 23
 24
+25
+26
+27
+28
+29
 </pre></td><td class="rouge-code"><pre>hf-core/
 ├── handlers/           # Device handler implementations
 │   ├── as5047u/        #   Magnetic encoder (SPI)
 │   ├── bno08x/         #   9-axis IMU (I2C)
+│   ├── common/         #   Shared handler utilities (HandlerCommon.h)
+│   ├── logger/         #   Singleton logging
+│   ├── max22200/       #   8-ch solenoid/motor driver (SPI)
+│   ├── ntc/            #   NTC thermistor (ADC)
 │   ├── pca9685/        #   16-ch PWM controller (I2C)
 │   ├── pcal95555/      #   16-bit GPIO expander (I2C)
-│   ├── ntc/            #   NTC thermistor (ADC)
+│   ├── tle92466ed/     #   6-ch solenoid driver (SPI)
+│   ├── tmc5160/        #   Stepper motor driver (SPI/UART)
 │   ├── tmc9660/        #   Motor controller (SPI/UART)
-│   └── logger/         #   Singleton logging
+│   └── ws2812/         #   Addressable LED strip (RMT)
 ├── hf-core-drivers/    # [submodule] Base interfaces + external drivers
 ├── hf-core-utils/      # [submodule] General, RTOS, CANopen utilities
 ├── examples/
 │   └── esp32/          # ESP-IDF test applications
-│       ├── app_config.yml      # Test app registry (11 apps)
+│       ├── app_config.yml      # Test app registry (15 apps)
 │       ├── main/
-│       │   ├── handler_tests/  # 6 handler test apps
+│       │   ├── handler_tests/  # 10 handler test apps
 │       │   ├── utils_tests/    # 4 utility test apps
 │       │   └── integration_tests/  # 1 integration test
 │       └── components/

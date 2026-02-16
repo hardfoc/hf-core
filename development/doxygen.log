@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.GhWoGM
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.GhWoGM' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.wJQ453
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.wJQ453' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -992,12 +992,12 @@ Generating call graph for function Tmc9660Handler::Temperature::ReadTemperatureC
 /home/runner/work/hf-core/hf-core/README.md:26: warning: unable to resolve reference to '-documentation' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:27: warning: unable to resolve reference to '-contributing' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:28: warning: unable to resolve reference to '-license' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:170: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/architecture.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:171: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/folder_structure.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:172: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/handlers/index.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:173: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:174: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:175: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:179: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/architecture.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:180: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/folder_structure.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:181: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/handlers/index.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:182: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:183: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:184: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
 iusImpl
 Generating call graph for function Tmc9660Handler::Temperature::UpdateDiagnostics
 Generating call graph for function Tmc9660Handler::Temperature::UpdateStatistics
@@ -1077,42 +1077,7 @@ finalizing index lists...
 writing tag file...
 Running plantuml with JAVA...
 Running dot...
-Generating dot graphs using 5 parallel threads...
-Running dot for graph 1/13
-Running dot for graph 2/13
-Running dot for graph 3/13
-Running dot for graph 4/13
-Running dot for graph 5/13
-Running dot for graph 6/13
-Running dot for graph 7/13
-Running dot for graph 8/13
-Running dot for graph 9/13
-Running dot for graph 10/13
-Running dot for graph 11/13
-Running dot for graph 12/13
-Running dot for graph 13/13
-Patching output file 1/22
-Patching output file 2/22
-Patching output file 3/22
-Patching output file 4/22
-Patching output file 5/22
-Patching output file 6/22
-Patching output file 7/22
-Patching output file 8/22
-Patching output file 9/22
-Patching output file 10/22
-Patching output file 11/22
-Patching output file 12/22
-Patching output file 13/22
-Patching output file 14/22
-Patching output file 15/22
-Patching output file 16/22
-Patching output file 17/22
-Patching output file 18/22
-Patching output file 19/22
-Patching output file 20/22
-Patching output file 21/22
-Patching output file 22/22
+Patching output file 1/1
 type lookup cache used 5353/65536 hits=29401 misses=5698
 symbol lookup cache used 7203/65536 hits=33819 misses=7203
 finished...
