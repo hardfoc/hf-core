@@ -20,9 +20,9 @@ var searchData=
   ['updateconfiguration_17',['UpdateConfiguration',['../classAs5047uHandler.html#a1094dba293ffb48d720dcac621493868',1,'As5047uHandler']]],
   ['updatediagnostics_18',['UpdateDiagnostics',['../classAs5047uHandler.html#a6854be00365afbb2eeddfb3177939456',1,'As5047uHandler::UpdateDiagnostics()'],['../classNtcTemperatureHandler.html#ab867e35301fff064ce0e76dd85033f8c',1,'NtcTemperatureHandler::UpdateDiagnostics()'],['../classTmc9660Handler_1_1Adc.html#a95192f5ef76ba77cc2abce2581f44801',1,'Tmc9660Handler::Adc::UpdateDiagnostics()'],['../classTmc9660Handler_1_1Temperature.html#a824232f839a3c46684de17dabaca8b79',1,'Tmc9660Handler::Temperature::UpdateDiagnostics()']]],
   ['updatestatistics_19',['UpdateStatistics',['../classNtcTemperatureHandler.html#a2c8404fac12fa3e3d3655cd4430d2049',1,'NtcTemperatureHandler::UpdateStatistics()'],['../classTmc9660Handler_1_1Adc.html#a8f7aa9ea8e16d94e1a4166af1e3821d0',1,'Tmc9660Handler::Adc::UpdateStatistics()'],['../classTmc9660Handler_1_1Temperature.html#a909be22915a36d0ef677558f3c00c8c4',1,'Tmc9660Handler::Temperature::UpdateStatistics()']]],
-  ['usage_20example_20',['Usage Example',['../Tmc5160Handler_8h.html#autotoc_md17',1,'Usage Example'],['../Ws2812Handler_8h.html#autotoc_md21',1,'Usage Example']]],
+  ['usage_20example_20',['Usage Example',['../Tmc5160Handler_8h.html#autotoc_md17',1,'Usage Example'],['../classTmc9660Handler.html#autotoc_md27',1,'Usage Example'],['../Ws2812Handler_8h.html#autotoc_md28',1,'Usage Example']]],
   ['use_5fspi_5f_21',['use_spi_',['../classTmc9660Handler.html#a01828de5ad5685ee4baac83943be3440',1,'Tmc9660Handler']]],
   ['user_5fcallback_5f_22',['user_callback_',['../classBno08xHandler.html#ab4be91e6bd9492c1824aa747db733c0f',1,'Bno08xHandler']]],
-  ['utilities_23',['🔧 Utilities',['../index.html#autotoc_md32',1,'']]],
+  ['utilities_23',['🔧 Utilities',['../index.html#autotoc_md39',1,'']]],
   ['uvw_5fpole_5fpairs_24',['uvw_pole_pairs',['../structAs5047uConfig.html#a5938deaf6c6b4684bd829bfa47792357',1,'As5047uConfig']]]
 ];

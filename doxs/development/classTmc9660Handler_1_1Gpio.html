@@ -184,8 +184,9 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>BaseGpio adapter for a single TMC9660 internal GPIO channel. </p>
-<p>Wraps one TMC9660 GPIO pin (e.g., GPIO17, GPIO18) as a BaseGpio instance. Push-pull output by default; pull mode is floating (set via bootloader config).</p>
-<dl class="section note"><dt>Note</dt><dd>Only GPIO17 and GPIO18 are currently exposed. </dd></dl>
+<p>Wraps one of the TMC9660's internal GPIO pins (e.g., GPIO17, GPIO18) as a HardFOC BaseGpio instance. Supports digital read/write via the TMC9660 driver's gpio subsystem.</p>
+<p>The TMC9660 GPIO pins are configured as push-pull outputs by default. Pull mode is limited to floating (the TMC9660 configures pull via bootloader config, not at runtime through TMCL).</p>
+<dl class="section note"><dt>Note</dt><dd>Only GPIO17 and GPIO18 are currently exposed. Additional pins can be added by expanding the gpioWrappers_ array. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a819b8d57d9ed8f80145a1c88e216ee62" name="a819b8d57d9ed8f80145a1c88e216ee62"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a819b8d57d9ed8f80145a1c88e216ee62">&#9670;&#160;</a></span>Gpio()</h2>

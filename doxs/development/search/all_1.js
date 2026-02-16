@@ -36,7 +36,7 @@ var searchData=
   ['bright_5fwhite_33',['BRIGHT_WHITE',['../Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2ea376520e57593580aa5c7ef8cf5136946',1,'BRIGHT_WHITE:&#160;Logger.h'],['../Logger_8h.html#a96718db9ec196b0ccd6f8d9517b45ea1a376520e57593580aa5c7ef8cf5136946',1,'BRIGHT_WHITE:&#160;Logger.h']]],
   ['bright_5fyellow_34',['BRIGHT_YELLOW',['../Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2ea2373edc9b8eb3a49710b95c6f7906434',1,'BRIGHT_YELLOW:&#160;Logger.h'],['../Logger_8h.html#a96718db9ec196b0ccd6f8d9517b45ea1a2373edc9b8eb3a49710b95c6f7906434',1,'BRIGHT_YELLOW:&#160;Logger.h']]],
   ['brightness_35',['brightness',['../structWs2812Handler_1_1Config.html#a34b3e52bebb8a93793f35f0cd5b551c1',1,'Ws2812Handler::Config']]],
-  ['build_20all_20ci_20enabled_20tests_36',['Build All CI-Enabled Tests',['../index.html#autotoc_md30',1,'']]],
-  ['build_20and_20flash_20a_20test_37',['Build and Flash a Test',['../index.html#autotoc_md29',1,'']]],
+  ['build_20all_20ci_20enabled_20tests_36',['Build All CI-Enabled Tests',['../index.html#autotoc_md37',1,'']]],
+  ['build_20and_20flash_20a_20test_37',['Build and Flash a Test',['../index.html#autotoc_md36',1,'']]],
   ['bus_5ftag_38',['BUS_TAG',['../esp32__bus__setup_8hpp.html#a73a911be261c628a3ee57cedbafb89a1',1,'esp32_bus_setup.hpp']]]
 ];

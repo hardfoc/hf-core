@@ -130,7 +130,7 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Shared helper holding the four TMC9660 host-side control pin references. </p>
-<p>Both <a class="el" href="classHalSpiTmc9660Comm.html" title="CRTP SPI communication adapter bridging BaseSpi/BaseGpio to tmc9660::SpiCommInterface.">HalSpiTmc9660Comm</a> and <a class="el" href="classHalUartTmc9660Comm.html" title="CRTP UART communication adapter bridging BaseUart/BaseGpio to tmc9660::UartCommInterface.">HalUartTmc9660Comm</a> require the same four GPIO control pins (RST, DRV_EN, FAULTN, WAKE) and share identical pin-resolution logic. This struct consolidates the four GPIO references and pin lookup into a single definition, eliminating code duplication across communication adapters.</p>
+<p>Both <a class="el" href="classHalSpiTmc9660Comm.html" title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">HalSpiTmc9660Comm</a> and <a class="el" href="classHalUartTmc9660Comm.html" title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.">HalUartTmc9660Comm</a> require the same four GPIO control pins (RST, DRV_EN, FAULTN, WAKE) and share identical pin-resolution logic. This struct consolidates the four GPIO references and pin lookup into a single definition, eliminating code duplication across communication adapters.</p>
 <dl class="section note"><dt>Note</dt><dd>None of the GPIO references are owned by this struct. </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a25b9b59843a26d8008a7d6c33e13ee5b" name="a25b9b59843a26d8008a7d6c33e13ee5b"></a>

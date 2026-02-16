@@ -5,7 +5,7 @@ var searchData=
   ['led_20strip_20handler_2',['WS2812 LED Strip Handler',['../group__WS2812__Handler.html',1,'']]],
   ['led_5ftype_3',['led_type',['../structWs2812Handler_1_1Config.html#a241ed81954221fa96164b11099439d44',1,'Ws2812Handler::Config']]],
   ['level_4',['level',['../structLogConfig.html#a514266f193b4fc2d8a8c4c2601e8ac1a',1,'LogConfig::level'],['../structLogger_1_1TagLevel.html#af6d7e19cd63be826348cc7b1e5e5c1aa',1,'Logger::TagLevel::level']]],
-  ['license_5',['📄 License',['../index.html#autotoc_md36',1,'']]],
+  ['license_5',['📄 License',['../index.html#autotoc_md43',1,'']]],
   ['lifetime_20requirements_6',['Lifetime Requirements',['../Tmc9660AdcWrapper_8h.html#autotoc_md19',1,'']]],
   ['linear_5faccel_5finterval_5fms_7',['linear_accel_interval_ms',['../structBno08xConfig.html#abf99eb8ed74e78b66605a56d1be674b0',1,'Bno08xConfig']]],
   ['linear_5facceleration_8',['linear_acceleration',['../structBno08xImuData.html#ae1ffba7f21e424be299561439af362a4',1,'Bno08xImuData']]],
