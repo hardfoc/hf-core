@@ -1,34 +1,42 @@
 <map id="Tle92466edHandler.cpp" name="Tle92466edHandler.cpp">
-<area shape="rect" id="Node000001" title="Implementation of TLE92466ED handler with SPI communication adapter." alt="" coords="861,5,1035,31"/>
-<area shape="rect" id="Node000002" href="$Tle92466edHandler_8h.html" title="Unified handler for TLE92466ED six&#45;channel low&#45;side solenoid driver IC." alt="" coords="581,79,741,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="903,33,722,78,720,73,901,28"/>
-<area shape="rect" id="Node000012" href="$Logger_8h.html" title="Advanced logging system with formatting capabilities." alt="" coords="1324,79,1401,104"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1015,28,1311,78,1310,84,1014,33"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,174,72,199"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="581,98,458,105,315,116,180,132,126,143,85,154,62,167,60,163,83,150,125,137,179,127,314,111,458,100,581,93"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="1189,174,1267,199"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="742,95,976,115,1093,130,1177,149,1204,164,1202,168,1175,155,1092,136,976,120,741,100"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="97,174,167,199"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="581,101,364,121,257,136,181,154,157,168,154,163,179,150,256,131,363,115,581,95"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="192,174,245,199"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="582,102,403,122,318,137,258,154,241,166,238,162,256,150,317,132,402,117,581,96"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="270,159,463,214"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="626,107,463,158,461,153,624,101"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="487,152,662,221"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="653,106,617,144,613,140,649,102"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="686,174,807,199"/>
-<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="674,102,729,162,725,166,670,106"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="832,174,963,199"/>
-<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="694,102,820,150,860,166,858,171,818,154,692,107"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="987,152,1165,221"/>
-<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="737,101,846,121,975,149,974,155,844,126,736,107"/>
-<area shape="poly" id="edge14_Node000012_Node000004" title=" " alt="" coords="1348,106,1257,168,1254,164,1345,102"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="1291,174,1349,199"/>
-<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="1360,105,1334,162,1329,160,1355,103"/>
-<area shape="rect" id="Node000014" title=" " alt="" coords="1374,174,1437,199"/>
-<area shape="poly" id="edge13_Node000012_Node000014" title=" " alt="" coords="1370,103,1397,160,1392,162,1365,105"/>
-<area shape="rect" id="Node000015" title=" " alt="" coords="1461,174,1528,199"/>
-<area shape="poly" id="edge15_Node000012_Node000015" title=" " alt="" coords="1382,102,1451,150,1470,163,1467,168,1448,154,1379,107"/>
-<area shape="rect" id="Node000016" title=" " alt="" coords="1552,174,1603,199"/>
-<area shape="poly" id="edge16_Node000012_Node000016" title=" " alt="" coords="1402,98,1469,118,1506,132,1541,150,1558,162,1555,166,1539,154,1504,137,1467,123,1401,103"/>
+<area shape="rect" id="Node000001" title="Implementation of TLE92466ED handler with SPI communication adapter." alt="" coords="227,5,402,31"/>
+<area shape="rect" id="Node000002" href="$Tle92466edHandler_8h.html" title="Unified handler for TLE92466ED six&#45;channel low&#45;side solenoid driver IC." alt="" coords="717,79,877,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="393,28,706,74,706,79,392,33"/>
+<area shape="rect" id="Node000013" href="$Logger_8h.html" title="Advanced logging system with formatting capabilities." alt="" coords="128,174,205,199"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="295,33,264,53,233,80,202,122,180,162,175,160,197,119,229,77,261,49,292,28"/>
+<area shape="rect" id="Node000017" href="$HandlerCommon_8h.html" title="Shared utility functions for handler CRTP communication adapters." alt="" coords="243,79,387,104"/>
+<area shape="poly" id="edge18_Node000001_Node000017" title=" " alt="" coords="317,31,317,65,312,65,312,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="365,174,432,199"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="717,100,590,117,520,133,452,154,426,168,424,163,450,150,518,127,589,112,717,95"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="269,269,347,295"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="717,95,665,100,607,110,549,128,496,154,479,170,471,187,462,205,446,223,404,250,361,268,358,263,401,245,442,219,458,202,466,184,475,167,493,150,548,123,606,105,664,95,717,90"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="371,269,442,295"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="878,95,1102,115,1200,130,1234,140,1252,150,1265,168,1269,187,1265,205,1253,223,1236,234,1209,243,1128,258,1021,269,898,276,645,283,456,284,456,278,645,278,897,271,1021,263,1127,253,1207,238,1234,229,1249,219,1260,203,1264,187,1260,170,1249,154,1232,145,1199,136,1101,120,877,100"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="507,174,560,199"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="723,107,649,125,575,154,556,167,553,163,572,150,648,120,722,102"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="585,174,677,199"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="777,107,691,154,664,169,661,165,688,150,775,102"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="701,159,894,214"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="800,104,800,146,795,146,795,104"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="918,152,1093,221"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="824,102,919,144,917,149,822,106"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="1117,174,1238,199"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="878,100,987,119,1106,149,1145,165,1143,170,1104,155,986,124,877,105"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="1313,174,1444,199"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="878,93,1070,110,1183,126,1295,149,1343,166,1341,171,1294,155,1182,131,1069,115,878,99"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="1469,152,1646,221"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="878,91,990,96,1132,106,1292,123,1455,149,1454,155,1291,128,1132,111,989,101,878,97"/>
+<area shape="poly" id="edge16_Node000013_Node000004" title=" " alt="" coords="185,197,219,219,281,260,278,264,216,224,183,202"/>
+<area shape="poly" id="edge13_Node000013_Node000005" title=" " alt="" coords="183,197,218,219,280,241,359,264,357,270,278,246,216,224,180,202"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="179,269,245,295"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="175,198,203,256,198,258,170,201"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="5,269,64,295"/>
+<area shape="poly" id="edge15_Node000013_Node000015" title=" " alt="" coords="152,202,64,263,61,259,149,197"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="88,269,155,295"/>
+<area shape="poly" id="edge17_Node000013_Node000016" title=" " alt="" coords="164,201,135,258,130,256,159,198"/>
+<area shape="poly" id="edge20_Node000017_Node000003" title=" " alt="" coords="327,102,381,162,377,166,323,106"/>
+<area shape="poly" id="edge19_Node000017_Node000005" title=" " alt="" coords="319,104,331,156,341,189,356,220,386,258,382,261,351,223,336,191,325,157,314,105"/>
+<area shape="poly" id="edge22_Node000017_Node000013" title=" " alt="" coords="297,106,219,154,197,168,194,164,216,150,294,102"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="229,174,291,199"/>
+<area shape="poly" id="edge21_Node000017_Node000018" title=" " alt="" coords="310,105,276,164,271,161,306,103"/>
 </map>

@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.52105r
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.52105r' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.ezK98h
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.ezK98h' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -11,6 +11,7 @@ Searching for dia files...
 Searching for files to exclude
 Searching INPUT for files to process...
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/common
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/logger
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tle92466ed
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/pcal95555
@@ -36,6 +37,8 @@ Preprocessing /home/runner/work/hf-core/hf-core/handlers/bno08x/Bno08xHandler.cp
 Parsing file /home/runner/work/hf-core/hf-core/handlers/bno08x/Bno08xHandler.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/handlers/bno08x/Bno08xHandler.h...
 Parsing file /home/runner/work/hf-core/hf-core/handlers/bno08x/Bno08xHandler.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/common/HandlerCommon.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/common/HandlerCommon.h...
 Preprocessing /home/runner/work/hf-core/hf-core/handlers/logger/Logger.cpp...
 Parsing file /home/runner/work/hf-core/hf-core/handlers/logger/Logger.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/handlers/logger/Logger.h...
@@ -93,9 +96,7 @@ Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/pcal95555_handler_comprehensive_test.cpp...
 Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/pcal95555_handler_comprehensive_test.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tle92466ed_handler_comprehensive_test.cpp...
-Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tle92466ed_handler_comprehensive_test.cpp...
-Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tmc5160_handler_comprehensive_test.cpp...
-Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tmc5160_handler_compr/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:116: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannel' not found
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tle92466ed_handler_comp/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:116: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannel' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:134: warning: @copybrief or @copydoc target 'BaseAdc::ResetDiagnostics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
@@ -107,7 +108,9 @@ Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:125: warning: @copybrief or @copydoc target 'BaseAdc::GetStatistics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:121: warning: @copybrief or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
-ehensive_test.cpp...
+rehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tmc5160_handler_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tmc5160_handler_comprehensive_test.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tmc9660_handler_comprehensive_test.cpp...
 Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tmc9660_handler_comprehensive_test.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/ws2812_handler_comprehensive_test.cpp...
@@ -207,6 +210,7 @@ Parsing code for file As5047uHandler.cpp...
 Generating code for file As5047uHandler.h...
 Parsing code for file Bno08xHandler.cpp...
 Generating code for file Bno08xHandler.h...
+Generating code for file HandlerCommon.h...
 Parsing code for file Logger.cpp...
 Generating code for file Logger.h...
 Parsing code for file Max22200Handler.cpp...
@@ -403,12 +407,7 @@ Generating caller graph for function test_set_current
 Generating caller graph for function test_set_target_position
 Generating caller graph for function test_set_target_velocity
 Generating caller graph for function test_stallguard_result
-Generating caller graph for function test_stop
-Generating caller graph for function test_visit_driver_communication
-Generating caller graph for function test_visit_driver_encoder
-Generating caller graph for function test_visit_driver_motor_control
-Generating caller graph for function test_visit_driver_ramp_control
-Generating docs for/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:412: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
+Generating caller graph for function test_s/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:412: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
 /home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:386: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
@@ -417,7 +416,12 @@ Generating docs for/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFra
   parameter 'tag'
 /home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:350: warning: The following parameter of print_test_summary(const TestResults &test_results, const char *test_suite_name, const char *tag) is not documented:
   parameter 'tag'
- file tmc9660_handler_comprehensive_test.cpp...
+top
+Generating caller graph for function test_visit_driver_communication
+Generating caller graph for function test_visit_driver_encoder
+Generating caller graph for function test_visit_driver_motor_control
+Generating caller graph for function test_visit_driver_ramp_control
+Generating docs for file tmc9660_handler_comprehensive_test.cpp...
 Generating call graph for function app_main
 Generating call graph for function create_handler
 Generating caller graph for function create_handler
@@ -531,7 +535,6 @@ Generating caller graph for function test_lock_guard_scoped
 Generating caller graph for function test_mutex_contention
 Generating caller graph for function test_mutex_create
 Generating caller graph for function test_mutex_lock_unlock
-Generating call graph for function test_os_delay
 Generating caller graph for function test_os_delay
 Generating caller graph for function test_os_queue
 Generating caller graph for function test_os_queue_full
@@ -545,6 +548,7 @@ Generating caller graph for function As5047uErrorToString
 Generating docs for file Bno08xHandler.cpp...
 Generating docs for file Bno08xHandler.h...
 Generating caller graph for function Bno08xErrorToString
+Generating docs for file HandlerCommon.h...
 Generating docs for file Logger.cpp...
 Generating docs for file Logger.h...
 Generating docs for file Max22200Handler.cpp...
@@ -559,7 +563,6 @@ Generating docs for file Tle92466edHandler.cpp...
 Generating caller graph for function toChannel
 Generating docs for file Tle92466edHandler.h...
 Generating docs for file Tmc5160Handler.cpp...
-Generating caller graph for function os_delay_msec
 Generating docs for file Tmc5160Handler.h...
 Generating docs for file Tmc9660AdcWrapper.cpp...
 Generating docs for file Tmc9660AdcWrapper.h...
@@ -623,22 +626,23 @@ Generating docs for compound Bno08xImuData...
 Generating docs for compound Bno08xQuaternion...
 Generating docs for compound Bno08xVector3...
 Generating docs for compound HalI2cBno08xComm...
-Generating call graph for function HalI2cBno08xComm::Delay
 Generating docs for compound HalI2cPca9685Comm...
 Generating docs for compound HalI2cPcal95555Comm...
 Generating docs for compound HalSpiBno08xComm...
-Generating call graph for function HalSpiBno08xComm::Delay
 Generating docs for compound HalSpiMax22200Comm...
+Generating call graph for function HalSpiMax22200Comm::DelayUs
 Generating call graph for function HalSpiMax22200Comm::GpioRead
 Generating call graph for function HalSpiMax22200Comm::GpioSet
 Generating caller graph for function HalSpiMax22200Comm::IsReady
-Generating call graph for function HalSpiMax22200Comm::Transfer
+Generating call graph for function HalSpiMwarning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (60), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
+ax22200Comm::Transfer
 Generating docs for compound HalSpiTle92466edComm...
+Generating call graph for function HalSpiTle92466edComm::Delay
 Generating call graph for function HalSpiTle92466edComm::Log
-Generating docs for compound HalSpiTmc5160Comwarning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (63), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
-m...
+Generating docs for compound HalSpiTmc5160Comm...
 Generating call graph for function HalSpiTmc5160Comm::DebugLog
 Generating call graph for function HalSpiTmc5160Comm::DelayMs
+Generating call graph for function HalSpiTmc5160Comm::DelayUs
 Generating docs for compound HalSpiTmc9660Comm...
 Generating call graph for function HalSpiTmc9660Comm::debugLog
 Generating call graph for function HalSpiTmc9660Comm::delayMs
@@ -648,6 +652,7 @@ Generating call graph for function HalSpiTmc9660Comm::gpioSet
 Generating docs for compound HalUartTmc5160Comm...
 Generating call graph for function HalUartTmc5160Comm::DebugLog
 Generating call graph for function HalUartTmc5160Comm::DelayMs
+Generating call graph for function HalUartTmc5160Comm::DelayUs
 Generating docs for compound HalUartTmc9660Comm...
 Generating call graph for function HalUartTmc9660Comm::debugLog
 Generating call graph for function HalUartTmc9660Comm::delayMs
@@ -666,7 +671,6 @@ Generating docs for compound LogConfig...
 Generating docs for compound Logger...
 Generating call graph for function Logger::~Logger
 Generating call graph for function Logger::Debug
-Generating caller graph for function Logger::Debug
 Generating call graph for function Logger::Debug
 Generating caller graph for function Logger::Deinitialize
 Generating call graph for function Logger::Error
@@ -683,6 +687,7 @@ Generating call graph for function Logger::Verbose
 Generating call graph for function Logger::Warn
 Generating caller graph for function Logger::Warn
 Generating call graph for function Logger::Warn
+Generating docs for nested compound Logger::TagLevel...
 Generating docs for compound Max22200Handler...
 Generating call graph for function Max22200Handler::Max22200Handler
 Generating call graph for function Max22200Handler::~Max22200Handler
@@ -702,6 +707,8 @@ Generating call graph for function Max22200Handler::HasFault
 Generating call graph for function Max22200Handler::Initialize
 Generating caller graph for function Max22200Handler::Initialize
 Generating call graph for function Max22200Handler::Initialize
+Generating call graph for function Max22200Handler::withDriver
+Generating caller graph for function Max22200Handler::withDriver
 Generating docs for compound ntc_temp_handler_config_t...
 Generating docs for compound NtcAdcAdapter...
 Generating docs for compound NtcTemperatureHandler...
@@ -817,15 +824,7 @@ Generating call graph for function Tle92466edHandler::Initialize
 Generating caller graph for function Tle92466edHandler::Initialize
 Generating call graph for function Tle92466edHandler::Initialize
 Generating call graph for function Tle92466edHandler::IsMissionMode
-Generating call graph for function Tle92466edHandler::SetChannelCurrent
-Generating docs for compound Tmc5160CtrlPins...
-Generating docs for compound Tmc5160Handler...
-Generating call graph for function Tmc5160Handler::Tmc5160Handler
-Generating call graph for function Tmc5160Handler::Tmc5160Handler
-Generating call graph for function Tmc5160Handler::~Tmc5160Handler
-Generating call graph for function Tmc5160Handler::Deinitialize
-Generating caller graph for function Tmc5160Handler::Deinitialize
-Generating call graph for func/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
+Generating call graph fo/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
@@ -861,7 +860,17 @@ Generating call graph for func/home/runner/work/hf-core/hf-core/handlers/tmc9660
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:135: warning: @copydetails or @copydoc target 'BaseAdc::ResetDiagnostics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:132: warning: @copydetails or @copydoc target 'BaseAdc::ResetStatistics' not found
-tion Tmc5160Handler::DisableMotor
+r function Tle92466edHandler::SetChannelCurrent
+Generating call graph for function Tle92466edHandler::withDriver
+Generating caller graph for function Tle92466edHandler::withDriver
+Generating docs for compound Tmc5160CtrlPins...
+Generating docs for compound Tmc5160Handler...
+Generating call graph for function Tmc5160Handler::Tmc5160Handler
+Generating call graph for function Tmc5160Handler::Tmc5160Handler
+Generating call graph for function Tmc5160Handler::~Tmc5160Handler
+Generating call graph for function Tmc5160Handler::Deinitialize
+Generating caller graph for function Tmc5160Handler::Deinitialize
+Generating call graph for function Tmc5160Handler::DisableMotor
 Generating call graph for function Tmc5160Handler::DumpDiagnostics
 Generating call graph for function Tmc5160Handler::EnableMotor
 Generating call graph for function Tmc5160Handler::EnsureInitialized
@@ -914,7 +923,8 @@ Generating call graph for function Tmc9660Handler::GetChipTemperature
 Generating caller graph for function Tmc9660Handler::GetChipTemperature
 Generating caller graph for function Tmc9660Handler::GetErrorFlags
 Generating call graph for function Tmc9660Handler::GetExternalTemperature
-Generating call graph for function Tmc9660Handler::GetMotorCurrent
+Generatwarning: Caller graph for 'Tmc9660Handler::temperature' not generated, too many nodes (55), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
+ing call graph for function Tmc9660Handler::GetMotorCurrent
 Generating caller graph for function Tmc9660Handler::GetStatusFlags
 Generating call graph for function Tmc9660Handler::GetSupplyVoltage
 Generating caller graph for function Tmc9660Handler::GetSupplyVoltage
@@ -923,8 +933,7 @@ Generating call graph for function Tmc9660Handler::Initialize
 Generating caller graph for function Tmc9660Handler::Initialize
 Generating caller graph for function Tmc9660Handler::IsDriverReady
 Generating call graph for function Tmc9660Handler::spiDriver
-Generating call graph for function Tmc9660Handler::spiDrivwarning: Caller graph for 'Tmc9660Handler::temperature' not generated, too many nodes (55), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
-er
+Generating call graph for function Tmc9660Handler::spiDriver
 Generating call graph for function Tmc9660Handler::temperature
 Generating call graph for function Tmc9660Handler::uartDriver
 Generating call graph for function Tmc9660Handler::uartDriver
@@ -972,17 +981,7 @@ Generating call graph for function Tmc9660Handler::Temperature::GetCapabilities
 Generating call graph for function Tmc9660Handler::Temperature::GetCurrentTimeUs
 Generating call graph for function Tmc9660Handler::Temperature::GetSensorInfo
 Generating call graph for function Tmc9660Handler::Temperature::Initialize
-Generating call graph for function Tmc9660Handler::Temperature::ReadTemperatureCelsiusImpl
-Generating call graph for function Tmc9660Handler::Temperature::UpdateDiagnostics
-Generating call graph for function Tmc9660Handler::Temperature::UpdateStatistics
-Generating docs for compound Ws2812Handler...
-Generating call graph for function Ws2812Handler::Ws2812Handler
-Generating call graph for function Ws2812Handler::~Ws2812Handler
-Generating call graph for function Ws2812Handler::Clear
-Generating call graph for function Ws2812Handler::Deinitialize
-Generating caller graph for function Ws2812Handler::Deinitialize
-Generating call graph for function Ws2812Handler::DumpDiagnostics
-Generating call graph for function Ws2/home/runner/work/hf-core/hf-core/handlers/ws2812/Ws2812Handler.h:171: warning: argument 'speed' of command @param is not found in the argument list of Ws2812Handler::SetEffect(WS2812Animator::Effect effect, uint32_t color=0xFFFFFF)
+Generating call graph for function Tmc9660Handler::Temperature::ReadTemperatureCels/home/runner/work/hf-core/hf-core/handlers/ws2812/Ws2812Handler.h:171: warning: argument 'speed' of command @param is not found in the argument list of Ws2812Handler::SetEffect(WS2812Animator::Effect effect, uint32_t color=0xFFFFFF)
 /home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:20: warning: unable to resolve reference to '-features' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:21: warning: unable to resolve reference to '-architecture' for \ref command
@@ -999,7 +998,17 @@ Generating call graph for function Ws2/home/runner/work/hf-core/hf-core/handlers
 /home/runner/work/hf-core/hf-core/README.md:173: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:174: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:175: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
-812Handler::EnsureInitialized
+iusImpl
+Generating call graph for function Tmc9660Handler::Temperature::UpdateDiagnostics
+Generating call graph for function Tmc9660Handler::Temperature::UpdateStatistics
+Generating docs for compound Ws2812Handler...
+Generating call graph for function Ws2812Handler::Ws2812Handler
+Generating call graph for function Ws2812Handler::~Ws2812Handler
+Generating call graph for function Ws2812Handler::Clear
+Generating call graph for function Ws2812Handler::Deinitialize
+Generating caller graph for function Ws2812Handler::Deinitialize
+Generating call graph for function Ws2812Handler::DumpDiagnostics
+Generating call graph for function Ws2812Handler::EnsureInitialized
 Generating call graph for function Ws2812Handler::EnsureInitializedLocked
 Generating caller graph for function Ws2812Handler::EnsureInitializedLocked
 Generating call graph for function Ws2812Handler::GetAnimator
@@ -1019,18 +1028,18 @@ Generating concept documentation...
 Generating module documentation...
 Generating namespace documentation...
 Generating docs for namespace anonymous_namespace{Tmc9660Handler.cpp}
-Generating call graph for function anonymous_namespace{Tmc9660Handler.cpp}::halDebugLog
-Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::halDebugLog
-Generating call graph for function anonymous_namespace{Tmc9660Handler.cpp}::halDelayMs
-Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::halDelayMs
-Generating call graph for function anonymous_namespace{Tmc9660Handler.cpp}::halDelayUs
-Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::halDelayUs
 Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::readGpioToSignal
 Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::setGpioFromSignal
+Generating docs for namespace handler_utils
+Generating caller graph for function handler_utils::DelayMs
+Generating caller graph for function handler_utils::DelayUs
+Generating call graph for function handler_utils::RouteLogToLogger
+Generating caller graph for function handler_utils::RouteLogToLogger
 Generating graph info page...
 Generating directory documentation...
 Generating dependency graph for directory as5047u
 Generating dependency graph for directory bno08x
+Generating dependency graph for directory common
 Generating dependency graph for directory esp32
 Generating dependency graph for directory examples
 Generating dependency graph for directory handler_tests
@@ -1068,7 +1077,618 @@ finalizing index lists...
 writing tag file...
 Running plantuml with JAVA...
 Running dot...
-Patching output file 1/1
-type lookup cache used 5354/65536 hits=29869 misses=5704
-symbol lookup cache used 7178/65536 hits=33933 misses=7178
+Generating dot graphs using 5 parallel threads...
+Running dot for graph 1/275
+Running dot for graph 2/275
+Running dot for graph 3/275
+Running dot for graph 4/275
+Running dot for graph 5/275
+Running dot for graph 6/275
+Running dot for graph 7/275
+Running dot for graph 8/275
+Running dot for graph 9/275
+Running dot for graph 10/275
+Running dot for graph 11/275
+Running dot for graph 12/275
+Running dot for graph 13/275
+Running dot for graph 14/275
+Running dot for graph 15/275
+Running dot for graph 16/275
+Running dot for graph 17/275
+Running dot for graph 18/275
+Running dot for graph 19/275
+Running dot for graph 20/275
+Running dot for graph 21/275
+Running dot for graph 22/275
+Running dot for graph 23/275
+Running dot for graph 24/275
+Running dot for graph 25/275
+Running dot for graph 26/275
+Running dot for graph 27/275
+Running dot for graph 28/275
+Running dot for graph 29/275
+Running dot for graph 30/275
+Running dot for graph 31/275
+Running dot for graph 32/275
+Running dot for graph 33/275
+Running dot for graph 34/275
+Running dot for graph 35/275
+Running dot for graph 36/275
+Running dot for graph 37/275
+Running dot for graph 38/275
+Running dot for graph 39/275
+Running dot for graph 40/275
+Running dot for graph 41/275
+Running dot for graph 42/275
+Running dot for graph 43/275
+Running dot for graph 44/275
+Running dot for graph 45/275
+Running dot for graph 46/275
+Running dot for graph 47/275
+Running dot for graph 48/275
+Running dot for graph 49/275
+Running dot for graph 50/275
+Running dot for graph 51/275
+Running dot for graph 52/275
+Running dot for graph 53/275
+Running dot for graph 54/275
+Running dot for graph 55/275
+Running dot for graph 56/275
+Running dot for graph 57/275
+Running dot for graph 58/275
+Running dot for graph 59/275
+Running dot for graph 60/275
+Running dot for graph 61/275
+Running dot for graph 62/275
+Running dot for graph 63/275
+Running dot for graph 64/275
+Running dot for graph 65/275
+Running dot for graph 66/275
+Running dot for graph 67/275
+Running dot for graph 68/275
+Running dot for graph 69/275
+Running dot for graph 70/275
+Running dot for graph 71/275
+Running dot for graph 72/275
+Running dot for graph 73/275
+Running dot for graph 74/275
+Running dot for graph 75/275
+Running dot for graph 76/275
+Running dot for graph 77/275
+Running dot for graph 78/275
+Running dot for graph 79/275
+Running dot for graph 80/275
+Running dot for graph 81/275
+Running dot for graph 82/275
+Running dot for graph 83/275
+Running dot for graph 84/275
+Running dot for graph 85/275
+Running dot for graph 86/275
+Running dot for graph 87/275
+Running dot for graph 88/275
+Running dot for graph 89/275
+Running dot for graph 90/275
+Running dot for graph 91/275
+Running dot for graph 92/275
+Running dot for graph 93/275
+Running dot for graph 94/275
+Running dot for graph 95/275
+Running dot for graph 96/275
+Running dot for graph 97/275
+Running dot for graph 98/275
+Running dot for graph 99/275
+Running dot for graph 100/275
+Running dot for graph 101/275
+Running dot for graph 102/275
+Running dot for graph 103/275
+Running dot for graph 104/275
+Running dot for graph 105/275
+Running dot for graph 106/275
+Running dot for graph 107/275
+Running dot for graph 108/275
+Running dot for graph 109/275
+Running dot for graph 110/275
+Running dot for graph 111/275
+Running dot for graph 112/275
+Running dot for graph 113/275
+Running dot for graph 114/275
+Running dot for graph 115/275
+Running dot for graph 116/275
+Running dot for graph 117/275
+Running dot for graph 118/275
+Running dot for graph 119/275
+Running dot for graph 120/275
+Running dot for graph 121/275
+Running dot for graph 122/275
+Running dot for graph 123/275
+Running dot for graph 124/275
+Running dot for graph 125/275
+Running dot for graph 126/275
+Running dot for graph 127/275
+Running dot for graph 128/275
+Running dot for graph 129/275
+Running dot for graph 130/275
+Running dot for graph 131/275
+Running dot for graph 132/275
+Running dot for graph 133/275
+Running dot for graph 134/275
+Running dot for graph 135/275
+Running dot for graph 136/275
+Running dot for graph 137/275
+Running dot for graph 138/275
+Running dot for graph 139/275
+Running dot for graph 140/275
+Running dot for graph 141/275
+Running dot for graph 142/275
+Running dot for graph 143/275
+Running dot for graph 144/275
+Running dot for graph 145/275
+Running dot for graph 146/275
+Running dot for graph 147/275
+Running dot for graph 148/275
+Running dot for graph 149/275
+Running dot for graph 150/275
+Running dot for graph 151/275
+Running dot for graph 152/275
+Running dot for graph 153/275
+Running dot for graph 154/275
+Running dot for graph 155/275
+Running dot for graph 156/275
+Running dot for graph 157/275
+Running dot for graph 158/275
+Running dot for graph 159/275
+Running dot for graph 160/275
+Running dot for graph 161/275
+Running dot for graph 162/275
+Running dot for graph 163/275
+Running dot for graph 164/275
+Running dot for graph 165/275
+Running dot for graph 166/275
+Running dot for graph 167/275
+Running dot for graph 168/275
+Running dot for graph 169/275
+Running dot for graph 170/275
+Running dot for graph 171/275
+Running dot for graph 172/275
+Running dot for graph 173/275
+Running dot for graph 174/275
+Running dot for graph 175/275
+Running dot for graph 176/275
+Running dot for graph 177/275
+Running dot for graph 178/275
+Running dot for graph 179/275
+Running dot for graph 180/275
+Running dot for graph 181/275
+Running dot for graph 182/275
+Running dot for graph 183/275
+Running dot for graph 184/275
+Running dot for graph 185/275
+Running dot for graph 186/275
+Running dot for graph 187/275
+Running dot for graph 188/275
+Running dot for graph 189/275
+Running dot for graph 190/275
+Running dot for graph 191/275
+Running dot for graph 192/275
+Running dot for graph 193/275
+Running dot for graph 194/275
+Running dot for graph 195/275
+Running dot for graph 196/275
+Running dot for graph 197/275
+Running dot for graph 198/275
+Running dot for graph 199/275
+Running dot for graph 200/275
+Running dot for graph 201/275
+Running dot for graph 202/275
+Running dot for graph 203/275
+Running dot for graph 204/275
+Running dot for graph 205/275
+Running dot for graph 206/275
+Running dot for graph 207/275
+Running dot for graph 208/275
+Running dot for graph 209/275
+Running dot for graph 210/275
+Running dot for graph 211/275
+Running dot for graph 212/275
+Running dot for graph 213/275
+Running dot for graph 214/275
+Running dot for graph 215/275
+Running dot for graph 216/275
+Running dot for graph 217/275
+Running dot for graph 218/275
+Running dot for graph 219/275
+Running dot for graph 220/275
+Running dot for graph 221/275
+Running dot for graph 222/275
+Running dot for graph 223/275
+Running dot for graph 224/275
+Running dot for graph 225/275
+Running dot for graph 226/275
+Running dot for graph 227/275
+Running dot for graph 228/275
+Running dot for graph 229/275
+Running dot for graph 230/275
+Running dot for graph 231/275
+Running dot for graph 232/275
+Running dot for graph 233/275
+Running dot for graph 234/275
+Running dot for graph 235/275
+Running dot for graph 236/275
+Running dot for graph 237/275
+Running dot for graph 238/275
+Running dot for graph 239/275
+Running dot for graph 240/275
+Running dot for graph 241/275
+Running dot for graph 242/275
+Running dot for graph 243/275
+Running dot for graph 244/275
+Running dot for graph 245/275
+Running dot for graph 246/275
+Running dot for graph 247/275
+Running dot for graph 248/275
+Running dot for graph 249/275
+Running dot for graph 250/275
+Running dot for graph 251/275
+Running dot for graph 252/275
+Running dot for graph 253/275
+Running dot for graph 254/275
+Running dot for graph 255/275
+Running dot for graph 256/275
+Running dot for graph 257/275
+Running dot for graph 258/275
+Running dot for graph 259/275
+Running dot for graph 260/275
+Running dot for graph 261/275
+Running dot for graph 262/275
+Running dot for graph 263/275
+Running dot for graph 264/275
+Running dot for graph 265/275
+Running dot for graph 266/275
+Running dot for graph 267/275
+Running dot for graph 268/275
+Running dot for graph 269/275
+Running dot for graph 270/275
+Running dot for graph 271/275
+Running dot for graph 272/275
+Running dot for graph 273/275
+Running dot for graph 274/275
+Running dot for graph 275/275
+Patching output file 1/336
+Patching output file 2/336
+Patching output file 3/336
+Patching output file 4/336
+Patching output file 5/336
+Patching output file 6/336
+Patching output file 7/336
+Patching output file 8/336
+Patching output file 9/336
+Patching output file 10/336
+Patching output file 11/336
+Patching output file 12/336
+Patching output file 13/336
+Patching output file 14/336
+Patching output file 15/336
+Patching output file 16/336
+Patching output file 17/336
+Patching output file 18/336
+Patching output file 19/336
+Patching output file 20/336
+Patching output file 21/336
+Patching output file 22/336
+Patching output file 23/336
+Patching output file 24/336
+Patching output file 25/336
+Patching output file 26/336
+Patching output file 27/336
+Patching output file 28/336
+Patching output file 29/336
+Patching output file 30/336
+Patching output file 31/336
+Patching output file 32/336
+Patching output file 33/336
+Patching output file 34/336
+Patching output file 35/336
+Patching output file 36/336
+Patching output file 37/336
+Patching output file 38/336
+Patching output file 39/336
+Patching output file 40/336
+Patching output file 41/336
+Patching output file 42/336
+Patching output file 43/336
+Patching output file 44/336
+Patching output file 45/336
+Patching output file 46/336
+Patching output file 47/336
+Patching output file 48/336
+Patching output file 49/336
+Patching output file 50/336
+Patching output file 51/336
+Patching output file 52/336
+Patching output file 53/336
+Patching output file 54/336
+Patching output file 55/336
+Patching output file 56/336
+Patching output file 57/336
+Patching output file 58/336
+Patching output file 59/336
+Patching output file 60/336
+Patching output file 61/336
+Patching output file 62/336
+Patching output file 63/336
+Patching output file 64/336
+Patching output file 65/336
+Patching output file 66/336
+Patching output file 67/336
+Patching output file 68/336
+Patching output file 69/336
+Patching output file 70/336
+Patching output file 71/336
+Patching output file 72/336
+Patching output file 73/336
+Patching output file 74/336
+Patching output file 75/336
+Patching output file 76/336
+Patching output file 77/336
+Patching output file 78/336
+Patching output file 79/336
+Patching output file 80/336
+Patching output file 81/336
+Patching output file 82/336
+Patching output file 83/336
+Patching output file 84/336
+Patching output file 85/336
+Patching output file 86/336
+Patching output file 87/336
+Patching output file 88/336
+Patching output file 89/336
+Patching output file 90/336
+Patching output file 91/336
+Patching output file 92/336
+Patching output file 93/336
+Patching output file 94/336
+Patching output file 95/336
+Patching output file 96/336
+Patching output file 97/336
+Patching output file 98/336
+Patching output file 99/336
+Patching output file 100/336
+Patching output file 101/336
+Patching output file 102/336
+Patching output file 103/336
+Patching output file 104/336
+Patching output file 105/336
+Patching output file 106/336
+Patching output file 107/336
+Patching output file 108/336
+Patching output file 109/336
+Patching output file 110/336
+Patching output file 111/336
+Patching output file 112/336
+Patching output file 113/336
+Patching output file 114/336
+Patching output file 115/336
+Patching output file 116/336
+Patching output file 117/336
+Patching output file 118/336
+Patching output file 119/336
+Patching output file 120/336
+Patching output file 121/336
+Patching output file 122/336
+Patching output file 123/336
+Patching output file 124/336
+Patching output file 125/336
+Patching output file 126/336
+Patching output file 127/336
+Patching output file 128/336
+Patching output file 129/336
+Patching output file 130/336
+Patching output file 131/336
+Patching output file 132/336
+Patching output file 133/336
+Patching output file 134/336
+Patching output file 135/336
+Patching output file 136/336
+Patching output file 137/336
+Patching output file 138/336
+Patching output file 139/336
+Patching output file 140/336
+Patching output file 141/336
+Patching output file 142/336
+Patching output file 143/336
+Patching output file 144/336
+Patching output file 145/336
+Patching output file 146/336
+Patching output file 147/336
+Patching output file 148/336
+Patching output file 149/336
+Patching output file 150/336
+Patching output file 151/336
+Patching output file 152/336
+Patching output file 153/336
+Patching output file 154/336
+Patching output file 155/336
+Patching output file 156/336
+Patching output file 157/336
+Patching output file 158/336
+Patching output file 159/336
+Patching output file 160/336
+Patching output file 161/336
+Patching output file 162/336
+Patching output file 163/336
+Patching output file 164/336
+Patching output file 165/336
+Patching output file 166/336
+Patching output file 167/336
+Patching output file 168/336
+Patching output file 169/336
+Patching output file 170/336
+Patching output file 171/336
+Patching output file 172/336
+Patching output file 173/336
+Patching output file 174/336
+Patching output file 175/336
+Patching output file 176/336
+Patching output file 177/336
+Patching output file 178/336
+Patching output file 179/336
+Patching output file 180/336
+Patching output file 181/336
+Patching output file 182/336
+Patching output file 183/336
+Patching output file 184/336
+Patching output file 185/336
+Patching output file 186/336
+Patching output file 187/336
+Patching output file 188/336
+Patching output file 189/336
+Patching output file 190/336
+Patching output file 191/336
+Patching output file 192/336
+Patching output file 193/336
+Patching output file 194/336
+Patching output file 195/336
+Patching output file 196/336
+Patching output file 197/336
+Patching output file 198/336
+Patching output file 199/336
+Patching output file 200/336
+Patching output file 201/336
+Patching output file 202/336
+Patching output file 203/336
+Patching output file 204/336
+Patching output file 205/336
+Patching output file 206/336
+Patching output file 207/336
+Patching output file 208/336
+Patching output file 209/336
+Patching output file 210/336
+Patching output file 211/336
+Patching output file 212/336
+Patching output file 213/336
+Patching output file 214/336
+Patching output file 215/336
+Patching output file 216/336
+Patching output file 217/336
+Patching output file 218/336
+Patching output file 219/336
+Patching output file 220/336
+Patching output file 221/336
+Patching output file 222/336
+Patching output file 223/336
+Patching output file 224/336
+Patching output file 225/336
+Patching output file 226/336
+Patching output file 227/336
+Patching output file 228/336
+Patching output file 229/336
+Patching output file 230/336
+Patching output file 231/336
+Patching output file 232/336
+Patching output file 233/336
+Patching output file 234/336
+Patching output file 235/336
+Patching output file 236/336
+Patching output file 237/336
+Patching output file 238/336
+Patching output file 239/336
+Patching output file 240/336
+Patching output file 241/336
+Patching output file 242/336
+Patching output file 243/336
+Patching output file 244/336
+Patching output file 245/336
+Patching output file 246/336
+Patching output file 247/336
+Patching output file 248/336
+Patching output file 249/336
+Patching output file 250/336
+Patching output file 251/336
+Patching output file 252/336
+Patching output file 253/336
+Patching output file 254/336
+Patching output file 255/336
+Patching output file 256/336
+Patching output file 257/336
+Patching output file 258/336
+Patching output file 259/336
+Patching output file 260/336
+Patching output file 261/336
+Patching output file 262/336
+Patching output file 263/336
+Patching output file 264/336
+Patching output file 265/336
+Patching output file 266/336
+Patching output file 267/336
+Patching output file 268/336
+Patching output file 269/336
+Patching output file 270/336
+Patching output file 271/336
+Patching output file 272/336
+Patching output file 273/336
+Patching output file 274/336
+Patching output file 275/336
+Patching output file 276/336
+Patching output file 277/336
+Patching output file 278/336
+Patching output file 279/336
+Patching output file 280/336
+Patching output file 281/336
+Patching output file 282/336
+Patching output file 283/336
+Patching output file 284/336
+Patching output file 285/336
+Patching output file 286/336
+Patching output file 287/336
+Patching output file 288/336
+Patching output file 289/336
+Patching output file 290/336
+Patching output file 291/336
+Patching output file 292/336
+Patching output file 293/336
+Patching output file 294/336
+Patching output file 295/336
+Patching output file 296/336
+Patching output file 297/336
+Patching output file 298/336
+Patching output file 299/336
+Patching output file 300/336
+Patching output file 301/336
+Patching output file 302/336
+Patching output file 303/336
+Patching output file 304/336
+Patching output file 305/336
+Patching output file 306/336
+Patching output file 307/336
+Patching output file 308/336
+Patching output file 309/336
+Patching output file 310/336
+Patching output file 311/336
+Patching output file 312/336
+Patching output file 313/336
+Patching output file 314/336
+Patching output file 315/336
+Patching output file 316/336
+Patching output file 317/336
+Patching output file 318/336
+Patching output file 319/336
+Patching output file 320/336
+Patching output file 321/336
+Patching output file 322/336
+Patching output file 323/336
+Patching output file 324/336
+Patching output file 325/336
+Patching output file 326/336
+Patching output file 327/336
+Patching output file 328/336
+Patching output file 329/336
+Patching output file 330/336
+Patching output file 331/336
+Patching output file 332/336
+Patching output file 333/336
+Patching output file 334/336
+Patching output file 335/336
+Patching output file 336/336
+type lookup cache used 5336/65536 hits=29326 misses=5681
+symbol lookup cache used 7118/65536 hits=33684 misses=7118
 finished...

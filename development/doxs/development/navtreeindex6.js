@@ -1,5 +1,12 @@
 var NAVTREEINDEX6 =
 {
+"ntc__handler__comprehensive__test_8cpp.html#a336a78abf87ab8f51ccb1440d6094f39":[14,0,0,0,0,0,3,17],
+"ntc__handler__comprehensive__test_8cpp.html#a46f3d4f29ca67e1734903ce0f5f1757b":[14,0,0,0,0,0,3,27],
+"ntc__handler__comprehensive__test_8cpp.html#a5a85b9c772bbeb480b209a3e6ea92b4c":[14,0,0,0,0,0,3,32],
+"ntc__handler__comprehensive__test_8cpp.html#a60b12f8c5a62ed010779e3911e5b3c22":[14,0,0,0,0,0,3,10],
+"ntc__handler__comprehensive__test_8cpp.html#a624d5ce016d2c1a0c05175def6e8a4db":[14,0,0,0,0,0,3,7],
+"ntc__handler__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70":[14,0,0,0,0,0,3,0],
+"ntc__handler__comprehensive__test_8cpp.html#a67108face05ac1e7942a8f3ee042609a":[14,0,0,0,0,0,3,9],
 "ntc__handler__comprehensive__test_8cpp.html#a7b7f7f165c1004e17e04cf7b6be7ce5a":[14,0,0,0,0,0,3,31],
 "ntc__handler__comprehensive__test_8cpp.html#a7b9ef4d0344c0da67881e38fb5db17e8":[14,0,0,0,0,0,3,19],
 "ntc__handler__comprehensive__test_8cpp.html#a8875c2063548e95ed495dd3a2d7660ce":[14,0,0,0,0,0,3,28],
@@ -227,6 +234,10 @@ var NAVTREEINDEX6 =
 "structLogConfig.html#ac55e8067844a376dd7016a092ce19f73":[13,0,27,0],
 "structLogConfig.html#ac71d8aefc25d70efb4484bd352d8290d":[13,0,27,8],
 "structLogConfig.html#aed58684ab39633b59b907f6b3ab58b84":[13,0,27,12],
+"structLogger_1_1TagLevel.html":[13,0,28,0],
+"structLogger_1_1TagLevel.html#a56f03d5b2d3cfd87033437d44653d0e5":[13,0,28,0,2],
+"structLogger_1_1TagLevel.html#ae0706da5d17901967f36e666f960de42":[13,0,28,0,0],
+"structLogger_1_1TagLevel.html#af6d7e19cd63be826348cc7b1e5e5c1aa":[13,0,28,0,1],
 "structTestResults.html":[13,0,38],
 "structTestResults.html#a0acef46f38f27f0fbb8fa822bb218b3a":[13,0,38,3],
 "structTestResults.html#a257eba3a9005a5c19c68ae27774948f7":[13,0,38,0],
@@ -238,16 +249,5 @@ var NAVTREEINDEX6 =
 "structTestTaskContext.html":[13,0,39],
 "structTestTaskContext.html#a1c97680bd267a35637278ea10a3fae0e":[13,0,39,1],
 "structTestTaskContext.html#aa72faa223fd0ff992772b12458f62ec8":[13,0,39,3],
-"structTestTaskContext.html#ab82bee11b198be2f2b4d6c908573ddb6":[13,0,39,0],
-"structTestTaskContext.html#abcf19d2762ab98990c3fdc1eacf86130":[13,0,39,4],
-"structTestTaskContext.html#ae51f49c33ea802bc7f8bdde560a27304":[13,0,39,2],
-"structTmc5160CtrlPins.html":[11,11,0],
-"structTmc5160CtrlPins.html#a0780705d1b4a6eef17a26bb9d7bceecc":[11,11,0,3],
-"structTmc5160CtrlPins.html#a2bd0a07a547abfef8152abab9dd7d6a2":[11,11,0,1],
-"structTmc5160CtrlPins.html#a4b7a60c1c231cc8000747e658ff387e5":[11,11,0,2],
-"structTmc5160CtrlPins.html#a5c9f3e281f5d485c015a78ac32ce8145":[11,11,0,0],
-"structTmc9660CtrlPins.html":[11,13,0],
-"structTmc9660CtrlPins.html#a0f1e3e0750a8d6ac1b9d840fd5883d4a":[11,13,0,5],
-"structTmc9660CtrlPins.html#a25b9b59843a26d8008a7d6c33e13ee5b":[11,13,0,0],
-"structTmc9660CtrlPins.html#a39589c90d71bbfa3714e204a8a5a8a13":[11,13,0,3]
+"structTestTaskContext.html#ab82bee11b198be2f2b4d6c908573ddb6":[13,0,39,0]
 };

@@ -3,6 +3,7 @@ var Logger_8h =
     [ "LogConfig", "structLogConfig.html", "structLogConfig" ],
     [ "AsciiArtFormat", "structAsciiArtFormat.html", "structAsciiArtFormat" ],
     [ "Logger", "classLogger.html", "classLogger" ],
+    [ "Logger::TagLevel", "structLogger_1_1TagLevel.html", "structLogger_1_1TagLevel" ],
     [ "LOG_ASCII_ART", "Logger_8h.html#ab29585be7729d8a20e2da2c3f1793205", null ],
     [ "LOG_BANNER", "Logger_8h.html#a3f8ce72359938b8bedeba7a51bbba110", null ],
     [ "LOG_DEBUG", "Logger_8h.html#a86952bc1b765abd64f032f9f6fce9fe3", null ],

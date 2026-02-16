@@ -41,7 +41,7 @@ var searchData=
   ['sethightemperaturemode_38',['SetHighTemperatureMode',['../classAs5047uHandler.html#ac30152d7da0f04f4598d88601ab8ff23',1,'As5047uHandler']]],
   ['setinterruptmask_39',['SetInterruptMask',['../classPcal95555GpioPin.html#aa5db6f60106badc53e4e0f73e4ab7cda',1,'Pcal95555GpioPin::SetInterruptMask()'],['../classPcal95555Handler.html#a54cf5bfa5375bf58d21b238a2fa1ce25',1,'Pcal95555Handler::SetInterruptMask()']]],
   ['setlasterror_40',['SetLastError',['../classNtcTemperatureHandler.html#a5b148f36777ccff9fb633e3f4e99050f',1,'NtcTemperatureHandler']]],
-  ['setloglevel_41',['SetLogLevel',['../classLogger.html#aada69225be4b0bccb6fdfef3e96e2f7a',1,'Logger']]],
+  ['setloglevel_41',['SetLogLevel',['../classLogger.html#a0e83e1b37ca2c702f8828f38d662cc23',1,'Logger']]],
   ['setmaxspeed_42',['SetMaxSpeed',['../classTmc5160Handler.html#a42887e17ceb499f269a8acfec5414083',1,'Tmc5160Handler']]],
   ['setmotortype_43',['SetMotorType',['../classTmc9660Handler.html#a17071577577f18d8ece0df97631d4cca',1,'Tmc9660Handler']]],
   ['setntcconfiguration_44',['SetNtcConfiguration',['../classNtcTemperatureHandler.html#a7241123186a31ae2bccd66c1e042e789',1,'NtcTemperatureHandler']]],

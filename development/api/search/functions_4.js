@@ -19,6 +19,6 @@ var searchData=
   ['enterconfigmode_16',['EnterConfigMode',['../classTle92466edHandler.html#a0fa95ebc85ab477497525eea4ab59d94',1,'Tle92466edHandler']]],
   ['entermissionmode_17',['EnterMissionMode',['../classTle92466edHandler.html#a8e8602032981d1c684a3d9e5051c043a',1,'Tle92466edHandler']]],
   ['entersleepmode_18',['EnterSleepMode',['../classNtcTemperatureHandler.html#a059ed62988ed8c4e69ac891b448ff17a',1,'NtcTemperatureHandler']]],
-  ['error_19',['Error',['../classLogger.html#a5e4bcdaea60b9ac227b564d780388769',1,'Logger::Error(const std::string &amp;tag, const char *format,...) noexcept'],['../classLogger.html#a74f4f4cd04c3f56373fdcf9c21bd2018',1,'Logger::Error(const std::string &amp;tag, LogColor color, LogStyle style, const char *format,...) noexcept']]],
+  ['error_19',['Error',['../classLogger.html#adce17848a5844e053bfd314863dc1404',1,'Logger::Error(const char *tag, const char *format,...) noexcept'],['../classLogger.html#adf27e2ee35e622c18cf7eb92f47b134c',1,'Logger::Error(const char *tag, LogColor color, LogStyle style, const char *format,...) noexcept']]],
   ['exitsleepmode_20',['ExitSleepMode',['../classNtcTemperatureHandler.html#a3bc0497cbb414d6cb346a2a519e8b0b7',1,'NtcTemperatureHandler']]]
 ];

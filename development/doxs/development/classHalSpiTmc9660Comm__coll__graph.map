@@ -1,5 +1,5 @@
 <map id="HalSpiTmc9660Comm" name="HalSpiTmc9660Comm">
-<area shape="rect" id="Node000001" title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio." alt="" coords="123,108,290,133"/>
+<area shape="rect" id="Node000001" title="CRTP SPI communication adapter bridging BaseSpi/BaseGpio to tmc9660::SpiCommInterface." alt="" coords="123,108,290,133"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,213,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,53,196,106,193,110,137,57"/>
 <area shape="rect" id="Node000003" href="$structTmc9660CtrlPins.html" title="Shared helper holding the four TMC9660 host&#45;side control pin references." alt="" coords="238,13,370,38"/>

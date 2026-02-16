@@ -104,7 +104,7 @@
 <!-- Node21 -->
 <g id="Node000021" class="node">
 <title>Node21</title>
-<g id="a_Node000021"><a xlink:href="classTmc9660Handler_1_1Temperature.html" target="_top" xlink:title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">
+<g id="a_Node000021"><a xlink:href="classTmc9660Handler_1_1Temperature.html" target="_top" xlink:title="BaseTemperature adapter for TMC9660 internal chip temperature sensor.">
 <polygon fill="white" stroke="#666666" points="1098,-160.5 931,-160.5 931,-141.5 1098,-141.5 1098,-160.5"/>
 <text text-anchor="middle" x="1014.5" y="-148.5" font-family="Helvetica,sans-Serif" font-size="10.00">Tmc9660Handler::Temperature</text>
 </a>
@@ -143,7 +143,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classHalSpiTmc9660Comm.html" target="_top" xlink:title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">
+<g id="a_Node000005"><a xlink:href="classHalSpiTmc9660Comm.html" target="_top" xlink:title="CRTP SPI communication adapter bridging BaseSpi/BaseGpio to tmc9660::SpiCommInterface.">
 <polygon fill="white" stroke="#666666" points="381,-98.5 256,-98.5 256,-79.5 381,-79.5 381,-98.5"/>
 <text text-anchor="middle" x="318.5" y="-86.5" font-family="Helvetica,sans-Serif" font-size="10.00">HalSpiTmc9660Comm</text>
 </a>
@@ -200,7 +200,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="classHalUartTmc9660Comm.html" target="_top" xlink:title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.">
+<g id="a_Node000009"><a xlink:href="classHalUartTmc9660Comm.html" target="_top" xlink:title="CRTP UART communication adapter bridging BaseUart/BaseGpio to tmc9660::UartCommInterface.">
 <polygon fill="white" stroke="#666666" points="384,-50.5 253,-50.5 253,-31.5 384,-31.5 384,-50.5"/>
 <text text-anchor="middle" x="318.5" y="-38.5" font-family="Helvetica,sans-Serif" font-size="10.00">HalUartTmc9660Comm</text>
 </a>

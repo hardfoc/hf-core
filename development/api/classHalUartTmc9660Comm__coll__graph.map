@@ -1,5 +1,5 @@
 <map id="HalUartTmc9660Comm" name="HalUartTmc9660Comm">
-<area shape="rect" id="Node000001" title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio." alt="" coords="125,108,299,133"/>
+<area shape="rect" id="Node000001" title="CRTP UART communication adapter bridging BaseUart/BaseGpio to tmc9660::UartCommInterface." alt="" coords="125,108,299,133"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,221,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,53,201,106,198,110,141,57"/>
 <area shape="rect" id="Node000003" href="$structTmc9660CtrlPins.html" title="Shared helper holding the four TMC9660 host&#45;side control pin references." alt="" coords="246,13,378,38"/>

@@ -1,5 +1,7 @@
 <map id="HalSpiTmc5160Comm::DebugLog" name="HalSpiTmc5160Comm::DebugLog">
 <area shape="rect" id="Node000001" title="Debug logging — routes to HardFOC Logger." alt="" coords="5,5,180,45"/>
-<area shape="rect" id="Node000002" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="228,13,380,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,23,214,23,214,28,180,28"/>
+<area shape="rect" id="Node000002" href="$namespacehandler__utils.html#a71864e1d5801bea0d6d830326b6b183a" title="Route a driver log message to the Logger singleton." alt="" coords="228,5,417,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,23,214,23,214,28,181,28"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="465,13,617,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="417,23,452,23,452,28,417,28"/>
 </map>

@@ -8,17 +8,17 @@
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="473,126,506,129,506,134,472,131"/>
 <area shape="rect" id="Node000009" href="$classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f" title="Check if the TMC9660 driver has been initialized and is ready." alt="" coords="781,227,973,267"/>
 <area shape="poly" id="edge14_Node000002_Node000009" title=" " alt="" coords="390,127,521,165,768,222,767,228,519,170,388,132"/>
-<area shape="rect" id="Node000004" href="$classLogger.html#a5e4bcdaea60b9ac227b564d780388769" title="Log error message." alt="" coords="824,79,929,104"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="824,79,929,104"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="684,127,810,102,811,107,685,132"/>
 <area shape="rect" id="Node000007" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="801,128,953,153"/>
 <area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="718,139,787,138,787,144,718,144"/>
-<area shape="rect" id="Node000008" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="827,177,926,203"/>
+<area shape="rect" id="Node000008" href="$classLogger.html#a4681229c521795685fc14f6b55c82300" title="Log info message." alt="" coords="827,177,926,203"/>
 <area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="688,152,814,176,813,181,687,157"/>
 <area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="643,152,698,182,766,213,787,221,786,226,764,218,696,187,641,157"/>
 <area shape="poly" id="edge11_Node000003_Node000010" title=" " alt="" coords="671,127,716,108,730,97,739,86,749,74,764,64,780,57,782,61,767,68,752,78,743,89,734,101,719,112,673,132"/>
-<area shape="rect" id="Node000005" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="1036,92,1208,117"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="1036,92,1208,117"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="930,91,1023,97,1022,102,929,97"/>
-<area shape="rect" id="Node000006" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="1049,153,1195,179"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="1049,153,1195,179"/>
 <area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="930,98,989,113,1080,146,1078,151,987,118,929,103"/>
 <area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="926,180,987,164,1011,152,1035,138,1075,120,1077,125,1037,143,1014,156,989,168,927,185"/>
 <area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="926,183,1034,172,1035,177,927,188"/>

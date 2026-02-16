@@ -18,22 +18,20 @@
 <area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="93,338,170,360,168,365,92,344"/>
 <area shape="rect" id="Node000013" href="$rtos__wrap__comprehensive__test_8cpp.html#a758da32a1dd5dbb8d4d379d0bf8fb615" title=" " alt="" coords="174,415,286,441"/>
 <area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="64,340,97,370,141,400,162,409,160,414,139,405,94,375,60,344"/>
-<area shape="rect" id="Node000015" href="$rtos__wrap__comprehensive__test_8cpp.html#a57849262fcbeffefbaf4ff2fd03e0da4" title=" " alt="" coords="172,465,288,490"/>
-<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="58,341,89,394,113,424,142,450,160,460,158,465,138,454,109,428,84,397,54,344"/>
-<area shape="rect" id="Node000016" href="$rtos__wrap__comprehensive__test_8cpp.html#a7659cd90d8187cce7e493081d04f94c5" title=" " alt="" coords="158,514,302,539"/>
-<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="56,342,65,374,82,416,107,461,142,499,150,505,147,510,138,503,103,464,77,419,60,376,50,343"/>
-<area shape="rect" id="Node000017" href="$rtos__wrap__comprehensive__test_8cpp.html#a33699a69fbdc140bcba863f2c3e8ed45" title=" " alt="" coords="156,563,304,589"/>
-<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="54,342,60,382,75,439,101,499,120,526,142,550,147,554,144,558,138,554,115,529,97,501,70,440,55,383,49,343"/>
-<area shape="rect" id="Node000019" href="$rtos__wrap__comprehensive__test_8cpp.html#a313bf4c7ccc37386be3d53191255aab4" title=" " alt="" coords="167,613,293,638"/>
-<area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="53,342,57,391,69,460,80,498,96,535,116,569,142,599,156,609,152,614,138,603,112,572,91,537,75,499,64,461,51,391,48,343"/>
+<area shape="rect" id="Node000014" href="$rtos__wrap__comprehensive__test_8cpp.html#a57849262fcbeffefbaf4ff2fd03e0da4" title=" " alt="" coords="172,465,288,490"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="58,341,89,394,113,424,142,450,160,460,158,465,138,454,109,428,84,397,54,344"/>
+<area shape="rect" id="Node000015" href="$rtos__wrap__comprehensive__test_8cpp.html#a7659cd90d8187cce7e493081d04f94c5" title=" " alt="" coords="158,514,302,539"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="56,342,65,374,82,416,107,461,142,499,150,505,147,510,138,503,103,464,77,419,60,376,50,343"/>
+<area shape="rect" id="Node000016" href="$rtos__wrap__comprehensive__test_8cpp.html#a33699a69fbdc140bcba863f2c3e8ed45" title=" " alt="" coords="156,563,304,589"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="54,342,60,382,75,439,101,499,120,526,142,550,147,554,144,558,138,554,115,529,97,501,70,440,55,383,49,343"/>
+<area shape="rect" id="Node000018" href="$rtos__wrap__comprehensive__test_8cpp.html#a313bf4c7ccc37386be3d53191255aab4" title=" " alt="" coords="167,613,293,638"/>
+<area shape="poly" id="edge17_Node000001_Node000018" title=" " alt="" coords="53,342,57,391,69,460,80,498,96,535,116,569,142,599,156,609,152,614,138,603,112,572,91,537,75,499,64,461,51,391,48,343"/>
 <area shape="rect" id="Node000004" href="$TestFramework_8h.html#a57a48f91a141d98e45f82937581e1a97" title="Automatically initialize GPIO14 test indicator if not already done." alt="" coords="368,70,556,95"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="307,80,354,80,354,85,307,85"/>
 <area shape="rect" id="Node000005" href="$TestFramework_8h.html#a3967179ac699a5b02ef9787b549409fe" title="Initialize the test progression indicator on GPIO14." alt="" coords="604,63,743,103"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="556,80,590,80,590,85,556,85"/>
 <area shape="rect" id="Node000007" href="$classTestThread.html#a1f720b6a4ff2ea619abfe99eaf589058" title=" " alt="" coords="369,119,555,145"/>
 <area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="298,129,355,129,355,135,298,135"/>
-<area shape="rect" id="Node000014" href="$Tmc5160Handler_8cpp.html#a182f9d10831e181612f23068c3b47597" title=" " alt="" coords="401,415,523,441"/>
-<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="286,425,387,425,387,431,286,431"/>
-<area shape="rect" id="Node000018" href="$rtos__wrap__comprehensive__test_8cpp.html#acb6c6f5283e6ee3f412844244a4bcce1" title=" " alt="" coords="403,563,521,589"/>
-<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="305,573,389,573,389,579,305,579"/>
+<area shape="rect" id="Node000017" href="$rtos__wrap__comprehensive__test_8cpp.html#acb6c6f5283e6ee3f412844244a4bcce1" title=" " alt="" coords="403,563,521,589"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="305,573,389,573,389,579,305,579"/>
 </map>

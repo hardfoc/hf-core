@@ -71,6 +71,7 @@ var hierarchy =
     [ "tle92466ed::SpiInterface", null, [
       [ "HalSpiTle92466edComm", "classHalSpiTle92466edComm.html", null ]
     ] ],
+    [ "Logger::TagLevel", "structLogger_1_1TagLevel.html", null ],
     [ "TestResults", "structTestResults.html", null ],
     [ "TestTaskContext", "structTestTaskContext.html", null ],
     [ "Tle92466edHandler", "classTle92466edHandler.html", null ],

@@ -1,33 +1,32 @@
 <map id="As5047uHandler.cpp" name="As5047uHandler.cpp">
-<area shape="rect" id="Node000001" title="Implementation of unified AS5047U magnetic rotary position sensor handler." alt="" coords="561,5,715,31"/>
-<area shape="rect" id="Node000002" href="$As5047uHandler_8h.html" title="Unified handler for AS5047U magnetic rotary position sensor with SPI integration." alt="" coords="440,79,580,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="619,33,544,74,542,69,616,28"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="605,79,671,104"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="641,31,641,65,635,65,635,31"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="695,79,781,104"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="656,29,712,68,709,73,653,33"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="805,79,868,104"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="671,28,793,72,791,77,669,33"/>
-<area shape="rect" id="Node000012" href="$Logger_8h.html" title="Advanced logging system with formatting capabilities." alt="" coords="157,79,340,104"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="576,33,325,79,324,74,575,28"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="602,167,669,192"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="528,102,609,157,606,161,525,106"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="341,167,418,192"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="494,106,410,161,407,157,491,102"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="258,167,317,192"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="466,107,401,126,330,154,316,162,313,157,328,150,399,121,464,101"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="693,152,868,207"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="547,102,686,145,684,150,546,107"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="892,167,1013,192"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="580,100,744,124,881,149,913,159,911,164,880,155,743,129,580,105"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="442,167,578,192"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="513,104,513,152,507,152,507,104"/>
-<area shape="poly" id="edge14_Node000012_Node000004" title=" " alt="" coords="268,102,352,157,349,161,265,106"/>
-<area shape="poly" id="edge12_Node000012_Node000005" title=" " alt="" coords="256,103,279,153,274,155,251,105"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="5,167,68,192"/>
-<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="211,107,149,127,82,154,67,162,65,157,80,150,147,122,209,102"/>
-<area shape="rect" id="Node000014" title=" " alt="" coords="93,167,159,192"/>
-<area shape="poly" id="edge15_Node000012_Node000014" title=" " alt="" coords="234,106,156,161,153,156,231,102"/>
-<area shape="rect" id="Node000015" title=" " alt="" coords="183,167,234,192"/>
-<area shape="poly" id="edge16_Node000012_Node000015" title=" " alt="" coords="246,105,222,155,218,153,241,103"/>
+<area shape="rect" id="Node000001" title="Implementation of unified AS5047U magnetic rotary position sensor handler." alt="" coords="384,5,539,31"/>
+<area shape="rect" id="Node000002" href="$As5047uHandler_8h.html" title="Unified handler for AS5047U magnetic rotary position sensor with SPI integration." alt="" coords="391,79,531,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="464,31,464,65,459,65,459,31"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="5,167,72,192"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="384,28,281,46,225,61,172,81,140,98,110,119,62,159,58,155,107,114,137,94,170,76,224,56,280,41,383,23"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="556,79,641,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="485,28,565,70,563,75,482,33"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="666,79,729,104"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="500,28,654,74,652,79,498,33"/>
+<area shape="rect" id="Node000012" href="$Logger_8h.html" title="Advanced logging system with formatting capabilities." alt="" coords="182,79,365,104"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="432,33,318,76,316,71,430,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="972,167,1039,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="532,100,544,101,662,110,755,112,847,121,900,132,961,149,979,157,977,162,959,155,898,137,846,126,755,118,662,116,544,107,531,105"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="283,167,360,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="444,106,353,162,351,157,441,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="384,167,443,192"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="457,105,429,156,424,153,453,103"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="467,152,642,207"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="476,102,518,141,514,145,472,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="666,167,787,192"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="501,101,656,149,685,160,683,165,654,155,500,107"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="812,167,948,192"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="532,101,679,126,801,149,836,160,835,165,799,155,678,131,531,106"/>
+<area shape="poly" id="edge15_Node000012_Node000004" title=" " alt="" coords="282,103,310,153,306,156,277,105"/>
+<area shape="poly" id="edge14_Node000012_Node000005" title=" " alt="" coords="294,102,373,150,385,157,382,162,371,154,291,106"/>
+<area shape="poly" id="edge13_Node000012_Node000009" title=" " alt="" coords="228,107,160,127,85,154,70,162,67,157,83,150,158,122,227,101"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="187,167,258,192"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="269,106,239,156,234,153,264,103"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="96,167,163,192"/>
+<area shape="poly" id="edge16_Node000012_Node000014" title=" " alt="" coords="255,106,162,162,159,157,253,102"/>
 </map>

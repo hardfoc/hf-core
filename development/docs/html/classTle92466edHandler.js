@@ -32,6 +32,7 @@ var classTle92466edHandler =
     [ "KickWatchdog", "classTle92466edHandler.html#a0b64e2ae2b32b4e3ec31730798565fbf", null ],
     [ "operator=", "classTle92466edHandler.html#a0058457c10dd450ed9667388fd62c632", null ],
     [ "SetChannelCurrent", "classTle92466edHandler.html#ac4f2233b64443a4919fdbe1806063fac", null ],
+    [ "withDriver", "classTle92466edHandler.html#aef42f3c7c1b1ef51b27eb8d178aca6bc", null ],
     [ "comm_", "classTle92466edHandler.html#a804b537caa4f13ae19ae4a2e57982f7b", null ],
     [ "driver_", "classTle92466edHandler.html#a098cb780362ae98a49c13a23fcd80418", null ],
     [ "initialized_", "classTle92466edHandler.html#a79e6d31e7f429f789a2552b3ce8e5a63", null ],

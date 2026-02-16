@@ -29,6 +29,7 @@ var group__MAX22200__Handler =
       [ "SetChannelsMask", "classMax22200Handler.html#a0f9bbb552d6873017d9eb3be2a75b580", null ],
       [ "SetupCdrChannel", "classMax22200Handler.html#a780f37de690b0abbfef74d62e6b65cc7", null ],
       [ "SetupVdrChannel", "classMax22200Handler.html#af0ab0a3088189dd853c915dcef3a0054", null ],
+      [ "withDriver", "classMax22200Handler.html#abcdd9746a0df9c28bb36508d52d80ef5", null ],
       [ "comm_", "classMax22200Handler.html#a24eb0c32f2cf5360a3882523e7eeb08f", null ],
       [ "driver_", "classMax22200Handler.html#a748af00c00ba68752bf7590f04b588e4", null ],
       [ "initialized_", "classMax22200Handler.html#a7551cc6aef14367b839f97c1dc096b1a", null ],

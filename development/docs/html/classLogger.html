@@ -92,10 +92,12 @@ $(function(){initNavTree('classLogger.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classLogger-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Logger Class Reference</div></div>
 </div><!--header-->
@@ -108,9 +110,14 @@ $(function(){initNavTree('classLogger.html',''); initResizable(); });
 <div class="dynheader">
 Collaboration diagram for Logger:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger__coll__graph.svg" width="799" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger__coll__graph.svg" width="680" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structLogger_1_1TagLevel.html">TagLevel</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adcdc1901fd35d1e06b5c8cd47005daad" id="r_adcdc1901fd35d1e06b5c8cd47005daad"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcdc1901fd35d1e06b5c8cd47005daad">Initialize</a> (const <a class="el" href="structLogConfig.html">LogConfig</a> &amp;config=<a class="el" href="structLogConfig.html">LogConfig</a>{}) noexcept</td></tr>
@@ -122,51 +129,51 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab8af01e14cae7cb4bc0f82f369f7757c" id="r_ab8af01e14cae7cb4bc0f82f369f7757c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8af01e14cae7cb4bc0f82f369f7757c">IsInitialized</a> () const noexcept</td></tr>
 <tr class="memdesc:ab8af01e14cae7cb4bc0f82f369f7757c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if logger is initialized.  <br /></td></tr>
 <tr class="separator:ab8af01e14cae7cb4bc0f82f369f7757c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aada69225be4b0bccb6fdfef3e96e2f7a" id="r_aada69225be4b0bccb6fdfef3e96e2f7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aada69225be4b0bccb6fdfef3e96e2f7a">SetLogLevel</a> (const std::string &amp;tag, <a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level) noexcept</td></tr>
-<tr class="memdesc:aada69225be4b0bccb6fdfef3e96e2f7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set log level for a tag.  <br /></td></tr>
-<tr class="separator:aada69225be4b0bccb6fdfef3e96e2f7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92f6348443e9dfd5243e84967ca26a60" id="r_a92f6348443e9dfd5243e84967ca26a60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92f6348443e9dfd5243e84967ca26a60">GetLogLevel</a> (const std::string &amp;tag) const noexcept</td></tr>
-<tr class="memdesc:a92f6348443e9dfd5243e84967ca26a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get log level for a tag.  <br /></td></tr>
-<tr class="separator:a92f6348443e9dfd5243e84967ca26a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e4bcdaea60b9ac227b564d780388769" id="r_a5e4bcdaea60b9ac227b564d780388769"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e4bcdaea60b9ac227b564d780388769">Error</a> (const std::string &amp;tag, const char *format,...) noexcept</td></tr>
-<tr class="memdesc:a5e4bcdaea60b9ac227b564d780388769"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log error message.  <br /></td></tr>
-<tr class="separator:a5e4bcdaea60b9ac227b564d780388769"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c19c14724b0be1d2be63da4258c001a" id="r_a8c19c14724b0be1d2be63da4258c001a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c19c14724b0be1d2be63da4258c001a">Warn</a> (const std::string &amp;tag, const char *format,...) noexcept</td></tr>
-<tr class="memdesc:a8c19c14724b0be1d2be63da4258c001a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log warning message.  <br /></td></tr>
-<tr class="separator:a8c19c14724b0be1d2be63da4258c001a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c0c947d87884bca0395fd38d19d1102" id="r_a1c0c947d87884bca0395fd38d19d1102"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c0c947d87884bca0395fd38d19d1102">Info</a> (const std::string &amp;tag, const char *format,...) noexcept</td></tr>
-<tr class="memdesc:a1c0c947d87884bca0395fd38d19d1102"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log info message.  <br /></td></tr>
-<tr class="separator:a1c0c947d87884bca0395fd38d19d1102"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9811dd7acd0992cdc9ed6c5125a3fe1d" id="r_a9811dd7acd0992cdc9ed6c5125a3fe1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9811dd7acd0992cdc9ed6c5125a3fe1d">Debug</a> (const std::string &amp;tag, const char *format,...) noexcept</td></tr>
-<tr class="memdesc:a9811dd7acd0992cdc9ed6c5125a3fe1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log debug message.  <br /></td></tr>
-<tr class="separator:a9811dd7acd0992cdc9ed6c5125a3fe1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba8cc3a6e35fe5174c5786995d968997" id="r_aba8cc3a6e35fe5174c5786995d968997"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba8cc3a6e35fe5174c5786995d968997">Verbose</a> (const std::string &amp;tag, const char *format,...) noexcept</td></tr>
-<tr class="memdesc:aba8cc3a6e35fe5174c5786995d968997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log verbose message.  <br /></td></tr>
-<tr class="separator:aba8cc3a6e35fe5174c5786995d968997"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74f4f4cd04c3f56373fdcf9c21bd2018" id="r_a74f4f4cd04c3f56373fdcf9c21bd2018"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74f4f4cd04c3f56373fdcf9c21bd2018">Error</a> (const std::string &amp;tag, <a class="el" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2e">LogColor</a> color, <a class="el" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52">LogStyle</a> style, const char *format,...) noexcept</td></tr>
-<tr class="memdesc:a74f4f4cd04c3f56373fdcf9c21bd2018"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log error message with formatting.  <br /></td></tr>
-<tr class="separator:a74f4f4cd04c3f56373fdcf9c21bd2018"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47b7d1dc37caee9c015feb910a64a3eb" id="r_a47b7d1dc37caee9c015feb910a64a3eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47b7d1dc37caee9c015feb910a64a3eb">Warn</a> (const std::string &amp;tag, <a class="el" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2e">LogColor</a> color, <a class="el" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52">LogStyle</a> style, const char *format,...) noexcept</td></tr>
-<tr class="memdesc:a47b7d1dc37caee9c015feb910a64a3eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log warning message with formatting.  <br /></td></tr>
-<tr class="separator:a47b7d1dc37caee9c015feb910a64a3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e3f3649715655af7a4524f235539017" id="r_a8e3f3649715655af7a4524f235539017"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e3f3649715655af7a4524f235539017">Info</a> (const std::string &amp;tag, <a class="el" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2e">LogColor</a> color, <a class="el" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52">LogStyle</a> style, const char *format,...) noexcept</td></tr>
-<tr class="memdesc:a8e3f3649715655af7a4524f235539017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log info message with formatting.  <br /></td></tr>
-<tr class="separator:a8e3f3649715655af7a4524f235539017"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f7fec433bcf4f686e08e0f248d1b156" id="r_a2f7fec433bcf4f686e08e0f248d1b156"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f7fec433bcf4f686e08e0f248d1b156">Debug</a> (const std::string &amp;tag, <a class="el" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2e">LogColor</a> color, <a class="el" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52">LogStyle</a> style, const char *format,...) noexcept</td></tr>
-<tr class="memdesc:a2f7fec433bcf4f686e08e0f248d1b156"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log debug message with formatting.  <br /></td></tr>
-<tr class="separator:a2f7fec433bcf4f686e08e0f248d1b156"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a157dee727926d422d84886c6ac20a00a" id="r_a157dee727926d422d84886c6ac20a00a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a157dee727926d422d84886c6ac20a00a">Verbose</a> (const std::string &amp;tag, <a class="el" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2e">LogColor</a> color, <a class="el" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52">LogStyle</a> style, const char *format,...) noexcept</td></tr>
-<tr class="memdesc:a157dee727926d422d84886c6ac20a00a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log verbose message with formatting.  <br /></td></tr>
-<tr class="separator:a157dee727926d422d84886c6ac20a00a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa42b9e998d7d6fc23d2faf8db63a9eb" id="r_afa42b9e998d7d6fc23d2faf8db63a9eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa42b9e998d7d6fc23d2faf8db63a9eb">LogAsciiArt</a> (const std::string &amp;tag, const std::string &amp;ascii_art, const <a class="el" href="structAsciiArtFormat.html">AsciiArtFormat</a> &amp;format=<a class="el" href="structAsciiArtFormat.html">AsciiArtFormat</a>{}) noexcept</td></tr>
-<tr class="memdesc:afa42b9e998d7d6fc23d2faf8db63a9eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log ASCII art.  <br /></td></tr>
-<tr class="separator:afa42b9e998d7d6fc23d2faf8db63a9eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0ab73a70dd26bc1c943f84290423d02" id="r_ac0ab73a70dd26bc1c943f84290423d02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0ab73a70dd26bc1c943f84290423d02">LogAsciiArt</a> (<a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level, const std::string &amp;tag, const std::string &amp;ascii_art, const <a class="el" href="structAsciiArtFormat.html">AsciiArtFormat</a> &amp;format=<a class="el" href="structAsciiArtFormat.html">AsciiArtFormat</a>{}) noexcept</td></tr>
-<tr class="memdesc:ac0ab73a70dd26bc1c943f84290423d02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log ASCII art with log level.  <br /></td></tr>
-<tr class="separator:ac0ab73a70dd26bc1c943f84290423d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d43ccff40a5be8bbe983690c1af8ead" id="r_a9d43ccff40a5be8bbe983690c1af8ead"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d43ccff40a5be8bbe983690c1af8ead">LogBanner</a> (const std::string &amp;tag, const std::string &amp;ascii_art, const <a class="el" href="structAsciiArtFormat.html">AsciiArtFormat</a> &amp;format=<a class="el" href="structAsciiArtFormat.html">AsciiArtFormat</a>{}) noexcept</td></tr>
-<tr class="memdesc:a9d43ccff40a5be8bbe983690c1af8ead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log ASCII art banner.  <br /></td></tr>
-<tr class="separator:a9d43ccff40a5be8bbe983690c1af8ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e83e1b37ca2c702f8828f38d662cc23" id="r_a0e83e1b37ca2c702f8828f38d662cc23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e83e1b37ca2c702f8828f38d662cc23">SetLogLevel</a> (const char *tag, <a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level) noexcept</td></tr>
+<tr class="memdesc:a0e83e1b37ca2c702f8828f38d662cc23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set log level for a tag.  <br /></td></tr>
+<tr class="separator:a0e83e1b37ca2c702f8828f38d662cc23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae436878411ce3f0a080ffdf5140cd58e" id="r_ae436878411ce3f0a080ffdf5140cd58e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae436878411ce3f0a080ffdf5140cd58e">GetLogLevel</a> (const char *tag) const noexcept</td></tr>
+<tr class="memdesc:ae436878411ce3f0a080ffdf5140cd58e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get log level for a tag.  <br /></td></tr>
+<tr class="separator:ae436878411ce3f0a080ffdf5140cd58e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adce17848a5844e053bfd314863dc1404" id="r_adce17848a5844e053bfd314863dc1404"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adce17848a5844e053bfd314863dc1404">Error</a> (const char *tag, const char *format,...) noexcept</td></tr>
+<tr class="memdesc:adce17848a5844e053bfd314863dc1404"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log error message.  <br /></td></tr>
+<tr class="separator:adce17848a5844e053bfd314863dc1404"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa95ffa14d07a965d4a85bdec82cba26" id="r_aaa95ffa14d07a965d4a85bdec82cba26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa95ffa14d07a965d4a85bdec82cba26">Warn</a> (const char *tag, const char *format,...) noexcept</td></tr>
+<tr class="memdesc:aaa95ffa14d07a965d4a85bdec82cba26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log warning message.  <br /></td></tr>
+<tr class="separator:aaa95ffa14d07a965d4a85bdec82cba26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4681229c521795685fc14f6b55c82300" id="r_a4681229c521795685fc14f6b55c82300"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4681229c521795685fc14f6b55c82300">Info</a> (const char *tag, const char *format,...) noexcept</td></tr>
+<tr class="memdesc:a4681229c521795685fc14f6b55c82300"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log info message.  <br /></td></tr>
+<tr class="separator:a4681229c521795685fc14f6b55c82300"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd2f9efde67ebd50c458b996a15c8417" id="r_abd2f9efde67ebd50c458b996a15c8417"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd2f9efde67ebd50c458b996a15c8417">Debug</a> (const char *tag, const char *format,...) noexcept</td></tr>
+<tr class="memdesc:abd2f9efde67ebd50c458b996a15c8417"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log debug message.  <br /></td></tr>
+<tr class="separator:abd2f9efde67ebd50c458b996a15c8417"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acde0013df4b5a021affaee1b35e487bc" id="r_acde0013df4b5a021affaee1b35e487bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acde0013df4b5a021affaee1b35e487bc">Verbose</a> (const char *tag, const char *format,...) noexcept</td></tr>
+<tr class="memdesc:acde0013df4b5a021affaee1b35e487bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log verbose message.  <br /></td></tr>
+<tr class="separator:acde0013df4b5a021affaee1b35e487bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf27e2ee35e622c18cf7eb92f47b134c" id="r_adf27e2ee35e622c18cf7eb92f47b134c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf27e2ee35e622c18cf7eb92f47b134c">Error</a> (const char *tag, <a class="el" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2e">LogColor</a> color, <a class="el" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52">LogStyle</a> style, const char *format,...) noexcept</td></tr>
+<tr class="memdesc:adf27e2ee35e622c18cf7eb92f47b134c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log error message with formatting.  <br /></td></tr>
+<tr class="separator:adf27e2ee35e622c18cf7eb92f47b134c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a10a88618a574494c90b8431a986f0b" id="r_a2a10a88618a574494c90b8431a986f0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a10a88618a574494c90b8431a986f0b">Warn</a> (const char *tag, <a class="el" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2e">LogColor</a> color, <a class="el" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52">LogStyle</a> style, const char *format,...) noexcept</td></tr>
+<tr class="memdesc:a2a10a88618a574494c90b8431a986f0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log warning message with formatting.  <br /></td></tr>
+<tr class="separator:a2a10a88618a574494c90b8431a986f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c8e9fac8521c28b5b1346d1a4d1ab8a" id="r_a8c8e9fac8521c28b5b1346d1a4d1ab8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c8e9fac8521c28b5b1346d1a4d1ab8a">Info</a> (const char *tag, <a class="el" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2e">LogColor</a> color, <a class="el" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52">LogStyle</a> style, const char *format,...) noexcept</td></tr>
+<tr class="memdesc:a8c8e9fac8521c28b5b1346d1a4d1ab8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log info message with formatting.  <br /></td></tr>
+<tr class="separator:a8c8e9fac8521c28b5b1346d1a4d1ab8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77448fdfa976956c22198cb038819b66" id="r_a77448fdfa976956c22198cb038819b66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77448fdfa976956c22198cb038819b66">Debug</a> (const char *tag, <a class="el" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2e">LogColor</a> color, <a class="el" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52">LogStyle</a> style, const char *format,...) noexcept</td></tr>
+<tr class="memdesc:a77448fdfa976956c22198cb038819b66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log debug message with formatting.  <br /></td></tr>
+<tr class="separator:a77448fdfa976956c22198cb038819b66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0469274fd372e5a6c4b786dd8729b246" id="r_a0469274fd372e5a6c4b786dd8729b246"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0469274fd372e5a6c4b786dd8729b246">Verbose</a> (const char *tag, <a class="el" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2e">LogColor</a> color, <a class="el" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52">LogStyle</a> style, const char *format,...) noexcept</td></tr>
+<tr class="memdesc:a0469274fd372e5a6c4b786dd8729b246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log verbose message with formatting.  <br /></td></tr>
+<tr class="separator:a0469274fd372e5a6c4b786dd8729b246"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dbf66f74d9cdf5b2fd40566ac50837c" id="r_a8dbf66f74d9cdf5b2fd40566ac50837c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8dbf66f74d9cdf5b2fd40566ac50837c">LogAsciiArt</a> (const char *tag, const std::string &amp;ascii_art, const <a class="el" href="structAsciiArtFormat.html">AsciiArtFormat</a> &amp;format=<a class="el" href="structAsciiArtFormat.html">AsciiArtFormat</a>{}) noexcept</td></tr>
+<tr class="memdesc:a8dbf66f74d9cdf5b2fd40566ac50837c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log ASCII art.  <br /></td></tr>
+<tr class="separator:a8dbf66f74d9cdf5b2fd40566ac50837c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac73565318a8f8718fc41a8387a22c0c4" id="r_ac73565318a8f8718fc41a8387a22c0c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac73565318a8f8718fc41a8387a22c0c4">LogAsciiArt</a> (<a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level, const char *tag, const std::string &amp;ascii_art, const <a class="el" href="structAsciiArtFormat.html">AsciiArtFormat</a> &amp;format=<a class="el" href="structAsciiArtFormat.html">AsciiArtFormat</a>{}) noexcept</td></tr>
+<tr class="memdesc:ac73565318a8f8718fc41a8387a22c0c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log ASCII art with log level.  <br /></td></tr>
+<tr class="separator:ac73565318a8f8718fc41a8387a22c0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd4a442550cdd43f4ca5bcc6ddbb706f" id="r_afd4a442550cdd43f4ca5bcc6ddbb706f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd4a442550cdd43f4ca5bcc6ddbb706f">LogBanner</a> (const char *tag, const std::string &amp;ascii_art, const <a class="el" href="structAsciiArtFormat.html">AsciiArtFormat</a> &amp;format=<a class="el" href="structAsciiArtFormat.html">AsciiArtFormat</a>{}) noexcept</td></tr>
+<tr class="memdesc:afd4a442550cdd43f4ca5bcc6ddbb706f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log ASCII art banner.  <br /></td></tr>
+<tr class="separator:afd4a442550cdd43f4ca5bcc6ddbb706f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac78253f1f745833880231e9f3dc0ad00" id="r_ac78253f1f745833880231e9f3dc0ad00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac78253f1f745833880231e9f3dc0ad00">SetConfig</a> (const <a class="el" href="structLogConfig.html">LogConfig</a> &amp;config) noexcept</td></tr>
 <tr class="memdesc:ac78253f1f745833880231e9f3dc0ad00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set default configuration.  <br /></td></tr>
 <tr class="separator:ac78253f1f745833880231e9f3dc0ad00"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,9 +219,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:aea05eaeaa020b687d8ec39ec6e72b0c9" id="r_aea05eaeaa020b687d8ec39ec6e72b0c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLogger.html">Logger</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea05eaeaa020b687d8ec39ec6e72b0c9">operator=</a> (<a class="el" href="classLogger.html">Logger</a> &amp;&amp;)=delete</td></tr>
 <tr class="memdesc:aea05eaeaa020b687d8ec39ec6e72b0c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment operator (deleted)  <br /></td></tr>
 <tr class="separator:aea05eaeaa020b687d8ec39ec6e72b0c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeede6ac18db92a47caede076ef188a13" id="r_aeede6ac18db92a47caede076ef188a13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeede6ac18db92a47caede076ef188a13">LogInternal</a> (<a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level, const std::string &amp;tag, <a class="el" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2e">LogColor</a> color, <a class="el" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52">LogStyle</a> style, const char *format, va_list args) noexcept</td></tr>
-<tr class="memdesc:aeede6ac18db92a47caede076ef188a13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal logging method.  <br /></td></tr>
-<tr class="separator:aeede6ac18db92a47caede076ef188a13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6adb205db597526fb91ad20067400394" id="r_a6adb205db597526fb91ad20067400394"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6adb205db597526fb91ad20067400394">LogInternal</a> (<a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level, const char *tag, <a class="el" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2e">LogColor</a> color, <a class="el" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52">LogStyle</a> style, const char *format, va_list args) noexcept</td></tr>
+<tr class="memdesc:a6adb205db597526fb91ad20067400394"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal logging method.  <br /></td></tr>
+<tr class="separator:a6adb205db597526fb91ad20067400394"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a999ded4958c8e7768e507bb7dee06173" id="r_a999ded4958c8e7768e507bb7dee06173"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a999ded4958c8e7768e507bb7dee06173">FormatAsciiArt</a> (const std::string &amp;ascii_art, const <a class="el" href="structAsciiArtFormat.html">AsciiArtFormat</a> &amp;format) const noexcept</td></tr>
 <tr class="memdesc:a999ded4958c8e7768e507bb7dee06173"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format ASCII art.  <br /></td></tr>
 <tr class="separator:a999ded4958c8e7768e507bb7dee06173"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -233,9 +240,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a9f4e8698f1716570e726476e9939a809" id="r_a9f4e8698f1716570e726476e9939a809"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f4e8698f1716570e726476e9939a809">GetResetSequence</a> () const noexcept</td></tr>
 <tr class="memdesc:a9f4e8698f1716570e726476e9939a809"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get ANSI reset sequence.  <br /></td></tr>
 <tr class="separator:a9f4e8698f1716570e726476e9939a809"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a737b981213c02321a5235848334d7191" id="r_a737b981213c02321a5235848334d7191"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a737b981213c02321a5235848334d7191">IsLevelEnabled</a> (<a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level, const std::string &amp;tag) const noexcept</td></tr>
-<tr class="memdesc:a737b981213c02321a5235848334d7191"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if log level is enabled for tag.  <br /></td></tr>
-<tr class="separator:a737b981213c02321a5235848334d7191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9e84e0ff6bd538e4f9ed8dcebc3e2f0" id="r_af9e84e0ff6bd538e4f9ed8dcebc3e2f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9e84e0ff6bd538e4f9ed8dcebc3e2f0">IsLevelEnabled</a> (<a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level, const char *tag) const noexcept</td></tr>
+<tr class="memdesc:af9e84e0ff6bd538e4f9ed8dcebc3e2f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if log level is enabled for tag.  <br /></td></tr>
+<tr class="separator:af9e84e0ff6bd538e4f9ed8dcebc3e2f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20608fe100327f13af94b601faa699eb" id="r_a20608fe100327f13af94b601faa699eb"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; BaseLogger &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20608fe100327f13af94b601faa699eb">CreateBaseLogger</a> () noexcept</td></tr>
 <tr class="memdesc:a20608fe100327f13af94b601faa699eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create base logger instance.  <br /></td></tr>
 <tr class="separator:a20608fe100327f13af94b601faa699eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -249,10 +256,18 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a607eecea0ac44ec8bbe052c00949a9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14d456263913f3ae7f05e30326796836" id="r_a14d456263913f3ae7f05e30326796836"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structLogConfig.html">LogConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14d456263913f3ae7f05e30326796836">config_</a></td></tr>
 <tr class="separator:a14d456263913f3ae7f05e30326796836"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ed1cda4527f2b954f3a6548dce5527e" id="r_a9ed1cda4527f2b954f3a6548dce5527e"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ed1cda4527f2b954f3a6548dce5527e">tag_levels_</a></td></tr>
-<tr class="separator:a9ed1cda4527f2b954f3a6548dce5527e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa51410b7a39c658d24127f87c0e38636" id="r_aa51410b7a39c658d24127f87c0e38636"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structLogger_1_1TagLevel.html">TagLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa51410b7a39c658d24127f87c0e38636">tag_levels_</a> [<a class="el" href="#a1d59aa839504e8d05f08927c2617fb67">kMaxTagLevels</a>] = {}</td></tr>
+<tr class="separator:aa51410b7a39c658d24127f87c0e38636"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f694e77741e4abe06e49ef7dd379acd" id="r_a6f694e77741e4abe06e49ef7dd379acd"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; BaseLogger &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f694e77741e4abe06e49ef7dd379acd">base_logger_</a></td></tr>
 <tr class="separator:a6f694e77741e4abe06e49ef7dd379acd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a1d59aa839504e8d05f08927c2617fb67" id="r_a1d59aa839504e8d05f08927c2617fb67"><td class="memItemLeft" align="right" valign="top">static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d59aa839504e8d05f08927c2617fb67">kMaxTagLevels</a> = 16</td></tr>
+<tr class="memdesc:a1d59aa839504e8d05f08927c2617fb67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fixed-size tag-level storage (avoids std::map heap allocation)  <br /></td></tr>
+<tr class="separator:a1d59aa839504e8d05f08927c2617fb67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d7ee6286d92d880a680743d8a1af8f6" id="r_a3d7ee6286d92d880a680743d8a1af8f6"><td class="memItemLeft" align="right" valign="top">static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d7ee6286d92d880a680743d8a1af8f6">kMaxTagLength</a> = 32</td></tr>
+<tr class="separator:a3d7ee6286d92d880a680743d8a1af8f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Advanced logging system with formatting capabilities. </p>
@@ -269,20 +284,20 @@ Private Attributes</h2></td></tr>
 <p>Usage Example: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classLogger.html">Logger</a>&amp; logger = <a class="code hl_function" href="#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a>();</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Basic logging</span></div>
-<div class="line">logger.<a class="code hl_function" href="#a1c0c947d87884bca0395fd38d19d1102">Info</a>(<span class="stringliteral">&quot;TAG&quot;</span>, <span class="stringliteral">&quot;Hello World&quot;</span>);</div>
+<div class="line">logger.<a class="code hl_function" href="#a4681229c521795685fc14f6b55c82300">Info</a>(<span class="stringliteral">&quot;TAG&quot;</span>, <span class="stringliteral">&quot;Hello World&quot;</span>);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// With formatting</span></div>
-<div class="line">logger.<a class="code hl_function" href="#a1c0c947d87884bca0395fd38d19d1102">Info</a>(<span class="stringliteral">&quot;TAG&quot;</span>, <span class="stringliteral">&quot;Hello World&quot;</span>, <a class="code hl_enumvalue" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2eaa2d9547b5d3dd9f05984475f7c926da0">LogColor::RED</a>, <a class="code hl_enumvalue" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19">LogStyle::BOLD</a>);</div>
+<div class="line">logger.<a class="code hl_function" href="#a4681229c521795685fc14f6b55c82300">Info</a>(<span class="stringliteral">&quot;TAG&quot;</span>, <span class="stringliteral">&quot;Hello World&quot;</span>, <a class="code hl_enumvalue" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2eaa2d9547b5d3dd9f05984475f7c926da0">LogColor::RED</a>, <a class="code hl_enumvalue" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19">LogStyle::BOLD</a>);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// ASCII art</span></div>
 <div class="line">std::string ascii_art = <span class="stringliteral">&quot;...&quot;</span>; <span class="comment">// ASCII art string</span></div>
-<div class="line">logger.<a class="code hl_function" href="#afa42b9e998d7d6fc23d2faf8db63a9eb">LogAsciiArt</a>(<span class="stringliteral">&quot;BANNER&quot;</span>, ascii_art, <a class="code hl_struct" href="structAsciiArtFormat.html">AsciiArtFormat</a>{});</div>
+<div class="line">logger.<a class="code hl_function" href="#a8dbf66f74d9cdf5b2fd40566ac50837c">LogAsciiArt</a>(<span class="stringliteral">&quot;BANNER&quot;</span>, ascii_art, <a class="code hl_struct" href="structAsciiArtFormat.html">AsciiArtFormat</a>{});</div>
 <div class="ttc" id="aLogger_8h_html_abeb0b5a8d3424ad4a83592f8580b8a2eaa2d9547b5d3dd9f05984475f7c926da0"><div class="ttname"><a href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2eaa2d9547b5d3dd9f05984475f7c926da0">LogColor::RED</a></div><div class="ttdeci">@ RED</div><div class="ttdoc">Red.</div></div>
 <div class="ttc" id="aLogger_8h_html_aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19"><div class="ttname"><a href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19">LogStyle::BOLD</a></div><div class="ttdeci">@ BOLD</div><div class="ttdoc">Bold text.</div></div>
 <div class="ttc" id="aclassLogger_html"><div class="ttname"><a href="classLogger.html">Logger</a></div><div class="ttdoc">Advanced logging system with formatting capabilities.</div><div class="ttdef"><b>Definition</b> Logger.h:159</div></div>
-<div class="ttc" id="aclassLogger_html_a1c0c947d87884bca0395fd38d19d1102"><div class="ttname"><a href="#a1c0c947d87884bca0395fd38d19d1102">Logger::Info</a></div><div class="ttdeci">void Info(const std::string &amp;tag, const char *format,...) noexcept</div><div class="ttdoc">Log info message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:170</div></div>
+<div class="ttc" id="aclassLogger_html_a4681229c521795685fc14f6b55c82300"><div class="ttname"><a href="#a4681229c521795685fc14f6b55c82300">Logger::Info</a></div><div class="ttdeci">void Info(const char *tag, const char *format,...) noexcept</div><div class="ttdoc">Log info message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:193</div></div>
 <div class="ttc" id="aclassLogger_html_a5789d11f8f1356e2192c0023a089cbc4"><div class="ttname"><a href="#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a></div><div class="ttdeci">static Logger &amp; GetInstance() noexcept</div><div class="ttdoc">Get singleton instance.</div><div class="ttdef"><b>Definition</b> Logger.cpp:62</div></div>
-<div class="ttc" id="aclassLogger_html_afa42b9e998d7d6fc23d2faf8db63a9eb"><div class="ttname"><a href="#afa42b9e998d7d6fc23d2faf8db63a9eb">Logger::LogAsciiArt</a></div><div class="ttdeci">void LogAsciiArt(const std::string &amp;tag, const std::string &amp;ascii_art, const AsciiArtFormat &amp;format=AsciiArtFormat{}) noexcept</div><div class="ttdoc">Log ASCII art.</div><div class="ttdef"><b>Definition</b> Logger.cpp:266</div></div>
+<div class="ttc" id="aclassLogger_html_a8dbf66f74d9cdf5b2fd40566ac50837c"><div class="ttname"><a href="#a8dbf66f74d9cdf5b2fd40566ac50837c">Logger::LogAsciiArt</a></div><div class="ttdeci">void LogAsciiArt(const char *tag, const std::string &amp;ascii_art, const AsciiArtFormat &amp;format=AsciiArtFormat{}) noexcept</div><div class="ttdoc">Log ASCII art.</div><div class="ttdef"><b>Definition</b> Logger.cpp:289</div></div>
 <div class="ttc" id="astructAsciiArtFormat_html"><div class="ttname"><a href="structAsciiArtFormat.html">AsciiArtFormat</a></div><div class="ttdoc">ASCII art formatting options.</div><div class="ttdef"><b>Definition</b> Logger.h:116</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af4376d745e05cf7af3db5921e6d6adeb" name="af4376d745e05cf7af3db5921e6d6adeb"></a>
@@ -478,8 +493,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a9811dd7acd0992cdc9ed6c5125a3fe1d" name="a9811dd7acd0992cdc9ed6c5125a3fe1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9811dd7acd0992cdc9ed6c5125a3fe1d">&#9670;&#160;</a></span>Debug() <span class="overload">[1/2]</span></h2>
+<a id="abd2f9efde67ebd50c458b996a15c8417" name="abd2f9efde67ebd50c458b996a15c8417"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd2f9efde67ebd50c458b996a15c8417">&#9670;&#160;</a></span>Debug() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -490,7 +505,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void Logger::Debug </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -522,18 +537,13 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a9811dd7acd0992cdc9ed6c5125a3fe1d_cgraph.svg" width="347" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a9811dd7acd0992cdc9ed6c5125a3fe1d_icgraph.svg" width="578" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_abd2f9efde67ebd50c458b996a15c8417_cgraph.svg" width="347" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a2f7fec433bcf4f686e08e0f248d1b156" name="a2f7fec433bcf4f686e08e0f248d1b156"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f7fec433bcf4f686e08e0f248d1b156">&#9670;&#160;</a></span>Debug() <span class="overload">[2/2]</span></h2>
+<a id="a77448fdfa976956c22198cb038819b66" name="a77448fdfa976956c22198cb038819b66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77448fdfa976956c22198cb038819b66">&#9670;&#160;</a></span>Debug() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -544,7 +554,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void Logger::Debug </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -588,7 +598,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a2f7fec433bcf4f686e08e0f248d1b156_cgraph.svg" width="347" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a77448fdfa976956c22198cb038819b66_cgraph.svg" width="347" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -751,8 +761,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a5e4bcdaea60b9ac227b564d780388769" name="a5e4bcdaea60b9ac227b564d780388769"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e4bcdaea60b9ac227b564d780388769">&#9670;&#160;</a></span>Error() <span class="overload">[1/2]</span></h2>
+<a id="adce17848a5844e053bfd314863dc1404" name="adce17848a5844e053bfd314863dc1404"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adce17848a5844e053bfd314863dc1404">&#9670;&#160;</a></span>Error() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -763,7 +773,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void Logger::Error </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -795,18 +805,18 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a5e4bcdaea60b9ac227b564d780388769_cgraph.svg" width="336" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_adce17848a5844e053bfd314863dc1404_cgraph.svg" width="336" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a5e4bcdaea60b9ac227b564d780388769_icgraph.svg" width="1264" height="1528"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_adce17848a5844e053bfd314863dc1404_icgraph.svg" width="1274" height="1252"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a74f4f4cd04c3f56373fdcf9c21bd2018" name="a74f4f4cd04c3f56373fdcf9c21bd2018"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74f4f4cd04c3f56373fdcf9c21bd2018">&#9670;&#160;</a></span>Error() <span class="overload">[2/2]</span></h2>
+<a id="adf27e2ee35e622c18cf7eb92f47b134c" name="adf27e2ee35e622c18cf7eb92f47b134c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf27e2ee35e622c18cf7eb92f47b134c">&#9670;&#160;</a></span>Error() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -817,7 +827,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void Logger::Error </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -861,7 +871,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a74f4f4cd04c3f56373fdcf9c21bd2018_cgraph.svg" width="336" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_adf27e2ee35e622c18cf7eb92f47b134c_cgraph.svg" width="336" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1056,8 +1066,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a92f6348443e9dfd5243e84967ca26a60" name="a92f6348443e9dfd5243e84967ca26a60"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92f6348443e9dfd5243e84967ca26a60">&#9670;&#160;</a></span>GetLogLevel()</h2>
+<a id="ae436878411ce3f0a080ffdf5140cd58e" name="ae436878411ce3f0a080ffdf5140cd58e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae436878411ce3f0a080ffdf5140cd58e">&#9670;&#160;</a></span>GetLogLevel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1068,7 +1078,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname"><a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> Logger::GetLogLevel </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em></span></td><td>)</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1152,8 +1162,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a1c0c947d87884bca0395fd38d19d1102" name="a1c0c947d87884bca0395fd38d19d1102"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c0c947d87884bca0395fd38d19d1102">&#9670;&#160;</a></span>Info() <span class="overload">[1/2]</span></h2>
+<a id="a4681229c521795685fc14f6b55c82300" name="a4681229c521795685fc14f6b55c82300"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4681229c521795685fc14f6b55c82300">&#9670;&#160;</a></span>Info() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1164,7 +1174,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void Logger::Info </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1196,18 +1206,18 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a1c0c947d87884bca0395fd38d19d1102_cgraph.svg" width="330" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a4681229c521795685fc14f6b55c82300_cgraph.svg" width="330" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a1c0c947d87884bca0395fd38d19d1102_icgraph.svg" width="1030" height="2186"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a4681229c521795685fc14f6b55c82300_icgraph.svg" width="1038" height="2107"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a8e3f3649715655af7a4524f235539017" name="a8e3f3649715655af7a4524f235539017"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e3f3649715655af7a4524f235539017">&#9670;&#160;</a></span>Info() <span class="overload">[2/2]</span></h2>
+<a id="a8c8e9fac8521c28b5b1346d1a4d1ab8a" name="a8c8e9fac8521c28b5b1346d1a4d1ab8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c8e9fac8521c28b5b1346d1a4d1ab8a">&#9670;&#160;</a></span>Info() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1218,7 +1228,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void Logger::Info </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1262,7 +1272,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a8e3f3649715655af7a4524f235539017_cgraph.svg" width="330" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a8c8e9fac8521c28b5b1346d1a4d1ab8a_cgraph.svg" width="330" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1334,8 +1344,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a737b981213c02321a5235848334d7191" name="a737b981213c02321a5235848334d7191"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a737b981213c02321a5235848334d7191">&#9670;&#160;</a></span>IsLevelEnabled()</h2>
+<a id="af9e84e0ff6bd538e4f9ed8dcebc3e2f0" name="af9e84e0ff6bd538e4f9ed8dcebc3e2f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9e84e0ff6bd538e4f9ed8dcebc3e2f0">&#9670;&#160;</a></span>IsLevelEnabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1351,7 +1361,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em></span>&#160;) const</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em></span>&#160;) const</td>
         </tr>
       </table>
   </td>
@@ -1373,13 +1383,13 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a737b981213c02321a5235848334d7191_icgraph.svg" width="974" height="2383"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_af9e84e0ff6bd538e4f9ed8dcebc3e2f0_icgraph.svg" width="974" height="2355"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="afa42b9e998d7d6fc23d2faf8db63a9eb" name="afa42b9e998d7d6fc23d2faf8db63a9eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa42b9e998d7d6fc23d2faf8db63a9eb">&#9670;&#160;</a></span>LogAsciiArt() <span class="overload">[1/2]</span></h2>
+<a id="a8dbf66f74d9cdf5b2fd40566ac50837c" name="a8dbf66f74d9cdf5b2fd40566ac50837c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dbf66f74d9cdf5b2fd40566ac50837c">&#9670;&#160;</a></span>LogAsciiArt() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1390,7 +1400,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void Logger::LogAsciiArt </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1422,8 +1432,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ac0ab73a70dd26bc1c943f84290423d02" name="ac0ab73a70dd26bc1c943f84290423d02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0ab73a70dd26bc1c943f84290423d02">&#9670;&#160;</a></span>LogAsciiArt() <span class="overload">[2/2]</span></h2>
+<a id="ac73565318a8f8718fc41a8387a22c0c4" name="ac73565318a8f8718fc41a8387a22c0c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac73565318a8f8718fc41a8387a22c0c4">&#9670;&#160;</a></span>LogAsciiArt() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1439,7 +1449,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1472,8 +1482,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a9d43ccff40a5be8bbe983690c1af8ead" name="a9d43ccff40a5be8bbe983690c1af8ead"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d43ccff40a5be8bbe983690c1af8ead">&#9670;&#160;</a></span>LogBanner()</h2>
+<a id="afd4a442550cdd43f4ca5bcc6ddbb706f" name="afd4a442550cdd43f4ca5bcc6ddbb706f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd4a442550cdd43f4ca5bcc6ddbb706f">&#9670;&#160;</a></span>LogBanner()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1484,7 +1494,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void Logger::LogBanner </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1516,8 +1526,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="aeede6ac18db92a47caede076ef188a13" name="aeede6ac18db92a47caede076ef188a13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeede6ac18db92a47caede076ef188a13">&#9670;&#160;</a></span>LogInternal()</h2>
+<a id="a6adb205db597526fb91ad20067400394" name="a6adb205db597526fb91ad20067400394"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6adb205db597526fb91ad20067400394">&#9670;&#160;</a></span>LogInternal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1533,7 +1543,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1578,7 +1588,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_aeede6ac18db92a47caede076ef188a13_icgraph.svg" width="948" height="2383"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a6adb205db597526fb91ad20067400394_icgraph.svg" width="948" height="2355"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1670,8 +1680,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="aada69225be4b0bccb6fdfef3e96e2f7a" name="aada69225be4b0bccb6fdfef3e96e2f7a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aada69225be4b0bccb6fdfef3e96e2f7a">&#9670;&#160;</a></span>SetLogLevel()</h2>
+<a id="a0e83e1b37ca2c702f8828f38d662cc23" name="a0e83e1b37ca2c702f8828f38d662cc23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e83e1b37ca2c702f8828f38d662cc23">&#9670;&#160;</a></span>SetLogLevel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1682,7 +1692,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void Logger::SetLogLevel </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1708,8 +1718,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="aba8cc3a6e35fe5174c5786995d968997" name="aba8cc3a6e35fe5174c5786995d968997"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba8cc3a6e35fe5174c5786995d968997">&#9670;&#160;</a></span>Verbose() <span class="overload">[1/2]</span></h2>
+<a id="acde0013df4b5a021affaee1b35e487bc" name="acde0013df4b5a021affaee1b35e487bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acde0013df4b5a021affaee1b35e487bc">&#9670;&#160;</a></span>Verbose() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1720,7 +1730,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void Logger::Verbose </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1752,13 +1762,13 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_aba8cc3a6e35fe5174c5786995d968997_cgraph.svg" width="358" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_acde0013df4b5a021affaee1b35e487bc_cgraph.svg" width="358" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a157dee727926d422d84886c6ac20a00a" name="a157dee727926d422d84886c6ac20a00a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a157dee727926d422d84886c6ac20a00a">&#9670;&#160;</a></span>Verbose() <span class="overload">[2/2]</span></h2>
+<a id="a0469274fd372e5a6c4b786dd8729b246" name="a0469274fd372e5a6c4b786dd8729b246"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0469274fd372e5a6c4b786dd8729b246">&#9670;&#160;</a></span>Verbose() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1769,7 +1779,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void Logger::Verbose </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1813,13 +1823,13 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a157dee727926d422d84886c6ac20a00a_cgraph.svg" width="358" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a0469274fd372e5a6c4b786dd8729b246_cgraph.svg" width="358" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a8c19c14724b0be1d2be63da4258c001a" name="a8c19c14724b0be1d2be63da4258c001a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c19c14724b0be1d2be63da4258c001a">&#9670;&#160;</a></span>Warn() <span class="overload">[1/2]</span></h2>
+<a id="aaa95ffa14d07a965d4a85bdec82cba26" name="aaa95ffa14d07a965d4a85bdec82cba26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa95ffa14d07a965d4a85bdec82cba26">&#9670;&#160;</a></span>Warn() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1830,7 +1840,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void Logger::Warn </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1862,18 +1872,18 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a8c19c14724b0be1d2be63da4258c001a_cgraph.svg" width="338" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_aaa95ffa14d07a965d4a85bdec82cba26_cgraph.svg" width="338" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a8c19c14724b0be1d2be63da4258c001a_icgraph.svg" width="1011" height="1791"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_aaa95ffa14d07a965d4a85bdec82cba26_icgraph.svg" width="1280" height="1638"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a47b7d1dc37caee9c015feb910a64a3eb" name="a47b7d1dc37caee9c015feb910a64a3eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47b7d1dc37caee9c015feb910a64a3eb">&#9670;&#160;</a></span>Warn() <span class="overload">[2/2]</span></h2>
+<a id="a2a10a88618a574494c90b8431a986f0b" name="a2a10a88618a574494c90b8431a986f0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a10a88618a574494c90b8431a986f0b">&#9670;&#160;</a></span>Warn() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1884,7 +1894,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void Logger::Warn </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1928,7 +1938,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a47b7d1dc37caee9c015feb910a64a3eb_cgraph.svg" width="338" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a2a10a88618a574494c90b8431a986f0b_cgraph.svg" width="338" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -2000,8 +2010,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a9ed1cda4527f2b954f3a6548dce5527e" name="a9ed1cda4527f2b954f3a6548dce5527e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ed1cda4527f2b954f3a6548dce5527e">&#9670;&#160;</a></span>tag_levels_</h2>
+<a id="a3d7ee6286d92d880a680743d8a1af8f6" name="a3d7ee6286d92d880a680743d8a1af8f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d7ee6286d92d880a680743d8a1af8f6">&#9670;&#160;</a></span>kMaxTagLength</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2010,7 +2020,53 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, <a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a>&gt; Logger::tag_levels_</td>
+          <td class="memname">constexpr size_t Logger::kMaxTagLength = 32</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d59aa839504e8d05f08927c2617fb67" name="a1d59aa839504e8d05f08927c2617fb67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d59aa839504e8d05f08927c2617fb67">&#9670;&#160;</a></span>kMaxTagLevels</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr size_t Logger::kMaxTagLevels = 16</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fixed-size tag-level storage (avoids std::map heap allocation) </p>
+
+</div>
+</div>
+<a id="aa51410b7a39c658d24127f87c0e38636" name="aa51410b7a39c658d24127f87c0e38636"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa51410b7a39c658d24127f87c0e38636">&#9670;&#160;</a></span>tag_levels_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structLogger_1_1TagLevel.html">TagLevel</a> Logger::tag_levels_[<a class="el" href="#a1d59aa839504e8d05f08927c2617fb67">kMaxTagLevels</a>] = {}</td>
         </tr>
       </table>
   </td>

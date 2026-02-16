@@ -1,25 +1,27 @@
 <map id="Max22200Handler::EnableAllChannels" name="Max22200Handler::EnableAllChannels">
 <area shape="rect" id="Node000001" title="Enable all channels." alt="" coords="5,61,216,101"/>
-<area shape="rect" id="Node000002" href="$classMax22200Handler.html#aa00edacb247660349767fa4521121104" title=" " alt="" coords="264,61,521,101"/>
+<area shape="rect" id="Node000002" href="$classMax22200Handler.html#abcdd9746a0df9c28bb36508d52d80ef5" title="Execute a lambda with a locked, initialized driver." alt="" coords="264,68,481,93"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,78,250,78,250,83,216,83"/>
-<area shape="rect" id="Node000003" href="$classLogger.html#a5e4bcdaea60b9ac227b564d780388769" title="Log error message." alt="" coords="846,5,951,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="521,59,569,53,832,22,832,27,570,58,522,64"/>
-<area shape="rect" id="Node000006" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="823,153,975,179"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="512,98,810,148,809,154,512,103"/>
-<area shape="rect" id="Node000007" href="$classMax22200Handler.html#ad6c72b45a96c36cd1b450f5e330fad25" title="Initialize driver (ENABLE HIGH, read/clear STATUS, set ACTIVE)." alt="" coords="569,68,775,93"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="521,78,556,78,556,83,521,83"/>
-<area shape="rect" id="Node000004" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="1023,31,1195,56"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="952,22,1009,29,1008,34,951,27"/>
-<area shape="rect" id="Node000005" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="1035,80,1182,105"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="945,28,976,40,1024,65,1047,73,1045,78,1022,70,974,44,943,33"/>
-<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="718,65,838,32,839,37,719,71"/>
-<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="703,91,824,140,844,146,842,152,822,144,701,96"/>
-<area shape="rect" id="Node000008" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="849,104,948,129"/>
-<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="753,91,836,104,835,109,752,96"/>
-<area shape="rect" id="Node000009" href="$classLogger.html#a8c19c14724b0be1d2be63da4258c001a" title="Log warning message." alt="" coords="845,55,952,80"/>
-<area shape="poly" id="edge12_Node000007_Node000009" title=" " alt="" coords="775,72,831,69,832,74,775,77"/>
-<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="940,101,974,89,1022,65,1043,57,1045,62,1024,70,976,94,942,106"/>
-<area shape="poly" id="edge11_Node000008_Node000005" title=" " alt="" coords="948,108,1021,100,1022,105,948,114"/>
-<area shape="poly" id="edge13_Node000009_Node000004" title=" " alt="" coords="952,59,1009,52,1009,57,953,64"/>
-<area shape="poly" id="edge14_Node000009_Node000005" title=" " alt="" coords="953,71,1022,80,1021,85,952,76"/>
+<area shape="rect" id="Node000003" href="$classMax22200Handler.html#aa00edacb247660349767fa4521121104" title=" " alt="" coords="529,61,787,101"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="482,78,516,78,516,83,482,83"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="1111,5,1217,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="787,59,834,53,1097,22,1098,27,835,58,787,64"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="1088,153,1240,179"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="778,98,1075,148,1074,154,777,103"/>
+<area shape="rect" id="Node000008" href="$classMax22200Handler.html#ad6c72b45a96c36cd1b450f5e330fad25" title="Initialize driver (ENABLE HIGH, read/clear STATUS, set ACTIVE)." alt="" coords="835,68,1040,93"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="787,78,821,78,821,83,787,83"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="1288,31,1460,56"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1217,22,1274,29,1274,34,1217,27"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="1301,80,1447,105"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="1210,28,1241,40,1289,65,1312,73,1310,78,1287,70,1239,44,1208,33"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="983,65,1103,32,1104,37,985,71"/>
+<area shape="poly" id="edge9_Node000008_Node000007" title=" " alt="" coords="969,91,1089,140,1109,146,1107,152,1087,144,967,96"/>
+<area shape="rect" id="Node000009" href="$classLogger.html#a4681229c521795685fc14f6b55c82300" title="Log info message." alt="" coords="1115,104,1213,129"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="1018,91,1101,104,1101,109,1017,96"/>
+<area shape="rect" id="Node000010" href="$classLogger.html#aaa95ffa14d07a965d4a85bdec82cba26" title="Log warning message." alt="" coords="1111,55,1217,80"/>
+<area shape="poly" id="edge13_Node000008_Node000010" title=" " alt="" coords="1040,72,1097,69,1097,74,1040,77"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="1205,101,1239,89,1287,65,1308,57,1310,62,1289,70,1241,94,1207,106"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="1213,108,1287,100,1287,105,1214,114"/>
+<area shape="poly" id="edge14_Node000010_Node000005" title=" " alt="" coords="1217,59,1274,52,1275,57,1218,64"/>
+<area shape="poly" id="edge15_Node000010_Node000006" title=" " alt="" coords="1218,71,1287,80,1286,85,1217,76"/>
 </map>

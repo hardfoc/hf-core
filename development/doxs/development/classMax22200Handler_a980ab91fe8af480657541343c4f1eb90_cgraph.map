@@ -2,10 +2,10 @@
 <area shape="rect" id="Node000001" title="Construct MAX22200 handler." alt="" coords="5,23,223,63"/>
 <area shape="rect" id="Node000002" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="271,5,423,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,29,257,25,257,30,223,34"/>
-<area shape="rect" id="Node000003" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="297,55,396,80"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a4681229c521795685fc14f6b55c82300" title="Log info message." alt="" coords="297,55,396,80"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="223,52,284,58,283,64,223,57"/>
-<area shape="rect" id="Node000004" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="471,29,643,55"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="471,29,643,55"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="396,59,456,51,457,57,396,64"/>
-<area shape="rect" id="Node000005" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="483,79,630,104"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="483,79,630,104"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="396,70,470,79,469,84,396,76"/>
 </map>

@@ -1,0 +1,5 @@
+<map id="HalSpiTle92466edComm::Delay" name="HalSpiTle92466edComm::Delay">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,188,45"/>
+<area shape="rect" id="Node000002" href="$namespacehandler__utils.html#ac2999c5753a6d86504463b742c23dcfe" title="Microsecond delay with automatic fallback to RTOS delay for large values." alt="" coords="236,13,405,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,23,222,23,222,28,188,28"/>
+</map>

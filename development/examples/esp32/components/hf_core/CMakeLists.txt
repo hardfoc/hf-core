@@ -119,6 +119,7 @@ idf_component_register(
         # Handler includes (each handler directory + parent for includes like "handlers/xxx/Xxx.h")
         "${HANDLER_ROOT}/as5047u"
         "${HANDLER_ROOT}/bno08x"
+        "${HANDLER_ROOT}/common"
         "${HANDLER_ROOT}/max22200"
         "${HANDLER_ROOT}/pca9685"
         "${HANDLER_ROOT}/pcal95555"

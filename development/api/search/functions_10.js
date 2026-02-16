@@ -48,5 +48,6 @@ var searchData=
   ['resettodefault_45',['ResetToDefault',['../classPcal95555Handler.html#aeb2c5589355cb9ae970fdf2d10b545e8',1,'Pcal95555Handler']]],
   ['resettodefaults_46',['ResetToDefaults',['../classAs5047uHandler.html#a7cbd322b961c33b684227abd9581bd4b',1,'As5047uHandler']]],
   ['resetvariables_47',['ResetVariables',['../classTestThread.html#abaf68689b014106872445278fdfcd1fa',1,'TestThread']]],
-  ['resolvemonitoringcontext_48',['ResolveMonitoringContext',['../classNtcTemperatureHandler.html#a2a459d108af3fc0c29d518c62cb791fe',1,'NtcTemperatureHandler']]]
+  ['resolvemonitoringcontext_48',['ResolveMonitoringContext',['../classNtcTemperatureHandler.html#a2a459d108af3fc0c29d518c62cb791fe',1,'NtcTemperatureHandler']]],
+  ['routelogtologger_49',['RouteLogToLogger',['../namespacehandler__utils.html#a71864e1d5801bea0d6d830326b6b183a',1,'handler_utils']]]
 ];

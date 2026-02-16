@@ -4,23 +4,23 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,79,351,146,349,151,154,84"/>
 <area shape="rect" id="Node000007" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="854,55,1006,80"/>
 <area shape="poly" id="edge15_Node000001_Node000007" title=" " alt="" coords="228,66,840,65,840,70,228,71"/>
-<area shape="rect" id="Node000011" href="$classLogger.html#a8c19c14724b0be1d2be63da4258c001a" title="Log warning message." alt="" coords="877,5,983,31"/>
+<area shape="rect" id="Node000011" href="$classLogger.html#aaa95ffa14d07a965d4a85bdec82cba26" title="Log warning message." alt="" coords="877,5,983,31"/>
 <area shape="poly" id="edge16_Node000001_Node000011" title=" " alt="" coords="216,53,276,47,605,27,863,17,863,22,606,32,276,53,217,59"/>
 <area shape="rect" id="Node000003" href="$classTmc9660Handler.html#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device." alt="" coords="573,179,771,204"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="526,175,560,178,559,184,525,180"/>
 <area shape="rect" id="Node000009" href="$classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f" title="Check if the TMC9660 driver has been initialized and is ready." alt="" coords="834,277,1026,317"/>
 <area shape="poly" id="edge14_Node000002_Node000009" title=" " alt="" coords="444,176,574,213,822,271,820,276,573,218,443,181"/>
-<area shape="rect" id="Node000004" href="$classLogger.html#a5e4bcdaea60b9ac227b564d780388769" title="Log error message." alt="" coords="877,177,983,203"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="877,177,983,203"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="771,188,864,188,864,193,771,193"/>
 <area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="686,176,741,133,778,109,818,89,839,81,841,86,820,94,781,114,744,138,690,181"/>
-<area shape="rect" id="Node000008" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="881,227,979,252"/>
+<area shape="rect" id="Node000008" href="$classLogger.html#a4681229c521795685fc14f6b55c82300" title="Log info message." alt="" coords="881,227,979,252"/>
 <area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="741,201,867,225,866,230,740,207"/>
 <area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="697,202,752,231,820,262,841,270,839,275,818,267,749,236,694,206"/>
 <area shape="rect" id="Node000010" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="819,128,1041,153"/>
 <area shape="poly" id="edge11_Node000003_Node000010" title=" " alt="" coords="737,176,851,153,852,159,738,181"/>
-<area shape="rect" id="Node000005" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="1089,153,1261,179"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="1089,153,1261,179"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="983,182,1075,173,1076,178,983,188"/>
-<area shape="rect" id="Node000006" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="1102,203,1249,228"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="1102,203,1249,228"/>
 <area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="983,193,1089,204,1088,209,983,198"/>
 <area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="979,228,1040,212,1064,200,1088,188,1110,180,1111,185,1090,192,1067,205,1042,216,980,233"/>
 <area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="980,232,1088,221,1088,226,980,237"/>

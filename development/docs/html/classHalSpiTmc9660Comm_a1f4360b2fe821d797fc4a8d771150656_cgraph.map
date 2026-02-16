@@ -1,7 +1,5 @@
 <map id="HalSpiTmc9660Comm::delayMs" name="HalSpiTmc9660Comm::delayMs">
-<area shape="rect" id="Node000001" title="Delay execution for the specified number of milliseconds." alt="" coords="5,13,180,53"/>
-<area shape="rect" id="Node000002" href="$namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a549681b2f83c95e29a65f01db3948ed8" title=" " alt="" coords="228,5,408,60"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,30,214,30,214,35,180,35"/>
-<area shape="rect" id="Node000003" href="$Tmc5160Handler_8cpp.html#a182f9d10831e181612f23068c3b47597" title=" " alt="" coords="456,20,579,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="408,30,442,30,442,35,408,35"/>
+<area shape="rect" id="Node000001" title="Delay execution for the specified number of milliseconds." alt="" coords="5,5,180,45"/>
+<area shape="rect" id="Node000002" href="$namespacehandler__utils.html#afc7fd91265677d0865cbc2a413754ed8" title="RTOS&#45;aware millisecond delay." alt="" coords="228,13,399,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,23,215,23,215,28,180,28"/>
 </map>

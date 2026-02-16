@@ -1,0 +1,7 @@
+<map id="Logger::Verbose" name="Logger::Verbose">
+<area shape="rect" id="Node000001" title="Log verbose message with formatting." alt="" coords="5,31,132,56"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="180,5,352,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,33,166,28,166,33,132,38"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="193,55,339,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="132,48,179,54,179,59,132,54"/>
+</map>

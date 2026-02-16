@@ -10,7 +10,7 @@ var searchData=
   ['velocity_5frad_5fper_5fsec_7',['velocity_rad_per_sec',['../structAs5047uMeasurement.html#a5ac093437fbd32c0779631f3264efab2',1,'As5047uMeasurement']]],
   ['velocity_5fraw_8',['velocity_raw',['../structAs5047uMeasurement.html#a4556c5d147003c5ad22d364350569a09',1,'As5047uMeasurement']]],
   ['velocity_5frpm_9',['velocity_rpm',['../structAs5047uMeasurement.html#a6a357d1e546fb4cf5d0dfb98a28375c9',1,'As5047uMeasurement']]],
-  ['verbose_10',['Verbose',['../classLogger.html#aba8cc3a6e35fe5174c5786995d968997',1,'Logger::Verbose(const std::string &amp;tag, const char *format,...) noexcept'],['../classLogger.html#a157dee727926d422d84886c6ac20a00a',1,'Logger::Verbose(const std::string &amp;tag, LogColor color, LogStyle style, const char *format,...) noexcept']]],
+  ['verbose_10',['Verbose',['../classLogger.html#acde0013df4b5a021affaee1b35e487bc',1,'Logger::Verbose(const char *tag, const char *format,...) noexcept'],['../classLogger.html#a0469274fd372e5a6c4b786dd8729b246',1,'Logger::Verbose(const char *tag, LogColor color, LogStyle style, const char *format,...) noexcept']]],
   ['verbose_11',['VERBOSE',['../Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86aec1f06e9fb39c4ef0729b3c7c9c8e8cc',1,'Logger.h']]],
   ['visitdriver_12',['visitDriver',['../classTmc5160Handler.html#adf1b6ae5b680756f1b68169789cf0c1f',1,'Tmc5160Handler::visitDriver()'],['../classTmc9660Handler.html#a4360829b58deda85e9da4b9cebee96f0',1,'Tmc9660Handler::visitDriver(Func &amp;&amp;func)'],['../classTmc9660Handler.html#a154e359681e33fde2179e91cdbee0b6d',1,'Tmc9660Handler::visitDriver(Func &amp;&amp;func) const']]],
   ['visitdriverinternal_13',['visitDriverInternal',['../classTmc5160Handler.html#a439a68f9d3f6785e0a493f9ed3821325',1,'Tmc5160Handler']]],
