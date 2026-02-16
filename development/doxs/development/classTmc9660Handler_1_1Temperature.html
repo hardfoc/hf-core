@@ -100,7 +100,7 @@ $(function(){initNavTree('classTmc9660Handler_1_1Temperature.html',''); initResi
 </div><!--header-->
 <div class="contents">
 
-<p>BaseTemperature adapter for TMC9660 internal chip temperature sensor.  
+<p>BaseTemperature adapter for the TMC9660 internal chip temperature sensor.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Tmc9660Handler_8h_source.html">Tmc9660Handler.h</a>&gt;</code></p>
@@ -171,8 +171,15 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a5f25018bc7dfed904873d722a7b2ca90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>BaseTemperature adapter for TMC9660 internal chip temperature sensor. </p>
-<p>Range: -40 to +150°C, 0.1°C resolution, ±2°C accuracy. Thread-safe with statistics and diagnostics tracking. </p>
+<div class="textblock"><p>BaseTemperature adapter for the TMC9660 internal chip temperature sensor. </p>
+<p>Reads the TMC9660's built-in chip temperature via the telemetry subsystem and presents it through the standard HardFOC BaseTemperature interface. Includes thread-safe statistics and diagnostics tracking.</p>
+<p>Sensor specifications:</p><ul>
+<li>Range: -40°C to +150°C</li>
+<li>Resolution: 0.1°C</li>
+<li>Accuracy: ±2°C typical</li>
+<li>Response time: ~100ms</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>This inner class is owned by the handler. For manager-layer ownership, use Tmc9660TemperatureWrapper (defined in TemperatureManager.h). </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a39c2778d7ba493b3c5a620b26289218d" name="a39c2778d7ba493b3c5a620b26289218d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a39c2778d7ba493b3c5a620b26289218d">&#9670;&#160;</a></span>Temperature()</h2>

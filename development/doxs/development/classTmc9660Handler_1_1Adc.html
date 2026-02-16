@@ -220,9 +220,24 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>BaseAdc adapter for all TMC9660 ADC channels. </p>
-<p>Channel ID scheme: 0-3 AIN, 10-13 current sense, 20-21 voltage, 30-31 temperature, 40-42 motor data. Thread-safe with RtosMutex.</p>
-<dl class="section note"><dt>Note</dt><dd>Owned by handler; use <a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> for AdcManager ownership. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> </dd></dl>
+<p>Provides a unified BaseAdc interface for reading the TMC9660's various analog and telemetry data channels. Channels are identified by a numeric ID scheme:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter">Channel ID Range   </th><th class="markdownTableHeadLeft">Type   </th><th class="markdownTableHeadLeft">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">0 - 3   </td><td class="markdownTableBodyLeft">AIN channels   </td><td class="markdownTableBodyLeft">External analog inputs (GPIO5)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">10 - 13   </td><td class="markdownTableBodyLeft">Current sense   </td><td class="markdownTableBodyLeft">Phase current ADC (I0-I3)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">20 - 21   </td><td class="markdownTableBodyLeft">Voltage monitor   </td><td class="markdownTableBodyLeft">20=supply, 21=driver voltage    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">30 - 31   </td><td class="markdownTableBodyLeft"><a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a>   </td><td class="markdownTableBodyLeft">30=chip, 31=external NTC    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">40 - 42   </td><td class="markdownTableBodyLeft">Motor data   </td><td class="markdownTableBodyLeft">40=current, 41=velocity, 42=pos   </td></tr>
+</table>
+<p>The wrapper includes thread-safe statistics and diagnostics tracking via RtosMutex. Voltage conversions use a default 3.3V / 16-bit scale; for temperature and motor data channels, the "voltage" field contains the physical value directly (degrees Celsius, mA, etc.).</p>
+<dl class="section note"><dt>Note</dt><dd>This inner class is owned by the handler. For manager-layer ownership, use <a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> which delegates to this instance.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> <a class="el" href="classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">Thin</a> <a class="el" href="classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">delegation</a> <a class="el" href="classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">wrapper</a> <a class="el" href="classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">for</a> <a class="el" href="classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">AdcManager</a> <a class="el" href="classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">ownership</a> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6f5e9eb8f504a04682523c5097ae713e" name="a6f5e9eb8f504a04682523c5097ae713e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f5e9eb8f504a04682523c5097ae713e">&#9670;&#160;</a></span>Adc()</h2>
@@ -1010,7 +1025,7 @@ Here is the call graph for this function:</div>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">temp_channel</td><td>0=chip temperature (Celsius), 1=external NTC raw. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">raw_value</td><td>Raw value (temp*100 for chip, raw ADC for external). </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">voltage</td><td><a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for TMC9660 internal chip temperature sensor.">Temperature</a> in Celsius (chip) or voltage (external). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">voltage</td><td><a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a> in Celsius (chip) or voltage (external). </td></tr>
   </table>
   </dd>
 </dl>

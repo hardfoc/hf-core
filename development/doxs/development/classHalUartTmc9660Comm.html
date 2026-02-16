@@ -99,7 +99,7 @@ $(function(){initNavTree('classHalUartTmc9660Comm.html',''); initResizable(); })
 </div><!--header-->
 <div class="contents">
 
-<p>CRTP UART communication adapter bridging BaseUart/BaseGpio to tmc9660::UartCommInterface.  
+<p>Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Tmc9660Handler_8h_source.html">Tmc9660Handler.h</a>&gt;</code></p>
@@ -155,10 +155,18 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a7d842bccb7b871b4fa3367935b3c4024"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>CRTP UART communication adapter bridging BaseUart/BaseGpio to tmc9660::UartCommInterface. </p>
-<p>Handles TMCL/bootloader UART transfers, four host-side control pins, and platform-aware delays. Mirrors <a class="el" href="classHalSpiTmc9660Comm.html" title="CRTP SPI communication adapter bridging BaseSpi/BaseGpio to tmc9660::SpiCommInterface.">HalSpiTmc9660Comm</a> for UART transport.</p>
-<dl class="section note"><dt>Note</dt><dd>Does NOT own the BaseUart or BaseGpio instances. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classHalSpiTmc9660Comm.html" title="CRTP SPI communication adapter bridging BaseSpi/BaseGpio to tmc9660::SpiCommInterface.">HalSpiTmc9660Comm</a> </dd></dl>
+<div class="textblock"><p>Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio. </p>
+<p>Implements all methods required by tmc9660::UartCommInterface&lt;HalUartTmc9660Comm&gt; through the CRTP pattern. Handles:</p>
+<ul>
+<li><b>TMCL transfers</b>: 9-byte send/receive for parameter mode</li>
+<li><b>Bootloader transfers</b>: 8-byte send/receive for bootloader mode</li>
+<li><b>GPIO control</b>: Same four control pins as <a class="el" href="classHalSpiTmc9660Comm.html" title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">HalSpiTmc9660Comm</a></li>
+<li><b>Timing and logging</b>: Same platform-aware implementations</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>This class does NOT own the BaseUart or BaseGpio instances; they must remain valid for the lifetime of this object.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>tmc9660::UartCommInterface CRTP base class from the TMC9660 driver </dd>
+<dd>
+<a class="el" href="classHalSpiTmc9660Comm.html" title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">HalSpiTmc9660Comm</a> SPI equivalent of this class </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a144c7a0f50237dff1fa25c235084c3e1" name="a144c7a0f50237dff1fa25c235084c3e1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a144c7a0f50237dff1fa25c235084c3e1">&#9670;&#160;</a></span>HalUartTmc9660Comm()</h2>

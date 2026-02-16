@@ -19,7 +19,7 @@ var searchData=
   ['handler_5fmutex_5f_16',['handler_mutex_',['../classAs5047uHandler.html#a6a3896d3b872ad10d3f7b64d074a81ca',1,'As5047uHandler::handler_mutex_'],['../classBno08xHandler.html#aa17448183bf8a9205830538ce86a3e1a',1,'Bno08xHandler::handler_mutex_'],['../classPca9685Handler.html#a78ed285da5d0316a7c9c5a171363fbd0',1,'Pca9685Handler::handler_mutex_'],['../classPcal95555Handler.html#ada54239b8d7a1b3429070e8325d2c208',1,'Pcal95555Handler::handler_mutex_']]],
   ['handler_5futils_17',['handler_utils',['../namespacehandler__utils.html',1,'']]],
   ['handlercommon_2eh_18',['HandlerCommon.h',['../HandlerCommon_8h.html',1,'']]],
-  ['handlers_19',['📖 Handlers',['../index.html#autotoc_md31',1,'']]],
+  ['handlers_19',['📖 Handlers',['../index.html#autotoc_md38',1,'']]],
   ['handlertaskargs_20',['HandlerTaskArgs',['../structHandlerTaskArgs.html',1,'']]],
   ['handlesensorerrors_21',['HandleSensorErrors',['../classAs5047uHandler.html#a6b29b6418f7b2d19cbdcc65aa6eb9756',1,'As5047uHandler']]],
   ['hardware_20constraints_22',['Hardware Constraints',['../classPca9685PwmAdapter.html#autotoc_md8',1,'']]],

@@ -99,7 +99,7 @@ $(function(){initNavTree('classHalSpiTmc9660Comm.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
-<p>CRTP SPI communication adapter bridging BaseSpi/BaseGpio to tmc9660::SpiCommInterface.  
+<p>Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Tmc9660Handler_8h_source.html">Tmc9660Handler.h</a>&gt;</code></p>
@@ -154,10 +154,22 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a57a03a0afc398cb7af11919a42aff141"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>CRTP SPI communication adapter bridging BaseSpi/BaseGpio to tmc9660::SpiCommInterface. </p>
-<p>Handles TMCL/bootloader SPI transfers, four host-side control pins (RST, DRV_EN, FAULTN, WAKE) with configurable active-level polarity, and platform-aware delays.</p>
-<dl class="section note"><dt>Note</dt><dd>Does NOT own the BaseSpi or BaseGpio instances. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classHalUartTmc9660Comm.html" title="CRTP UART communication adapter bridging BaseUart/BaseGpio to tmc9660::UartCommInterface.">HalUartTmc9660Comm</a> </dd></dl>
+<div class="textblock"><p>Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio. </p>
+<p>Implements all methods required by tmc9660::SpiCommInterface&lt;HalSpiTmc9660Comm&gt; through the CRTP (Curiously Recurring Template Pattern). This class acts as the bridge between the HardFOC BaseSpi abstraction and the TMC9660 driver's SPI protocol, handling:</p>
+<ul>
+<li><b>TMCL transfers</b>: 8-byte full-duplex SPI exchanges for parameter mode</li>
+<li><b>Bootloader transfers</b>: 5-byte full-duplex SPI exchanges for bootloader mode</li>
+<li><b>GPIO control</b>: Maps TMC9660 control pin identifiers (RST, DRV_EN, FAULTN, WAKE) to physical BaseGpio instances with configurable active-level polarity</li>
+<li><b>Timing</b>: Platform-aware delays (millisecond via RTOS, microsecond via esp_rom_delay_us or busy-wait fallback)</li>
+<li><b>Logging</b>: Routes TMC9660 driver debug output to the HardFOC <a class="el" href="classLogger.html" title="Advanced logging system with formatting capabilities.">Logger</a></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md25"></a>
+Control Pin Polarity</h2>
+<p>Each control pin can be configured as active-high or active-low to match the board's electrical design (e.g., inverting buffers). The constructor parameters set the initial polarity; the base class provides set_pin_active_level() for runtime reconfiguration if needed.</p>
+<dl class="section note"><dt>Note</dt><dd>This class does NOT own the BaseSpi or BaseGpio instances; they must remain valid for the lifetime of this object.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>tmc9660::SpiCommInterface CRTP base class from the TMC9660 driver </dd>
+<dd>
+<a class="el" href="classHalUartTmc9660Comm.html" title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.">HalUartTmc9660Comm</a> UART equivalent of this class </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af1a0f32616c37bc82b428e3ebd141f54" name="af1a0f32616c37bc82b428e3ebd141f54"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af1a0f32616c37bc82b428e3ebd141f54">&#9670;&#160;</a></span>HalSpiTmc9660Comm()</h2>

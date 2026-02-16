@@ -25,21 +25,21 @@
 var NAVTREE =
 [
   [ "HF-Core Platform", "index.html", [
-    [ "📚 Table of Contents", "index.html#autotoc_md23", null ],
-    [ "📦 Overview", "index.html#autotoc_md24", null ],
-    [ "✨ Features", "index.html#autotoc_md25", null ],
-    [ "🏗️ Architecture", "index.html#autotoc_md26", null ],
-    [ "🚀 Quick Start", "index.html#autotoc_md27", [
-      [ "Clone", "index.html#autotoc_md28", null ],
-      [ "Build and Flash a Test", "index.html#autotoc_md29", null ],
-      [ "Build All CI-Enabled Tests", "index.html#autotoc_md30", null ]
+    [ "📚 Table of Contents", "index.html#autotoc_md30", null ],
+    [ "📦 Overview", "index.html#autotoc_md31", null ],
+    [ "✨ Features", "index.html#autotoc_md32", null ],
+    [ "🏗️ Architecture", "index.html#autotoc_md33", null ],
+    [ "🚀 Quick Start", "index.html#autotoc_md34", [
+      [ "Clone", "index.html#autotoc_md35", null ],
+      [ "Build and Flash a Test", "index.html#autotoc_md36", null ],
+      [ "Build All CI-Enabled Tests", "index.html#autotoc_md37", null ]
     ] ],
-    [ "📖 Handlers", "index.html#autotoc_md31", null ],
-    [ "🔧 Utilities", "index.html#autotoc_md32", null ],
-    [ "📂 Repository Structure", "index.html#autotoc_md33", null ],
-    [ "📚 Documentation", "index.html#autotoc_md34", null ],
-    [ "🤝 Contributing", "index.html#autotoc_md35", null ],
-    [ "📄 License", "index.html#autotoc_md36", null ],
+    [ "📖 Handlers", "index.html#autotoc_md38", null ],
+    [ "🔧 Utilities", "index.html#autotoc_md39", null ],
+    [ "📂 Repository Structure", "index.html#autotoc_md40", null ],
+    [ "📚 Documentation", "index.html#autotoc_md41", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md42", null ],
+    [ "📄 License", "index.html#autotoc_md43", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],

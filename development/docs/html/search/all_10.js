@@ -46,7 +46,7 @@ var searchData=
   ['registerinterrupthandler_43',['RegisterInterruptHandler',['../classHalI2cPcal95555Comm.html#a8a5517910e3a771091471f2843ea26ed',1,'HalI2cPcal95555Comm']]],
   ['registermonitoringcontext_44',['RegisterMonitoringContext',['../classNtcTemperatureHandler.html#ae173c55a63a51d2344798dd785b25ebe',1,'NtcTemperatureHandler']]],
   ['registerpininterrupt_45',['RegisterPinInterrupt',['../classPcal95555Handler.html#a59b2dcc6d426c19a487175e8a83ed999',1,'Pcal95555Handler']]],
-  ['repository_20structure_46',['📂 Repository Structure',['../index.html#autotoc_md33',1,'']]],
+  ['repository_20structure_46',['📂 Repository Structure',['../index.html#autotoc_md40',1,'']]],
   ['requirements_47',['Lifetime Requirements',['../Tmc9660AdcWrapper_8h.html#autotoc_md19',1,'']]],
   ['reset_5fgpio_5f_48',['reset_gpio_',['../classHalI2cBno08xComm.html#a47e4d758c94792c03f2b062f152180a2',1,'HalI2cBno08xComm::reset_gpio_'],['../classHalSpiBno08xComm.html#ad01c70218c8d062eb9ebd6d638e28ac9',1,'HalSpiBno08xComm::reset_gpio_']]],
   ['resetcalibration_49',['ResetCalibration',['../classNtcTemperatureHandler.html#afbd49ab0a549ce22cada91fcd498b6d7',1,'NtcTemperatureHandler']]],

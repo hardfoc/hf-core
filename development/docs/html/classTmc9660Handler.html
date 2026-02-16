@@ -118,7 +118,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">BaseGpio adapter for a single TMC9660 internal GPIO channel.  <a href="classTmc9660Handler_1_1Gpio.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTmc9660Handler_1_1Temperature.html">Temperature</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">BaseTemperature adapter for TMC9660 internal chip temperature sensor.  <a href="classTmc9660Handler_1_1Temperature.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">BaseTemperature adapter for the TMC9660 internal chip temperature sensor.  <a href="classTmc9660Handler_1_1Temperature.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
@@ -272,7 +272,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a7fe382c4dbf6bf84ed31586e52ec2e6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a reference to the ADC wrapper.  <br /></td></tr>
 <tr class="separator:a7fe382c4dbf6bf84ed31586e52ec2e6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a393382194d0602e7aa02da6a8fd7a20a" id="r_a393382194d0602e7aa02da6a8fd7a20a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTmc9660Handler_1_1Temperature.html">Temperature</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">temperature</a> ()</td></tr>
-<tr class="memdesc:a393382194d0602e7aa02da6a8fd7a20a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a reference to the <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for TMC9660 internal chip temperature sensor.">Temperature</a> wrapper.  <br /></td></tr>
+<tr class="memdesc:a393382194d0602e7aa02da6a8fd7a20a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a reference to the <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a> wrapper.  <br /></td></tr>
 <tr class="separator:a393382194d0602e7aa02da6a8fd7a20a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Communication Info</div></td></tr>
 <tr class="memitem:ac7592c35471c995115e68cc94056b4fb" id="r_ac7592c35471c995115e68cc94056b4fb"><td class="memItemLeft" align="right" valign="top">tmc9660::CommMode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7592c35471c995115e68cc94056b4fb">GetCommMode</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
@@ -364,14 +364,60 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Unified, non-templated handler for a single TMC9660 motor controller device. </p>
-<p>Hides tmc9660::TMC9660&lt;CommType&gt; template complexity behind a clean API. Uses <a class="el" href="#a4360829b58deda85e9da4b9cebee96f0" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a> internally to route calls to the correct typed driver (SPI or UART), so callers never see the template parameter.</p>
-<p>Key design points:</p><ul>
-<li>Non-templated: MotorController stores handlers in std::unique_ptr&lt;Tmc9660Handler&gt;.</li>
-<li>Control pins (RST, DRV_EN, FAULTN, WAKE) required at construction.</li>
-<li>Lazy driver creation: TMC9660 driver allocated in <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a>, not constructor.</li>
-<li>Inner classes <a class="el" href="classTmc9660Handler_1_1Gpio.html" title="BaseGpio adapter for a single TMC9660 internal GPIO channel.">Gpio</a>, <a class="el" href="classTmc9660Handler_1_1Adc.html" title="BaseAdc adapter for all TMC9660 ADC channels.">Adc</a>, <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for TMC9660 internal chip temperature sensor.">Temperature</a> implement base interfaces for manager layer.</li>
+<p><a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a> is the primary interface that application and manager code uses to interact with a TMC9660 motor driver. It hides the template complexity of tmc9660::TMC9660&lt;CommType&gt; behind a clean, polymorphism-free API.</p>
+<h2><a class="anchor" id="autotoc_md26"></a>
+Design Decisions</h2>
+<ul>
+<li><b>Non-templated</b>: The handler uses <a class="el" href="#a4360829b58deda85e9da4b9cebee96f0" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a> to route calls to the correct typed driver (SPI or UART). This prevents template propagation through the codebase and allows MotorController to store handlers in a plain std::unique_ptr&lt;Tmc9660Handler&gt;.</li>
+<li><b>Control pins required</b>: The TMC9660 bootloader initialization sequence requires host-side GPIO control of four pins (RST, DRV_EN, FAULTN, WAKE). These must be provided at construction time.</li>
+<li><b>Lazy driver creation</b>: The typed TMC9660 driver instance is created during <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a>, not in the constructor. This saves memory until initialization is actually needed.</li>
+<li><b>Peripheral wrappers</b>: Inner classes <a class="el" href="classTmc9660Handler_1_1Gpio.html" title="BaseGpio adapter for a single TMC9660 internal GPIO channel.">Gpio</a>, <a class="el" href="classTmc9660Handler_1_1Adc.html" title="BaseAdc adapter for all TMC9660 ADC channels.">Adc</a>, and <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a> implement the HardFOC base interfaces, making TMC9660 peripherals available to the manager layer (GpioManager, AdcManager, TemperatureManager) through the standard abstractions.</li>
 </ul>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classHalSpiTmc9660Comm.html" title="CRTP SPI communication adapter bridging BaseSpi/BaseGpio to tmc9660::SpiCommInterface.">HalSpiTmc9660Comm</a>, <a class="el" href="classHalUartTmc9660Comm.html" title="CRTP UART communication adapter bridging BaseUart/BaseGpio to tmc9660::UartCommInterface.">HalUartTmc9660Comm</a>, <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">MotorController</a>, <a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> </dd></dl>
+<h2><a class="anchor" id="autotoc_md27"></a>
+Usage Example</h2>
+<div class="fragment"><div class="line"><span class="comment">// Construction (SPI mode, address 1, default boot config)</span></div>
+<div class="line"><a class="code hl_class" href="classTmc9660Handler.html">Tmc9660Handler</a> <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>(<a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">spi_bus</a>, <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">rst_pin</a>, <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv_en_pin</a>, <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">faultn_pin</a>, <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">wake_pin</a>, 0x01);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Initialize (performs hardware reset and bootloader configuration)</span></div>
+<div class="line"><span class="keywordflow">if</span> (!<a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.<a class="code hl_function" href="classTmc9660Handler_1_1Temperature.html#a8019acd874c13ba0e175224a367bf370">Initialize</a>()) {</div>
+<div class="line">    <a class="code hl_function" href="classLogger.html#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a>().<a class="code hl_function" href="classLogger.html#adce17848a5844e053bfd314863dc1404">Error</a>(<span class="stringliteral">&quot;App&quot;</span>, <span class="stringliteral">&quot;TMC9660 init failed!&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">return</span>;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Motor control</span></div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.SetMotorType(tmc9660::tmcl::MotorType::BLDC, 7);</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.SetCommutationMode(tmc9660::tmcl::CommutationMode::FOC);</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.EnableMotor();</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.SetTargetVelocity(1000);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Telemetry</span></div>
+<div class="line"><span class="keywordtype">float</span> <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">supply_v</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.GetSupplyVoltage();</div>
+<div class="line"><span class="keywordtype">float</span> <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">chip_temp</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.GetChipTemperature();</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// GPIO (TMC9660 internal GPIO17)</span></div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.gpio(17).SetPinLevel(hf_gpio_level_t::HF_GPIO_LEVEL_HIGH);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// ADC (read AIN channel 0)</span></div>
+<div class="line"><span class="keywordtype">float</span> <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">voltage</a>;</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.adc().ReadChannelV(0, <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">voltage</a>);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Advanced: direct driver access via visitor</span></div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.visitDriver([](<span class="keyword">auto</span>&amp; <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">driver</a>) {</div>
+<div class="line">    <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">driver</a>.feedbackSense.configureHallSensor(1, 2, 3);</div>
+<div class="line">    <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">driver</a>.protection.setOvertemperatureLimit(120.0f);</div>
+<div class="line">});</div>
+<div class="ttc" id="aclassLogger_html_a5789d11f8f1356e2192c0023a089cbc4"><div class="ttname"><a href="classLogger.html#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a></div><div class="ttdeci">static Logger &amp; GetInstance() noexcept</div><div class="ttdoc">Get singleton instance.</div><div class="ttdef"><b>Definition</b> Logger.cpp:62</div></div>
+<div class="ttc" id="aclassLogger_html_adce17848a5844e053bfd314863dc1404"><div class="ttname"><a href="classLogger.html#adce17848a5844e053bfd314863dc1404">Logger::Error</a></div><div class="ttdeci">void Error(const char *tag, const char *format,...) noexcept</div><div class="ttdoc">Log error message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:171</div></div>
+<div class="ttc" id="aclassTmc9660Handler_1_1Temperature_html_a8019acd874c13ba0e175224a367bf370"><div class="ttname"><a href="classTmc9660Handler_1_1Temperature.html#a8019acd874c13ba0e175224a367bf370">Tmc9660Handler::Temperature::Initialize</a></div><div class="ttdeci">bool Initialize() noexcept override</div><div class="ttdoc">Initialize (verifies parent driver is ready).</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.cpp:1032</div></div>
+<div class="ttc" id="aclassTmc9660Handler_html"><div class="ttname"><a href="classTmc9660Handler.html">Tmc9660Handler</a></div><div class="ttdoc">Unified, non-templated handler for a single TMC9660 motor controller device.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:442</div></div>
+<div class="ttc" id="aclassTmc9660Handler_html_a393382194d0602e7aa02da6a8fd7a20a"><div class="ttname"><a href="#a393382194d0602e7aa02da6a8fd7a20a">Tmc9660Handler::temperature</a></div><div class="ttdeci">Temperature &amp; temperature()</div><div class="ttdoc">Get a reference to the Temperature wrapper.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.cpp:613</div></div>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classHalSpiTmc9660Comm.html" title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">HalSpiTmc9660Comm</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">SPI</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">communication</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">adapter</a> </dd>
+<dd>
+<a class="el" href="classHalUartTmc9660Comm.html" title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.">HalUartTmc9660Comm</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">UART</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">communication</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">adapter</a> </dd>
+<dd>
+<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">MotorController</a> Multi-device <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">manager</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">that</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">owns</a> <a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">instances</a> </dd>
+<dd>
+<a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">Thin</a> BaseAdc <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">adapter</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">for</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">AdcManager</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">ownership</a> </dd></dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a65d00ffe3eba7aef1cb05ccef5feb619" name="a65d00ffe3eba7aef1cb05ccef5feb619"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a65d00ffe3eba7aef1cb05ccef5feb619">&#9670;&#160;</a></span>SpiDriver</h2>
@@ -451,7 +497,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Construct a handler for a TMC9660 connected via SPI. </p>
-<p>The communication adapter (<a class="el" href="classHalSpiTmc9660Comm.html" title="CRTP SPI communication adapter bridging BaseSpi/BaseGpio to tmc9660::SpiCommInterface.">HalSpiTmc9660Comm</a>) is created immediately, but the typed TMC9660 driver instance is deferred until <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a> is called.</p>
+<p>The communication adapter (<a class="el" href="classHalSpiTmc9660Comm.html" title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">HalSpiTmc9660Comm</a>) is created immediately, but the typed TMC9660 driver instance is deferred until <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a> is called.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">spi</td><td>Reference to an initialized BaseSpi bus connected to the TMC9660. Must use SPI Mode 3 (CPOL=1, CPHA=1), MSB-first. </td></tr>
@@ -1523,7 +1569,7 @@ Here is the call graph for this function:</div>
 <li>Enters parameter mode for TMCL operation</li>
 </ul>
 </li>
-<li>Creates the GPIO, ADC, and <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for TMC9660 internal chip temperature sensor.">Temperature</a> peripheral wrappers.</li>
+<li>Creates the GPIO, ADC, and <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a> peripheral wrappers.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2117,8 +2163,16 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Get the SPI-mode driver instance (nullptr if constructed with UART). </p>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to SPI driver, or nullptr if UART mode or not initialized. </dd></dl>
-<div class="dynheader">
+<p>Returns a direct pointer to the typed TMC9660&lt;HalSpiTmc9660Comm&gt; driver, giving full access to all 22+ subsystems (motorConfig, feedbackSense, velocityControl, protection, gateDriver, etc.) without lambda wrappers.</p>
+<p>The user always knows which comm mode they chose at construction time, so they can safely call the matching accessor.</p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the SPI driver, or nullptr if using UART mode or <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a> has not been called.</dd></dl>
+<div class="fragment"><div class="line"><span class="comment">// Direct subsystem access after Initialize()</span></div>
+<div class="line"><span class="keyword">auto</span>* <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>-&gt;spiDriver();</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;feedbackSense.configureHall();</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;velocityControl.setTargetVelocity(1000);</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;protection.configureVoltage(48000, 10000);</div>
+</div><!-- fragment --> <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_aaa9d4b9630bda35f008330367018f3fb_cgraph.svg" width="1244" height="274"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
@@ -2141,8 +2195,8 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Get a reference to the <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for TMC9660 internal chip temperature sensor.">Temperature</a> wrapper. </p>
-<dl class="section return"><dt>Returns</dt><dd>Reference to the internal <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for TMC9660 internal chip temperature sensor.">Temperature</a> instance. </dd></dl>
+<p>Get a reference to the <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a> wrapper. </p>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the internal <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a> instance. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>The returned reference is valid only as long as this handler exists. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
@@ -2208,8 +2262,10 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Get the UART-mode driver instance (nullptr if constructed with SPI). </p>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to UART driver, or nullptr if SPI mode or not initialized. </dd></dl>
-<div class="dynheader">
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the UART driver, or nullptr if using SPI mode or <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a> has not been called.</dd></dl>
+<div class="fragment"><div class="line"><span class="keyword">auto</span>* <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>-&gt;uartDriver();</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;feedbackSense.configureABNEncoder(1024);</div>
+</div><!-- fragment --> <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a71d3255fb10ae237644d594531e5cb27_cgraph.svg" width="1251" height="274"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
@@ -2243,7 +2299,7 @@ template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a>
 </div><div class="memdoc">
 
 <p>Execute a function on the underlying typed TMC9660 driver. </p>
-<p>Use when comm mode is unknown at the call site. Prefer <a class="el" href="#aaa9d4b9630bda35f008330367018f3fb" title="Get the SPI-mode driver instance (nullptr if constructed with UART).">spiDriver()</a>/uartDriver() for direct typed access.</p>
+<p>For most use cases, prefer <a class="el" href="#aaa9d4b9630bda35f008330367018f3fb" title="Get the SPI-mode driver instance (nullptr if constructed with UART).">spiDriver()</a> or <a class="el" href="#a71d3255fb10ae237644d594531e5cb27" title="Get the UART-mode driver instance (nullptr if constructed with SPI).">uartDriver()</a> for direct typed access. Use <a class="el" href="#a4360829b58deda85e9da4b9cebee96f0" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a> only when writing generic code that must work with either communication mode (e.g., in manager-level code that doesn't know the comm type).</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Func</td><td>Callable type with signature <code>ReturnType(auto&amp; driver)</code>. </td></tr>

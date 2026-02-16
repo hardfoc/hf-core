@@ -16,7 +16,7 @@ var searchData=
   ['max_5ftemperature_13',['max_temperature',['../structntc__temp__handler__config__t.html#a71caa44219cb7b02284922e7841835ac',1,'ntc_temp_handler_config_t']]],
   ['max_5fwidth_14',['max_width',['../structLogConfig.html#a1b6aafe5e326ebeeb603560b0e6a8a6b',1,'LogConfig::max_width'],['../structAsciiArtFormat.html#ab73c6d828b65d8d31c0f50a89582234d',1,'AsciiArtFormat::max_width']]],
   ['min_5ftemperature_15',['min_temperature',['../structntc__temp__handler__config__t.html#a6566ae0df558de5dcf441bd8b80c46d8',1,'ntc_temp_handler_config_t']]],
-  ['model_16',['Model',['../Bno08xHandler_8h.html#autotoc_md1',1,'Ownership Model'],['../Pca9685Handler_8h.html#autotoc_md5',1,'Ownership Model'],['../Pcal95555Handler_8h.html#autotoc_md11',1,'Ownership Model']]],
+  ['model_16',['Model',['../Bno08xHandler_8h.html#autotoc_md1',1,'Ownership Model'],['../Pca9685Handler_8h.html#autotoc_md5',1,'Ownership Model'],['../Pcal95555Handler_8h.html#autotoc_md11',1,'Ownership Model'],['../Tmc9660Handler_8h.html#autotoc_md22',1,'Ownership Model']]],
   ['monitoring_5factive_5f_17',['monitoring_active_',['../classNtcTemperatureHandler.html#af312fddeecba9fcccef5edf9d05b1c91',1,'NtcTemperatureHandler']]],
   ['monitoring_5fcontext_5fid_5f_18',['monitoring_context_id_',['../classNtcTemperatureHandler.html#a335b006f6f0c150dd53bf38052067cc5',1,'NtcTemperatureHandler']]],
   ['monitoring_5ftimer_5f_19',['monitoring_timer_',['../classNtcTemperatureHandler.html#ab71fd7339661fe72a7f7760883fd8e38',1,'NtcTemperatureHandler']]],

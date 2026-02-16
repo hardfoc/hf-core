@@ -58,7 +58,7 @@
 <!-- Node20 -->
 <g id="Node000020" class="node">
 <title>Node20</title>
-<g id="a_Node000020"><a xlink:href="classTmc9660Handler_1_1Temperature.html" target="_top" xlink:title="BaseTemperature adapter for TMC9660 internal chip temperature sensor.">
+<g id="a_Node000020"><a xlink:href="classTmc9660Handler_1_1Temperature.html" target="_top" xlink:title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">
 <polygon fill="white" stroke="#666666" points="1090,-74.5 923,-74.5 923,-55.5 1090,-55.5 1090,-74.5"/>
 <text text-anchor="middle" x="1006.5" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">Tmc9660Handler::Temperature</text>
 </a>
@@ -97,7 +97,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classHalSpiTmc9660Comm.html" target="_top" xlink:title="CRTP SPI communication adapter bridging BaseSpi/BaseGpio to tmc9660::SpiCommInterface.">
+<g id="a_Node000003"><a xlink:href="classHalSpiTmc9660Comm.html" target="_top" xlink:title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">
 <polygon fill="white" stroke="#666666" points="376,-249.5 251,-249.5 251,-230.5 376,-230.5 376,-249.5"/>
 <text text-anchor="middle" x="313.5" y="-237.5" font-family="Helvetica,sans-Serif" font-size="10.00">HalSpiTmc9660Comm</text>
 </a>
@@ -154,7 +154,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="classHalUartTmc9660Comm.html" target="_top" xlink:title="CRTP UART communication adapter bridging BaseUart/BaseGpio to tmc9660::UartCommInterface.">
+<g id="a_Node000007"><a xlink:href="classHalUartTmc9660Comm.html" target="_top" xlink:title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.">
 <polygon fill="white" stroke="#666666" points="379,-201.5 248,-201.5 248,-182.5 379,-182.5 379,-201.5"/>
 <text text-anchor="middle" x="313.5" y="-189.5" font-family="Helvetica,sans-Serif" font-size="10.00">HalUartTmc9660Comm</text>
 </a>

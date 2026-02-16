@@ -96,7 +96,7 @@
 <!-- Node20 -->
 <g id="Node000020" class="node">
 <title>Node20</title>
-<g id="a_Node000020"><a xlink:href="classTmc9660Handler_1_1Temperature.html" target="_top" xlink:title="BaseTemperature adapter for TMC9660 internal chip temperature sensor.">
+<g id="a_Node000020"><a xlink:href="classTmc9660Handler_1_1Temperature.html" target="_top" xlink:title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">
 <polygon fill="white" stroke="#666666" points="1249,-69 1082,-69 1082,-50 1249,-50 1249,-69"/>
 <text text-anchor="middle" x="1165.5" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">Tmc9660Handler::Temperature</text>
 </a>
@@ -135,7 +135,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classHalSpiTmc9660Comm.html" target="_top" xlink:title="CRTP SPI communication adapter bridging BaseSpi/BaseGpio to tmc9660::SpiCommInterface.">
+<g id="a_Node000005"><a xlink:href="classHalSpiTmc9660Comm.html" target="_top" xlink:title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">
 <polygon fill="white" stroke="#666666" points="483.5,-255 358.5,-255 358.5,-236 483.5,-236 483.5,-255"/>
 <text text-anchor="middle" x="421" y="-243" font-family="Helvetica,sans-Serif" font-size="10.00">HalSpiTmc9660Comm</text>
 </a>
@@ -192,7 +192,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="classHalUartTmc9660Comm.html" target="_top" xlink:title="CRTP UART communication adapter bridging BaseUart/BaseGpio to tmc9660::UartCommInterface.">
+<g id="a_Node000009"><a xlink:href="classHalUartTmc9660Comm.html" target="_top" xlink:title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.">
 <polygon fill="white" stroke="#666666" points="486.5,-207 355.5,-207 355.5,-188 486.5,-188 486.5,-207"/>
 <text text-anchor="middle" x="421" y="-195" font-family="Helvetica,sans-Serif" font-size="10.00">HalUartTmc9660Comm</text>
 </a>
