@@ -184,8 +184,8 @@ idf_component_register(
         esp_driver_rmt
 )
 
-# ── C++23 for all component sources (required for std::expected in TLE driver) ─
-set_property(TARGET ${COMPONENT_LIB} PROPERTY CXX_STANDARD 23)
+# ── C++20 for all component sources ───────────────────────────────────────────
+set_property(TARGET ${COMPONENT_LIB} PROPERTY CXX_STANDARD 20)
 set_property(TARGET ${COMPONENT_LIB} PROPERTY CXX_STANDARD_REQUIRED ON)
 
 # ── WS2812 Kconfig defaults (PUBLIC so consumers that include WS2812 headers get them) ─

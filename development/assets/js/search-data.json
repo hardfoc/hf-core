@@ -533,7 +533,7 @@
   },"76": {
     "doc": "Home",
     "title": "Getting Started",
-    "content": "| 1 2 3 4 5 6 7 . | # Clone with submodules git clone --recursive https://github.com/hardfoc/hf-hal-vortex-v1.git cd hf-hal-vortex-v1/lib/core # Build a specific test app cd examples/esp32/scripts ./build_app.sh --app as5047u_handler_test --build-type debug . | . See the Testing Guide for detailed instructions. ",
+    "content": "| 1 2 3 4 5 6 7 . | # Clone with submodules git clone --recursive https://github.com/N3b3x/hf-hal-vortex-v1.git cd hf-hal-vortex-v1/lib/core # Build a specific test app cd examples/esp32/scripts ./build_app.sh --app as5047u_handler_test --build-type debug . | . See the Testing Guide for detailed instructions. ",
     "url": "/hf-core/development/#getting-started",
     
     "relUrl": "/#getting-started"

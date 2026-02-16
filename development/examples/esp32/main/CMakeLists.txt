@@ -76,8 +76,8 @@ idf_component_register(
         hf_core
 )
 
-# ── C++23 standard (required for std::expected in TLE92466ED driver headers) ──
-set_property(TARGET ${COMPONENT_LIB} PROPERTY CXX_STANDARD 23)
+# ── C++20 standard ────────────────────────────────────────────────────────────
+set_property(TARGET ${COMPONENT_LIB} PROPERTY CXX_STANDARD 20)
 set_property(TARGET ${COMPONENT_LIB} PROPERTY CXX_STANDARD_REQUIRED ON)
 
 # ── Build-type flags ──────────────────────────────────────────────────────
