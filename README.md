@@ -50,12 +50,12 @@ depend on this repo and add managers, API, and pin mapping.
 
 ## ✨ Features
 
-- ✅ **7 Device Handlers** — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, Logger
+- ✅ **11 Device Handlers** — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, TMC5160, TLE92466ED, MAX22200, WS2812, Logger
 - ✅ **30+ General Utilities** — Buffers, filters, timers, CRC, interpolation, linked
   lists, flag sets, physical units
 - ✅ **Full RTOS Abstraction** — Mutex, semaphore, queue, event flags, threads, timers
 - ✅ **CANopen Utilities** — CAN frame, SDO protocol, NMT commands
-- ✅ **ESP32 Test Suite** — 11 test applications covering every handler, utility, and
+- ✅ **ESP32 Test Suite** — 15 test applications covering every handler, utility, and
   integration scenario
 - ✅ **8 CI Pipelines** — Build, lint, analysis, documentation, release
 - ✅ **Thread-Safe** — All handlers use `RtosMutex` for safe concurrent access
@@ -130,6 +130,10 @@ cd .. && idf.py -p /dev/ttyUSB0 flash monitor
 | `Pcal95555Handler` | PCAL95555 | I2C | GPIO read/write, toggle, batch, interrupt drain |
 | `NtcTemperatureHandler` | NTC | ADC | Temperature, calibration, EMA filter, thresholds |
 | `Tmc9660Handler` | TMC9660 | SPI/UART | Motor control, telemetry, GPIO/ADC/temp wrappers |
+| `Tmc5160Handler` | TMC5160 | SPI/UART | Stepper motor, ramp generator, StallGuard, visitDriver |
+| `Tle92466edHandler` | TLE92466ED | SPI | 6-ch solenoid driver, PWM, diagnostics, watchdog |
+| `Max22200Handler` | MAX22200 | SPI | 8-ch solenoid/motor, CDR/VDR, HIT/HOLD, DPM |
+| `Ws2812Handler` | WS2812 | RMT | Addressable LED strip, pixel control, animations |
 | `Logger` | — | — | Singleton, log levels, per-tag filter, formatted output |
 
 ## 🔧 Utilities
@@ -147,18 +151,23 @@ hf-core/
 ├── handlers/           # Device handler implementations
 │   ├── as5047u/        #   Magnetic encoder (SPI)
 │   ├── bno08x/         #   9-axis IMU (I2C)
+│   ├── common/         #   Shared handler utilities (HandlerCommon.h)
+│   ├── logger/         #   Singleton logging
+│   ├── max22200/       #   8-ch solenoid/motor driver (SPI)
+│   ├── ntc/            #   NTC thermistor (ADC)
 │   ├── pca9685/        #   16-ch PWM controller (I2C)
 │   ├── pcal95555/      #   16-bit GPIO expander (I2C)
-│   ├── ntc/            #   NTC thermistor (ADC)
+│   ├── tle92466ed/     #   6-ch solenoid driver (SPI)
+│   ├── tmc5160/        #   Stepper motor driver (SPI/UART)
 │   ├── tmc9660/        #   Motor controller (SPI/UART)
-│   └── logger/         #   Singleton logging
+│   └── ws2812/         #   Addressable LED strip (RMT)
 ├── hf-core-drivers/    # [submodule] Base interfaces + external drivers
 ├── hf-core-utils/      # [submodule] General, RTOS, CANopen utilities
 ├── examples/
 │   └── esp32/          # ESP-IDF test applications
-│       ├── app_config.yml      # Test app registry (11 apps)
+│       ├── app_config.yml      # Test app registry (15 apps)
 │       ├── main/
-│       │   ├── handler_tests/  # 6 handler test apps
+│       │   ├── handler_tests/  # 10 handler test apps
 │       │   ├── utils_tests/    # 4 utility test apps
 │       │   └── integration_tests/  # 1 integration test
 │       └── components/

@@ -6,7 +6,7 @@
 # has its own subdirectory under main/:
 #
 #   main/
-#   ├── handler_tests/     6 handler comprehensive tests
+#   ├── handler_tests/     10 handler comprehensive tests
 #   ├── utils_tests/       General utils, RTOS wrappers, Logger, CANopen
 #   └── integration_tests/ Full-system cross-component tests
 #

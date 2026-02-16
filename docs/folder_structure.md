@@ -42,6 +42,10 @@ lib/core/
 │   │   ├── pcal95555_handler.md
 │   │   ├── ntc_temperature_handler.md
 │   │   ├── tmc9660_handler.md
+│   │   ├── tmc5160_handler.md
+│   │   ├── tle92466ed_handler.md
+│   │   ├── max22200_handler.md
+│   │   ├── ws2812_handler.md
 │   │   └── logger.md
 │   ├── utils/                          #   Utility library documentation
 │   │   ├── index.md
@@ -66,7 +70,7 @@ lib/core/
 │       │   ├── TestFramework.h         #     Shared test macros
 │       │   ├── esp32_bus_setup.hpp     #     Shared bus factories
 │       │   ├── esp32_test_config.hpp   #     Pin/address constants
-│       │   ├── handler_tests/          #     Handler test apps (6 files)
+│       │   ├── handler_tests/          #     Handler test apps (10 files)
 │       │   ├── utils_tests/            #     Utility test apps (4 files)
 │       │   └── integration_tests/      #     System integration test
 │       └── scripts/                    #     Build tools (git submodule)
@@ -78,9 +82,14 @@ lib/core/
 │   ├── bno08x/
 │   │   ├── Bno08xHandler.cpp
 │   │   └── Bno08xHandler.h
+│   ├── common/
+│   │   └── HandlerCommon.h
 │   ├── logger/
 │   │   ├── Logger.cpp
 │   │   └── Logger.h
+│   ├── max22200/
+│   │   ├── Max22200Handler.cpp
+│   │   └── Max22200Handler.h
 │   ├── ntc/
 │   │   ├── NtcTemperatureHandler.cpp
 │   │   └── NtcTemperatureHandler.h
@@ -90,11 +99,20 @@ lib/core/
 │   ├── pcal95555/
 │   │   ├── Pcal95555Handler.cpp
 │   │   └── Pcal95555Handler.h
-│   └── tmc9660/
-│       ├── Tmc9660AdcWrapper.cpp
-│       ├── Tmc9660AdcWrapper.h
-│       ├── Tmc9660Handler.cpp
-│       └── Tmc9660Handler.h
+│   ├── tle92466ed/
+│   │   ├── Tle92466edHandler.cpp
+│   │   └── Tle92466edHandler.h
+│   ├── tmc5160/
+│   │   ├── Tmc5160Handler.cpp
+│   │   └── Tmc5160Handler.h
+│   ├── tmc9660/
+│   │   ├── Tmc9660AdcWrapper.cpp
+│   │   ├── Tmc9660AdcWrapper.h
+│   │   ├── Tmc9660Handler.cpp
+│   │   └── Tmc9660Handler.h
+│   └── ws2812/
+│       ├── Ws2812Handler.cpp
+│       └── Ws2812Handler.h
 │
 ├── hf-core-drivers/                    # Driver libraries (git submodule)
 │   ├── external/                       #   CRTP device drivers

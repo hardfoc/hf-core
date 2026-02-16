@@ -25,4 +25,8 @@ CRTP-templated device drivers. Each handler:
 | [Pcal95555Handler](pcal95555_handler.md) | hf-pcal95555-driver | BaseI2c | 16-pin GPIO expander, interrupts, Agile I/O, batch ops |
 | [NtcTemperatureHandler](ntc_temperature_handler.md) | hf-ntc-thermistor-driver | BaseAdc | Temperature sensing, EMA filter, thresholds, monitoring |
 | [Tmc9660Handler](tmc9660_handler.md) | hf-tmc9660-driver | BaseSpi | Motor control, GPIO/ADC/Temp wrappers, bootloader |
+| [Tmc5160Handler](tmc5160_handler.md) | hf-tmc5160-driver | BaseSpi/BaseUart | Stepper motor, ramp generator, StallGuard, visitDriver |
+| [Tle92466edHandler](tle92466ed_handler.md) | hf-tle92466ed-driver | BaseSpi | 6-ch solenoid driver, PWM, diagnostics, watchdog |
+| [Max22200Handler](max22200_handler.md) | hf-max22200-driver | BaseSpi | 8-ch solenoid/motor, CDR/VDR, HIT/HOLD, DPM |
+| [Ws2812Handler](ws2812_handler.md) | hf-ws2812-rmt-driver | RMT | Addressable LED strip, pixel control, animations |
 | [Logger](logger.md) | — | — | Singleton, colors, ASCII art, per-tag filtering |

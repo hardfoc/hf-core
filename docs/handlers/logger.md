@@ -29,7 +29,7 @@ logger.Verbose("MyTag", "Verbose: raw=0x%04X", raw);
 ## Formatted Output
 
 ```cpp
-logger.Info("Tag", LogColor::LOG_COLOR_GREEN, LogStyle::LOG_STYLE_BOLD,
+logger.Info("Tag", LogColor::GREEN, LogStyle::BOLD,
             "Bold green: %d", value);
 ```
 
@@ -46,7 +46,7 @@ logger.LogBanner("Tag", R"(
 ## Per-Tag Filtering
 
 ```cpp
-logger.SetLogLevel("NoisyModule", LogLevel::LOG_WARN);  // Only WARN+ for this tag
+logger.SetLogLevel("NoisyModule", LogLevel::WARN);  // Only WARN+ for this tag
 ```
 
 ## Convenience Macros

@@ -25,6 +25,10 @@ at build time via the `APP_TYPE` mechanism.
 | `pcal95555_handler_test` | `handler_tests/pcal95555_handler_comprehensive_test.cpp` | PCAL95555 + I2C |
 | `ntc_handler_test` | `handler_tests/ntc_handler_comprehensive_test.cpp` | NTC + ADC |
 | `tmc9660_handler_test` | `handler_tests/tmc9660_handler_comprehensive_test.cpp` | TMC9660 + SPI |
+| `tmc5160_handler_test` | `handler_tests/tmc5160_handler_comprehensive_test.cpp` | TMC5160 + SPI |
+| `tle92466ed_handler_test` | `handler_tests/tle92466ed_handler_comprehensive_test.cpp` | TLE92466ED + SPI |
+| `max22200_handler_test` | `handler_tests/max22200_handler_comprehensive_test.cpp` | MAX22200 + SPI |
+| `ws2812_handler_test` | `handler_tests/ws2812_handler_comprehensive_test.cpp` | WS2812 + RMT |
 
 ### Utility Tests
 

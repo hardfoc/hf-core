@@ -18,7 +18,8 @@ The HardFOC platform follows a strict layered architecture:
 │                   HANDLERS (hf-core)                  │
 │  As5047uHandler  Bno08xHandler  Pca9685Handler       │
 │  Pcal95555Handler  NtcTemperatureHandler              │
-│  Tmc9660Handler  Logger                               │
+│  Tmc9660Handler  Tmc5160Handler  Tle92466edHandler    │
+│  Max22200Handler  Ws2812Handler  Logger               │
 ├──────────────────────────────────────────────────────┤
 │              BASE INTERFACES (internal)               │
 │  BaseSpi  BaseI2c  BaseGpio  BaseAdc                 │
@@ -28,6 +29,8 @@ The HardFOC platform follows a strict layered architecture:
 │  hf-tmc9660-driver  hf-bno08x-driver                │
 │  hf-as5047u-driver  hf-pca9685-driver               │
 │  hf-pcal95555-driver  hf-ntc-thermistor-driver      │
+│  hf-tmc5160-driver  hf-tle92466ed-driver            │
+│  hf-max22200-driver  hf-ws2812-rmt-driver           │
 ├──────────────────────────────────────────────────────┤
 │           PLATFORM IMPLEMENTATIONS                    │
 │  EspI2cBus/Device  EspSpi  EspGpio  EspAdc          │
@@ -85,3 +88,6 @@ Tmc9660Handler
 
 The `visitDriver()` template pattern routes calls through a type-erased facade,
 keeping the public API non-templated while preserving zero-overhead dispatch internally.
+The `withDriver()` pattern (used by TLE92466ED and MAX22200) is a simplified variant
+that acquires the mutex, ensures initialization, and invokes a callable on the driver
+in a single atomic step.
