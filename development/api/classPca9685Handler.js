@@ -12,6 +12,8 @@ var classPca9685Handler =
     [ "EnsureDeinitialized", "classPca9685Handler.html#ac6bc3289adec2e6e48a07545023770b0", null ],
     [ "EnsureInitialized", "classPca9685Handler.html#a088d4c2eecbd5c39480a5dddf73d91d3", null ],
     [ "ensureInitializedLocked", "classPca9685Handler.html#abc72cbb1c0ffd4410143d52c605e0e49", null ],
+    [ "GetDriver", "classPca9685Handler.html#a7d3b7d292f41670fcb1b1ecfc803b404", null ],
+    [ "GetDriver", "classPca9685Handler.html#a91f6e14b606d4007797234ec9599a134", null ],
     [ "GetErrorFlags", "classPca9685Handler.html#aca456553a9db5bca8f474fe7cf456d9d", null ],
     [ "GetGpioPin", "classPca9685Handler.html#a7ac083c548ae83b06654ec25571ce4e1", null ],
     [ "GetI2cAddress", "classPca9685Handler.html#aba9c3a3673589629f4e20e1dd24c01c8", null ],

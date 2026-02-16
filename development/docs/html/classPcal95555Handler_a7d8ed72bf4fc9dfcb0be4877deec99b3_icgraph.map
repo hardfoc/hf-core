@@ -1,5 +1,9 @@
 <map id="Pcal95555Handler::EnsureInitializedLocked" name="Pcal95555Handler::EnsureInitializedLocked">
-<area shape="rect" id="Node000001" title="Check init state under already&#45;held handler_mutex_." alt="" coords="252,5,444,45"/>
-<area shape="rect" id="Node000002" href="$classPcal95555Handler.html#aeb2c5589355cb9ae970fdf2d10b545e8" title="Reset all registers to power&#45;on default state." alt="" coords="5,5,204,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="238,28,204,28,204,23,238,23"/>
+<area shape="rect" id="Node000001" title="Check init state under already&#45;held handler_mutex_." alt="" coords="523,27,715,67"/>
+<area shape="rect" id="Node000002" href="$classPcal95555Handler.html#a6715e51d5d09a2466b3b86820b9f5ea6" title="Get the underlying PCAL95555 driver for advanced register&#45;level operations." alt="" coords="264,5,475,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="508,37,475,33,475,28,509,32"/>
+<area shape="rect" id="Node000004" href="$classPcal95555Handler.html#aeb2c5589355cb9ae970fdf2d10b545e8" title="Reset all registers to power&#45;on default state." alt="" coords="270,55,469,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="509,62,469,67,469,62,509,57"/>
+<area shape="rect" id="Node000003" href="$classPcal95555Handler.html#a8121efea49cc4be54c4526eb346e5f8d" title=" " alt="" coords="5,5,216,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="250,21,216,21,216,15,250,15"/>
 </map>

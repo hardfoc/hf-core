@@ -418,14 +418,36 @@ GPIO, ADC, and temperature peripheral wrappers.</p>
 <span class="n">handler</span><span class="p">.</span><span class="n">adc</span><span class="p">().</span><span class="n">ReadChannelV</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">voltage</span><span class="p">);</span>            <span class="c1">// Supply voltage ADC</span>
 <span class="n">handler</span><span class="p">.</span><span class="n">temperature</span><span class="p">().</span><span class="n">ReadTemperatureCelsius</span><span class="p">(</span><span class="o">&amp;</span><span class="n">temp</span><span class="p">);</span> <span class="c1">// Chip temperature</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
-<h3 id="advanced-access">
+<h3 id="direct-driver-access">
   
   
-    <a href="#advanced-access" class="anchor-heading" aria-labelledby="advanced-access"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Advanced Access
+    <a href="#direct-driver-access" class="anchor-heading" aria-labelledby="direct-driver-access"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Direct Driver Access
   
   
 </h3>
     
+
+<p>When you know the comm mode (you always do — you chose it at construction):</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="c1">// SPI mode — direct subsystem access</span>
+<span class="k">auto</span><span class="o">*</span> <span class="n">drv</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">driverViaSpi</span><span class="p">();</span>
+<span class="n">drv</span><span class="o">-&gt;</span><span class="n">feedbackSense</span><span class="p">.</span><span class="n">configureHall</span><span class="p">();</span>
+<span class="n">drv</span><span class="o">-&gt;</span><span class="n">velocityControl</span><span class="p">.</span><span class="n">setTargetVelocity</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+
+<span class="c1">// UART mode equivalent</span>
+<span class="k">auto</span><span class="o">*</span> <span class="n">drv</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">driverViaUart</span><span class="p">();</span>
+<span class="n">drv</span><span class="o">-&gt;</span><span class="n">feedbackSense</span><span class="p">.</span><span class="n">configureABNEncoder</span><span class="p">(</span><span class="mi">1024</span><span class="p">);</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>For generic code that works with either comm mode (rare):</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2

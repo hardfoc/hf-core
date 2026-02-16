@@ -319,6 +319,20 @@
 <p>The <code class="language-plaintext highlighter-rouge">SetRawDuty(channel, on_tick, off_tick)</code> method supports phase-shifted PWM by
 allowing the ON tick to be non-zero. This reduces current surge when driving multiple
 channels simultaneously (e.g., LED arrays, servo banks).</p>
+<h2 id="direct-driver-access">
+  
+  
+    <a href="#direct-driver-access" class="anchor-heading" aria-labelledby="direct-driver-access"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Direct Driver Access
+  
+  
+</h2>
+    
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="k">auto</span><span class="o">*</span> <span class="n">drv</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">GetDriver</span><span class="p">();</span>
+<span class="c1">// Access any PCA9685 register-level API directly</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="test-coverage">
   
   

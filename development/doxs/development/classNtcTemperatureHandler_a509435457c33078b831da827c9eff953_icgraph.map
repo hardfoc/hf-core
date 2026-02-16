@@ -1,0 +1,5 @@
+<map id="NtcTemperatureHandler::GetDriver" name="NtcTemperatureHandler::GetDriver">
+<area shape="rect" id="Node000001" title="Get the underlying NtcThermistor driver for advanced operations." alt="" coords="231,5,408,45"/>
+<area shape="rect" id="Node000002" href="$classNtcTemperatureHandler.html#a38a4e75151e0fc16ad746de8a2cd7144" title=" " alt="" coords="5,5,183,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,28,183,28,183,23,217,23"/>
+</map>

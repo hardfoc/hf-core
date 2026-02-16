@@ -363,16 +363,36 @@
     </tr>
   </tbody>
 </table></div>
-<h2 id="direct-driver-access-visitdriver">
+<h2 id="direct-driver-access">
   
   
-    <a href="#direct-driver-access-visitdriver" class="anchor-heading" aria-labelledby="direct-driver-access-visitdriver"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Direct Driver Access (visitDriver)
+    <a href="#direct-driver-access" class="anchor-heading" aria-labelledby="direct-driver-access"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Direct Driver Access
   
   
 </h2>
     
 
-<p>Access all 15 TMC5160 subsystems via <code class="language-plaintext highlighter-rouge">visitDriver()</code>:</p>
+<p>When you know the comm mode (you always do — you chose it at construction):</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="c1">// SPI mode — direct subsystem access</span>
+<span class="k">auto</span><span class="o">*</span> <span class="n">drv</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">driverViaSpi</span><span class="p">();</span>
+<span class="n">drv</span><span class="o">-&gt;</span><span class="n">motorControl</span><span class="p">.</span><span class="n">Enable</span><span class="p">();</span>
+<span class="n">drv</span><span class="o">-&gt;</span><span class="n">rampControl</span><span class="p">.</span><span class="n">SetTargetPosition</span><span class="p">(</span><span class="mi">51200</span><span class="p">);</span>
+
+<span class="c1">// UART mode equivalent</span>
+<span class="k">auto</span><span class="o">*</span> <span class="n">drv</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">driverViaUart</span><span class="p">();</span>
+<span class="n">drv</span><span class="o">-&gt;</span><span class="n">rampControl</span><span class="p">.</span><span class="n">SetMaxSpeed</span><span class="p">(</span><span class="mi">50000</span><span class="p">);</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>For generic code that works with either comm mode (rare), use <code class="language-plaintext highlighter-rouge">visitDriver()</code>:</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2

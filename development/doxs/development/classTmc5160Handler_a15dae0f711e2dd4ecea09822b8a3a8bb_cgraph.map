@@ -1,0 +1,23 @@
+<map id="Tmc5160Handler::driverViaSpi" name="Tmc5160Handler::driverViaSpi">
+<area shape="rect" id="Node000001" title="Get typed SPI driver pointer (null if UART mode or not initialized)." alt="" coords="5,80,225,105"/>
+<area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a6d4fce2433e03bb11b05a4278ef66fd0" title=" " alt="" coords="273,73,523,113"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="226,90,260,90,260,95,226,95"/>
+<area shape="rect" id="Node000003" href="$classTmc5160Handler.html#a64755f326176b0a38485acf5ca69fd0c" title="Initialize the TMC5160 driver with full configuration." alt="" coords="571,80,768,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="523,90,557,90,557,95,523,95"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="839,5,945,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="706,77,815,39,837,32,838,37,817,45,707,82"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="816,153,968,179"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="708,103,817,139,839,147,837,152,815,145,707,108"/>
+<area shape="rect" id="Node000008" href="$classLogger.html#a4681229c521795685fc14f6b55c82300" title="Log info message." alt="" coords="843,55,941,80"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="768,79,829,72,830,77,769,84"/>
+<area shape="rect" id="Node000009" href="$classLogger.html#aaa95ffa14d07a965d4a85bdec82cba26" title="Log warning message." alt="" coords="839,104,945,129"/>
+<area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="769,101,825,107,824,112,768,106"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="1016,31,1188,56"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="945,22,1002,29,1002,34,945,27"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="1029,80,1175,105"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="938,28,969,40,1017,65,1040,73,1038,78,1015,70,967,44,936,33"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="941,59,1002,52,1002,57,942,64"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="942,71,1015,80,1015,85,941,76"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="933,101,967,89,1015,65,1036,57,1038,62,1017,70,969,94,935,106"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="945,108,1014,100,1015,105,946,113"/>
+</map>

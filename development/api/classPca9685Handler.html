@@ -187,6 +187,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae86db8a2e163cd62cfd4459047f1f204" id="r_ae86db8a2e163cd62cfd4459047f1f204"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae86db8a2e163cd62cfd4459047f1f204">DumpDiagnostics</a> () const noexcept</td></tr>
 <tr class="memdesc:ae86db8a2e163cd62cfd4459047f1f204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump comprehensive diagnostics to the system log.  <br /></td></tr>
 <tr class="separator:ae86db8a2e163cd62cfd4459047f1f204"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Direct Driver Access</div></td></tr>
+<tr class="memitem:a91f6e14b606d4007797234ec9599a134" id="r_a91f6e14b606d4007797234ec9599a134"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a98f3e67474173eeb234d4cc3e4b4d03b">Pca9685Driver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91f6e14b606d4007797234ec9599a134">GetDriver</a> () noexcept</td></tr>
+<tr class="memdesc:a91f6e14b606d4007797234ec9599a134"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the underlying PCA9685 driver for advanced register-level operations.  <br /></td></tr>
+<tr class="separator:a91f6e14b606d4007797234ec9599a134"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d3b7d292f41670fcb1b1ecfc803b404" id="r_a7d3b7d292f41670fcb1b1ecfc803b404"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a98f3e67474173eeb234d4cc3e4b4d03b">Pca9685Driver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d3b7d292f41670fcb1b1ecfc803b404">GetDriver</a> () const noexcept</td></tr>
+<tr class="separator:a7d3b7d292f41670fcb1b1ecfc803b404"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -659,7 +665,75 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPca9685Handler_abc72cbb1c0ffd4410143d52c605e0e49_icgraph.svg" width="762" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPca9685Handler_abc72cbb1c0ffd4410143d52c605e0e49_icgraph.svg" width="792" height="203"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a7d3b7d292f41670fcb1b1ecfc803b404" name="a7d3b7d292f41670fcb1b1ecfc803b404"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d3b7d292f41670fcb1b1ecfc803b404">&#9670;&#160;</a></span>GetDriver() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="#a98f3e67474173eeb234d4cc3e4b4d03b">Pca9685Handler::Pca9685Driver</a> * Pca9685Handler::GetDriver </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPca9685Handler_a7d3b7d292f41670fcb1b1ecfc803b404_cgraph.svg" width="988" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a91f6e14b606d4007797234ec9599a134" name="a91f6e14b606d4007797234ec9599a134"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91f6e14b606d4007797234ec9599a134">&#9670;&#160;</a></span>GetDriver() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a98f3e67474173eeb234d4cc3e4b4d03b">Pca9685Handler::Pca9685Driver</a> * Pca9685Handler::GetDriver </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the underlying PCA9685 driver for advanced register-level operations. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the CRTP driver, or nullptr if not initialized. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPca9685Handler_a91f6e14b606d4007797234ec9599a134_cgraph.svg" width="742" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPca9685Handler_a91f6e14b606d4007797234ec9599a134_icgraph.svg" width="456" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -815,7 +889,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPca9685Handler_ab7b5cd2320a6bb69ff6a2869051e9d5e_icgraph.svg" width="1159" height="382"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPca9685Handler_ab7b5cd2320a6bb69ff6a2869051e9d5e_icgraph.svg" width="1167" height="435"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

@@ -1,0 +1,5 @@
+<map id="Pca9685Handler::GetDriver" name="Pca9685Handler::GetDriver">
+<area shape="rect" id="Node000001" title="Get the underlying PCA9685 driver for advanced register&#45;level operations." alt="" coords="252,5,451,31"/>
+<area shape="rect" id="Node000002" href="$classPca9685Handler.html#a7d3b7d292f41670fcb1b1ecfc803b404" title=" " alt="" coords="5,5,204,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="238,21,204,21,204,15,238,15"/>
+</map>

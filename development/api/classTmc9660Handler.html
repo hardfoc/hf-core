@@ -288,18 +288,18 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Typed Driver Access</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Direct access to the underlying typed TMC9660 driver instance. </p>
 </div></td></tr>
-<tr class="memitem:aaa9d4b9630bda35f008330367018f3fb" id="r_aaa9d4b9630bda35f008330367018f3fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa9d4b9630bda35f008330367018f3fb">spiDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
-<tr class="memdesc:aaa9d4b9630bda35f008330367018f3fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the SPI-mode driver instance (nullptr if constructed with UART).  <br /></td></tr>
-<tr class="separator:aaa9d4b9630bda35f008330367018f3fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9862c730e4c760eeb4dbe34f86d8cf8d" id="r_a9862c730e4c760eeb4dbe34f86d8cf8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9862c730e4c760eeb4dbe34f86d8cf8d">spiDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
-<tr class="memdesc:a9862c730e4c760eeb4dbe34f86d8cf8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const version of <a class="el" href="#aaa9d4b9630bda35f008330367018f3fb" title="Get the SPI-mode driver instance (nullptr if constructed with UART).">spiDriver()</a>.  <br /></td></tr>
-<tr class="separator:a9862c730e4c760eeb4dbe34f86d8cf8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71d3255fb10ae237644d594531e5cb27" id="r_a71d3255fb10ae237644d594531e5cb27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71d3255fb10ae237644d594531e5cb27">uartDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
-<tr class="memdesc:a71d3255fb10ae237644d594531e5cb27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the UART-mode driver instance (nullptr if constructed with SPI).  <br /></td></tr>
-<tr class="separator:a71d3255fb10ae237644d594531e5cb27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe40d7a962227a46cfee82155b05d59e" id="r_afe40d7a962227a46cfee82155b05d59e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe40d7a962227a46cfee82155b05d59e">uartDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
-<tr class="memdesc:afe40d7a962227a46cfee82155b05d59e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const version of <a class="el" href="#a71d3255fb10ae237644d594531e5cb27" title="Get the UART-mode driver instance (nullptr if constructed with SPI).">uartDriver()</a>.  <br /></td></tr>
-<tr class="separator:afe40d7a962227a46cfee82155b05d59e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85be9cd2e065b83c7abb36cb70fa6c67" id="r_a85be9cd2e065b83c7abb36cb70fa6c67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85be9cd2e065b83c7abb36cb70fa6c67">driverViaSpi</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memdesc:a85be9cd2e065b83c7abb36cb70fa6c67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the TMC9660 driver instance connected via SPI (nullptr if using UART).  <br /></td></tr>
+<tr class="separator:a85be9cd2e065b83c7abb36cb70fa6c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8946c2dd3a3d5e26620c514988fa2df" id="r_ad8946c2dd3a3d5e26620c514988fa2df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8946c2dd3a3d5e26620c514988fa2df">driverViaSpi</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memdesc:ad8946c2dd3a3d5e26620c514988fa2df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const version of <a class="el" href="#a85be9cd2e065b83c7abb36cb70fa6c67" title="Get the TMC9660 driver instance connected via SPI (nullptr if using UART).">driverViaSpi()</a>.  <br /></td></tr>
+<tr class="separator:ad8946c2dd3a3d5e26620c514988fa2df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4f303f9e7be9cb737a667dd5d85dd3a" id="r_ac4f303f9e7be9cb737a667dd5d85dd3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4f303f9e7be9cb737a667dd5d85dd3a">driverViaUart</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memdesc:ac4f303f9e7be9cb737a667dd5d85dd3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the TMC9660 driver instance connected via UART (nullptr if using SPI).  <br /></td></tr>
+<tr class="separator:ac4f303f9e7be9cb737a667dd5d85dd3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eb74918e10999d77de25728b19542cf" id="r_a4eb74918e10999d77de25728b19542cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4eb74918e10999d77de25728b19542cf">driverViaUart</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memdesc:a4eb74918e10999d77de25728b19542cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const version of <a class="el" href="#ac4f303f9e7be9cb737a667dd5d85dd3a" title="Get the TMC9660 driver instance connected via UART (nullptr if using SPI).">driverViaUart()</a>.  <br /></td></tr>
+<tr class="separator:a4eb74918e10999d77de25728b19542cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Driver Visitor Pattern</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Generic access when comm mode is not known at the call site. </p>
 </div></td></tr>
@@ -973,6 +973,146 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="ad8946c2dd3a3d5e26620c514988fa2df" name="ad8946c2dd3a3d5e26620c514988fa2df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8946c2dd3a3d5e26620c514988fa2df">&#9670;&#160;</a></span>driverViaSpi() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">Tmc9660Handler::SpiDriver</a> * Tmc9660Handler::driverViaSpi </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Const version of <a class="el" href="#a85be9cd2e065b83c7abb36cb70fa6c67" title="Get the TMC9660 driver instance connected via SPI (nullptr if using UART).">driverViaSpi()</a>. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ad8946c2dd3a3d5e26620c514988fa2df_cgraph.svg" width="1504" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a85be9cd2e065b83c7abb36cb70fa6c67" name="a85be9cd2e065b83c7abb36cb70fa6c67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85be9cd2e065b83c7abb36cb70fa6c67">&#9670;&#160;</a></span>driverViaSpi() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">Tmc9660Handler::SpiDriver</a> * Tmc9660Handler::driverViaSpi </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the TMC9660 driver instance connected via SPI (nullptr if using UART). </p>
+<p>Returns a direct pointer to the typed TMC9660&lt;HalSpiTmc9660Comm&gt; driver, giving full access to all 22+ subsystems (motorConfig, feedbackSense, velocityControl, protection, gateDriver, etc.) without lambda wrappers.</p>
+<p>The user always knows which comm mode they chose at construction time, so they can safely call the matching accessor.</p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the TMC9660 driver (SPI comm), or nullptr if using UART mode or <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a> has not been called.</dd></dl>
+<div class="fragment"><div class="line"><span class="comment">// Direct subsystem access after Initialize()</span></div>
+<div class="line"><span class="keyword">auto</span>* <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>-&gt;driverViaSpi();</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;feedbackSense.configureHall();</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;velocityControl.setTargetVelocity(1000);</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;protection.configureVoltage(48000, 10000);</div>
+</div><!-- fragment --> <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a85be9cd2e065b83c7abb36cb70fa6c67_cgraph.svg" width="1264" height="274"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a4eb74918e10999d77de25728b19542cf" name="a4eb74918e10999d77de25728b19542cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eb74918e10999d77de25728b19542cf">&#9670;&#160;</a></span>driverViaUart() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">Tmc9660Handler::UartDriver</a> * Tmc9660Handler::driverViaUart </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Const version of <a class="el" href="#ac4f303f9e7be9cb737a667dd5d85dd3a" title="Get the TMC9660 driver instance connected via UART (nullptr if using SPI).">driverViaUart()</a>. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a4eb74918e10999d77de25728b19542cf_cgraph.svg" width="1512" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ac4f303f9e7be9cb737a667dd5d85dd3a" name="ac4f303f9e7be9cb737a667dd5d85dd3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4f303f9e7be9cb737a667dd5d85dd3a">&#9670;&#160;</a></span>driverViaUart() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a68a5549c74095516db249e2c2d4afed7">Tmc9660Handler::UartDriver</a> * Tmc9660Handler::driverViaUart </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the TMC9660 driver instance connected via UART (nullptr if using SPI). </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the TMC9660 driver (UART comm), or nullptr if using SPI mode or <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a> has not been called.</dd></dl>
+<div class="fragment"><div class="line"><span class="keyword">auto</span>* <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>-&gt;driverViaUart();</div>
+<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;feedbackSense.configureABNEncoder(1024);</div>
+</div><!-- fragment --> <div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac4f303f9e7be9cb737a667dd5d85dd3a_cgraph.svg" width="1272" height="274"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="adee8a764564554f060b879752048bf74" name="adee8a764564554f060b879752048bf74"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adee8a764564554f060b879752048bf74">&#9670;&#160;</a></span>DumpDiagnostics()</h2>
 
@@ -1114,7 +1254,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a5a279ae9d4b5a8e0d71cb24577ad88ea_icgraph.svg" width="1442" height="3094"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a5a279ae9d4b5a8e0d71cb24577ad88ea_icgraph.svg" width="1447" height="3111"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1590,7 +1730,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adc564847f8ae26c47412aaee0758991c_icgraph.svg" width="1687" height="2896"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adc564847f8ae26c47412aaee0758991c_icgraph.svg" width="1692" height="3011"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1623,7 +1763,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a13db97d201a287d8aa60384e04070b9f_icgraph.svg" width="1682" height="2994"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a13db97d201a287d8aa60384e04070b9f_icgraph.svg" width="1687" height="2970"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -2107,79 +2247,6 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a9862c730e4c760eeb4dbe34f86d8cf8d" name="a9862c730e4c760eeb4dbe34f86d8cf8d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9862c730e4c760eeb4dbe34f86d8cf8d">&#9670;&#160;</a></span>spiDriver() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">Tmc9660Handler::SpiDriver</a> * Tmc9660Handler::spiDriver </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Const version of <a class="el" href="#aaa9d4b9630bda35f008330367018f3fb" title="Get the SPI-mode driver instance (nullptr if constructed with UART).">spiDriver()</a>. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a9862c730e4c760eeb4dbe34f86d8cf8d_cgraph.svg" width="1484" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="aaa9d4b9630bda35f008330367018f3fb" name="aaa9d4b9630bda35f008330367018f3fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa9d4b9630bda35f008330367018f3fb">&#9670;&#160;</a></span>spiDriver() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">Tmc9660Handler::SpiDriver</a> * Tmc9660Handler::spiDriver </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the SPI-mode driver instance (nullptr if constructed with UART). </p>
-<p>Returns a direct pointer to the typed TMC9660&lt;HalSpiTmc9660Comm&gt; driver, giving full access to all 22+ subsystems (motorConfig, feedbackSense, velocityControl, protection, gateDriver, etc.) without lambda wrappers.</p>
-<p>The user always knows which comm mode they chose at construction time, so they can safely call the matching accessor.</p>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the SPI driver, or nullptr if using UART mode or <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a> has not been called.</dd></dl>
-<div class="fragment"><div class="line"><span class="comment">// Direct subsystem access after Initialize()</span></div>
-<div class="line"><span class="keyword">auto</span>* <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>-&gt;spiDriver();</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;feedbackSense.configureHall();</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;velocityControl.setTargetVelocity(1000);</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;protection.configureVoltage(48000, 10000);</div>
-</div><!-- fragment --> <div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_aaa9d4b9630bda35f008330367018f3fb_cgraph.svg" width="1244" height="274"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
 <a id="a393382194d0602e7aa02da6a8fd7a20a" name="a393382194d0602e7aa02da6a8fd7a20a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a393382194d0602e7aa02da6a8fd7a20a">&#9670;&#160;</a></span>temperature()</h2>
 
@@ -2202,73 +2269,6 @@ Here is the call graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a393382194d0602e7aa02da6a8fd7a20a_cgraph.svg" width="1236" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="afe40d7a962227a46cfee82155b05d59e" name="afe40d7a962227a46cfee82155b05d59e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe40d7a962227a46cfee82155b05d59e">&#9670;&#160;</a></span>uartDriver() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">Tmc9660Handler::UartDriver</a> * Tmc9660Handler::uartDriver </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Const version of <a class="el" href="#a71d3255fb10ae237644d594531e5cb27" title="Get the UART-mode driver instance (nullptr if constructed with SPI).">uartDriver()</a>. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_afe40d7a962227a46cfee82155b05d59e_cgraph.svg" width="1491" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="a71d3255fb10ae237644d594531e5cb27" name="a71d3255fb10ae237644d594531e5cb27"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71d3255fb10ae237644d594531e5cb27">&#9670;&#160;</a></span>uartDriver() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="#a68a5549c74095516db249e2c2d4afed7">Tmc9660Handler::UartDriver</a> * Tmc9660Handler::uartDriver </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the UART-mode driver instance (nullptr if constructed with SPI). </p>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the UART driver, or nullptr if using SPI mode or <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a> has not been called.</dd></dl>
-<div class="fragment"><div class="line"><span class="keyword">auto</span>* <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>-&gt;uartDriver();</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;feedbackSense.configureABNEncoder(1024);</div>
-</div><!-- fragment --> <div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a71d3255fb10ae237644d594531e5cb27_cgraph.svg" width="1251" height="274"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -2299,7 +2299,7 @@ template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a>
 </div><div class="memdoc">
 
 <p>Execute a function on the underlying typed TMC9660 driver. </p>
-<p>For most use cases, prefer <a class="el" href="#aaa9d4b9630bda35f008330367018f3fb" title="Get the SPI-mode driver instance (nullptr if constructed with UART).">spiDriver()</a> or <a class="el" href="#a71d3255fb10ae237644d594531e5cb27" title="Get the UART-mode driver instance (nullptr if constructed with SPI).">uartDriver()</a> for direct typed access. Use <a class="el" href="#a4360829b58deda85e9da4b9cebee96f0" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a> only when writing generic code that must work with either communication mode (e.g., in manager-level code that doesn't know the comm type).</p>
+<p>For most use cases, prefer <a class="el" href="#a85be9cd2e065b83c7abb36cb70fa6c67" title="Get the TMC9660 driver instance connected via SPI (nullptr if using UART).">driverViaSpi()</a> or <a class="el" href="#ac4f303f9e7be9cb737a667dd5d85dd3a" title="Get the TMC9660 driver instance connected via UART (nullptr if using SPI).">driverViaUart()</a> for direct typed access. Use <a class="el" href="#a4360829b58deda85e9da4b9cebee96f0" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a> only when writing generic code that must work with either communication mode (e.g., in manager-level code that doesn't know the comm type).</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Func</td><td>Callable type with signature <code>ReturnType(auto&amp; driver)</code>. </td></tr>

@@ -1,0 +1,13 @@
+<map id="Pcal95555Handler::GetDriver" name="Pcal95555Handler::GetDriver">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,216,38"/>
+<area shape="rect" id="Node000002" href="$classPcal95555Handler.html#a6715e51d5d09a2466b3b86820b9f5ea6" title="Get the underlying PCAL95555 driver for advanced register&#45;level operations." alt="" coords="264,13,475,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,23,251,23,251,28,216,28"/>
+<area shape="rect" id="Node000003" href="$classPcal95555Handler.html#a7d8ed72bf4fc9dfcb0be4877deec99b3" title="Check init state under already&#45;held handler_mutex_." alt="" coords="523,5,715,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="475,23,509,23,509,28,475,28"/>
+<area shape="rect" id="Node000004" href="$classPcal95555Handler.html#a5c2e68d6c9e39e373d40e94f5e951558" title="Internal initialization (called by EnsureInitialized under mutex)." alt="" coords="763,13,967,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="715,23,749,23,749,28,715,28"/>
+<area shape="rect" id="Node000005" href="$classPcal95555Handler.html#add6bf45bbac47b7d8d579fbd9bc50d2e" title="Configure the hardware interrupt pin (falling edge, active&#45;low)." alt="" coords="1015,5,1225,45"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="967,23,1001,23,1001,28,967,28"/>
+<area shape="rect" id="Node000006" href="$classPcal95555Handler.html#a87e8b50faf5d3d815227068ff26b1a6b" title="Static ISR callback for the hardware interrupt pin." alt="" coords="1273,5,1484,45"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1225,23,1260,23,1260,28,1225,28"/>
+</map>

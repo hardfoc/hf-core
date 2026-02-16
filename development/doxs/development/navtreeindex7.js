@@ -1,5 +1,11 @@
 var NAVTREEINDEX7 =
 {
+"structTestResults.html#ab98f9ad5f994aa31bd7c0cd8ae551fb8":[13,0,38,1],
+"structTestResults.html#afe20b168a13950ffca7296c0c56d4359":[13,0,38,6],
+"structTestTaskContext.html":[13,0,39],
+"structTestTaskContext.html#a1c97680bd267a35637278ea10a3fae0e":[13,0,39,1],
+"structTestTaskContext.html#aa72faa223fd0ff992772b12458f62ec8":[13,0,39,3],
+"structTestTaskContext.html#ab82bee11b198be2f2b4d6c908573ddb6":[13,0,39,0],
 "structTestTaskContext.html#abcf19d2762ab98990c3fdc1eacf86130":[13,0,39,4],
 "structTestTaskContext.html#ae51f49c33ea802bc7f8bdde560a27304":[13,0,39,2],
 "structTmc5160CtrlPins.html":[11,11,0],

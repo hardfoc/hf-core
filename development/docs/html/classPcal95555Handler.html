@@ -243,6 +243,12 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a7b9a82a463f57e0394b55a4f3ecead39" id="r_a7b9a82a463f57e0394b55a4f3ecead39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b9a82a463f57e0394b55a4f3ecead39">ProcessInterrupts</a> () noexcept</td></tr>
 <tr class="memdesc:a7b9a82a463f57e0394b55a4f3ecead39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process pending interrupts by reading status and dispatching callbacks.  <br /></td></tr>
 <tr class="separator:a7b9a82a463f57e0394b55a4f3ecead39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Direct Driver Access</div></td></tr>
+<tr class="memitem:a6715e51d5d09a2466b3b86820b9f5ea6" id="r_a6715e51d5d09a2466b3b86820b9f5ea6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a79a4140f8340810bea7bed218a78df6c">Pcal95555Driver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6715e51d5d09a2466b3b86820b9f5ea6">GetDriver</a> () noexcept</td></tr>
+<tr class="memdesc:a6715e51d5d09a2466b3b86820b9f5ea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the underlying PCAL95555 driver for advanced register-level operations.  <br /></td></tr>
+<tr class="separator:a6715e51d5d09a2466b3b86820b9f5ea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8121efea49cc4be54c4526eb346e5f8d" id="r_a8121efea49cc4be54c4526eb346e5f8d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a79a4140f8340810bea7bed218a78df6c">Pcal95555Driver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8121efea49cc4be54c4526eb346e5f8d">GetDriver</a> () const noexcept</td></tr>
+<tr class="separator:a8121efea49cc4be54c4526eb346e5f8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -532,7 +538,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_add6bf45bbac47b7d8d579fbd9bc50d2e_icgraph.svg" width="1095" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_add6bf45bbac47b7d8d579fbd9bc50d2e_icgraph.svg" width="1231" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -848,7 +854,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a7d8ed72bf4fc9dfcb0be4877deec99b3_icgraph.svg" width="450" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a7d8ed72bf4fc9dfcb0be4877deec99b3_icgraph.svg" width="720" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -977,6 +983,74 @@ Here is the caller graph for this function:</div>
 
 <p>Get a bitmask of all created pin numbers. </p>
 <dl class="section return"><dt>Returns</dt><dd>16-bit mask where bit N is set if pin N has been created. </dd></dl>
+
+</div>
+</div>
+<a id="a8121efea49cc4be54c4526eb346e5f8d" name="a8121efea49cc4be54c4526eb346e5f8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8121efea49cc4be54c4526eb346e5f8d">&#9670;&#160;</a></span>GetDriver() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="#a79a4140f8340810bea7bed218a78df6c">Pcal95555Handler::Pcal95555Driver</a> * Pcal95555Handler::GetDriver </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a8121efea49cc4be54c4526eb346e5f8d_cgraph.svg" width="1490" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a6715e51d5d09a2466b3b86820b9f5ea6" name="a6715e51d5d09a2466b3b86820b9f5ea6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6715e51d5d09a2466b3b86820b9f5ea6">&#9670;&#160;</a></span>GetDriver() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a79a4140f8340810bea7bed218a78df6c">Pcal95555Handler::Pcal95555Driver</a> * Pcal95555Handler::GetDriver </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the underlying PCAL95555 driver for advanced register-level operations. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the CRTP driver, or nullptr if not initialized. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a6715e51d5d09a2466b3b86820b9f5ea6_cgraph.svg" width="1231" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a6715e51d5d09a2466b3b86820b9f5ea6_icgraph.svg" width="480" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1198,7 +1272,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a87e8b50faf5d3d815227068ff26b1a6b_icgraph.svg" width="1354" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a87e8b50faf5d3d815227068ff26b1a6b_icgraph.svg" width="1490" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1303,7 +1377,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a5c2e68d6c9e39e373d40e94f5e951558_icgraph.svg" width="836" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a5c2e68d6c9e39e373d40e94f5e951558_icgraph.svg" width="972" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

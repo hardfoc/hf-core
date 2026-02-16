@@ -44,8 +44,8 @@
 <area shape="poly" id="edge16_Node000004_Node000112" title=" " alt="" coords="636,506,620,499,596,486,572,474,520,458,522,453,574,469,599,481,623,494,639,501"/>
 <area shape="rect" id="Node000113" href="$classTmc5160Handler.html#a64755f326176b0a38485acf5ca69fd0c" title="Initialize the TMC5160 driver with full configuration." alt="" coords="343,583,541,608"/>
 <area shape="poly" id="edge17_Node000004_Node000113" title=" " alt="" coords="647,543,574,572,524,585,522,580,573,567,645,538"/>
-<area shape="rect" id="Node000089" href="$classTmc9660Handler_1_1Temperature.html#a5ebc77b2122ba4473b74a4a0fc78ff09" title="Read the chip temperature in degrees Celsius." alt="" coords="331,75,553,115"/>
-<area shape="poly" id="edge18_Node000004_Node000089" title=" " alt="" coords="623,503,619,498,603,474,593,450,584,403,588,357,597,313,606,269,609,225,599,181,588,158,571,136,549,117,552,113,575,132,592,156,604,179,614,224,611,269,602,314,593,358,589,403,598,448,608,471,623,495,627,499"/>
+<area shape="rect" id="Node000092" href="$classTmc9660Handler_1_1Temperature.html#a5ebc77b2122ba4473b74a4a0fc78ff09" title="Read the chip temperature in degrees Celsius." alt="" coords="331,75,553,115"/>
+<area shape="poly" id="edge18_Node000004_Node000092" title=" " alt="" coords="623,503,619,498,603,474,593,450,584,403,588,357,597,313,606,269,609,225,599,181,588,158,571,136,549,117,552,113,575,132,592,156,604,179,614,224,611,269,602,314,593,358,589,403,598,448,608,471,623,495,627,499"/>
 <area shape="rect" id="Node000134" href="$classNtcTemperatureHandler.html#aeabac754a1b923c79969657d69b97a72" title=" " alt="" coords="340,798,544,838"/>
 <area shape="poly" id="edge19_Node000004_Node000134" title=" " alt="" coords="683,548,673,599,654,663,622,730,601,760,575,787,546,804,543,800,572,782,597,757,618,727,649,661,668,598,678,547"/>
 <area shape="poly" id="edge8_Node000031_Node000005" title=" " alt="" coords="351,484,310,474,243,452,183,430,185,425,245,447,311,469,352,479"/>
@@ -82,8 +82,8 @@
 <area shape="poly" id="edge31_Node000136_Node000150" title=" " alt="" coords="622,1234,574,1245,510,1257,509,1252,573,1239,621,1229"/>
 <area shape="rect" id="Node000151" href="$classPcal95555Handler.html#a7fcf65a91f94a68330ee6738f8297b83" title="Dump comprehensive diagnostics to the system log." alt="" coords="311,1304,573,1329"/>
 <area shape="poly" id="edge32_Node000136_Node000151" title=" " alt="" coords="632,1239,623,1244,609,1256,600,1269,590,1282,575,1294,543,1306,541,1301,572,1289,587,1278,596,1266,605,1253,620,1240,629,1234"/>
-<area shape="rect" id="Node000056" href="$classTmc9660Handler.html#adee8a764564554f060b879752048bf74" title="Dump comprehensive diagnostics to the system log." alt="" coords="314,1353,570,1379"/>
-<area shape="poly" id="edge33_Node000136_Node000056" title=" " alt="" coords="628,1240,623,1244,613,1256,607,1268,601,1293,595,1318,587,1331,575,1343,553,1355,550,1351,572,1338,583,1328,590,1316,596,1292,602,1266,608,1253,619,1240,625,1235"/>
+<area shape="rect" id="Node000058" href="$classTmc9660Handler.html#adee8a764564554f060b879752048bf74" title="Dump comprehensive diagnostics to the system log." alt="" coords="314,1353,570,1379"/>
+<area shape="poly" id="edge33_Node000136_Node000058" title=" " alt="" coords="628,1240,623,1244,613,1256,607,1268,601,1293,595,1318,587,1331,575,1343,553,1355,550,1351,572,1338,583,1328,590,1316,596,1292,602,1266,608,1253,619,1240,625,1235"/>
 <area shape="rect" id="Node000152" href="$classNtcTemperatureHandler.html#ae3ed02cf4cd05dd73a3e9a42f9219f3e" title=" " alt="" coords="338,1091,546,1131"/>
 <area shape="poly" id="edge34_Node000136_Node000152" title=" " alt="" coords="656,1199,618,1171,572,1146,540,1134,542,1129,574,1141,621,1167,659,1194"/>
 <area shape="rect" id="Node000153" href="$classNtcTemperatureHandler.html#a059ed62988ed8c4e69ac891b448ff17a" title=" " alt="" coords="353,1403,531,1443"/>
@@ -120,5 +120,5 @@
 <area shape="poly" id="edge68_Node000171_Node000111" title=" " alt="" coords="637,493,622,499,599,512,574,523,527,536,526,531,572,518,596,507,620,494,635,488"/>
 <area shape="poly" id="edge69_Node000171_Node000112" title=" " alt="" coords="618,466,520,453,521,447,618,461"/>
 <area shape="poly" id="edge70_Node000171_Node000113" title=" " alt="" coords="630,494,623,499,608,517,601,535,592,554,575,572,542,588,540,583,572,568,588,551,596,533,603,514,620,495,626,490"/>
-<area shape="poly" id="edge71_Node000171_Node000089" title=" " alt="" coords="623,454,619,449,596,407,587,367,590,327,597,288,604,250,605,212,596,174,571,136,549,118,552,113,575,132,601,172,610,212,609,251,602,289,595,328,593,366,601,405,623,446,627,450"/>
+<area shape="poly" id="edge71_Node000171_Node000092" title=" " alt="" coords="623,454,619,449,596,407,587,367,590,327,597,288,604,250,605,212,596,174,571,136,549,118,552,113,575,132,601,172,610,212,609,251,602,289,595,328,593,366,601,405,623,446,627,450"/>
 </map>

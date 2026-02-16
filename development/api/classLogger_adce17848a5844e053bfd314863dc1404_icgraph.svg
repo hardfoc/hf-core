@@ -240,20 +240,20 @@
 </a>
 </g>
 </g>
-<!-- Node86 -->
-<g id="Node000086" class="node">
-<title>Node86</title>
-<g id="a_Node000086"><a xlink:href="classTmc9660Handler_1_1Temperature.html#a5ebc77b2122ba4473b74a4a0fc78ff09" target="_top" xlink:title="Read the chip temperature in degrees Celsius.">
+<!-- Node89 -->
+<g id="Node000089" class="node">
+<title>Node89</title>
+<g id="a_Node000089"><a xlink:href="classTmc9660Handler_1_1Temperature.html#a5ebc77b2122ba4473b74a4a0fc78ff09" target="_top" xlink:title="Read the chip temperature in degrees Celsius.">
 <polygon fill="white" stroke="#666666" points="832,-78 665,-78 665,-48 832,-48 832,-78"/>
 <text text-anchor="start" x="673" y="-66" font-family="Helvetica,sans-Serif" font-size="10.00">Tmc9660Handler::Temperature</text>
 <text text-anchor="middle" x="748.5" y="-55" font-family="Helvetica,sans-Serif" font-size="10.00">::ReadTemperatureCelsiusImpl</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node86 -->
-<g id="edge50_Node000001_Node000086" class="edge">
-<title>Node1&#45;&gt;Node86</title>
-<g id="a_edge50_Node000001_Node000086"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node89 -->
+<g id="edge50_Node000001_Node000089" class="edge">
+<title>Node1&#45;&gt;Node89</title>
+<g id="a_edge50_Node000001_Node000089"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M905.28,-276.38C901.64,-235.18 887.35,-139.16 832,-87 828.42,-83.62 824.39,-80.72 820.09,-78.22"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="901.8,-276.76 906.05,-286.47 908.78,-276.23 901.8,-276.76"/>
 </a>
