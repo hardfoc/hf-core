@@ -2,11 +2,75 @@
  * @file Tmc9660Handler.h
  * @brief Unified handler for TMC9660 motor controller with GPIO, ADC, and temperature integration.
  *
- * Provides HAL-level integration for a TMC9660 motor driver using BaseSpi/BaseUart and BaseGpio.
- * Architecture: CRTP comm adapters → typed TMC9660 driver → non-templated handler facade.
- * Inner classes (Gpio, Adc, Temperature) adapt TMC9660 peripherals to HardFOC base interfaces.
+ * @details
+ * This file provides the complete HAL-level integration for a single TMC9660 motor driver
+ * device. It bridges the HardFOC base interfaces (BaseSpi, BaseUart, BaseGpio, BaseAdc,
+ * BaseTemperature) with the templated tmc9660::TMC9660<CommType> driver from the
+ * hf-tmc9660-driver library.
  *
- * @see Tmc9660AdcWrapper, Tmc9660TemperatureWrapper, MotorController
+ * ## Architecture Overview
+ *
+ * The file contains three layers:
+ *
+ * 1. **CRTP Communication Adapters** (HalSpiTmc9660Comm, HalUartTmc9660Comm):
+ *    Bridge HardFOC BaseSpi/BaseUart/BaseGpio to the TMC9660 driver's CRTP-based
+ *    communication interfaces (tmc9660::SpiCommInterface, tmc9660::UartCommInterface).
+ *    These also manage the four host-side GPIO control pins (RST, DRV_EN, FAULTN, WAKE)
+ *    required by the TMC9660 bootloader initialization sequence.
+ *
+ * 2. **Tmc9660Handler** (main class):
+ *    Non-templated facade that owns one typed driver instance (SpiDriver or UartDriver).
+ *    Uses the visitDriver() template to route calls to the active driver, keeping
+ *    the public API free of template parameters. Provides:
+ *    - Bootloader initialization with configurable reset and verification options
+ *    - TMCL parameter read/write and raw command access
+ *    - Convenience methods for motor control (velocity, position, torque)
+ *    - Telemetry (voltage, temperature, current, flags)
+ *    - visitDriver() for advanced users needing direct subsystem access
+ *
+ * 3. **Peripheral Wrappers** (Gpio, Adc, Temperature inner classes):
+ *    Implement BaseGpio, BaseAdc, and BaseTemperature respectively, delegating to the
+ *    TMC9660 driver's subsystems (gpio, telemetry, etc.) via the handler's visitDriver().
+ *
+ * ## Ownership Model
+ *
+ * The handler owns all its internal resources:
+ * - One HalSpiTmc9660Comm or HalUartTmc9660Comm (communication adapter)
+ * - One SpiDriver or UartDriver (typed TMC9660 driver)
+ * - Two Gpio wrappers (for GPIO17, GPIO18)
+ * - One Adc wrapper (multi-channel TMC9660 ADC)
+ * - One Temperature wrapper (chip temperature sensor)
+ *
+ * External managers (AdcManager, TemperatureManager) that need to own a BaseAdc* or
+ * BaseTemperature* should use the thin delegation wrappers Tmc9660AdcWrapper and
+ * Tmc9660TemperatureWrapper (defined in their own files), which delegate to the
+ * handler's inner class instances.
+ *
+ * ## Initialization Sequence
+ *
+ * @code
+ * // 1. Obtain SPI/UART interface and four GPIO control pin instances
+ * // 2. Construct the handler
+ * Tmc9660Handler handler(spi, rst_gpio, drv_en_gpio, faultn_gpio, wake_gpio, 0x01);
+ *
+ * // 3. Initialize (runs bootloader config, enters parameter mode)
+ * if (!handler.Initialize()) { return; }
+ *
+ * // 4. Use motor control, telemetry, GPIO, ADC, etc.
+ * handler.SetTargetVelocity(1000);
+ * float voltage = handler.GetSupplyVoltage();
+ * @endcode
+ *
+ * ## Thread Safety
+ *
+ * Individual handler methods are NOT thread-safe by themselves. If multiple threads
+ * access the same handler, external synchronization is required. The Adc and Temperature
+ * inner classes use RtosMutex for their internal statistics tracking.
+ *
+ * @see Tmc9660AdcWrapper       Thin adapter for AdcManager ownership
+ * @see Tmc9660TemperatureWrapper  Thin adapter for TemperatureManager ownership
+ * @see MotorController         Higher-level manager that owns Tmc9660Handler instances
+ *
  * @author HardFOC Team
  * @date 2025
  */
@@ -78,13 +142,34 @@ struct Tmc9660CtrlPins {
 
 /**
  * @class HalSpiTmc9660Comm
- * @brief CRTP SPI communication adapter bridging BaseSpi/BaseGpio to tmc9660::SpiCommInterface.
+ * @brief Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.
  *
- * Handles TMCL/bootloader SPI transfers, four host-side control pins (RST, DRV_EN,
- * FAULTN, WAKE) with configurable active-level polarity, and platform-aware delays.
+ * @details
+ * Implements all methods required by tmc9660::SpiCommInterface<HalSpiTmc9660Comm>
+ * through the CRTP (Curiously Recurring Template Pattern). This class acts as the
+ * bridge between the HardFOC BaseSpi abstraction and the TMC9660 driver's SPI
+ * protocol, handling:
  *
- * @note Does NOT own the BaseSpi or BaseGpio instances.
- * @see HalUartTmc9660Comm
+ * - **TMCL transfers**: 8-byte full-duplex SPI exchanges for parameter mode
+ * - **Bootloader transfers**: 5-byte full-duplex SPI exchanges for bootloader mode
+ * - **GPIO control**: Maps TMC9660 control pin identifiers (RST, DRV_EN, FAULTN, WAKE)
+ *   to physical BaseGpio instances with configurable active-level polarity
+ * - **Timing**: Platform-aware delays (millisecond via RTOS, microsecond via
+ *   esp_rom_delay_us or busy-wait fallback)
+ * - **Logging**: Routes TMC9660 driver debug output to the HardFOC Logger
+ *
+ * ## Control Pin Polarity
+ *
+ * Each control pin can be configured as active-high or active-low to match the
+ * board's electrical design (e.g., inverting buffers). The constructor parameters
+ * set the initial polarity; the base class provides set_pin_active_level() for
+ * runtime reconfiguration if needed.
+ *
+ * @note This class does NOT own the BaseSpi or BaseGpio instances; they must
+ *       remain valid for the lifetime of this object.
+ *
+ * @see tmc9660::SpiCommInterface  CRTP base class from the TMC9660 driver
+ * @see HalUartTmc9660Comm         UART equivalent of this class
  */
 class HalSpiTmc9660Comm : public tmc9660::SpiCommInterface<HalSpiTmc9660Comm> {
 public:
@@ -191,13 +276,22 @@ private:
 
 /**
  * @class HalUartTmc9660Comm
- * @brief CRTP UART communication adapter bridging BaseUart/BaseGpio to tmc9660::UartCommInterface.
+ * @brief Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.
  *
- * Handles TMCL/bootloader UART transfers, four host-side control pins,
- * and platform-aware delays. Mirrors HalSpiTmc9660Comm for UART transport.
+ * @details
+ * Implements all methods required by tmc9660::UartCommInterface<HalUartTmc9660Comm>
+ * through the CRTP pattern. Handles:
  *
- * @note Does NOT own the BaseUart or BaseGpio instances.
- * @see HalSpiTmc9660Comm
+ * - **TMCL transfers**: 9-byte send/receive for parameter mode
+ * - **Bootloader transfers**: 8-byte send/receive for bootloader mode
+ * - **GPIO control**: Same four control pins as HalSpiTmc9660Comm
+ * - **Timing and logging**: Same platform-aware implementations
+ *
+ * @note This class does NOT own the BaseUart or BaseGpio instances; they must
+ *       remain valid for the lifetime of this object.
+ *
+ * @see tmc9660::UartCommInterface  CRTP base class from the TMC9660 driver
+ * @see HalSpiTmc9660Comm           SPI equivalent of this class
  */
 class HalUartTmc9660Comm : public tmc9660::UartCommInterface<HalUartTmc9660Comm> {
 public:
@@ -280,17 +374,70 @@ private:
  * @brief Unified, non-templated handler for a single TMC9660 motor controller device.
  *
  * @details
- * Hides tmc9660::TMC9660<CommType> template complexity behind a clean API.
- * Uses visitDriver() internally to route calls to the correct typed driver
- * (SPI or UART), so callers never see the template parameter.
+ * Tmc9660Handler is the primary interface that application and manager code uses to
+ * interact with a TMC9660 motor driver. It hides the template complexity of
+ * tmc9660::TMC9660<CommType> behind a clean, polymorphism-free API.
  *
- * Key design points:
- * - Non-templated: MotorController stores handlers in std::unique_ptr<Tmc9660Handler>.
- * - Control pins (RST, DRV_EN, FAULTN, WAKE) required at construction.
- * - Lazy driver creation: TMC9660 driver allocated in Initialize(), not constructor.
- * - Inner classes Gpio, Adc, Temperature implement base interfaces for manager layer.
+ * ## Design Decisions
  *
- * @see HalSpiTmc9660Comm, HalUartTmc9660Comm, MotorController, Tmc9660AdcWrapper
+ * - **Non-templated**: The handler uses visitDriver() to route calls to the
+ *   correct typed driver (SPI or UART). This prevents template propagation
+ *   through the codebase and allows MotorController to store handlers in a
+ *   plain std::unique_ptr<Tmc9660Handler>.
+ *
+ * - **Control pins required**: The TMC9660 bootloader initialization sequence
+ *   requires host-side GPIO control of four pins (RST, DRV_EN, FAULTN, WAKE).
+ *   These must be provided at construction time.
+ *
+ * - **Lazy driver creation**: The typed TMC9660 driver instance is created during
+ *   Initialize(), not in the constructor. This saves memory until initialization
+ *   is actually needed.
+ *
+ * - **Peripheral wrappers**: Inner classes Gpio, Adc, and Temperature implement
+ *   the HardFOC base interfaces, making TMC9660 peripherals available to the
+ *   manager layer (GpioManager, AdcManager, TemperatureManager) through the
+ *   standard abstractions.
+ *
+ * ## Usage Example
+ *
+ * @code
+ * // Construction (SPI mode, address 1, default boot config)
+ * Tmc9660Handler handler(spi_bus, rst_pin, drv_en_pin, faultn_pin, wake_pin, 0x01);
+ *
+ * // Initialize (performs hardware reset and bootloader configuration)
+ * if (!handler.Initialize()) {
+ *     Logger::GetInstance().Error("App", "TMC9660 init failed!");
+ *     return;
+ * }
+ *
+ * // Motor control
+ * handler.SetMotorType(tmc9660::tmcl::MotorType::BLDC, 7);
+ * handler.SetCommutationMode(tmc9660::tmcl::CommutationMode::FOC);
+ * handler.EnableMotor();
+ * handler.SetTargetVelocity(1000);
+ *
+ * // Telemetry
+ * float supply_v = handler.GetSupplyVoltage();
+ * float chip_temp = handler.GetChipTemperature();
+ *
+ * // GPIO (TMC9660 internal GPIO17)
+ * handler.gpio(17).SetPinLevel(hf_gpio_level_t::HF_GPIO_LEVEL_HIGH);
+ *
+ * // ADC (read AIN channel 0)
+ * float voltage;
+ * handler.adc().ReadChannelV(0, voltage);
+ *
+ * // Advanced: direct driver access via visitor
+ * handler.visitDriver([](auto& driver) {
+ *     driver.feedbackSense.configureHallSensor(1, 2, 3);
+ *     driver.protection.setOvertemperatureLimit(120.0f);
+ * });
+ * @endcode
+ *
+ * @see HalSpiTmc9660Comm    SPI communication adapter
+ * @see HalUartTmc9660Comm   UART communication adapter
+ * @see MotorController       Multi-device manager that owns Tmc9660Handler instances
+ * @see Tmc9660AdcWrapper     Thin BaseAdc adapter for AdcManager ownership
  */
 class Tmc9660Handler {
 public:
@@ -794,10 +941,17 @@ public:
      * @class Gpio
      * @brief BaseGpio adapter for a single TMC9660 internal GPIO channel.
      *
-     * Wraps one TMC9660 GPIO pin (e.g., GPIO17, GPIO18) as a BaseGpio instance.
-     * Push-pull output by default; pull mode is floating (set via bootloader config).
+     * @details
+     * Wraps one of the TMC9660's internal GPIO pins (e.g., GPIO17, GPIO18) as a
+     * HardFOC BaseGpio instance. Supports digital read/write via the TMC9660 driver's
+     * gpio subsystem.
      *
-     * @note Only GPIO17 and GPIO18 are currently exposed.
+     * The TMC9660 GPIO pins are configured as push-pull outputs by default. Pull
+     * mode is limited to floating (the TMC9660 configures pull via bootloader config,
+     * not at runtime through TMCL).
+     *
+     * @note Only GPIO17 and GPIO18 are currently exposed. Additional pins can be
+     *       added by expanding the gpioWrappers_ array.
      */
     class Gpio : public BaseGpio {
     public:
@@ -872,11 +1026,27 @@ public:
      * @class Adc
      * @brief BaseAdc adapter for all TMC9660 ADC channels.
      *
-     * Channel ID scheme: 0-3 AIN, 10-13 current sense, 20-21 voltage,
-     * 30-31 temperature, 40-42 motor data. Thread-safe with RtosMutex.
+     * @details
+     * Provides a unified BaseAdc interface for reading the TMC9660's various analog
+     * and telemetry data channels. Channels are identified by a numeric ID scheme:
      *
-     * @note Owned by handler; use Tmc9660AdcWrapper for AdcManager ownership.
-     * @see Tmc9660AdcWrapper
+     * | Channel ID Range | Type               | Description                     |
+     * |:----------------:|:-------------------|:--------------------------------|
+     * | 0 - 3            | AIN channels       | External analog inputs (GPIO5)  |
+     * | 10 - 13           | Current sense      | Phase current ADC (I0-I3)       |
+     * | 20 - 21           | Voltage monitor    | 20=supply, 21=driver voltage    |
+     * | 30 - 31           | Temperature        | 30=chip, 31=external NTC        |
+     * | 40 - 42           | Motor data         | 40=current, 41=velocity, 42=pos |
+     *
+     * The wrapper includes thread-safe statistics and diagnostics tracking via
+     * RtosMutex. Voltage conversions use a default 3.3V / 16-bit scale; for
+     * temperature and motor data channels, the "voltage" field contains the
+     * physical value directly (degrees Celsius, mA, etc.).
+     *
+     * @note This inner class is owned by the handler. For manager-layer ownership,
+     *       use Tmc9660AdcWrapper which delegates to this instance.
+     *
+     * @see Tmc9660AdcWrapper  Thin delegation wrapper for AdcManager ownership
      */
     class Adc : public BaseAdc {
     public:
@@ -1071,10 +1241,21 @@ public:
 
     /**
      * @class Temperature
-     * @brief BaseTemperature adapter for TMC9660 internal chip temperature sensor.
+     * @brief BaseTemperature adapter for the TMC9660 internal chip temperature sensor.
      *
-     * Range: -40 to +150°C, 0.1°C resolution, ±2°C accuracy.
-     * Thread-safe with statistics and diagnostics tracking.
+     * @details
+     * Reads the TMC9660's built-in chip temperature via the telemetry subsystem and
+     * presents it through the standard HardFOC BaseTemperature interface. Includes
+     * thread-safe statistics and diagnostics tracking.
+     *
+     * Sensor specifications:
+     * - Range: -40°C to +150°C
+     * - Resolution: 0.1°C
+     * - Accuracy: ±2°C typical
+     * - Response time: ~100ms
+     *
+     * @note This inner class is owned by the handler. For manager-layer ownership,
+     *       use Tmc9660TemperatureWrapper (defined in TemperatureManager.h).
      */
     class Temperature : public BaseTemperature {
     public:
@@ -1217,7 +1398,25 @@ public:
     /**
      * @brief Get the SPI-mode driver instance (nullptr if constructed with UART).
      *
-     * @return Pointer to SPI driver, or nullptr if UART mode or not initialized.
+     * @details
+     * Returns a direct pointer to the typed TMC9660<HalSpiTmc9660Comm> driver,
+     * giving full access to all 22+ subsystems (motorConfig, feedbackSense,
+     * velocityControl, protection, gateDriver, etc.) without lambda wrappers.
+     *
+     * The user always knows which comm mode they chose at construction time,
+     * so they can safely call the matching accessor.
+     *
+     * @return Pointer to the SPI driver, or nullptr if using UART mode or
+     *         Initialize() has not been called.
+     *
+     * @code
+     * // Direct subsystem access after Initialize()
+     * auto* drv = handler->spiDriver();
+     * drv->feedbackSense.configureHall();
+     * drv->motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);
+     * drv->velocityControl.setTargetVelocity(1000);
+     * drv->protection.configureVoltage(48000, 10000);
+     * @endcode
      */
     SpiDriver* spiDriver() noexcept;
 
@@ -1226,7 +1425,14 @@ public:
 
     /**
      * @brief Get the UART-mode driver instance (nullptr if constructed with SPI).
-     * @return Pointer to UART driver, or nullptr if SPI mode or not initialized.
+     *
+     * @return Pointer to the UART driver, or nullptr if using SPI mode or
+     *         Initialize() has not been called.
+     *
+     * @code
+     * auto* drv = handler->uartDriver();
+     * drv->feedbackSense.configureABNEncoder(1024);
+     * @endcode
      */
     UartDriver* uartDriver() noexcept;
 
@@ -1245,8 +1451,10 @@ public:
      * @brief Execute a function on the underlying typed TMC9660 driver.
      *
      * @details
-     * Use when comm mode is unknown at the call site. Prefer spiDriver()/uartDriver()
-     * for direct typed access.
+     * For most use cases, prefer spiDriver() or uartDriver() for direct typed
+     * access. Use visitDriver() only when writing generic code that must work
+     * with either communication mode (e.g., in manager-level code that doesn't
+     * know the comm type).
      *
      * @tparam Func Callable type with signature `ReturnType(auto& driver)`.
      * @param func The visitor function to execute.
