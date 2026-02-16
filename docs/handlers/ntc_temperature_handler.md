@@ -47,6 +47,13 @@ config.enable_filtering = true;
 config.filter_alpha = 0.1f;
 ```
 
+## Direct Driver Access
+
+```cpp
+auto* drv = handler.GetDriver();
+// Access the NtcThermistor driver directly for advanced operations
+```
+
 ## Test Coverage
 
 See `examples/esp32/main/handler_tests/ntc_handler_comprehensive_test.cpp` — tests

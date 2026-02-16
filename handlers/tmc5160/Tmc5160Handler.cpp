@@ -274,7 +274,7 @@ bool Tmc5160Handler::Deinitialize() noexcept {
     return true;
 }
 
-Tmc5160Handler::SpiDriver* Tmc5160Handler::spiDriver() noexcept {
+Tmc5160Handler::SpiDriver* Tmc5160Handler::driverViaSpi() noexcept {
     MutexLockGuard lock(mutex_);
     if (!EnsureInitializedLocked() || !is_spi_) {
         return nullptr;
@@ -282,12 +282,12 @@ Tmc5160Handler::SpiDriver* Tmc5160Handler::spiDriver() noexcept {
     return spi_driver_.get();
 }
 
-const Tmc5160Handler::SpiDriver* Tmc5160Handler::spiDriver() const noexcept {
+const Tmc5160Handler::SpiDriver* Tmc5160Handler::driverViaSpi() const noexcept {
     auto* self = const_cast<Tmc5160Handler*>(this);
-    return self->spiDriver();
+    return self->driverViaSpi();
 }
 
-Tmc5160Handler::UartDriver* Tmc5160Handler::uartDriver() noexcept {
+Tmc5160Handler::UartDriver* Tmc5160Handler::driverViaUart() noexcept {
     MutexLockGuard lock(mutex_);
     if (!EnsureInitializedLocked() || is_spi_) {
         return nullptr;
@@ -295,9 +295,9 @@ Tmc5160Handler::UartDriver* Tmc5160Handler::uartDriver() noexcept {
     return uart_driver_.get();
 }
 
-const Tmc5160Handler::UartDriver* Tmc5160Handler::uartDriver() const noexcept {
+const Tmc5160Handler::UartDriver* Tmc5160Handler::driverViaUart() const noexcept {
     auto* self = const_cast<Tmc5160Handler*>(this);
-    return self->uartDriver();
+    return self->driverViaUart();
 }
 
 //=============================================================================

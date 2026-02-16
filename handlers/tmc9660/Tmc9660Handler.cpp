@@ -623,28 +623,28 @@ tmc9660::CommMode Tmc9660Handler::GetCommMode() const noexcept {
     return use_spi_ ? tmc9660::CommMode::SPI : tmc9660::CommMode::UART;
 }
 
-Tmc9660Handler::SpiDriver* Tmc9660Handler::spiDriver() noexcept {
+Tmc9660Handler::SpiDriver* Tmc9660Handler::driverViaSpi() noexcept {
     if (!EnsureInitialized() || !use_spi_) {
         return nullptr;
     }
     return spi_driver_.get();
 }
 
-const Tmc9660Handler::SpiDriver* Tmc9660Handler::spiDriver() const noexcept {
+const Tmc9660Handler::SpiDriver* Tmc9660Handler::driverViaSpi() const noexcept {
     auto* self = const_cast<Tmc9660Handler*>(this);
-    return self->spiDriver();
+    return self->driverViaSpi();
 }
 
-Tmc9660Handler::UartDriver* Tmc9660Handler::uartDriver() noexcept {
+Tmc9660Handler::UartDriver* Tmc9660Handler::driverViaUart() noexcept {
     if (!EnsureInitialized() || use_spi_) {
         return nullptr;
     }
     return uart_driver_.get();
 }
 
-const Tmc9660Handler::UartDriver* Tmc9660Handler::uartDriver() const noexcept {
+const Tmc9660Handler::UartDriver* Tmc9660Handler::driverViaUart() const noexcept {
     auto* self = const_cast<Tmc9660Handler*>(this);
-    return self->uartDriver();
+    return self->driverViaUart();
 }
 
 //==============================================================================

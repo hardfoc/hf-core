@@ -393,14 +393,14 @@ public:
     /**
      * @brief Get typed SPI driver pointer (null if UART mode or not initialized).
      */
-    [[nodiscard]] SpiDriver* spiDriver() noexcept;
-    [[nodiscard]] const SpiDriver* spiDriver() const noexcept;
+    [[nodiscard]] SpiDriver* driverViaSpi() noexcept;
+    [[nodiscard]] const SpiDriver* driverViaSpi() const noexcept;
 
     /**
      * @brief Get typed UART driver pointer (null if SPI mode or not initialized).
      */
-    [[nodiscard]] UartDriver* uartDriver() noexcept;
-    [[nodiscard]] const UartDriver* uartDriver() const noexcept;
+    [[nodiscard]] UartDriver* driverViaUart() noexcept;
+    [[nodiscard]] const UartDriver* driverViaUart() const noexcept;
 
     //=========================================================================
     // Convenience Methods — Motor Control

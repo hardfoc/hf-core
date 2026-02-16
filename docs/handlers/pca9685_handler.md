@@ -33,6 +33,13 @@ The `SetRawDuty(channel, on_tick, off_tick)` method supports phase-shifted PWM b
 allowing the ON tick to be non-zero. This reduces current surge when driving multiple
 channels simultaneously (e.g., LED arrays, servo banks).
 
+## Direct Driver Access
+
+```cpp
+auto* drv = handler.GetDriver();
+// Access any PCA9685 register-level API directly
+```
+
 ## Test Coverage
 
 See `examples/esp32/main/handler_tests/pca9685_handler_comprehensive_test.cpp` — 8 test

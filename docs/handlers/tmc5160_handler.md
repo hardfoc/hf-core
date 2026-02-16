@@ -46,9 +46,22 @@ Tmc5160Handler(BaseUart& uart, BaseGpio& enable,
 | `GetStallGuardResult()` | Raw StallGuard value |
 | `DumpDiagnostics()` | Print diagnostic info to Logger |
 
-## Direct Driver Access (visitDriver)
+## Direct Driver Access
 
-Access all 15 TMC5160 subsystems via `visitDriver()`:
+When you know the comm mode (you always do — you chose it at construction):
+
+```cpp
+// SPI mode — direct subsystem access
+auto* drv = handler.driverViaSpi();
+drv->motorControl.Enable();
+drv->rampControl.SetTargetPosition(51200);
+
+// UART mode equivalent
+auto* drv = handler.driverViaUart();
+drv->rampControl.SetMaxSpeed(50000);
+```
+
+For generic code that works with either comm mode (rare), use `visitDriver()`:
 
 ```cpp
 handler.visitDriver([](auto& drv) {

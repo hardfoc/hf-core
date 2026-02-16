@@ -48,6 +48,13 @@ Interrupt handling uses a **deferred ISR** pattern:
 
 This avoids I²C communication in ISR context.
 
+## Direct Driver Access
+
+```cpp
+auto* drv = handler.GetDriver();
+// Access any PCAL95555 register-level API directly
+```
+
 ## Test Coverage
 
 See `examples/esp32/main/handler_tests/pcal95555_handler_comprehensive_test.cpp`.

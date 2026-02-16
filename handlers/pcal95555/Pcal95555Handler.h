@@ -871,6 +871,20 @@ private:
     void ProcessInterrupts() noexcept;
 
     //==========================================================================
+    /// @name Direct Driver Access
+    /// @{
+    //==========================================================================
+
+    /**
+     * @brief Get the underlying PCAL95555 driver for advanced register-level operations.
+     * @return Pointer to the CRTP driver, or nullptr if not initialized.
+     */
+    [[nodiscard]] Pcal95555Driver* GetDriver() noexcept;
+    [[nodiscard]] const Pcal95555Driver* GetDriver() const noexcept;
+
+    /// @}
+
+    //==========================================================================
     // Private Members
     //==========================================================================
 

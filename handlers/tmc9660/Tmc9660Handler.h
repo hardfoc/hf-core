@@ -1396,7 +1396,7 @@ public:
     //==========================================================================
 
     /**
-     * @brief Get the SPI-mode driver instance (nullptr if constructed with UART).
+     * @brief Get the TMC9660 driver instance connected via SPI (nullptr if using UART).
      *
      * @details
      * Returns a direct pointer to the typed TMC9660<HalSpiTmc9660Comm> driver,
@@ -1406,38 +1406,38 @@ public:
      * The user always knows which comm mode they chose at construction time,
      * so they can safely call the matching accessor.
      *
-     * @return Pointer to the SPI driver, or nullptr if using UART mode or
-     *         Initialize() has not been called.
+     * @return Pointer to the TMC9660 driver (SPI comm), or nullptr if using
+     *         UART mode or Initialize() has not been called.
      *
      * @code
      * // Direct subsystem access after Initialize()
-     * auto* drv = handler->spiDriver();
+     * auto* drv = handler->driverViaSpi();
      * drv->feedbackSense.configureHall();
      * drv->motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);
      * drv->velocityControl.setTargetVelocity(1000);
      * drv->protection.configureVoltage(48000, 10000);
      * @endcode
      */
-    SpiDriver* spiDriver() noexcept;
+    SpiDriver* driverViaSpi() noexcept;
 
-    /** @brief Const version of spiDriver(). */
-    const SpiDriver* spiDriver() const noexcept;
+    /** @brief Const version of driverViaSpi(). */
+    const SpiDriver* driverViaSpi() const noexcept;
 
     /**
-     * @brief Get the UART-mode driver instance (nullptr if constructed with SPI).
+     * @brief Get the TMC9660 driver instance connected via UART (nullptr if using SPI).
      *
-     * @return Pointer to the UART driver, or nullptr if using SPI mode or
-     *         Initialize() has not been called.
+     * @return Pointer to the TMC9660 driver (UART comm), or nullptr if using
+     *         SPI mode or Initialize() has not been called.
      *
      * @code
-     * auto* drv = handler->uartDriver();
+     * auto* drv = handler->driverViaUart();
      * drv->feedbackSense.configureABNEncoder(1024);
      * @endcode
      */
-    UartDriver* uartDriver() noexcept;
+    UartDriver* driverViaUart() noexcept;
 
-    /** @brief Const version of uartDriver(). */
-    const UartDriver* uartDriver() const noexcept;
+    /** @brief Const version of driverViaUart(). */
+    const UartDriver* driverViaUart() const noexcept;
 
     /// @}
 
@@ -1451,10 +1451,10 @@ public:
      * @brief Execute a function on the underlying typed TMC9660 driver.
      *
      * @details
-     * For most use cases, prefer spiDriver() or uartDriver() for direct typed
-     * access. Use visitDriver() only when writing generic code that must work
-     * with either communication mode (e.g., in manager-level code that doesn't
-     * know the comm type).
+     * For most use cases, prefer driverViaSpi() or driverViaUart() for direct
+     * typed access. Use visitDriver() only when writing generic code that must
+     * work with either communication mode (e.g., in manager-level code that
+     * doesn't know the comm type).
      *
      * @tparam Func Callable type with signature `ReturnType(auto& driver)`.
      * @param func The visitor function to execute.

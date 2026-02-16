@@ -366,6 +366,17 @@ void Pca9685Handler::DumpDiagnostics() const noexcept {
     Logger::GetInstance().Info(TAG, "=== END PCA9685 HANDLER DIAGNOSTICS ===");
 }
 
+Pca9685Handler::Pca9685Driver* Pca9685Handler::GetDriver() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!ensureInitializedLocked()) return nullptr;
+    return pca9685_driver_.get();
+}
+
+const Pca9685Handler::Pca9685Driver* Pca9685Handler::GetDriver() const noexcept {
+    auto* self = const_cast<Pca9685Handler*>(this);
+    return self->GetDriver();
+}
+
 // =====================================================================
 // Pca9685PwmAdapter Implementation
 // =====================================================================

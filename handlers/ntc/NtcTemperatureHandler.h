@@ -378,6 +378,17 @@ public:
      */
     const char* GetSensorDescription() const noexcept;
 
+    //==============================================================//
+    // DIRECT DRIVER ACCESS
+    //==============================================================//
+
+    /**
+     * @brief Get the underlying NtcThermistor driver for advanced operations.
+     * @return Pointer to the NtcThermistor driver, or nullptr if not initialized.
+     */
+    [[nodiscard]] NtcThermistorConcrete* GetDriver() noexcept;
+    [[nodiscard]] const NtcThermistorConcrete* GetDriver() const noexcept;
+
 private:
     //==============================================================//
     // PRIVATE MEMBER VARIABLES

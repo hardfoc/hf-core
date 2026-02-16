@@ -590,6 +590,17 @@ void Pcal95555Handler::ProcessInterrupts() noexcept {
     }
 }
 
+Pcal95555Handler::Pcal95555Driver* Pcal95555Handler::GetDriver() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!EnsureInitializedLocked()) return nullptr;
+    return pcal95555_driver_.get();
+}
+
+const Pcal95555Handler::Pcal95555Driver* Pcal95555Handler::GetDriver() const noexcept {
+    auto* self = const_cast<Pcal95555Handler*>(this);
+    return self->GetDriver();
+}
+
 // =====================================================================
 // Pcal95555Handler -- Pin Factory
 // =====================================================================

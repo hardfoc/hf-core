@@ -65,7 +65,22 @@ handler.adc().ReadChannelV(20, voltage);            // Supply voltage ADC
 handler.temperature().ReadTemperatureCelsius(&temp); // Chip temperature
 ```
 
-### Advanced Access
+### Direct Driver Access
+
+When you know the comm mode (you always do — you chose it at construction):
+
+```cpp
+// SPI mode — direct subsystem access
+auto* drv = handler.driverViaSpi();
+drv->feedbackSense.configureHall();
+drv->velocityControl.setTargetVelocity(1000);
+
+// UART mode equivalent
+auto* drv = handler.driverViaUart();
+drv->feedbackSense.configureABNEncoder(1024);
+```
+
+For generic code that works with either comm mode (rare):
 
 ```cpp
 handler.visitDriver([](auto& driver) {

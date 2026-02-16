@@ -834,6 +834,17 @@ const char* NtcTemperatureHandler::GetSensorDescription() const noexcept {
     return config_.sensor_description;
 }
 
+NtcThermistorConcrete* NtcTemperatureHandler::GetDriver() noexcept {
+    MutexLockGuard lock(mutex_);
+    if (!initialized_) return nullptr;
+    return ntc_thermistor_.get();
+}
+
+const NtcThermistorConcrete* NtcTemperatureHandler::GetDriver() const noexcept {
+    auto* self = const_cast<NtcTemperatureHandler*>(this);
+    return self->GetDriver();
+}
+
 //--------------------------------------
 //  Private Helper Methods
 //--------------------------------------

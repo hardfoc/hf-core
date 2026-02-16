@@ -777,6 +777,20 @@ public:
 
     /// @}
 
+    //==========================================================================
+    /// @name Direct Driver Access
+    /// @{
+    //==========================================================================
+
+    /**
+     * @brief Get the underlying PCA9685 driver for advanced register-level operations.
+     * @return Pointer to the CRTP driver, or nullptr if not initialized.
+     */
+    [[nodiscard]] Pca9685Driver* GetDriver() noexcept;
+    [[nodiscard]] const Pca9685Driver* GetDriver() const noexcept;
+
+    /// @}
+
     /// Allow wrapper classes to access private driver.
     friend class Pca9685PwmAdapter;
     friend class Pca9685GpioPin;
