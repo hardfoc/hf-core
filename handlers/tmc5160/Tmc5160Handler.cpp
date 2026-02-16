@@ -6,18 +6,7 @@
 
 #include "Tmc5160Handler.h"
 #include "Logger.h"
-
-#if defined(ESP_PLATFORM)
-#include "esp_rom_sys.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#else
-// Fallback delay implementations
-static inline void os_delay_msec(uint32_t ms) {
-    volatile uint32_t count = ms * 10000;
-    while (count--) { __asm__ volatile(""); }
-}
-#endif
+#include "HandlerCommon.h"
 
 static constexpr const char* TAG = "TMC5160";
 
@@ -83,32 +72,15 @@ tmc51x0::Result<tmc51x0::GpioSignal> HalSpiTmc5160Comm::GpioRead(
 
 void HalSpiTmc5160Comm::DebugLog(int level, const char* tag,
                                   const char* format, va_list args) noexcept {
-    char buf[256];
-    vsnprintf(buf, sizeof(buf), format, args);
-    auto& log = Logger::GetInstance();
-    switch (level) {
-        case 0: log.Error(tag, "%s", buf); break;
-        case 1: log.Warn(tag, "%s", buf); break;
-        case 2: log.Info(tag, "%s", buf); break;
-        default: log.Debug(tag, "%s", buf); break;
-    }
+    handler_utils::RouteLogToLogger(level, tag, format, args);
 }
 
 void HalSpiTmc5160Comm::DelayMs(uint32_t ms) noexcept {
-#if defined(ESP_PLATFORM)
-    vTaskDelay(pdMS_TO_TICKS(ms));
-#else
-    os_delay_msec(ms);
-#endif
+    handler_utils::DelayMs(ms);
 }
 
 void HalSpiTmc5160Comm::DelayUs(uint32_t us) noexcept {
-#if defined(ESP_PLATFORM)
-    esp_rom_delay_us(us);
-#else
-    volatile uint32_t count = us * 10;
-    while (count--) { __asm__ volatile(""); }
-#endif
+    handler_utils::DelayUs(us);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -185,32 +157,15 @@ tmc51x0::Result<tmc51x0::GpioSignal> HalUartTmc5160Comm::GpioRead(
 
 void HalUartTmc5160Comm::DebugLog(int level, const char* tag,
                                    const char* format, va_list args) noexcept {
-    char buf[256];
-    vsnprintf(buf, sizeof(buf), format, args);
-    auto& log = Logger::GetInstance();
-    switch (level) {
-        case 0: log.Error(tag, "%s", buf); break;
-        case 1: log.Warn(tag, "%s", buf); break;
-        case 2: log.Info(tag, "%s", buf); break;
-        default: log.Debug(tag, "%s", buf); break;
-    }
+    handler_utils::RouteLogToLogger(level, tag, format, args);
 }
 
 void HalUartTmc5160Comm::DelayMs(uint32_t ms) noexcept {
-#if defined(ESP_PLATFORM)
-    vTaskDelay(pdMS_TO_TICKS(ms));
-#else
-    os_delay_msec(ms);
-#endif
+    handler_utils::DelayMs(ms);
 }
 
 void HalUartTmc5160Comm::DelayUs(uint32_t us) noexcept {
-#if defined(ESP_PLATFORM)
-    esp_rom_delay_us(us);
-#else
-    volatile uint32_t count = us * 10;
-    while (count--) { __asm__ volatile(""); }
-#endif
+    handler_utils::DelayUs(us);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

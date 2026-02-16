@@ -13,11 +13,11 @@
 
 #pragma once
 
+#include <cstdarg>
+#include <cstring>
 #include <string>
-#include <vector>
 #include <memory>
 #include <atomic>
-#include <map>
 
 // Forward declarations
 class BaseLogger;
@@ -187,14 +187,14 @@ public:
      * @param tag Log tag
      * @param level Log level
      */
-    void SetLogLevel(const std::string& tag, LogLevel level) noexcept;
+    void SetLogLevel(const char* tag, LogLevel level) noexcept;
 
     /**
      * @brief Get log level for a tag
      * @param tag Log tag
      * @return Log level
      */
-    LogLevel GetLogLevel(const std::string& tag) const noexcept;
+    LogLevel GetLogLevel(const char* tag) const noexcept;
 
     //==============================================================================
     // BASIC LOGGING METHODS
@@ -206,7 +206,7 @@ public:
      * @param format Format string
      * @param ... Variable arguments
      */
-    void Error(const std::string& tag, const char* format, ...) noexcept;
+    void Error(const char* tag, const char* format, ...) noexcept;
 
     /**
      * @brief Log warning message
@@ -214,7 +214,7 @@ public:
      * @param format Format string
      * @param ... Variable arguments
      */
-    void Warn(const std::string& tag, const char* format, ...) noexcept;
+    void Warn(const char* tag, const char* format, ...) noexcept;
 
     /**
      * @brief Log info message
@@ -222,7 +222,7 @@ public:
      * @param format Format string
      * @param ... Variable arguments
      */
-    void Info(const std::string& tag, const char* format, ...) noexcept;
+    void Info(const char* tag, const char* format, ...) noexcept;
 
     /**
      * @brief Log debug message
@@ -230,7 +230,7 @@ public:
      * @param format Format string
      * @param ... Variable arguments
      */
-    void Debug(const std::string& tag, const char* format, ...) noexcept;
+    void Debug(const char* tag, const char* format, ...) noexcept;
 
     /**
      * @brief Log verbose message
@@ -238,7 +238,7 @@ public:
      * @param format Format string
      * @param ... Variable arguments
      */
-    void Verbose(const std::string& tag, const char* format, ...) noexcept;
+    void Verbose(const char* tag, const char* format, ...) noexcept;
 
     //==============================================================================
     // FORMATTED LOGGING METHODS
@@ -252,7 +252,7 @@ public:
      * @param format Format string
      * @param ... Variable arguments
      */
-    void Error(const std::string& tag, LogColor color, LogStyle style, const char* format, ...) noexcept;
+    void Error(const char* tag, LogColor color, LogStyle style, const char* format, ...) noexcept;
 
     /**
      * @brief Log warning message with formatting
@@ -262,7 +262,7 @@ public:
      * @param format Format string
      * @param ... Variable arguments
      */
-    void Warn(const std::string& tag, LogColor color, LogStyle style, const char* format, ...) noexcept;
+    void Warn(const char* tag, LogColor color, LogStyle style, const char* format, ...) noexcept;
 
     /**
      * @brief Log info message with formatting
@@ -272,7 +272,7 @@ public:
      * @param format Format string
      * @param ... Variable arguments
      */
-    void Info(const std::string& tag, LogColor color, LogStyle style, const char* format, ...) noexcept;
+    void Info(const char* tag, LogColor color, LogStyle style, const char* format, ...) noexcept;
 
     /**
      * @brief Log debug message with formatting
@@ -282,7 +282,7 @@ public:
      * @param format Format string
      * @param ... Variable arguments
      */
-    void Debug(const std::string& tag, LogColor color, LogStyle style, const char* format, ...) noexcept;
+    void Debug(const char* tag, LogColor color, LogStyle style, const char* format, ...) noexcept;
 
     /**
      * @brief Log verbose message with formatting
@@ -292,7 +292,7 @@ public:
      * @param format Format string
      * @param ... Variable arguments
      */
-    void Verbose(const std::string& tag, LogColor color, LogStyle style, const char* format, ...) noexcept;
+    void Verbose(const char* tag, LogColor color, LogStyle style, const char* format, ...) noexcept;
 
     //==============================================================================
     // ASCII ART LOGGING METHODS
@@ -304,7 +304,7 @@ public:
      * @param ascii_art ASCII art string
      * @param format Formatting options
      */
-    void LogAsciiArt(const std::string& tag, const std::string& ascii_art, 
+    void LogAsciiArt(const char* tag, const std::string& ascii_art, 
                     const AsciiArtFormat& format = AsciiArtFormat{}) noexcept;
 
     /**
@@ -314,7 +314,7 @@ public:
      * @param ascii_art ASCII art string
      * @param format Formatting options
      */
-    void LogAsciiArt(LogLevel level, const std::string& tag, const std::string& ascii_art, 
+    void LogAsciiArt(LogLevel level, const char* tag, const std::string& ascii_art, 
                     const AsciiArtFormat& format = AsciiArtFormat{}) noexcept;
 
     /**
@@ -323,7 +323,7 @@ public:
      * @param ascii_art ASCII art string
      * @param format Formatting options
      */
-    void LogBanner(const std::string& tag, const std::string& ascii_art, 
+    void LogBanner(const char* tag, const std::string& ascii_art, 
                   const AsciiArtFormat& format = AsciiArtFormat{}) noexcept;
 
     //==============================================================================
@@ -372,7 +372,17 @@ private:
 
     std::atomic<bool> initialized_;
     LogConfig config_;
-    std::map<std::string, LogLevel> tag_levels_;
+
+    /// Fixed-size tag-level storage (avoids std::map heap allocation)
+    static constexpr size_t kMaxTagLevels = 16;
+    static constexpr size_t kMaxTagLength = 32;
+    struct TagLevel {
+        char tag[kMaxTagLength];
+        LogLevel level;
+        bool in_use;
+    };
+    TagLevel tag_levels_[kMaxTagLevels] = {};
+
     std::unique_ptr<BaseLogger> base_logger_;
 
     //==============================================================================
@@ -418,7 +428,7 @@ private:
      * @param format Format string
      * @param args Variable arguments
      */
-    void LogInternal(LogLevel level, const std::string& tag, LogColor color, LogStyle style, 
+    void LogInternal(LogLevel level, const char* tag, LogColor color, LogStyle style, 
                     const char* format, va_list args) noexcept;
 
     /**
@@ -473,7 +483,7 @@ private:
      * @param tag Log tag
      * @return true if enabled, false otherwise
      */
-    bool IsLevelEnabled(LogLevel level, const std::string& tag) const noexcept;
+    bool IsLevelEnabled(LogLevel level, const char* tag) const noexcept;
 
     /**
      * @brief Create base logger instance

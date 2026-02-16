@@ -32,7 +32,7 @@
 Logger::Logger() noexcept 
     : initialized_(false)
     , config_()
-    , tag_levels_()
+    , tag_levels_{}
     , base_logger_(nullptr) {
     
     // Set default configuration
@@ -104,7 +104,8 @@ void Logger::Deinitialize() noexcept {
         base_logger_.reset();
     }
 
-    tag_levels_.clear();
+    tag_levels_[0].in_use = false; // Clear sentinel
+    for (auto& tl : tag_levels_) { tl.in_use = false; }
     initialized_.store(false);
 }
 
@@ -116,26 +117,48 @@ bool Logger::IsInitialized() const noexcept {
 // LOG LEVEL MANAGEMENT
 //==============================================================================
 
-void Logger::SetLogLevel(const std::string& tag, LogLevel level) noexcept {
-    if (!initialized_.load()) {
+void Logger::SetLogLevel(const char* tag, LogLevel level) noexcept {
+    if (!initialized_.load() || tag == nullptr) {
         return;
     }
 
-    tag_levels_[tag] = level;
-    
+    // Search for existing entry or first free slot
+    int free_slot = -1;
+    for (size_t i = 0; i < kMaxTagLevels; ++i) {
+        if (tag_levels_[i].in_use && std::strncmp(tag_levels_[i].tag, tag, kMaxTagLength - 1) == 0) {
+            tag_levels_[i].level = level;
+            if (base_logger_) {
+                base_logger_->SetLogLevel(tag, static_cast<hf_log_level_t>(level));
+            }
+            return;
+        }
+        if (!tag_levels_[i].in_use && free_slot < 0) {
+            free_slot = static_cast<int>(i);
+        }
+    }
+
+    // Insert into first free slot
+    if (free_slot >= 0) {
+        std::strncpy(tag_levels_[free_slot].tag, tag, kMaxTagLength - 1);
+        tag_levels_[free_slot].tag[kMaxTagLength - 1] = '\0';
+        tag_levels_[free_slot].level = level;
+        tag_levels_[free_slot].in_use = true;
+    }
+
     if (base_logger_) {
-        base_logger_->SetLogLevel(tag.c_str(), static_cast<hf_log_level_t>(level));
+        base_logger_->SetLogLevel(tag, static_cast<hf_log_level_t>(level));
     }
 }
 
-LogLevel Logger::GetLogLevel(const std::string& tag) const noexcept {
-    if (!initialized_.load()) {
+LogLevel Logger::GetLogLevel(const char* tag) const noexcept {
+    if (!initialized_.load() || tag == nullptr) {
         return config_.level;
     }
 
-    auto it = tag_levels_.find(tag);
-    if (it != tag_levels_.end()) {
-        return it->second;
+    for (size_t i = 0; i < kMaxTagLevels; ++i) {
+        if (tag_levels_[i].in_use && std::strncmp(tag_levels_[i].tag, tag, kMaxTagLength - 1) == 0) {
+            return tag_levels_[i].level;
+        }
     }
 
     return config_.level;
@@ -145,7 +168,7 @@ LogLevel Logger::GetLogLevel(const std::string& tag) const noexcept {
 // BASIC LOGGING METHODS
 //==============================================================================
 
-void Logger::Error(const std::string& tag, const char* format, ...) noexcept {
+void Logger::Error(const char* tag, const char* format, ...) noexcept {
     if (!IsLevelEnabled(LogLevel::ERROR, tag)) {
         return;
     }
@@ -156,7 +179,7 @@ void Logger::Error(const std::string& tag, const char* format, ...) noexcept {
     va_end(args);
 }
 
-void Logger::Warn(const std::string& tag, const char* format, ...) noexcept {
+void Logger::Warn(const char* tag, const char* format, ...) noexcept {
     if (!IsLevelEnabled(LogLevel::WARN, tag)) {
         return;
     }
@@ -167,7 +190,7 @@ void Logger::Warn(const std::string& tag, const char* format, ...) noexcept {
     va_end(args);
 }
 
-void Logger::Info(const std::string& tag, const char* format, ...) noexcept {
+void Logger::Info(const char* tag, const char* format, ...) noexcept {
     if (!IsLevelEnabled(LogLevel::INFO, tag)) {
         return;
     }
@@ -178,7 +201,7 @@ void Logger::Info(const std::string& tag, const char* format, ...) noexcept {
     va_end(args);
 }
 
-void Logger::Debug(const std::string& tag, const char* format, ...) noexcept {
+void Logger::Debug(const char* tag, const char* format, ...) noexcept {
     if (!IsLevelEnabled(LogLevel::DEBUG, tag)) {
         return;
     }
@@ -189,7 +212,7 @@ void Logger::Debug(const std::string& tag, const char* format, ...) noexcept {
     va_end(args);
 }
 
-void Logger::Verbose(const std::string& tag, const char* format, ...) noexcept {
+void Logger::Verbose(const char* tag, const char* format, ...) noexcept {
     if (!IsLevelEnabled(LogLevel::VERBOSE, tag)) {
         return;
     }
@@ -204,7 +227,7 @@ void Logger::Verbose(const std::string& tag, const char* format, ...) noexcept {
 // FORMATTED LOGGING METHODS
 //==============================================================================
 
-void Logger::Error(const std::string& tag, LogColor color, LogStyle style, const char* format, ...) noexcept {
+void Logger::Error(const char* tag, LogColor color, LogStyle style, const char* format, ...) noexcept {
     if (!IsLevelEnabled(LogLevel::ERROR, tag)) {
         return;
     }
@@ -215,7 +238,7 @@ void Logger::Error(const std::string& tag, LogColor color, LogStyle style, const
     va_end(args);
 }
 
-void Logger::Warn(const std::string& tag, LogColor color, LogStyle style, const char* format, ...) noexcept {
+void Logger::Warn(const char* tag, LogColor color, LogStyle style, const char* format, ...) noexcept {
     if (!IsLevelEnabled(LogLevel::WARN, tag)) {
         return;
     }
@@ -226,7 +249,7 @@ void Logger::Warn(const std::string& tag, LogColor color, LogStyle style, const 
     va_end(args);
 }
 
-void Logger::Info(const std::string& tag, LogColor color, LogStyle style, const char* format, ...) noexcept {
+void Logger::Info(const char* tag, LogColor color, LogStyle style, const char* format, ...) noexcept {
     if (!IsLevelEnabled(LogLevel::INFO, tag)) {
         return;
     }
@@ -237,7 +260,7 @@ void Logger::Info(const std::string& tag, LogColor color, LogStyle style, const 
     va_end(args);
 }
 
-void Logger::Debug(const std::string& tag, LogColor color, LogStyle style, const char* format, ...) noexcept {
+void Logger::Debug(const char* tag, LogColor color, LogStyle style, const char* format, ...) noexcept {
     if (!IsLevelEnabled(LogLevel::DEBUG, tag)) {
         return;
     }
@@ -248,7 +271,7 @@ void Logger::Debug(const std::string& tag, LogColor color, LogStyle style, const
     va_end(args);
 }
 
-void Logger::Verbose(const std::string& tag, LogColor color, LogStyle style, const char* format, ...) noexcept {
+void Logger::Verbose(const char* tag, LogColor color, LogStyle style, const char* format, ...) noexcept {
     if (!IsLevelEnabled(LogLevel::VERBOSE, tag)) {
         return;
     }
@@ -263,7 +286,7 @@ void Logger::Verbose(const std::string& tag, LogColor color, LogStyle style, con
 // ASCII ART LOGGING METHODS
 //==============================================================================
 
-void Logger::LogAsciiArt(const std::string& tag, const std::string& ascii_art, 
+void Logger::LogAsciiArt(const char* tag, const std::string& ascii_art, 
                         const AsciiArtFormat& format) noexcept {
     if (!config_.enable_ascii_art || !IsLevelEnabled(LogLevel::INFO, tag)) {
         return;
@@ -277,12 +300,12 @@ void Logger::LogAsciiArt(const std::string& tag, const std::string& ascii_art,
     
     while (std::getline(iss, line)) {
         if (!line.empty()) {
-            base_logger_->Info(tag.c_str(), "%s", line.c_str());
+            base_logger_->Info(tag, "%s", line.c_str());
         }
     }
 }
 
-void Logger::LogAsciiArt(LogLevel level, const std::string& tag, const std::string& ascii_art, 
+void Logger::LogAsciiArt(LogLevel level, const char* tag, const std::string& ascii_art, 
                         const AsciiArtFormat& format) noexcept {
     if (!config_.enable_ascii_art || !IsLevelEnabled(level, tag)) {
         return;
@@ -296,12 +319,12 @@ void Logger::LogAsciiArt(LogLevel level, const std::string& tag, const std::stri
     
     while (std::getline(iss, line)) {
         if (!line.empty()) {
-            base_logger_->Log(static_cast<hf_log_level_t>(level), tag.c_str(), "%s", line.c_str());
+            base_logger_->Log(static_cast<hf_log_level_t>(level), tag, "%s", line.c_str());
         }
     }
 }
 
-void Logger::LogBanner(const std::string& tag, const std::string& ascii_art, 
+void Logger::LogBanner(const char* tag, const std::string& ascii_art, 
                       const AsciiArtFormat& format) noexcept {
     if (!config_.enable_ascii_art || !IsLevelEnabled(LogLevel::INFO, tag)) {
         return;
@@ -381,7 +404,7 @@ void Logger::Flush() noexcept {
 // PRIVATE METHODS
 //==============================================================================
 
-void Logger::LogInternal(LogLevel level, const std::string& tag, LogColor color, LogStyle style, 
+void Logger::LogInternal(LogLevel level, const char* tag, LogColor color, LogStyle style, 
                         const char* format, va_list args) noexcept {
     if (!initialized_.load() || !base_logger_) {
         return;
@@ -398,7 +421,7 @@ void Logger::LogInternal(LogLevel level, const std::string& tag, LogColor color,
     }
 
     // Log using base logger
-    base_logger_->Log(static_cast<hf_log_level_t>(level), tag.c_str(), "%s", message.c_str());
+    base_logger_->Log(static_cast<hf_log_level_t>(level), tag, "%s", message.c_str());
 }
 
 std::string Logger::FormatAsciiArt(const std::string& ascii_art, const AsciiArtFormat& format) const noexcept {
@@ -553,7 +576,7 @@ std::string Logger::GetResetSequence() const noexcept {
     return "\033[0m";
 }
 
-bool Logger::IsLevelEnabled(LogLevel level, const std::string& tag) const noexcept {
+bool Logger::IsLevelEnabled(LogLevel level, const char* tag) const noexcept {
     if (!initialized_.load()) {
         return false;
     }
@@ -599,41 +622,46 @@ void Logger::DumpStatistics() const noexcept {
     printf("[%s] INFO:   Colors Enabled: %s\n", TAG, config_.enable_colors ? "YES" : "NO");
     printf("[%s] INFO:   Effects Enabled: %s\n", TAG, config_.enable_effects ? "YES" : "NO");
     printf("[%s] INFO:   ASCII Art Enabled: %s\n", TAG, config_.enable_ascii_art ? "YES" : "NO");
-    printf("[%s] INFO:   Max Width: %lu\n", TAG, config_.max_width);
+    printf("[%s] INFO:   Max Width: %u\n", TAG, static_cast<unsigned>(config_.max_width));
     printf("[%s] INFO:   Border Character: '%c'\n", TAG, config_.border_char);
     
     // Tag-specific levels
     printf("[%s] INFO: Tag-specific Log Levels:\n", TAG);
-    if (tag_levels_.empty()) {
+    size_t tag_count = 0;
+    for (size_t i = 0; i < kMaxTagLevels; ++i) {
+        if (tag_levels_[i].in_use) ++tag_count;
+    }
+    if (tag_count == 0) {
         printf("[%s] INFO:   No tag-specific levels configured\n", TAG);
     } else {
-        printf("[%s] INFO:   %d tag-specific levels configured:\n", TAG, static_cast<int>(tag_levels_.size()));
-        int count = 0;
-        for (const auto& pair : tag_levels_) {
-            if (count >= 10) { // Limit output to prevent spam
-                printf("[%s] INFO:   ... and %d more\n", TAG, static_cast<int>(tag_levels_.size()) - count);
+        printf("[%s] INFO:   %d tag-specific levels configured:\n", TAG, static_cast<int>(tag_count));
+        int printed = 0;
+        for (size_t i = 0; i < kMaxTagLevels; ++i) {
+            if (!tag_levels_[i].in_use) continue;
+            if (printed >= 10) {
+                printf("[%s] INFO:   ... and %d more\n", TAG, static_cast<int>(tag_count) - printed);
                 break;
             }
             const char* level_str = 
-                pair.second == LogLevel::ERROR ? "ERROR" :
-                pair.second == LogLevel::WARN ? "WARN" :
-                pair.second == LogLevel::INFO ? "INFO" :
-                pair.second == LogLevel::DEBUG ? "DEBUG" :
-                pair.second == LogLevel::VERBOSE ? "VERBOSE" : "UNKNOWN";
-            printf("[%s] INFO:     %s: %s\n", TAG, pair.first.c_str(), level_str);
-            count++;
+                tag_levels_[i].level == LogLevel::ERROR ? "ERROR" :
+                tag_levels_[i].level == LogLevel::WARN ? "WARN" :
+                tag_levels_[i].level == LogLevel::INFO ? "INFO" :
+                tag_levels_[i].level == LogLevel::DEBUG ? "DEBUG" :
+                tag_levels_[i].level == LogLevel::VERBOSE ? "VERBOSE" : "UNKNOWN";
+            printf("[%s] INFO:     %s: %s\n", TAG, tag_levels_[i].tag, level_str);
+            printed++;
         }
     }
     
     // Memory Usage
     printf("[%s] INFO: Memory Usage:\n", TAG);
     size_t config_memory = sizeof(config_);
-    size_t tag_levels_memory = tag_levels_.size() * (sizeof(std::string) + sizeof(LogLevel));
-    size_t total_memory = sizeof(*this) + tag_levels_memory;
+    size_t tag_levels_memory = sizeof(tag_levels_);
+    size_t total_memory = sizeof(*this);
     
     printf("[%s] INFO:   Logger Instance: %d bytes\n", TAG, static_cast<int>(sizeof(*this)));
     printf("[%s] INFO:   Configuration: %d bytes\n", TAG, static_cast<int>(config_memory));
-    printf("[%s] INFO:   Tag Levels Map: %d bytes\n", TAG, static_cast<int>(tag_levels_memory));
+    printf("[%s] INFO:   Tag Levels Array: %d bytes\n", TAG, static_cast<int>(tag_levels_memory));
     printf("[%s] INFO:   Total Estimated: %d bytes\n", TAG, static_cast<int>(total_memory));
     
     // Platform Information

@@ -24,6 +24,7 @@
 
 #include <cstdint>
 #include <memory>
+#include <type_traits>
 #include "core/hf-core-drivers/external/hf-max22200-driver/inc/max22200.hpp"
 #include "core/hf-core-drivers/external/hf-max22200-driver/inc/max22200_spi_interface.hpp"
 #include "core/hf-core-drivers/external/hf-max22200-driver/inc/max22200_types.hpp"
@@ -257,6 +258,21 @@ public:
 
 private:
     bool EnsureInitializedLocked() noexcept;
+
+    /**
+     * @brief Execute a lambda with a locked, initialized driver.
+     *
+     * Acquires the mutex, ensures initialization, and invokes @p fn(*driver_).
+     * Returns a default-constructed R on failure.
+     */
+    template <typename Fn>
+    auto withDriver(Fn&& fn) noexcept {
+        using R = std::invoke_result_t<Fn, DriverType&>;
+        static_assert(!std::is_void_v<R>, "withDriver requires non-void return");
+        MutexLockGuard lock(mutex_);
+        if (!EnsureInitializedLocked() || !driver_) return R{};
+        return fn(*driver_);
+    }
 
     bool initialized_{false};
     mutable RtosMutex mutex_;

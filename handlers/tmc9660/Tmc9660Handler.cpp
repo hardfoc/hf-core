@@ -3,14 +3,9 @@
 #include <cstdio>
 #include <cmath>
 #include <algorithm>
+#include "HandlerCommon.h"
 #include "core/hf-core-utils/hf-utils-rtos-wrap/include/OsAbstraction.h"
 #include "core/hf-core-utils/hf-utils-rtos-wrap/include/OsUtility.h"
-#include "handlers/logger/Logger.h"
-
-// ESP-IDF microsecond delay (available on ESP32 targets)
-#if defined(ESP_PLATFORM)
-#include "esp_rom_sys.h"
-#endif
 
 //==============================================================================
 // DEFAULT BOOTLOADER CONFIGURATION
@@ -129,39 +124,6 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
 
 namespace {
 
-static void halDebugLog(int level, const char* tag, const char* format, va_list args) noexcept {
-    char buffer[256];
-    vsnprintf(buffer, sizeof(buffer), format, args);
-    switch (level) {
-        case 0: Logger::GetInstance().Error(tag, "%s", buffer); break;
-        case 1: Logger::GetInstance().Warn(tag, "%s", buffer); break;
-        case 2: Logger::GetInstance().Info(tag, "%s", buffer); break;
-        case 3: Logger::GetInstance().Debug(tag, "%s", buffer); break;
-        default: Logger::GetInstance().Debug(tag, "%s", buffer); break;
-    }
-}
-
-static void halDelayMs(uint32_t ms) noexcept {
-    os_delay_msec(static_cast<uint16_t>(ms));
-}
-
-static void halDelayUs(uint32_t us) noexcept {
-    if (us >= 1000) {
-        os_delay_msec(static_cast<uint16_t>((us + 999) / 1000));
-    } else {
-#if defined(ESP_PLATFORM)
-        esp_rom_delay_us(us);
-#else
-        // Fallback: busy-wait using cycle counter
-        uint32_t start = os_get_processor_cycle_count();
-        uint32_t cycles_to_wait = (us * 240); // Assumes 240MHz clock
-        while ((os_get_processor_cycle_count() - start) < cycles_to_wait) {
-            // Busy wait
-        }
-#endif
-    }
-}
-
 /**
  * @brief Set a BaseGpio pin level based on a TMC9660 signal and its active-level config.
  */
@@ -230,11 +192,11 @@ bool HalSpiTmc9660Comm::gpioRead(tmc9660::TMC9660CtrlPin pin, tmc9660::GpioSigna
 }
 
 void HalSpiTmc9660Comm::debugLog(int level, const char* tag, const char* format, va_list args) noexcept {
-    halDebugLog(level, tag, format, args);
+    handler_utils::RouteLogToLogger(level, tag, format, args);
 }
 
-void HalSpiTmc9660Comm::delayMs(uint32_t ms) noexcept { halDelayMs(ms); }
-void HalSpiTmc9660Comm::delayUs(uint32_t us) noexcept { halDelayUs(us); }
+void HalSpiTmc9660Comm::delayMs(uint32_t ms) noexcept { handler_utils::DelayMs(ms); }
+void HalSpiTmc9660Comm::delayUs(uint32_t us) noexcept { handler_utils::DelayUs(us); }
 
 //==============================================================================
 // HAL UART COMM INTERFACE IMPLEMENTATION
@@ -289,11 +251,11 @@ bool HalUartTmc9660Comm::gpioRead(tmc9660::TMC9660CtrlPin pin, tmc9660::GpioSign
 }
 
 void HalUartTmc9660Comm::debugLog(int level, const char* tag, const char* format, va_list args) noexcept {
-    halDebugLog(level, tag, format, args);
+    handler_utils::RouteLogToLogger(level, tag, format, args);
 }
 
-void HalUartTmc9660Comm::delayMs(uint32_t ms) noexcept { halDelayMs(ms); }
-void HalUartTmc9660Comm::delayUs(uint32_t us) noexcept { halDelayUs(us); }
+void HalUartTmc9660Comm::delayMs(uint32_t ms) noexcept { handler_utils::DelayMs(ms); }
+void HalUartTmc9660Comm::delayUs(uint32_t us) noexcept { handler_utils::DelayUs(us); }
 
 //==============================================================================
 // TMC9660 HANDLER - CONSTRUCTORS / DESTRUCTOR
