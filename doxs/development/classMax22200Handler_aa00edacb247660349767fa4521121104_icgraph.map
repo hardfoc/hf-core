@@ -1,19 +1,21 @@
 <map id="Max22200Handler::EnsureInitializedLocked" name="Max22200Handler::EnsureInitializedLocked">
-<area shape="rect" id="Node000001" title=" " alt="" coords="577,170,835,210"/>
-<area shape="rect" id="Node000002" href="$classMax22200Handler.html#a439f52e4acfac83872a74fa9eef5237f" title="Clear all fault flags." alt="" coords="287,5,508,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="676,162,612,102,572,71,528,46,493,33,495,28,530,41,575,67,616,98,680,158"/>
-<area shape="rect" id="Node000003" href="$classMax22200Handler.html#a8469fc41589ea672b8732769d2222443" title="Disable all channels." alt="" coords="298,55,497,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="654,166,595,137,528,110,490,98,492,93,530,105,597,132,657,161"/>
-<area shape="rect" id="Node000004" href="$classMax22200Handler.html#afd07a624dc736a1452c0f6190499adc0" title="Dump diagnostics to logger." alt="" coords="265,120,529,145"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="584,170,466,148,467,143,585,165"/>
-<area shape="rect" id="Node000005" href="$classMax22200Handler.html#aa9e41274b5467db2e901be023d4dd061" title="Enable all channels." alt="" coords="292,170,503,210"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="564,193,503,193,503,187,564,187"/>
-<area shape="rect" id="Node000006" href="$classMax22200Handler.html#a803b60663755d7850857626b58efc084" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="269,235,526,260"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="585,215,467,237,466,232,584,210"/>
-<area shape="rect" id="Node000007" href="$classMax22200Handler.html#a001e00b9d9a02611b51951f16bcb78d1" title="Get the underlying driver for advanced operations." alt="" coords="291,284,503,309"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="657,219,597,248,530,274,481,287,480,281,529,269,595,243,655,214"/>
-<area shape="rect" id="Node000009" href="$classMax22200Handler.html#ac5b60b117fec404c55597929134fa1a1" title="Check if any fault is present." alt="" coords="295,333,500,359"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="676,222,612,274,572,301,530,323,493,336,491,331,528,318,570,296,609,270,672,218"/>
-<area shape="rect" id="Node000008" href="$classMax22200Handler.html#aee42537a3d2f0955a1479709b2d4b4b8" title=" " alt="" coords="5,284,217,309"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="278,299,217,299,217,294,278,294"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="587,73,844,113"/>
+<area shape="rect" id="Node000002" href="$classMax22200Handler.html#afd07a624dc736a1452c0f6190499adc0" title="Dump diagnostics to logger." alt="" coords="275,5,539,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="636,71,538,45,484,33,485,28,539,39,638,66"/>
+<area shape="rect" id="Node000003" href="$classMax22200Handler.html#a803b60663755d7850857626b58efc084" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="278,55,535,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="573,84,535,81,536,75,573,78"/>
+<area shape="rect" id="Node000004" href="$classMax22200Handler.html#a001e00b9d9a02611b51951f16bcb78d1" title="Get the underlying driver for advanced operations." alt="" coords="301,104,513,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="573,106,513,111,513,106,572,101"/>
+<area shape="rect" id="Node000006" href="$classMax22200Handler.html#abcdd9746a0df9c28bb36508d52d80ef5" title="Execute a lambda with a locked, initialized driver." alt="" coords="298,181,515,207"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="641,120,447,184,446,179,640,114"/>
+<area shape="rect" id="Node000005" href="$classMax22200Handler.html#aee42537a3d2f0955a1479709b2d4b4b8" title=" " alt="" coords="10,75,222,100"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="287,107,222,101,222,95,287,102"/>
+<area shape="rect" id="Node000007" href="$classMax22200Handler.html#a439f52e4acfac83872a74fa9eef5237f" title="Clear all fault flags." alt="" coords="5,124,227,149"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="328,181,181,152,182,147,329,176"/>
+<area shape="rect" id="Node000008" href="$classMax22200Handler.html#a8469fc41589ea672b8732769d2222443" title="Disable all channels." alt="" coords="17,174,215,214"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="284,197,215,197,215,191,284,191"/>
+<area shape="rect" id="Node000009" href="$classMax22200Handler.html#aa9e41274b5467db2e901be023d4dd061" title="Enable all channels." alt="" coords="11,238,221,278"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="335,212,208,241,207,235,334,207"/>
+<area shape="rect" id="Node000010" href="$classMax22200Handler.html#ac5b60b117fec404c55597929134fa1a1" title="Check if any fault is present." alt="" coords="13,303,219,328"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="375,216,309,255,228,292,186,305,184,300,226,288,306,250,373,212"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="HalSpiTle92466edComm::Log" name="HalSpiTle92466edComm::Log">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,220,31"/>
-<area shape="rect" id="Node000002" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="268,5,420,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="220,15,254,15,254,21,220,21"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,220,38"/>
+<area shape="rect" id="Node000002" href="$namespacehandler__utils.html#a71864e1d5801bea0d6d830326b6b183a" title="Route a driver log message to the Logger singleton." alt="" coords="268,5,457,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="220,23,254,23,254,28,220,28"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="505,13,657,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="457,23,492,23,492,28,457,28"/>
 </map>

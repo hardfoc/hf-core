@@ -6,20 +6,20 @@
 <area shape="poly" id="edge15_Node000001_Node000006" title=" " alt="" coords="155,61,210,49,321,33,433,24,624,16,625,21,434,29,322,39,211,54,156,66"/>
 <area shape="rect" id="Node000010" href="$Tle92466edHandler_8cpp.html#a5c86099f760a9845d5fa0e65f8b57fb5" title=" " alt="" coords="254,128,342,153"/>
 <area shape="poly" id="edge16_Node000001_Node000010" title=" " alt="" coords="160,101,242,123,240,128,159,106"/>
-<area shape="rect" id="Node000003" href="$classLogger.html#a5e4bcdaea60b9ac227b564d780388769" title="Log error message." alt="" coords="662,153,767,179"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="662,153,767,179"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="354,101,386,114,410,127,434,138,489,151,546,158,648,164,648,170,546,164,489,156,432,143,408,132,384,119,352,106"/>
 <area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="385,67,625,29,626,35,386,72"/>
 <area shape="rect" id="Node000007" href="$classTle92466edHandler.html#a0883f87dfe49cce3abd5acfc8cb2176c" title="Initialize driver (hardware reset + SPI init + enter config mode)." alt="" coords="433,89,591,129"/>
 <area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="386,91,420,95,419,100,386,96"/>
-<area shape="rect" id="Node000004" href="$classLogger.html#a737b981213c02321a5235848334d7191" title="Check if log level is enabled for tag." alt="" coords="839,80,1011,105"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="839,80,1011,105"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="759,151,790,140,838,116,861,107,863,112,840,120,792,144,760,156"/>
-<area shape="rect" id="Node000005" href="$classLogger.html#aeede6ac18db92a47caede076ef188a13" title="Internal logging method." alt="" coords="851,129,998,155"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="851,129,998,155"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="767,157,837,149,838,155,768,163"/>
 <area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="584,126,657,147,655,152,583,131"/>
 <area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="554,86,589,68,613,53,638,40,655,33,657,38,640,44,616,58,592,72,556,91"/>
-<area shape="rect" id="Node000008" href="$classLogger.html#a1c0c947d87884bca0395fd38d19d1102" title="Log info message." alt="" coords="665,104,764,129"/>
+<area shape="rect" id="Node000008" href="$classLogger.html#a4681229c521795685fc14f6b55c82300" title="Log info message." alt="" coords="665,104,764,129"/>
 <area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="591,109,651,112,651,117,591,114"/>
-<area shape="rect" id="Node000009" href="$classLogger.html#a8c19c14724b0be1d2be63da4258c001a" title="Log warning message." alt="" coords="661,55,768,80"/>
+<area shape="rect" id="Node000009" href="$classLogger.html#aaa95ffa14d07a965d4a85bdec82cba26" title="Log warning message." alt="" coords="661,55,768,80"/>
 <area shape="poly" id="edge12_Node000007_Node000009" title=" " alt="" coords="591,90,647,78,648,83,592,95"/>
 <area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="764,108,824,101,825,107,764,114"/>
 <area shape="poly" id="edge11_Node000008_Node000005" title=" " alt="" coords="764,120,838,129,837,134,764,125"/>

@@ -96,7 +96,7 @@
 <!-- Node19 -->
 <g id="Node000019" class="node">
 <title>Node19</title>
-<g id="a_Node000019"><a xlink:href="classTmc9660Handler_1_1Temperature.html" target="_top" xlink:title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">
+<g id="a_Node000019"><a xlink:href="classTmc9660Handler_1_1Temperature.html" target="_top" xlink:title="BaseTemperature adapter for TMC9660 internal chip temperature sensor.">
 <polygon fill="white" stroke="#666666" points="1098,-199.5 931,-199.5 931,-180.5 1098,-180.5 1098,-199.5"/>
 <text text-anchor="middle" x="1014.5" y="-187.5" font-family="Helvetica,sans-Serif" font-size="10.00">Tmc9660Handler::Temperature</text>
 </a>
@@ -135,7 +135,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classHalSpiTmc9660Comm.html" target="_top" xlink:title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">
+<g id="a_Node000005"><a xlink:href="classHalSpiTmc9660Comm.html" target="_top" xlink:title="CRTP SPI communication adapter bridging BaseSpi/BaseGpio to tmc9660::SpiCommInterface.">
 <polygon fill="white" stroke="#666666" points="381,-128.5 256,-128.5 256,-109.5 381,-109.5 381,-128.5"/>
 <text text-anchor="middle" x="318.5" y="-116.5" font-family="Helvetica,sans-Serif" font-size="10.00">HalSpiTmc9660Comm</text>
 </a>
@@ -192,7 +192,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="classHalUartTmc9660Comm.html" target="_top" xlink:title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.">
+<g id="a_Node000009"><a xlink:href="classHalUartTmc9660Comm.html" target="_top" xlink:title="CRTP UART communication adapter bridging BaseUart/BaseGpio to tmc9660::UartCommInterface.">
 <polygon fill="white" stroke="#666666" points="384,-32.5 253,-32.5 253,-13.5 384,-13.5 384,-32.5"/>
 <text text-anchor="middle" x="318.5" y="-20.5" font-family="Helvetica,sans-Serif" font-size="10.00">HalUartTmc9660Comm</text>
 </a>

@@ -38,7 +38,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classTmc9660Handler_1_1Temperature.html" target="_top" xlink:title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">
+<g id="a_Node000002"><a xlink:href="classTmc9660Handler_1_1Temperature.html" target="_top" xlink:title="BaseTemperature adapter for TMC9660 internal chip temperature sensor.">
 <polygon fill="white" stroke="#666666" points="305,-19 138,-19 138,0 305,0 305,-19"/>
 <text text-anchor="middle" x="221.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">Tmc9660Handler::Temperature</text>
 </a>

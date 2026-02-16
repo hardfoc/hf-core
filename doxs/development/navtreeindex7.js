@@ -1,5 +1,16 @@
 var NAVTREEINDEX7 =
 {
+"structTestTaskContext.html#abcf19d2762ab98990c3fdc1eacf86130":[13,0,39,4],
+"structTestTaskContext.html#ae51f49c33ea802bc7f8bdde560a27304":[13,0,39,2],
+"structTmc5160CtrlPins.html":[11,11,0],
+"structTmc5160CtrlPins.html#a0780705d1b4a6eef17a26bb9d7bceecc":[11,11,0,3],
+"structTmc5160CtrlPins.html#a2bd0a07a547abfef8152abab9dd7d6a2":[11,11,0,1],
+"structTmc5160CtrlPins.html#a4b7a60c1c231cc8000747e658ff387e5":[11,11,0,2],
+"structTmc5160CtrlPins.html#a5c9f3e281f5d485c015a78ac32ce8145":[11,11,0,0],
+"structTmc9660CtrlPins.html":[11,13,0],
+"structTmc9660CtrlPins.html#a0f1e3e0750a8d6ac1b9d840fd5883d4a":[11,13,0,5],
+"structTmc9660CtrlPins.html#a25b9b59843a26d8008a7d6c33e13ee5b":[11,13,0,0],
+"structTmc9660CtrlPins.html#a39589c90d71bbfa3714e204a8a5a8a13":[11,13,0,3],
 "structTmc9660CtrlPins.html#a89d2aea877e8da13a1c26364801630fd":[11,13,0,1],
 "structTmc9660CtrlPins.html#ace66f983fb92571fe12361a803cad705":[11,13,0,4],
 "structTmc9660CtrlPins.html#ae809d42f3ca4fd1084d1533add34fbe9":[11,13,0,2],

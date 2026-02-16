@@ -1,7 +1,7 @@
 <map id="ws2812" name="ws2812">
 <area shape="rect" id="node1" href="dir_7848ed0c40c68eb13e368aca028ebfa2.html" title="logger" alt="" coords="31,125,94,151"/>
 <area shape="rect" id="node2" href="dir_d7be47e4bfeb2e6d7b7afbb9011a1517.html" title="ws2812" alt="" coords="27,52,99,77"/>
-<area shape="poly" id="edge1" href="dir_000017_000007.html" alt="" coords="65,78,65,112,60,112,60,78"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000017_000007.html" title="1" alt="" coords="66,100,76,114"/>
+<area shape="poly" id="edge1" href="dir_000018_000008.html" alt="" coords="65,78,65,112,60,112,60,78"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000018_000008.html" title="1" alt="" coords="66,100,76,114"/>
 <area shape="rect" id="clust1" href="dir_97bbe734eff8d6674660850430e62f3c.html" title="handlers" alt="" coords="16,16,109,161"/>
 </map>

@@ -76,7 +76,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classLogger.html#a5e4bcdaea60b9ac227b564d780388769" target="_top" xlink:title="Log error message.">
+<g id="a_Node000004"><a xlink:href="classLogger.html#adce17848a5844e053bfd314863dc1404" target="_top" xlink:title="Log error message.">
 <polygon fill="white" stroke="#666666" points="710.5,-130 631.5,-130 631.5,-111 710.5,-111 710.5,-130"/>
 <text text-anchor="middle" x="671" y="-118" font-family="Helvetica,sans-Serif" font-size="10.00">Logger::Error</text>
 </a>
@@ -112,7 +112,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="classLogger.html#a1c0c947d87884bca0395fd38d19d1102" target="_top" xlink:title="Log info message.">
+<g id="a_Node000008"><a xlink:href="classLogger.html#a4681229c521795685fc14f6b55c82300" target="_top" xlink:title="Log info message.">
 <polygon fill="white" stroke="#666666" points="708,-93 634,-93 634,-74 708,-74 708,-93"/>
 <text text-anchor="middle" x="671" y="-81" font-family="Helvetica,sans-Serif" font-size="10.00">Logger::Info</text>
 </a>
@@ -130,7 +130,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="classLogger.html#a8c19c14724b0be1d2be63da4258c001a" target="_top" xlink:title="Log warning message.">
+<g id="a_Node000009"><a xlink:href="classLogger.html#aaa95ffa14d07a965d4a85bdec82cba26" target="_top" xlink:title="Log warning message.">
 <polygon fill="white" stroke="#666666" points="711,-56 631,-56 631,-37 711,-37 711,-56"/>
 <text text-anchor="middle" x="671" y="-44" font-family="Helvetica,sans-Serif" font-size="10.00">Logger::Warn</text>
 </a>
@@ -148,7 +148,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classLogger.html#a737b981213c02321a5235848334d7191" target="_top" xlink:title="Check if log level is enabled for tag.">
+<g id="a_Node000005"><a xlink:href="classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" target="_top" xlink:title="Check if log level is enabled for tag.">
 <polygon fill="white" stroke="#666666" points="893,-111 764,-111 764,-92 893,-92 893,-111"/>
 <text text-anchor="middle" x="828.5" y="-99" font-family="Helvetica,sans-Serif" font-size="10.00">Logger::IsLevelEnabled</text>
 </a>
@@ -166,7 +166,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="classLogger.html#aeede6ac18db92a47caede076ef188a13" target="_top" xlink:title="Internal logging method.">
+<g id="a_Node000006"><a xlink:href="classLogger.html#a6adb205db597526fb91ad20067400394" target="_top" xlink:title="Internal logging method.">
 <polygon fill="white" stroke="#666666" points="883.5,-74 773.5,-74 773.5,-55 883.5,-55 883.5,-74"/>
 <text text-anchor="middle" x="828.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">Logger::LogInternal</text>
 </a>
