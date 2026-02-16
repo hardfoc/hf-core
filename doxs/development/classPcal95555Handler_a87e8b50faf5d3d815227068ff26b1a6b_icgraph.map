@@ -1,17 +1,21 @@
 <map id="Pcal95555Handler::HardwareInterruptCallback" name="Pcal95555Handler::HardwareInterruptCallback">
-<area shape="rect" id="Node000001" title="Static ISR callback for the hardware interrupt pin." alt="" coords="1137,37,1348,77"/>
-<area shape="rect" id="Node000002" href="$classPcal95555Handler.html#add6bf45bbac47b7d8d579fbd9bc50d2e" title="Configure the hardware interrupt pin (falling edge, active&#45;low)." alt="" coords="879,37,1089,77"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1124,60,1089,60,1089,55,1124,55"/>
-<area shape="rect" id="Node000003" href="$classPcal95555Handler.html#a5c2e68d6c9e39e373d40e94f5e951558" title="Internal initialization (called by EnsureInitialized under mutex)." alt="" coords="627,45,831,70"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="865,60,831,60,831,55,865,55"/>
-<area shape="rect" id="Node000004" href="$classPcal95555Handler.html#a255f8ed3461301b509ff4ae9f6e78c51" title="Ensure the handler is initialized (lazy initialization)." alt="" coords="387,5,579,45"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="617,46,578,40,579,35,618,40"/>
-<area shape="rect" id="Node000007" href="$classPcal95555Handler.html#a7d8ed72bf4fc9dfcb0be4877deec99b3" title="Check init state under already&#45;held handler_mutex_." alt="" coords="387,69,579,109"/>
-<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="618,74,579,80,578,74,617,69"/>
-<area shape="rect" id="Node000005" href="$full__system__integration__test_8cpp.html#a5a65d07819438b3ffa159258ea42a9ea" title=" " alt="" coords="143,13,335,38"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="373,28,335,28,335,23,373,23"/>
-<area shape="rect" id="Node000006" href="$full__system__integration__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,13,92,38"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="130,28,92,28,92,23,130,23"/>
-<area shape="rect" id="Node000008" href="$classPcal95555Handler.html#aeb2c5589355cb9ae970fdf2d10b545e8" title="Reset all registers to power&#45;on default state." alt="" coords="140,69,339,109"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="373,92,339,92,339,87,373,87"/>
+<area shape="rect" id="Node000001" title="Static ISR callback for the hardware interrupt pin." alt="" coords="1273,37,1484,77"/>
+<area shape="rect" id="Node000002" href="$classPcal95555Handler.html#add6bf45bbac47b7d8d579fbd9bc50d2e" title="Configure the hardware interrupt pin (falling edge, active&#45;low)." alt="" coords="1015,37,1225,77"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1260,60,1225,60,1225,55,1260,55"/>
+<area shape="rect" id="Node000003" href="$classPcal95555Handler.html#a5c2e68d6c9e39e373d40e94f5e951558" title="Internal initialization (called by EnsureInitialized under mutex)." alt="" coords="763,45,967,70"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1001,60,967,60,967,55,1001,55"/>
+<area shape="rect" id="Node000004" href="$classPcal95555Handler.html#a255f8ed3461301b509ff4ae9f6e78c51" title="Ensure the handler is initialized (lazy initialization)." alt="" coords="523,5,715,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="753,46,714,40,715,35,754,40"/>
+<area shape="rect" id="Node000007" href="$classPcal95555Handler.html#a7d8ed72bf4fc9dfcb0be4877deec99b3" title="Check init state under already&#45;held handler_mutex_." alt="" coords="523,69,715,109"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="754,74,715,80,714,74,753,69"/>
+<area shape="rect" id="Node000005" href="$full__system__integration__test_8cpp.html#a5a65d07819438b3ffa159258ea42a9ea" title=" " alt="" coords="273,13,465,38"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="509,28,466,28,466,23,509,23"/>
+<area shape="rect" id="Node000006" href="$full__system__integration__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="67,13,154,38"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="259,28,154,28,154,23,259,23"/>
+<area shape="rect" id="Node000008" href="$classPcal95555Handler.html#a6715e51d5d09a2466b3b86820b9f5ea6" title="Get the underlying PCAL95555 driver for advanced register&#45;level operations." alt="" coords="264,69,475,94"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="509,88,475,87,475,82,509,83"/>
+<area shape="rect" id="Node000010" href="$classPcal95555Handler.html#aeb2c5589355cb9ae970fdf2d10b545e8" title="Reset all registers to power&#45;on default state." alt="" coords="270,119,469,159"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="510,114,469,122,468,116,509,108"/>
+<area shape="rect" id="Node000009" href="$classPcal95555Handler.html#a8121efea49cc4be54c4526eb346e5f8d" title=" " alt="" coords="5,69,216,94"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="250,84,216,84,216,79,250,79"/>
 </map>

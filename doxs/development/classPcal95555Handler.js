@@ -18,6 +18,8 @@ var classPcal95555Handler =
     [ "GetAllInterruptStatus", "classPcal95555Handler.html#aee0a26c02aa3a04a4bce58513f9854b3", null ],
     [ "GetChipVariant", "classPcal95555Handler.html#a2087e09275d692c42a3425631dc5dbc8", null ],
     [ "GetCreatedPinMask", "classPcal95555Handler.html#a1d1e49208d5dbed704c4af0ad110ac2b", null ],
+    [ "GetDriver", "classPcal95555Handler.html#a8121efea49cc4be54c4526eb346e5f8d", null ],
+    [ "GetDriver", "classPcal95555Handler.html#a6715e51d5d09a2466b3b86820b9f5ea6", null ],
     [ "GetErrorFlags", "classPcal95555Handler.html#a56cc0f2c707f3e8913fe5eb734dff3df", null ],
     [ "GetGpioPin", "classPcal95555Handler.html#ae2f28f1eaaf4c26798167d1b4c7487f0", null ],
     [ "GetI2cAddress", "classPcal95555Handler.html#a0a5df15d919f0d07454f2485ded1aa29", null ],

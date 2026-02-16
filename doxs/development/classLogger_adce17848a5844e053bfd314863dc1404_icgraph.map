@@ -24,8 +24,8 @@
 <area shape="poly" id="edge47_Node000001_Node000109" title=" " alt="" coords="1208,878,1175,947,1149,985,1116,1017,1083,1035,1081,1030,1113,1013,1145,981,1170,944,1203,876"/>
 <area shape="rect" id="Node000110" href="$classTmc5160Handler.html#a64755f326176b0a38485acf5ca69fd0c" title="Initialize the TMC5160 driver with full configuration." alt="" coords="905,1093,1102,1118"/>
 <area shape="poly" id="edge48_Node000001_Node000110" title=" " alt="" coords="1213,879,1203,923,1186,978,1158,1034,1139,1060,1116,1082,1095,1095,1093,1090,1113,1078,1135,1056,1153,1032,1181,976,1198,922,1208,878"/>
-<area shape="rect" id="Node000086" href="$classTmc9660Handler_1_1Temperature.html#a5ebc77b2122ba4473b74a4a0fc78ff09" title="Read the chip temperature in degrees Celsius." alt="" coords="892,1143,1115,1183"/>
-<area shape="poly" id="edge50_Node000001_Node000086" title=" " alt="" coords="1215,879,1208,931,1192,1000,1179,1036,1163,1071,1142,1104,1116,1133,1100,1145,1097,1140,1113,1129,1138,1101,1158,1068,1174,1034,1187,998,1203,931,1210,878"/>
+<area shape="rect" id="Node000089" href="$classTmc9660Handler_1_1Temperature.html#a5ebc77b2122ba4473b74a4a0fc78ff09" title="Read the chip temperature in degrees Celsius." alt="" coords="892,1143,1115,1183"/>
+<area shape="poly" id="edge50_Node000001_Node000089" title=" " alt="" coords="1215,879,1208,931,1192,1000,1179,1036,1163,1071,1142,1104,1116,1133,1100,1145,1097,1140,1113,1129,1138,1101,1158,1068,1174,1034,1187,998,1203,931,1210,878"/>
 <area shape="rect" id="Node000131" href="$classNtcTemperatureHandler.html#aeabac754a1b923c79969657d69b97a72" title=" " alt="" coords="901,1207,1105,1247"/>
 <area shape="poly" id="edge51_Node000001_Node000131" title=" " alt="" coords="1217,878,1214,942,1200,1028,1188,1073,1170,1118,1147,1160,1117,1197,1101,1208,1098,1204,1113,1193,1142,1157,1165,1115,1183,1071,1195,1026,1208,942,1212,878"/>
 <area shape="rect" id="Node000003" href="$classMax22200Handler.html#afd07a624dc736a1452c0f6190499adc0" title="Dump diagnostics to logger." alt="" coords="275,287,539,313"/>

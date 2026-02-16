@@ -19,6 +19,8 @@ var classNtcTemperatureHandler =
     [ "GetCapabilities", "classNtcTemperatureHandler.html#a8eb439565fe06b8e62fb87ad9ee0b0a1", null ],
     [ "GetCurrentTimeUs", "classNtcTemperatureHandler.html#adffe3f391437c3d39a56bd632ff8807e", null ],
     [ "GetDiagnostics", "classNtcTemperatureHandler.html#a553eca244e975cebe3f1f03632130e56", null ],
+    [ "GetDriver", "classNtcTemperatureHandler.html#a38a4e75151e0fc16ad746de8a2cd7144", null ],
+    [ "GetDriver", "classNtcTemperatureHandler.html#a509435457c33078b831da827c9eff953", null ],
     [ "GetNtcConfiguration", "classNtcTemperatureHandler.html#a164f6bbba3aa697788ee410c49582937", null ],
     [ "GetNtcReading", "classNtcTemperatureHandler.html#a881e82a3cd93b8d3596dddfa5ce921a7", null ],
     [ "GetNtcThermistor", "classNtcTemperatureHandler.html#ad65823c5d4324a1c92445c36cdac3feb", null ],
