@@ -27,44 +27,44 @@ HalSpiTle92466edComm::HalSpiTle92466edComm(
 tle92466ed::CommResult<void> HalSpiTle92466edComm::Init() noexcept {
     if (!spi_.EnsureInitialized()) {
         last_error_ = tle92466ed::CommError::HardwareNotReady;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
 
     // Configure required control pins to known-safe defaults.
     if (resn_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT) !=
         hf_gpio_err_t::GPIO_SUCCESS) {
         last_error_ = tle92466ed::CommError::HardwareNotReady;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
     resn_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
     if (!resn_.EnsureInitialized() ||
         resn_.SetInactive() != hf_gpio_err_t::GPIO_SUCCESS) {
         last_error_ = tle92466ed::CommError::HardwareNotReady;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
 
     if (en_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT) !=
         hf_gpio_err_t::GPIO_SUCCESS) {
         last_error_ = tle92466ed::CommError::HardwareNotReady;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
     en_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH);
     if (!en_.EnsureInitialized() ||
         en_.SetInactive() != hf_gpio_err_t::GPIO_SUCCESS) {
         last_error_ = tle92466ed::CommError::HardwareNotReady;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
 
     if (faultn_) {
         if (faultn_->SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_INPUT) !=
             hf_gpio_err_t::GPIO_SUCCESS) {
             last_error_ = tle92466ed::CommError::HardwareNotReady;
-            return std::unexpected(last_error_);
+            return tle::unexpected(last_error_);
         }
         faultn_->SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
         if (!faultn_->EnsureInitialized()) {
             last_error_ = tle92466ed::CommError::HardwareNotReady;
-            return std::unexpected(last_error_);
+            return tle::unexpected(last_error_);
         }
     }
 
@@ -81,7 +81,7 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::Deinit() noexcept {
 tle92466ed::CommResult<uint32_t> HalSpiTle92466edComm::Transfer32(uint32_t tx_data) noexcept {
     if (!initialized_) {
         last_error_ = tle92466ed::CommError::HardwareNotReady;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
     // 32-bit full-duplex: 4 bytes MSB-first
     uint8_t tx_buf[4] = {
@@ -95,7 +95,7 @@ tle92466ed::CommResult<uint32_t> HalSpiTle92466edComm::Transfer32(uint32_t tx_da
     auto err = spi_.Transfer(tx_buf, rx_buf, hf_u16_t{4}, hf_u32_t{0});
     if (err != hf_spi_err_t::SPI_SUCCESS) {
         last_error_ = tle92466ed::CommError::TransferError;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
 
     uint32_t rx_data = (static_cast<uint32_t>(rx_buf[0]) << 24) |
@@ -111,16 +111,16 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::TransferMulti(
     std::span<uint32_t> rx_data) noexcept {
     if (!initialized_) {
         last_error_ = tle92466ed::CommError::HardwareNotReady;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
     if (tx_data.size() != rx_data.size()) {
         last_error_ = tle92466ed::CommError::InvalidParameter;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
     for (size_t i = 0; i < tx_data.size(); ++i) {
         auto result = Transfer32(tx_data[i]);
         if (!result) {
-            return std::unexpected(result.error());
+            return tle::unexpected(result.error());
         }
         rx_data[i] = *result;
     }
@@ -164,7 +164,7 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::GpioSet(
     tle92466ed::CtrlPin pin, tle92466ed::GpioSignal signal) noexcept {
     if (!initialized_) {
         last_error_ = tle92466ed::CommError::HardwareNotReady;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
 
     BaseGpio* gpio = nullptr;
@@ -175,12 +175,12 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::GpioSet(
         case tle92466ed::CtrlPin::FAULTN: gpio = faultn_;  break;
         default:
             last_error_ = tle92466ed::CommError::InvalidParameter;
-            return std::unexpected(last_error_);
+            return tle::unexpected(last_error_);
     }
 
     if (gpio == nullptr) {
         last_error_ = tle92466ed::CommError::InvalidParameter;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
 
     // BaseGpio active level is configured per-pin — use SetActive/SetInactive
@@ -193,7 +193,7 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::GpioSet(
 
     if (gpio_err != hf_gpio_err_t::GPIO_SUCCESS) {
         last_error_ = tle92466ed::CommError::BusError;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
 
     last_error_ = tle92466ed::CommError::None;
@@ -204,7 +204,7 @@ tle92466ed::CommResult<tle92466ed::GpioSignal> HalSpiTle92466edComm::GpioRead(
     tle92466ed::CtrlPin pin) noexcept {
     if (!initialized_) {
         last_error_ = tle92466ed::CommError::HardwareNotReady;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
 
     BaseGpio* gpio = nullptr;
@@ -215,19 +215,19 @@ tle92466ed::CommResult<tle92466ed::GpioSignal> HalSpiTle92466edComm::GpioRead(
         case tle92466ed::CtrlPin::FAULTN: gpio = faultn_;  break;
         default:
             last_error_ = tle92466ed::CommError::InvalidParameter;
-            return std::unexpected(last_error_);
+            return tle::unexpected(last_error_);
     }
 
     if (gpio == nullptr) {
         last_error_ = tle92466ed::CommError::InvalidParameter;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
 
     bool is_active = false;
     auto err = gpio->IsActive(is_active);
     if (err != hf_gpio_err_t::GPIO_SUCCESS) {
         last_error_ = tle92466ed::CommError::BusError;
-        return std::unexpected(last_error_);
+        return tle::unexpected(last_error_);
     }
 
     last_error_ = tle92466ed::CommError::None;

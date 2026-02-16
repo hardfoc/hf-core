@@ -39,7 +39,7 @@ It provides:
 
 ```bash
 # Clone with submodules
-git clone --recursive https://github.com/hardfoc/hf-hal-vortex-v1.git
+git clone --recursive https://github.com/N3b3x/hf-hal-vortex-v1.git
 cd hf-hal-vortex-v1/lib/core
 
 # Build a specific test app
