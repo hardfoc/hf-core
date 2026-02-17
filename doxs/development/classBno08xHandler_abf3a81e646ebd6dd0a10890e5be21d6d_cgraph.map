@@ -1,15 +1,17 @@
 <map id="Bno08xHandler::GetSensor" name="Bno08xHandler::GetSensor">
-<area shape="rect" id="Node000001" title="Const overload of GetSensor()." alt="" coords="5,35,203,60"/>
-<area shape="rect" id="Node000002" href="$classBno08xHandler.html#a57e2952c0438e800c091cd0e3ebcdaf5" title="Get direct access to the underlying sensor driver (type&#45;erased)." alt="" coords="251,35,448,60"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,45,237,45,237,50,203,50"/>
-<area shape="rect" id="Node000003" href="$classBno08xHandler.html#afab341345c8ed8fed1a218e0df18c4aa" title="Ensure the BNO08x is initialized (lazy init entrypoint)." alt="" coords="496,35,735,60"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="448,45,482,45,482,50,448,50"/>
-<area shape="rect" id="Node000004" href="$classBno08xHandler.html#a0479abc034d5417ba7dc524468a5ce82" title="Internal: ensure initialized (assumes mutex is held)." alt="" coords="783,27,1021,67"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="735,45,769,45,769,50,735,50"/>
-<area shape="rect" id="Node000005" href="$classBno08xHandler.html#ac1a1ff0d56324dcc09d9b48ca2e132e6" title="Initialize the BNO08x sensor." alt="" coords="1069,35,1256,60"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1021,45,1056,45,1056,50,1021,50"/>
-<area shape="rect" id="Node000006" href="$classIBno08xDriverOps.html#a0ca90c1a5664ab3eb83f691aff34faa0" title=" " alt="" coords="1317,5,1502,31"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1256,34,1303,28,1303,33,1257,39"/>
-<area shape="rect" id="Node000007" href="$classIBno08xDriverOps.html#a66418ccb85cd8eb8eea327fa979a2b6a" title=" " alt="" coords="1304,55,1515,95"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="1257,55,1291,59,1290,64,1256,61"/>
+<area shape="rect" id="Node000001" title="Const overload of GetSensor()." alt="" coords="5,63,203,88"/>
+<area shape="rect" id="Node000002" href="$classBno08xHandler.html#a57e2952c0438e800c091cd0e3ebcdaf5" title="Get direct access to the underlying sensor driver (type&#45;erased)." alt="" coords="251,63,448,88"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,73,237,73,237,78,203,78"/>
+<area shape="rect" id="Node000003" href="$classBno08xHandler.html#afab341345c8ed8fed1a218e0df18c4aa" title="Ensure the BNO08x is initialized (lazy init entrypoint)." alt="" coords="496,63,735,88"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="448,73,482,73,482,78,448,78"/>
+<area shape="rect" id="Node000004" href="$classBno08xHandler.html#a0479abc034d5417ba7dc524468a5ce82" title="Internal: ensure initialized (assumes mutex is held)." alt="" coords="783,55,1021,95"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="735,73,769,73,769,78,735,78"/>
+<area shape="rect" id="Node000005" href="$classBno08xHandler.html#ac1a1ff0d56324dcc09d9b48ca2e132e6" title="Initialize the BNO08x sensor." alt="" coords="1069,63,1256,88"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1021,73,1056,73,1056,78,1021,78"/>
+<area shape="rect" id="Node000006" href="$classIBno08xDriverOps.html#a0ca90c1a5664ab3eb83f691aff34faa0" title=" " alt="" coords="1324,5,1509,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1219,60,1303,41,1346,31,1347,36,1305,46,1220,65"/>
+<area shape="rect" id="Node000007" href="$classIBno08xDriverOps.html#a66418ccb85cd8eb8eea327fa979a2b6a" title=" " alt="" coords="1311,55,1522,95"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="1256,73,1298,73,1298,78,1256,78"/>
+<area shape="rect" id="Node000008" href="$classIBno08xDriverOps.html#a04816a487d80027e6d6fe435f651b265" title=" " alt="" coords="1304,120,1529,145"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="1220,85,1305,105,1347,114,1346,120,1303,110,1219,91"/>
 </map>

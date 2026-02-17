@@ -1,9 +1,11 @@
 <map id="Bno08xHandler::ensureInitializedLocked" name="Bno08xHandler::ensureInitializedLocked">
-<area shape="rect" id="Node000001" title="Internal: ensure initialized (assumes mutex is held)." alt="" coords="5,27,244,67"/>
-<area shape="rect" id="Node000002" href="$classBno08xHandler.html#ac1a1ff0d56324dcc09d9b48ca2e132e6" title="Initialize the BNO08x sensor." alt="" coords="292,35,479,60"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,45,278,45,278,50,244,50"/>
-<area shape="rect" id="Node000003" href="$classIBno08xDriverOps.html#a0ca90c1a5664ab3eb83f691aff34faa0" title=" " alt="" coords="539,5,725,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="479,34,525,28,526,33,479,39"/>
-<area shape="rect" id="Node000004" href="$classIBno08xDriverOps.html#a66418ccb85cd8eb8eea327fa979a2b6a" title=" " alt="" coords="527,55,737,95"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="479,55,513,59,513,64,479,61"/>
+<area shape="rect" id="Node000001" title="Internal: ensure initialized (assumes mutex is held)." alt="" coords="5,55,244,95"/>
+<area shape="rect" id="Node000002" href="$classBno08xHandler.html#ac1a1ff0d56324dcc09d9b48ca2e132e6" title="Initialize the BNO08x sensor." alt="" coords="292,63,479,88"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,73,278,73,278,78,244,78"/>
+<area shape="rect" id="Node000003" href="$classIBno08xDriverOps.html#a0ca90c1a5664ab3eb83f691aff34faa0" title=" " alt="" coords="547,5,732,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="442,60,526,41,568,31,569,36,527,46,443,65"/>
+<area shape="rect" id="Node000004" href="$classIBno08xDriverOps.html#a66418ccb85cd8eb8eea327fa979a2b6a" title=" " alt="" coords="534,55,745,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="479,73,521,73,521,78,479,78"/>
+<area shape="rect" id="Node000005" href="$classIBno08xDriverOps.html#a04816a487d80027e6d6fe435f651b265" title=" " alt="" coords="527,120,752,145"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="443,85,527,105,569,114,568,120,526,110,442,91"/>
 </map>

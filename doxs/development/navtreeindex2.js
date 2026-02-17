@@ -1,5 +1,9 @@
 var NAVTREEINDEX2 =
 {
+"classLogger.html#a77448fdfa976956c22198cb038819b66":[13,0,28,7],
+"classLogger.html#a7cac3fc4eb37a54b9e8af19d0450b935":[13,0,28,38],
+"classLogger.html#a843a878e056f9c2c835d9bddffb6692a":[13,0,28,2],
+"classLogger.html#a866b8fb309235b82816e6c7ffa3b3879":[13,0,28,16],
 "classLogger.html#a8c0ca770cdc91ca9fc3015286568e1ea":[13,0,28,29],
 "classLogger.html#a8c8e9fac8521c28b5b1346d1a4d1ab8a":[13,0,28,21],
 "classLogger.html#a92cabd934eeaf6a83a0ebf40236eb529":[13,0,28,4],
@@ -245,9 +249,5 @@ var NAVTREEINDEX2 =
 "classPca9685PwmAdapter.html#a825a19eb0b16cbf9ebb93a7b6da115d8":[11,3,0,15],
 "classPca9685PwmAdapter.html#a849333230ae977939266c075d5830a38":[11,3,0,12],
 "classPca9685PwmAdapter.html#a99fbcd37f8ec3a7147f09895b6c8d0ce":[11,3,0,23],
-"classPca9685PwmAdapter.html#aabd9412420647133c10651ec3caed0d4":[11,3,0,14],
-"classPca9685PwmAdapter.html#aac49436a3981c258dab38f8770d8d827":[11,3,0,6],
-"classPca9685PwmAdapter.html#aae4166b69c6c96f3429f2f42a2dba83a":[11,3,0,1],
-"classPca9685PwmAdapter.html#ab0f74b52dfc8f21be1f8fa9c791f5970":[11,3,0,18],
-"classPca9685PwmAdapter.html#ab14fef2196431d10dc3c4347ba3a7d67":[11,3,0,26]
+"classPca9685PwmAdapter.html#aabd9412420647133c10651ec3caed0d4":[11,3,0,14]
 };
