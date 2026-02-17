@@ -7,36 +7,43 @@ The ESP32 Examples Build CI workflow fails because `yq` (YAML processor) is not 
 ### Error Reference
 - Failed Workflow Run: https://github.com/hardfoc/hf-core/actions/runs/22079280828/job/63801115165#step:5:1
 - Issue: https://github.com/hardfoc/hf-core/pull/4
+- Error Message: `ERROR: Could not extract build types from config`
 
 ## Root Cause
 
+### Primary Issue
 The workflow chain is:
 1. `.github/workflows/esp32-examples-build-ci.yml` calls external reusable workflow
 2. `N3b3x/hf-espidf-ci-tools/.github/workflows/ru-build.yml@main` executes build inside ESP-IDF Docker container
 3. The build script `build_app.sh` sources `config_loader.sh` from `examples/esp32/scripts`
 4. `config_loader.sh` uses `yq` to parse `app_config.yml` YAML configuration
-5. `yq` is NOT installed in the ESP-IDF Docker image, causing the build to fail
+5. `yq` is NOT installed in the ESP-IDF Docker image
 
-While `config_loader.sh` has a fallback mechanism using `grep/sed`, it appears the fallback is either not working correctly or the configuration requires `yq` for proper parsing.
+### Secondary Issue (Fallback Failure)
+While `config_loader.sh` has a fallback mechanism using `grep/sed`, the fallback was also failing because:
+- The fallback uses `grep -A 10` to extract fields after `metadata:`
+- In `app_config.yml`, `metadata:` is on line 13
+- `build_types:` is on line 26 (13 lines after metadata)
+- `grep -A 10` only shows 10 lines, missing `build_types`
 
-## Solution
+This caused the error:
+```
+Warning: yq not found. Falling back to basic parsing.
+ERROR: Could not extract build types from config
+```
 
-The fix must be applied to the external reusable workflow repository:
-**N3b3x/hf-espidf-ci-tools**
+## Solutions
 
-### Required Changes
+### Solution 1: Install yq (Recommended - Primary Fix)
 
-Install `yq` in the Docker container before running the build script.
+The best solution is to install `yq` in the Docker container before running the build script.
 
-#### File to Modify
-`.github/workflows/ru-build.yml`
+**Required Changes**:
+- **Repository**: `N3b3x/hf-espidf-ci-tools`
+- **File**: `.github/workflows/ru-build.yml`
+- **Change**: Add yq installation in Docker command section (around line 176)
 
-#### Change Location
-Add the yq installation step in the `command:` section, right before calling `build_app.sh` (around line 176).
-
-#### Patch File
-
-A patch file has been created that can be applied to the external repository:
+#### Patch File (Primary Fix)
 
 ```bash
 # Clone the repository
@@ -47,7 +54,6 @@ cd hf-espidf-ci-tools
 git checkout -b fix/install-yq-in-docker
 
 # Apply the patch (see patch content below)
-# Make the changes manually or use git apply
 
 # Commit and push
 git add .github/workflows/ru-build.yml
@@ -57,7 +63,7 @@ git push origin fix/install-yq-in-docker
 # Create a pull request on GitHub
 ```
 
-### Patch Content
+**Patch Content**:
 
 ```diff
 diff --git a/.github/workflows/ru-build.yml b/.github/workflows/ru-build.yml
@@ -86,48 +92,92 @@ index eac9c9e..317b51a 100644
              "${{ needs.generate-matrix.outputs.project_tools_path }}/build_app.sh" \
 ```
 
-### Implementation Details
+### Solution 2: Fix Fallback Parsing (Secondary Enhancement)
 
-The fix adds a new section that:
-1. Downloads `yq` v4.44.6 (latest stable version) for Linux AMD64
-2. Installs it to `/usr/local/bin/yq` (in the Docker container's PATH)
-3. Makes it executable
-4. Verifies the installation by showing the version
+As an additional improvement, fix the fallback mechanism to work without yq.
 
-This ensures that when `config_loader.sh` attempts to use `yq`, it is available and functional.
+**Required Changes**:
+- **Repository**: `N3b3x/hf-espidf-project-tools`  
+- **File**: `config_loader.sh`
+- **Change**: Increase grep context from `-A 10` to `-A 20`
+
+#### Patch File (Secondary Fix)
+
+```bash
+# Clone the repository (or navigate to the submodule)
+cd examples/esp32/scripts
+
+# Create a new branch
+git checkout -b fix/improve-fallback-parsing
+
+# Apply the patch (see patch content below)
+
+# Commit and push
+git add config_loader.sh
+git commit -m "fix: increase grep context for fallback parsing"
+git push origin fix/improve-fallback-parsing
+
+# Create a pull request on GitHub
+```
+
+**Patch Summary**:
+- Changes all `grep -A 10 "metadata:"` to `grep -A 20 "metadata:"`
+- Affects lines: 256-261, 311, 342-344, 402, 510-512, 550
+- Tested and verified to work without yq installed
+
+Full patch available in `/tmp/fallback-parsing-fix.patch`
 
 ## Testing
 
-After applying the fix:
+### Verify Primary Fix (yq installation)
+After applying the yq installation fix:
 1. Push the changes to the `N3b3x/hf-espidf-ci-tools` repository
-2. The ESP32 Examples Build CI workflow in this repository will automatically use the updated version (since it references `@main`)
-3. Trigger a new workflow run to verify the fix works
+2. The ESP32 Examples Build CI workflow will automatically use the updated version (references `@main`)
+3. Trigger a new workflow run in `hardfoc/hf-core`
+4. Verify that yq is installed and the build succeeds
 
-## Alternative Solutions Considered
+### Verify Secondary Fix (fallback parsing)
+After applying the fallback parsing fix:
+1. Test locally without yq:
+   ```bash
+   cd examples/esp32
+   export PROJECT_PATH=$(pwd)
+   PATH="/usr/local/sbin:/sbin:/bin" bash -c 'source scripts/config_loader.sh && get_build_types'
+   ```
+2. Expected output: `Debug Release` (no errors)
 
-1. **Fix fallback parsing in config_loader.sh**: While the script has fallback mechanism, ensuring `yq` is available is more reliable and future-proof.
+## Implementation Status
 
-2. **Fork the reusable workflow**: Creating a fork under `hardfoc` organization would give immediate control but requires ongoing maintenance.
+- [x] **Primary Fix Created**: Patch ready for `N3b3x/hf-espidf-ci-tools`
+- [x] **Secondary Fix Created**: Patch ready for `N3b3x/hf-espidf-project-tools`
+- [x] **Tested**: Both fixes verified to work correctly
+- [ ] **Applied**: Waiting for patches to be applied to external repositories
+- [ ] **Verified**: Waiting for successful workflow run
 
-3. **Install yq in project setup**: Not feasible because the build runs inside a Docker container that's managed by the reusable workflow.
+## Recommendation
 
-## Next Steps
+**Apply both fixes**:
+1. **Primary fix** ensures yq is available (most reliable solution)
+2. **Secondary fix** improves robustness for cases where yq might not be available
 
-1. Apply the patch to `N3b3x/hf-espidf-ci-tools` repository
-2. Verify the fix with a test workflow run
-3. Close this issue once confirmed working
+This provides defense-in-depth: the workflow will work with yq (preferred), and will also work without yq (fallback).
 
 ## Files Involved
 
 ### In hf-core repository:
 - `.github/workflows/esp32-examples-build-ci.yml` - Main workflow file (no changes needed)
-- `examples/esp32/scripts/` - Submodule containing build scripts (no changes needed)
+- `examples/esp32/scripts/` - Submodule containing build scripts (secondary fix)
+- `YQ_INSTALLATION_FIX.md` - This documentation file
 
 ### In N3b3x/hf-espidf-ci-tools repository:
-- `.github/workflows/ru-build.yml` - Reusable workflow that needs the fix
+- `.github/workflows/ru-build.yml` - Reusable workflow (primary fix needed)
+
+### In N3b3x/hf-espidf-project-tools repository:
+- `config_loader.sh` - Configuration loader script (secondary fix available)
 
 ## References
 
 - yq repository: https://github.com/mikefarah/yq
 - yq releases: https://github.com/mikefarah/yq/releases
 - ESP-IDF CI Action: https://github.com/espressif/esp-idf-ci-action
+- Patch files: `/tmp/yq-installation-fix.patch` and `/tmp/fallback-parsing-fix.patch`
