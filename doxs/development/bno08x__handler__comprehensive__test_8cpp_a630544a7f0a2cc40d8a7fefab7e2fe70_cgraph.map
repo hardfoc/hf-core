@@ -1,45 +1,47 @@
 <map id="app_main" name="app_main">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,381,92,407"/>
-<area shape="rect" id="Node000002" href="$bno08x__handler__comprehensive__test_8cpp.html#ad7178bfd7bed244bfbb8045f77e478bb" title=" " alt="" coords="181,5,299,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="49,381,59,311,77,208,103,107,120,67,138,40,166,23,169,28,142,44,124,70,108,109,82,209,64,311,54,382"/>
-<area shape="rect" id="Node000006" href="$TestFramework_8h.html#a7bb80345e5681c19686df292fa897daf" title="Flip the test progression indicator to show next test." alt="" coords="171,105,309,145"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="48,381,54,338,69,277,96,212,115,182,138,155,157,141,160,146,142,159,119,185,100,215,74,279,60,339,54,381"/>
-<area shape="rect" id="Node000007" href="$TestFramework_8h.html#a200bb35a3a48c625b9cb8d2511d6bd87" title="Print standardized test summary." alt="" coords="171,169,309,209"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="51,380,60,348,78,305,103,260,138,220,156,208,159,212,142,224,108,263,83,308,65,350,56,382"/>
-<area shape="rect" id="Node000010" href="$TestFramework_8h.html#ab7e4c076755ecdf2ad6212cb8f6578ab" title="Print standardized test summary." alt="" coords="163,233,317,259"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="53,380,84,326,109,295,138,269,151,262,154,266,142,274,113,299,89,329,58,382"/>
-<area shape="rect" id="Node000011" href="$bno08x__handler__comprehensive__test_8cpp.html#ac5de30a9290d751035ea1495fef9cd6d" title=" " alt="" coords="173,283,307,308"/>
-<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="60,379,94,349,139,318,158,310,160,315,141,323,97,353,64,383"/>
-<area shape="rect" id="Node000012" href="$bno08x__handler__comprehensive__test_8cpp.html#a7ffe94c82a5f0a7175b47dd201f314bc" title=" " alt="" coords="165,332,315,357"/>
-<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="91,380,139,367,175,358,176,363,141,373,93,385"/>
-<area shape="rect" id="Node000013" href="$bno08x__handler__comprehensive__test_8cpp.html#a1a0cf4facd447884b468da5a46e75410" title=" " alt="" coords="141,381,339,407"/>
-<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="92,391,127,391,127,397,92,397"/>
-<area shape="rect" id="Node000014" href="$bno08x__handler__comprehensive__test_8cpp.html#a9cbf1babc8e669aebf6b00a2554c5516" title=" " alt="" coords="157,431,323,456"/>
-<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="93,404,141,417,172,425,171,430,139,422,91,409"/>
-<area shape="rect" id="Node000015" href="$bno08x__handler__comprehensive__test_8cpp.html#a974fe8f2d7df88d4c1938eb6c0a08aa1" title=" " alt="" coords="179,480,301,505"/>
-<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="64,405,97,436,141,466,167,477,165,482,139,471,94,440,60,409"/>
-<area shape="rect" id="Node000016" href="$bno08x__handler__comprehensive__test_8cpp.html#a99a50cdde879dc28c0115746f601e183" title=" " alt="" coords="163,529,317,555"/>
-<area shape="poly" id="edge16_Node000001_Node000016" title=" " alt="" coords="58,406,88,460,112,490,142,516,151,522,149,526,138,520,108,494,84,463,53,408"/>
-<area shape="rect" id="Node000017" href="$bno08x__handler__comprehensive__test_8cpp.html#ac314755c1abd2475ff52f823949f3122" title=" " alt="" coords="185,579,295,604"/>
-<area shape="poly" id="edge17_Node000001_Node000017" title=" " alt="" coords="55,406,65,439,81,482,107,527,123,548,142,565,172,581,170,585,138,570,119,551,102,530,76,484,59,440,50,408"/>
-<area shape="rect" id="Node000018" href="$bno08x__handler__comprehensive__test_8cpp.html#a1cb3b24c961b118f52be141f4f6c8e3b" title=" " alt="" coords="172,628,308,653"/>
-<area shape="poly" id="edge18_Node000001_Node000018" title=" " alt="" coords="54,406,60,447,75,504,101,564,119,591,142,615,161,626,158,631,138,619,115,594,96,566,70,505,55,448,49,407"/>
-<area shape="rect" id="Node000019" href="$bno08x__handler__comprehensive__test_8cpp.html#ac83f97b7754666b5e7733941b37c5630" title=" " alt="" coords="140,55,340,80"/>
-<area shape="poly" id="edge19_Node000001_Node000019" title=" " alt="" coords="47,381,49,327,60,250,71,207,87,165,109,125,138,91,145,85,148,89,142,95,114,128,92,167,76,208,65,251,54,328,52,381"/>
-<area shape="rect" id="Node000020" href="$bno08x__handler__comprehensive__test_8cpp.html#a81d7e86e5aeb378cf288e8ee565e6237" title=" " alt="" coords="155,677,325,703"/>
-<area shape="poly" id="edge21_Node000001_Node000020" title=" " alt="" coords="53,407,56,456,69,525,80,563,95,600,116,634,142,664,147,668,143,672,138,668,111,637,91,602,75,565,63,526,51,456,47,407"/>
-<area shape="rect" id="Node000021" href="$bno08x__handler__comprehensive__test_8cpp.html#ac9e8563a88a220775c0ee6f8b5569168" title=" " alt="" coords="165,727,315,752"/>
-<area shape="poly" id="edge22_Node000001_Node000021" title=" " alt="" coords="52,407,53,463,62,545,73,591,90,636,112,677,142,713,154,722,151,727,138,717,108,680,85,638,68,592,57,546,47,463,47,407"/>
-<area shape="rect" id="Node000003" href="$esp32__bus__setup_8hpp.html#ac35786de67943f429d4ead245b81c664" title="Create an EspGpio for a specific pin." alt="" coords="433,5,531,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="300,15,419,15,419,21,300,21"/>
-<area shape="rect" id="Node000004" href="$esp32__bus__setup_8hpp.html#a7024544c8de144283c563c05320b05bf" title="Get an I2C device handle for a specific address on the shared bus." alt="" coords="423,55,541,80"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="300,27,409,50,408,55,299,33"/>
-<area shape="rect" id="Node000005" href="$esp32__bus__setup_8hpp.html#a34120f53f38b468eb02c353cd79d5b0b" title="Create and initialize the shared I2C bus." alt="" coords="624,55,775,80"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="541,65,610,65,610,70,541,70"/>
-<area shape="rect" id="Node000008" href="$TestFramework_8h.html#a57a48f91a141d98e45f82937581e1a97" title="Automatically initialize GPIO14 test indicator if not already done." alt="" coords="388,204,576,229"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="310,194,375,202,374,207,310,199"/>
-<area shape="rect" id="Node000009" href="$TestFramework_8h.html#a3967179ac699a5b02ef9787b549409fe" title="Initialize the test progression indicator on GPIO14." alt="" coords="630,197,769,237"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="576,214,616,214,616,219,576,219"/>
-<area shape="poly" id="edge10_Node000010_Node000008" title=" " alt="" coords="317,234,374,227,375,232,317,239"/>
-<area shape="poly" id="edge20_Node000019_Node000004" title=" " alt="" coords="340,65,409,65,409,70,340,70"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,405,92,431"/>
+<area shape="rect" id="Node000002" href="$bno08x__handler__comprehensive__test_8cpp.html#ad7178bfd7bed244bfbb8045f77e478bb" title=" " alt="" coords="181,29,299,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="49,405,59,335,77,232,103,131,120,91,138,64,166,47,169,52,142,68,124,94,108,133,82,233,64,335,54,406"/>
+<area shape="rect" id="Node000006" href="$TestFramework_8h.html#a7bb80345e5681c19686df292fa897daf" title="Flip the test progression indicator to show next test." alt="" coords="171,129,309,169"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="48,405,54,362,69,301,96,236,115,206,138,179,157,165,160,170,142,183,119,209,100,239,74,303,60,363,54,405"/>
+<area shape="rect" id="Node000007" href="$TestFramework_8h.html#a200bb35a3a48c625b9cb8d2511d6bd87" title="Print standardized test summary." alt="" coords="171,193,309,233"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="51,404,60,372,78,329,103,284,138,244,156,232,159,236,142,248,108,287,83,332,65,374,56,406"/>
+<area shape="rect" id="Node000010" href="$TestFramework_8h.html#ab7e4c076755ecdf2ad6212cb8f6578ab" title="Print standardized test summary." alt="" coords="163,257,317,283"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="53,404,84,350,109,319,138,293,151,286,154,290,142,298,113,323,89,353,58,406"/>
+<area shape="rect" id="Node000011" href="$bno08x__handler__comprehensive__test_8cpp.html#ac5de30a9290d751035ea1495fef9cd6d" title=" " alt="" coords="173,307,307,332"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="60,403,94,373,139,342,158,334,160,339,141,347,97,377,64,407"/>
+<area shape="rect" id="Node000012" href="$bno08x__handler__comprehensive__test_8cpp.html#a7ffe94c82a5f0a7175b47dd201f314bc" title=" " alt="" coords="165,356,315,381"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="91,404,139,391,175,382,176,387,141,397,93,409"/>
+<area shape="rect" id="Node000013" href="$bno08x__handler__comprehensive__test_8cpp.html#a1a0cf4facd447884b468da5a46e75410" title=" " alt="" coords="141,405,339,431"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="92,415,127,415,127,421,92,421"/>
+<area shape="rect" id="Node000014" href="$bno08x__handler__comprehensive__test_8cpp.html#a9cbf1babc8e669aebf6b00a2554c5516" title=" " alt="" coords="157,455,323,480"/>
+<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="93,428,141,441,172,449,171,454,139,446,91,433"/>
+<area shape="rect" id="Node000015" href="$bno08x__handler__comprehensive__test_8cpp.html#a974fe8f2d7df88d4c1938eb6c0a08aa1" title=" " alt="" coords="179,504,301,529"/>
+<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="64,429,97,460,141,490,167,501,165,506,139,495,94,464,60,433"/>
+<area shape="rect" id="Node000016" href="$bno08x__handler__comprehensive__test_8cpp.html#a99a50cdde879dc28c0115746f601e183" title=" " alt="" coords="163,553,317,579"/>
+<area shape="poly" id="edge16_Node000001_Node000016" title=" " alt="" coords="58,430,88,484,112,514,142,540,151,546,149,550,138,544,108,518,84,487,53,432"/>
+<area shape="rect" id="Node000017" href="$bno08x__handler__comprehensive__test_8cpp.html#ac314755c1abd2475ff52f823949f3122" title=" " alt="" coords="185,603,295,628"/>
+<area shape="poly" id="edge17_Node000001_Node000017" title=" " alt="" coords="55,430,65,463,81,506,107,551,123,572,142,589,172,605,170,609,138,594,119,575,102,554,76,508,59,464,50,432"/>
+<area shape="rect" id="Node000018" href="$bno08x__handler__comprehensive__test_8cpp.html#a1cb3b24c961b118f52be141f4f6c8e3b" title=" " alt="" coords="172,652,308,677"/>
+<area shape="poly" id="edge18_Node000001_Node000018" title=" " alt="" coords="54,430,60,471,75,528,101,588,119,615,142,639,161,650,158,655,138,643,115,618,96,590,70,529,55,472,49,431"/>
+<area shape="rect" id="Node000019" href="$bno08x__handler__comprehensive__test_8cpp.html#ac83f97b7754666b5e7733941b37c5630" title=" " alt="" coords="140,79,340,104"/>
+<area shape="poly" id="edge19_Node000001_Node000019" title=" " alt="" coords="47,405,49,351,60,274,71,231,87,189,109,149,138,115,145,109,148,113,142,119,114,152,92,191,76,232,65,275,54,352,52,405"/>
+<area shape="rect" id="Node000021" href="$bno08x__handler__comprehensive__test_8cpp.html#a81d7e86e5aeb378cf288e8ee565e6237" title=" " alt="" coords="155,701,325,727"/>
+<area shape="poly" id="edge22_Node000001_Node000021" title=" " alt="" coords="53,431,56,480,69,549,80,587,95,624,116,658,142,688,147,692,143,696,138,692,111,661,91,626,75,589,63,550,51,480,47,431"/>
+<area shape="rect" id="Node000022" href="$bno08x__handler__comprehensive__test_8cpp.html#ac9e8563a88a220775c0ee6f8b5569168" title=" " alt="" coords="165,751,315,776"/>
+<area shape="poly" id="edge23_Node000001_Node000022" title=" " alt="" coords="52,431,53,487,62,569,73,615,90,660,112,701,142,737,154,746,151,751,138,741,108,704,85,662,68,616,57,570,47,487,47,431"/>
+<area shape="rect" id="Node000003" href="$esp32__bus__setup_8hpp.html#ac35786de67943f429d4ead245b81c664" title="Create an EspGpio for a specific pin." alt="" coords="441,5,540,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="299,34,428,21,428,27,300,39"/>
+<area shape="rect" id="Node000004" href="$esp32__bus__setup_8hpp.html#a7024544c8de144283c563c05320b05bf" title="Get an I2C device handle for a specific address on the shared bus." alt="" coords="431,55,550,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="300,45,418,57,417,63,299,51"/>
+<area shape="rect" id="Node000005" href="$esp32__bus__setup_8hpp.html#a34120f53f38b468eb02c353cd79d5b0b" title="Create and initialize the shared I2C bus." alt="" coords="641,55,792,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="550,65,628,65,628,70,550,70"/>
+<area shape="rect" id="Node000008" href="$TestFramework_8h.html#a57a48f91a141d98e45f82937581e1a97" title="Automatically initialize GPIO14 test indicator if not already done." alt="" coords="397,228,585,253"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="310,218,384,226,383,231,309,223"/>
+<area shape="rect" id="Node000009" href="$TestFramework_8h.html#a3967179ac699a5b02ef9787b549409fe" title="Initialize the test progression indicator on GPIO14." alt="" coords="647,221,786,261"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="585,238,633,238,633,243,585,243"/>
+<area shape="poly" id="edge10_Node000010_Node000008" title=" " alt="" coords="316,258,382,251,383,256,317,264"/>
+<area shape="poly" id="edge20_Node000019_Node000004" title=" " alt="" coords="340,79,418,72,418,77,340,84"/>
+<area shape="rect" id="Node000020" href="$classBno08xHandler.html#abdc987c8440f4a2394ae861a40766e10" title="Check if sensor is initialized and ready." alt="" coords="388,104,593,129"/>
+<area shape="poly" id="edge21_Node000019_Node000020" title=" " alt="" coords="340,99,375,102,374,108,340,104"/>
 </map>
