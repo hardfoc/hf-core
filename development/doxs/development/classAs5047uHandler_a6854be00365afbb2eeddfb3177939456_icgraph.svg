@@ -75,7 +75,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classAs5047uHandler.html#af9f3e8b34d3a3deb337718aa7a8c420b" target="_top" xlink:title="Get shared pointer to AS5047U driver for advanced operations.">
+<g id="a_Node000005"><a xlink:href="classAs5047uHandler.html#a7935a51fb2973e3a1793d378fc50118a" target="_top" xlink:title="Get pointer to AS5047U driver for advanced operations.">
 <polygon fill="white" stroke="#666666" points="399.5,-99 246.5,-99 246.5,-80 399.5,-80 399.5,-99"/>
 <text text-anchor="middle" x="323" y="-87" font-family="Helvetica,sans-Serif" font-size="10.00">As5047uHandler::GetSensor</text>
 </a>

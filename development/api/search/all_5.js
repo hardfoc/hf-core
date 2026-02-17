@@ -11,7 +11,7 @@ var searchData=
   ['flip_5ftest_5fprogress_5findicator_8',['flip_test_progress_indicator',['../TestFramework_8h.html#a7bb80345e5681c19686df292fa897daf',1,'TestFramework.h']]],
   ['flush_9',['Flush',['../classLogger.html#a366cd04b097aee22e68ca8668dad1c35',1,'Logger']]],
   ['format_5fascii_5fart_10',['format_ascii_art',['../structLogConfig.html#ab2bec83242fdfe9d6bd2cfc05ade0824',1,'LogConfig']]],
-  ['formatasciiart_11',['FormatAsciiArt',['../classLogger.html#a999ded4958c8e7768e507bb7dee06173',1,'Logger']]],
+  ['formatandlogasciiart_11',['FormatAndLogAsciiArt',['../classLogger.html#a866b8fb309235b82816e6c7ffa3b3879',1,'Logger']]],
   ['frame_5fformat_12',['frame_format',['../structAs5047uConfig.html#af7982d833742164706c12d4e7c5e7739',1,'As5047uConfig']]],
   ['framing_5ferror_13',['FRAMING_ERROR',['../As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665caa61b2eab33f2b577d368d15633c255a9',1,'As5047uHandler.h']]],
   ['full_5fsystem_5fintegration_5ftest_2ecpp_14',['full_system_integration_test.cpp',['../full__system__integration__test_8cpp.html',1,'']]],

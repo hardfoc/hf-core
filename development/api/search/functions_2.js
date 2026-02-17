@@ -15,7 +15,7 @@ var searchData=
   ['clearsensorcallback_12',['ClearSensorCallback',['../classBno08xHandler.html#a86c30e163a55db1e1dd3f1ce30635239',1,'Bno08xHandler']]],
   ['close_13',['Close',['../classHalI2cBno08xComm.html#a50726bdd6b82c76210b139bb60695dd6',1,'HalI2cBno08xComm::Close()'],['../classHalSpiBno08xComm.html#ab5d623448eeb3d1f48468c77f258ad10',1,'HalSpiBno08xComm::Close()']]],
   ['concurrent_5freader_5ftask_14',['concurrent_reader_task',['../as5047u__handler__comprehensive__test_8cpp.html#aaa3a69b37bf8fcd8431b8495e9b311ca',1,'as5047u_handler_comprehensive_test.cpp']]],
-  ['configure_15',['Configure',['../classHalSpiMax22200Comm.html#a0f418744f3e23c56a19acdbb7ab682b9',1,'HalSpiMax22200Comm::Configure()'],['../classHalSpiTle92466edComm.html#a9aca0311d71b2663db79601720b3de07',1,'HalSpiTle92466edComm::Configure()']]],
+  ['configure_15',['Configure',['../classHalSpiMax22200Comm.html#a86c5a54b0e6cc0b84122e13936a88a27',1,'HalSpiMax22200Comm::Configure()'],['../classHalSpiTle92466edComm.html#a9aca0311d71b2663db79601720b3de07',1,'HalSpiTle92466edComm::Configure()']]],
   ['configureabnencoder_16',['ConfigureABNEncoder',['../classTmc9660Handler.html#aa66e2922c81dc6ce2e79a654d8762844',1,'Tmc9660Handler']]],
   ['configurechannel_17',['ConfigureChannel',['../classMax22200Handler.html#a4aa94d747e5cf13362c3b101578cc6a7',1,'Max22200Handler::ConfigureChannel()'],['../classTle92466edHandler.html#a1e2b512ab7612d76de3dff2e9d2ffdb9',1,'Tle92466edHandler::ConfigureChannel()']]],
   ['configurehallsensor_18',['ConfigureHallSensor',['../classTmc9660Handler.html#ad10150a1da0c9ca7c2269a87cbad2f32',1,'Tmc9660Handler']]],

@@ -349,15 +349,16 @@
     
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">RtosMutex</code> — Wrapper around <code class="language-plaintext highlighter-rouge">xSemaphoreCreateMutex</code></li>
-  <li><code class="language-plaintext highlighter-rouge">MutexLockGuard</code> — RAII lock guard</li>
+  <li><code class="language-plaintext highlighter-rouge">RtosMutex</code> — Recursive mutex wrapper (<code class="language-plaintext highlighter-rouge">xSemaphoreCreateRecursiveMutex</code>), allows
+same-thread re-entrant locking (e.g. <code class="language-plaintext highlighter-rouge">EnsureInitialized()</code> → <code class="language-plaintext highlighter-rouge">Initialize()</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">MutexLockGuard</code> — Typedef for <code class="language-plaintext highlighter-rouge">RtosUniqueLock&lt;RtosMutex&gt;</code>, RAII lock guard</li>
   <li><code class="language-plaintext highlighter-rouge">PeriodicTimer</code> — Wrapper around FreeRTOS software timers</li>
   <li><code class="language-plaintext highlighter-rouge">BaseThread</code> — Abstract base for FreeRTOS tasks</li>
   <li><code class="language-plaintext highlighter-rouge">OsQueue</code>, <code class="language-plaintext highlighter-rouge">OsEventFlags</code>, <code class="language-plaintext highlighter-rouge">OsSemaphore</code> — Standard RTOS primitives</li>
 </ul>
 
 <p>All handlers use <code class="language-plaintext highlighter-rouge">RtosMutex</code> internally. The <code class="language-plaintext highlighter-rouge">MutexLockGuard</code> RAII pattern ensures
-deadlock-free operation even when exceptions or early returns occur.</p>
+deadlock-free operation even on early returns.</p>
 <h2 id="communication-adapters-tmc9660-example">
   
   
@@ -390,6 +391,50 @@ keeping the public API non-templated while preserving zero-overhead dispatch int
 The <code class="language-plaintext highlighter-rouge">withDriver()</code> pattern (used by TLE92466ED and MAX22200) is a simplified variant
 that acquires the mutex, ensures initialization, and invokes a callable on the driver
 in a single atomic step.</p>
+<h2 id="callback-conventions">
+  
+  
+    <a href="#callback-conventions" class="anchor-heading" aria-labelledby="callback-conventions"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Callback Conventions
+  
+  
+</h2>
+    
+
+<p>Base interfaces use <strong>raw function pointers</strong> with a <code class="language-plaintext highlighter-rouge">void* user_data</code> parameter for
+hardware-level callbacks. This avoids <code class="language-plaintext highlighter-rouge">std::function</code> overhead and heap allocation in
+ISR-safe and performance-critical paths:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="c1">// Typical base interface callback typedef</span>
+<span class="k">using</span> <span class="n">InterruptCallback</span> <span class="o">=</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">BaseGpio</span><span class="o">*</span> <span class="n">gpio</span><span class="p">,</span>
+                                  <span class="n">hf_gpio_interrupt_trigger_t</span> <span class="n">trigger</span><span class="p">,</span>
+                                  <span class="kt">void</span><span class="o">*</span> <span class="n">user_data</span><span class="p">);</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>Handlers pass non-capturing lambdas (which decay to function pointers) and route the
+<code class="language-plaintext highlighter-rouge">user_data</code> back to <code class="language-plaintext highlighter-rouge">this</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="n">gpio</span><span class="p">.</span><span class="n">RegisterInterrupt</span><span class="p">(</span>
+    <span class="p">[](</span><span class="n">BaseGpio</span><span class="o">*</span> <span class="cm">/*gpio*/</span><span class="p">,</span> <span class="n">hf_gpio_interrupt_trigger_t</span> <span class="cm">/*trigger*/</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">MyHandler</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">OnInterrupt</span><span class="p">();</span>
+    <span class="p">},</span>
+    <span class="k">this</span><span class="p">);</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>Interfaces that carry this pattern: <code class="language-plaintext highlighter-rouge">BaseGpio</code>, <code class="language-plaintext highlighter-rouge">BaseTemperature</code>, <code class="language-plaintext highlighter-rouge">BasePio</code>,
+<code class="language-plaintext highlighter-rouge">BasePeriodicTimer</code>, <code class="language-plaintext highlighter-rouge">BasePwm</code>, <code class="language-plaintext highlighter-rouge">BaseCan</code>, and their ESP32 implementations.</p>
+
+<p>Higher-level communication interfaces (<code class="language-plaintext highlighter-rouge">BaseBluetooth</code>, <code class="language-plaintext highlighter-rouge">BaseWifi</code>, <code class="language-plaintext highlighter-rouge">BaseLogger</code>) still
+use <code class="language-plaintext highlighter-rouge">std::function</code> because their callbacks carry richer event data where the <code class="language-plaintext highlighter-rouge">void*</code>
+user-data pattern is not sufficient.</p>
 
           
 

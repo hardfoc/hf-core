@@ -1,6 +1,6 @@
 var classIBno08xDriverOps =
 [
-    [ "~IBno08xDriverOps", "classIBno08xDriverOps.html#aef16e514637a7e4700ec154e91a0a011", null ],
+    [ "~IBno08xDriverOps", "classIBno08xDriverOps.html#af4304b60a6c224809a080144789ede9f", null ],
     [ "Begin", "classIBno08xDriverOps.html#a0ca90c1a5664ab3eb83f691aff34faa0", null ],
     [ "DisableSensor", "classIBno08xDriverOps.html#ab62ac5137487fe6f6ab3386684681857", null ],
     [ "EnableSensor", "classIBno08xDriverOps.html#a1da5bdfd4c8d7fbd42475ae7ee37fb98", null ],

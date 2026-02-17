@@ -8,7 +8,7 @@
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="886,70,852,70,852,65,886,65"/>
 <area shape="rect" id="Node000005" href="$classAs5047uHandler.html#a7f16efc74198279ee63c46d2b55825fa" title="Ensure the handler is initialized (lazy init entrypoint)." alt="" coords="313,5,559,31"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="596,48,512,33,513,28,597,42"/>
-<area shape="rect" id="Node000006" href="$classAs5047uHandler.html#af9f3e8b34d3a3deb337718aa7a8c420b" title="Get shared pointer to AS5047U driver for advanced operations." alt="" coords="334,55,538,80"/>
+<area shape="rect" id="Node000006" href="$classAs5047uHandler.html#a7935a51fb2973e3a1793d378fc50118a" title="Get pointer to AS5047U driver for advanced operations." alt="" coords="334,55,538,80"/>
 <area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="593,70,538,70,538,65,593,65"/>
 <area shape="rect" id="Node000007" href="$classAs5047uHandler.html#a10eeb015c791ff484935168e3683c053" title="Validate sensor parameters." alt="" coords="341,105,531,145"/>
 <area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="614,93,532,109,531,103,613,87"/>

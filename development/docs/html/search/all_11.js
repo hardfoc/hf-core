@@ -29,7 +29,7 @@ var searchData=
   ['setchannelfulloff_26',['SetChannelFullOff',['../classPca9685Handler.html#a6175f653b325713b0c80c5808ccbe45a',1,'Pca9685Handler']]],
   ['setchannelfullon_27',['SetChannelFullOn',['../classPca9685Handler.html#addfe3b4c674c0b59eaba2945035ac13d',1,'Pca9685Handler']]],
   ['setchannelsmask_28',['SetChannelsMask',['../classMax22200Handler.html#a0f9bbb552d6873017d9eb3be2a75b580',1,'Max22200Handler']]],
-  ['setchipselect_29',['SetChipSelect',['../classHalSpiMax22200Comm.html#abc9678c490d7d0b4cd04adfb45f573f3',1,'HalSpiMax22200Comm']]],
+  ['setchipselect_29',['SetChipSelect',['../classHalSpiMax22200Comm.html#a5c5923eecc5266b4ecadab4220cde6d5',1,'HalSpiMax22200Comm']]],
   ['setcommutationmode_30',['SetCommutationMode',['../classTmc9660Handler.html#a0fcac84f3503a436d82365ea5ca6c864',1,'Tmc9660Handler']]],
   ['setcomplementaryoutput_31',['SetComplementaryOutput',['../classPca9685PwmAdapter.html#a0442088d54116c40d4644aa59307f5c0',1,'Pca9685PwmAdapter']]],
   ['setconfig_32',['SetConfig',['../classLogger.html#ac78253f1f745833880231e9f3dc0ad00',1,'Logger']]],

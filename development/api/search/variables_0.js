@@ -17,5 +17,5 @@ var searchData=
   ['angle_5fcompensated_14',['angle_compensated',['../structAs5047uMeasurement.html#ab1abcdd7a68fbaa6560058774e94122a',1,'As5047uMeasurement']]],
   ['angle_5fraw_15',['angle_raw',['../structAs5047uMeasurement.html#a90d827bdb1b61fe2defee715c92be2f6',1,'As5047uMeasurement']]],
   ['animator_5f_16',['animator_',['../classWs2812Handler.html#aba9a27e605659de49f6b8c745cebf050',1,'Ws2812Handler']]],
-  ['as5047u_5fsensor_5f_17',['as5047u_sensor_',['../classAs5047uHandler.html#a232e1035d175ca7bb90b8fe7ee870c39',1,'As5047uHandler']]]
+  ['as5047u_5fsensor_5f_17',['as5047u_sensor_',['../classAs5047uHandler.html#adf87c4d40df713678dfae26dc4585ad2',1,'As5047uHandler']]]
 ];

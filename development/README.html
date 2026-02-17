@@ -409,7 +409,7 @@ handler methods.</p>
 </pre></td><td class="rouge-code"><pre><span class="nb">cd </span>examples/esp32/scripts
 
 <span class="c"># Build a utility test (no hardware needed)</span>
-./build_app.sh <span class="nt">--app</span> general_utils_test <span class="nt">--build-type</span> debug
+./build_app.sh general_utils_test Debug
 
 <span class="c"># Flash and monitor</span>
 <span class="nb">cd</span> .. <span class="o">&amp;&amp;</span> idf.py <span class="nt">-p</span> /dev/ttyUSB0 flash monitor
@@ -423,8 +423,10 @@ handler methods.</p>
 </h3>
     
 
+<p>Use the CI pipeline or iterate over <code class="language-plaintext highlighter-rouge">app_config.yml</code> entries:</p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>./build_app.sh <span class="nt">--all</span> <span class="nt">--build-type</span> debug
+</pre></td><td class="rouge-code"><pre>./build_app.sh list  <span class="c"># See all available apps</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="-handlers">
   
@@ -536,7 +538,7 @@ handler methods.</p>
     </tr>
     <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">hf-utils-rtos-wrap</code></td>
-      <td style="text-align: left">RtosMutex, MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags, OsSemaphore, OsRecursiveMutex, os_delay_msec</td>
+      <td style="text-align: left">RtosMutex, MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags, OsSemaphore, os_delay_msec</td>
     </tr>
     <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">hf-utils-canopen</code></td>

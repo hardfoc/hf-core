@@ -1,7 +1,7 @@
 var classTmc9660Handler_1_1Temperature =
 [
     [ "Temperature", "classTmc9660Handler_1_1Temperature.html#a39c2778d7ba493b3c5a620b26289218d", null ],
-    [ "~Temperature", "classTmc9660Handler_1_1Temperature.html#ac3b989bae541358b6f31d9cb5e37e909", null ],
+    [ "~Temperature", "classTmc9660Handler_1_1Temperature.html#a47ac469deac03d39024c8332a274d830", null ],
     [ "Deinitialize", "classTmc9660Handler_1_1Temperature.html#a0666ccf1178ec18b29ff9b04ed982a12", null ],
     [ "GetCapabilities", "classTmc9660Handler_1_1Temperature.html#a5aaa7a97dba72b8d7ffe3db213ab69b6", null ],
     [ "GetCurrentTimeUs", "classTmc9660Handler_1_1Temperature.html#a41a767273451c49bc03ab16243cfd7e0", null ],

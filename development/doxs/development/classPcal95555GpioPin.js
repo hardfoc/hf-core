@@ -1,7 +1,7 @@
 var classPcal95555GpioPin =
 [
     [ "Pcal95555GpioPin", "classPcal95555GpioPin.html#a8e9d68f8d2eee1414afb54c9bca28164", null ],
-    [ "~Pcal95555GpioPin", "classPcal95555GpioPin.html#a2efa965ae09ebf7810add68bd20b84b0", null ],
+    [ "~Pcal95555GpioPin", "classPcal95555GpioPin.html#a0f4144b4e01a57439b4b1a43f1779ef6", null ],
     [ "ConfigureInterrupt", "classPcal95555GpioPin.html#adfadb2f35d756b7660c28fd419120c01", null ],
     [ "Deinitialize", "classPcal95555GpioPin.html#a18fb43e58cfbe361b98c794fee82ea28", null ],
     [ "GetDescription", "classPcal95555GpioPin.html#ae14f1c39878874431091328573b4ea4b", null ],

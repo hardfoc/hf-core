@@ -3,8 +3,9 @@ var group__PCA9685__HAL__Handler =
     [ "Pca9685Handler", "classPca9685Handler.html", [
       [ "Pca9685Driver", "classPca9685Handler.html#a98f3e67474173eeb234d4cc3e4b4d03b", null ],
       [ "Pca9685Handler", "classPca9685Handler.html#a7dfc66449a73d316e0101e4c539a3e28", null ],
-      [ "~Pca9685Handler", "classPca9685Handler.html#ad8d6735cbe9be0ad410b49bd998dbb83", null ],
+      [ "~Pca9685Handler", "classPca9685Handler.html#ad78af0db8495a5ed739debd52291394b", null ],
       [ "Pca9685Handler", "classPca9685Handler.html#a2690cb463ddcf97dbb99301295081725", null ],
+      [ "Pca9685Handler", "classPca9685Handler.html#aaaccb9942a46b78ecb4ca1e289a34019", null ],
       [ "ChannelCount", "classPca9685Handler.html#a849d184def0cac7aa1fa9179659318ea", null ],
       [ "ClearErrorFlags", "classPca9685Handler.html#a81164b84390312d4971a435eeb464930", null ],
       [ "CreateGpioPin", "classPca9685Handler.html#a478a14f9dd0ff9c5569bbbebebe7f830", null ],
@@ -23,6 +24,7 @@ var group__PCA9685__HAL__Handler =
       [ "IsInitialized", "classPca9685Handler.html#ae9ec3bcf1629765a26d627e48afc10b1", null ],
       [ "IsPinCreated", "classPca9685Handler.html#aa6b5dea8e955f60443f8972c478c6018", null ],
       [ "operator=", "classPca9685Handler.html#a74ed42bd622f96bf7c25e38551ebb000", null ],
+      [ "operator=", "classPca9685Handler.html#ada9cbb30d3f4772b200cc7e2b4fe376a", null ],
       [ "SetAllPwm", "classPca9685Handler.html#a2dbb42acc6660c88b281e8b96e84e41e", null ],
       [ "SetChannelFullOff", "classPca9685Handler.html#a6175f653b325713b0c80c5808ccbe45a", null ],
       [ "SetChannelFullOn", "classPca9685Handler.html#addfe3b4c674c0b59eaba2945035ac13d", null ],

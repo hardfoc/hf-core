@@ -39,7 +39,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classHalSpiMax22200Comm.html#ad1809d067e2f9edfd91f83a59d13f9c8" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classHalSpiMax22200Comm.html#a485c7077edcd4c3c7d5bafc6a221ca37" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="134,-222 3,-222 3,-192 134,-192 134,-222"/>
 <text text-anchor="start" x="11" y="-210" font-family="Helvetica,sans-Serif" font-size="10.00">HalSpiMax22200Comm</text>
 <text text-anchor="middle" x="68.5" y="-199" font-family="Helvetica,sans-Serif" font-size="10.00">::DelayUs</text>

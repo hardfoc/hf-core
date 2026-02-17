@@ -131,12 +131,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4255991124dc803676fdfd6923e1232d" id="r_a4255991124dc803676fdfd6923e1232d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4255991124dc803676fdfd6923e1232d">operator=</a> (const <a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> &amp;)=delete</td></tr>
 <tr class="memdesc:a4255991124dc803676fdfd6923e1232d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignment operator is deleted.  <br /></td></tr>
 <tr class="separator:a4255991124dc803676fdfd6923e1232d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41abbde4f32ea1192776debd96981758" id="r_a41abbde4f32ea1192776debd96981758"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41abbde4f32ea1192776debd96981758">NtcTemperatureHandler</a> (<a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> &amp;&amp;) noexcept=default</td></tr>
-<tr class="memdesc:a41abbde4f32ea1192776debd96981758"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor.  <br /></td></tr>
-<tr class="separator:a41abbde4f32ea1192776debd96981758"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12f60c9b2ab01e871d111923cfbc5c5d" id="r_a12f60c9b2ab01e871d111923cfbc5c5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12f60c9b2ab01e871d111923cfbc5c5d">operator=</a> (<a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> &amp;&amp;) noexcept=default</td></tr>
-<tr class="memdesc:a12f60c9b2ab01e871d111923cfbc5c5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment operator.  <br /></td></tr>
-<tr class="separator:a12f60c9b2ab01e871d111923cfbc5c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c3640034987b3d7b27b1d2b96971d56" id="r_a2c3640034987b3d7b27b1d2b96971d56"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c3640034987b3d7b27b1d2b96971d56">NtcTemperatureHandler</a> (<a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> &amp;&amp;)=delete</td></tr>
+<tr class="memdesc:a2c3640034987b3d7b27b1d2b96971d56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-movable (holds mutex, unique_ptrs, raw pointers, and timer resources).  <br /></td></tr>
+<tr class="separator:a2c3640034987b3d7b27b1d2b96971d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03aae04e77e9492e498d7c4a927f1365" id="r_a03aae04e77e9492e498d7c4a927f1365"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03aae04e77e9492e498d7c4a927f1365">operator=</a> (<a class="el" href="classNtcTemperatureHandler.html">NtcTemperatureHandler</a> &amp;&amp;)=delete</td></tr>
+<tr class="memdesc:a03aae04e77e9492e498d7c4a927f1365"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-movable.  <br /></td></tr>
+<tr class="separator:a03aae04e77e9492e498d7c4a927f1365"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac69a65bcccfecfc2bfca99f7ac2aeb3" id="r_aac69a65bcccfecfc2bfca99f7ac2aeb3"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac69a65bcccfecfc2bfca99f7ac2aeb3">~NtcTemperatureHandler</a> () noexcept</td></tr>
 <tr class="memdesc:aac69a65bcccfecfc2bfca99f7ac2aeb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor - cleans up timer and thermistor resources.  <br /></td></tr>
 <tr class="separator:aac69a65bcccfecfc2bfca99f7ac2aeb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -314,9 +314,6 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a1c8980812318a321753cd5ba821f35a5" id="r_a1c8980812318a321753cd5ba821f35a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structntc__temp__handler__config__t.html">ntc_temp_handler_config_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c8980812318a321753cd5ba821f35a5">config_</a></td></tr>
 <tr class="memdesc:a1c8980812318a321753cd5ba821f35a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handler configuration.  <br /></td></tr>
 <tr class="separator:a1c8980812318a321753cd5ba821f35a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53c8c72f999e93781d7f4d41ef3e1903" id="r_a53c8c72f999e93781d7f4d41ef3e1903"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53c8c72f999e93781d7f4d41ef3e1903">initialized_</a></td></tr>
-<tr class="memdesc:a53c8c72f999e93781d7f4d41ef3e1903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization status.  <br /></td></tr>
-<tr class="separator:a53c8c72f999e93781d7f4d41ef3e1903"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74b308efe15b28f81e5c48f23470fba1" id="r_a74b308efe15b28f81e5c48f23470fba1"><td class="memItemLeft" align="right" valign="top">hf_temp_state_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74b308efe15b28f81e5c48f23470fba1">current_state_</a></td></tr>
 <tr class="memdesc:a74b308efe15b28f81e5c48f23470fba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current state.  <br /></td></tr>
 <tr class="separator:a74b308efe15b28f81e5c48f23470fba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -329,18 +326,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a1ad76c89cb99d1752b1e8a37e996ef90" id="r_a1ad76c89cb99d1752b1e8a37e996ef90"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ad76c89cb99d1752b1e8a37e996ef90">high_threshold_celsius_</a></td></tr>
 <tr class="memdesc:a1ad76c89cb99d1752b1e8a37e996ef90"><td class="mdescLeft">&#160;</td><td class="mdescRight">High temperature threshold.  <br /></td></tr>
 <tr class="separator:a1ad76c89cb99d1752b1e8a37e996ef90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4b3ca60a65dc5da71b7a3d4b9405f09" id="r_aa4b3ca60a65dc5da71b7a3d4b9405f09"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4b3ca60a65dc5da71b7a3d4b9405f09">threshold_monitoring_enabled_</a></td></tr>
-<tr class="memdesc:aa4b3ca60a65dc5da71b7a3d4b9405f09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Threshold monitoring status.  <br /></td></tr>
-<tr class="separator:aa4b3ca60a65dc5da71b7a3d4b9405f09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3d4059b519f6a7c5503503a688cec17" id="r_ac3d4059b519f6a7c5503503a688cec17"><td class="memItemLeft" align="right" valign="top">hf_temp_threshold_callback_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3d4059b519f6a7c5503503a688cec17">threshold_callback_</a></td></tr>
 <tr class="memdesc:ac3d4059b519f6a7c5503503a688cec17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Threshold callback.  <br /></td></tr>
 <tr class="separator:ac3d4059b519f6a7c5503503a688cec17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee4337b29ad1d9b34b3a1c8266bb102e" id="r_aee4337b29ad1d9b34b3a1c8266bb102e"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee4337b29ad1d9b34b3a1c8266bb102e">threshold_user_data_</a></td></tr>
 <tr class="memdesc:aee4337b29ad1d9b34b3a1c8266bb102e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Threshold callback user data.  <br /></td></tr>
 <tr class="separator:aee4337b29ad1d9b34b3a1c8266bb102e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af312fddeecba9fcccef5edf9d05b1c91" id="r_af312fddeecba9fcccef5edf9d05b1c91"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af312fddeecba9fcccef5edf9d05b1c91">monitoring_active_</a></td></tr>
-<tr class="memdesc:af312fddeecba9fcccef5edf9d05b1c91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Continuous monitoring status.  <br /></td></tr>
-<tr class="separator:af312fddeecba9fcccef5edf9d05b1c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4970e4b901d824cd772fa331e03db063" id="r_a4970e4b901d824cd772fa331e03db063"><td class="memItemLeft" align="right" valign="top">hf_u32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4970e4b901d824cd772fa331e03db063">sample_rate_hz_</a></td></tr>
 <tr class="memdesc:a4970e4b901d824cd772fa331e03db063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sample rate for continuous monitoring.  <br /></td></tr>
 <tr class="separator:a4970e4b901d824cd772fa331e03db063"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -365,6 +356,15 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a6f1cba555ce4adf0309324532dfb60e8" id="r_a6f1cba555ce4adf0309324532dfb60e8"><td class="memItemLeft" align="right" valign="top">hf_temp_diagnostics_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f1cba555ce4adf0309324532dfb60e8">diagnostics_</a></td></tr>
 <tr class="memdesc:a6f1cba555ce4adf0309324532dfb60e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">BaseTemperature diagnostics.  <br /></td></tr>
 <tr class="separator:a6f1cba555ce4adf0309324532dfb60e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53c8c72f999e93781d7f4d41ef3e1903" id="r_a53c8c72f999e93781d7f4d41ef3e1903"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53c8c72f999e93781d7f4d41ef3e1903">initialized_</a></td></tr>
+<tr class="memdesc:a53c8c72f999e93781d7f4d41ef3e1903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization status.  <br /></td></tr>
+<tr class="separator:a53c8c72f999e93781d7f4d41ef3e1903"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4b3ca60a65dc5da71b7a3d4b9405f09" id="r_aa4b3ca60a65dc5da71b7a3d4b9405f09"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4b3ca60a65dc5da71b7a3d4b9405f09">threshold_monitoring_enabled_</a></td></tr>
+<tr class="memdesc:aa4b3ca60a65dc5da71b7a3d4b9405f09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Threshold monitoring status.  <br /></td></tr>
+<tr class="separator:aa4b3ca60a65dc5da71b7a3d4b9405f09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af312fddeecba9fcccef5edf9d05b1c91" id="r_af312fddeecba9fcccef5edf9d05b1c91"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af312fddeecba9fcccef5edf9d05b1c91">monitoring_active_</a></td></tr>
+<tr class="memdesc:af312fddeecba9fcccef5edf9d05b1c91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Continuous monitoring status.  <br /></td></tr>
+<tr class="separator:af312fddeecba9fcccef5edf9d05b1c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -505,8 +505,8 @@ Supports all BaseTemperature features including threshold and continuous monitor
 
 </div>
 </div>
-<a id="a41abbde4f32ea1192776debd96981758" name="a41abbde4f32ea1192776debd96981758"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41abbde4f32ea1192776debd96981758">&#9670;&#160;</a></span>NtcTemperatureHandler() <span class="overload">[4/4]</span></h2>
+<a id="a2c3640034987b3d7b27b1d2b96971d56" name="a2c3640034987b3d7b27b1d2b96971d56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c3640034987b3d7b27b1d2b96971d56">&#9670;&#160;</a></span>NtcTemperatureHandler() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -523,12 +523,12 @@ Supports all BaseTemperature features including threshold and continuous monitor
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Move constructor. </p>
+<p>Non-movable (holds mutex, unique_ptrs, raw pointers, and timer resources). </p>
 
 </div>
 </div>
@@ -1626,8 +1626,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a12f60c9b2ab01e871d111923cfbc5c5d" name="a12f60c9b2ab01e871d111923cfbc5c5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12f60c9b2ab01e871d111923cfbc5c5d">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+<a id="a03aae04e77e9492e498d7c4a927f1365" name="a03aae04e77e9492e498d7c4a927f1365"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03aae04e77e9492e498d7c4a927f1365">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1644,12 +1644,12 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Move assignment operator. </p>
+<p>Non-movable. </p>
 
 </div>
 </div>

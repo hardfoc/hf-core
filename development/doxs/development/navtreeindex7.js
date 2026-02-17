@@ -1,5 +1,14 @@
 var NAVTREEINDEX7 =
 {
+"structLogger_1_1TagLevel.html#a56f03d5b2d3cfd87033437d44653d0e5":[13,0,28,0,2],
+"structLogger_1_1TagLevel.html#ae0706da5d17901967f36e666f960de42":[13,0,28,0,0],
+"structLogger_1_1TagLevel.html#af6d7e19cd63be826348cc7b1e5e5c1aa":[13,0,28,0,1],
+"structTestResults.html":[13,0,38],
+"structTestResults.html#a0acef46f38f27f0fbb8fa822bb218b3a":[13,0,38,3],
+"structTestResults.html#a257eba3a9005a5c19c68ae27774948f7":[13,0,38,0],
+"structTestResults.html#a55b5f813fe7b5863b46e03f2c7f761ea":[13,0,38,4],
+"structTestResults.html#a6d2e718d81a8b4a4dcca515ee858de57":[13,0,38,2],
+"structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014":[13,0,38,5],
 "structTestResults.html#ab98f9ad5f994aa31bd7c0cd8ae551fb8":[13,0,38,1],
 "structTestResults.html#afe20b168a13950ffca7296c0c56d4359":[13,0,38,6],
 "structTestTaskContext.html":[13,0,39],

@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Microsecond delay with automatic fallback to RTOS delay for large values." alt="" coords="236,173,405,198"/>
 <area shape="rect" id="Node000002" href="$classHalSpiTle92466edComm.html#aca4238d0c15c631b7fca413fdf7420ab" title=" " alt="" coords="5,5,188,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="299,164,251,112,220,84,187,60,164,48,166,43,189,55,224,80,255,108,303,160"/>
-<area shape="rect" id="Node000003" href="$classHalSpiMax22200Comm.html#ad1809d067e2f9edfd91f83a59d13f9c8" title=" " alt="" coords="9,69,184,109"/>
+<area shape="rect" id="Node000003" href="$classHalSpiMax22200Comm.html#a485c7077edcd4c3c7d5bafc6a221ca37" title=" " alt="" coords="9,69,184,109"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="282,169,187,124,156,112,158,107,189,119,284,164"/>
 <area shape="rect" id="Node000004" href="$classHalSpiTmc5160Comm.html#a48c631e0d24f7b4b0c33c83b1ffa91ad" title="Delay in microseconds." alt="" coords="9,133,184,173"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="222,174,184,168,184,163,223,169"/>

@@ -256,8 +256,7 @@ drivers (<code class="language-plaintext highlighter-rouge">hf-tmc9660-driver</c
 <p>It provides:</p>
 
 <ul>
-  <li><strong>10 Device Handlers</strong> — Thread-safe facades for AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, TMC5160, TLE92466ED, MAX22200, and WS2812</li>
-  <li><strong>Logger</strong> — Singleton logging with color, ASCII art, and per-tag filtering</li>
+  <li><strong>11 Handlers</strong> — Thread-safe facades for AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, TMC5160, TLE92466ED, MAX22200, WS2812, and singleton Logger</li>
   <li><strong>RTOS Wrappers</strong> — FreeRTOS C++ abstractions (mutex, timer, thread, queue, semaphore)</li>
   <li><strong>General Utilities</strong> — Circular buffers, filters, state machines, interpolation, CRC, and more</li>
   <li><strong>CANopen Utilities</strong> — Frame construction, SDO/NMT protocol helpers</li>
@@ -323,7 +322,7 @@ git clone <span class="nt">--recursive</span> https://github.com/N3b3x/hf-hal-vo
 
 <span class="c"># Build a specific test app</span>
 <span class="nb">cd </span>examples/esp32/scripts
-./build_app.sh <span class="nt">--app</span> as5047u_handler_test <span class="nt">--build-type</span> debug
+./build_app.sh as5047u_handler_test Debug
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 
 <p>See the <a href="/hf-core/development/docs/testing/testing_guide.html">Testing Guide</a> for detailed instructions.</p>

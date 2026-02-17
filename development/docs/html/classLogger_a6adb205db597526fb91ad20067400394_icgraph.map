@@ -24,7 +24,7 @@
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="625,503,619,498,605,478,599,457,598,416,596,378,588,361,572,345,548,331,523,320,469,308,412,308,356,317,301,332,250,351,171,389,169,385,248,346,299,327,354,312,412,303,469,303,524,315,550,326,575,341,592,358,601,377,603,416,604,456,610,475,623,495,628,500"/>
 <area shape="rect" id="Node000015" href="$classTle92466edHandler.html#a59ce7fd71a61c78bba4dc4a43c99e280" title=" " alt="" coords="47,162,221,202"/>
 <area shape="poly" id="edge5_Node000004_Node000015" title=" " alt="" coords="623,503,619,498,605,477,596,455,589,412,593,370,602,329,610,290,612,251,608,233,601,215,589,197,572,180,547,167,512,158,469,154,421,153,317,160,222,171,221,166,317,154,421,148,470,149,513,153,549,162,575,176,593,194,605,213,613,232,617,251,616,290,607,331,599,371,594,412,601,454,610,474,623,495,627,499"/>
-<area shape="rect" id="Node000030" href="$classHalSpiMax22200Comm.html#ae125ed413b59c7879545bf8c33e8f33b" title=" " alt="" coords="355,355,529,395"/>
+<area shape="rect" id="Node000030" href="$classHalSpiMax22200Comm.html#afa72d731643fff15ec9f448e62401b43" title=" " alt="" coords="355,355,529,395"/>
 <area shape="poly" id="edge6_Node000004_Node000030" title=" " alt="" coords="627,504,619,498,602,475,596,452,589,430,572,409,551,397,529,388,530,383,554,392,575,405,593,427,601,450,607,473,623,495,630,500"/>
 <area shape="rect" id="Node000031" href="$classMax22200Handler.html#ad6c72b45a96c36cd1b450f5e330fad25" title="Initialize driver (ENABLE HIGH, read/clear STATUS, set ACTIVE)." alt="" coords="339,484,545,509"/>
 <area shape="poly" id="edge7_Node000004_Node000031" title=" " alt="" coords="618,518,545,510,545,505,619,512"/>

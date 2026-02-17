@@ -453,10 +453,10 @@ directories (<code class="language-plaintext highlighter-rouge">hf-core-drivers/
 </pre></td><td class="rouge-code"><pre><span class="nb">cd </span>examples/esp32/scripts
 
 <span class="c"># Build a single app</span>
-./build_app.sh <span class="nt">--app</span> general_utils_test <span class="nt">--build-type</span> debug
+./build_app.sh general_utils_test Debug
 
-<span class="c"># Build all CI-enabled apps</span>
-./build_app.sh <span class="nt">--all</span> <span class="nt">--build-type</span> debug
+<span class="c"># List all available apps</span>
+./build_app.sh list
 
 <span class="c"># Generate the matrix (for debugging)</span>
 python3 generate_matrix.py ../app_config.yml

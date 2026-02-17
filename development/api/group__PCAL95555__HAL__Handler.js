@@ -3,8 +3,9 @@ var group__PCAL95555__HAL__Handler =
     [ "Pcal95555Handler", "classPcal95555Handler.html", [
       [ "Pcal95555Driver", "classPcal95555Handler.html#a79a4140f8340810bea7bed218a78df6c", null ],
       [ "Pcal95555Handler", "classPcal95555Handler.html#af60d10d8b4968523231592f915dfa264", null ],
-      [ "~Pcal95555Handler", "classPcal95555Handler.html#a3435b830c8d0e7ef6ba4967f1e0bf6d4", null ],
+      [ "~Pcal95555Handler", "classPcal95555Handler.html#a43bd4812929f7c68e6f63d60911f76dd", null ],
       [ "Pcal95555Handler", "classPcal95555Handler.html#a6079fb16f640bfccf3a2b757ca30e637", null ],
+      [ "Pcal95555Handler", "classPcal95555Handler.html#a610f1a2888ff268b4994c9bb7cf878cd", null ],
       [ "ClearErrorFlags", "classPcal95555Handler.html#afcb849e480d9f660d8f3f6c50b813fc6", null ],
       [ "ConfigureHardwareInterrupt", "classPcal95555Handler.html#add6bf45bbac47b7d8d579fbd9bc50d2e", null ],
       [ "CreateGpioPin", "classPcal95555Handler.html#a600303a7bb4b99af37eb20cc2a30c8e2", null ],
@@ -34,6 +35,7 @@ var group__PCAL95555__HAL__Handler =
       [ "IsInterruptConfigured", "classPcal95555Handler.html#adcf9f009e24b393d9ba92a9d3d8e316e", null ],
       [ "IsPinCreated", "classPcal95555Handler.html#a2c3999b62728839cd55ab4f03a54bba1", null ],
       [ "operator=", "classPcal95555Handler.html#a441e27219b0d01cc054cff4ca1314a02", null ],
+      [ "operator=", "classPcal95555Handler.html#aab51c31bafd93a83547c4aa80ca562ec", null ],
       [ "PinCount", "classPcal95555Handler.html#a8635d65049f9d416d201b47614a4b024", null ],
       [ "ProcessInterrupts", "classPcal95555Handler.html#a7b9a82a463f57e0394b55a4f3ecead39", null ],
       [ "ReadInput", "classPcal95555Handler.html#a32cb9ad0e9a4cf9e804e30420900edde", null ],

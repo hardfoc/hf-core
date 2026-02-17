@@ -267,15 +267,11 @@
   <tbody>
     <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">RtosMutex</code></td>
-      <td style="text-align: left">Named mutex wrapper (<code class="language-plaintext highlighter-rouge">xSemaphoreCreateMutex</code>)</td>
+      <td style="text-align: left">Recursive mutex wrapper (<code class="language-plaintext highlighter-rouge">xSemaphoreCreateRecursiveMutex</code>) — allows same-thread re-entrant locking</td>
     </tr>
     <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">MutexLockGuard</code></td>
-      <td style="text-align: left">RAII lock guard for <code class="language-plaintext highlighter-rouge">RtosMutex</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">OsRecursiveMutex</code></td>
-      <td style="text-align: left">Recursive mutex (same-thread re-entrant)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">RtosUniqueLock&lt;RtosMutex&gt;</code> typedef — RAII lock guard for <code class="language-plaintext highlighter-rouge">RtosMutex</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">OsSemaphore</code></td>
@@ -391,7 +387,7 @@
 4
 5
 6
-</pre></td><td class="rouge-code"><pre><span class="n">RtosMutex</span> <span class="nf">mtx</span><span class="p">(</span><span class="s">"sensor_guard"</span><span class="p">);</span>
+</pre></td><td class="rouge-code"><pre><span class="n">RtosMutex</span> <span class="n">mtx</span><span class="p">;</span>
 
 <span class="kt">void</span> <span class="nf">read_sensor</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">MutexLockGuard</span> <span class="n">guard</span><span class="p">(</span><span class="n">mtx</span><span class="p">);</span>

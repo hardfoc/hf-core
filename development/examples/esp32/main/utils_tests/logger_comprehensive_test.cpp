@@ -120,7 +120,7 @@ static bool test_ascii_art() noexcept {
     auto& logger = Logger::GetInstance();
     logger.EnableAsciiArt(true);
 
-    std::string art = R"(
+    const char* art = R"(
   _   _ _____ _____ _____ 
  | | | |  ___|  _  |  _  |
  | |_| | |__ | | | | |_| |

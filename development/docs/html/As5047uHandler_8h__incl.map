@@ -1,15 +1,13 @@
 <map id="As5047uHandler.h" name="As5047uHandler.h">
-<area shape="rect" id="Node000001" title="Unified handler for AS5047U magnetic rotary position sensor with SPI integration." alt="" coords="227,5,367,31"/>
+<area shape="rect" id="Node000001" title="Unified handler for AS5047U magnetic rotary position sensor with SPI integration." alt="" coords="215,5,355,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,93,72,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="243,33,167,53,85,81,69,89,67,84,83,76,165,48,241,28"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,33,163,53,85,81,69,89,67,84,83,76,162,48,234,28"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="96,93,173,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="277,33,170,89,167,84,274,28"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="197,93,256,119"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="290,33,247,84,243,81,286,29"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="281,79,455,133"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="309,29,340,66,336,70,305,33"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="479,93,601,119"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="332,28,469,76,497,86,495,91,467,81,330,33"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="625,93,761,119"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="368,27,484,48,614,76,649,86,648,92,613,81,483,53,367,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="266,33,168,89,166,84,264,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="198,79,373,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="288,31,288,65,283,65,283,31"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="397,93,518,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="310,28,423,85,421,89,307,33"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="543,93,679,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="338,28,531,76,565,86,564,92,530,81,337,33"/>
 </map>
