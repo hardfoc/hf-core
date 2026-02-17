@@ -1,0 +1,361 @@
+---
+name: 🏗️ [LOCAL] ESP-IDF Build with yq
+
+on:
+  workflow_call:
+    inputs:
+      project_dir:
+        description: >
+          Path to the ESP-IDF project (contains CMakeLists.txt)
+        type: string
+        required: true
+      project_tools_dir:
+        description: >
+          Path to project tools directory (contains scripts directly).
+          Leave empty to auto-detect.
+        type: string
+        required: false
+      clean_build:
+        description: "Skip caches for a clean build."
+        type: boolean
+        default: false
+      auto_clone_tools:
+        description: "Auto-clone tools repo if project_tools_dir is missing"
+        type: boolean
+        default: true
+      max_dec_total:
+        description: "Maximum total dec size in bytes for size budget enforcement (0 to disable)"
+        type: string
+        default: "0"
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: write   # needed for PR comment in size-report
+
+env:
+  ESP32_PROJECT_PATH: ${{ inputs.project_dir }}
+  PROJECT_TOOLS_DIR: ${{ inputs.project_tools_dir }}
+
+jobs:
+  generate-matrix:
+    name: Generate Build Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.gen.outputs.matrix }}
+      project_tools_path: ${{ steps.validate.outputs.project_tools_path }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Ensure tools directory present
+        id: validate
+        uses: N3b3x/hf-espidf-ci-tools/.github/actions/ensure-tools-directory@main
+        with:
+          project_tools_dir: ${{ env.PROJECT_TOOLS_DIR }}
+          project_dir: ${{ env.ESP32_PROJECT_PATH }}
+          auto_clone_tools: ${{ inputs.auto_clone_tools }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml jq
+
+      - name: Generate matrix
+        id: gen
+        run: |
+          set -e
+          # Scripts directory and generate_matrix.py already validated
+          MATRIX=$(python3 "${{ steps.validate.outputs.project_tools_path }}/generate_matrix.py")
+          echo "matrix=${MATRIX}" >> "$GITHUB_OUTPUT"
+          echo "$MATRIX" | python3 -m json.tool
+
+  build:
+    name: >
+      Build ➜ ${{ matrix.idf_version }} · ${{ matrix.build_type }} ·
+      ${{ matrix.app_name }}
+    runs-on: ubuntu-latest
+    needs: generate-matrix
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Cache Python deps (for project scripts)
+        if: ${{ !inputs.clean_build }}
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.local/lib/python3.*/site-packages
+          key: >-
+            espidf-python-${{ runner.os }}-${{ matrix.idf_version_docker }}-
+            ${{ hashFiles(format('{0}/setup_common.sh',
+                                 needs.generate-matrix.outputs.project_tools_path),
+                          format('{0}/requirements.txt',
+                                 needs.generate-matrix.outputs.project_tools_path)) }}
+          restore-keys: |
+            espidf-python-${{ runner.os }}-
+
+      - name: Install Python deps (optional)
+        run: |
+          # Project tools directory already validated in generate-matrix job
+          if [ -f "${{ needs.generate-matrix.outputs.project_tools_path }}/requirements.txt" ]; then
+            python -m pip install --upgrade pip
+            pip install -r "${{ needs.generate-matrix.outputs.project_tools_path }}/requirements.txt"
+          fi
+
+      - name: Build (espressif/esp-idf-ci-action)
+        id: build
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: ${{ matrix.idf_version_docker }}
+          target: ${{ matrix.target }}
+          path: .
+          extra_docker_args: >-
+            -e IDF_CCACHE_ENABLE=1
+          command: |
+            set -e
+            
+            # Install yq for YAML parsing
+            echo "Installing yq..."
+            YQ_VERSION="4.40.5"
+            YQ_BINARY="yq_linux_amd64"
+            wget -q "https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/${YQ_BINARY}" -O /usr/local/bin/yq
+            chmod +x /usr/local/bin/yq
+            
+            # Verify yq installation
+            if ! command -v yq &> /dev/null; then
+                echo "ERROR: Failed to install yq"
+                exit 1
+            fi
+            echo "yq installed successfully: $(yq --version)"
+            
+            export ESP32_PROJECT_PATH="${{ env.ESP32_PROJECT_PATH }}"
+            export IDF_TARGET="${{ matrix.target }}"
+            export BUILD_TYPE="${{ matrix.build_type }}"
+            export APP_TYPE="${{ matrix.app_name }}"
+            # Debug: List ESP32 project directory contents
+            echo "======================================================"
+            echo "ESP32 PROJECT DIRECTORY DEBUG INFO"
+            echo "======================================================"
+            echo "ESP32 project path: ${ESP32_PROJECT_PATH}"
+            echo "Current working directory: $(pwd)"
+            echo ""
+            echo "Current directory contents:"
+            ls -la . || echo "Failed to list current directory"
+            echo ""
+            echo "Looking for key files:"
+            for file in CMakeLists.txt app_config.yml main components; do
+              if [ -e "./${ESP32_PROJECT_PATH}/${file}" ]; then
+                echo "✓ Found ${file}: $(ls -la "./${ESP32_PROJECT_PATH}/${file}")"
+              else
+                echo "✗ Missing ${file}"
+              fi
+            done
+            echo "======================================================"
+            echo ""
+            # Debug: List scripts directory contents and check permissions
+            echo "======================================================"
+            echo "SCRIPTS DIRECTORY DEBUG INFO"
+            echo "======================================================"
+            echo "Scripts path: ${{ needs.generate-matrix.outputs.project_tools_path }}"
+            echo "Current working directory: $(pwd)"
+            echo ""
+            echo "Scripts directory contents:"
+            ls -la "${{ needs.generate-matrix.outputs.project_tools_path }}" || echo "Failed to list scripts directory"
+            echo ""
+            echo "Checking script permissions:"
+            for script in build_app.sh flash_app.sh config_loader.sh generate_matrix.py; do
+              script_path="${{ needs.generate-matrix.outputs.project_tools_path }}/$script"
+              if [ -f "$script_path" ]; then
+                echo "✓ Found $script: $(ls -la "$script_path")"
+                # Ensure script is executable
+                chmod +x "$script_path" 2>/dev/null || echo "Warning: Could not chmod $script"
+              else
+                echo "✗ Missing $script"
+              fi
+            done
+            echo "======================================================"
+            echo ""
+            # Project tools directory already validated in generate-matrix job
+            # Run build script with correct paths
+            "${{ needs.generate-matrix.outputs.project_tools_path }}/build_app.sh" \
+              --project-path "${ESP32_PROJECT_PATH}" \
+              "${APP_TYPE}" "${BUILD_TYPE}" "${{ matrix.idf_version }}"
+            # Find build directory - try multiple patterns
+            echo "Looking for build directory..."
+            echo "Changing to ESP-IDF project directory: ${ESP32_PROJECT_PATH}"
+            cd "${ESP32_PROJECT_PATH}" || {
+              echo "ERROR: Failed to change to ESP-IDF project directory: ${ESP32_PROJECT_PATH}"
+              exit 1
+            }
+            echo "Current directory contents:"
+            ls -la . || echo "Failed to list current directory"
+            echo ""
+            # Try different build directory patterns
+            build_dir=""
+            for pattern in "build*" "build-app-*" "build_*"; do
+              echo "Trying pattern: $pattern"
+              found_dirs=$(ls -td $pattern 2>/dev/null | head -1)
+              if [ -n "$found_dirs" ]; then
+                build_dir="$found_dirs"
+                echo "Found build directory with pattern '$pattern': $build_dir"
+                break
+              fi
+            done
+            # If still no build directory found, list all directories
+            if [ -z "$build_dir" ]; then
+              echo "No build directory found with standard patterns. All directories:"
+              ls -la | grep "^d" || echo "No directories found"
+              echo "All files and directories:"
+              ls -la
+              echo "ERROR: No build directory found!"
+              exit 1
+            fi
+
+            echo "Using build directory: $build_dir"
+            # Note: Cannot set GitHub outputs from inside Docker container
+            # Will use wildcard pattern for upload instead
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fw-${{ matrix.app_name }}-${{ matrix.idf_version_docker }}-${{ matrix.build_type }}
+          path: ${{ env.ESP32_PROJECT_PATH }}/build*
+          retention-days: 7
+
+  size-report:
+    name: Firmware Size Report
+    needs: [build]
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all firmware artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: fw-*
+          merge-multiple: true
+          path: fw_artifacts/
+
+      - name: Build markdown summary
+        id: mk
+        shell: bash
+        run: |
+          set -uo pipefail
+          OUT="size-summary.md"
+          echo "## 📦 Firmware Size Summary" > "$OUT"
+          echo "" >> "$OUT"
+          echo "| App | IDF | Target | Build | Flash/RAM summary |" \
+               >> "$OUT"
+          echo "|---|---|---|---|---|" >> "$OUT"
+
+          found=0
+          shopt -s nullglob
+          # Preferred: use size.info (written by build_app.sh)
+          while IFS= read -r -d '' info; do
+            dir="$(dirname "$info")"
+            app=$(grep -E '^APP='    "$info" | cut -d= -f2- || echo "-")
+            idf=$(grep -E '^IDF='    "$info" | cut -d= -f2- || echo "-")
+            tgt=$(grep -E '^TARGET=' "$info" | cut -d= -f2- || echo "-")
+            bld=$(grep -E '^BUILD='  "$info" | cut -d= -f2- || echo "-")
+
+            if [[ -f "$dir/size.txt" ]]; then
+              summary="$(grep -E 'Total|text\s+data\s+bss' "$dir/size.txt" 2>/dev/null | \
+                        head -2 | tr -s ' ' ' ' | sed 's/^/`/;s/$/`/' | \
+                        paste -sd '<br/>' - 2>/dev/null || echo '`size.txt parse error`')"
+            else
+              summary="`size.txt missing`"
+            fi
+
+            echo "| $app | $idf | $tgt | $bld |" \
+                 " ${summary:-\`See size.txt\`} |" \
+                 >> "$OUT"
+            found=$((found+1))
+          done < <(find fw_artifacts -type f -name "size.info" -print0)
+
+          # Fallback: if no size.info available, scan for size.txt
+          if [[ $found -eq 0 ]]; then
+            while IFS= read -r -d '' st; do
+              dir="$(dirname "$st")"
+              parent="$(basename "$dir")"
+              app="$(echo "$parent" | sed -E 's/^build_([^_]+).*/\1/')" || \
+                  app="-"
+              idf="-"; tgt="-"
+              bld="$(echo "$parent" | grep -Eo '(Debug|Release)' || \
+                  echo '-')"
+              summary="$(grep -E 'Total|text\s+data\s+bss' "$st" 2>/dev/null | \
+                        head -2 | tr -s ' ' ' ' | sed 's/^/`/;s/$/`/' | \
+                        paste -sd '<br/>' - 2>/dev/null || echo '`size.txt parse error`')"
+              echo "| $app | $idf | $tgt | $bld |" \
+                   " ${summary:-\`See size.txt\`} |" \
+                   >> "$OUT"
+              found=$((found+1))
+            done < <(find fw_artifacts -type f -name "size.txt" -print0)
+          fi
+
+          if [[ $found -eq 0 ]]; then
+            echo "_No size artifacts found. Ensure build_app.sh writes" \
+                 "size.txt/size.info inside build dirs._" >> "$OUT"
+          fi
+
+          echo "file=$OUT" >> "$GITHUB_OUTPUT"
+
+      - name: Comment summary on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Only create comment if we have a valid issue number
+            if (!context.issue || !context.issue.number) {
+              console.log('No issue number available, skipping PR comment');
+              return;
+            }
+
+            const fs = require('fs');
+            const body = fs.readFileSync('${{ steps.mk.outputs.file }}',
+                                        'utf8');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
+
+      # Optional guardrail: fail if size exceeds your budget
+      - name: Enforce size budgets (optional)
+        if: always() && inputs.max_dec_total != '0'
+        shell: bash
+        env:
+          MAX_DEC_TOTAL: ${{ inputs.max_dec_total }}
+        run: |
+          set -uo pipefail
+          echo "Enforcing size budget: MAX_DEC_TOTAL=${MAX_DEC_TOTAL} bytes"
+          vio=0
+          while IFS= read -r -d '' st; do
+            dec=$(grep -E '^\s*text\s+data\s+bss\s+dec' -A1 "$st" 2>/dev/null | \
+                  tail -1 | awk '{print $4}' 2>/dev/null || echo 0)
+            dir="$(dirname "$st")"
+            if [[ "${dec:-0}" -gt "$MAX_DEC_TOTAL" ]]; then
+              echo "::error file=${st}::${dir} dec=${dec} exceeds" \
+                   "MAX_DEC_TOTAL=${MAX_DEC_TOTAL}"
+              vio=$((vio+1))
+            elif [[ "${dec:-0}" -eq 0 ]]; then
+              echo "::warning file=${st}::Could not parse size information from ${dir}"
+            fi
+          done < <(find fw_artifacts -type f -name "size.txt" -print0)
+          if [[ $vio -gt 0 ]]; then
+            echo "::error::Size budget exceeded in $vio build(s). Check individual errors above."
+            exit 1
+          else
+            echo "✅ All builds within size budget (${MAX_DEC_TOTAL} bytes)"
+          fi
