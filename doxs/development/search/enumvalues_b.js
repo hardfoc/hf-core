@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['red_0',['RED',['../Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2eaa2d9547b5d3dd9f05984475f7c926da0',1,'RED:&#160;Logger.h'],['../Logger_8h.html#a96718db9ec196b0ccd6f8d9517b45ea1aa2d9547b5d3dd9f05984475f7c926da0',1,'RED:&#160;Logger.h']]]
+  ['sensor_5fnot_5fenabled_0',['SENSOR_NOT_ENABLED',['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832adefa7c21c79061d81f201f471ac484b9',1,'Bno08xHandler.h']]],
+  ['sensor_5fnot_5fresponding_1',['SENSOR_NOT_RESPONDING',['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832aefa317621a7a5d359894d432ec948b31',1,'Bno08xHandler.h']]],
+  ['strikethrough_2',['STRIKETHROUGH',['../Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52aad166989fa2b7da7d238b3e7105c64f8',1,'Logger.h']]],
+  ['success_3',['SUCCESS',['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c',1,'Bno08xHandler.h']]]
 ];

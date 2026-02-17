@@ -1,19 +1,25 @@
 <map id="Tmc5160Handler::Initialize" name="Tmc5160Handler::Initialize">
-<area shape="rect" id="Node000001" title="Initialize the TMC5160 driver with full configuration." alt="" coords="883,80,1080,105"/>
-<area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a6d4fce2433e03bb11b05a4278ef66fd0" title=" " alt="" coords="585,73,835,113"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="869,95,835,95,835,90,869,90"/>
-<area shape="rect" id="Node000003" href="$classTmc5160Handler.html#a15dae0f711e2dd4ecea09822b8a3a8bb" title="Get typed SPI driver pointer (null if UART mode or not initialized)." alt="" coords="299,5,519,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="633,71,537,45,484,33,485,28,538,39,634,66"/>
-<area shape="rect" id="Node000005" href="$classTmc5160Handler.html#af8cb1c7b5011bd24102d296f22c211c5" title="Get typed UART driver pointer (null if SPI mode or not initialized)." alt="" coords="295,55,523,80"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="572,84,523,80,524,74,572,78"/>
-<area shape="rect" id="Node000007" href="$classTmc5160Handler.html#ab4bf5aabef968f6f8ee66d08cf05913a" title="Dump diagnostic information to logger." alt="" coords="281,104,537,129"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="572,106,538,109,538,104,572,101"/>
-<area shape="rect" id="Node000008" href="$classTmc5160Handler.html#a5ad276d4fcd81765d0a5af064fdbf7b5" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="285,153,534,179"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="629,119,538,143,480,156,479,151,537,138,628,114"/>
+<area shape="rect" id="Node000001" title="Initialize the TMC5160 driver with full configuration." alt="" coords="883,129,1080,155"/>
+<area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a6d4fce2433e03bb11b05a4278ef66fd0" title=" " alt="" coords="585,122,835,162"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="869,145,835,145,835,139,869,139"/>
+<area shape="rect" id="Node000003" href="$classTmc5160Handler.html#a15dae0f711e2dd4ecea09822b8a3a8bb" title="Get typed SPI driver pointer (null if UART mode or not initialized)." alt="" coords="299,55,519,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="633,121,537,94,484,83,485,77,538,89,634,115"/>
+<area shape="rect" id="Node000007" href="$classTmc5160Handler.html#af8cb1c7b5011bd24102d296f22c211c5" title="Get typed UART driver pointer (null if SPI mode or not initialized)." alt="" coords="295,104,523,129"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="572,133,523,129,524,124,572,128"/>
+<area shape="rect" id="Node000009" href="$classTmc5160Handler.html#ab4bf5aabef968f6f8ee66d08cf05913a" title="Dump diagnostic information to logger." alt="" coords="281,153,537,179"/>
+<area shape="poly" id="edge10_Node000002_Node000009" title=" " alt="" coords="572,156,538,158,538,153,572,150"/>
+<area shape="rect" id="Node000010" href="$classTmc5160Handler.html#a5ad276d4fcd81765d0a5af064fdbf7b5" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="285,203,534,228"/>
+<area shape="poly" id="edge11_Node000002_Node000010" title=" " alt="" coords="629,168,538,193,480,205,479,200,537,187,628,163"/>
 <area shape="rect" id="Node000004" href="$classTmc5160Handler.html#aa47c7b0c69a35aa3f9e9c6fc8d2bd95c" title=" " alt="" coords="9,5,229,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="286,21,230,21,230,15,286,15"/>
-<area shape="rect" id="Node000006" href="$classTmc5160Handler.html#a845e1879a4606367f419f3892061ff31" title=" " alt="" coords="5,55,233,80"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="282,70,234,70,234,65,282,65"/>
-<area shape="rect" id="Node000009" href="$classTmc5160Handler.html#adf1b6ae5b680756f1b68169789cf0c1f" title="Visit the typed driver with a callable." alt="" coords="15,153,224,179"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="271,169,224,169,224,163,271,163"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="320,55,194,33,195,28,321,50"/>
+<area shape="rect" id="Node000005" href="$classTmc5160Handler.html#a755fbb0bd0c5faa03c807522e4ea469a" title="Const overload of GetDriver()." alt="" coords="17,104,221,129"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="321,85,195,107,194,101,320,80"/>
+<area shape="rect" id="Node000006" href="$classTmc5160Handler.html#a8753f4b21ffb25d294d4ce41951f11f7" title="Get the active driver pointer without requiring visitor usage." alt="" coords="17,55,221,80"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="285,70,222,70,222,65,285,65"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="281,119,221,119,221,114,281,114"/>
+<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="320,104,194,83,195,77,321,99"/>
+<area shape="rect" id="Node000008" href="$classTmc5160Handler.html#a845e1879a4606367f419f3892061ff31" title=" " alt="" coords="5,153,233,179"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="321,134,195,156,194,151,320,129"/>
+<area shape="rect" id="Node000011" href="$classTmc5160Handler.html#adf1b6ae5b680756f1b68169789cf0c1f" title="Visit the typed driver with a callable." alt="" coords="15,203,224,228"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="271,218,224,218,224,213,271,213"/>
 </map>

@@ -168,6 +168,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af8cb1c7b5011bd24102d296f22c211c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a845e1879a4606367f419f3892061ff31" id="r_a845e1879a4606367f419f3892061ff31"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a31e66827548c966a076877961d3e852f">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a845e1879a4606367f419f3892061ff31">driverViaUart</a> () const noexcept</td></tr>
 <tr class="separator:a845e1879a4606367f419f3892061ff31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8753f4b21ffb25d294d4ce41951f11f7" id="r_a8753f4b21ffb25d294d4ce41951f11f7"><td class="memItemLeft" align="right" valign="top">DriverVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8753f4b21ffb25d294d4ce41951f11f7">GetDriver</a> () noexcept</td></tr>
+<tr class="memdesc:a8753f4b21ffb25d294d4ce41951f11f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the active driver pointer without requiring visitor usage.  <br /></td></tr>
+<tr class="separator:a8753f4b21ffb25d294d4ce41951f11f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a755fbb0bd0c5faa03c807522e4ea469a" id="r_a755fbb0bd0c5faa03c807522e4ea469a"><td class="memItemLeft" align="right" valign="top">ConstDriverVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a755fbb0bd0c5faa03c807522e4ea469a">GetDriver</a> () const noexcept</td></tr>
+<tr class="memdesc:a755fbb0bd0c5faa03c807522e4ea469a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const overload of <a class="el" href="#a8753f4b21ffb25d294d4ce41951f11f7" title="Get the active driver pointer without requiring visitor usage.">GetDriver()</a>.  <br /></td></tr>
+<tr class="separator:a755fbb0bd0c5faa03c807522e4ea469a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4bf5aabef968f6f8ee66d08cf05913a" id="r_ab4bf5aabef968f6f8ee66d08cf05913a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4bf5aabef968f6f8ee66d08cf05913a">DumpDiagnostics</a> () noexcept</td></tr>
 <tr class="memdesc:ab4bf5aabef968f6f8ee66d08cf05913a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump diagnostic information to logger.  <br /></td></tr>
 <tr class="separator:ab4bf5aabef968f6f8ee66d08cf05913a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -568,7 +574,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a15dae0f711e2dd4ecea09822b8a3a8bb_icgraph.svg" width="499" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a15dae0f711e2dd4ecea09822b8a3a8bb_icgraph.svg" width="499" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -635,7 +641,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_af8cb1c7b5011bd24102d296f22c211c5_icgraph.svg" width="515" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_af8cb1c7b5011bd24102d296f22c211c5_icgraph.svg" width="515" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -740,7 +746,72 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a6d4fce2433e03bb11b05a4278ef66fd0_icgraph.svg" width="840" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a6d4fce2433e03bb11b05a4278ef66fd0_icgraph.svg" width="840" height="234"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a755fbb0bd0c5faa03c807522e4ea469a" name="a755fbb0bd0c5faa03c807522e4ea469a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a755fbb0bd0c5faa03c807522e4ea469a">&#9670;&#160;</a></span>GetDriver() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ConstDriverVariant Tmc5160Handler::GetDriver </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Const overload of <a class="el" href="#a8753f4b21ffb25d294d4ce41951f11f7" title="Get the active driver pointer without requiring visitor usage.">GetDriver()</a>. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a755fbb0bd0c5faa03c807522e4ea469a_cgraph.svg" width="1454" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a8753f4b21ffb25d294d4ce41951f11f7" name="a8753f4b21ffb25d294d4ce41951f11f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8753f4b21ffb25d294d4ce41951f11f7">&#9670;&#160;</a></span>GetDriver() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DriverVariant Tmc5160Handler::GetDriver </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the active driver pointer without requiring visitor usage. </p>
+<dl class="section return"><dt>Returns</dt><dd><code>SpiDriver*</code> or <code>UartDriver*</code> wrapped in std::variant, or monostate if unavailable. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a8753f4b21ffb25d294d4ce41951f11f7_cgraph.svg" width="1454" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -816,7 +887,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a44ab36857e4e43062f81f7d6f10eab09_icgraph.svg" width="1086" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a44ab36857e4e43062f81f7d6f10eab09_icgraph.svg" width="1086" height="234"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

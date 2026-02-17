@@ -1,0 +1,5 @@
+<map id="Bno08xHandler::applyConfigLocked" name="Bno08xHandler::applyConfigLocked">
+<area shape="rect" id="Node000001" title="Internal: apply configured sensor enables (assumes mutex is held)." alt="" coords="5,5,212,45"/>
+<area shape="rect" id="Node000002" href="$classIBno08xDriverOps.html#a1da5bdfd4c8d7fbd42475ae7ee37fb98" title=" " alt="" coords="260,5,452,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,23,246,23,246,28,212,28"/>
+</map>

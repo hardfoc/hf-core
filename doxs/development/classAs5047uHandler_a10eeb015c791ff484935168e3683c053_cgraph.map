@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Validate sensor parameters." alt="" coords="5,23,196,63"/>
 <area shape="rect" id="Node000002" href="$classAs5047uHandler.html#a040ba453eb7892ab3189631d73a2f683" title="Ensure initialized while mutex is already held." alt="" coords="244,23,489,63"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,41,230,41,230,46,196,46"/>
-<area shape="rect" id="Node000003" href="$classAs5047uHandler.html#a4dcfcea95fe8114ca7e0e5554d21ebc0" title="Initialize the AS5047U sensor (lazy initialization)" alt="" coords="537,31,731,56"/>
+<area shape="rect" id="Node000003" href="$classAs5047uHandler.html#a157826010a85f4279b7a13791fcf2003" title="Initialize the AS5047U sensor (lazy initialization)" alt="" coords="537,31,731,56"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="489,41,524,41,524,46,489,46"/>
 <area shape="rect" id="Node000004" href="$classAs5047uHandler.html#a0e7c20d4fd883c55ff9091041ec04c39" title="Apply configuration to sensor." alt="" coords="779,5,1040,31"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="730,32,765,29,765,34,731,37"/>

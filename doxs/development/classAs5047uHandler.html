@@ -127,15 +127,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aed1b1a02d2cebaed9d882476c946760a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a557b92db81b7f6e125d6410c9720fb7c" id="r_a557b92db81b7f6e125d6410c9720fb7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAs5047uHandler.html">As5047uHandler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a557b92db81b7f6e125d6410c9720fb7c">operator=</a> (<a class="el" href="classAs5047uHandler.html">As5047uHandler</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:a557b92db81b7f6e125d6410c9720fb7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4dcfcea95fe8114ca7e0e5554d21ebc0" id="r_a4dcfcea95fe8114ca7e0e5554d21ebc0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4dcfcea95fe8114ca7e0e5554d21ebc0">Initialize</a> () noexcept</td></tr>
-<tr class="memdesc:a4dcfcea95fe8114ca7e0e5554d21ebc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the AS5047U sensor (lazy initialization)  <br /></td></tr>
-<tr class="separator:a4dcfcea95fe8114ca7e0e5554d21ebc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a157826010a85f4279b7a13791fcf2003" id="r_a157826010a85f4279b7a13791fcf2003"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a157826010a85f4279b7a13791fcf2003">Initialize</a> () noexcept</td></tr>
+<tr class="memdesc:a157826010a85f4279b7a13791fcf2003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the AS5047U sensor (lazy initialization)  <br /></td></tr>
+<tr class="separator:a157826010a85f4279b7a13791fcf2003"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f16efc74198279ee63c46d2b55825fa" id="r_a7f16efc74198279ee63c46d2b55825fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f16efc74198279ee63c46d2b55825fa">EnsureInitialized</a> () noexcept</td></tr>
 <tr class="memdesc:a7f16efc74198279ee63c46d2b55825fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure the handler is initialized (lazy init entrypoint).  <br /></td></tr>
 <tr class="separator:a7f16efc74198279ee63c46d2b55825fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c09ae598f3e49e55247198e18dff352" id="r_a8c09ae598f3e49e55247198e18dff352"><td class="memItemLeft" align="right" valign="top"><a class="el" href="As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c09ae598f3e49e55247198e18dff352">Deinitialize</a> () noexcept</td></tr>
-<tr class="memdesc:a8c09ae598f3e49e55247198e18dff352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deinitialize the sensor and free resources.  <br /></td></tr>
-<tr class="separator:a8c09ae598f3e49e55247198e18dff352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b178fdb83d16cee568f7e52b2b3f85a" id="r_a7b178fdb83d16cee568f7e52b2b3f85a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b178fdb83d16cee568f7e52b2b3f85a">Deinitialize</a> () noexcept</td></tr>
+<tr class="memdesc:a7b178fdb83d16cee568f7e52b2b3f85a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deinitialize the sensor and free resources.  <br /></td></tr>
+<tr class="separator:a7b178fdb83d16cee568f7e52b2b3f85a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0ff2f9e31a7cbc1e1a21eff75ff5188" id="r_ab0ff2f9e31a7cbc1e1a21eff75ff5188"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0ff2f9e31a7cbc1e1a21eff75ff5188">IsInitialized</a> () const noexcept</td></tr>
 <tr class="memdesc:ab0ff2f9e31a7cbc1e1a21eff75ff5188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if sensor is initialized and ready.  <br /></td></tr>
 <tr class="separator:ab0ff2f9e31a7cbc1e1a21eff75ff5188"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,30 +145,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7935a51fb2973e3a1793d378fc50118a" id="r_a7935a51fb2973e3a1793d378fc50118a"><td class="memItemLeft" align="right" valign="top">as5047u::AS5047U&lt; <a class="el" href="classAs5047uSpiAdapter.html">As5047uSpiAdapter</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7935a51fb2973e3a1793d378fc50118a">GetSensor</a> () noexcept</td></tr>
 <tr class="memdesc:a7935a51fb2973e3a1793d378fc50118a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pointer to AS5047U driver for advanced operations.  <br /></td></tr>
 <tr class="separator:a7935a51fb2973e3a1793d378fc50118a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10e4de42743f7ceb1f2fef7cadbfc000" id="r_a10e4de42743f7ceb1f2fef7cadbfc000"><td class="memItemLeft" align="right" valign="top">as5047u::AS5047U&lt; <a class="el" href="classAs5047uSpiAdapter.html">As5047uSpiAdapter</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10e4de42743f7ceb1f2fef7cadbfc000">GetDriver</a> () noexcept</td></tr>
+<tr class="memdesc:a10e4de42743f7ceb1f2fef7cadbfc000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Naming-consistent alias of <a class="el" href="#a7935a51fb2973e3a1793d378fc50118a" title="Get pointer to AS5047U driver for advanced operations.">GetSensor()</a>.  <br /></td></tr>
+<tr class="separator:a10e4de42743f7ceb1f2fef7cadbfc000"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff42824ec0c4048211b432a35946ce19" id="r_aff42824ec0c4048211b432a35946ce19"><td class="memItemLeft" align="right" valign="top">const as5047u::AS5047U&lt; <a class="el" href="classAs5047uSpiAdapter.html">As5047uSpiAdapter</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff42824ec0c4048211b432a35946ce19">GetDriver</a> () const noexcept</td></tr>
+<tr class="separator:aff42824ec0c4048211b432a35946ce19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60c746a9c38be3c77de2c6148fbfbe54" id="r_a60c746a9c38be3c77de2c6148fbfbe54"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a60c746a9c38be3c77de2c6148fbfbe54"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a60c746a9c38be3c77de2c6148fbfbe54">visitDriver</a> (Fn &amp;&amp;fn) noexcept -&gt; decltype(fn(std::declval&lt; as5047u::AS5047U&lt; <a class="el" href="classAs5047uSpiAdapter.html">As5047uSpiAdapter</a> &gt; &amp; &gt;()))</td></tr>
+<tr class="memdesc:a60c746a9c38be3c77de2c6148fbfbe54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit the underlying AS5047U driver under handler mutex protection.  <br /></td></tr>
+<tr class="separator:a60c746a9c38be3c77de2c6148fbfbe54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c4b15673544646987fce22ca789e597" id="r_a9c4b15673544646987fce22ca789e597"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c4b15673544646987fce22ca789e597">GetDescription</a> () const noexcept</td></tr>
 <tr class="memdesc:a9c4b15673544646987fce22ca789e597"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get sensor description string.  <br /></td></tr>
 <tr class="separator:a9c4b15673544646987fce22ca789e597"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38694ac985bd23b251b7b5400232e2bc" id="r_a38694ac985bd23b251b7b5400232e2bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38694ac985bd23b251b7b5400232e2bc">GetLastError</a> () const noexcept</td></tr>
-<tr class="memdesc:a38694ac985bd23b251b7b5400232e2bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get last error code.  <br /></td></tr>
-<tr class="separator:a38694ac985bd23b251b7b5400232e2bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cf122135165cde95680fe70ca55efcc" id="r_a4cf122135165cde95680fe70ca55efcc"><td class="memItemLeft" align="right" valign="top">AS5047U_Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cf122135165cde95680fe70ca55efcc">GetLastError</a> () const noexcept</td></tr>
+<tr class="memdesc:a4cf122135165cde95680fe70ca55efcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get last error code.  <br /></td></tr>
+<tr class="separator:a4cf122135165cde95680fe70ca55efcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b24bfde6fe7f29e66b61828f44d2dff" id="r_a4b24bfde6fe7f29e66b61828f44d2dff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b24bfde6fe7f29e66b61828f44d2dff">DumpDiagnostics</a> () const noexcept</td></tr>
 <tr class="memdesc:a4b24bfde6fe7f29e66b61828f44d2dff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump comprehensive diagnostics and statistics to log as INFO level. Logs AS5047U sensor status, communication health, and measurement statistics.  <br /></td></tr>
 <tr class="separator:a4b24bfde6fe7f29e66b61828f44d2dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a5d9c121ad70a79a2ffa2c2eb90c5700f" id="r_a5d9c121ad70a79a2ffa2c2eb90c5700f"><td class="memItemLeft" align="right" valign="top">static constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d9c121ad70a79a2ffa2c2eb90c5700f">LSBToDegrees</a> (uint16_t angle_lsb) noexcept</td></tr>
-<tr class="memdesc:a5d9c121ad70a79a2ffa2c2eb90c5700f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert angle LSB to degrees.  <br /></td></tr>
-<tr class="separator:a5d9c121ad70a79a2ffa2c2eb90c5700f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad624c8e6c276a0a30f24a9bc42cd4bbd" id="r_ad624c8e6c276a0a30f24a9bc42cd4bbd"><td class="memItemLeft" align="right" valign="top">static constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad624c8e6c276a0a30f24a9bc42cd4bbd">LSBToRadians</a> (uint16_t angle_lsb) noexcept</td></tr>
-<tr class="memdesc:ad624c8e6c276a0a30f24a9bc42cd4bbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert angle LSB to radians.  <br /></td></tr>
-<tr class="separator:ad624c8e6c276a0a30f24a9bc42cd4bbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e5cbf5a7969e1038f7bc8ad2cf5fd86" id="r_a0e5cbf5a7969e1038f7bc8ad2cf5fd86"><td class="memItemLeft" align="right" valign="top">static constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e5cbf5a7969e1038f7bc8ad2cf5fd86">DegreesToLSB</a> (double degrees) noexcept</td></tr>
-<tr class="memdesc:a0e5cbf5a7969e1038f7bc8ad2cf5fd86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert degrees to angle LSB.  <br /></td></tr>
-<tr class="separator:a0e5cbf5a7969e1038f7bc8ad2cf5fd86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aace41d4d263d786e4ba23a0e6b4232a0" id="r_aace41d4d263d786e4ba23a0e6b4232a0"><td class="memItemLeft" align="right" valign="top">static constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aace41d4d263d786e4ba23a0e6b4232a0">RadiansToLSB</a> (double radians) noexcept</td></tr>
-<tr class="memdesc:aace41d4d263d786e4ba23a0e6b4232a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert radians to angle LSB.  <br /></td></tr>
-<tr class="separator:aace41d4d263d786e4ba23a0e6b4232a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cfe5bb285cb087d078e5f248ccd0d82" id="r_a5cfe5bb285cb087d078e5f248ccd0d82"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structAs5047uConfig.html">As5047uConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cfe5bb285cb087d078e5f248ccd0d82">GetDefaultConfig</a> () noexcept</td></tr>
 <tr class="memdesc:a5cfe5bb285cb087d078e5f248ccd0d82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get default sensor configuration.  <br /></td></tr>
 <tr class="separator:a5cfe5bb285cb087d078e5f248ccd0d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -211,9 +208,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a06e319b13ee69597297a881236b6464f" id="r_a06e319b13ee69597297a881236b6464f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06e319b13ee69597297a881236b6464f">initialized_</a></td></tr>
 <tr class="memdesc:a06e319b13ee69597297a881236b6464f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization state.  <br /></td></tr>
 <tr class="separator:a06e319b13ee69597297a881236b6464f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31f3519a6ad9ff3829e0713c351cc4b5" id="r_a31f3519a6ad9ff3829e0713c351cc4b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31f3519a6ad9ff3829e0713c351cc4b5">last_error_</a></td></tr>
-<tr class="memdesc:a31f3519a6ad9ff3829e0713c351cc4b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last error code.  <br /></td></tr>
-<tr class="separator:a31f3519a6ad9ff3829e0713c351cc4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa61a5e00eb613efc5cec7b31ae86d2b9" id="r_aa61a5e00eb613efc5cec7b31ae86d2b9"><td class="memItemLeft" align="right" valign="top">AS5047U_Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa61a5e00eb613efc5cec7b31ae86d2b9">last_error_</a></td></tr>
+<tr class="memdesc:aa61a5e00eb613efc5cec7b31ae86d2b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last driver-reported error flags.  <br /></td></tr>
+<tr class="separator:aa61a5e00eb613efc5cec7b31ae86d2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5af0b45c93a36c7c97030b546eb6fed8" id="r_a5af0b45c93a36c7c97030b546eb6fed8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAs5047uDiagnostics.html">As5047uDiagnostics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5af0b45c93a36c7c97030b546eb6fed8">diagnostics_</a></td></tr>
 <tr class="memdesc:a5af0b45c93a36c7c97030b546eb6fed8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cached diagnostics.  <br /></td></tr>
 <tr class="separator:a5af0b45c93a36c7c97030b546eb6fed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -269,7 +266,7 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>Note: Lightweight constructor following lazy initialization pattern. Objects are created during <a class="el" href="#a4dcfcea95fe8114ca7e0e5554d21ebc0" title="Initialize the AS5047U sensor (lazy initialization)">Initialize()</a> call. </p>
+<p>Note: Lightweight constructor following lazy initialization pattern. Objects are created during <a class="el" href="#a157826010a85f4279b7a13791fcf2003" title="Initialize the AS5047U sensor (lazy initialization)">Initialize()</a> call. </p>
 
 </div>
 </div>
@@ -385,47 +382,13 @@ Private Attributes</h2></td></tr>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a0e7c20d4fd883c55ff9091041ec04c39_icgraph.svg" width="1706" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a0e7c20d4fd883c55ff9091041ec04c39_icgraph.svg" width="1731" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a0e5cbf5a7969e1038f7bc8ad2cf5fd86" name="a0e5cbf5a7969e1038f7bc8ad2cf5fd86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e5cbf5a7969e1038f7bc8ad2cf5fd86">&#9670;&#160;</a></span>DegreesToLSB()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static constexpr uint16_t As5047uHandler::DegreesToLSB </td>
-          <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>degrees</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Convert degrees to angle LSB. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">degrees</td><td>Angle in degrees </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Angle in LSB units (0-16383) </dd></dl>
-
-</div>
-</div>
-<a id="a8c09ae598f3e49e55247198e18dff352" name="a8c09ae598f3e49e55247198e18dff352"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c09ae598f3e49e55247198e18dff352">&#9670;&#160;</a></span>Deinitialize()</h2>
+<a id="a7b178fdb83d16cee568f7e52b2b3f85a" name="a7b178fdb83d16cee568f7e52b2b3f85a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b178fdb83d16cee568f7e52b2b3f85a">&#9670;&#160;</a></span>Deinitialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -434,7 +397,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a> As5047uHandler::Deinitialize </td>
+          <td class="memname">bool As5047uHandler::Deinitialize </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -448,7 +411,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Deinitialize the sensor and free resources. </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665cad0749aaba8b833466dfcbb0428e4f89c">As5047uError::SUCCESS</a> if successful </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if successful </dd></dl>
 
 </div>
 </div>
@@ -479,7 +442,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a4b24bfde6fe7f29e66b61828f44d2dff_cgraph.svg" width="692" height="159"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a4b24bfde6fe7f29e66b61828f44d2dff_cgraph.svg" width="683" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -550,7 +513,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a040ba453eb7892ab3189631d73a2f683_icgraph.svg" width="1155" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a040ba453eb7892ab3189631d73a2f683_icgraph.svg" width="1180" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -611,8 +574,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a38694ac985bd23b251b7b5400232e2bc" name="a38694ac985bd23b251b7b5400232e2bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38694ac985bd23b251b7b5400232e2bc">&#9670;&#160;</a></span>GetLastError()</h2>
+<a id="aff42824ec0c4048211b432a35946ce19" name="aff42824ec0c4048211b432a35946ce19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff42824ec0c4048211b432a35946ce19">&#9670;&#160;</a></span>GetDriver() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -621,7 +584,74 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a> As5047uHandler::GetLastError </td>
+          <td class="memname">const as5047u::AS5047U&lt; <a class="el" href="classAs5047uSpiAdapter.html">As5047uSpiAdapter</a> &gt; * As5047uHandler::GetDriver </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_aff42824ec0c4048211b432a35946ce19_cgraph.svg" width="1830" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a10e4de42743f7ceb1f2fef7cadbfc000" name="a10e4de42743f7ceb1f2fef7cadbfc000"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10e4de42743f7ceb1f2fef7cadbfc000">&#9670;&#160;</a></span>GetDriver() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">as5047u::AS5047U&lt; <a class="el" href="classAs5047uSpiAdapter.html">As5047uSpiAdapter</a> &gt; * As5047uHandler::GetDriver </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Naming-consistent alias of <a class="el" href="#a7935a51fb2973e3a1793d378fc50118a" title="Get pointer to AS5047U driver for advanced operations.">GetSensor()</a>. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a10e4de42743f7ceb1f2fef7cadbfc000_cgraph.svg" width="1582" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a10e4de42743f7ceb1f2fef7cadbfc000_icgraph.svg" width="459" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a4cf122135165cde95680fe70ca55efcc" name="a4cf122135165cde95680fe70ca55efcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cf122135165cde95680fe70ca55efcc">&#9670;&#160;</a></span>GetLastError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AS5047U_Error As5047uHandler::GetLastError </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -673,7 +703,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a7935a51fb2973e3a1793d378fc50118a_icgraph.svg" width="820" height="87"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a7935a51fb2973e3a1793d378fc50118a_icgraph.svg" width="846" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -711,13 +741,13 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a6b29b6418f7b2d19cbdcc65aa6eb9756_icgraph.svg" width="1979" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a6b29b6418f7b2d19cbdcc65aa6eb9756_icgraph.svg" width="2004" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a4dcfcea95fe8114ca7e0e5554d21ebc0" name="a4dcfcea95fe8114ca7e0e5554d21ebc0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4dcfcea95fe8114ca7e0e5554d21ebc0">&#9670;&#160;</a></span>Initialize()</h2>
+<a id="a157826010a85f4279b7a13791fcf2003" name="a157826010a85f4279b7a13791fcf2003"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a157826010a85f4279b7a13791fcf2003">&#9670;&#160;</a></span>Initialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -726,7 +756,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a> As5047uHandler::Initialize </td>
+          <td class="memname">bool As5047uHandler::Initialize </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -740,17 +770,17 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Initialize the AS5047U sensor (lazy initialization) </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665cad0749aaba8b833466dfcbb0428e4f89c">As5047uError::SUCCESS</a> if successful, error code otherwise</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if successful, false otherwise</dd></dl>
 <p>Creates AS5047U driver instance and performs sensor initialization. Safe to call multiple times - subsequent calls return current status. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a4dcfcea95fe8114ca7e0e5554d21ebc0_cgraph.svg" width="788" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a157826010a85f4279b7a13791fcf2003_cgraph.svg" width="788" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a4dcfcea95fe8114ca7e0e5554d21ebc0_icgraph.svg" width="1396" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a157826010a85f4279b7a13791fcf2003_icgraph.svg" width="1422" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -816,79 +846,6 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a5d9c121ad70a79a2ffa2c2eb90c5700f" name="a5d9c121ad70a79a2ffa2c2eb90c5700f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d9c121ad70a79a2ffa2c2eb90c5700f">&#9670;&#160;</a></span>LSBToDegrees()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static constexpr double As5047uHandler::LSBToDegrees </td>
-          <td>(</td>
-          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>angle_lsb</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Convert angle LSB to degrees. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">angle_lsb</td><td>Angle in LSB units (0-16383) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Angle in degrees (0.0-359.978°) </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a5d9c121ad70a79a2ffa2c2eb90c5700f_icgraph.svg" width="634" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="ad624c8e6c276a0a30f24a9bc42cd4bbd" name="ad624c8e6c276a0a30f24a9bc42cd4bbd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad624c8e6c276a0a30f24a9bc42cd4bbd">&#9670;&#160;</a></span>LSBToRadians()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static constexpr double As5047uHandler::LSBToRadians </td>
-          <td>(</td>
-          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>angle_lsb</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Convert angle LSB to radians. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">angle_lsb</td><td>Angle in LSB units (0-16383) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Angle in radians (0.0-2π) </dd></dl>
-
-</div>
-</div>
 <a id="a557b92db81b7f6e125d6410c9720fb7c" name="a557b92db81b7f6e125d6410c9720fb7c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a557b92db81b7f6e125d6410c9720fb7c">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
 
@@ -939,40 +896,6 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="aace41d4d263d786e4ba23a0e6b4232a0" name="aace41d4d263d786e4ba23a0e6b4232a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aace41d4d263d786e4ba23a0e6b4232a0">&#9670;&#160;</a></span>RadiansToLSB()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static constexpr uint16_t As5047uHandler::RadiansToLSB </td>
-          <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>radians</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Convert radians to angle LSB. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">radians</td><td>Angle in radians </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Angle in LSB units (0-16383) </dd></dl>
-
-</div>
-</div>
 <a id="a6854be00365afbb2eeddfb3177939456" name="a6854be00365afbb2eeddfb3177939456"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6854be00365afbb2eeddfb3177939456">&#9670;&#160;</a></span>UpdateDiagnostics()</h2>
 
@@ -1005,7 +928,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a6854be00365afbb2eeddfb3177939456_icgraph.svg" width="1704" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a6854be00365afbb2eeddfb3177939456_icgraph.svg" width="1730" height="200"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1039,6 +962,41 @@ Here is the caller graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a10eeb015c791ff484935168e3683c053_cgraph.svg" width="1320" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a60c746a9c38be3c77de2c6148fbfbe54" name="a60c746a9c38be3c77de2c6148fbfbe54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60c746a9c38be3c77de2c6148fbfbe54">&#9670;&#160;</a></span>visitDriver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Fn &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto As5047uHandler::visitDriver </td>
+          <td>(</td>
+          <td class="paramtype">Fn &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>fn</em></span></td><td>)</td>
+          <td> -&gt; decltype(fn(std::declval&lt;as5047u::AS5047U&lt;<a class="el" href="classAs5047uSpiAdapter.html">As5047uSpiAdapter</a>&gt;&amp;&gt;())) </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Visit the underlying AS5047U driver under handler mutex protection. </p>
+<dl class="section return"><dt>Returns</dt><dd>Callable result or default-constructed value when driver is unavailable. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAs5047uHandler_a60c746a9c38be3c77de2c6148fbfbe54_cgraph.svg" width="1335" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1188,8 +1146,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a31f3519a6ad9ff3829e0713c351cc4b5" name="a31f3519a6ad9ff3829e0713c351cc4b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31f3519a6ad9ff3829e0713c351cc4b5">&#9670;&#160;</a></span>last_error_</h2>
+<a id="aa61a5e00eb613efc5cec7b31ae86d2b9" name="aa61a5e00eb613efc5cec7b31ae86d2b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa61a5e00eb613efc5cec7b31ae86d2b9">&#9670;&#160;</a></span>last_error_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1198,7 +1156,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a> As5047uHandler::last_error_</td>
+          <td class="memname">AS5047U_Error As5047uHandler::last_error_</td>
         </tr>
       </table>
   </td>
@@ -1208,7 +1166,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Last error code. </p>
+<p>Last driver-reported error flags. </p>
 
 </div>
 </div>
