@@ -88,6 +88,7 @@
 #include <memory>
 #include <type_traits>
 #include <cstdarg>
+#include <variant>
 #include "core/hf-core-drivers/external/hf-tmc5160-driver/inc/tmc51x0.hpp"
 #include "core/hf-core-drivers/external/hf-tmc5160-driver/inc/tmc51x0_comm_interface.hpp"
 #include "core/hf-core-drivers/external/hf-tmc5160-driver/inc/tmc51x0_types.hpp"
@@ -142,6 +143,9 @@ struct Tmc5160CtrlPins {
  */
 class HalSpiTmc5160Comm : public tmc51x0::SpiCommInterface<HalSpiTmc5160Comm> {
 public:
+    using DriverVariant = std::variant<std::monostate, SpiDriver*, UartDriver*>;
+    using ConstDriverVariant = std::variant<std::monostate, const SpiDriver*, const UartDriver*>;
+
     /**
      * @brief Construct the SPI communication adapter.
      * @param spi    Reference to a pre-configured BaseSpi implementation.
@@ -402,6 +406,31 @@ public:
      */
     [[nodiscard]] UartDriver* driverViaUart() noexcept;
     [[nodiscard]] const UartDriver* driverViaUart() const noexcept;
+
+    /**
+     * @brief Get the active driver pointer without requiring visitor usage.
+     * @return `SpiDriver*` or `UartDriver*` wrapped in std::variant, or monostate if unavailable.
+     */
+    [[nodiscard]] DriverVariant GetDriver() noexcept {
+        if (auto* spi = driverViaSpi()) {
+            return spi;
+        }
+        if (auto* uart = driverViaUart()) {
+            return uart;
+        }
+        return std::monostate{};
+    }
+
+    /** @brief Const overload of GetDriver(). */
+    [[nodiscard]] ConstDriverVariant GetDriver() const noexcept {
+        if (auto* spi = driverViaSpi()) {
+            return spi;
+        }
+        if (auto* uart = driverViaUart()) {
+            return uart;
+        }
+        return std::monostate{};
+    }
 
     //=========================================================================
     // Diagnostics

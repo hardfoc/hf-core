@@ -87,6 +87,10 @@ handler.visitDriver([](auto& driver) {
     driver.feedbackSense.configureHallSensor(1, 2, 3);
     driver.protection.setOvertemperatureLimit(120.0f);
 });
+
+// Or fetch active driver pointer explicitly without visitor:
+auto active = handler.GetDriver();
+// std::variant<std::monostate, SpiDriver*, UartDriver*>
 ```
 
 ## Test Coverage

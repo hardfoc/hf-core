@@ -62,7 +62,7 @@ As5047uHandler::As5047uHandler(BaseSpi& spi_interface, const As5047uConfig& conf
       as5047u_sensor_(nullptr),
       config_(config),
       initialized_(false),
-      last_error_(As5047uError::SUCCESS),
+      last_error_(AS5047U_Error::None),
       diagnostics_{} {
     
     // Generate description string
@@ -72,36 +72,36 @@ As5047uHandler::As5047uHandler(BaseSpi& spi_interface, const As5047uConfig& conf
     memset(&diagnostics_, 0, sizeof(diagnostics_));
 }
 
-As5047uError As5047uHandler::Initialize() noexcept {
+bool As5047uHandler::Initialize() noexcept {
     MutexLockGuard lock(handler_mutex_);
     
     // Already initialized - return success
     if (initialized_ && as5047u_sensor_) {
-        last_error_ = As5047uError::SUCCESS;
-        return last_error_;
+        last_error_ = AS5047U_Error::None;
+        return true;
     }
     
     // Create SPI adapter (CRTP pattern)
     spi_adapter_ = std::make_unique<As5047uSpiAdapter>(spi_ref_);
     if (!spi_adapter_) {
-        last_error_ = As5047uError::INITIALIZATION_FAILED;
-        return last_error_;
+        last_error_ = AS5047U_Error::None;
+        return false;
     }
     
     // Create AS5047U sensor instance (lazy initialization)
     as5047u_sensor_ = std::make_unique<as5047u::AS5047U<As5047uSpiAdapter>>(*spi_adapter_, config_.frame_format);
     if (!as5047u_sensor_) {
         spi_adapter_.reset();
-        last_error_ = As5047uError::INITIALIZATION_FAILED;
-        return last_error_;
+        last_error_ = AS5047U_Error::None;
+        return false;
     }
     
     // Apply initial configuration
     if (!ApplyConfiguration(config_)) {
         as5047u_sensor_.reset();
         spi_adapter_.reset();
-        last_error_ = As5047uError::INITIALIZATION_FAILED;
-        return last_error_;
+        last_error_ = AS5047U_Error::None;
+        return false;
     }
     
     // Test basic sensor communication (direct driver call, no recursive lock)
@@ -111,8 +111,8 @@ As5047uError As5047uHandler::Initialize() noexcept {
                                          static_cast<uint16_t>(AS5047U_Error::FramingError))) {
         as5047u_sensor_.reset();
         spi_adapter_.reset();
-        last_error_ = As5047uError::SPI_COMMUNICATION_FAILED;
-        return last_error_;
+        last_error_ = sticky;
+        return false;
     }
     (void)test_angle;
     
@@ -120,20 +120,20 @@ As5047uError As5047uHandler::Initialize() noexcept {
     UpdateDiagnostics();
     
     initialized_ = true;
-    last_error_ = As5047uError::SUCCESS;
-    return last_error_;
+    last_error_ = AS5047U_Error::None;
+    return true;
 }
 
 bool As5047uHandler::EnsureInitialized() noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) {
-        last_error_ = As5047uError::MUTEX_LOCK_FAILED;
+        last_error_ = AS5047U_Error::None;
         return false;
     }
     return EnsureInitializedLocked();
 }
 
-As5047uError As5047uHandler::Deinitialize() noexcept {
+bool As5047uHandler::Deinitialize() noexcept {
     MutexLockGuard lock(handler_mutex_);
     
     // Reset shared pointer (safe automatic cleanup)
@@ -141,8 +141,8 @@ As5047uError As5047uHandler::Deinitialize() noexcept {
     spi_adapter_.reset();
     
     initialized_ = false;
-    last_error_ = As5047uError::SUCCESS;
-    return last_error_;
+    last_error_ = AS5047U_Error::None;
+    return true;
 }
 
 bool As5047uHandler::IsInitialized() const noexcept {
@@ -158,13 +158,22 @@ bool As5047uHandler::IsSensorReady() const noexcept {
 as5047u::AS5047U<As5047uSpiAdapter>* As5047uHandler::GetSensor() noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) {
-        last_error_ = As5047uError::MUTEX_LOCK_FAILED;
+        last_error_ = AS5047U_Error::None;
         return nullptr;
     }
     if (!EnsureInitializedLocked()) {
         return nullptr;
     }
     return as5047u_sensor_.get();
+}
+
+as5047u::AS5047U<As5047uSpiAdapter>* As5047uHandler::GetDriver() noexcept {
+    return GetSensor();
+}
+
+const as5047u::AS5047U<As5047uSpiAdapter>* As5047uHandler::GetDriver() const noexcept {
+    auto* self = const_cast<As5047uHandler*>(this);
+    return self->GetDriver();
 }
 
 //======================================================//
@@ -191,7 +200,7 @@ const char* As5047uHandler::GetDescription() const noexcept {
     return description_;
 }
 
-As5047uError As5047uHandler::GetLastError() const noexcept {
+AS5047U_Error As5047uHandler::GetLastError() const noexcept {
     MutexLockGuard lock(handler_mutex_);
     return last_error_;
 }
@@ -209,8 +218,7 @@ bool As5047uHandler::EnsureInitializedLocked() noexcept {
         return true;
     }
 
-    const As5047uError init_result = Initialize();
-    return init_result == As5047uError::SUCCESS;
+    return Initialize();
 }
 
 void As5047uHandler::HandleSensorErrors(uint16_t sensor_errors) noexcept {
@@ -293,7 +301,7 @@ void As5047uHandler::DumpDiagnostics() const noexcept {
     // System Health
     Logger::GetInstance().Info(TAG, "System Health:");
     Logger::GetInstance().Info(TAG, "  Initialized: %s", initialized_ ? "YES" : "NO");
-    Logger::GetInstance().Info(TAG, "  Last Error: %s", As5047uErrorToString(last_error_));
+    Logger::GetInstance().Info(TAG, "  Last Driver Error Flags: 0x%04X", static_cast<uint16_t>(last_error_));
     
     // Sensor Status
     Logger::GetInstance().Info(TAG, "Sensor Status:");
@@ -357,7 +365,7 @@ void As5047uHandler::DumpDiagnostics() const noexcept {
     
     // System Status Summary
     bool system_healthy = initialized_ && 
-                         (last_error_ == As5047uError::SUCCESS) &&
+                         (last_error_ == AS5047U_Error::None) &&
                          diagnostics_.magnetic_field_ok &&
                          diagnostics_.communication_ok &&
                          !diagnostics_.cordic_overflow;

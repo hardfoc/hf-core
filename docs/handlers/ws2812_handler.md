@@ -38,17 +38,15 @@ struct Config {
 | `Initialize()` | Initialize RMT channel and LED strip |
 | `EnsureInitialized()` | Lazy init entrypoint |
 | `Deinitialize()` | Release RMT resources |
-| `SetPixel(index, r, g, b)` | Set a single pixel color |
-| `SetAllPixels(r, g, b)` | Set all pixels to the same color |
-| `Clear()` | Turn off all pixels |
-| `Show()` | Transmit pixel data to the strip |
-| `SetBrightness(val)` | Set global brightness (0–255) |
 | `GetNumLeds()` | Get the number of LEDs |
-| `SetEffect(effect, color)` | Set animation effect |
-| `Tick()` | Advance animation by time delta |
-| `Step()` | Advance animation by one step |
-| `GetStrip()` | Get underlying `WS2812Strip*` |
+| `GetDriver()` / `GetStrip()` | Get underlying `WS2812Strip*` |
 | `GetAnimator()` | Get underlying `WS2812Animator*` |
+| `visitDriver(fn)` | Execute callable with `WS2812Strip&` |
+| `visitAnimator(fn)` | Execute callable with `WS2812Animator&` |
+
+All pixel operations and animation effects are intentionally delegated to
+the underlying driver objects (`WS2812Strip`, `WS2812Animator`) exposed by
+the handler.
 
 ## Thread Safety
 

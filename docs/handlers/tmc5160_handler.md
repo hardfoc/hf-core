@@ -73,6 +73,10 @@ auto pos = handler.visitDriver([](auto& drv) -> int32_t {
     auto result = drv.rampControl.GetCurrentPosition();
     return result ? result.Value() : 0;
 });
+
+// Or fetch active driver pointer explicitly without visitor:
+auto active = handler.GetDriver();
+// std::variant<std::monostate, SpiDriver*, UartDriver*>
 ```
 
 ## Thread Safety

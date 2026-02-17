@@ -311,6 +311,11 @@ Bno08xError Bno08xHandler::Initialize() noexcept {
         }
     });
 
+    if (!applyConfigLocked()) {
+        last_error_ = Bno08xError::INITIALIZATION_FAILED;
+        return last_error_;
+    }
+
     initialized_ = true;
     last_error_ = Bno08xError::SUCCESS;
     return last_error_;
@@ -371,6 +376,63 @@ bool Bno08xHandler::ensureInitializedLocked() noexcept {
     // Initialize() can return a non-fatal communication error after partial
     // sensor enables while the driver itself is ready for use.
     return initialized_ && driver_ops_;
+}
+
+bool Bno08xHandler::applyConfigLocked() noexcept {
+    if (!driver_ops_) {
+        return false;
+    }
+
+    const auto enable_if_configured =
+        [this](BNO085Sensor sensor, bool enabled, uint32_t interval_ms) noexcept {
+            if (!enabled) {
+                return true;
+            }
+            return driver_ops_->EnableSensor(sensor, interval_ms, 0.0f);
+        };
+
+    return enable_if_configured(BNO085Sensor::Accelerometer,
+                                config_.enable_accelerometer,
+                                config_.accelerometer_interval_ms)
+        && enable_if_configured(BNO085Sensor::Gyroscope,
+                                config_.enable_gyroscope,
+                                config_.gyroscope_interval_ms)
+        && enable_if_configured(BNO085Sensor::Magnetometer,
+                                config_.enable_magnetometer,
+                                config_.magnetometer_interval_ms)
+        && enable_if_configured(BNO085Sensor::RotationVector,
+                                config_.enable_rotation_vector,
+                                config_.rotation_interval_ms)
+        && enable_if_configured(BNO085Sensor::LinearAcceleration,
+                                config_.enable_linear_acceleration,
+                                config_.linear_accel_interval_ms)
+        && enable_if_configured(BNO085Sensor::Gravity,
+                                config_.enable_gravity,
+                                config_.gravity_interval_ms)
+        && enable_if_configured(BNO085Sensor::GameRotationVector,
+                                config_.enable_game_rotation,
+                                config_.game_rotation_interval_ms)
+        && enable_if_configured(BNO085Sensor::TapDetector,
+                                config_.enable_tap_detector,
+                                0)
+        && enable_if_configured(BNO085Sensor::StepCounter,
+                                config_.enable_step_counter,
+                                0)
+        && enable_if_configured(BNO085Sensor::StepDetector,
+                                config_.enable_step_detector,
+                                0)
+        && enable_if_configured(BNO085Sensor::ShakeDetector,
+                                config_.enable_shake_detector,
+                                0)
+        && enable_if_configured(BNO085Sensor::PickupDetector,
+                                config_.enable_pickup_detector,
+                                0)
+        && enable_if_configured(BNO085Sensor::SignificantMotion,
+                                config_.enable_significant_motion,
+                                0)
+        && enable_if_configured(BNO085Sensor::StabilityClassifier,
+                                config_.enable_stability_classifier,
+                                0);
 }
 
 // ============================================================================

@@ -83,6 +83,7 @@
 #include <array>
 #include <atomic>
 #include <type_traits>
+#include <variant>
 #include "core/hf-core-drivers/external/hf-tmc9660-driver/inc/tmc9660.hpp"
 #include "core/hf-core-drivers/external/hf-tmc9660-driver/inc/tmc9660_comm_interface.hpp"
 #include "base/BaseGpio.h"
@@ -173,6 +174,9 @@ struct Tmc9660CtrlPins {
  */
 class HalSpiTmc9660Comm : public tmc9660::SpiCommInterface<HalSpiTmc9660Comm> {
 public:
+    using DriverVariant = std::variant<std::monostate, SpiDriver*, UartDriver*>;
+    using ConstDriverVariant = std::variant<std::monostate, const SpiDriver*, const UartDriver*>;
+
     /**
      * @brief Construct the SPI communication adapter.
      *
@@ -1100,6 +1104,31 @@ public:
 
     /** @brief Const version of driverViaUart(). */
     const UartDriver* driverViaUart() const noexcept;
+
+    /**
+     * @brief Get the active driver pointer without requiring visitor usage.
+     * @return `SpiDriver*` or `UartDriver*` wrapped in std::variant, or monostate if unavailable.
+     */
+    [[nodiscard]] DriverVariant GetDriver() noexcept {
+        if (auto* spi = driverViaSpi()) {
+            return spi;
+        }
+        if (auto* uart = driverViaUart()) {
+            return uart;
+        }
+        return std::monostate{};
+    }
+
+    /** @brief Const overload of GetDriver(). */
+    [[nodiscard]] ConstDriverVariant GetDriver() const noexcept {
+        if (auto* spi = driverViaSpi()) {
+            return spi;
+        }
+        if (auto* uart = driverViaUart()) {
+            return uart;
+        }
+        return std::monostate{};
+    }
 
     /// @}
 

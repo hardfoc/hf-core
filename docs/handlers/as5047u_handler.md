@@ -19,13 +19,21 @@ As5047uHandler(BaseSpi& spi, uint32_t spi_clock_hz = 1000000);
 
 | Method | Description |
 |:-------|:------------|
-| `EnsureInitialized()` | Lazy init — creates CRTP driver on first call |
-| `GetAngleRaw()` | 14-bit raw angle (0–16383) |
-| `GetAngleDegrees()` | Angle in degrees (0.0–360.0) |
-| `GetVelocity()` | Angular velocity from DAEC |
-| `GetDaecValue()` | Dynamic Angle Error Compensation value |
-| `SetZeroPosition(uint16_t)` | Program zero position offset |
-| `GetDiagnostics()` | AGC, CORDIC magnitude, error flags |
+| `Initialize()` / `Deinitialize()` | Handler lifecycle management |
+| `EnsureInitialized()` | Lazy init helper |
+| `GetSensor()` | Direct access to AS5047U driver instance |
+| `IsInitialized()` | Initialization state check |
+| `DumpDiagnostics()` | Handler and sensor status summary |
+
+### Driver Usage (via `GetSensor()`)
+
+Use the underlying driver unit-enum API for measurements:
+
+```cpp
+auto* sensor = handler.GetSensor();
+float angle_deg = sensor->GetAngle(as5047u::AngleUnit::Degrees);
+float vel_rpm = sensor->GetVelocity(as5047u::VelocityUnit::Rpm);
+```
 
 ## Thread Safety
 

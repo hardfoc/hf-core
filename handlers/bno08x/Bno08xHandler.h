@@ -83,6 +83,8 @@
 #include <memory>
 #include <array>
 #include <functional>
+#include <type_traits>
+#include <utility>
 #include "core/hf-core-drivers/external/hf-bno08x-driver/inc/bno08x.hpp"
 #include "core/hf-core-drivers/external/hf-bno08x-driver/inc/bno08x_comm_interface.hpp"
 #include "base/BaseI2c.h"
@@ -619,6 +621,28 @@ public:
     /** @brief Const overload of GetSensor(). */
     const IBno08xDriverOps* GetSensor() const noexcept;
 
+    /** @brief Naming-consistent alias of GetSensor(). */
+    IBno08xDriverOps* GetDriver() noexcept { return GetSensor(); }
+    const IBno08xDriverOps* GetDriver() const noexcept { return GetSensor(); }
+
+    /**
+     * @brief Visit the underlying IMU driver under handler mutex protection.
+     * @return Callable result or default-constructed value when driver is unavailable.
+     */
+    template <typename Fn>
+    auto visitDriver(Fn&& fn) noexcept -> decltype(fn(std::declval<IBno08xDriverOps&>())) {
+        using ReturnType = decltype(fn(std::declval<IBno08xDriverOps&>()));
+        MutexLockGuard lock(handler_mutex_);
+        if (!lock.IsLocked() || !ensureInitializedLocked() || !driver_ops_) {
+            if constexpr (std::is_void_v<ReturnType>) {
+                return;
+            } else {
+                return ReturnType{};
+            }
+        }
+        return fn(*driver_ops_);
+    }
+
     /**
      * @brief Get the last handler error code.
      * @return Last Bno08xError from a handler API call
@@ -670,6 +694,11 @@ private:
      * @brief Internal: ensure initialized (assumes mutex is held).
      */
     bool ensureInitializedLocked() noexcept;
+
+    /**
+     * @brief Internal: apply configured sensor enables (assumes mutex is held).
+     */
+    bool applyConfigLocked() noexcept;
 
     /**
      * @brief Internal: map SH-2 error code to Bno08xError.

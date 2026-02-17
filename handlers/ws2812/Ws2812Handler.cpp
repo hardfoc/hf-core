@@ -113,6 +113,15 @@ const WS2812Strip* Ws2812Handler::GetStrip() const noexcept {
     return self->GetStrip();
 }
 
+WS2812Strip* Ws2812Handler::GetDriver() noexcept {
+    return GetStrip();
+}
+
+const WS2812Strip* Ws2812Handler::GetDriver() const noexcept {
+    auto* self = const_cast<Ws2812Handler*>(this);
+    return self->GetDriver();
+}
+
 WS2812Animator* Ws2812Handler::GetAnimator() noexcept {
     MutexLockGuard lock(mutex_);
     if (!EnsureInitializedLocked()) {

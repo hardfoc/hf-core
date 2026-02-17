@@ -35,52 +35,11 @@
 
 #include <cstdint>
 #include <memory>
+#include <type_traits>
+#include <utility>
 #include "core/hf-core-drivers/external/hf-as5047u-driver/inc/as5047u.hpp"
 #include "base/BaseSpi.h"
 #include "utils/RtosMutex.h"
-
-//======================================================//
-// AS5047U ERROR CODES
-//======================================================//
-
-/**
- * @brief AS5047U handler error codes for consistent error reporting
- */
-enum class As5047uError : uint8_t {
-    SUCCESS = 0,
-    NOT_INITIALIZED,
-    INITIALIZATION_FAILED,
-    INVALID_PARAMETER,
-    SPI_COMMUNICATION_FAILED,
-    CRC_ERROR,
-    FRAMING_ERROR,
-    SENSOR_ERROR,
-    OTP_PROGRAMMING_FAILED,
-    CALIBRATION_FAILED,
-    TIMEOUT,
-    MUTEX_LOCK_FAILED
-};
-
-/**
- * @brief Convert As5047uError to string for debugging
- */
-constexpr const char* As5047uErrorToString(As5047uError error) noexcept {
-    switch (error) {
-        case As5047uError::SUCCESS: return "Success";
-        case As5047uError::NOT_INITIALIZED: return "Not initialized";
-        case As5047uError::INITIALIZATION_FAILED: return "Initialization failed";
-        case As5047uError::INVALID_PARAMETER: return "Invalid parameter";
-        case As5047uError::SPI_COMMUNICATION_FAILED: return "SPI communication failed";
-        case As5047uError::CRC_ERROR: return "CRC error";
-        case As5047uError::FRAMING_ERROR: return "Framing error";
-        case As5047uError::SENSOR_ERROR: return "Sensor error";
-        case As5047uError::OTP_PROGRAMMING_FAILED: return "OTP programming failed";
-        case As5047uError::CALIBRATION_FAILED: return "Calibration failed";
-        case As5047uError::TIMEOUT: return "Timeout";
-        case As5047uError::MUTEX_LOCK_FAILED: return "Mutex lock failed";
-        default: return "Unknown error";
-    }
-}
 
 //======================================================//
 // AS5047U SPI BRIDGE ADAPTER
@@ -221,12 +180,12 @@ public:
 
     /**
      * @brief Initialize the AS5047U sensor (lazy initialization)
-     * @return As5047uError::SUCCESS if successful, error code otherwise
+        * @return true if successful, false otherwise
      * 
      * Creates AS5047U driver instance and performs sensor initialization.
      * Safe to call multiple times - subsequent calls return current status.
      */
-    As5047uError Initialize() noexcept;
+    bool Initialize() noexcept;
 
     /**
      * @brief Ensure the handler is initialized (lazy init entrypoint).
@@ -236,9 +195,9 @@ public:
 
     /**
      * @brief Deinitialize the sensor and free resources
-     * @return As5047uError::SUCCESS if successful
+        * @return true if successful
      */
-    As5047uError Deinitialize() noexcept;
+    bool Deinitialize() noexcept;
 
     /**
      * @brief Check if sensor is initialized and ready
@@ -260,45 +219,31 @@ public:
      */
     as5047u::AS5047U<As5047uSpiAdapter>* GetSensor() noexcept;
 
+    /** @brief Naming-consistent alias of GetSensor(). */
+    as5047u::AS5047U<As5047uSpiAdapter>* GetDriver() noexcept;
+    const as5047u::AS5047U<As5047uSpiAdapter>* GetDriver() const noexcept;
+
+    /**
+     * @brief Visit the underlying AS5047U driver under handler mutex protection.
+     * @return Callable result or default-constructed value when driver is unavailable.
+     */
+    template <typename Fn>
+    auto visitDriver(Fn&& fn) noexcept -> decltype(fn(std::declval<as5047u::AS5047U<As5047uSpiAdapter>&>())) {
+        using ReturnType = decltype(fn(std::declval<as5047u::AS5047U<As5047uSpiAdapter>&>()));
+        MutexLockGuard lock(handler_mutex_);
+        if (!EnsureInitializedLocked() || !as5047u_sensor_) {
+            if constexpr (std::is_void_v<ReturnType>) {
+                return;
+            } else {
+                return ReturnType{};
+            }
+        }
+        return fn(*as5047u_sensor_);
+    }
+
     //======================================================//
     // UTILITY METHODS
     //======================================================//
-
-    /**
-     * @brief Convert angle LSB to degrees
-     * @param angle_lsb Angle in LSB units (0-16383)
-     * @return Angle in degrees (0.0-359.978°)
-     */
-    static constexpr double LSBToDegrees(uint16_t angle_lsb) noexcept {
-        return (angle_lsb * 360.0) / 16384.0;
-    }
-
-    /**
-     * @brief Convert angle LSB to radians
-     * @param angle_lsb Angle in LSB units (0-16383)
-     * @return Angle in radians (0.0-2π)
-     */
-    static constexpr double LSBToRadians(uint16_t angle_lsb) noexcept {
-        return (angle_lsb * 2.0 * M_PI) / 16384.0;
-    }
-
-    /**
-     * @brief Convert degrees to angle LSB
-     * @param degrees Angle in degrees
-     * @return Angle in LSB units (0-16383)
-     */
-    static constexpr uint16_t DegreesToLSB(double degrees) noexcept {
-        return static_cast<uint16_t>((degrees * 16384.0) / 360.0) & 0x3FFF;
-    }
-
-    /**
-     * @brief Convert radians to angle LSB
-     * @param radians Angle in radians
-     * @return Angle in LSB units (0-16383)
-     */
-    static constexpr uint16_t RadiansToLSB(double radians) noexcept {
-        return static_cast<uint16_t>((radians * 16384.0) / (2.0 * M_PI)) & 0x3FFF;
-    }
 
     /**
      * @brief Get default sensor configuration
@@ -316,7 +261,7 @@ public:
      * @brief Get last error code
      * @return Last error that occurred
      */
-    As5047uError GetLastError() const noexcept;
+    AS5047U_Error GetLastError() const noexcept;
     
     /**
      * @brief Dump comprehensive diagnostics and statistics to log as INFO level.
@@ -335,7 +280,7 @@ private:
     As5047uConfig config_;                           ///< Sensor configuration
     mutable RtosMutex handler_mutex_;                ///< Thread safety mutex
     bool initialized_;                               ///< Initialization state
-    mutable As5047uError last_error_;                ///< Last error code
+    mutable AS5047U_Error last_error_;               ///< Last driver-reported error flags
     mutable As5047uDiagnostics diagnostics_;         ///< Cached diagnostics
     char description_[64];                           ///< Sensor description
 

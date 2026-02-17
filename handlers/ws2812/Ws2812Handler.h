@@ -45,6 +45,8 @@
 
 #include <cstdint>
 #include <memory>
+#include <type_traits>
+#include <utility>
 #include "core/hf-core-drivers/external/hf-ws2812-rmt-driver/inc/ws2812_cpp.hpp"
 #include "core/hf-core-drivers/external/hf-ws2812-rmt-driver/inc/ws2812_effects.hpp"
 #include "core/hf-core-drivers/internal/hf-internal-interface-wrap/inc/utils/RtosMutex.h"
@@ -141,12 +143,52 @@ public:
     [[nodiscard]] WS2812Strip* GetStrip() noexcept;
     [[nodiscard]] const WS2812Strip* GetStrip() const noexcept;
 
+    /** @brief Naming-consistent alias of GetStrip(). */
+    [[nodiscard]] WS2812Strip* GetDriver() noexcept;
+    [[nodiscard]] const WS2812Strip* GetDriver() const noexcept;
+
     /**
      * @brief Get the animator object.
      * @return Pointer to WS2812Animator, or nullptr if not initialized.
      */
     [[nodiscard]] WS2812Animator* GetAnimator() noexcept;
     [[nodiscard]] const WS2812Animator* GetAnimator() const noexcept;
+
+    /**
+     * @brief Visit strip driver with a callable.
+     * @return Callable result or default-constructed value if unavailable.
+     */
+    template <typename Fn>
+    auto visitDriver(Fn&& fn) noexcept -> decltype(fn(std::declval<WS2812Strip&>())) {
+        using ReturnType = decltype(fn(std::declval<WS2812Strip&>()));
+        MutexLockGuard lock(mutex_);
+        if (!EnsureInitializedLocked() || !strip_) {
+            if constexpr (std::is_void_v<ReturnType>) {
+                return;
+            } else {
+                return ReturnType{};
+            }
+        }
+        return fn(*strip_);
+    }
+
+    /**
+     * @brief Visit animator object with a callable.
+     * @return Callable result or default-constructed value if unavailable.
+     */
+    template <typename Fn>
+    auto visitAnimator(Fn&& fn) noexcept -> decltype(fn(std::declval<WS2812Animator&>())) {
+        using ReturnType = decltype(fn(std::declval<WS2812Animator&>()));
+        MutexLockGuard lock(mutex_);
+        if (!EnsureInitializedLocked() || !animator_) {
+            if constexpr (std::is_void_v<ReturnType>) {
+                return;
+            } else {
+                return ReturnType{};
+            }
+        }
+        return fn(*animator_);
+    }
 
     /** @brief Dump diagnostics to logger. */
     void DumpDiagnostics() noexcept;

@@ -115,9 +115,8 @@ static bool test_handler_construction() noexcept {
 
 static bool test_initialize() noexcept {
     if (!g_handler) return false;
-    auto err = g_handler->Initialize();
-    if (err != As5047uError::SUCCESS) {
-        ESP_LOGE(TAG, "Initialize failed: %d", static_cast<int>(err));
+    if (!g_handler->Initialize()) {
+        ESP_LOGE(TAG, "Initialize failed");
         return false;
     }
     ESP_LOGI(TAG, "Handler initialized — driver ready");
@@ -148,8 +147,7 @@ static bool test_read_angle_degrees() noexcept {
     if (!g_handler) return false;
     auto* sensor = g_handler->GetSensor();
     if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
-    uint16_t raw = sensor->GetAngle();
-    float degrees = static_cast<float>(As5047uHandler::LSBToDegrees(raw));
+    float degrees = sensor->GetAngle(as5047u::AngleUnit::Degrees);
     ESP_LOGI(TAG, "Angle: %.2f degrees", degrees);
     return degrees >= 0.0f && degrees < 360.0f;
 }
@@ -160,8 +158,7 @@ static bool test_read_angle_consistency() noexcept {
     if (!sensor) return false;
     // Read 10 times rapidly and check all values are in valid range
     for (int i = 0; i < 10; ++i) {
-        uint16_t raw = sensor->GetAngle();
-        float deg = static_cast<float>(As5047uHandler::LSBToDegrees(raw));
+        float deg = sensor->GetAngle(as5047u::AngleUnit::Degrees);
         if (deg < 0.0f || deg >= 360.0f) return false;
     }
     ESP_LOGI(TAG, "10 consecutive reads all in valid range");
@@ -176,7 +173,7 @@ static bool test_read_velocity() noexcept {
     if (!g_handler) return false;
     auto* sensor = g_handler->GetSensor();
     if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
-    float velocity_rpm = sensor->GetVelocityRPM();
+    float velocity_rpm = sensor->GetVelocity(as5047u::VelocityUnit::Rpm);
     ESP_LOGI(TAG, "Velocity: %.2f RPM (stationary expected ~0)", velocity_rpm);
     return true;  // Value can be 0 or small noise
 }
@@ -214,7 +211,7 @@ static bool test_set_zero_position() noexcept {
 
     // Read current angle
     uint16_t before_raw = sensor->GetAngle();
-    float before = static_cast<float>(As5047uHandler::LSBToDegrees(before_raw));
+    float before = static_cast<float>(before_raw) * (360.0f / 16384.0f);
 
     // Set current position as zero
     if (!sensor->SetZeroPosition(before_raw)) {
@@ -225,7 +222,7 @@ static bool test_set_zero_position() noexcept {
     // Read again — should be close to 0
     vTaskDelay(pdMS_TO_TICKS(50));
     uint16_t after_raw = sensor->GetAngle();
-    float after = static_cast<float>(As5047uHandler::LSBToDegrees(after_raw));
+    float after = static_cast<float>(after_raw) * (360.0f / 16384.0f);
     ESP_LOGI(TAG, "Before zero: %.2f°, After zero: %.2f°", before, after);
     return after < 5.0f || after > 355.0f;  // Near zero, accounting for noise
 }

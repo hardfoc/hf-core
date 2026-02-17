@@ -19,21 +19,16 @@ Bno08xHandler(BaseI2c& i2c, BaseGpio* int_pin = nullptr, BaseGpio* rst_pin = nul
 
 | Method | Description |
 |:-------|:------------|
-| `Initialize()` | Full init: reset, configure SH2, enable default sensors |
+| `Initialize()` | Full init: reset, configure SH2 |
 | `EnsureInitialized()` | Lazy init delegation |
-| `EnableSensor(sensor, rate_us)` | Enable a sensor report at given interval |
-| `DisableSensor(sensor)` | Disable a sensor report |
-| `GetAcceleration(x, y, z)` | Read accelerometer data (m/s²) |
-| `GetRotationVector(i, j, k, real)` | Read fused rotation quaternion |
-| `GetGyroscope(x, y, z)` | Read gyroscope data (rad/s) |
-| `HasNewData()` | Freshness gating — true only when new data available |
-| `HardwareReset()` | Pulse RST pin and re-initialize |
+| `Deinitialize()` | Release resources |
+| `GetSensor()` / `GetDriver()` | Get underlying `IBno08xDriverOps*` |
+| `visitDriver(fn)` | Execute callable with `IBno08xDriverOps&` |
+| `Update()` | Service SH-2 transport |
+| `SetSensorCallback(cb)` | Register event callback |
 
-## Freshness Gating
-
-`HasNewData()` returns true only when the SH2 transport has delivered new sensor
-data since the last read. This prevents stale data from being consumed by the
-application layer.
+Sensor enable/disable/read operations are performed through the underlying
+driver object returned by `GetSensor()` / `GetDriver()`.
 
 ## Test Coverage
 
