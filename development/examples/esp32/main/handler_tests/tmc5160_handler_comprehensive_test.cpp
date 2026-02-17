@@ -146,21 +146,30 @@ static bool test_driver_config_snapshot() noexcept {
 
 static bool test_enable_motor() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->EnableMotor();
+    bool ok = g_handler->visitDriver([](auto& drv) -> bool {
+        auto r = drv.motorControl.Enable();
+        return r.IsOk();
+    });
     ESP_LOGI(TAG, "EnableMotor: %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_is_motor_enabled() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool enabled = g_handler->IsMotorEnabled();
+    bool enabled = g_handler->visitDriver([](auto& drv) -> bool {
+        auto r = drv.motorControl.IsEnabled();
+        return r ? r.Value() : false;
+    });
     ESP_LOGI(TAG, "IsMotorEnabled: %d", enabled);
     return enabled;
 }
 
 static bool test_disable_motor() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->DisableMotor();
+    bool ok = g_handler->visitDriver([](auto& drv) -> bool {
+        auto r = drv.motorControl.Disable();
+        return r.IsOk();
+    });
     ESP_LOGI(TAG, "DisableMotor: %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -169,42 +178,64 @@ static bool test_disable_motor() noexcept {
 
 static bool test_set_target_velocity() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->SetTargetVelocity(0);
+    bool ok = g_handler->visitDriver([](auto& drv) -> bool {
+        auto r = drv.rampControl.SetRampMode(tmc51x0::RampMode::VELOCITY_POS);
+        if (!r.IsOk()) return false;
+        auto r2 = drv.rampControl.SetMaxSpeed(0.0f, tmc51x0::Unit::Steps);
+        return r2.IsOk();
+    });
     ESP_LOGI(TAG, "SetTargetVelocity(0): %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_set_target_position() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->SetTargetPosition(0);
+    bool ok = g_handler->visitDriver([](auto& drv) -> bool {
+        auto r = drv.rampControl.SetRampMode(tmc51x0::RampMode::POSITIONING);
+        if (!r.IsOk()) return false;
+        auto r2 = drv.rampControl.SetTargetPosition(0.0f, tmc51x0::Unit::Steps);
+        return r2.IsOk();
+    });
     ESP_LOGI(TAG, "SetTargetPosition(0): %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_get_current_position() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    int32_t pos = g_handler->GetCurrentPosition();
+    int32_t pos = g_handler->visitDriver([](auto& drv) -> int32_t {
+        auto r = drv.rampControl.GetCurrentPositionMicrosteps();
+        return r ? r.Value() : 0;
+    });
     ESP_LOGI(TAG, "GetCurrentPosition: %ld", static_cast<long>(pos));
     return true; // 0 is valid
 }
 
 static bool test_get_current_velocity() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    int32_t vel = g_handler->GetCurrentVelocity();
-    ESP_LOGI(TAG, "GetCurrentVelocity: %ld", static_cast<long>(vel));
+    float vel = g_handler->visitDriver([](auto& drv) -> float {
+        auto r = drv.rampControl.GetCurrentSpeed(tmc51x0::Unit::Steps);
+        return r ? r.Value() : 0.0f;
+    });
+    ESP_LOGI(TAG, "GetCurrentVelocity: %.1f", vel);
     return true;
 }
 
 static bool test_stop() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->Stop();
+    bool ok = g_handler->visitDriver([](auto& drv) -> bool {
+        auto r = drv.rampControl.Stop();
+        return r.IsOk();
+    });
     ESP_LOGI(TAG, "Stop: %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_set_current() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->SetCurrent(16, 8); // irun=16, ihold=8 (raw 0-31 scale)
+    bool ok = g_handler->visitDriver([](auto& drv) -> bool {
+        auto r = drv.motorControl.SetCurrent(16, 8); // irun=16, ihold=8 (raw 0-31 scale)
+        return r.IsOk();
+    });
     ESP_LOGI(TAG, "SetCurrent(16, 8): %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -213,42 +244,59 @@ static bool test_set_current() noexcept {
 
 static bool test_is_standstill() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool standstill = g_handler->IsStandstill();
+    bool standstill = g_handler->visitDriver([](auto& drv) -> bool {
+        auto r = drv.rampControl.IsStandstill();
+        return r ? r.Value() : false;
+    });
     ESP_LOGI(TAG, "IsStandstill: %d (expected true at rest)", standstill);
     return standstill; // should be at standstill
 }
 
 static bool test_is_target_reached() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool reached = g_handler->IsTargetReached();
+    bool reached = g_handler->visitDriver([](auto& drv) -> bool {
+        auto r = drv.rampControl.IsTargetReached();
+        return r ? r.Value() : false;
+    });
     ESP_LOGI(TAG, "IsTargetReached: %d", reached);
     return true; // may or may not be reached
 }
 
 static bool test_is_overtemperature() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ot = g_handler->IsOvertemperature();
+    bool ot = g_handler->visitDriver([](auto& drv) -> bool {
+        auto r = drv.status.IsOvertemperature();
+        return r ? r.Value() : false;
+    });
     ESP_LOGI(TAG, "IsOvertemperature: %d (expected false)", ot);
     return !ot; // should not be overtemp at start
 }
 
 static bool test_is_stall_detected() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool stall = g_handler->IsStallDetected();
+    bool stall = g_handler->visitDriver([](auto& drv) -> bool {
+        auto r = drv.stallGuard.IsStallDetected();
+        return r ? r.Value() : false;
+    });
     ESP_LOGI(TAG, "IsStallDetected: %d (expected false at standstill)", stall);
     return !stall;
 }
 
 static bool test_stallguard_result() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    int32_t sg = g_handler->GetStallGuardResult();
+    int32_t sg = g_handler->visitDriver([](auto& drv) -> int32_t {
+        auto r = drv.stallGuard.GetStallGuardResult();
+        return r ? static_cast<int32_t>(r.Value()) : 0;
+    });
     ESP_LOGI(TAG, "StallGuard result: %ld", static_cast<long>(sg));
     return true;
 }
 
 static bool test_chip_version() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    uint32_t version = g_handler->GetChipVersion();
+    uint32_t version = g_handler->visitDriver([](auto& drv) -> uint32_t {
+        return static_cast<uint32_t>(drv.status.GetChipVersion());
+    });
     ESP_LOGI(TAG, "Chip version: 0x%08lX", static_cast<unsigned long>(version));
     return version != 0;
 }
@@ -318,13 +366,9 @@ static bool test_operations_before_init() noexcept {
         *g_spi_device, *g_enable_gpio);
 
     bool init = uninit->IsInitialized();
-    bool enabled = uninit->IsMotorEnabled();
-    int32_t pos = uninit->GetCurrentPosition();
-    int32_t vel = uninit->GetCurrentVelocity();
 
-    ESP_LOGI(TAG, "Uninit handler: init=%d, enabled=%d, pos=%ld, vel=%ld",
-             init, enabled, static_cast<long>(pos), static_cast<long>(vel));
-    return !init && !enabled;
+    ESP_LOGI(TAG, "Uninit handler: init=%d (expected false)", init);
+    return !init;
 }
 
 static bool test_deinitialize() noexcept {

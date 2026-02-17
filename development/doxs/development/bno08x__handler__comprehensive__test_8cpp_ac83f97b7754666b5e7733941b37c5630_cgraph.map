@@ -1,7 +1,9 @@
 <map id="test_operations_before_init" name="test_operations_before_init">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,205,31"/>
-<area shape="rect" id="Node000002" href="$esp32__bus__setup_8hpp.html#a7024544c8de144283c563c05320b05bf" title="Get an I2C device handle for a specific address on the shared bus." alt="" coords="253,5,372,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,15,240,15,240,21,205,21"/>
-<area shape="rect" id="Node000003" href="$esp32__bus__setup_8hpp.html#a34120f53f38b468eb02c353cd79d5b0b" title="Create and initialize the shared I2C bus." alt="" coords="420,5,571,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="372,15,406,15,406,21,372,21"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,205,56"/>
+<area shape="rect" id="Node000002" href="$esp32__bus__setup_8hpp.html#a7024544c8de144283c563c05320b05bf" title="Get an I2C device handle for a specific address on the shared bus." alt="" coords="297,5,415,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,31,283,23,283,28,206,36"/>
+<area shape="rect" id="Node000004" href="$classBno08xHandler.html#abdc987c8440f4a2394ae861a40766e10" title="Check if sensor is initialized and ready." alt="" coords="253,55,459,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="206,50,240,54,239,59,205,56"/>
+<area shape="rect" id="Node000003" href="$esp32__bus__setup_8hpp.html#a34120f53f38b468eb02c353cd79d5b0b" title="Create and initialize the shared I2C bus." alt="" coords="507,5,657,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="415,15,493,15,493,21,415,21"/>
 </map>
