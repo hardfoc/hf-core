@@ -3,14 +3,15 @@
  * @brief Unified handler for WS2812 addressable LED strips using RMT peripheral.
  *
  * @details
- * Provides HAL-level integration for WS2812/SK6812/NeoPixel LED strips.
+ * Provides HAL-level lifecycle management for WS2812/SK6812/NeoPixel LED strips.
  * Features:
- * - Direct pixel color control with brightness adjustment
- * - Built-in animation effects (rainbow, chase, breathe, sparkle, wave)
- * - Multi-segment support for independent animation zones
- * - Thread-safe operations with RtosMutex
+ * - Thread-safe lifecycle management (Initialize, Deinitialize)
+ * - Direct access to underlying WS2812Strip and WS2812Animator objects
  * - Lazy initialization pattern
- * - Full access to underlying strip and animator objects
+ * - Comprehensive diagnostics
+ *
+ * All pixel operations and animation effects should be performed through
+ * GetStrip() and GetAnimator() which expose the full driver API.
  *
  * ## Usage Example
  *
@@ -22,22 +23,17 @@
  *     .brightness = 50
  * });
  *
- * if (leds.Initialize()) {
- *     leds.SetPixel(0, 255, 0, 0);  // Red
- *     leds.SetPixel(1, 0, 255, 0);  // Green
- *     leds.Show();
- *
- *     // Or use effects
- *     leds.SetEffect(WS2812Animator::Effect::Rainbow, 0xFFFFFF);
- *     while (true) {
- *         leds.Tick();
- *         vTaskDelay(pdMS_TO_TICKS(20));
- *     }
+ * if (leds.Initialize() == ESP_OK) {
+ *     auto* strip = leds.GetStrip();
+ *     auto* anim  = leds.GetAnimator();
+ *     strip->SetPixel(0, 0xFF0000);  // Red
+ *     strip->Show();
  * }
  * @endcode
  *
- * @note This handler wraps the ESP-IDF RMT-based WS2812 driver directly.
- *       No Base* interface injection is needed since the driver manages RMT internally.
+ * @note This handler provides lifecycle management and direct access to the
+ *       underlying WS2812Strip and WS2812Animator objects. All pixel operations
+ *       and effects should be performed through GetStrip() and GetAnimator().
  *
  * @author HardFOC Team
  * @date 2025
@@ -111,8 +107,11 @@ public:
     // Initialization
     //=========================================================================
 
-    /** @brief Initialize the RMT channel and LED strip. */
-    bool Initialize() noexcept;
+    /**
+     * @brief Initialize the RMT channel and LED strip.
+     * @return ESP_OK on success, or esp_err_t error code from the RMT driver.
+     */
+    esp_err_t Initialize() noexcept;
 
     /**
      * @brief Ensure strip resources are initialized (lazy init entrypoint).
@@ -127,70 +126,13 @@ public:
     [[nodiscard]] bool IsInitialized() const noexcept { return initialized_; }
 
     //=========================================================================
-    // Pixel Control
-    //=========================================================================
-
-    /**
-     * @brief Set a single pixel color.
-     * @param index LED index (0 to num_leds-1).
-     * @param r Red component (0-255).
-     * @param g Green component (0-255).
-     * @param b Blue component (0-255).
-     */
-    bool SetPixel(uint32_t index, uint8_t r, uint8_t g, uint8_t b) noexcept;
-
-    /**
-     * @brief Set all pixels to the same color.
-     */
-    bool SetAllPixels(uint8_t r, uint8_t g, uint8_t b) noexcept;
-
-    /**
-     * @brief Clear all pixels (set to black).
-     */
-    bool Clear() noexcept;
-
-    /**
-     * @brief Transmit pixel data to the LED strip.
-     * @return true if transmission succeeded.
-     */
-    bool Show() noexcept;
-
-    /**
-     * @brief Set global brightness.
-     * @param brightness Brightness level (0-255).
-     */
-    bool SetBrightness(uint8_t brightness) noexcept;
-
-    /**
-     * @brief Get the number of LEDs.
-     */
-    [[nodiscard]] uint32_t GetNumLeds() const noexcept { return config_.num_leds; }
-
-    //=========================================================================
-    // Animation Effects
-    //=========================================================================
-
-    /**
-     * @brief Set the animation effect.
-     * @param effect Effect type.
-     * @param color Base color for the effect (RGB packed as 0xRRGGBB).
-     * @param speed Animation speed (smaller = faster).
-     */
-    bool SetEffect(WS2812Animator::Effect effect, uint32_t color = 0xFFFFFF) noexcept;
-
-    /**
-     * @brief Advance animation by time delta (call periodically).
-     */
-    bool Tick() noexcept;
-
-    /**
-     * @brief Advance animation by one step.
-     */
-    bool Step() noexcept;
-
-    //=========================================================================
     // Direct Access
     //=========================================================================
+
+    /**
+     * @brief Get the number of LEDs in the strip.
+     */
+    [[nodiscard]] uint32_t GetNumLeds() const noexcept { return config_.num_leds; }
 
     /**
      * @brief Get the underlying LED strip object.

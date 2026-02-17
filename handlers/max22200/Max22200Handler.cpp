@@ -163,28 +163,29 @@ Max22200Handler::~Max22200Handler() noexcept {
     }
 }
 
-bool Max22200Handler::Initialize() noexcept {
+max22200::DriverStatus Max22200Handler::Initialize() noexcept {
     MutexLockGuard lock(mutex_);
     if (initialized_) {
         Logger::GetInstance().Warn(TAG, "Already initialized");
-        return true;
+        return max22200::DriverStatus::OK;
     }
     if (!comm_) {
         Logger::GetInstance().Error(TAG, "Comm adapter not created");
-        return false;
+        return max22200::DriverStatus::INITIALIZATION_ERROR;
     }
 
     driver_ = std::make_unique<DriverType>(*comm_);
     auto status = driver_->Initialize();
     if (status != max22200::DriverStatus::OK) {
-        Logger::GetInstance().Error(TAG, "Driver init failed: %d", static_cast<int>(status));
+        Logger::GetInstance().Error(TAG, "Driver init failed: %s",
+                                   max22200::DriverStatusToStr(status));
         driver_.reset();
-        return false;
+        return status;
     }
 
     initialized_ = true;
     Logger::GetInstance().Info(TAG, "MAX22200 initialized successfully");
-    return true;
+    return max22200::DriverStatus::OK;
 }
 
 bool Max22200Handler::EnsureInitialized() noexcept {
@@ -192,15 +193,15 @@ bool Max22200Handler::EnsureInitialized() noexcept {
     return EnsureInitializedLocked();
 }
 
-bool Max22200Handler::Initialize(const max22200::BoardConfig& board_config) noexcept {
+max22200::DriverStatus Max22200Handler::Initialize(const max22200::BoardConfig& board_config) noexcept {
     MutexLockGuard lock(mutex_);
     if (initialized_) {
         Logger::GetInstance().Warn(TAG, "Already initialized");
-        return true;
+        return max22200::DriverStatus::OK;
     }
     if (!comm_) {
         Logger::GetInstance().Error(TAG, "Comm adapter not created");
-        return false;
+        return max22200::DriverStatus::INITIALIZATION_ERROR;
     }
 
     driver_ = std::make_unique<DriverType>(*comm_);
@@ -211,14 +212,15 @@ bool Max22200Handler::Initialize(const max22200::BoardConfig& board_config) noex
     // Then initialize
     auto status = driver_->Initialize();
     if (status != max22200::DriverStatus::OK) {
-        Logger::GetInstance().Error(TAG, "Driver init failed: %d", static_cast<int>(status));
+        Logger::GetInstance().Error(TAG, "Driver init failed: %s",
+                                   max22200::DriverStatusToStr(status));
         driver_.reset();
-        return false;
+        return status;
     }
 
     initialized_ = true;
     Logger::GetInstance().Info(TAG, "MAX22200 initialized with board config");
-    return true;
+    return max22200::DriverStatus::OK;
 }
 
 bool Max22200Handler::EnsureInitializedLocked() noexcept {
@@ -229,12 +231,12 @@ bool Max22200Handler::EnsureInitializedLocked() noexcept {
         Logger::GetInstance().Error(TAG, "Comm adapter not created");
         return false;
     }
-    return Initialize();
+    return Initialize() == max22200::DriverStatus::OK;
 }
 
-bool Max22200Handler::Deinitialize() noexcept {
+max22200::DriverStatus Max22200Handler::Deinitialize() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return true;
+    if (!initialized_) return max22200::DriverStatus::OK;
 
     if (driver_) {
         driver_->Deinitialize();
@@ -242,60 +244,64 @@ bool Max22200Handler::Deinitialize() noexcept {
     driver_.reset();
     initialized_ = false;
     Logger::GetInstance().Info(TAG, "MAX22200 deinitialized");
-    return true;
+    return max22200::DriverStatus::OK;
 }
 
-bool Max22200Handler::ConfigureChannel(uint8_t channel,
+max22200::DriverStatus Max22200Handler::ConfigureChannel(uint8_t channel,
                                         const max22200::ChannelConfig& config) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        if (channel >= kNumChannels) return false;
-        return (drv.ConfigureChannel(channel, config) == max22200::DriverStatus::OK);
+    return withDriver([&](auto& drv) -> max22200::DriverStatus {
+        if (channel >= kNumChannels) return max22200::DriverStatus::INVALID_PARAMETER;
+        return drv.ConfigureChannel(channel, config);
     });
 }
 
-bool Max22200Handler::SetupCdrChannel(uint8_t channel, uint16_t hit_ma,
+max22200::DriverStatus Max22200Handler::SetupCdrChannel(uint8_t channel, uint16_t hit_ma,
                                        uint16_t hold_ma, float hit_time_ms) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        if (channel >= kNumChannels) return false;
-        if (drv.SetHitCurrentMa(channel, hit_ma) != max22200::DriverStatus::OK) return false;
-        if (drv.SetHoldCurrentMa(channel, hold_ma) != max22200::DriverStatus::OK) return false;
-        return (drv.SetHitTimeMs(channel, hit_time_ms) == max22200::DriverStatus::OK);
+    return withDriver([&](auto& drv) -> max22200::DriverStatus {
+        if (channel >= kNumChannels) return max22200::DriverStatus::INVALID_PARAMETER;
+        auto s = drv.SetHitCurrentMa(channel, hit_ma);
+        if (s != max22200::DriverStatus::OK) return s;
+        s = drv.SetHoldCurrentMa(channel, hold_ma);
+        if (s != max22200::DriverStatus::OK) return s;
+        return drv.SetHitTimeMs(channel, hit_time_ms);
     });
 }
 
-bool Max22200Handler::SetupVdrChannel(uint8_t channel, float hit_duty_pct,
+max22200::DriverStatus Max22200Handler::SetupVdrChannel(uint8_t channel, float hit_duty_pct,
                                        float hold_duty_pct, float hit_time_ms) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        if (channel >= kNumChannels) return false;
-        if (drv.SetHitDutyPercent(channel, hit_duty_pct) != max22200::DriverStatus::OK) return false;
-        if (drv.SetHoldDutyPercent(channel, hold_duty_pct) != max22200::DriverStatus::OK) return false;
-        return (drv.SetHitTimeMs(channel, hit_time_ms) == max22200::DriverStatus::OK);
+    return withDriver([&](auto& drv) -> max22200::DriverStatus {
+        if (channel >= kNumChannels) return max22200::DriverStatus::INVALID_PARAMETER;
+        auto s = drv.SetHitDutyPercent(channel, hit_duty_pct);
+        if (s != max22200::DriverStatus::OK) return s;
+        s = drv.SetHoldDutyPercent(channel, hold_duty_pct);
+        if (s != max22200::DriverStatus::OK) return s;
+        return drv.SetHitTimeMs(channel, hit_time_ms);
     });
 }
 
-bool Max22200Handler::EnableChannel(uint8_t channel) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        if (channel >= kNumChannels) return false;
-        return (drv.EnableChannel(channel) == max22200::DriverStatus::OK);
+max22200::DriverStatus Max22200Handler::EnableChannel(uint8_t channel) noexcept {
+    return withDriver([&](auto& drv) -> max22200::DriverStatus {
+        if (channel >= kNumChannels) return max22200::DriverStatus::INVALID_PARAMETER;
+        return drv.EnableChannel(channel);
     });
 }
 
-bool Max22200Handler::DisableChannel(uint8_t channel) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        if (channel >= kNumChannels) return false;
-        return (drv.DisableChannel(channel) == max22200::DriverStatus::OK);
+max22200::DriverStatus Max22200Handler::DisableChannel(uint8_t channel) noexcept {
+    return withDriver([&](auto& drv) -> max22200::DriverStatus {
+        if (channel >= kNumChannels) return max22200::DriverStatus::INVALID_PARAMETER;
+        return drv.DisableChannel(channel);
     });
 }
 
-bool Max22200Handler::EnableAllChannels() noexcept {
-    return withDriver([](auto& drv) -> bool {
-        return (drv.EnableAllChannels() == max22200::DriverStatus::OK);
+max22200::DriverStatus Max22200Handler::EnableAllChannels() noexcept {
+    return withDriver([](auto& drv) -> max22200::DriverStatus {
+        return drv.EnableAllChannels();
     });
 }
 
-bool Max22200Handler::DisableAllChannels() noexcept {
-    return withDriver([](auto& drv) -> bool {
-        return (drv.DisableAllChannels() == max22200::DriverStatus::OK);
+max22200::DriverStatus Max22200Handler::DisableAllChannels() noexcept {
+    return withDriver([](auto& drv) -> max22200::DriverStatus {
+        return drv.DisableAllChannels();
     });
 }
 
@@ -308,24 +314,24 @@ bool Max22200Handler::IsChannelEnabled(uint8_t channel) noexcept {
     });
 }
 
-bool Max22200Handler::SetChannelsMask(uint8_t mask) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        return (drv.SetChannelsOn(mask) == max22200::DriverStatus::OK);
+max22200::DriverStatus Max22200Handler::SetChannelsMask(uint8_t mask) noexcept {
+    return withDriver([&](auto& drv) -> max22200::DriverStatus {
+        return drv.SetChannelsOn(mask);
     });
 }
 
-bool Max22200Handler::GetStatus(max22200::StatusConfig& status) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        return (drv.ReadStatus(status) == max22200::DriverStatus::OK);
+max22200::DriverStatus Max22200Handler::GetStatus(max22200::StatusConfig& status) noexcept {
+    return withDriver([&](auto& drv) -> max22200::DriverStatus {
+        return drv.ReadStatus(status);
     });
 }
 
-bool Max22200Handler::GetChannelFaults(uint8_t channel,
+max22200::DriverStatus Max22200Handler::GetChannelFaults(uint8_t channel,
                                         max22200::FaultStatus& faults) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        if (channel >= kNumChannels) return false;
+    return withDriver([&](auto& drv) -> max22200::DriverStatus {
+        if (channel >= kNumChannels) return max22200::DriverStatus::INVALID_PARAMETER;
         (void)channel; // FaultStatus is device-wide
-        return (drv.ReadFaultRegister(faults) == max22200::DriverStatus::OK);
+        return drv.ReadFaultRegister(faults);
     });
 }
 
@@ -337,15 +343,15 @@ bool Max22200Handler::HasFault() noexcept {
     });
 }
 
-bool Max22200Handler::ClearFaults() noexcept {
-    return withDriver([](auto& drv) -> bool {
-        return (drv.ClearAllFaults() == max22200::DriverStatus::OK);
+max22200::DriverStatus Max22200Handler::ClearFaults() noexcept {
+    return withDriver([](auto& drv) -> max22200::DriverStatus {
+        return drv.ClearAllFaults();
     });
 }
 
-bool Max22200Handler::ReadFaultRegister(max22200::FaultStatus& faults) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        return (drv.ReadFaultRegister(faults) == max22200::DriverStatus::OK);
+max22200::DriverStatus Max22200Handler::ReadFaultRegister(max22200::FaultStatus& faults) noexcept {
+    return withDriver([&](auto& drv) -> max22200::DriverStatus {
+        return drv.ReadFaultRegister(faults);
     });
 }
 

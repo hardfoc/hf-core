@@ -251,15 +251,15 @@ Tle92466edHandler::~Tle92466edHandler() noexcept {
     }
 }
 
-bool Tle92466edHandler::Initialize() noexcept {
+tle92466ed::DriverResult<void> Tle92466edHandler::Initialize() noexcept {
     MutexLockGuard lock(mutex_);
     if (initialized_) {
         Logger::GetInstance().Warn(TAG, "Already initialized");
-        return true;
+        return {};
     }
     if (!comm_) {
         Logger::GetInstance().Error(TAG, "Comm adapter not created");
-        return false;
+        return tle::unexpected(tle92466ed::DriverError::NotInitialized);
     }
 
     driver_ = std::make_unique<DriverType>(*comm_);
@@ -268,12 +268,12 @@ bool Tle92466edHandler::Initialize() noexcept {
         Logger::GetInstance().Error(TAG, "Driver init failed: %d",
                                    static_cast<int>(result.error()));
         driver_.reset();
-        return false;
+        return tle::unexpected(result.error());
     }
 
     initialized_ = true;
     Logger::GetInstance().Info(TAG, "TLE92466ED initialized successfully");
-    return true;
+    return {};
 }
 
 bool Tle92466edHandler::EnsureInitialized() noexcept {
@@ -281,15 +281,15 @@ bool Tle92466edHandler::EnsureInitialized() noexcept {
     return EnsureInitializedLocked();
 }
 
-bool Tle92466edHandler::Initialize(const tle92466ed::GlobalConfig& config) noexcept {
+tle92466ed::DriverResult<void> Tle92466edHandler::Initialize(const tle92466ed::GlobalConfig& config) noexcept {
     MutexLockGuard lock(mutex_);
     if (initialized_) {
         Logger::GetInstance().Warn(TAG, "Already initialized");
-        return true;
+        return {};
     }
     if (!comm_) {
         Logger::GetInstance().Error(TAG, "Comm adapter not created");
-        return false;
+        return tle::unexpected(tle92466ed::DriverError::NotInitialized);
     }
 
     driver_ = std::make_unique<DriverType>(*comm_);
@@ -300,7 +300,7 @@ bool Tle92466edHandler::Initialize(const tle92466ed::GlobalConfig& config) noexc
         Logger::GetInstance().Error(TAG, "Driver init failed: %d",
                                    static_cast<int>(result.error()));
         driver_.reset();
-        return false;
+        return tle::unexpected(result.error());
     }
 
     auto cfg_result = driver_->ConfigureGlobal(config);
@@ -308,12 +308,12 @@ bool Tle92466edHandler::Initialize(const tle92466ed::GlobalConfig& config) noexc
         Logger::GetInstance().Error(TAG, "Global config failed: %d",
                                    static_cast<int>(cfg_result.error()));
         driver_.reset();
-        return false;
+        return tle::unexpected(cfg_result.error());
     }
 
     initialized_ = true;
     Logger::GetInstance().Info(TAG, "TLE92466ED initialized with config");
-    return true;
+    return {};
 }
 
 bool Tle92466edHandler::EnsureInitializedLocked() noexcept {
@@ -324,12 +324,12 @@ bool Tle92466edHandler::EnsureInitializedLocked() noexcept {
         Logger::GetInstance().Error(TAG, "Comm adapter not created");
         return false;
     }
-    return Initialize();
+    return Initialize().has_value();
 }
 
-bool Tle92466edHandler::Deinitialize() noexcept {
+tle92466ed::DriverResult<void> Tle92466edHandler::Deinitialize() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!initialized_) return true;
+    if (!initialized_) return {};
 
     if (driver_) {
         // Disable all channels before shutdown
@@ -338,68 +338,73 @@ bool Tle92466edHandler::Deinitialize() noexcept {
     driver_.reset();
     initialized_ = false;
     Logger::GetInstance().Info(TAG, "TLE92466ED deinitialized");
-    return true;
+    return {};
 }
 
-bool Tle92466edHandler::ConfigureChannel(uint8_t channel,
+tle92466ed::DriverResult<void> Tle92466edHandler::ConfigureChannel(uint8_t channel,
                                           const tle92466ed::ChannelConfig& config) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        if (channel >= kNumChannels) return false;
-        return drv.ConfigureChannel(toChannel(channel), config).has_value();
+    return withDriver([&](auto& drv) -> tle92466ed::DriverResult<void> {
+        if (channel >= kNumChannels)
+            return tle::unexpected(tle92466ed::DriverError::InvalidChannel);
+        return drv.ConfigureChannel(toChannel(channel), config);
     });
 }
 
-bool Tle92466edHandler::EnableChannel(uint8_t channel) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        if (channel >= kNumChannels) return false;
-        return drv.EnableChannel(toChannel(channel), true).has_value();
+tle92466ed::DriverResult<void> Tle92466edHandler::EnableChannel(uint8_t channel) noexcept {
+    return withDriver([&](auto& drv) -> tle92466ed::DriverResult<void> {
+        if (channel >= kNumChannels)
+            return tle::unexpected(tle92466ed::DriverError::InvalidChannel);
+        return drv.EnableChannel(toChannel(channel), true);
     });
 }
 
-bool Tle92466edHandler::DisableChannel(uint8_t channel) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        if (channel >= kNumChannels) return false;
-        return drv.EnableChannel(toChannel(channel), false).has_value();
+tle92466ed::DriverResult<void> Tle92466edHandler::DisableChannel(uint8_t channel) noexcept {
+    return withDriver([&](auto& drv) -> tle92466ed::DriverResult<void> {
+        if (channel >= kNumChannels)
+            return tle::unexpected(tle92466ed::DriverError::InvalidChannel);
+        return drv.EnableChannel(toChannel(channel), false);
     });
 }
 
-bool Tle92466edHandler::EnableAllChannels() noexcept {
-    return withDriver([](auto& drv) -> bool {
-        return drv.EnableAllChannels().has_value();
+tle92466ed::DriverResult<void> Tle92466edHandler::EnableAllChannels() noexcept {
+    return withDriver([](auto& drv) -> tle92466ed::DriverResult<void> {
+        return drv.EnableAllChannels();
     });
 }
 
-bool Tle92466edHandler::DisableAllChannels() noexcept {
-    return withDriver([](auto& drv) -> bool {
-        return drv.DisableAllChannels().has_value();
+tle92466ed::DriverResult<void> Tle92466edHandler::DisableAllChannels() noexcept {
+    return withDriver([](auto& drv) -> tle92466ed::DriverResult<void> {
+        return drv.DisableAllChannels();
     });
 }
 
-bool Tle92466edHandler::SetChannelCurrent(uint8_t channel, uint16_t current_ma) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        if (channel >= kNumChannels) return false;
-        return drv.SetCurrentSetpoint(toChannel(channel), current_ma).has_value();
+tle92466ed::DriverResult<void> Tle92466edHandler::SetChannelCurrent(uint8_t channel, uint16_t current_ma) noexcept {
+    return withDriver([&](auto& drv) -> tle92466ed::DriverResult<void> {
+        if (channel >= kNumChannels)
+            return tle::unexpected(tle92466ed::DriverError::InvalidChannel);
+        return drv.SetCurrentSetpoint(toChannel(channel), current_ma);
     });
 }
 
-bool Tle92466edHandler::ConfigurePwmRaw(uint8_t channel, uint8_t mantissa,
+tle92466ed::DriverResult<void> Tle92466edHandler::ConfigurePwmRaw(uint8_t channel, uint8_t mantissa,
                                          uint8_t exponent, bool low_freq_range) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        if (channel >= kNumChannels) return false;
+    return withDriver([&](auto& drv) -> tle92466ed::DriverResult<void> {
+        if (channel >= kNumChannels)
+            return tle::unexpected(tle92466ed::DriverError::InvalidChannel);
         return drv.ConfigurePwmPeriodRaw(toChannel(channel), mantissa,
-                                          exponent, low_freq_range).has_value();
+                                          exponent, low_freq_range);
     });
 }
 
-bool Tle92466edHandler::EnterMissionMode() noexcept {
-    return withDriver([](auto& drv) -> bool {
-        return drv.EnterMissionMode().has_value();
+tle92466ed::DriverResult<void> Tle92466edHandler::EnterMissionMode() noexcept {
+    return withDriver([](auto& drv) -> tle92466ed::DriverResult<void> {
+        return drv.EnterMissionMode();
     });
 }
 
-bool Tle92466edHandler::EnterConfigMode() noexcept {
-    return withDriver([](auto& drv) -> bool {
-        return drv.EnterConfigMode().has_value();
+tle92466ed::DriverResult<void> Tle92466edHandler::EnterConfigMode() noexcept {
+    return withDriver([](auto& drv) -> tle92466ed::DriverResult<void> {
+        return drv.EnterConfigMode();
     });
 }
 
@@ -409,38 +414,39 @@ bool Tle92466edHandler::IsMissionMode() noexcept {
     });
 }
 
-bool Tle92466edHandler::GetStatus(tle92466ed::DeviceStatus& status) noexcept {
-    return withDriver([&](auto& drv) -> bool {
+tle92466ed::DriverResult<void> Tle92466edHandler::GetStatus(tle92466ed::DeviceStatus& status) noexcept {
+    return withDriver([&](auto& drv) -> tle92466ed::DriverResult<void> {
         auto result = drv.GetDeviceStatus();
-        if (!result) return false;
+        if (!result) return tle::unexpected(result.error());
         status = *result;
-        return true;
+        return {};
     });
 }
 
-bool Tle92466edHandler::GetChannelDiagnostics(uint8_t channel,
+tle92466ed::DriverResult<void> Tle92466edHandler::GetChannelDiagnostics(uint8_t channel,
                                                tle92466ed::ChannelDiagnostics& diag) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        if (channel >= kNumChannels) return false;
+    return withDriver([&](auto& drv) -> tle92466ed::DriverResult<void> {
+        if (channel >= kNumChannels)
+            return tle::unexpected(tle92466ed::DriverError::InvalidChannel);
         auto result = drv.GetChannelDiagnostics(toChannel(channel));
-        if (!result) return false;
+        if (!result) return tle::unexpected(result.error());
         diag = *result;
-        return true;
+        return {};
     });
 }
 
-bool Tle92466edHandler::GetFaultReport(tle92466ed::FaultReport& report) noexcept {
-    return withDriver([&](auto& drv) -> bool {
+tle92466ed::DriverResult<void> Tle92466edHandler::GetFaultReport(tle92466ed::FaultReport& report) noexcept {
+    return withDriver([&](auto& drv) -> tle92466ed::DriverResult<void> {
         auto result = drv.GetAllFaults();
-        if (!result) return false;
+        if (!result) return tle::unexpected(result.error());
         report = *result;
-        return true;
+        return {};
     });
 }
 
-bool Tle92466edHandler::ClearFaults() noexcept {
-    return withDriver([](auto& drv) -> bool {
-        return drv.ClearFaults().has_value();
+tle92466ed::DriverResult<void> Tle92466edHandler::ClearFaults() noexcept {
+    return withDriver([](auto& drv) -> tle92466ed::DriverResult<void> {
+        return drv.ClearFaults();
     });
 }
 
@@ -452,9 +458,9 @@ bool Tle92466edHandler::HasFault() noexcept {
     });
 }
 
-bool Tle92466edHandler::KickWatchdog(uint16_t reload_value) noexcept {
-    return withDriver([&](auto& drv) -> bool {
-        return drv.ReloadSpiWatchdog(reload_value).has_value();
+tle92466ed::DriverResult<void> Tle92466edHandler::KickWatchdog(uint16_t reload_value) noexcept {
+    return withDriver([&](auto& drv) -> tle92466ed::DriverResult<void> {
+        return drv.ReloadSpiWatchdog(reload_value);
     });
 }
 

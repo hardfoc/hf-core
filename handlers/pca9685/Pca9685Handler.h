@@ -599,100 +599,6 @@ public:
     /// @}
 
     //==========================================================================
-    /// @name PWM Control
-    /// @brief Per-channel and global PWM operations.
-    /// @{
-    //==========================================================================
-
-    /**
-     * @brief Set the PWM frequency (global -- all channels).
-     * @param freq_hz Desired frequency in Hz (24-1526).
-     * @return true on success, false on failure.
-     */
-    bool SetFrequency(float freq_hz) noexcept;
-
-    /**
-     * @brief Set duty cycle for a channel (0.0-1.0).
-     * @param channel Channel number (0-15).
-     * @param duty    Duty cycle (0.0 = off, 1.0 = fully on).
-     * @return true on success, false on failure.
-     */
-    bool SetDuty(uint8_t channel, float duty) noexcept;
-
-    /**
-     * @brief Set raw on/off tick values for a channel.
-     * @param channel  Channel number (0-15).
-     * @param on_time  Tick count when signal turns ON (0-4095).
-     * @param off_time Tick count when signal turns OFF (0-4095).
-     * @return true on success, false on failure.
-     */
-    bool SetPwm(uint8_t channel, uint16_t on_time, uint16_t off_time) noexcept;
-
-    /**
-     * @brief Set all channels to the same PWM value.
-     * @param on_time  Tick count when signal turns ON (0-4095).
-     * @param off_time Tick count when signal turns OFF (0-4095).
-     * @return true on success, false on failure.
-     */
-    bool SetAllPwm(uint16_t on_time, uint16_t off_time) noexcept;
-
-    /**
-     * @brief Set a channel to fully ON (100% duty, no PWM).
-     * @param channel Channel number (0-15).
-     * @return true on success, false on failure.
-     */
-    bool SetChannelFullOn(uint8_t channel) noexcept;
-
-    /**
-     * @brief Set a channel to fully OFF (0% duty).
-     * @param channel Channel number (0-15).
-     * @return true on success, false on failure.
-     */
-    bool SetChannelFullOff(uint8_t channel) noexcept;
-
-    /// @}
-
-    //==========================================================================
-    /// @name Power Management
-    /// @{
-    //==========================================================================
-
-    /**
-     * @brief Put PCA9685 into low-power sleep mode.
-     * @return true on success, false on failure.
-     */
-    bool Sleep() noexcept;
-
-    /**
-     * @brief Wake PCA9685 from sleep mode.
-     * @return true on success, false on failure.
-     */
-    bool Wake() noexcept;
-
-    /// @}
-
-    //==========================================================================
-    /// @name Output Configuration
-    /// @{
-    //==========================================================================
-
-    /**
-     * @brief Set output polarity inversion (global).
-     * @param invert true to invert all outputs, false for normal.
-     * @return true on success, false on failure.
-     */
-    bool SetOutputInvert(bool invert) noexcept;
-
-    /**
-     * @brief Set output driver mode (global).
-     * @param totem_pole true for totem-pole (default), false for open-drain.
-     * @return true on success, false on failure.
-     */
-    bool SetOutputDriverMode(bool totem_pole) noexcept;
-
-    /// @}
-
-    //==========================================================================
     /// @name Wrapper Factories
     /// @brief Create BasePwm and BaseGpio wrappers for manager-layer usage.
     /// @{
@@ -816,6 +722,18 @@ private:
 
     /** @brief Validate channel number (0-15). */
     bool validateChannel(uint8_t channel) const noexcept { return channel < 16; }
+
+    // ---- PWM/power/output ops (used internally by Pca9685PwmAdapter & Pca9685GpioPin) ----
+    bool SetFrequency(float freq_hz) noexcept;
+    bool SetDuty(uint8_t channel, float duty) noexcept;
+    bool SetPwm(uint8_t channel, uint16_t on_time, uint16_t off_time) noexcept;
+    bool SetAllPwm(uint16_t on_time, uint16_t off_time) noexcept;
+    bool SetChannelFullOn(uint8_t channel) noexcept;
+    bool SetChannelFullOff(uint8_t channel) noexcept;
+    bool Sleep() noexcept;
+    bool Wake() noexcept;
+    bool SetOutputInvert(bool invert) noexcept;
+    bool SetOutputDriverMode(bool totem_pole) noexcept;
 
     //==========================================================================
     // Private Members

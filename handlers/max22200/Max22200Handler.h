@@ -135,9 +135,9 @@ public:
 
     /**
      * @brief Initialize driver (ENABLE HIGH, read/clear STATUS, set ACTIVE).
-     * @return true on success.
+     * @return DriverStatus::OK on success, specific error code on failure.
      */
-    bool Initialize() noexcept;
+    max22200::DriverStatus Initialize() noexcept;
 
     /**
      * @brief Ensure driver is initialized (lazy init entrypoint).
@@ -148,11 +148,12 @@ public:
     /**
      * @brief Initialize with board configuration.
      * @param board_config Board-specific IFS and safety limits.
+     * @return DriverStatus::OK on success, specific error code on failure.
      */
-    bool Initialize(const max22200::BoardConfig& board_config) noexcept;
+    max22200::DriverStatus Initialize(const max22200::BoardConfig& board_config) noexcept;
 
     /** @brief Deinitialize — disable all channels, ACTIVE=0, ENABLE LOW. */
-    bool Deinitialize() noexcept;
+    max22200::DriverStatus Deinitialize() noexcept;
 
     /** @brief Check if initialized. */
     [[nodiscard]] bool IsInitialized() const noexcept { return initialized_; }
@@ -165,8 +166,9 @@ public:
      * @brief Configure a channel completely.
      * @param channel Channel number (0-7).
      * @param config  Full channel configuration.
+     * @return DriverStatus::OK on success, specific error code on failure.
      */
-    bool ConfigureChannel(uint8_t channel, const max22200::ChannelConfig& config) noexcept;
+    max22200::DriverStatus ConfigureChannel(uint8_t channel, const max22200::ChannelConfig& config) noexcept;
 
     /**
      * @brief Quick CDR setup with milliamp values.
@@ -174,8 +176,9 @@ public:
      * @param hit_ma  HIT current in milliamps.
      * @param hold_ma HOLD current in milliamps.
      * @param hit_time_ms HIT time in milliseconds.
+     * @return DriverStatus::OK on success, first failing operation's error code.
      */
-    bool SetupCdrChannel(uint8_t channel, uint16_t hit_ma,
+    max22200::DriverStatus SetupCdrChannel(uint8_t channel, uint16_t hit_ma,
                          uint16_t hold_ma, float hit_time_ms) noexcept;
 
     /**
@@ -184,8 +187,9 @@ public:
      * @param hit_duty_pct  HIT duty cycle percentage.
      * @param hold_duty_pct HOLD duty cycle percentage.
      * @param hit_time_ms   HIT time in milliseconds.
+     * @return DriverStatus::OK on success, first failing operation's error code.
      */
-    bool SetupVdrChannel(uint8_t channel, float hit_duty_pct,
+    max22200::DriverStatus SetupVdrChannel(uint8_t channel, float hit_duty_pct,
                          float hold_duty_pct, float hit_time_ms) noexcept;
 
     //=========================================================================
@@ -193,16 +197,16 @@ public:
     //=========================================================================
 
     /** @brief Enable a channel. */
-    bool EnableChannel(uint8_t channel) noexcept;
+    max22200::DriverStatus EnableChannel(uint8_t channel) noexcept;
 
     /** @brief Disable a channel. */
-    bool DisableChannel(uint8_t channel) noexcept;
+    max22200::DriverStatus DisableChannel(uint8_t channel) noexcept;
 
     /** @brief Enable all channels. */
-    bool EnableAllChannels() noexcept;
+    max22200::DriverStatus EnableAllChannels() noexcept;
 
     /** @brief Disable all channels. */
-    bool DisableAllChannels() noexcept;
+    max22200::DriverStatus DisableAllChannels() noexcept;
 
     /** @brief Check if a channel is enabled. */
     bool IsChannelEnabled(uint8_t channel) noexcept;
@@ -211,7 +215,7 @@ public:
      * @brief Set channels enabled by bitmask.
      * @param mask Bitmask of channels to enable (bit 0 = CH0, etc.).
      */
-    bool SetChannelsMask(uint8_t mask) noexcept;
+    max22200::DriverStatus SetChannelsMask(uint8_t mask) noexcept;
 
     //=========================================================================
     // Status & Faults
@@ -220,21 +224,23 @@ public:
     /**
      * @brief Read the STATUS register.
      * @param[out] status Status structure to fill.
+     * @return DriverStatus::OK on success.
      */
-    bool GetStatus(max22200::StatusConfig& status) noexcept;
+    max22200::DriverStatus GetStatus(max22200::StatusConfig& status) noexcept;
 
     /**
      * @brief Read fault flags for a channel.
      * @param channel Channel number (0-7).
      * @param[out] faults Fault status structure.
+     * @return DriverStatus::OK on success.
      */
-    bool GetChannelFaults(uint8_t channel, max22200::FaultStatus& faults) noexcept;
+    max22200::DriverStatus GetChannelFaults(uint8_t channel, max22200::FaultStatus& faults) noexcept;
 
     /** @brief Check if any fault is present. */
     bool HasFault() noexcept;
 
     /** @brief Clear all fault flags. */
-    bool ClearFaults() noexcept;
+    max22200::DriverStatus ClearFaults() noexcept;
 
     //=========================================================================
     // Device Control
@@ -243,8 +249,9 @@ public:
     /**
      * @brief Read fault register into status.
      * @param[out] faults Fault status.
+     * @return DriverStatus::OK on success.
      */
-    bool ReadFaultRegister(max22200::FaultStatus& faults) noexcept;
+    max22200::DriverStatus ReadFaultRegister(max22200::FaultStatus& faults) noexcept;
 
     //=========================================================================
     // Direct Driver Access
@@ -274,7 +281,12 @@ private:
         using R = std::invoke_result_t<Fn, DriverType&>;
         static_assert(!std::is_void_v<R>, "withDriver requires non-void return");
         MutexLockGuard lock(mutex_);
-        if (!EnsureInitializedLocked() || !driver_) return R{};
+        if (!EnsureInitializedLocked() || !driver_) {
+            if constexpr (std::is_same_v<R, max22200::DriverStatus>)
+                return max22200::DriverStatus::INITIALIZATION_ERROR;
+            else
+                return R{};
+        }
         return fn(*driver_);
     }
 

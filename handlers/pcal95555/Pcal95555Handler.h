@@ -714,60 +714,60 @@ public:
      * @brief Set input polarity inversion for a pin.
      * @param pin    Pin number (0-15).
      * @param invert true to invert input polarity, false for normal.
-     * @return true on success, false on failure.
+     * @return GPIO_ERR_OK on success, or a specific hf_gpio_err_t error code.
      */
-    bool SetPolarityInversion(hf_pin_num_t pin, bool invert) noexcept;
+    hf_gpio_err_t SetPolarityInversion(hf_pin_num_t pin, bool invert) noexcept;
 
     /**
      * @brief Set the per-pin interrupt mask.
      * @param pin  Pin number (0-15).
      * @param mask true to mask (disable) interrupt, false to unmask (enable).
-     * @return true on success, false on failure.
+     * @return GPIO_ERR_OK on success, or a specific hf_gpio_err_t error code.
      * @note Requires PCAL9555A.
      */
-    bool SetInterruptMask(hf_pin_num_t pin, bool mask) noexcept;
+    hf_gpio_err_t SetInterruptMask(hf_pin_num_t pin, bool mask) noexcept;
 
     /**
      * @brief Get interrupt status for a single pin.
      * @param pin          Pin number (0-15).
      * @param[out] status  true if pin has pending interrupt.
-     * @return true on success, false on failure.
+     * @return GPIO_ERR_OK on success, or a specific hf_gpio_err_t error code.
      * @note Reading status clears the interrupt. Requires PCAL9555A.
      */
-    bool GetInterruptStatus(hf_pin_num_t pin, bool& status) noexcept;
+    hf_gpio_err_t GetInterruptStatus(hf_pin_num_t pin, bool& status) noexcept;
 
     /**
      * @brief Set output drive strength for a pin.
      * @param pin   Pin number (0-15).
      * @param level Drive strength (Level0=25%, Level1=50%, Level2=75%, Level3=100%).
-     * @return true on success, false on failure.
+     * @return GPIO_ERR_OK on success, or a specific hf_gpio_err_t error code.
      * @note Requires PCAL9555A.
      */
-    bool SetDriveStrength(hf_pin_num_t pin, DriveStrength level) noexcept;
+    hf_gpio_err_t SetDriveStrength(hf_pin_num_t pin, DriveStrength level) noexcept;
 
     /**
      * @brief Enable or disable input latch for a pin.
      * @param pin    Pin number (0-15).
      * @param enable true to enable input latch, false to disable.
-     * @return true on success, false on failure.
+     * @return GPIO_ERR_OK on success, or a specific hf_gpio_err_t error code.
      * @note Requires PCAL9555A.
      */
-    bool EnableInputLatch(hf_pin_num_t pin, bool enable) noexcept;
+    hf_gpio_err_t EnableInputLatch(hf_pin_num_t pin, bool enable) noexcept;
 
     /**
      * @brief Configure per-port output mode (push-pull or open-drain).
      * @param port0_open_drain true for open-drain on port 0 (pins 0-7).
      * @param port1_open_drain true for open-drain on port 1 (pins 8-15).
-     * @return true on success, false on failure.
+     * @return GPIO_ERR_OK on success, or a specific hf_gpio_err_t error code.
      * @note Requires PCAL9555A.
      */
-    bool SetOutputMode(bool port0_open_drain, bool port1_open_drain) noexcept;
+    hf_gpio_err_t SetOutputMode(bool port0_open_drain, bool port1_open_drain) noexcept;
 
     /**
      * @brief Reset all registers to power-on default state.
-     * @return true on success, false on failure.
+     * @return GPIO_ERR_OK on success, or a specific hf_gpio_err_t error code.
      */
-    bool ResetToDefault() noexcept;
+    hf_gpio_err_t ResetToDefault() noexcept;
 
     /// @}
 

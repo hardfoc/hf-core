@@ -677,66 +677,76 @@ pcal95555::ChipVariant Pcal95555Handler::GetChipVariant() const noexcept {
                : pcal95555::ChipVariant::Unknown;
 }
 
-bool Pcal95555Handler::SetPolarityInversion(hf_pin_num_t pin, bool invert) noexcept {
-    if (!ValidatePin(static_cast<uint8_t>(pin))) return false;
+hf_gpio_err_t Pcal95555Handler::SetPolarityInversion(hf_pin_num_t pin, bool invert) noexcept {
+    if (!ValidatePin(static_cast<uint8_t>(pin))) return GPIO_ERR_INVALID_PIN;
     MutexLockGuard lock(handler_mutex_);
-    if (!EnsureInitializedLocked()) return false;
+    if (!EnsureInitializedLocked()) return GPIO_ERR_NOT_INITIALIZED;
 
     Polarity pol = invert ? Polarity::Inverted : Polarity::Normal;
-    return pcal95555_driver_->SetPinPolarity(pin, pol);
+    return pcal95555_driver_->SetPinPolarity(pin, pol)
+               ? GPIO_ERR_OK
+               : GPIO_ERR_COMMUNICATION_FAILURE;
 }
 
-bool Pcal95555Handler::SetInterruptMask(hf_pin_num_t pin, bool mask) noexcept {
-    if (!ValidatePin(static_cast<uint8_t>(pin))) return false;
+hf_gpio_err_t Pcal95555Handler::SetInterruptMask(hf_pin_num_t pin, bool mask) noexcept {
+    if (!ValidatePin(static_cast<uint8_t>(pin))) return GPIO_ERR_INVALID_PIN;
     MutexLockGuard lock(handler_mutex_);
-    if (!EnsureInitializedLocked()) return false;
+    if (!EnsureInitializedLocked()) return GPIO_ERR_NOT_INITIALIZED;
 
     InterruptState state = mask ? InterruptState::Disabled : InterruptState::Enabled;
-    return pcal95555_driver_->ConfigureInterrupt(pin, state);
+    return pcal95555_driver_->ConfigureInterrupt(pin, state)
+               ? GPIO_ERR_OK
+               : GPIO_ERR_COMMUNICATION_FAILURE;
 }
 
-bool Pcal95555Handler::GetInterruptStatus(hf_pin_num_t pin, bool& status) noexcept {
-    if (!ValidatePin(static_cast<uint8_t>(pin))) return false;
+hf_gpio_err_t Pcal95555Handler::GetInterruptStatus(hf_pin_num_t pin, bool& status) noexcept {
+    if (!ValidatePin(static_cast<uint8_t>(pin))) return GPIO_ERR_INVALID_PIN;
     MutexLockGuard lock(handler_mutex_);
-    if (!EnsureInitializedLocked()) return false;
+    if (!EnsureInitializedLocked()) return GPIO_ERR_NOT_INITIALIZED;
 
     uint16_t global_status = pcal95555_driver_->GetInterruptStatus();
     status = (global_status & (1U << pin)) != 0;
-    return true;
+    return GPIO_ERR_OK;
 }
 
-bool Pcal95555Handler::SetDriveStrength(hf_pin_num_t pin,
+hf_gpio_err_t Pcal95555Handler::SetDriveStrength(hf_pin_num_t pin,
                                         DriveStrength level) noexcept {
-    if (!ValidatePin(static_cast<uint8_t>(pin))) return false;
+    if (!ValidatePin(static_cast<uint8_t>(pin))) return GPIO_ERR_INVALID_PIN;
     MutexLockGuard lock(handler_mutex_);
-    if (!EnsureInitializedLocked()) return false;
+    if (!EnsureInitializedLocked()) return GPIO_ERR_NOT_INITIALIZED;
 
-    return pcal95555_driver_->SetDriveStrength(pin, level);
+    return pcal95555_driver_->SetDriveStrength(pin, level)
+               ? GPIO_ERR_OK
+               : GPIO_ERR_COMMUNICATION_FAILURE;
 }
 
-bool Pcal95555Handler::EnableInputLatch(hf_pin_num_t pin, bool enable) noexcept {
-    if (!ValidatePin(static_cast<uint8_t>(pin))) return false;
+hf_gpio_err_t Pcal95555Handler::EnableInputLatch(hf_pin_num_t pin, bool enable) noexcept {
+    if (!ValidatePin(static_cast<uint8_t>(pin))) return GPIO_ERR_INVALID_PIN;
     MutexLockGuard lock(handler_mutex_);
-    if (!EnsureInitializedLocked()) return false;
+    if (!EnsureInitializedLocked()) return GPIO_ERR_NOT_INITIALIZED;
 
-    return pcal95555_driver_->EnableInputLatch(pin, enable);
+    return pcal95555_driver_->EnableInputLatch(pin, enable)
+               ? GPIO_ERR_OK
+               : GPIO_ERR_COMMUNICATION_FAILURE;
 }
 
-bool Pcal95555Handler::SetOutputMode(bool port0_open_drain,
+hf_gpio_err_t Pcal95555Handler::SetOutputMode(bool port0_open_drain,
                                      bool port1_open_drain) noexcept {
     MutexLockGuard lock(handler_mutex_);
-    if (!EnsureInitializedLocked()) return false;
+    if (!EnsureInitializedLocked()) return GPIO_ERR_NOT_INITIALIZED;
 
-    return pcal95555_driver_->SetOutputMode(port0_open_drain, port1_open_drain);
+    return pcal95555_driver_->SetOutputMode(port0_open_drain, port1_open_drain)
+               ? GPIO_ERR_OK
+               : GPIO_ERR_COMMUNICATION_FAILURE;
 }
 
-bool Pcal95555Handler::ResetToDefault() noexcept {
+hf_gpio_err_t Pcal95555Handler::ResetToDefault() noexcept {
     MutexLockGuard lock(handler_mutex_);
-    if (!EnsureInitializedLocked()) return false;
+    if (!EnsureInitializedLocked()) return GPIO_ERR_NOT_INITIALIZED;
 
     pcal95555_driver_->ResetToDefault();  // void return
     pull_mode_cache_.fill(hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_FLOATING);
-    return true;
+    return GPIO_ERR_OK;
 }
 
 // =====================================================================

@@ -141,8 +141,9 @@ public:
     // Initialization
     //=========================================================================
 
-    /** @brief Initialize driver (hardware reset + SPI init + enter config mode). */
-    bool Initialize() noexcept;
+    /** @brief Initialize driver (hardware reset + SPI init + enter config mode).
+     *  @return DriverResult with void on success, DriverError on failure. */
+    tle92466ed::DriverResult<void> Initialize() noexcept;
 
     /**
      * @brief Ensure driver is initialized (lazy init entrypoint).
@@ -153,11 +154,13 @@ public:
     /**
      * @brief Initialize with global configuration.
      * @param config Global device configuration.
+     * @return DriverResult with void on success, DriverError on failure.
      */
-    bool Initialize(const tle92466ed::GlobalConfig& config) noexcept;
+    tle92466ed::DriverResult<void> Initialize(const tle92466ed::GlobalConfig& config) noexcept;
 
-    /** @brief Deinitialize — disable channels and shut down. */
-    bool Deinitialize() noexcept;
+    /** @brief Deinitialize — disable channels and shut down.
+     *  @return DriverResult with void on success, DriverError on failure. */
+    tle92466ed::DriverResult<void> Deinitialize() noexcept;
 
     /** @brief Check if initialized. */
     [[nodiscard]] bool IsInitialized() const noexcept { return initialized_; }
@@ -171,26 +174,26 @@ public:
      * @param channel Channel number (0-5).
      * @param config  Channel configuration.
      */
-    bool ConfigureChannel(uint8_t channel, const tle92466ed::ChannelConfig& config) noexcept;
+    tle92466ed::DriverResult<void> ConfigureChannel(uint8_t channel, const tle92466ed::ChannelConfig& config) noexcept;
 
     /** @brief Enable a channel. */
-    bool EnableChannel(uint8_t channel) noexcept;
+    tle92466ed::DriverResult<void> EnableChannel(uint8_t channel) noexcept;
 
     /** @brief Disable a channel. */
-    bool DisableChannel(uint8_t channel) noexcept;
+    tle92466ed::DriverResult<void> DisableChannel(uint8_t channel) noexcept;
 
     /** @brief Enable all channels. */
-    bool EnableAllChannels() noexcept;
+    tle92466ed::DriverResult<void> EnableAllChannels() noexcept;
 
     /** @brief Disable all channels. */
-    bool DisableAllChannels() noexcept;
+    tle92466ed::DriverResult<void> DisableAllChannels() noexcept;
 
     /**
      * @brief Set channel current setpoint.
      * @param channel Channel number (0-5).
      * @param current_ma Current in milliamps.
      */
-    bool SetChannelCurrent(uint8_t channel, uint16_t current_ma) noexcept;
+    tle92466ed::DriverResult<void> SetChannelCurrent(uint8_t channel, uint16_t current_ma) noexcept;
 
     /**
      * @brief Configure raw PWM period for a channel.
@@ -199,7 +202,7 @@ public:
      * @param exponent PWM period exponent.
      * @param low_freq_range Use low frequency range.
      */
-    bool ConfigurePwmRaw(uint8_t channel, uint8_t mantissa,
+    tle92466ed::DriverResult<void> ConfigurePwmRaw(uint8_t channel, uint8_t mantissa,
                          uint8_t exponent, bool low_freq_range = false) noexcept;
 
     //=========================================================================
@@ -207,10 +210,10 @@ public:
     //=========================================================================
 
     /** @brief Enter mission mode (enable outputs after configuration). */
-    bool EnterMissionMode() noexcept;
+    tle92466ed::DriverResult<void> EnterMissionMode() noexcept;
 
     /** @brief Enter config mode (for register writes). */
-    bool EnterConfigMode() noexcept;
+    tle92466ed::DriverResult<void> EnterConfigMode() noexcept;
 
     /** @brief Check if in mission mode. */
     [[nodiscard]] bool IsMissionMode() noexcept;
@@ -223,23 +226,23 @@ public:
      * @brief Get device status.
      * @param[out] status Device status structure to fill.
      */
-    bool GetStatus(tle92466ed::DeviceStatus& status) noexcept;
+    tle92466ed::DriverResult<void> GetStatus(tle92466ed::DeviceStatus& status) noexcept;
 
     /**
      * @brief Get channel diagnostics.
      * @param channel Channel number (0-5).
      * @param[out] diag Diagnostics structure to fill.
      */
-    bool GetChannelDiagnostics(uint8_t channel, tle92466ed::ChannelDiagnostics& diag) noexcept;
+    tle92466ed::DriverResult<void> GetChannelDiagnostics(uint8_t channel, tle92466ed::ChannelDiagnostics& diag) noexcept;
 
     /**
      * @brief Get comprehensive fault report.
      * @param[out] report Fault report structure to fill.
      */
-    bool GetFaultReport(tle92466ed::FaultReport& report) noexcept;
+    tle92466ed::DriverResult<void> GetFaultReport(tle92466ed::FaultReport& report) noexcept;
 
     /** @brief Clear all fault flags. */
-    bool ClearFaults() noexcept;
+    tle92466ed::DriverResult<void> ClearFaults() noexcept;
 
     /** @brief Check if any fault is present. */
     bool HasFault() noexcept;
@@ -252,7 +255,7 @@ public:
      * @brief Reload the SPI watchdog.
      * @param reload_value Watchdog reload value (default 1000).
      */
-    bool KickWatchdog(uint16_t reload_value = 1000) noexcept;
+    tle92466ed::DriverResult<void> KickWatchdog(uint16_t reload_value = 1000) noexcept;
 
     //=========================================================================
     // Device Info
@@ -281,18 +284,30 @@ public:
 private:
     bool EnsureInitializedLocked() noexcept;
 
+    /// @brief Type trait to detect tle92466ed::DriverResult<T> types
+    template <typename T>
+    struct is_driver_result : std::false_type {};
+    template <typename T>
+    struct is_driver_result<tle92466ed::DriverResult<T>> : std::true_type {};
+
     /**
      * @brief Execute a lambda with a locked, initialized driver.
      *
      * Acquires the mutex, ensures initialization, and invokes @p fn(*driver_).
-     * Returns a default-constructed R on failure.
+     * Returns a default-constructed R on failure, or for DriverResult types,
+     * returns an error indicating the driver is not initialized.
      */
     template <typename Fn>
     auto withDriver(Fn&& fn) noexcept {
         using R = std::invoke_result_t<Fn, DriverType&>;
         static_assert(!std::is_void_v<R>, "withDriver requires non-void return");
         MutexLockGuard lock(mutex_);
-        if (!EnsureInitializedLocked() || !driver_) return R{};
+        if (!EnsureInitializedLocked() || !driver_) {
+            if constexpr (is_driver_result<R>::value)
+                return R{tle::unexpected(tle92466ed::DriverError::NotInitialized)};
+            else
+                return R{};
+        }
         return fn(*driver_);
     }
 
