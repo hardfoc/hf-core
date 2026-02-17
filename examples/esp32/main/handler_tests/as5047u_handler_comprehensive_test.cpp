@@ -137,24 +137,18 @@ static bool test_is_initialized() noexcept {
 
 static bool test_read_angle_raw() noexcept {
     if (!g_handler) return false;
-    uint16_t raw = 0;
-    auto err = g_handler->ReadAngle(raw);
-    if (err != As5047uError::SUCCESS) {
-        ESP_LOGE(TAG, "ReadAngle(raw) failed: %d", static_cast<int>(err));
-        return false;
-    }
+    auto* sensor = g_handler->GetSensor();
+    if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
+    uint16_t raw = sensor->GetAngle();
     ESP_LOGI(TAG, "Raw angle: %u (0-16383)", raw);
     return raw <= 16383;
 }
 
 static bool test_read_angle_degrees() noexcept {
     if (!g_handler) return false;
-    uint16_t raw = 0;
-    auto err = g_handler->ReadAngle(raw);
-    if (err != As5047uError::SUCCESS) {
-        ESP_LOGE(TAG, "ReadAngle failed: %d", static_cast<int>(err));
-        return false;
-    }
+    auto* sensor = g_handler->GetSensor();
+    if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
+    uint16_t raw = sensor->GetAngle();
     float degrees = static_cast<float>(As5047uHandler::LSBToDegrees(raw));
     ESP_LOGI(TAG, "Angle: %.2f degrees", degrees);
     return degrees >= 0.0f && degrees < 360.0f;
@@ -162,11 +156,11 @@ static bool test_read_angle_degrees() noexcept {
 
 static bool test_read_angle_consistency() noexcept {
     if (!g_handler) return false;
+    auto* sensor = g_handler->GetSensor();
+    if (!sensor) return false;
     // Read 10 times rapidly and check all values are in valid range
     for (int i = 0; i < 10; ++i) {
-        uint16_t raw = 0;
-        auto err = g_handler->ReadAngle(raw);
-        if (err != As5047uError::SUCCESS) return false;
+        uint16_t raw = sensor->GetAngle();
         float deg = static_cast<float>(As5047uHandler::LSBToDegrees(raw));
         if (deg < 0.0f || deg >= 360.0f) return false;
     }
@@ -180,13 +174,10 @@ static bool test_read_angle_consistency() noexcept {
 
 static bool test_read_velocity() noexcept {
     if (!g_handler) return false;
-    int16_t velocity = 0;
-    auto err = g_handler->ReadVelocity(velocity);
-    if (err != As5047uError::SUCCESS) {
-        ESP_LOGE(TAG, "ReadVelocity failed: %d", static_cast<int>(err));
-        return false;
-    }
-    ESP_LOGI(TAG, "Velocity: %d LSB (stationary expected ~0)", static_cast<int>(velocity));
+    auto* sensor = g_handler->GetSensor();
+    if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
+    float velocity_rpm = sensor->GetVelocityRPM();
+    ESP_LOGI(TAG, "Velocity: %.2f RPM (stationary expected ~0)", velocity_rpm);
     return true;  // Value can be 0 or small noise
 }
 
@@ -196,16 +187,16 @@ static bool test_read_velocity() noexcept {
 
 static bool test_daec_enable_disable() noexcept {
     if (!g_handler) return false;
+    auto* sensor = g_handler->GetSensor();
+    if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
     // Enable DAEC
-    auto err = g_handler->SetDAEC(true);
-    if (err != As5047uError::SUCCESS) {
-        ESP_LOGE(TAG, "SetDAEC(true) failed");
+    if (!sensor->SetDynamicAngleCompensation(true)) {
+        ESP_LOGE(TAG, "SetDynamicAngleCompensation(true) failed");
         return false;
     }
     // Disable DAEC
-    err = g_handler->SetDAEC(false);
-    if (err != As5047uError::SUCCESS) {
-        ESP_LOGE(TAG, "SetDAEC(false) failed");
+    if (!sensor->SetDynamicAngleCompensation(false)) {
+        ESP_LOGE(TAG, "SetDynamicAngleCompensation(false) failed");
         return false;
     }
     ESP_LOGI(TAG, "DAEC enable/disable cycle OK");
@@ -218,22 +209,22 @@ static bool test_daec_enable_disable() noexcept {
 
 static bool test_set_zero_position() noexcept {
     if (!g_handler) return false;
+    auto* sensor = g_handler->GetSensor();
+    if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
+
     // Read current angle
-    uint16_t before_raw = 0;
-    g_handler->ReadAngle(before_raw);
+    uint16_t before_raw = sensor->GetAngle();
     float before = static_cast<float>(As5047uHandler::LSBToDegrees(before_raw));
 
     // Set current position as zero
-    auto err = g_handler->SetZeroPosition(before_raw);
-    if (err != As5047uError::SUCCESS) {
-        ESP_LOGE(TAG, "SetZeroPosition failed: %d", static_cast<int>(err));
+    if (!sensor->SetZeroPosition(before_raw)) {
+        ESP_LOGE(TAG, "SetZeroPosition failed");
         return false;
     }
 
     // Read again — should be close to 0
     vTaskDelay(pdMS_TO_TICKS(50));
-    uint16_t after_raw = 0;
-    g_handler->ReadAngle(after_raw);
+    uint16_t after_raw = sensor->GetAngle();
     float after = static_cast<float>(As5047uHandler::LSBToDegrees(after_raw));
     ESP_LOGI(TAG, "Before zero: %.2f°, After zero: %.2f°", before, after);
     return after < 5.0f || after > 355.0f;  // Near zero, accounting for noise
@@ -270,10 +261,11 @@ static bool test_operations_before_init() noexcept {
     if (!g_spi_device) return false;
 
     As5047uHandler uninit_handler(*g_spi_device);
-    uint16_t raw = 0;
-    auto err = uninit_handler.ReadAngle(raw);
-    bool correct = (err == As5047uError::NOT_INITIALIZED);
-    ESP_LOGI(TAG, "ReadAngle before init: %s (expected NOT_INITIALIZED)",
+    bool is_init = uninit_handler.IsInitialized();
+    auto* sensor = uninit_handler.GetSensor();
+    bool correct = !is_init && (sensor == nullptr);
+    ESP_LOGI(TAG, "Before init: IsInitialized=%d, GetSensor=%p — %s",
+             is_init, static_cast<void*>(sensor),
              correct ? "CORRECT" : "UNEXPECTED");
     return correct;
 }
@@ -287,9 +279,13 @@ static volatile bool g_thread_test_pass = true;
 static void concurrent_reader_task(void* param) {
     auto* handler = static_cast<As5047uHandler*>(param);
     for (int i = 0; i < 50; ++i) {
-        uint16_t raw = 0;
-        auto err = handler->ReadAngle(raw);
-        if (err != As5047uError::SUCCESS) {
+        auto* sensor = handler->GetSensor();
+        if (!sensor) {
+            g_thread_test_pass = false;
+            break;
+        }
+        uint16_t raw = sensor->GetAngle();
+        if (raw > 16383) {
             g_thread_test_pass = false;
         }
         vTaskDelay(pdMS_TO_TICKS(10));
@@ -310,9 +306,9 @@ static bool test_concurrent_access() noexcept {
     }
 
     // Also read from main context
+    auto* sensor = g_handler->GetSensor();
     for (int i = 0; i < 50; ++i) {
-        uint16_t raw = 0;
-        g_handler->ReadAngle(raw);
+        if (sensor) sensor->GetAngle();
         vTaskDelay(pdMS_TO_TICKS(10));
     }
 

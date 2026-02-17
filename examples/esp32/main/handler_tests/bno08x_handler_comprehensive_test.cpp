@@ -122,23 +122,23 @@ static bool test_is_initialized() noexcept {
 
 static bool test_enable_accelerometer() noexcept {
     if (!g_handler) return false;
-    Bno08xConfig cfg = g_handler->GetConfiguration();
-    cfg.enable_accelerometer = true;
-    cfg.accelerometer_interval_ms = 50;
-    auto err = g_handler->ApplyConfiguration(cfg);
-    ESP_LOGI(TAG, "Enable accelerometer: %d", static_cast<int>(err));
-    return err == Bno08xError::SUCCESS;
+    auto* sensor = g_handler->GetSensor();
+    if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
+    bool ok = sensor->EnableSensor(BNO085Sensor::Accelerometer, 50, 0.0f);
+    ESP_LOGI(TAG, "Enable accelerometer: %s", ok ? "OK" : "FAILED");
+    return ok;
 }
 
 static bool test_disable_sensor() noexcept {
     if (!g_handler) return false;
-    // applyConfigLocked should now call DisableSensor for disabled sensors
-    Bno08xConfig cfg = g_handler->GetConfiguration();
-    cfg.enable_shake_detector = false;
-    cfg.enable_pickup_detector = false;
-    auto err = g_handler->ApplyConfiguration(cfg);
-    ESP_LOGI(TAG, "Disable sensors: %d", static_cast<int>(err));
-    return err == Bno08xError::SUCCESS;
+    auto* sensor = g_handler->GetSensor();
+    if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
+    // Disable sensors that are not needed
+    bool ok1 = sensor->DisableSensor(BNO085Sensor::ShakeDetector);
+    bool ok2 = sensor->DisableSensor(BNO085Sensor::PickupDetector);
+    ESP_LOGI(TAG, "Disable sensors: shake=%s, pickup=%s",
+             ok1 ? "OK" : "FAILED", ok2 ? "OK" : "FAILED");
+    return ok1 && ok2;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -147,30 +147,32 @@ static bool test_disable_sensor() noexcept {
 
 static bool test_read_acceleration() noexcept {
     if (!g_handler) return false;
+    auto* sensor = g_handler->GetSensor();
+    if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
     vTaskDelay(pdMS_TO_TICKS(200)); // Wait for data
-    Bno08xVector3 accel = {};
-    auto err = g_handler->ReadAcceleration(accel);
-    if (err != Bno08xError::SUCCESS) {
-        ESP_LOGE(TAG, "ReadAcceleration failed: %d", static_cast<int>(err));
-        return false;
+    g_handler->Update();
+    if (!sensor->HasNewData(BNO085Sensor::Accelerometer)) {
+        ESP_LOGW(TAG, "No new accelerometer data available");
+        return true;  // Not a hard failure — sensor may not have produced data yet
     }
-    ESP_LOGI(TAG, "Accel: x=%.3f y=%.3f z=%.3f valid=%d",
-             accel.x, accel.y, accel.z, accel.valid);
+    SensorEvent event = sensor->GetLatest(BNO085Sensor::Accelerometer);
+    ESP_LOGI(TAG, "Accel: x=%.3f y=%.3f z=%.3f",
+             event.vector.x, event.vector.y, event.vector.z);
     return true;
 }
 
 static bool test_read_imu_data() noexcept {
     if (!g_handler) return false;
+    auto* sensor = g_handler->GetSensor();
+    if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
     vTaskDelay(pdMS_TO_TICKS(200));
-    Bno08xImuData imu = {};
-    auto err = g_handler->ReadImuData(imu);
-    if (err != Bno08xError::SUCCESS) {
-        ESP_LOGE(TAG, "ReadImuData failed: %d", static_cast<int>(err));
-        return false;
-    }
-    ESP_LOGI(TAG, "IMU valid=%d (accel=%d, gyro=%d, mag=%d, rot=%d)",
-             imu.valid, imu.acceleration.valid, imu.gyroscope.valid,
-             imu.magnetometer.valid, imu.rotation.valid);
+    g_handler->Update();
+    bool has_accel = sensor->HasNewData(BNO085Sensor::Accelerometer);
+    bool has_gyro  = sensor->HasNewData(BNO085Sensor::Gyroscope);
+    bool has_mag   = sensor->HasNewData(BNO085Sensor::Magnetometer);
+    bool has_rot   = sensor->HasNewData(BNO085Sensor::RotationVector);
+    ESP_LOGI(TAG, "IMU data available: accel=%d, gyro=%d, mag=%d, rot=%d",
+             has_accel, has_gyro, has_mag, has_rot);
     return true;  // valid depends on freshness gating
 }
 
@@ -180,19 +182,26 @@ static bool test_read_imu_data() noexcept {
 
 static bool test_freshness_gating() noexcept {
     if (!g_handler) return false;
+    auto* sensor = g_handler->GetSensor();
+    if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
+
     // Trigger an Update() to process new data
     g_handler->Update();
     vTaskDelay(pdMS_TO_TICKS(100));
 
-    // Read — valid should reflect HasNewData() status
-    Bno08xVector3 accel = {};
-    g_handler->ReadAcceleration(accel);
-    ESP_LOGI(TAG, "Freshness: accel.valid=%d (should reflect HasNewData)", accel.valid);
+    // Check freshness — HasNewData should reflect whether new data arrived
+    bool has_new = sensor->HasNewData(BNO085Sensor::Accelerometer);
+    ESP_LOGI(TAG, "Freshness: HasNewData(Accel)=%d (should reflect new data)", has_new);
+
+    if (has_new) {
+        SensorEvent event = sensor->GetLatest(BNO085Sensor::Accelerometer);
+        ESP_LOGI(TAG, "Accel event: x=%.3f y=%.3f z=%.3f",
+                 event.vector.x, event.vector.y, event.vector.z);
+    }
 
     // Read again immediately without Update() — should be stale
-    Bno08xVector3 accel2 = {};
-    g_handler->ReadAcceleration(accel2);
-    ESP_LOGI(TAG, "Second read: accel2.valid=%d (may be stale)", accel2.valid);
+    bool has_new2 = sensor->HasNewData(BNO085Sensor::Accelerometer);
+    ESP_LOGI(TAG, "Second check: HasNewData=%d (may be stale)", has_new2);
     return true;  // Freshness is informational, not a hard error
 }
 
@@ -202,19 +211,17 @@ static bool test_freshness_gating() noexcept {
 
 static bool test_full_config() noexcept {
     if (!g_handler) return false;
-    Bno08xConfig cfg = {};
-    cfg.enable_accelerometer = true;
-    cfg.accelerometer_interval_ms = 20;
-    cfg.enable_gyroscope = true;
-    cfg.gyroscope_interval_ms = 20;
-    cfg.enable_rotation_vector = true;
-    cfg.rotation_interval_ms = 20;
-    cfg.enable_magnetometer = false;
-    cfg.enable_linear_acceleration = false;
-    cfg.enable_gravity = false;
-    auto err = g_handler->ApplyConfiguration(cfg);
-    ESP_LOGI(TAG, "Full config: %d", static_cast<int>(err));
-    return err == Bno08xError::SUCCESS;
+    auto* sensor = g_handler->GetSensor();
+    if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
+
+    // Enable sensors via driver API
+    bool ok = true;
+    ok &= sensor->EnableSensor(BNO085Sensor::Accelerometer, 20, 0.0f);
+    ok &= sensor->EnableSensor(BNO085Sensor::Gyroscope, 20, 0.0f);
+    ok &= sensor->EnableSensor(BNO085Sensor::RotationVector, 20, 0.0f);
+    ok &= sensor->DisableSensor(BNO085Sensor::Magnetometer);
+    ESP_LOGI(TAG, "Full config: %s", ok ? "OK" : "PARTIAL FAILURE");
+    return ok;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -223,14 +230,12 @@ static bool test_full_config() noexcept {
 
 static bool test_hardware_reset() noexcept {
     if (!g_handler) return false;
-    auto err = g_handler->HardwareReset(10);
-    if (err != Bno08xError::SUCCESS) {
-        ESP_LOGE(TAG, "HardwareReset failed: %d", static_cast<int>(err));
-        return false;
-    }
+    auto* sensor = g_handler->GetSensor();
+    if (!sensor) { ESP_LOGE(TAG, "GetSensor() returned nullptr"); return false; }
+    sensor->HardwareReset(10);
     vTaskDelay(pdMS_TO_TICKS(500));
     // Re-initialize after reset
-    err = g_handler->Initialize();
+    auto err = g_handler->Initialize();
     ESP_LOGI(TAG, "Re-init after reset: %d", static_cast<int>(err));
     return err == Bno08xError::SUCCESS;
 }
@@ -243,10 +248,13 @@ static bool test_operations_before_init() noexcept {
     auto* i2c_dev = get_i2c_device(BNO08X_I2C_ADDR);
     if (!i2c_dev) return false;
     Bno08xHandler uninit(*i2c_dev, Bno08xConfig{}, nullptr, nullptr);
-    Bno08xVector3 accel = {};
-    auto err = uninit.ReadAcceleration(accel);
-    bool correct = (err == Bno08xError::NOT_INITIALIZED);
-    ESP_LOGI(TAG, "Before init: %s", correct ? "CORRECT" : "UNEXPECTED");
+    bool is_init = uninit.IsInitialized();
+    auto* sensor = uninit.GetSensor();
+    // Before init: should not be initialized, sensor pointer may be nullptr
+    bool correct = !is_init;
+    ESP_LOGI(TAG, "Before init: IsInitialized=%d, GetSensor=%p — %s",
+             is_init, static_cast<void*>(sensor),
+             correct ? "CORRECT" : "UNEXPECTED");
     return correct;
 }
 

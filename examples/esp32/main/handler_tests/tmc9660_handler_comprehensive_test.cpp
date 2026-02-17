@@ -141,7 +141,9 @@ static bool test_is_ready() noexcept {
 static bool test_read_parameter() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     uint32_t value = 0;
-    bool ok = g_handler->ReadParameter(tmc9660::tmcl::Parameters::ACTUAL_VELOCITY, value);
+    bool ok = g_handler->visitDriver([&](auto& driver) -> bool {
+        return driver.readParameter(tmc9660::tmcl::Parameters::ACTUAL_VELOCITY, value);
+    });
     ESP_LOGI(TAG, "ReadParameter(ACTUAL_VELOCITY): %s, value=%lu", ok ? "OK" : "FAILED", value);
     return ok;
 }
@@ -149,7 +151,9 @@ static bool test_read_parameter() noexcept {
 static bool test_write_parameter() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     // Write target velocity (safe parameter)
-    bool ok = g_handler->WriteParameter(tmc9660::tmcl::Parameters::TARGET_VELOCITY, 5000);
+    bool ok = g_handler->visitDriver([](auto& driver) -> bool {
+        return driver.writeParameter(tmc9660::tmcl::Parameters::TARGET_VELOCITY, 5000);
+    });
     ESP_LOGI(TAG, "WriteParameter(TARGET_VELOCITY=5000): %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -159,14 +163,18 @@ static bool test_write_parameter() noexcept {
 static bool test_set_target_velocity() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     // Set velocity to 0 (safe)
-    bool ok = g_handler->SetTargetVelocity(0);
+    bool ok = g_handler->visitDriver([](auto& driver) -> bool {
+        return driver.velocityControl.setTargetVelocity(0);
+    });
     ESP_LOGI(TAG, "SetTargetVelocity(0): %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_set_target_position() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->SetTargetPosition(0);
+    bool ok = g_handler->visitDriver([](auto& driver) -> bool {
+        return driver.positionControl.setTargetPosition(0);
+    });
     ESP_LOGI(TAG, "SetTargetPosition(0): %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -175,23 +183,29 @@ static bool test_set_target_position() noexcept {
 
 static bool test_supply_voltage() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    float v = g_handler->GetSupplyVoltage();
-    bool valid = !std::isnan(v);
+    float v = g_handler->visitDriver([](auto& driver) -> float {
+        return driver.telemetry.getSupplyVoltage();
+    });
+    bool valid = !std::isnan(v) && v >= 0.0f;
     ESP_LOGI(TAG, "Supply voltage: %.2fV (valid=%d)", v, valid);
     return valid;
 }
 
 static bool test_chip_temperature() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    float t = g_handler->GetChipTemperature();
-    bool valid = !std::isnan(t);
+    float t = g_handler->visitDriver([](auto& driver) -> float {
+        return driver.telemetry.getChipTemperature();
+    });
+    bool valid = !std::isnan(t) && t > -273.0f;
     ESP_LOGI(TAG, "Chip temperature: %.2f°C (valid=%d)", t, valid);
     return valid;
 }
 
 static bool test_motor_current() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    int16_t current = g_handler->GetMotorCurrent();
+    int16_t current = g_handler->visitDriver([](auto& driver) -> int16_t {
+        return driver.telemetry.getMotorCurrent();
+    });
     ESP_LOGI(TAG, "Motor current: %d mA", current);
     return true; // 0 is valid at standstill
 }
@@ -199,7 +213,9 @@ static bool test_motor_current() noexcept {
 static bool test_status_flags() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     uint32_t flags = 0;
-    bool ok = g_handler->GetStatusFlags(flags);
+    bool ok = g_handler->visitDriver([&](auto& driver) -> bool {
+        return driver.telemetry.getGeneralStatusFlags(flags);
+    });
     ESP_LOGI(TAG, "Status flags: 0x%08lX (%s)", flags, ok ? "OK" : "FAILED");
     return ok;
 }
@@ -207,10 +223,14 @@ static bool test_status_flags() noexcept {
 static bool test_error_flags() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     uint32_t flags = 0;
-    bool ok = g_handler->GetErrorFlags(flags);
+    bool ok = g_handler->visitDriver([&](auto& driver) -> bool {
+        return driver.telemetry.getGeneralErrorFlags(flags);
+    });
     ESP_LOGI(TAG, "Error flags: 0x%08lX (%s)", flags, ok ? "OK" : "FAILED");
     if (ok && flags != 0) {
-        g_handler->ClearErrorFlags();
+        g_handler->visitDriver([&](auto& driver) {
+            driver.telemetry.clearGeneralErrorFlags(flags);
+        });
         ESP_LOGI(TAG, "Cleared error flags");
     }
     return ok;
@@ -284,10 +304,14 @@ static bool test_temperature_wrapper() noexcept {
 
 static bool test_driver_enable() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->EnableDriverOutput();
+    bool ok = g_handler->visitDriver([](auto& driver) -> bool {
+        return driver.GpioSetActive(tmc9660::TMC9660CtrlPin::DRV_EN);
+    });
     ESP_LOGI(TAG, "EnableDriverOutput: %s", ok ? "OK" : "FAILED");
     vTaskDelay(pdMS_TO_TICKS(100));
-    ok = g_handler->DisableDriverOutput();
+    ok = g_handler->visitDriver([](auto& driver) -> bool {
+        return driver.GpioSetInactive(tmc9660::TMC9660CtrlPin::DRV_EN);
+    });
     ESP_LOGI(TAG, "DisableDriverOutput: %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -302,11 +326,9 @@ static bool test_operations_before_init() noexcept {
         *g_spi_device, *g_rst_gpio, *g_drv_en_gpio, *g_faultn_gpio, *g_wake_gpio, 0x02);
 
     bool ready = uninit->IsDriverReady();
-    float v = uninit->GetSupplyVoltage();
-    bool nan_v = std::isnan(v);
 
-    ESP_LOGI(TAG, "Uninit handler: ready=%d, voltage=%.2f (NaN=%d)", ready, v, nan_v);
-    return !ready && nan_v;
+    ESP_LOGI(TAG, "Uninit handler: ready=%d (expected false)", ready);
+    return !ready;
 }
 
 // ═══════════════════════ ENTRY POINT ═══════════════════════
