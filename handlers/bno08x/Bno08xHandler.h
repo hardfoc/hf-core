@@ -553,6 +553,39 @@ public:
     bool IsInitialized() const noexcept;
 
     // ========================================================================
+    //  SERVICE LOOP
+    // ========================================================================
+
+    /**
+     * @brief Update sensor - must be called regularly to pump the SH-2 service loop.
+     *
+     * Call this every 5-10 ms (or faster) for optimal data throughput.
+     * Sensor callbacks are dispatched from within this method.
+     *
+     * @return Bno08xError::SUCCESS if successful
+     */
+    Bno08xError Update() noexcept;
+
+    // ========================================================================
+    //  CALLBACK MANAGEMENT
+    // ========================================================================
+
+    /**
+     * @brief Set callback for sensor events.
+     *
+     * The callback is invoked from within Update() whenever a sensor report
+     * arrives. Only one callback can be active at a time.
+     *
+     * @param callback Callback function for sensor events
+     */
+    void SetSensorCallback(SensorCallback callback) noexcept;
+
+    /**
+     * @brief Clear sensor event callback.
+     */
+    void ClearSensorCallback() noexcept;
+
+    // ========================================================================
     //  UTILITY METHODS
     // ========================================================================
 
@@ -626,6 +659,7 @@ private:
     bool initialized_{false};                      ///< Initialization state
     mutable Bno08xError last_error_{Bno08xError::SUCCESS}; ///< Last error
     BNO085Interface interface_type_;               ///< I2C or SPI
+    SensorCallback user_callback_;                 ///< User's sensor callback
     char description_[64]{};                       ///< Description string
 
     // ========================================================================

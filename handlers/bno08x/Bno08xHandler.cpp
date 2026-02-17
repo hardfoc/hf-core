@@ -302,6 +302,15 @@ Bno08xError Bno08xHandler::Initialize() noexcept {
         return last_error_;
     }
 
+    // Set internal callback that forwards to user callback
+    driver_ops_->SetCallback([this](const SensorEvent& event) {
+        // Forward to user callback (no extra lock needed - called from Update()
+        // which already holds the mutex, and the recursive mutex allows re-entry)
+        if (user_callback_) {
+            user_callback_(event);
+        }
+    });
+
     initialized_ = true;
     last_error_ = Bno08xError::SUCCESS;
     return last_error_;
@@ -333,6 +342,7 @@ Bno08xError Bno08xHandler::Deinitialize() noexcept {
         driver_ops_->SetCallback(nullptr);
     }
 
+    user_callback_ = nullptr;
     initialized_ = false;
     last_error_ = Bno08xError::SUCCESS;
     return last_error_;
@@ -361,6 +371,53 @@ bool Bno08xHandler::ensureInitializedLocked() noexcept {
     // Initialize() can return a non-fatal communication error after partial
     // sensor enables while the driver itself is ready for use.
     return initialized_ && driver_ops_;
+}
+
+// ============================================================================
+//  SERVICE LOOP
+// ============================================================================
+
+Bno08xError Bno08xHandler::Update() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!lock.IsLocked()) {
+        last_error_ = Bno08xError::MUTEX_LOCK_FAILED;
+        return last_error_;
+    }
+
+    if (!ensureInitializedLocked()) {
+        return last_error_;
+    }
+
+    // Pump the SH-2 service loop (dispatches callbacks internally)
+    driver_ops_->Update();
+
+    // Check for driver errors
+    int driver_error = driver_ops_->GetLastError();
+    if (driver_error != 0) {
+        last_error_ = mapDriverError(driver_error);
+    } else {
+        last_error_ = Bno08xError::SUCCESS;
+    }
+
+    return last_error_;
+}
+
+// ============================================================================
+//  CALLBACK MANAGEMENT
+// ============================================================================
+
+void Bno08xHandler::SetSensorCallback(SensorCallback callback) noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (lock.IsLocked()) {
+        user_callback_ = std::move(callback);
+    }
+}
+
+void Bno08xHandler::ClearSensorCallback() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (lock.IsLocked()) {
+        user_callback_ = nullptr;
+    }
 }
 
 // ============================================================================
