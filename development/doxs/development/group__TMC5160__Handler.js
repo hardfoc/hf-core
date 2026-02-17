@@ -16,6 +16,8 @@ var group__TMC5160__Handler =
       [ "DumpDiagnostics", "classTmc5160Handler.html#ab4bf5aabef968f6f8ee66d08cf05913a", null ],
       [ "EnsureInitialized", "classTmc5160Handler.html#a5ad276d4fcd81765d0a5af064fdbf7b5", null ],
       [ "EnsureInitializedLocked", "classTmc5160Handler.html#a6d4fce2433e03bb11b05a4278ef66fd0", null ],
+      [ "GetDriver", "classTmc5160Handler.html#a755fbb0bd0c5faa03c807522e4ea469a", null ],
+      [ "GetDriver", "classTmc5160Handler.html#a8753f4b21ffb25d294d4ce41951f11f7", null ],
       [ "GetDriverConfig", "classTmc5160Handler.html#a4fac52db1a50fc8f24350ac804c5fd4b", null ],
       [ "Initialize", "classTmc5160Handler.html#a44ab36857e4e43062f81f7d6f10eab09", null ],
       [ "IsInitialized", "classTmc5160Handler.html#ab5b929298611ac61b7b705eb5bd64a61", null ],

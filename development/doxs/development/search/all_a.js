@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['last_5ferror_5f_0',['last_error_',['../classAs5047uHandler.html#a31f3519a6ad9ff3829e0713c351cc4b5',1,'As5047uHandler::last_error_'],['../classBno08xHandler.html#ae17c70536ddb4a4ae8931807347c9001',1,'Bno08xHandler::last_error_'],['../classHalSpiTle92466edComm.html#a2155df77a576e4c58d2365bc3ae39951',1,'HalSpiTle92466edComm::last_error_'],['../classTmc9660Handler_1_1Adc.html#a038a19dedbc96effaa9e41a43c5d85f2',1,'Tmc9660Handler::Adc::last_error_'],['../classTmc9660Handler_1_1Temperature.html#a5f25018bc7dfed904873d722a7b2ca90',1,'Tmc9660Handler::Temperature::last_error_']]],
+  ['last_5ferror_5f_0',['last_error_',['../classAs5047uHandler.html#aa61a5e00eb613efc5cec7b31ae86d2b9',1,'As5047uHandler::last_error_'],['../classBno08xHandler.html#ae17c70536ddb4a4ae8931807347c9001',1,'Bno08xHandler::last_error_'],['../classHalSpiTle92466edComm.html#a2155df77a576e4c58d2365bc3ae39951',1,'HalSpiTle92466edComm::last_error_'],['../classTmc9660Handler_1_1Adc.html#a038a19dedbc96effaa9e41a43c5d85f2',1,'Tmc9660Handler::Adc::last_error_'],['../classTmc9660Handler_1_1Temperature.html#a5f25018bc7dfed904873d722a7b2ca90',1,'Tmc9660Handler::Temperature::last_error_']]],
   ['last_5ferror_5fflags_1',['last_error_flags',['../structAs5047uDiagnostics.html#a81510ba051729ca9e90821b030eac5ef',1,'As5047uDiagnostics']]],
   ['led_20strip_20handler_2',['WS2812 LED Strip Handler',['../group__WS2812__Handler.html',1,'']]],
   ['led_5ftype_3',['led_type',['../structWs2812Handler_1_1Config.html#a241ed81954221fa96164b11099439d44',1,'Ws2812Handler::Config']]],
@@ -35,7 +35,5 @@ var searchData=
   ['loglevel_32',['LogLevel',['../Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86',1,'Logger.h']]],
   ['logstyle_33',['LogStyle',['../Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52',1,'Logger.h']]],
   ['low_5fthreshold_5fcelsius_34',['low_threshold_celsius',['../structntc__temp__handler__config__t.html#a3610e55ba831ff2f0d989591bcd654bc',1,'ntc_temp_handler_config_t']]],
-  ['low_5fthreshold_5fcelsius_5f_35',['low_threshold_celsius_',['../classNtcTemperatureHandler.html#a433bfb281cb15b6c1e1f57224b8bd7a5',1,'NtcTemperatureHandler']]],
-  ['lsbtodegrees_36',['LSBToDegrees',['../classAs5047uHandler.html#a5d9c121ad70a79a2ffa2c2eb90c5700f',1,'As5047uHandler']]],
-  ['lsbtoradians_37',['LSBToRadians',['../classAs5047uHandler.html#ad624c8e6c276a0a30f24a9bc42cd4bbd',1,'As5047uHandler']]]
+  ['low_5fthreshold_5fcelsius_5f_35',['low_threshold_celsius_',['../classNtcTemperatureHandler.html#a433bfb281cb15b6c1e1f57224b8bd7a5',1,'NtcTemperatureHandler']]]
 ];

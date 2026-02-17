@@ -186,7 +186,7 @@ var searchData=
   ['threshold_5fmonitoring_5fenabled_5f_183',['threshold_monitoring_enabled_',['../classNtcTemperatureHandler.html#aa4b3ca60a65dc5da71b7a3d4b9405f09',1,'NtcTemperatureHandler']]],
   ['threshold_5fuser_5fdata_184',['threshold_user_data',['../structntc__temp__handler__config__t.html#abc3fc2c8c2afd4dc8ee6c5e2343d0f20',1,'ntc_temp_handler_config_t']]],
   ['threshold_5fuser_5fdata_5f_185',['threshold_user_data_',['../classNtcTemperatureHandler.html#aee4337b29ad1d9b34b3a1c8266bb102e',1,'NtcTemperatureHandler']]],
-  ['timeout_186',['TIMEOUT',['../As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665ca070a0fb40f6c308ab544b227660aadff',1,'TIMEOUT:&#160;As5047uHandler.h'],['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a070a0fb40f6c308ab544b227660aadff',1,'TIMEOUT:&#160;Bno08xHandler.h']]],
+  ['timeout_186',['TIMEOUT',['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a070a0fb40f6c308ab544b227660aadff',1,'Bno08xHandler.h']]],
   ['timer_5fcallback_187',['timer_callback',['../rtos__wrap__comprehensive__test_8cpp.html#acb6c6f5283e6ee3f412844244a4bcce1',1,'rtos_wrap_comprehensive_test.cpp']]],
   ['timestamp_5fus_188',['timestamp_us',['../structBno08xVector3.html#a163c181287c91298c912e15cd0ea5f80',1,'Bno08xVector3::timestamp_us'],['../structBno08xQuaternion.html#aa7e26a46c3faff01aa13e1ebe2e0ec3c',1,'Bno08xQuaternion::timestamp_us'],['../structBno08xEulerAngles.html#ad70e7cd8eff9a25f037edc0b33280a2e',1,'Bno08xEulerAngles::timestamp_us'],['../structBno08xImuData.html#a6195cdab3f19277e84307ab33e1558d8',1,'Bno08xImuData::timestamp_us'],['../structBno08xActivityData.html#ab3246a8a87f53e5392b8db45f3f8d62e',1,'Bno08xActivityData::timestamp_us']]],
   ['tle92466ed_5fhandler_5fcomprehensive_5ftest_2ecpp_189',['tle92466ed_handler_comprehensive_test.cpp',['../tle92466ed__handler__comprehensive__test_8cpp.html',1,'']]],
@@ -216,8 +216,8 @@ var searchData=
   ['total_5fexecution_5ftime_5fus_213',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
   ['total_5fmeasurements_214',['total_measurements',['../structAs5047uDiagnostics.html#a15245dd4b501df7cc4d5c1d10a297771',1,'As5047uDiagnostics']]],
   ['total_5ftests_215',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
-  ['transfer_216',['transfer',['../classAs5047uSpiAdapter.html#a5c90fccf33a360042821dcd5f94aa941',1,'As5047uSpiAdapter']]],
-  ['transfer_217',['Transfer',['../classHalSpiMax22200Comm.html#ab69a5625afd94e62e4f973eea89979a2',1,'HalSpiMax22200Comm']]],
+  ['transfer_216',['Transfer',['../classHalSpiMax22200Comm.html#ab69a5625afd94e62e4f973eea89979a2',1,'HalSpiMax22200Comm']]],
+  ['transfer_217',['transfer',['../classAs5047uSpiAdapter.html#a5c90fccf33a360042821dcd5f94aa941',1,'As5047uSpiAdapter']]],
   ['transfer32_218',['Transfer32',['../classHalSpiTle92466edComm.html#a63f84b0db1a338f4c02e76e8d01c8b65',1,'HalSpiTle92466edComm']]],
   ['transfermulti_219',['TransferMulti',['../classHalSpiTle92466edComm.html#a058b8f150542b2e746f08a1f3b84208b',1,'HalSpiTle92466edComm']]]
 ];

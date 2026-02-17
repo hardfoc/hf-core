@@ -152,11 +152,24 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7471840392adad3cab496e2dc57dc792"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af97f5cc26ad1fb0f4722e72346ca7caa" id="r_af97f5cc26ad1fb0f4722e72346ca7caa"><td class="memItemLeft" align="right" valign="top">const WS2812Strip *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af97f5cc26ad1fb0f4722e72346ca7caa">GetStrip</a> () const noexcept</td></tr>
 <tr class="separator:af97f5cc26ad1fb0f4722e72346ca7caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2511358625ce2eeb89eae9ca17495b6c" id="r_a2511358625ce2eeb89eae9ca17495b6c"><td class="memItemLeft" align="right" valign="top">WS2812Strip *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2511358625ce2eeb89eae9ca17495b6c">GetDriver</a> () noexcept</td></tr>
+<tr class="memdesc:a2511358625ce2eeb89eae9ca17495b6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Naming-consistent alias of <a class="el" href="#a7471840392adad3cab496e2dc57dc792" title="Get the underlying LED strip object.">GetStrip()</a>.  <br /></td></tr>
+<tr class="separator:a2511358625ce2eeb89eae9ca17495b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8180b47ace28b9d2af1e6f610bc46867" id="r_a8180b47ace28b9d2af1e6f610bc46867"><td class="memItemLeft" align="right" valign="top">const WS2812Strip *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8180b47ace28b9d2af1e6f610bc46867">GetDriver</a> () const noexcept</td></tr>
+<tr class="separator:a8180b47ace28b9d2af1e6f610bc46867"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e09ba2c15d5b0e7d6d254e22f634ae8" id="r_a3e09ba2c15d5b0e7d6d254e22f634ae8"><td class="memItemLeft" align="right" valign="top">WS2812Animator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e09ba2c15d5b0e7d6d254e22f634ae8">GetAnimator</a> () noexcept</td></tr>
 <tr class="memdesc:a3e09ba2c15d5b0e7d6d254e22f634ae8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the animator object.  <br /></td></tr>
 <tr class="separator:a3e09ba2c15d5b0e7d6d254e22f634ae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad564e91a669c0a06f5abde5a3ae8a6a6" id="r_ad564e91a669c0a06f5abde5a3ae8a6a6"><td class="memItemLeft" align="right" valign="top">const WS2812Animator *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad564e91a669c0a06f5abde5a3ae8a6a6">GetAnimator</a> () const noexcept</td></tr>
 <tr class="separator:ad564e91a669c0a06f5abde5a3ae8a6a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a338df7ac09cd31e3b70d7dd488c1baa6" id="r_a338df7ac09cd31e3b70d7dd488c1baa6"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:a338df7ac09cd31e3b70d7dd488c1baa6"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a338df7ac09cd31e3b70d7dd488c1baa6">visitDriver</a> (Fn &amp;&amp;fn) noexcept -&gt; decltype(fn(std::declval&lt; WS2812Strip &amp; &gt;()))</td></tr>
+<tr class="memdesc:a338df7ac09cd31e3b70d7dd488c1baa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit strip driver with a callable.  <br /></td></tr>
+<tr class="separator:a338df7ac09cd31e3b70d7dd488c1baa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6bb3e858c86d80d69edc1fced893293" id="r_ae6bb3e858c86d80d69edc1fced893293"><td class="memTemplParams" colspan="2">template&lt;typename Fn &gt; </td></tr>
+<tr class="memitem:ae6bb3e858c86d80d69edc1fced893293"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae6bb3e858c86d80d69edc1fced893293">visitAnimator</a> (Fn &amp;&amp;fn) noexcept -&gt; decltype(fn(std::declval&lt; WS2812Animator &amp; &gt;()))</td></tr>
+<tr class="memdesc:ae6bb3e858c86d80d69edc1fced893293"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit animator object with a callable.  <br /></td></tr>
+<tr class="separator:ae6bb3e858c86d80d69edc1fced893293"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a586683dcf63f17194b77c026972c7b2b" id="r_a586683dcf63f17194b77c026972c7b2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a586683dcf63f17194b77c026972c7b2b">DumpDiagnostics</a> () noexcept</td></tr>
 <tr class="memdesc:a586683dcf63f17194b77c026972c7b2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump diagnostics to logger.  <br /></td></tr>
 <tr class="separator:a586683dcf63f17194b77c026972c7b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -434,7 +447,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classWs2812Handler_afe5f397b22e9b92cf2fb2cebae6e123d_icgraph.svg" width="812" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classWs2812Handler_afe5f397b22e9b92cf2fb2cebae6e123d_icgraph.svg" width="1056" height="283"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -503,6 +516,73 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classWs2812Handler_a3e09ba2c15d5b0e7d6d254e22f634ae8_icgraph.svg" width="491" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a8180b47ace28b9d2af1e6f610bc46867" name="a8180b47ace28b9d2af1e6f610bc46867"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8180b47ace28b9d2af1e6f610bc46867">&#9670;&#160;</a></span>GetDriver() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const WS2812Strip * Ws2812Handler::GetDriver </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classWs2812Handler_a8180b47ace28b9d2af1e6f610bc46867_cgraph.svg" width="1632" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a2511358625ce2eeb89eae9ca17495b6c" name="a2511358625ce2eeb89eae9ca17495b6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2511358625ce2eeb89eae9ca17495b6c">&#9670;&#160;</a></span>GetDriver() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WS2812Strip * Ws2812Handler::GetDriver </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Naming-consistent alias of <a class="el" href="#a7471840392adad3cab496e2dc57dc792" title="Get the underlying LED strip object.">GetStrip()</a>. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classWs2812Handler_a2511358625ce2eeb89eae9ca17495b6c_cgraph.svg" width="1388" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classWs2812Handler_a2511358625ce2eeb89eae9ca17495b6c_icgraph.svg" width="451" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -597,7 +677,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classWs2812Handler_a7471840392adad3cab496e2dc57dc792_icgraph.svg" width="432" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classWs2812Handler_a7471840392adad3cab496e2dc57dc792_icgraph.svg" width="686" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -635,7 +715,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classWs2812Handler_acce4955435f295ba4853b6239090982f_icgraph.svg" width="1050" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classWs2812Handler_acce4955435f295ba4853b6239090982f_icgraph.svg" width="1294" height="283"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -714,6 +794,76 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae6bb3e858c86d80d69edc1fced893293" name="ae6bb3e858c86d80d69edc1fced893293"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6bb3e858c86d80d69edc1fced893293">&#9670;&#160;</a></span>visitAnimator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Fn &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Ws2812Handler::visitAnimator </td>
+          <td>(</td>
+          <td class="paramtype">Fn &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>fn</em></span></td><td>)</td>
+          <td> -&gt; decltype(fn(std::declval&lt;WS2812Animator&amp;&gt;())) </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Visit animator object with a callable. </p>
+<dl class="section return"><dt>Returns</dt><dd>Callable result or default-constructed value if unavailable. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classWs2812Handler_ae6bb3e858c86d80d69edc1fced893293_cgraph.svg" width="1179" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a338df7ac09cd31e3b70d7dd488c1baa6" name="a338df7ac09cd31e3b70d7dd488c1baa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a338df7ac09cd31e3b70d7dd488c1baa6">&#9670;&#160;</a></span>visitDriver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Fn &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Ws2812Handler::visitDriver </td>
+          <td>(</td>
+          <td class="paramtype">Fn &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>fn</em></span></td><td>)</td>
+          <td> -&gt; decltype(fn(std::declval&lt;WS2812Strip&amp;&gt;())) </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Visit strip driver with a callable. </p>
+<dl class="section return"><dt>Returns</dt><dd>Callable result or default-constructed value if unavailable. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classWs2812Handler_a338df7ac09cd31e3b70d7dd488c1baa6_cgraph.svg" width="1159" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>

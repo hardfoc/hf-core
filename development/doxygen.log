@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.POiJxb
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.POiJxb' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.z4Q0HV
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.z4Q0HV' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -259,13 +259,10 @@ Generating caller graph for function test_initialize
 Generating caller graph for function test_is_initialized
 Generating call graph for function test_operations_before_init
 Generating caller graph for function test_operations_before_init
-Generating call graph for function test_read_angle_consistency
 Generating caller graph for function test_read_angle_consistency
-Generating call graph for function test_read_angle_degrees
 Generating caller graph for function test_read_angle_degrees
 Generating caller graph for function test_read_angle_raw
 Generating caller graph for function test_read_velocity
-Generating call graph for function test_set_zero_position
 Generating caller graph for function test_set_zero_position
 Generating docs for file bno08x_handler_comprehensive_test.cpp...
 Generating call graph for function app_main
@@ -407,7 +404,10 @@ Generating caller graph for function test_set_current
 Generating caller graph for function test_set_target_position
 Generating caller graph for function test_set_target_velocity
 Generating caller graph for function test_stallguard_result
-Generating caller graph for function test_s/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:412: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
+Generating caller graph for function test_stop
+Generating caller graph for function test_visit_driver_communication
+Generating caller graph for function test_visit_driver_encoder
+Generating caller graph for function test_vi/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:412: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
 /home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:386: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
@@ -416,10 +416,7 @@ Generating caller graph for function test_s/home/runner/work/hf-core/hf-core/exa
   parameter 'tag'
 /home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:350: warning: The following parameter of print_test_summary(const TestResults &test_results, const char *test_suite_name, const char *tag) is not documented:
   parameter 'tag'
-top
-Generating caller graph for function test_visit_driver_communication
-Generating caller graph for function test_visit_driver_encoder
-Generating caller graph for function test_visit_driver_motor_control
+sit_driver_motor_control
 Generating caller graph for function test_visit_driver_ramp_control
 Generating docs for file tmc9660_handler_comprehensive_test.cpp...
 Generating call graph for function app_main
@@ -544,7 +541,6 @@ Generating caller graph for function test_semaphore
 Generating caller graph for function timer_callback
 Generating docs for file As5047uHandler.cpp...
 Generating docs for file As5047uHandler.h...
-Generating caller graph for function As5047uErrorToString
 Generating docs for file Bno08xHandler.cpp...
 Generating docs for file Bno08xHandler.h...
 Generating caller graph for function Bno08xErrorToString
@@ -582,16 +578,19 @@ Generating call graph for function As5047uHandler::DumpDiagnostics
 Generating call graph for function As5047uHandler::EnsureInitialized
 Generating call graph for function As5047uHandler::EnsureInitializedLocked
 Generating caller graph for function As5047uHandler::EnsureInitializedLocked
+Generating call graph for function As5047uHandler::GetDriver
+Generating call graph for function As5047uHandler::GetDriver
+Generating caller graph for function As5047uHandler::GetDriver
 Generating call graph for function As5047uHandler::GetSensor
 Generating caller graph for function As5047uHandler::GetSensor
 Generating caller graph for function As5047uHandler::HandleSensorErrors
 Generating call graph for function As5047uHandler::Initialize
 Generating caller graph for function As5047uHandler::Initialize
 Generating caller graph for function As5047uHandler::IsInitialized
-Generating caller graph for function As5047uHandler::LSBToDegrees
 Generating call graph for function As5047uHandler::UpdateDiagnostics
 Generating caller graph for function As5047uHandler::UpdateDiagnostics
 Generating call graph for function As5047uHandler::ValidateSensor
+Generating call graph for function As5047uHandler::visitDriver
 Generating docs for compound As5047uMeasurement...
 Generating docs for compound As5047uSpiAdapter...
 Generating docs for compound AsciiArtFormat...
@@ -601,6 +600,8 @@ Generating docs for compound Bno08xConfig...
 Generating docs for compound Bno08xDriverImpl...
 Generating docs for compound Bno08xEulerAngles...
 Generating docs for compound Bno08xHandler...
+Generating call graph for function Bno08xHandler::applyConfigLocked
+Generating caller graph for function Bno08xHandler::applyConfigLocked
 Generating call graph for function Bno08xHandler::Deinitialize
 Generating call graph for function Bno08xHandler::DumpDiagnostics
 Generating call graph for function Bno08xHandler::EnsureInitialized
@@ -634,9 +635,9 @@ Generating call graph for function HalSpiTmc5160Comm::DebugLog
 Generating call graph for function HalSpiTmc5160Comm::DelayMs
 Generating call graph for function HalSpiTmc5160Comm::DelayUs
 Generating docs for compound HalSpiTmc9660Comm...
-Generating call graph for function HalSpiTmc9660Comm::debugLog
-Generating call graph for function HalSpiTwarning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (58), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
-mc9660Comm::delayMs
+Generating call graph fwarning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (58), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
+or function HalSpiTmc9660Comm::debugLog
+Generating call graph for function HalSpiTmc9660Comm::delayMs
 Generating call graph for function HalSpiTmc9660Comm::delayUs
 Generating call graph for function HalSpiTmc9660Comm::gpioRead
 Generating call graph for function HalSpiTmc9660Comm::gpioSet
@@ -653,6 +654,7 @@ Generating call graph for function HalUartTmc9660Comm::gpioSet
 Generating docs for compound HandlerTaskArgs...
 Generating docs for compound IBno08xDriverOps...
 Generating caller graph for function IBno08xDriverOps::Begin
+Generating caller graph for function IBno08xDriverOps::EnableSensor
 Generating caller graph for function IBno08xDriverOps::GetLastError
 Generating caller graph for function IBno08xDriverOps::GetLatest
 Generating caller graph for function IBno08xDriverOps::HardwareReset
@@ -822,9 +824,7 @@ Generating call graph for function Tle92466edHandler::HasFault
 Generating call graph for function Tle92466edHandler::Initialize
 Generating caller graph for function Tle92466edHandler::Initialize
 Generating call graph for function Tle92466edHandler::Initialize
-Generating call graph for function Tle92466edHandler::IsMissionMode
-Generating call graph for function Tle92466edHandler::SetChannelCurrent
-Generating call graph for fun/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
+Generating call gra/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
@@ -860,7 +860,9 @@ Generating call graph for fun/home/runner/work/hf-core/hf-core/handlers/tmc9660/
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:135: warning: @copydetails or @copydoc target 'BaseAdc::ResetDiagnostics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:132: warning: @copydetails or @copydoc target 'BaseAdc::ResetStatistics' not found
-ction Tle92466edHandler::withDriver
+ph for function Tle92466edHandler::IsMissionMode
+Generating call graph for function Tle92466edHandler::SetChannelCurrent
+Generating call graph for function Tle92466edHandler::withDriver
 Generating caller graph for function Tle92466edHandler::withDriver
 Generating docs for nested compound Tle92466edHandler::is_driver_result...
 Generating docs for nested compound Tle92466edHandler::is_driver_result< tle92466ed::DriverResult< T > >...
@@ -882,6 +884,8 @@ Generating call graph for function Tmc5160Handler::EnsureInitialized
 Generating caller graph for function Tmc5160Handler::EnsureInitialized
 Generating call graph for function Tmc5160Handler::EnsureInitializedLocked
 Generating caller graph for function Tmc5160Handler::EnsureInitializedLocked
+Generating call graph for function Tmc5160Handler::GetDriver
+Generating call graph for function Tmc5160Handler::GetDriver
 Generating call graph for function Tmc5160Handler::Initialize
 Generating caller graph for function Tmc5160Handler::Initialize
 Generating call graph for function Tmc5160Handler::visitDriver
@@ -911,8 +915,6 @@ Generating caller graph for function Tmc9660Handler::Initialize
 Generating caller graph for function Tmc9660Handler::IsDriverReady
 Generating call graph for function Tmc9660Handler::temperature
 Generating caller graph for function Tmc9660Handler::temperature
-Generating call graph for function Tmc9660Handler::visitDriver
-Generating call graph for function Tmc9660Handler::visitDriver
 Generating docs for nested compound Tmc9660Handler::Adc...
 Generating caller graph for function Tmc9660Handler::Adc::Deinitialize
 Generating call graph for function Tmc9660Handler::Adc::GetChannelTypeString
@@ -969,19 +971,16 @@ Generating caller graph for function Ws2812Handler::EnsureInitializedLocked
 Generating call graph for function Ws2812Handler::GetAnimator
 Generating call graph for function Ws2812Handler::GetAnimator
 Generating caller graph for function Ws2812Handler::GetAnimator
+Generating call graph for function Ws2812Handler::GetDriver
+Generating call graph for function Ws2812Handler::GetDriver
+Generating caller graph for function Ws2812Handler::GetDriver
 Generating call graph for function Ws2812Handler::GetStrip
 Generating call graph for function Ws2812Handler::GetStrip
 Generating caller graph for function Ws2812Handler::GetStrip
 Generating call graph for function Ws2812Handler::Initialize
 Generating caller graph for function Ws2812Handler::Initialize
-Generating docs for nested compound Ws2812Handler::Config...
-Generating concept documentation...
-Generating module documentation...
-Generating namespace documentation...
-Generating docs for namespace anonymous_namespace{Tmc9660Handler.cpp}
-Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::readGpioToSignal
-Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::setGpioFromSignal
-Generating/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
+Generating call graph for function Ws2812Handler::visitAnimator
+Generating call graph for function Ws2812Handler:/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:20: warning: unable to resolve reference to '-features' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:21: warning: unable to resolve reference to '-architecture' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:22: warning: unable to resolve reference to '-quick-start' for \ref command
@@ -997,7 +996,15 @@ Generating/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to res
 /home/runner/work/hf-core/hf-core/README.md:184: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:185: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:186: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
- docs for namespace handler_utils
+:visitDriver
+Generating docs for nested compound Ws2812Handler::Config...
+Generating concept documentation...
+Generating module documentation...
+Generating namespace documentation...
+Generating docs for namespace anonymous_namespace{Tmc9660Handler.cpp}
+Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::readGpioToSignal
+Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::setGpioFromSignal
+Generating docs for namespace handler_utils
 Generating caller graph for function handler_utils::DelayMs
 Generating caller graph for function handler_utils::DelayUs
 Generating call graph for function handler_utils::RouteLogToLogger
@@ -1045,39 +1052,169 @@ writing tag file...
 Running plantuml with JAVA...
 Running dot...
 Generating dot graphs using 5 parallel threads...
-Running dot for graph 1/14
-Running dot for graph 2/14
-Running dot for graph 3/14
-Running dot for graph 4/14
-Running dot for graph 5/14
-Running dot for graph 6/14
-Running dot for graph 7/14
-Running dot for graph 8/14
-Running dot for graph 9/14
-Running dot for graph 10/14
-Running dot for graph 11/14
-Running dot for graph 12/14
-Running dot for graph 13/14
-Running dot for graph 14/14
-Patching output file 1/19
-Patching output file 2/19
-Patching output file 3/19
-Patching output file 4/19
-Patching output file 5/19
-Patching output file 6/19
-Patching output file 7/19
-Patching output file 8/19
-Patching output file 9/19
-Patching output file 10/19
-Patching output file 11/19
-Patching output file 12/19
-Patching output file 13/19
-Patching output file 14/19
-Patching output file 15/19
-Patching output file 16/19
-Patching output file 17/19
-Patching output file 18/19
-Patching output file 19/19
-type lookup cache used 5004/65536 hits=26846 misses=5347
-symbol lookup cache used 6678/65536 hits=31076 misses=6678
+Running dot for graph 1/69
+Running dot for graph 2/69
+Running dot for graph 3/69
+Running dot for graph 4/69
+Running dot for graph 5/69
+Running dot for graph 6/69
+Running dot for graph 7/69
+Running dot for graph 8/69
+Running dot for graph 9/69
+Running dot for graph 10/69
+Running dot for graph 11/69
+Running dot for graph 12/69
+Running dot for graph 13/69
+Running dot for graph 14/69
+Running dot for graph 15/69
+Running dot for graph 16/69
+Running dot for graph 17/69
+Running dot for graph 18/69
+Running dot for graph 19/69
+Running dot for graph 20/69
+Running dot for graph 21/69
+Running dot for graph 22/69
+Running dot for graph 23/69
+Running dot for graph 24/69
+Running dot for graph 25/69
+Running dot for graph 26/69
+Running dot for graph 27/69
+Running dot for graph 28/69
+Running dot for graph 29/69
+Running dot for graph 30/69
+Running dot for graph 31/69
+Running dot for graph 32/69
+Running dot for graph 33/69
+Running dot for graph 34/69
+Running dot for graph 35/69
+Running dot for graph 36/69
+Running dot for graph 37/69
+Running dot for graph 38/69
+Running dot for graph 39/69
+Running dot for graph 40/69
+Running dot for graph 41/69
+Running dot for graph 42/69
+Running dot for graph 43/69
+Running dot for graph 44/69
+Running dot for graph 45/69
+Running dot for graph 46/69
+Running dot for graph 47/69
+Running dot for graph 48/69
+Running dot for graph 49/69
+Running dot for graph 50/69
+Running dot for graph 51/69
+Running dot for graph 52/69
+Running dot for graph 53/69
+Running dot for graph 54/69
+Running dot for graph 55/69
+Running dot for graph 56/69
+Running dot for graph 57/69
+Running dot for graph 58/69
+Running dot for graph 59/69
+Running dot for graph 60/69
+Running dot for graph 61/69
+Running dot for graph 62/69
+Running dot for graph 63/69
+Running dot for graph 64/69
+Running dot for graph 65/69
+Running dot for graph 66/69
+Running dot for graph 67/69
+Running dot for graph 68/69
+Running dot for graph 69/69
+Patching output file 1/94
+Patching output file 2/94
+Patching output file 3/94
+Patching output file 4/94
+Patching output file 5/94
+Patching output file 6/94
+Patching output file 7/94
+Patching output file 8/94
+Patching output file 9/94
+Patching output file 10/94
+Patching output file 11/94
+Patching output file 12/94
+Patching output file 13/94
+Patching output file 14/94
+Patching output file 15/94
+Patching output file 16/94
+Patching output file 17/94
+Patching output file 18/94
+Patching output file 19/94
+Patching output file 20/94
+Patching output file 21/94
+Patching output file 22/94
+Patching output file 23/94
+Patching output file 24/94
+Patching output file 25/94
+Patching output file 26/94
+Patching output file 27/94
+Patching output file 28/94
+Patching output file 29/94
+Patching output file 30/94
+Patching output file 31/94
+Patching output file 32/94
+Patching output file 33/94
+Patching output file 34/94
+Patching output file 35/94
+Patching output file 36/94
+Patching output file 37/94
+Patching output file 38/94
+Patching output file 39/94
+Patching output file 40/94
+Patching output file 41/94
+Patching output file 42/94
+Patching output file 43/94
+Patching output file 44/94
+Patching output file 45/94
+Patching output file 46/94
+Patching output file 47/94
+Patching output file 48/94
+Patching output file 49/94
+Patching output file 50/94
+Patching output file 51/94
+Patching output file 52/94
+Patching output file 53/94
+Patching output file 54/94
+Patching output file 55/94
+Patching output file 56/94
+Patching output file 57/94
+Patching output file 58/94
+Patching output file 59/94
+Patching output file 60/94
+Patching output file 61/94
+Patching output file 62/94
+Patching output file 63/94
+Patching output file 64/94
+Patching output file 65/94
+Patching output file 66/94
+Patching output file 67/94
+Patching output file 68/94
+Patching output file 69/94
+Patching output file 70/94
+Patching output file 71/94
+Patching output file 72/94
+Patching output file 73/94
+Patching output file 74/94
+Patching output file 75/94
+Patching output file 76/94
+Patching output file 77/94
+Patching output file 78/94
+Patching output file 79/94
+Patching output file 80/94
+Patching output file 81/94
+Patching output file 82/94
+Patching output file 83/94
+Patching output file 84/94
+Patching output file 85/94
+Patching output file 86/94
+Patching output file 87/94
+Patching output file 88/94
+Patching output file 89/94
+Patching output file 90/94
+Patching output file 91/94
+Patching output file 92/94
+Patching output file 93/94
+Patching output file 94/94
+type lookup cache used 5126/65536 hits=26752 misses=5469
+symbol lookup cache used 6765/65536 hits=31752 misses=6765
 finished...

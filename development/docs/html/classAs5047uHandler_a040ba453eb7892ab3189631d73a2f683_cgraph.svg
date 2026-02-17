@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classAs5047uHandler.html#a4dcfcea95fe8114ca7e0e5554d21ebc0" target="_top" xlink:title="Initialize the AS5047U sensor (lazy initialization)">
+<g id="a_Node000002"><a xlink:href="classAs5047uHandler.html#a157826010a85f4279b7a13791fcf2003" target="_top" xlink:title="Initialize the AS5047U sensor (lazy initialization)">
 <polygon fill="white" stroke="#666666" points="365,-42.5 220,-42.5 220,-23.5 365,-23.5 365,-42.5"/>
 <text text-anchor="middle" x="292.5" y="-30.5" font-family="Helvetica,sans-Serif" font-size="10.00">As5047uHandler::Initialize</text>
 </a>

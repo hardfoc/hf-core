@@ -183,59 +183,59 @@
   },"26": {
     "doc": "AS5047U Handler",
     "title": "Key Methods",
-    "content": "| Method | Description | . | EnsureInitialized() | Lazy init — creates CRTP driver on first call | . | GetAngleRaw() | 14-bit raw angle (0–16383) | . | GetAngleDegrees() | Angle in degrees (0.0–360.0) | . | GetVelocity() | Angular velocity from DAEC | . | GetDaecValue() | Dynamic Angle Error Compensation value | . | SetZeroPosition(uint16_t) | Program zero position offset | . | GetDiagnostics() | AGC, CORDIC magnitude, error flags | . ",
+    "content": "| Method | Description | . | Initialize() / Deinitialize() | Handler lifecycle management | . | EnsureInitialized() | Lazy init helper | . | GetSensor() | Direct access to AS5047U driver instance | . | IsInitialized() | Initialization state check | . | DumpDiagnostics() | Handler and sensor status summary | . ",
     "url": "/hf-core/development/docs/handlers/as5047u_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/as5047u_handler.html#key-methods"
   },"27": {
+    "doc": "AS5047U Handler",
+    "title": "Driver Usage (via GetSensor())",
+    "content": "Use the underlying driver unit-enum API for measurements: . | 1 2 3 . | auto* sensor = handler.GetSensor(); float angle_deg = sensor-&gt;GetAngle(as5047u::AngleUnit::Degrees); float vel_rpm = sensor-&gt;GetVelocity(as5047u::VelocityUnit::Rpm); . | . ",
+    "url": "/hf-core/development/docs/handlers/as5047u_handler.html#driver-usage-via-getsensor",
+    
+    "relUrl": "/docs/handlers/as5047u_handler.html#driver-usage-via-getsensor"
+  },"28": {
     "doc": "AS5047U Handler",
     "title": "Thread Safety",
     "content": "All methods are protected by an internal RtosMutex. ",
     "url": "/hf-core/development/docs/handlers/as5047u_handler.html#thread-safety",
     
     "relUrl": "/docs/handlers/as5047u_handler.html#thread-safety"
-  },"28": {
+  },"29": {
     "doc": "AS5047U Handler",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/handler_tests/as5047u_handler_comprehensive_test.cpp — 8 test sections covering initialization, angle reading, velocity, DAEC, zero position, diagnostics, error handling, and concurrent access. ",
     "url": "/hf-core/development/docs/handlers/as5047u_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/as5047u_handler.html#test-coverage"
-  },"29": {
+  },"30": {
     "doc": "AS5047U Handler",
     "title": "AS5047U Handler",
     "content": " ",
     "url": "/hf-core/development/docs/handlers/as5047u_handler.html",
     
     "relUrl": "/docs/handlers/as5047u_handler.html"
-  },"30": {
+  },"31": {
     "doc": "BNO08x Handler",
     "title": "Bno08xHandler",
     "content": "9-DOF IMU handler supporting accelerometer, gyroscope, magnetometer, and fused orientation. ",
     "url": "/hf-core/development/docs/handlers/bno08x_handler.html#bno08xhandler",
     
     "relUrl": "/docs/handlers/bno08x_handler.html#bno08xhandler"
-  },"31": {
+  },"32": {
     "doc": "BNO08x Handler",
     "title": "Construction",
     "content": "| 1 . | Bno08xHandler(BaseI2c&amp; i2c, BaseGpio* int_pin = nullptr, BaseGpio* rst_pin = nullptr); . | . ",
     "url": "/hf-core/development/docs/handlers/bno08x_handler.html#construction",
     
     "relUrl": "/docs/handlers/bno08x_handler.html#construction"
-  },"32": {
+  },"33": {
     "doc": "BNO08x Handler",
     "title": "Key Methods",
-    "content": "| Method | Description | . | Initialize() | Full init: reset, configure SH2, enable default sensors | . | EnsureInitialized() | Lazy init delegation | . | EnableSensor(sensor, rate_us) | Enable a sensor report at given interval | . | DisableSensor(sensor) | Disable a sensor report | . | GetAcceleration(x, y, z) | Read accelerometer data (m/s²) | . | GetRotationVector(i, j, k, real) | Read fused rotation quaternion | . | GetGyroscope(x, y, z) | Read gyroscope data (rad/s) | . | HasNewData() | Freshness gating — true only when new data available | . | HardwareReset() | Pulse RST pin and re-initialize | . ",
+    "content": "| Method | Description | . | Initialize() | Full init: reset, configure SH2 | . | EnsureInitialized() | Lazy init delegation | . | Deinitialize() | Release resources | . | GetSensor() / GetDriver() | Get underlying IBno08xDriverOps* | . | visitDriver(fn) | Execute callable with IBno08xDriverOps&amp; | . | Update() | Service SH-2 transport | . | SetSensorCallback(cb) | Register event callback | . Sensor enable/disable/read operations are performed through the underlying driver object returned by GetSensor() / GetDriver(). ",
     "url": "/hf-core/development/docs/handlers/bno08x_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/bno08x_handler.html#key-methods"
-  },"33": {
-    "doc": "BNO08x Handler",
-    "title": "Freshness Gating",
-    "content": "HasNewData() returns true only when the SH2 transport has delivered new sensor data since the last read. This prevents stale data from being consumed by the application layer. ",
-    "url": "/hf-core/development/docs/handlers/bno08x_handler.html#freshness-gating",
-    
-    "relUrl": "/docs/handlers/bno08x_handler.html#freshness-gating"
   },"34": {
     "doc": "BNO08x Handler",
     "title": "Test Coverage",
@@ -1044,7 +1044,7 @@
   },"149": {
     "doc": "TMC5160 Handler",
     "title": "Direct Driver Access",
-    "content": "When you know the comm mode (you always do — you chose it at construction): . | 1 2 3 4 5 6 7 8 . | // SPI mode — direct subsystem access auto* drv = handler.driverViaSpi(); drv-&gt;motorControl.Enable(); drv-&gt;rampControl.SetTargetPosition(51200); // UART mode equivalent auto* drv = handler.driverViaUart(); drv-&gt;rampControl.SetMaxSpeed(50000); . | . For generic code that works with either comm mode (rare), use visitDriver(): . | 1 2 3 4 5 6 7 8 9 . | handler.visitDriver([](auto&amp; drv) { drv.motorControl.Enable(); drv.rampControl.SetTargetPosition(51200); }); auto pos = handler.visitDriver([](auto&amp; drv) -&gt; int32_t { auto result = drv.rampControl.GetCurrentPosition(); return result ? result.Value() : 0; }); . | . ",
+    "content": "When you know the comm mode (you always do — you chose it at construction): . | 1 2 3 4 5 6 7 8 . | // SPI mode — direct subsystem access auto* drv = handler.driverViaSpi(); drv-&gt;motorControl.Enable(); drv-&gt;rampControl.SetTargetPosition(51200); // UART mode equivalent auto* drv = handler.driverViaUart(); drv-&gt;rampControl.SetMaxSpeed(50000); . | . For generic code that works with either comm mode (rare), use visitDriver(): . | 1 2 3 4 5 6 7 8 9 10 11 12 13 . | handler.visitDriver([](auto&amp; drv) { drv.motorControl.Enable(); drv.rampControl.SetTargetPosition(51200); }); auto pos = handler.visitDriver([](auto&amp; drv) -&gt; int32_t { auto result = drv.rampControl.GetCurrentPosition(); return result ? result.Value() : 0; }); // Or fetch active driver pointer explicitly without visitor: auto active = handler.GetDriver(); // std::variant&lt;std::monostate, SpiDriver*, UartDriver*&gt; . | . ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html#direct-driver-access",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html#direct-driver-access"
@@ -1121,7 +1121,7 @@
   },"160": {
     "doc": "TMC9660 Handler",
     "title": "Direct Driver Access",
-    "content": "When you know the comm mode (you always do — you chose it at construction): . | 1 2 3 4 5 6 7 8 . | // SPI mode — direct subsystem access auto* drv = handler.driverViaSpi(); drv-&gt;feedbackSense.configureHall(); drv-&gt;velocityControl.setTargetVelocity(1000); // UART mode equivalent auto* drv = handler.driverViaUart(); drv-&gt;feedbackSense.configureABNEncoder(1024); . | . For generic code that works with either comm mode (rare): . | 1 2 3 4 . | handler.visitDriver([](auto&amp; driver) { driver.feedbackSense.configureHallSensor(1, 2, 3); driver.protection.setOvertemperatureLimit(120.0f); }); . | . ",
+    "content": "When you know the comm mode (you always do — you chose it at construction): . | 1 2 3 4 5 6 7 8 . | // SPI mode — direct subsystem access auto* drv = handler.driverViaSpi(); drv-&gt;feedbackSense.configureHall(); drv-&gt;velocityControl.setTargetVelocity(1000); // UART mode equivalent auto* drv = handler.driverViaUart(); drv-&gt;feedbackSense.configureABNEncoder(1024); . | . For generic code that works with either comm mode (rare): . | 1 2 3 4 5 6 7 8 . | handler.visitDriver([](auto&amp; driver) { driver.feedbackSense.configureHallSensor(1, 2, 3); driver.protection.setOvertemperatureLimit(120.0f); }); // Or fetch active driver pointer explicitly without visitor: auto active = handler.GetDriver(); // std::variant&lt;std::monostate, SpiDriver*, UartDriver*&gt; . | . ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#direct-driver-access",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#direct-driver-access"
@@ -1163,7 +1163,7 @@
   },"166": {
     "doc": "WS2812 Handler",
     "title": "Key Methods",
-    "content": "| Method | Description | . | Initialize() | Initialize RMT channel and LED strip | . | EnsureInitialized() | Lazy init entrypoint | . | Deinitialize() | Release RMT resources | . | SetPixel(index, r, g, b) | Set a single pixel color | . | SetAllPixels(r, g, b) | Set all pixels to the same color | . | Clear() | Turn off all pixels | . | Show() | Transmit pixel data to the strip | . | SetBrightness(val) | Set global brightness (0–255) | . | GetNumLeds() | Get the number of LEDs | . | SetEffect(effect, color) | Set animation effect | . | Tick() | Advance animation by time delta | . | Step() | Advance animation by one step | . | GetStrip() | Get underlying WS2812Strip* | . | GetAnimator() | Get underlying WS2812Animator* | . ",
+    "content": "| Method | Description | . | Initialize() | Initialize RMT channel and LED strip | . | EnsureInitialized() | Lazy init entrypoint | . | Deinitialize() | Release RMT resources | . | GetNumLeds() | Get the number of LEDs | . | GetDriver() / GetStrip() | Get underlying WS2812Strip* | . | GetAnimator() | Get underlying WS2812Animator* | . | visitDriver(fn) | Execute callable with WS2812Strip&amp; | . | visitAnimator(fn) | Execute callable with WS2812Animator&amp; | . All pixel operations and animation effects are intentionally delegated to the underlying driver objects (WS2812Strip, WS2812Animator) exposed by the handler. ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#key-methods"

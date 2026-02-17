@@ -9,6 +9,8 @@ var group__TMC9660__HAL__CommAdapters =
       [ "wake", "structTmc9660CtrlPins.html#a0f1e3e0750a8d6ac1b9d840fd5883d4a", null ]
     ] ],
     [ "HalSpiTmc9660Comm", "classHalSpiTmc9660Comm.html", [
+      [ "ConstDriverVariant", "classHalSpiTmc9660Comm.html#a5476c1d54a727f13bff659a8da4b9182", null ],
+      [ "DriverVariant", "classHalSpiTmc9660Comm.html#afb2e4f51918e001f706aa097c3d75c1d", null ],
       [ "HalSpiTmc9660Comm", "classHalSpiTmc9660Comm.html#af1a0f32616c37bc82b428e3ebd141f54", null ],
       [ "debugLog", "classHalSpiTmc9660Comm.html#ac7145aa4216147b19418a4b23cccda75", null ],
       [ "delayMs", "classHalSpiTmc9660Comm.html#a1f4360b2fe821d797fc4a8d771150656", null ],

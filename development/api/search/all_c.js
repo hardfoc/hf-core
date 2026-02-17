@@ -2,7 +2,7 @@ var searchData=
 [
   ['name_0',['name',['../structHandlerTaskArgs.html#a4946ac1e075c203883f24d7d78b10afc',1,'HandlerTaskArgs']]],
   ['normal_1',['NORMAL',['../Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a1e23852820b9154316c7c06e2b7ba051',1,'Logger.h']]],
-  ['not_5finitialized_2',['NOT_INITIALIZED',['../As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665ca02de9649e258d1dd94056e676061e969',1,'NOT_INITIALIZED:&#160;As5047uHandler.h'],['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a02de9649e258d1dd94056e676061e969',1,'NOT_INITIALIZED:&#160;Bno08xHandler.h']]],
+  ['not_5finitialized_2',['NOT_INITIALIZED',['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a02de9649e258d1dd94056e676061e969',1,'Bno08xHandler.h']]],
   ['ntc_5fadc_5fadapter_5f_3',['ntc_adc_adapter_',['../classNtcTemperatureHandler.html#a0456ab6b452345e3e406f9941e8deccb',1,'NtcTemperatureHandler']]],
   ['ntc_5fadc_5fchannel_4',['NTC_ADC_CHANNEL',['../esp32__test__config_8hpp.html#ad50f7a00a9490c1d82531a641107323a',1,'esp32_test_config.hpp']]],
   ['ntc_5fadc_5funit_5',['NTC_ADC_UNIT',['../esp32__test__config_8hpp.html#afd02ed4557b678c3d05edc812c08caef',1,'esp32_test_config.hpp']]],

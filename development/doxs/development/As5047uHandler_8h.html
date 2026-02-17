@@ -93,7 +93,6 @@ $(function(){initNavTree('As5047uHandler_8h.html',''); initResizable(); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">As5047uHandler.h File Reference</div></div>
 </div><!--header-->
@@ -103,13 +102,15 @@ $(function(){initNavTree('As5047uHandler_8h.html',''); initResizable(); });
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
 <code>#include &quot;core/hf-core-drivers/external/hf-as5047u-driver/inc/as5047u.hpp&quot;</code><br />
 <code>#include &quot;base/BaseSpi.h&quot;</code><br />
 <code>#include &quot;utils/RtosMutex.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for As5047uHandler.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="As5047uHandler_8h__incl.svg" width="684" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="As5047uHandler_8h__incl.svg" width="884" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -137,33 +138,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unified handler for AS5047U magnetic rotary position sensor.  <a href="classAs5047uHandler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a09c6ae2d5bda51af5fb5634776a5665c" id="r_a09c6ae2d5bda51af5fb5634776a5665c"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a> : uint8_t { <br />
-&#160;&#160;<a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665cad0749aaba8b833466dfcbb0428e4f89c">SUCCESS</a> = 0
-, <a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665ca02de9649e258d1dd94056e676061e969">NOT_INITIALIZED</a>
-, <a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665cafdd2c3274e42cbf32d77a90e764f1faf">INITIALIZATION_FAILED</a>
-, <a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665cafeb1a30cb74c35aaf4ea067736109e30">INVALID_PARAMETER</a>
-, <br />
-&#160;&#160;<a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665caf1499d906907e5387d1062a7280c3115">SPI_COMMUNICATION_FAILED</a>
-, <a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665cafde7dcbac92720d696e3ef02bf6435db">CRC_ERROR</a>
-, <a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665caa61b2eab33f2b577d368d15633c255a9">FRAMING_ERROR</a>
-, <a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665ca3993b9fcdbf9ec59e873519a4d02fe2f">SENSOR_ERROR</a>
-, <br />
-&#160;&#160;<a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665caa96c593d9fb8d4411117cba741abec08">OTP_PROGRAMMING_FAILED</a>
-, <a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665ca9cb6ce703e04781843950948b1f80f0f">CALIBRATION_FAILED</a>
-, <a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665ca070a0fb40f6c308ab544b227660aadff">TIMEOUT</a>
-, <a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665ca13d0255d66b368703af734c8ca5ae227">MUTEX_LOCK_FAILED</a>
-<br />
- }</td></tr>
-<tr class="memdesc:a09c6ae2d5bda51af5fb5634776a5665c"><td class="mdescLeft">&#160;</td><td class="mdescRight">AS5047U handler error codes for consistent error reporting.  <a href="#a09c6ae2d5bda51af5fb5634776a5665c">More...</a><br /></td></tr>
-<tr class="separator:a09c6ae2d5bda51af5fb5634776a5665c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae4489a63be6104ea4bf536da5229a5e1" id="r_ae4489a63be6104ea4bf536da5229a5e1"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4489a63be6104ea4bf536da5229a5e1">As5047uErrorToString</a> (<a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a> error) noexcept</td></tr>
-<tr class="memdesc:ae4489a63be6104ea4bf536da5229a5e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert As5047uError to string for debugging.  <br /></td></tr>
-<tr class="separator:ae4489a63be6104ea4bf536da5229a5e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8c2baad0f8b9cede2fdb8dadc584c89" id="r_af8c2baad0f8b9cede2fdb8dadc584c89"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classAs5047uHandler.html">As5047uHandler</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8c2baad0f8b9cede2fdb8dadc584c89">CreateAs5047uHandler</a> (BaseSpi &amp;spi_interface, const <a class="el" href="structAs5047uConfig.html">As5047uConfig</a> &amp;config=<a class="el" href="classAs5047uHandler.html#a5cfe5bb285cb087d078e5f248ccd0d82">As5047uHandler::GetDefaultConfig</a>()) noexcept</td></tr>
 <tr class="memdesc:af8c2baad0f8b9cede2fdb8dadc584c89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create AS5047U handler instance.  <br /></td></tr>
 <tr class="separator:af8c2baad0f8b9cede2fdb8dadc584c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,78 +171,7 @@ Functions</h2></td></tr>
 <dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>HardFOC </dd></dl>
-</div><h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a09c6ae2d5bda51af5fb5634776a5665c" name="a09c6ae2d5bda51af5fb5634776a5665c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09c6ae2d5bda51af5fb5634776a5665c">&#9670;&#160;</a></span>As5047uError</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum class <a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a> : uint8_t</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>AS5047U handler error codes for consistent error reporting. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a09c6ae2d5bda51af5fb5634776a5665cad0749aaba8b833466dfcbb0428e4f89c" name="a09c6ae2d5bda51af5fb5634776a5665cad0749aaba8b833466dfcbb0428e4f89c"></a>SUCCESS&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a09c6ae2d5bda51af5fb5634776a5665ca02de9649e258d1dd94056e676061e969" name="a09c6ae2d5bda51af5fb5634776a5665ca02de9649e258d1dd94056e676061e969"></a>NOT_INITIALIZED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a09c6ae2d5bda51af5fb5634776a5665cafdd2c3274e42cbf32d77a90e764f1faf" name="a09c6ae2d5bda51af5fb5634776a5665cafdd2c3274e42cbf32d77a90e764f1faf"></a>INITIALIZATION_FAILED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a09c6ae2d5bda51af5fb5634776a5665cafeb1a30cb74c35aaf4ea067736109e30" name="a09c6ae2d5bda51af5fb5634776a5665cafeb1a30cb74c35aaf4ea067736109e30"></a>INVALID_PARAMETER&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a09c6ae2d5bda51af5fb5634776a5665caf1499d906907e5387d1062a7280c3115" name="a09c6ae2d5bda51af5fb5634776a5665caf1499d906907e5387d1062a7280c3115"></a>SPI_COMMUNICATION_FAILED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a09c6ae2d5bda51af5fb5634776a5665cafde7dcbac92720d696e3ef02bf6435db" name="a09c6ae2d5bda51af5fb5634776a5665cafde7dcbac92720d696e3ef02bf6435db"></a>CRC_ERROR&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a09c6ae2d5bda51af5fb5634776a5665caa61b2eab33f2b577d368d15633c255a9" name="a09c6ae2d5bda51af5fb5634776a5665caa61b2eab33f2b577d368d15633c255a9"></a>FRAMING_ERROR&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a09c6ae2d5bda51af5fb5634776a5665ca3993b9fcdbf9ec59e873519a4d02fe2f" name="a09c6ae2d5bda51af5fb5634776a5665ca3993b9fcdbf9ec59e873519a4d02fe2f"></a>SENSOR_ERROR&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a09c6ae2d5bda51af5fb5634776a5665caa96c593d9fb8d4411117cba741abec08" name="a09c6ae2d5bda51af5fb5634776a5665caa96c593d9fb8d4411117cba741abec08"></a>OTP_PROGRAMMING_FAILED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a09c6ae2d5bda51af5fb5634776a5665ca9cb6ce703e04781843950948b1f80f0f" name="a09c6ae2d5bda51af5fb5634776a5665ca9cb6ce703e04781843950948b1f80f0f"></a>CALIBRATION_FAILED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a09c6ae2d5bda51af5fb5634776a5665ca070a0fb40f6c308ab544b227660aadff" name="a09c6ae2d5bda51af5fb5634776a5665ca070a0fb40f6c308ab544b227660aadff"></a>TIMEOUT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a09c6ae2d5bda51af5fb5634776a5665ca13d0255d66b368703af734c8ca5ae227" name="a09c6ae2d5bda51af5fb5634776a5665ca13d0255d66b368703af734c8ca5ae227"></a>MUTEX_LOCK_FAILED&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ae4489a63be6104ea4bf536da5229a5e1" name="ae4489a63be6104ea4bf536da5229a5e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4489a63be6104ea4bf536da5229a5e1">&#9670;&#160;</a></span>As5047uErrorToString()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr const char * As5047uErrorToString </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="#a09c6ae2d5bda51af5fb5634776a5665c">As5047uError</a></td>          <td class="paramname"><span class="paramname"><em>error</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Convert As5047uError to string for debugging. </p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="As5047uHandler_8h_ae4489a63be6104ea4bf536da5229a5e1_icgraph.svg" width="472" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="af8c2baad0f8b9cede2fdb8dadc584c89" name="af8c2baad0f8b9cede2fdb8dadc584c89"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af8c2baad0f8b9cede2fdb8dadc584c89">&#9670;&#160;</a></span>CreateAs5047uHandler()</h2>
 

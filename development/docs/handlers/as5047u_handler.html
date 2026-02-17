@@ -278,35 +278,45 @@
   </thead>
   <tbody>
     <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Initialize()</code> / <code class="language-plaintext highlighter-rouge">Deinitialize()</code></td>
+      <td style="text-align: left">Handler lifecycle management</td>
+    </tr>
+    <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">EnsureInitialized()</code></td>
-      <td style="text-align: left">Lazy init — creates CRTP driver on first call</td>
+      <td style="text-align: left">Lazy init helper</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetAngleRaw()</code></td>
-      <td style="text-align: left">14-bit raw angle (0–16383)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetSensor()</code></td>
+      <td style="text-align: left">Direct access to AS5047U driver instance</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetAngleDegrees()</code></td>
-      <td style="text-align: left">Angle in degrees (0.0–360.0)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">IsInitialized()</code></td>
+      <td style="text-align: left">Initialization state check</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetVelocity()</code></td>
-      <td style="text-align: left">Angular velocity from DAEC</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetDaecValue()</code></td>
-      <td style="text-align: left">Dynamic Angle Error Compensation value</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetZeroPosition(uint16_t)</code></td>
-      <td style="text-align: left">Program zero position offset</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetDiagnostics()</code></td>
-      <td style="text-align: left">AGC, CORDIC magnitude, error flags</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">DumpDiagnostics()</code></td>
+      <td style="text-align: left">Handler and sensor status summary</td>
     </tr>
   </tbody>
 </table></div>
+<h3 id="driver-usage-via-getsensor">
+  
+  
+    <a href="#driver-usage-via-getsensor" class="anchor-heading" aria-labelledby="driver-usage-via-getsensor"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Driver Usage (via <code class="language-plaintext highlighter-rouge">GetSensor()</code>)
+  
+  
+</h3>
+    
+
+<p>Use the underlying driver unit-enum API for measurements:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">auto</span><span class="o">*</span> <span class="n">sensor</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">GetSensor</span><span class="p">();</span>
+<span class="kt">float</span> <span class="n">angle_deg</span> <span class="o">=</span> <span class="n">sensor</span><span class="o">-&gt;</span><span class="n">GetAngle</span><span class="p">(</span><span class="n">as5047u</span><span class="o">::</span><span class="n">AngleUnit</span><span class="o">::</span><span class="n">Degrees</span><span class="p">);</span>
+<span class="kt">float</span> <span class="n">vel_rpm</span> <span class="o">=</span> <span class="n">sensor</span><span class="o">-&gt;</span><span class="n">GetVelocity</span><span class="p">(</span><span class="n">as5047u</span><span class="o">::</span><span class="n">VelocityUnit</span><span class="o">::</span><span class="n">Rpm</span><span class="p">);</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="thread-safety">
   
   

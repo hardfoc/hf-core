@@ -92,6 +92,7 @@ $(function(){initNavTree('classHalSpiTmc5160Comm.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classHalSpiTmc5160Comm-members.html">List of all members</a>  </div>
@@ -114,6 +115,13 @@ Collaboration diagram for HalSpiTmc5160Comm:</div>
 <div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTmc5160Comm__coll__graph.svg" width="376" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a3837b61e7f37dc67e3122db287b5a592" id="r_a3837b61e7f37dc67e3122db287b5a592"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3837b61e7f37dc67e3122db287b5a592">DriverVariant</a> = std::variant&lt;std::monostate, SpiDriver*, UartDriver*&gt;</td></tr>
+<tr class="separator:a3837b61e7f37dc67e3122db287b5a592"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c31d6c7e8ac30d0281ae99324499b90" id="r_a8c31d6c7e8ac30d0281ae99324499b90"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c31d6c7e8ac30d0281ae99324499b90">ConstDriverVariant</a> = std::variant&lt;std::monostate, const SpiDriver*, const UartDriver*&gt;</td></tr>
+<tr class="separator:a8c31d6c7e8ac30d0281ae99324499b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a460b9fe3ce0b0001cfed4cb1f818d49f" id="r_a460b9fe3ce0b0001cfed4cb1f818d49f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a460b9fe3ce0b0001cfed4cb1f818d49f">HalSpiTmc5160Comm</a> (BaseSpi &amp;spi, BaseGpio &amp;enable, BaseGpio *diag0=nullptr, BaseGpio *diag1=nullptr, const tmc51x0::PinActiveLevels &amp;active_levels={}) noexcept</td></tr>
@@ -154,7 +162,36 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Concrete SPI communication adapter for TMC5160 using BaseSpi and BaseGpio. </p>
 <p>Implements all methods required by tmc51x0::SpiCommInterface&lt;HalSpiTmc5160Comm&gt; through the CRTP pattern. This class bridges BaseSpi to the TMC5160 driver's SPI protocol (40-bit datagrams, Mode 3). </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a8c31d6c7e8ac30d0281ae99324499b90" name="a8c31d6c7e8ac30d0281ae99324499b90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c31d6c7e8ac30d0281ae99324499b90">&#9670;&#160;</a></span>ConstDriverVariant</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a8c31d6c7e8ac30d0281ae99324499b90">HalSpiTmc5160Comm::ConstDriverVariant</a> = std::variant&lt;std::monostate, const SpiDriver*, const UartDriver*&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3837b61e7f37dc67e3122db287b5a592" name="a3837b61e7f37dc67e3122db287b5a592"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3837b61e7f37dc67e3122db287b5a592">&#9670;&#160;</a></span>DriverVariant</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a3837b61e7f37dc67e3122db287b5a592">HalSpiTmc5160Comm::DriverVariant</a> = std::variant&lt;std::monostate, SpiDriver*, UartDriver*&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a460b9fe3ce0b0001cfed4cb1f818d49f" name="a460b9fe3ce0b0001cfed4cb1f818d49f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a460b9fe3ce0b0001cfed4cb1f818d49f">&#9670;&#160;</a></span>HalSpiTmc5160Comm()</h2>
 

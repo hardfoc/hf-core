@@ -1,0 +1,13 @@
+<map id="As5047uHandler::visitDriver" name="As5047uHandler::visitDriver">
+<area shape="rect" id="Node000001" title="Visit the underlying AS5047U driver under handler mutex protection." alt="" coords="5,31,211,56"/>
+<area shape="rect" id="Node000002" href="$classAs5047uHandler.html#a040ba453eb7892ab3189631d73a2f683" title="Ensure initialized while mutex is already held." alt="" coords="259,23,504,63"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,41,245,41,245,46,211,46"/>
+<area shape="rect" id="Node000003" href="$classAs5047uHandler.html#a157826010a85f4279b7a13791fcf2003" title="Initialize the AS5047U sensor (lazy initialization)" alt="" coords="552,31,745,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="504,41,538,41,538,46,504,46"/>
+<area shape="rect" id="Node000004" href="$classAs5047uHandler.html#a0e7c20d4fd883c55ff9091041ec04c39" title="Apply configuration to sensor." alt="" coords="793,5,1055,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="745,32,779,29,780,34,746,37"/>
+<area shape="rect" id="Node000005" href="$classAs5047uHandler.html#a6854be00365afbb2eeddfb3177939456" title="Update cached diagnostics." alt="" coords="794,55,1054,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="746,49,781,52,780,57,745,54"/>
+<area shape="rect" id="Node000006" href="$classAs5047uHandler.html#a6b29b6418f7b2d19cbdcc65aa6eb9756" title="Handle sensor errors and update diagnostics." alt="" coords="1103,47,1329,87"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1054,65,1089,65,1089,70,1054,70"/>
+</map>

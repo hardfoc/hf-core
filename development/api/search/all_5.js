@@ -13,7 +13,6 @@ var searchData=
   ['format_5fascii_5fart_10',['format_ascii_art',['../structLogConfig.html#ab2bec83242fdfe9d6bd2cfc05ade0824',1,'LogConfig']]],
   ['formatandlogasciiart_11',['FormatAndLogAsciiArt',['../classLogger.html#a866b8fb309235b82816e6c7ffa3b3879',1,'Logger']]],
   ['frame_5fformat_12',['frame_format',['../structAs5047uConfig.html#af7982d833742164706c12d4e7c5e7739',1,'As5047uConfig']]],
-  ['framing_5ferror_13',['FRAMING_ERROR',['../As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665caa61b2eab33f2b577d368d15633c255a9',1,'As5047uHandler.h']]],
-  ['full_5fsystem_5fintegration_5ftest_2ecpp_14',['full_system_integration_test.cpp',['../full__system__integration__test_8cpp.html',1,'']]],
-  ['fully_5fcalibrated_15',['fully_calibrated',['../structBno08xCalibrationStatus.html#a1682b52f8db214f1d43c3a249843f765',1,'Bno08xCalibrationStatus']]]
+  ['full_5fsystem_5fintegration_5ftest_2ecpp_13',['full_system_integration_test.cpp',['../full__system__integration__test_8cpp.html',1,'']]],
+  ['fully_5fcalibrated_14',['fully_calibrated',['../structBno08xCalibrationStatus.html#a1682b52f8db214f1d43c3a249843f765',1,'Bno08xCalibrationStatus']]]
 ];

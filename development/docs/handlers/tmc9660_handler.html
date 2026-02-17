@@ -453,10 +453,18 @@ GPIO, ADC, and temperature peripheral wrappers.</p>
 2
 3
 4
+5
+6
+7
+8
 </pre></td><td class="rouge-code"><pre><span class="n">handler</span><span class="p">.</span><span class="n">visitDriver</span><span class="p">([](</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">driver</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">driver</span><span class="p">.</span><span class="n">feedbackSense</span><span class="p">.</span><span class="n">configureHallSensor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
     <span class="n">driver</span><span class="p">.</span><span class="n">protection</span><span class="p">.</span><span class="n">setOvertemperatureLimit</span><span class="p">(</span><span class="mf">120.0</span><span class="n">f</span><span class="p">);</span>
 <span class="p">});</span>
+
+<span class="c1">// Or fetch active driver pointer explicitly without visitor:</span>
+<span class="k">auto</span> <span class="n">active</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">GetDriver</span><span class="p">();</span>
+<span class="c1">// std::variant&lt;std::monostate, SpiDriver*, UartDriver*&gt;</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="test-coverage">
   

@@ -279,54 +279,37 @@
   <tbody>
     <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Initialize()</code></td>
-      <td style="text-align: left">Full init: reset, configure SH2, enable default sensors</td>
+      <td style="text-align: left">Full init: reset, configure SH2</td>
     </tr>
     <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">EnsureInitialized()</code></td>
       <td style="text-align: left">Lazy init delegation</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">EnableSensor(sensor, rate_us)</code></td>
-      <td style="text-align: left">Enable a sensor report at given interval</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Deinitialize()</code></td>
+      <td style="text-align: left">Release resources</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">DisableSensor(sensor)</code></td>
-      <td style="text-align: left">Disable a sensor report</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetSensor()</code> / <code class="language-plaintext highlighter-rouge">GetDriver()</code></td>
+      <td style="text-align: left">Get underlying <code class="language-plaintext highlighter-rouge">IBno08xDriverOps*</code></td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetAcceleration(x, y, z)</code></td>
-      <td style="text-align: left">Read accelerometer data (m/s²)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">visitDriver(fn)</code></td>
+      <td style="text-align: left">Execute callable with <code class="language-plaintext highlighter-rouge">IBno08xDriverOps&amp;</code></td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetRotationVector(i, j, k, real)</code></td>
-      <td style="text-align: left">Read fused rotation quaternion</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Update()</code></td>
+      <td style="text-align: left">Service SH-2 transport</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetGyroscope(x, y, z)</code></td>
-      <td style="text-align: left">Read gyroscope data (rad/s)</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">HasNewData()</code></td>
-      <td style="text-align: left">Freshness gating — true only when new data available</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">HardwareReset()</code></td>
-      <td style="text-align: left">Pulse RST pin and re-initialize</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetSensorCallback(cb)</code></td>
+      <td style="text-align: left">Register event callback</td>
     </tr>
   </tbody>
 </table></div>
-<h2 id="freshness-gating">
-  
-  
-    <a href="#freshness-gating" class="anchor-heading" aria-labelledby="freshness-gating"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Freshness Gating
-  
-  
-</h2>
-    
 
-<p><code class="language-plaintext highlighter-rouge">HasNewData()</code> returns true only when the SH2 transport has delivered new sensor
-data since the last read. This prevents stale data from being consumed by the
-application layer.</p>
+<p>Sensor enable/disable/read operations are performed through the underlying
+driver object returned by <code class="language-plaintext highlighter-rouge">GetSensor()</code> / <code class="language-plaintext highlighter-rouge">GetDriver()</code>.</p>
 <h2 id="test-coverage">
   
   

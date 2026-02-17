@@ -1,0 +1,9 @@
+<map id="As5047uHandler::Initialize" name="As5047uHandler::Initialize">
+<area shape="rect" id="Node000001" title="Initialize the AS5047U sensor (lazy initialization)" alt="" coords="5,31,199,56"/>
+<area shape="rect" id="Node000002" href="$classAs5047uHandler.html#a0e7c20d4fd883c55ff9091041ec04c39" title="Apply configuration to sensor." alt="" coords="247,5,508,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,32,233,29,233,34,199,37"/>
+<area shape="rect" id="Node000003" href="$classAs5047uHandler.html#a6854be00365afbb2eeddfb3177939456" title="Update cached diagnostics." alt="" coords="247,55,507,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,49,234,52,234,57,198,54"/>
+<area shape="rect" id="Node000004" href="$classAs5047uHandler.html#a6b29b6418f7b2d19cbdcc65aa6eb9756" title="Handle sensor errors and update diagnostics." alt="" coords="556,47,783,87"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="508,65,542,65,542,70,508,70"/>
+</map>

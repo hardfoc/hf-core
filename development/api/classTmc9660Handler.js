@@ -19,6 +19,8 @@ var classTmc9660Handler =
     [ "DumpDiagnostics", "classTmc9660Handler.html#adee8a764564554f060b879752048bf74", null ],
     [ "EnsureInitialized", "classTmc9660Handler.html#a5a279ae9d4b5a8e0d71cb24577ad88ea", null ],
     [ "GetCommMode", "classTmc9660Handler.html#ac7592c35471c995115e68cc94056b4fb", null ],
+    [ "GetDriver", "classTmc9660Handler.html#ae1d6f6676180aff28d02dcb954917b79", null ],
+    [ "GetDriver", "classTmc9660Handler.html#ac29a3cfd55b2186f357c8b2f56d16bce", null ],
     [ "gpio", "classTmc9660Handler.html#acf7d1583239c9f767f82b42fc03b56cf", null ],
     [ "Initialize", "classTmc9660Handler.html#adc564847f8ae26c47412aaee0758991c", null ],
     [ "IsDriverReady", "classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f", null ],

@@ -1,5 +1,9 @@
 <map id="Tmc5160Handler::driverViaUart" name="Tmc5160Handler::driverViaUart">
-<area shape="rect" id="Node000001" title="Get typed UART driver pointer (null if SPI mode or not initialized)." alt="" coords="281,5,509,31"/>
+<area shape="rect" id="Node000001" title="Get typed UART driver pointer (null if SPI mode or not initialized)." alt="" coords="281,55,509,80"/>
 <area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a845e1879a4606367f419f3892061ff31" title=" " alt="" coords="5,5,233,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="268,21,234,21,234,15,268,15"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="310,55,191,33,192,28,311,50"/>
+<area shape="rect" id="Node000003" href="$classTmc5160Handler.html#a755fbb0bd0c5faa03c807522e4ea469a" title="Const overload of GetDriver()." alt="" coords="17,55,221,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="268,70,221,70,221,65,268,65"/>
+<area shape="rect" id="Node000004" href="$classTmc5160Handler.html#a8753f4b21ffb25d294d4ce41951f11f7" title="Get the active driver pointer without requiring visitor usage." alt="" coords="17,104,221,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="311,85,192,107,191,101,310,80"/>
 </map>

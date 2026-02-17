@@ -403,6 +403,10 @@
 7
 8
 9
+10
+11
+12
+13
 </pre></td><td class="rouge-code"><pre><span class="n">handler</span><span class="p">.</span><span class="n">visitDriver</span><span class="p">([](</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">drv</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">drv</span><span class="p">.</span><span class="n">motorControl</span><span class="p">.</span><span class="n">Enable</span><span class="p">();</span>
     <span class="n">drv</span><span class="p">.</span><span class="n">rampControl</span><span class="p">.</span><span class="n">SetTargetPosition</span><span class="p">(</span><span class="mi">51200</span><span class="p">);</span>
@@ -412,6 +416,10 @@
     <span class="k">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">drv</span><span class="p">.</span><span class="n">rampControl</span><span class="p">.</span><span class="n">GetCurrentPosition</span><span class="p">();</span>
     <span class="k">return</span> <span class="n">result</span> <span class="o">?</span> <span class="n">result</span><span class="p">.</span><span class="n">Value</span><span class="p">()</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">});</span>
+
+<span class="c1">// Or fetch active driver pointer explicitly without visitor:</span>
+<span class="k">auto</span> <span class="n">active</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">GetDriver</span><span class="p">();</span>
+<span class="c1">// std::variant&lt;std::monostate, SpiDriver*, UartDriver*&gt;</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="thread-safety">
   

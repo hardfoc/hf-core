@@ -322,51 +322,31 @@
       <td style="text-align: left">Release RMT resources</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetPixel(index, r, g, b)</code></td>
-      <td style="text-align: left">Set a single pixel color</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetAllPixels(r, g, b)</code></td>
-      <td style="text-align: left">Set all pixels to the same color</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Clear()</code></td>
-      <td style="text-align: left">Turn off all pixels</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Show()</code></td>
-      <td style="text-align: left">Transmit pixel data to the strip</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetBrightness(val)</code></td>
-      <td style="text-align: left">Set global brightness (0–255)</td>
-    </tr>
-    <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetNumLeds()</code></td>
       <td style="text-align: left">Get the number of LEDs</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetEffect(effect, color)</code></td>
-      <td style="text-align: left">Set animation effect</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Tick()</code></td>
-      <td style="text-align: left">Advance animation by time delta</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Step()</code></td>
-      <td style="text-align: left">Advance animation by one step</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetStrip()</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetDriver()</code> / <code class="language-plaintext highlighter-rouge">GetStrip()</code></td>
       <td style="text-align: left">Get underlying <code class="language-plaintext highlighter-rouge">WS2812Strip*</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetAnimator()</code></td>
       <td style="text-align: left">Get underlying <code class="language-plaintext highlighter-rouge">WS2812Animator*</code></td>
     </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">visitDriver(fn)</code></td>
+      <td style="text-align: left">Execute callable with <code class="language-plaintext highlighter-rouge">WS2812Strip&amp;</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">visitAnimator(fn)</code></td>
+      <td style="text-align: left">Execute callable with <code class="language-plaintext highlighter-rouge">WS2812Animator&amp;</code></td>
+    </tr>
   </tbody>
 </table></div>
+
+<p>All pixel operations and animation effects are intentionally delegated to
+the underlying driver objects (<code class="language-plaintext highlighter-rouge">WS2812Strip</code>, <code class="language-plaintext highlighter-rouge">WS2812Animator</code>) exposed by
+the handler.</p>
 <h2 id="thread-safety">
   
   

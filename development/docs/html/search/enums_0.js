@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['as5047uerror_0',['As5047uError',['../As5047uHandler_8h.html#a09c6ae2d5bda51af5fb5634776a5665c',1,'As5047uHandler.h']]]
+  ['bno08xerror_0',['Bno08xError',['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832',1,'Bno08xHandler.h']]]
 ];

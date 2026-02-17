@@ -4,7 +4,7 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,41,214,41,214,46,180,46"/>
 <area shape="rect" id="Node000003" href="$classAs5047uHandler.html#a040ba453eb7892ab3189631d73a2f683" title="Ensure initialized while mutex is already held." alt="" coords="480,23,725,63"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="432,41,466,41,466,46,432,46"/>
-<area shape="rect" id="Node000004" href="$classAs5047uHandler.html#a4dcfcea95fe8114ca7e0e5554d21ebc0" title="Initialize the AS5047U sensor (lazy initialization)" alt="" coords="773,31,967,56"/>
+<area shape="rect" id="Node000004" href="$classAs5047uHandler.html#a157826010a85f4279b7a13791fcf2003" title="Initialize the AS5047U sensor (lazy initialization)" alt="" coords="773,31,967,56"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="725,41,760,41,760,46,725,46"/>
 <area shape="rect" id="Node000005" href="$classAs5047uHandler.html#a0e7c20d4fd883c55ff9091041ec04c39" title="Apply configuration to sensor." alt="" coords="1015,5,1276,31"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="966,32,1001,29,1001,34,967,37"/>
