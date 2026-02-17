@@ -133,63 +133,63 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa15b316c8fd5d5d0f0e87ca8d67f01eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7ff1b8ec100de179014d9e651dc6e20" id="r_ac7ff1b8ec100de179014d9e651dc6e20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMax22200Handler.html">Max22200Handler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7ff1b8ec100de179014d9e651dc6e20">operator=</a> (<a class="el" href="classMax22200Handler.html">Max22200Handler</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:ac7ff1b8ec100de179014d9e651dc6e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6c72b45a96c36cd1b450f5e330fad25" id="r_ad6c72b45a96c36cd1b450f5e330fad25"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6c72b45a96c36cd1b450f5e330fad25">Initialize</a> () noexcept</td></tr>
-<tr class="memdesc:ad6c72b45a96c36cd1b450f5e330fad25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize driver (ENABLE HIGH, read/clear STATUS, set ACTIVE).  <br /></td></tr>
-<tr class="separator:ad6c72b45a96c36cd1b450f5e330fad25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dce05cd6639a10e52c0f669b72baf52" id="r_a0dce05cd6639a10e52c0f669b72baf52"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0dce05cd6639a10e52c0f669b72baf52">Initialize</a> () noexcept</td></tr>
+<tr class="memdesc:a0dce05cd6639a10e52c0f669b72baf52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize driver (ENABLE HIGH, read/clear STATUS, set ACTIVE).  <br /></td></tr>
+<tr class="separator:a0dce05cd6639a10e52c0f669b72baf52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a803b60663755d7850857626b58efc084" id="r_a803b60663755d7850857626b58efc084"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a803b60663755d7850857626b58efc084">EnsureInitialized</a> () noexcept</td></tr>
 <tr class="memdesc:a803b60663755d7850857626b58efc084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure driver is initialized (lazy init entrypoint).  <br /></td></tr>
 <tr class="separator:a803b60663755d7850857626b58efc084"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a87c1be18b3b4fb6055bccd6df7da9f" id="r_a4a87c1be18b3b4fb6055bccd6df7da9f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a87c1be18b3b4fb6055bccd6df7da9f">Initialize</a> (const max22200::BoardConfig &amp;board_config) noexcept</td></tr>
-<tr class="memdesc:a4a87c1be18b3b4fb6055bccd6df7da9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize with board configuration.  <br /></td></tr>
-<tr class="separator:a4a87c1be18b3b4fb6055bccd6df7da9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56aeb5c7e58aa51bbb45eb3b78387152" id="r_a56aeb5c7e58aa51bbb45eb3b78387152"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56aeb5c7e58aa51bbb45eb3b78387152">Deinitialize</a> () noexcept</td></tr>
-<tr class="memdesc:a56aeb5c7e58aa51bbb45eb3b78387152"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deinitialize — disable all channels, ACTIVE=0, ENABLE LOW.  <br /></td></tr>
-<tr class="separator:a56aeb5c7e58aa51bbb45eb3b78387152"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca940fd8213ecb633bafb7c3e143a361" id="r_aca940fd8213ecb633bafb7c3e143a361"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca940fd8213ecb633bafb7c3e143a361">Initialize</a> (const max22200::BoardConfig &amp;board_config) noexcept</td></tr>
+<tr class="memdesc:aca940fd8213ecb633bafb7c3e143a361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize with board configuration.  <br /></td></tr>
+<tr class="separator:aca940fd8213ecb633bafb7c3e143a361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96276218d9af520726b43745bcd0f0f5" id="r_a96276218d9af520726b43745bcd0f0f5"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96276218d9af520726b43745bcd0f0f5">Deinitialize</a> () noexcept</td></tr>
+<tr class="memdesc:a96276218d9af520726b43745bcd0f0f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deinitialize — disable all channels, ACTIVE=0, ENABLE LOW.  <br /></td></tr>
+<tr class="separator:a96276218d9af520726b43745bcd0f0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84534ddd9d77b88a861f093bd5a587de" id="r_a84534ddd9d77b88a861f093bd5a587de"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84534ddd9d77b88a861f093bd5a587de">IsInitialized</a> () const noexcept</td></tr>
 <tr class="memdesc:a84534ddd9d77b88a861f093bd5a587de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if initialized.  <br /></td></tr>
 <tr class="separator:a84534ddd9d77b88a861f093bd5a587de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4aa94d747e5cf13362c3b101578cc6a7" id="r_a4aa94d747e5cf13362c3b101578cc6a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4aa94d747e5cf13362c3b101578cc6a7">ConfigureChannel</a> (uint8_t channel, const max22200::ChannelConfig &amp;config) noexcept</td></tr>
-<tr class="memdesc:a4aa94d747e5cf13362c3b101578cc6a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure a channel completely.  <br /></td></tr>
-<tr class="separator:a4aa94d747e5cf13362c3b101578cc6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a780f37de690b0abbfef74d62e6b65cc7" id="r_a780f37de690b0abbfef74d62e6b65cc7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a780f37de690b0abbfef74d62e6b65cc7">SetupCdrChannel</a> (uint8_t channel, uint16_t hit_ma, uint16_t hold_ma, float hit_time_ms) noexcept</td></tr>
-<tr class="memdesc:a780f37de690b0abbfef74d62e6b65cc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quick CDR setup with milliamp values.  <br /></td></tr>
-<tr class="separator:a780f37de690b0abbfef74d62e6b65cc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0ab0a3088189dd853c915dcef3a0054" id="r_af0ab0a3088189dd853c915dcef3a0054"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0ab0a3088189dd853c915dcef3a0054">SetupVdrChannel</a> (uint8_t channel, float hit_duty_pct, float hold_duty_pct, float hit_time_ms) noexcept</td></tr>
-<tr class="memdesc:af0ab0a3088189dd853c915dcef3a0054"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quick VDR setup with duty cycle percentages.  <br /></td></tr>
-<tr class="separator:af0ab0a3088189dd853c915dcef3a0054"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe9b10baf5484ab2616204728cd1e9fd" id="r_afe9b10baf5484ab2616204728cd1e9fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe9b10baf5484ab2616204728cd1e9fd">EnableChannel</a> (uint8_t channel) noexcept</td></tr>
-<tr class="memdesc:afe9b10baf5484ab2616204728cd1e9fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable a channel.  <br /></td></tr>
-<tr class="separator:afe9b10baf5484ab2616204728cd1e9fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a6f06c1cee803702bebc2caf0329981" id="r_a1a6f06c1cee803702bebc2caf0329981"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a6f06c1cee803702bebc2caf0329981">DisableChannel</a> (uint8_t channel) noexcept</td></tr>
-<tr class="memdesc:a1a6f06c1cee803702bebc2caf0329981"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable a channel.  <br /></td></tr>
-<tr class="separator:a1a6f06c1cee803702bebc2caf0329981"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9e41274b5467db2e901be023d4dd061" id="r_aa9e41274b5467db2e901be023d4dd061"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9e41274b5467db2e901be023d4dd061">EnableAllChannels</a> () noexcept</td></tr>
-<tr class="memdesc:aa9e41274b5467db2e901be023d4dd061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable all channels.  <br /></td></tr>
-<tr class="separator:aa9e41274b5467db2e901be023d4dd061"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8469fc41589ea672b8732769d2222443" id="r_a8469fc41589ea672b8732769d2222443"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8469fc41589ea672b8732769d2222443">DisableAllChannels</a> () noexcept</td></tr>
-<tr class="memdesc:a8469fc41589ea672b8732769d2222443"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable all channels.  <br /></td></tr>
-<tr class="separator:a8469fc41589ea672b8732769d2222443"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dbfc381539a08e3bfab394db5739145" id="r_a7dbfc381539a08e3bfab394db5739145"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7dbfc381539a08e3bfab394db5739145">ConfigureChannel</a> (uint8_t channel, const max22200::ChannelConfig &amp;config) noexcept</td></tr>
+<tr class="memdesc:a7dbfc381539a08e3bfab394db5739145"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure a channel completely.  <br /></td></tr>
+<tr class="separator:a7dbfc381539a08e3bfab394db5739145"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad723710c3ee6c0519b6bde20925b1bf8" id="r_ad723710c3ee6c0519b6bde20925b1bf8"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad723710c3ee6c0519b6bde20925b1bf8">SetupCdrChannel</a> (uint8_t channel, uint16_t hit_ma, uint16_t hold_ma, float hit_time_ms) noexcept</td></tr>
+<tr class="memdesc:ad723710c3ee6c0519b6bde20925b1bf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quick CDR setup with milliamp values.  <br /></td></tr>
+<tr class="separator:ad723710c3ee6c0519b6bde20925b1bf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6892c6f6c6efdef080d9a485e4de2223" id="r_a6892c6f6c6efdef080d9a485e4de2223"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6892c6f6c6efdef080d9a485e4de2223">SetupVdrChannel</a> (uint8_t channel, float hit_duty_pct, float hold_duty_pct, float hit_time_ms) noexcept</td></tr>
+<tr class="memdesc:a6892c6f6c6efdef080d9a485e4de2223"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quick VDR setup with duty cycle percentages.  <br /></td></tr>
+<tr class="separator:a6892c6f6c6efdef080d9a485e4de2223"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f49cdd0e0e2686f560a1d26221e44de" id="r_a7f49cdd0e0e2686f560a1d26221e44de"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f49cdd0e0e2686f560a1d26221e44de">EnableChannel</a> (uint8_t channel) noexcept</td></tr>
+<tr class="memdesc:a7f49cdd0e0e2686f560a1d26221e44de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable a channel.  <br /></td></tr>
+<tr class="separator:a7f49cdd0e0e2686f560a1d26221e44de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a250cfb6dbfcff2b145d6356b35b52560" id="r_a250cfb6dbfcff2b145d6356b35b52560"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a250cfb6dbfcff2b145d6356b35b52560">DisableChannel</a> (uint8_t channel) noexcept</td></tr>
+<tr class="memdesc:a250cfb6dbfcff2b145d6356b35b52560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable a channel.  <br /></td></tr>
+<tr class="separator:a250cfb6dbfcff2b145d6356b35b52560"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7aba4f68825068e774badca04c49a07" id="r_af7aba4f68825068e774badca04c49a07"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7aba4f68825068e774badca04c49a07">EnableAllChannels</a> () noexcept</td></tr>
+<tr class="memdesc:af7aba4f68825068e774badca04c49a07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable all channels.  <br /></td></tr>
+<tr class="separator:af7aba4f68825068e774badca04c49a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e9684818c7efddd45697f28051cbca2" id="r_a9e9684818c7efddd45697f28051cbca2"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e9684818c7efddd45697f28051cbca2">DisableAllChannels</a> () noexcept</td></tr>
+<tr class="memdesc:a9e9684818c7efddd45697f28051cbca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable all channels.  <br /></td></tr>
+<tr class="separator:a9e9684818c7efddd45697f28051cbca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07c395b7496c7da567fb6a8d58d9d992" id="r_a07c395b7496c7da567fb6a8d58d9d992"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07c395b7496c7da567fb6a8d58d9d992">IsChannelEnabled</a> (uint8_t channel) noexcept</td></tr>
 <tr class="memdesc:a07c395b7496c7da567fb6a8d58d9d992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a channel is enabled.  <br /></td></tr>
 <tr class="separator:a07c395b7496c7da567fb6a8d58d9d992"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f9bbb552d6873017d9eb3be2a75b580" id="r_a0f9bbb552d6873017d9eb3be2a75b580"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f9bbb552d6873017d9eb3be2a75b580">SetChannelsMask</a> (uint8_t mask) noexcept</td></tr>
-<tr class="memdesc:a0f9bbb552d6873017d9eb3be2a75b580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set channels enabled by bitmask.  <br /></td></tr>
-<tr class="separator:a0f9bbb552d6873017d9eb3be2a75b580"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ea633d3ba2f4943a4929cc5181a4813" id="r_a1ea633d3ba2f4943a4929cc5181a4813"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ea633d3ba2f4943a4929cc5181a4813">GetStatus</a> (max22200::StatusConfig &amp;status) noexcept</td></tr>
-<tr class="memdesc:a1ea633d3ba2f4943a4929cc5181a4813"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the STATUS register.  <br /></td></tr>
-<tr class="separator:a1ea633d3ba2f4943a4929cc5181a4813"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3d2c8d242409059b60651ec3f688f46" id="r_ae3d2c8d242409059b60651ec3f688f46"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3d2c8d242409059b60651ec3f688f46">GetChannelFaults</a> (uint8_t channel, max22200::FaultStatus &amp;faults) noexcept</td></tr>
-<tr class="memdesc:ae3d2c8d242409059b60651ec3f688f46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read fault flags for a channel.  <br /></td></tr>
-<tr class="separator:ae3d2c8d242409059b60651ec3f688f46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6417f65fa49d539915fa5ca712fffc2f" id="r_a6417f65fa49d539915fa5ca712fffc2f"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6417f65fa49d539915fa5ca712fffc2f">SetChannelsMask</a> (uint8_t mask) noexcept</td></tr>
+<tr class="memdesc:a6417f65fa49d539915fa5ca712fffc2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set channels enabled by bitmask.  <br /></td></tr>
+<tr class="separator:a6417f65fa49d539915fa5ca712fffc2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a650e6b9666b785a5b3eadc729e187556" id="r_a650e6b9666b785a5b3eadc729e187556"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a650e6b9666b785a5b3eadc729e187556">GetStatus</a> (max22200::StatusConfig &amp;status) noexcept</td></tr>
+<tr class="memdesc:a650e6b9666b785a5b3eadc729e187556"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the STATUS register.  <br /></td></tr>
+<tr class="separator:a650e6b9666b785a5b3eadc729e187556"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac593ec1cad7b098494a53b327521cbb6" id="r_ac593ec1cad7b098494a53b327521cbb6"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac593ec1cad7b098494a53b327521cbb6">GetChannelFaults</a> (uint8_t channel, max22200::FaultStatus &amp;faults) noexcept</td></tr>
+<tr class="memdesc:ac593ec1cad7b098494a53b327521cbb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read fault flags for a channel.  <br /></td></tr>
+<tr class="separator:ac593ec1cad7b098494a53b327521cbb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5b60b117fec404c55597929134fa1a1" id="r_ac5b60b117fec404c55597929134fa1a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5b60b117fec404c55597929134fa1a1">HasFault</a> () noexcept</td></tr>
 <tr class="memdesc:ac5b60b117fec404c55597929134fa1a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if any fault is present.  <br /></td></tr>
 <tr class="separator:ac5b60b117fec404c55597929134fa1a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a439f52e4acfac83872a74fa9eef5237f" id="r_a439f52e4acfac83872a74fa9eef5237f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a439f52e4acfac83872a74fa9eef5237f">ClearFaults</a> () noexcept</td></tr>
-<tr class="memdesc:a439f52e4acfac83872a74fa9eef5237f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all fault flags.  <br /></td></tr>
-<tr class="separator:a439f52e4acfac83872a74fa9eef5237f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ab0270b9431b5bb22b0968cbca5c199" id="r_a5ab0270b9431b5bb22b0968cbca5c199"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ab0270b9431b5bb22b0968cbca5c199">ReadFaultRegister</a> (max22200::FaultStatus &amp;faults) noexcept</td></tr>
-<tr class="memdesc:a5ab0270b9431b5bb22b0968cbca5c199"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read fault register into status.  <br /></td></tr>
-<tr class="separator:a5ab0270b9431b5bb22b0968cbca5c199"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a963d65edae16cca4fd153b3af0c1e68e" id="r_a963d65edae16cca4fd153b3af0c1e68e"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a963d65edae16cca4fd153b3af0c1e68e">ClearFaults</a> () noexcept</td></tr>
+<tr class="memdesc:a963d65edae16cca4fd153b3af0c1e68e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all fault flags.  <br /></td></tr>
+<tr class="separator:a963d65edae16cca4fd153b3af0c1e68e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a09340fc22f485e50feacbacc25318b" id="r_a9a09340fc22f485e50feacbacc25318b"><td class="memItemLeft" align="right" valign="top">max22200::DriverStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a09340fc22f485e50feacbacc25318b">ReadFaultRegister</a> (max22200::FaultStatus &amp;faults) noexcept</td></tr>
+<tr class="memdesc:a9a09340fc22f485e50feacbacc25318b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read fault register into status.  <br /></td></tr>
+<tr class="separator:a9a09340fc22f485e50feacbacc25318b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a001e00b9d9a02611b51951f16bcb78d1" id="r_a001e00b9d9a02611b51951f16bcb78d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9c3881de11e1af4a850fc81ecb98f932">DriverType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a001e00b9d9a02611b51951f16bcb78d1">GetDriver</a> () noexcept</td></tr>
 <tr class="memdesc:a001e00b9d9a02611b51951f16bcb78d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the underlying driver for advanced operations.  <br /></td></tr>
 <tr class="separator:a001e00b9d9a02611b51951f16bcb78d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -389,8 +389,8 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a439f52e4acfac83872a74fa9eef5237f" name="a439f52e4acfac83872a74fa9eef5237f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a439f52e4acfac83872a74fa9eef5237f">&#9670;&#160;</a></span>ClearFaults()</h2>
+<a id="a963d65edae16cca4fd153b3af0c1e68e" name="a963d65edae16cca4fd153b3af0c1e68e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a963d65edae16cca4fd153b3af0c1e68e">&#9670;&#160;</a></span>ClearFaults()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -399,7 +399,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::ClearFaults </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::ClearFaults </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -416,13 +416,13 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_a439f52e4acfac83872a74fa9eef5237f_cgraph.svg" width="1476" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_a963d65edae16cca4fd153b3af0c1e68e_cgraph.svg" width="1476" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a4aa94d747e5cf13362c3b101578cc6a7" name="a4aa94d747e5cf13362c3b101578cc6a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4aa94d747e5cf13362c3b101578cc6a7">&#9670;&#160;</a></span>ConfigureChannel()</h2>
+<a id="a7dbfc381539a08e3bfab394db5739145" name="a7dbfc381539a08e3bfab394db5739145"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dbfc381539a08e3bfab394db5739145">&#9670;&#160;</a></span>ConfigureChannel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -431,7 +431,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::ConfigureChannel </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::ConfigureChannel </td>
           <td>(</td>
           <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
         </tr>
@@ -456,11 +456,12 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus::OK on success, specific error code on failure. </dd></dl>
 
 </div>
 </div>
-<a id="a56aeb5c7e58aa51bbb45eb3b78387152" name="a56aeb5c7e58aa51bbb45eb3b78387152"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56aeb5c7e58aa51bbb45eb3b78387152">&#9670;&#160;</a></span>Deinitialize()</h2>
+<a id="a96276218d9af520726b43745bcd0f0f5" name="a96276218d9af520726b43745bcd0f0f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96276218d9af520726b43745bcd0f0f5">&#9670;&#160;</a></span>Deinitialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -469,7 +470,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::Deinitialize </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::Deinitialize </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -486,18 +487,18 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_a56aeb5c7e58aa51bbb45eb3b78387152_cgraph.svg" width="654" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_a96276218d9af520726b43745bcd0f0f5_cgraph.svg" width="654" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_a56aeb5c7e58aa51bbb45eb3b78387152_icgraph.svg" width="510" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_a96276218d9af520726b43745bcd0f0f5_icgraph.svg" width="510" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a8469fc41589ea672b8732769d2222443" name="a8469fc41589ea672b8732769d2222443"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8469fc41589ea672b8732769d2222443">&#9670;&#160;</a></span>DisableAllChannels()</h2>
+<a id="a9e9684818c7efddd45697f28051cbca2" name="a9e9684818c7efddd45697f28051cbca2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e9684818c7efddd45697f28051cbca2">&#9670;&#160;</a></span>DisableAllChannels()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -506,7 +507,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::DisableAllChannels </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::DisableAllChannels </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -523,13 +524,13 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_a8469fc41589ea672b8732769d2222443_cgraph.svg" width="1454" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_a9e9684818c7efddd45697f28051cbca2_cgraph.svg" width="1454" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a1a6f06c1cee803702bebc2caf0329981" name="a1a6f06c1cee803702bebc2caf0329981"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a6f06c1cee803702bebc2caf0329981">&#9670;&#160;</a></span>DisableChannel()</h2>
+<a id="a250cfb6dbfcff2b145d6356b35b52560" name="a250cfb6dbfcff2b145d6356b35b52560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a250cfb6dbfcff2b145d6356b35b52560">&#9670;&#160;</a></span>DisableChannel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -538,7 +539,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::DisableChannel </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::DisableChannel </td>
           <td>(</td>
           <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span></td><td>)</td>
           <td></td>
@@ -587,8 +588,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="aa9e41274b5467db2e901be023d4dd061" name="aa9e41274b5467db2e901be023d4dd061"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9e41274b5467db2e901be023d4dd061">&#9670;&#160;</a></span>EnableAllChannels()</h2>
+<a id="af7aba4f68825068e774badca04c49a07" name="af7aba4f68825068e774badca04c49a07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7aba4f68825068e774badca04c49a07">&#9670;&#160;</a></span>EnableAllChannels()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -597,7 +598,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::EnableAllChannels </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::EnableAllChannels </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -614,13 +615,13 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_aa9e41274b5467db2e901be023d4dd061_cgraph.svg" width="1466" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_af7aba4f68825068e774badca04c49a07_cgraph.svg" width="1466" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="afe9b10baf5484ab2616204728cd1e9fd" name="afe9b10baf5484ab2616204728cd1e9fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe9b10baf5484ab2616204728cd1e9fd">&#9670;&#160;</a></span>EnableChannel()</h2>
+<a id="a7f49cdd0e0e2686f560a1d26221e44de" name="a7f49cdd0e0e2686f560a1d26221e44de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f49cdd0e0e2686f560a1d26221e44de">&#9670;&#160;</a></span>EnableChannel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -629,7 +630,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::EnableChannel </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::EnableChannel </td>
           <td>(</td>
           <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span></td><td>)</td>
           <td></td>
@@ -714,8 +715,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ae3d2c8d242409059b60651ec3f688f46" name="ae3d2c8d242409059b60651ec3f688f46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3d2c8d242409059b60651ec3f688f46">&#9670;&#160;</a></span>GetChannelFaults()</h2>
+<a id="ac593ec1cad7b098494a53b327521cbb6" name="ac593ec1cad7b098494a53b327521cbb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac593ec1cad7b098494a53b327521cbb6">&#9670;&#160;</a></span>GetChannelFaults()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -724,7 +725,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::GetChannelFaults </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::GetChannelFaults </td>
           <td>(</td>
           <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
         </tr>
@@ -749,6 +750,7 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus::OK on success. </dd></dl>
 
 </div>
 </div>
@@ -820,8 +822,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a1ea633d3ba2f4943a4929cc5181a4813" name="a1ea633d3ba2f4943a4929cc5181a4813"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ea633d3ba2f4943a4929cc5181a4813">&#9670;&#160;</a></span>GetStatus()</h2>
+<a id="a650e6b9666b785a5b3eadc729e187556" name="a650e6b9666b785a5b3eadc729e187556"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a650e6b9666b785a5b3eadc729e187556">&#9670;&#160;</a></span>GetStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -830,7 +832,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::GetStatus </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::GetStatus </td>
           <td>(</td>
           <td class="paramtype">max22200::StatusConfig &amp;</td>          <td class="paramname"><span class="paramname"><em>status</em></span></td><td>)</td>
           <td></td>
@@ -850,6 +852,7 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus::OK on success. </dd></dl>
 
 </div>
 </div>
@@ -885,8 +888,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ad6c72b45a96c36cd1b450f5e330fad25" name="ad6c72b45a96c36cd1b450f5e330fad25"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6c72b45a96c36cd1b450f5e330fad25">&#9670;&#160;</a></span>Initialize() <span class="overload">[1/2]</span></h2>
+<a id="a0dce05cd6639a10e52c0f669b72baf52" name="a0dce05cd6639a10e52c0f669b72baf52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dce05cd6639a10e52c0f669b72baf52">&#9670;&#160;</a></span>Initialize() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -895,7 +898,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::Initialize </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::Initialize </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -909,22 +912,22 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Initialize driver (ENABLE HIGH, read/clear STATUS, set ACTIVE). </p>
-<dl class="section return"><dt>Returns</dt><dd>true on success. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus::OK on success, specific error code on failure. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_ad6c72b45a96c36cd1b450f5e330fad25_cgraph.svg" width="636" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_a0dce05cd6639a10e52c0f669b72baf52_cgraph.svg" width="636" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_ad6c72b45a96c36cd1b450f5e330fad25_icgraph.svg" width="1103" height="334"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_a0dce05cd6639a10e52c0f669b72baf52_icgraph.svg" width="1103" height="334"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a4a87c1be18b3b4fb6055bccd6df7da9f" name="a4a87c1be18b3b4fb6055bccd6df7da9f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a87c1be18b3b4fb6055bccd6df7da9f">&#9670;&#160;</a></span>Initialize() <span class="overload">[2/2]</span></h2>
+<a id="aca940fd8213ecb633bafb7c3e143a361" name="aca940fd8213ecb633bafb7c3e143a361"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca940fd8213ecb633bafb7c3e143a361">&#9670;&#160;</a></span>Initialize() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -933,7 +936,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::Initialize </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::Initialize </td>
           <td>(</td>
           <td class="paramtype">const max22200::BoardConfig &amp;</td>          <td class="paramname"><span class="paramname"><em>board_config</em></span></td><td>)</td>
           <td></td>
@@ -953,10 +956,11 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus::OK on success, specific error code on failure. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_a4a87c1be18b3b4fb6055bccd6df7da9f_cgraph.svg" width="636" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMax22200Handler_aca940fd8213ecb633bafb7c3e143a361_cgraph.svg" width="636" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1065,8 +1069,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a5ab0270b9431b5bb22b0968cbca5c199" name="a5ab0270b9431b5bb22b0968cbca5c199"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ab0270b9431b5bb22b0968cbca5c199">&#9670;&#160;</a></span>ReadFaultRegister()</h2>
+<a id="a9a09340fc22f485e50feacbacc25318b" name="a9a09340fc22f485e50feacbacc25318b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a09340fc22f485e50feacbacc25318b">&#9670;&#160;</a></span>ReadFaultRegister()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1075,7 +1079,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::ReadFaultRegister </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::ReadFaultRegister </td>
           <td>(</td>
           <td class="paramtype">max22200::FaultStatus &amp;</td>          <td class="paramname"><span class="paramname"><em>faults</em></span></td><td>)</td>
           <td></td>
@@ -1095,11 +1099,12 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus::OK on success. </dd></dl>
 
 </div>
 </div>
-<a id="a0f9bbb552d6873017d9eb3be2a75b580" name="a0f9bbb552d6873017d9eb3be2a75b580"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f9bbb552d6873017d9eb3be2a75b580">&#9670;&#160;</a></span>SetChannelsMask()</h2>
+<a id="a6417f65fa49d539915fa5ca712fffc2f" name="a6417f65fa49d539915fa5ca712fffc2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6417f65fa49d539915fa5ca712fffc2f">&#9670;&#160;</a></span>SetChannelsMask()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1108,7 +1113,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::SetChannelsMask </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::SetChannelsMask </td>
           <td>(</td>
           <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>mask</em></span></td><td>)</td>
           <td></td>
@@ -1131,8 +1136,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a780f37de690b0abbfef74d62e6b65cc7" name="a780f37de690b0abbfef74d62e6b65cc7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a780f37de690b0abbfef74d62e6b65cc7">&#9670;&#160;</a></span>SetupCdrChannel()</h2>
+<a id="ad723710c3ee6c0519b6bde20925b1bf8" name="ad723710c3ee6c0519b6bde20925b1bf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad723710c3ee6c0519b6bde20925b1bf8">&#9670;&#160;</a></span>SetupCdrChannel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1141,7 +1146,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::SetupCdrChannel </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::SetupCdrChannel </td>
           <td>(</td>
           <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
         </tr>
@@ -1178,11 +1183,12 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus::OK on success, first failing operation's error code. </dd></dl>
 
 </div>
 </div>
-<a id="af0ab0a3088189dd853c915dcef3a0054" name="af0ab0a3088189dd853c915dcef3a0054"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0ab0a3088189dd853c915dcef3a0054">&#9670;&#160;</a></span>SetupVdrChannel()</h2>
+<a id="a6892c6f6c6efdef080d9a485e4de2223" name="a6892c6f6c6efdef080d9a485e4de2223"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6892c6f6c6efdef080d9a485e4de2223">&#9670;&#160;</a></span>SetupVdrChannel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1191,7 +1197,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Max22200Handler::SetupVdrChannel </td>
+          <td class="memname">max22200::DriverStatus Max22200Handler::SetupVdrChannel </td>
           <td>(</td>
           <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
         </tr>
@@ -1228,6 +1234,7 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus::OK on success, first failing operation's error code. </dd></dl>
 
 </div>
 </div>

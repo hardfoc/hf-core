@@ -134,14 +134,13 @@ Typedefs</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Unified handler for WS2812 addressable LED strips using RMT peripheral. </p>
-<p>Provides HAL-level integration for WS2812/SK6812/NeoPixel LED strips. Features:</p><ul>
-<li>Direct pixel color control with brightness adjustment</li>
-<li>Built-in animation effects (rainbow, chase, breathe, sparkle, wave)</li>
-<li>Multi-segment support for independent animation zones</li>
-<li>Thread-safe operations with RtosMutex</li>
+<p>Provides HAL-level lifecycle management for WS2812/SK6812/NeoPixel LED strips. Features:</p><ul>
+<li>Thread-safe lifecycle management (Initialize, Deinitialize)</li>
+<li>Direct access to underlying WS2812Strip and WS2812Animator objects</li>
 <li>Lazy initialization pattern</li>
-<li>Full access to underlying strip and animator objects</li>
+<li>Comprehensive diagnostics</li>
 </ul>
+<p>All pixel operations and animation effects should be performed through GetStrip() and GetAnimator() which expose the full driver API.</p>
 <h2><a class="anchor" id="autotoc_md28"></a>
 Usage Example</h2>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classWs2812Handler.html">Ws2812Handler</a> leds(<a class="code hl_struct" href="structWs2812Handler_1_1Config.html">Ws2812Handler::Config</a>{</div>
@@ -151,23 +150,17 @@ Usage Example</h2>
 <div class="line">    .brightness = 50</div>
 <div class="line">});</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordflow">if</span> (leds.Initialize()) {</div>
-<div class="line">    leds.<a class="code hl_function" href="classWs2812Handler.html#a708944a4dd8c4a807a8009b8bd35c2a7">SetPixel</a>(0, 255, 0, 0);  <span class="comment">// Red</span></div>
-<div class="line">    leds.SetPixel(1, 0, 255, 0);  <span class="comment">// Green</span></div>
-<div class="line">    leds.Show();</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">// Or use effects</span></div>
-<div class="line">    leds.SetEffect(WS2812Animator::Effect::Rainbow, 0xFFFFFF);</div>
-<div class="line">    <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
-<div class="line">        leds.Tick();</div>
-<div class="line">        vTaskDelay(pdMS_TO_TICKS(20));</div>
-<div class="line">    }</div>
+<div class="line"><span class="keywordflow">if</span> (leds.Initialize() == ESP_OK) {</div>
+<div class="line">    <span class="keyword">auto</span>* strip = leds.<a class="code hl_function" href="classWs2812Handler.html#a7471840392adad3cab496e2dc57dc792">GetStrip</a>();</div>
+<div class="line">    <span class="keyword">auto</span>* anim  = leds.GetAnimator();</div>
+<div class="line">    strip-&gt;SetPixel(0, 0xFF0000);  <span class="comment">// Red</span></div>
+<div class="line">    strip-&gt;Show();</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassWs2812Handler_html"><div class="ttname"><a href="classWs2812Handler.html">Ws2812Handler</a></div><div class="ttdoc">Unified handler for WS2812 addressable LED strips.</div><div class="ttdef"><b>Definition</b> Ws2812Handler.h:73</div></div>
-<div class="ttc" id="aclassWs2812Handler_html_a708944a4dd8c4a807a8009b8bd35c2a7"><div class="ttname"><a href="classWs2812Handler.html#a708944a4dd8c4a807a8009b8bd35c2a7">Ws2812Handler::SetPixel</a></div><div class="ttdeci">bool SetPixel(uint32_t index, uint8_t r, uint8_t g, uint8_t b) noexcept</div><div class="ttdoc">Set a single pixel color.</div><div class="ttdef"><b>Definition</b> Ws2812Handler.cpp:103</div></div>
-<div class="ttc" id="astructWs2812Handler_1_1Config_html"><div class="ttname"><a href="structWs2812Handler_1_1Config.html">Ws2812Handler::Config</a></div><div class="ttdoc">Configuration structure for the WS2812 handler.</div><div class="ttdef"><b>Definition</b> Ws2812Handler.h:78</div></div>
-<div class="ttc" id="astructWs2812Handler_1_1Config_html_acfd7c925abeb4af12fbddd986082d66f"><div class="ttname"><a href="structWs2812Handler_1_1Config.html#acfd7c925abeb4af12fbddd986082d66f">Ws2812Handler::Config::gpio_pin</a></div><div class="ttdeci">gpio_num_t gpio_pin</div><div class="ttdoc">GPIO pin connected to LED data line.</div><div class="ttdef"><b>Definition</b> Ws2812Handler.h:79</div></div>
-</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>This handler wraps the ESP-IDF RMT-based WS2812 driver directly. No Base* interface injection is needed since the driver manages RMT internally.</dd></dl>
+<div class="ttc" id="aclassWs2812Handler_html"><div class="ttname"><a href="classWs2812Handler.html">Ws2812Handler</a></div><div class="ttdoc">Unified handler for WS2812 addressable LED strips.</div><div class="ttdef"><b>Definition</b> Ws2812Handler.h:69</div></div>
+<div class="ttc" id="aclassWs2812Handler_html_a7471840392adad3cab496e2dc57dc792"><div class="ttname"><a href="classWs2812Handler.html#a7471840392adad3cab496e2dc57dc792">Ws2812Handler::GetStrip</a></div><div class="ttdeci">WS2812Strip * GetStrip() noexcept</div><div class="ttdoc">Get the underlying LED strip object.</div><div class="ttdef"><b>Definition</b> Ws2812Handler.cpp:103</div></div>
+<div class="ttc" id="astructWs2812Handler_1_1Config_html"><div class="ttname"><a href="structWs2812Handler_1_1Config.html">Ws2812Handler::Config</a></div><div class="ttdoc">Configuration structure for the WS2812 handler.</div><div class="ttdef"><b>Definition</b> Ws2812Handler.h:74</div></div>
+<div class="ttc" id="astructWs2812Handler_1_1Config_html_acfd7c925abeb4af12fbddd986082d66f"><div class="ttname"><a href="structWs2812Handler_1_1Config.html#acfd7c925abeb4af12fbddd986082d66f">Ws2812Handler::Config::gpio_pin</a></div><div class="ttdeci">gpio_num_t gpio_pin</div><div class="ttdoc">GPIO pin connected to LED data line.</div><div class="ttdef"><b>Definition</b> Ws2812Handler.h:75</div></div>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>This handler provides lifecycle management and direct access to the underlying WS2812Strip and WS2812Animator objects. All pixel operations and effects should be performed through GetStrip() and GetAnimator().</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>HardFOC Team </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>HardFOC </dd></dl>

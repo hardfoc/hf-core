@@ -1,0 +1,33 @@
+<map id="Tle92466edHandler::Initialize" name="Tle92466edHandler::Initialize">
+<area shape="rect" id="Node000001" title="Initialize driver (hardware reset + SPI init + enter config mode)." alt="" coords="639,101,796,141"/>
+<area shape="rect" id="Node000002" href="$classTle92466edHandler.html#a59ce7fd71a61c78bba4dc4a43c99e280" title=" " alt="" coords="416,101,591,141"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="625,124,591,124,591,119,625,119"/>
+<area shape="rect" id="Node000003" href="$classTle92466edHandler.html#afcec01ba90f6596dcde99387ef41b6e4" title="Dump diagnostics to logger." alt="" coords="211,5,368,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="448,98,367,60,339,48,341,43,369,55,450,93"/>
+<area shape="rect" id="Node000004" href="$classTle92466edHandler.html#a1a976346516812f7125cdeb2f3aeb327" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="211,69,368,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="402,109,368,104,369,98,403,104"/>
+<area shape="rect" id="Node000005" href="$classTle92466edHandler.html#ae83bbf85e50d68c8adcc2160bdaed271" title="Get the underlying driver for advanced operations." alt="" coords="211,133,368,173"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="403,139,369,144,368,139,402,134"/>
+<area shape="rect" id="Node000007" href="$classTle92466edHandler.html#aef42f3c7c1b1ef51b27eb8d178aca6bc" title="Execute a lambda with a locked, initialized driver." alt="" coords="211,309,368,349"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="473,153,313,311,309,307,470,149"/>
+<area shape="rect" id="Node000006" href="$classTle92466edHandler.html#a56ebe6e509ccd1b6b865728ba14d2533" title=" " alt="" coords="5,21,163,61"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="218,129,209,123,194,111,185,99,175,87,161,76,140,64,143,59,164,71,179,84,189,96,198,107,212,119,221,125"/>
+<area shape="rect" id="Node000008" href="$classTle92466edHandler.html#ab3123678e6df690f5669fd89079e0a4e" title="Clear all fault flags." alt="" coords="5,85,163,125"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="272,298,229,219,198,177,161,139,143,128,146,123,164,135,202,173,233,216,276,295"/>
+<area shape="rect" id="Node000009" href="$classTle92466edHandler.html#ac37cbbcce53c7a55657ee61cd5015190" title="Disable all channels." alt="" coords="5,149,163,189"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="262,300,218,251,161,204,140,192,143,187,164,199,222,248,266,297"/>
+<area shape="rect" id="Node000010" href="$classTle92466edHandler.html#a1ee30771436827a1499a379aa7e5ab49" title="Enable all channels." alt="" coords="5,213,163,253"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="237,305,162,268,134,256,137,251,164,263,240,300"/>
+<area shape="rect" id="Node000011" href="$classTle92466edHandler.html#a19b966bb109b988eb98d319b76908667" title="Enter config mode (for register writes)." alt="" coords="5,277,163,317"/>
+<area shape="poly" id="edge10_Node000007_Node000011" title=" " alt="" coords="197,318,162,312,163,307,197,312"/>
+<area shape="rect" id="Node000012" href="$classTle92466edHandler.html#aee10ff4c219a042d260a6b1f58a9219a" title="Enter mission mode (enable outputs after configuration)." alt="" coords="5,341,163,381"/>
+<area shape="poly" id="edge11_Node000007_Node000012" title=" " alt="" coords="197,346,163,352,162,346,197,341"/>
+<area shape="rect" id="Node000013" href="$classTle92466edHandler.html#a4c646ee5db271f07517cc15e8a623f0e" title="Get chip ID (returns 0 on error)." alt="" coords="5,405,163,445"/>
+<area shape="poly" id="edge12_Node000007_Node000013" title=" " alt="" coords="240,358,164,396,137,408,134,403,162,391,237,353"/>
+<area shape="rect" id="Node000014" href="$classTle92466edHandler.html#a0c29d4ada1c9247dc90fb64d914dec1f" title="Get IC version (returns 0 on error)." alt="" coords="5,469,163,509"/>
+<area shape="poly" id="edge13_Node000007_Node000014" title=" " alt="" coords="266,362,222,411,164,460,143,472,140,467,161,455,218,407,262,358"/>
+<area shape="rect" id="Node000015" href="$classTle92466edHandler.html#ab86e6d3eb2dca25154a8fa7c42ddb945" title="Check if any fault is present." alt="" coords="5,533,163,573"/>
+<area shape="poly" id="edge14_Node000007_Node000015" title=" " alt="" coords="276,363,233,442,202,485,164,523,146,536,143,531,161,519,198,482,229,439,272,361"/>
+<area shape="rect" id="Node000016" href="$classTle92466edHandler.html#a6bcbd117208f3e44f2216d45541eb4fa" title="Check if in mission mode." alt="" coords="5,597,163,637"/>
+<area shape="poly" id="edge15_Node000007_Node000016" title=" " alt="" coords="282,363,267,412,243,472,209,533,188,562,164,587,148,599,145,595,161,583,184,558,205,530,238,469,262,410,277,362"/>
+</map>

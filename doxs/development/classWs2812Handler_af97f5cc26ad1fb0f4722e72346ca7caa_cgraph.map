@@ -4,7 +4,7 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,90,226,90,226,95,192,95"/>
 <area shape="rect" id="Node000003" href="$classWs2812Handler.html#afe5f397b22e9b92cf2fb2cebae6e123d" title=" " alt="" coords="475,73,716,113"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="427,90,461,90,461,95,427,95"/>
-<area shape="rect" id="Node000004" href="$classWs2812Handler.html#a172ae173d1e2bd93c9808452aad6e4cd" title="Initialize the RMT channel and LED strip." alt="" coords="764,80,953,105"/>
+<area shape="rect" id="Node000004" href="$classWs2812Handler.html#acce4955435f295ba4853b6239090982f" title="Initialize the RMT channel and LED strip." alt="" coords="764,80,953,105"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="716,90,750,90,750,95,716,95"/>
 <area shape="rect" id="Node000005" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="1025,5,1130,31"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="894,77,1000,39,1022,32,1024,37,1002,45,896,82"/>

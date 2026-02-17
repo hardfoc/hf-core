@@ -12,7 +12,7 @@
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="259,28,154,28,154,23,259,23"/>
 <area shape="rect" id="Node000007" href="$classPcal95555Handler.html#a6715e51d5d09a2466b3b86820b9f5ea6" title="Get the underlying PCAL95555 driver for advanced register&#45;level operations." alt="" coords="264,69,475,94"/>
 <area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="509,88,475,87,475,82,509,83"/>
-<area shape="rect" id="Node000009" href="$classPcal95555Handler.html#aeb2c5589355cb9ae970fdf2d10b545e8" title="Reset all registers to power&#45;on default state." alt="" coords="270,119,469,159"/>
+<area shape="rect" id="Node000009" href="$classPcal95555Handler.html#ab614d32aa8d2c6bb775ebbbd148875b3" title="Reset all registers to power&#45;on default state." alt="" coords="270,119,469,159"/>
 <area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="510,114,469,122,468,116,509,108"/>
 <area shape="rect" id="Node000008" href="$classPcal95555Handler.html#a8121efea49cc4be54c4526eb346e5f8d" title=" " alt="" coords="5,69,216,94"/>
 <area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="250,84,216,84,216,79,250,79"/>

@@ -4,9 +4,9 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="588,71,494,45,444,33,445,28,495,39,589,66"/>
 <area shape="rect" id="Node000004" href="$classPca9685Handler.html#a3f5b93ead4b85c137c94a0d0e8d9bb12" title="Get or create the BasePwm adapter for all 16 channels." alt="" coords="252,55,495,80"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="529,84,495,81,495,75,529,78"/>
-<area shape="rect" id="Node000005" href="$classPca9685Handler.html#a989c4b1a8260c7af0bf210103d13cc7b" title="Put PCA9685 into low&#45;power sleep mode." alt="" coords="287,104,459,129"/>
+<area shape="rect" id="Node000005" href="$classPca9685Handler.html#a989c4b1a8260c7af0bf210103d13cc7b" title=" " alt="" coords="287,104,459,129"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="529,107,460,112,459,107,529,101"/>
-<area shape="rect" id="Node000007" href="$classPca9685Handler.html#abfea96039e525e253d0eab9234cdfa5f" title="Wake PCA9685 from sleep mode." alt="" coords="288,157,459,183"/>
+<area shape="rect" id="Node000007" href="$classPca9685Handler.html#abfea96039e525e253d0eab9234cdfa5f" title=" " alt="" coords="288,157,459,183"/>
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="585,119,495,145,433,160,432,155,494,139,584,114"/>
 <area shape="rect" id="Node000003" href="$classPca9685Handler.html#a7d3b7d292f41670fcb1b1ecfc803b404" title=" " alt="" coords="5,5,204,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="260,21,204,21,204,15,260,15"/>

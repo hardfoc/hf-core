@@ -57,7 +57,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classWs2812Handler.html#a172ae173d1e2bd93c9808452aad6e4cd" target="_top" xlink:title="Initialize the RMT channel and LED strip.">
+<g id="a_Node000004"><a xlink:href="classWs2812Handler.html#acce4955435f295ba4853b6239090982f" target="_top" xlink:title="Initialize the RMT channel and LED strip.">
 <polygon fill="white" stroke="#666666" points="711,-74 569,-74 569,-55 711,-55 711,-74"/>
 <text text-anchor="middle" x="640" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">Ws2812Handler::Initialize</text>
 </a>

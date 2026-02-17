@@ -222,7 +222,7 @@
 <!-- Node13 -->
 <g id="Node000013" class="node">
 <title>Node13</title>
-<g id="a_Node000013"><a xlink:href="classPca9685Handler.html#a989c4b1a8260c7af0bf210103d13cc7b" target="_top" xlink:title="Put PCA9685 into low&#45;power sleep mode.">
+<g id="a_Node000013"><a xlink:href="classPca9685Handler.html#a989c4b1a8260c7af0bf210103d13cc7b" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="458,-72.5 329,-72.5 329,-53.5 458,-53.5 458,-72.5"/>
 <text text-anchor="middle" x="393.5" y="-60.5" font-family="Helvetica,sans-Serif" font-size="10.00">Pca9685Handler::Sleep</text>
 </a>
@@ -240,7 +240,7 @@
 <!-- Node15 -->
 <g id="Node000015" class="node">
 <title>Node15</title>
-<g id="a_Node000015"><a xlink:href="classPca9685Handler.html#abfea96039e525e253d0eab9234cdfa5f" target="_top" xlink:title="Wake PCA9685 from sleep mode.">
+<g id="a_Node000015"><a xlink:href="classPca9685Handler.html#abfea96039e525e253d0eab9234cdfa5f" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="457.5,-30.5 329.5,-30.5 329.5,-11.5 457.5,-11.5 457.5,-30.5"/>
 <text text-anchor="middle" x="393.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Pca9685Handler::Wake</text>
 </a>
