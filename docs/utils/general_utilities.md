@@ -22,7 +22,7 @@ Header-only C++ utility library with no platform dependencies.
 
 | Class | Description |
 |:------|:------------|
-| `AveragingFilter<T, N>` | Sliding-window moving average |
+| `AveragingFilter<T, N>` | Sliding-window moving average with safe `Reset()` (returns last average, guards against division by zero when empty) |
 | `LinearInterpolation` | Point-based linear interpolation |
 | `PiecewiseLinearSegment` | Multi-segment piecewise linear functions |
 | `CrcUtil` | CRC-8 calculation |

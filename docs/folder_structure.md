@@ -147,7 +147,7 @@ Each app maps to a single `.cpp` source file:
 
 ```bash
 # Build a specific test
-APP_TYPE=bno08x_handler_test ./scripts/build_app.sh --build-type debug
+./build_app.sh bno08x_handler_test Debug
 ```
 
 The `app_config.yml` file defines all available apps, their source files, categories,

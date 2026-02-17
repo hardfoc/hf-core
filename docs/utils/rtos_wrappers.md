@@ -13,9 +13,8 @@ C++ abstractions over FreeRTOS primitives for thread-safe embedded development.
 
 | Class | Description |
 |:------|:------------|
-| `RtosMutex` | Named mutex wrapper (`xSemaphoreCreateMutex`) |
-| `MutexLockGuard` | RAII lock guard for `RtosMutex` |
-| `OsRecursiveMutex` | Recursive mutex (same-thread re-entrant) |
+| `RtosMutex` | Recursive mutex wrapper (`xSemaphoreCreateRecursiveMutex`) — allows same-thread re-entrant locking |
+| `MutexLockGuard` | `RtosUniqueLock<RtosMutex>` typedef — RAII lock guard for `RtosMutex` |
 | `OsSemaphore` | Counting semaphore |
 | `SemaphoreLockGuard` | RAII guard for semaphores |
 
@@ -45,7 +44,7 @@ C++ abstractions over FreeRTOS primitives for thread-safe embedded development.
 ### Mutex-Protected Resource
 
 ```cpp
-RtosMutex mtx("sensor_guard");
+RtosMutex mtx;
 
 void read_sensor() {
     MutexLockGuard guard(mtx);

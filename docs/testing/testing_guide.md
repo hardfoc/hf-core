@@ -51,7 +51,7 @@ at build time via the `APP_TYPE` mechanism.
 
 ```bash
 cd examples/esp32/scripts
-./build_app.sh --app as5047u_handler_test --build-type debug
+./build_app.sh as5047u_handler_test Debug
 ```
 
 ### Using idf.py directly

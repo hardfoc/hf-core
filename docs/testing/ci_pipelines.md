@@ -129,10 +129,10 @@ You can simulate the CI build locally:
 cd examples/esp32/scripts
 
 # Build a single app
-./build_app.sh --app general_utils_test --build-type debug
+./build_app.sh general_utils_test Debug
 
-# Build all CI-enabled apps
-./build_app.sh --all --build-type debug
+# List all available apps
+./build_app.sh list
 
 # Generate the matrix (for debugging)
 python3 generate_matrix.py ../app_config.yml

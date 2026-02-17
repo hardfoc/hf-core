@@ -63,14 +63,15 @@ Manager (owns) → Handler (owns) → CRTP Driver Instance
 
 ## RTOS Integration
 
-- `RtosMutex` — Wrapper around `xSemaphoreCreateMutex`
-- `MutexLockGuard` — RAII lock guard
+- `RtosMutex` — Recursive mutex wrapper (`xSemaphoreCreateRecursiveMutex`), allows
+  same-thread re-entrant locking (e.g. `EnsureInitialized()` → `Initialize()`)
+- `MutexLockGuard` — Typedef for `RtosUniqueLock<RtosMutex>`, RAII lock guard
 - `PeriodicTimer` — Wrapper around FreeRTOS software timers
 - `BaseThread` — Abstract base for FreeRTOS tasks
 - `OsQueue`, `OsEventFlags`, `OsSemaphore` — Standard RTOS primitives
 
 All handlers use `RtosMutex` internally. The `MutexLockGuard` RAII pattern ensures
-deadlock-free operation even when exceptions or early returns occur.
+deadlock-free operation even on early returns.
 
 ## Communication Adapters (TMC9660 Example)
 
@@ -91,3 +92,34 @@ keeping the public API non-templated while preserving zero-overhead dispatch int
 The `withDriver()` pattern (used by TLE92466ED and MAX22200) is a simplified variant
 that acquires the mutex, ensures initialization, and invokes a callable on the driver
 in a single atomic step.
+
+## Callback Conventions
+
+Base interfaces use **raw function pointers** with a `void* user_data` parameter for
+hardware-level callbacks. This avoids `std::function` overhead and heap allocation in
+ISR-safe and performance-critical paths:
+
+```cpp
+// Typical base interface callback typedef
+using InterruptCallback = void(*)(BaseGpio* gpio,
+                                  hf_gpio_interrupt_trigger_t trigger,
+                                  void* user_data);
+```
+
+Handlers pass non-capturing lambdas (which decay to function pointers) and route the
+`user_data` back to `this`:
+
+```cpp
+gpio.RegisterInterrupt(
+    [](BaseGpio* /*gpio*/, hf_gpio_interrupt_trigger_t /*trigger*/, void* ctx) {
+        static_cast<MyHandler*>(ctx)->OnInterrupt();
+    },
+    this);
+```
+
+Interfaces that carry this pattern: `BaseGpio`, `BaseTemperature`, `BasePio`,
+`BasePeriodicTimer`, `BasePwm`, `BaseCan`, and their ESP32 implementations.
+
+Higher-level communication interfaces (`BaseBluetooth`, `BaseWifi`, `BaseLogger`) still
+use `std::function` because their callbacks carry richer event data where the `void*`
+user-data pattern is not sufficient.

@@ -108,7 +108,7 @@ git submodule update --init --recursive
 cd examples/esp32/scripts
 
 # Build a utility test (no hardware needed)
-./build_app.sh --app general_utils_test --build-type debug
+./build_app.sh general_utils_test Debug
 
 # Flash and monitor
 cd .. && idf.py -p /dev/ttyUSB0 flash monitor
@@ -116,8 +116,10 @@ cd .. && idf.py -p /dev/ttyUSB0 flash monitor
 
 ### Build All CI-Enabled Tests
 
+Use the CI pipeline or iterate over `app_config.yml` entries:
+
 ```bash
-./build_app.sh --all --build-type debug
+./build_app.sh list  # See all available apps
 ```
 
 ## 📖 Handlers
@@ -141,7 +143,7 @@ cd .. && idf.py -p /dev/ttyUSB0 flash monitor
 | Library | Contents |
 |:--------|:---------|
 | `hf-utils-general` | CircularBuffer, RingBuffer, AveragingFilter, CRC, ActionTimer, IntervalAction, SoftwareVersion, LinearInterpolation, SimpleLinkedList, FlagSet, PhysicalUnit, and more |
-| `hf-utils-rtos-wrap` | RtosMutex, MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags, OsSemaphore, OsRecursiveMutex, os_delay_msec |
+| `hf-utils-rtos-wrap` | RtosMutex, MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags, OsSemaphore, os_delay_msec |
 | `hf-utils-canopen` | CanFrame, SDO helpers, NMT commands |
 
 ## 📂 Repository Structure
