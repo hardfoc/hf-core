@@ -1,6 +1,6 @@
 <map id="Ws2812Handler::EnsureInitializedLocked" name="Ws2812Handler::EnsureInitializedLocked">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,73,247,113"/>
-<area shape="rect" id="Node000002" href="$classWs2812Handler.html#a172ae173d1e2bd93c9808452aad6e4cd" title="Initialize the RMT channel and LED strip." alt="" coords="295,80,484,105"/>
+<area shape="rect" id="Node000002" href="$classWs2812Handler.html#acce4955435f295ba4853b6239090982f" title="Initialize the RMT channel and LED strip." alt="" coords="295,80,484,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="247,90,281,90,281,95,247,95"/>
 <area shape="rect" id="Node000003" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="555,5,661,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="425,77,531,39,553,32,554,37,533,45,426,82"/>

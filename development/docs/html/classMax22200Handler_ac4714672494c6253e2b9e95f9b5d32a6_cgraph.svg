@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classMax22200Handler.html#a56aeb5c7e58aa51bbb45eb3b78387152" target="_top" xlink:title="Deinitialize — disable all channels, ACTIVE=0, ENABLE LOW.">
+<g id="a_Node000002"><a xlink:href="classMax22200Handler.html#a96276218d9af520726b43745bcd0f0f5" target="_top" xlink:title="Deinitialize — disable all channels, ACTIVE=0, ENABLE LOW.">
 <polygon fill="white" stroke="#666666" points="374,-55 207,-55 207,-36 374,-36 374,-55"/>
 <text text-anchor="middle" x="290.5" y="-43" font-family="Helvetica,sans-Serif" font-size="10.00">Max22200Handler::Deinitialize</text>
 </a>

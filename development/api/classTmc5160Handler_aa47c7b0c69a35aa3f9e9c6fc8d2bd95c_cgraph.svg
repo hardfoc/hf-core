@@ -57,7 +57,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classTmc5160Handler.html#a64755f326176b0a38485acf5ca69fd0c" target="_top" xlink:title="Initialize the TMC5160 driver with full configuration.">
+<g id="a_Node000004"><a xlink:href="classTmc5160Handler.html#a44ab36857e4e43062f81f7d6f10eab09" target="_top" xlink:title="Initialize the TMC5160 driver with full configuration.">
 <polygon fill="white" stroke="#666666" points="773,-74 625,-74 625,-55 773,-55 773,-74"/>
 <text text-anchor="middle" x="699" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">Tmc5160Handler::Initialize</text>
 </a>

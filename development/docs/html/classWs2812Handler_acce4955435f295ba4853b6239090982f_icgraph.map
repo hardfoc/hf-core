@@ -1,0 +1,17 @@
+<map id="Ws2812Handler::Initialize" name="Ws2812Handler::Initialize">
+<area shape="rect" id="Node000001" title="Initialize the RMT channel and LED strip." alt="" coords="855,80,1044,105"/>
+<area shape="rect" id="Node000002" href="$classWs2812Handler.html#afe5f397b22e9b92cf2fb2cebae6e123d" title=" " alt="" coords="565,73,807,113"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="841,95,807,95,807,90,841,90"/>
+<area shape="rect" id="Node000003" href="$classWs2812Handler.html#a586683dcf63f17194b77c026972c7b2b" title="Dump diagnostics to logger." alt="" coords="269,5,517,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="610,71,517,45,466,33,467,28,518,39,612,66"/>
+<area shape="rect" id="Node000004" href="$classWs2812Handler.html#a764cc93c64a81844a284ac7515ea8366" title="Ensure strip resources are initialized (lazy init entrypoint)." alt="" coords="273,55,514,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="551,84,514,80,514,75,552,78"/>
+<area shape="rect" id="Node000005" href="$classWs2812Handler.html#a3e09ba2c15d5b0e7d6d254e22f634ae8" title="Get the animator object." alt="" coords="285,104,501,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="552,106,502,110,501,105,551,101"/>
+<area shape="rect" id="Node000007" href="$classWs2812Handler.html#a7471840392adad3cab496e2dc57dc792" title="Get the underlying LED strip object." alt="" coords="300,153,487,179"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="607,119,518,143,462,156,460,151,517,138,605,114"/>
+<area shape="rect" id="Node000006" href="$classWs2812Handler.html#ad564e91a669c0a06f5abde5a3ae8a6a6" title=" " alt="" coords="5,104,221,129"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="272,119,221,119,221,114,272,114"/>
+<area shape="rect" id="Node000008" href="$classWs2812Handler.html#af97f5cc26ad1fb0f4722e72346ca7caa" title=" " alt="" coords="20,153,207,179"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="286,169,207,169,207,163,286,163"/>
+</map>

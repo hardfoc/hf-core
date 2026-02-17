@@ -139,9 +139,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa4ba39d1f580c80119eb34943dd6e7ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dba946e59e91c2d5b16eccc25992b6e" id="r_a6dba946e59e91c2d5b16eccc25992b6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTmc5160Handler.html">Tmc5160Handler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dba946e59e91c2d5b16eccc25992b6e">operator=</a> (<a class="el" href="classTmc5160Handler.html">Tmc5160Handler</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:a6dba946e59e91c2d5b16eccc25992b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64755f326176b0a38485acf5ca69fd0c" id="r_a64755f326176b0a38485acf5ca69fd0c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64755f326176b0a38485acf5ca69fd0c">Initialize</a> (const tmc51x0::DriverConfig &amp;config, bool verbose=true) noexcept</td></tr>
-<tr class="memdesc:a64755f326176b0a38485acf5ca69fd0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the TMC5160 driver with full configuration.  <br /></td></tr>
-<tr class="separator:a64755f326176b0a38485acf5ca69fd0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44ab36857e4e43062f81f7d6f10eab09" id="r_a44ab36857e4e43062f81f7d6f10eab09"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44ab36857e4e43062f81f7d6f10eab09">Initialize</a> (const tmc51x0::DriverConfig &amp;config, bool verbose=true) noexcept</td></tr>
+<tr class="memdesc:a44ab36857e4e43062f81f7d6f10eab09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the TMC5160 driver with full configuration.  <br /></td></tr>
+<tr class="separator:a44ab36857e4e43062f81f7d6f10eab09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ad276d4fcd81765d0a5af064fdbf7b5" id="r_a5ad276d4fcd81765d0a5af064fdbf7b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ad276d4fcd81765d0a5af064fdbf7b5">EnsureInitialized</a> () noexcept</td></tr>
 <tr class="memdesc:a5ad276d4fcd81765d0a5af064fdbf7b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure driver is initialized (lazy init entrypoint).  <br /></td></tr>
 <tr class="separator:a5ad276d4fcd81765d0a5af064fdbf7b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,57 +168,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af8cb1c7b5011bd24102d296f22c211c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a845e1879a4606367f419f3892061ff31" id="r_a845e1879a4606367f419f3892061ff31"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a31e66827548c966a076877961d3e852f">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a845e1879a4606367f419f3892061ff31">driverViaUart</a> () const noexcept</td></tr>
 <tr class="separator:a845e1879a4606367f419f3892061ff31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af04426991f32e1a5022df0ec7e9d821d" id="r_af04426991f32e1a5022df0ec7e9d821d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af04426991f32e1a5022df0ec7e9d821d">EnableMotor</a> () noexcept</td></tr>
-<tr class="memdesc:af04426991f32e1a5022df0ec7e9d821d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the motor driver power stage.  <br /></td></tr>
-<tr class="separator:af04426991f32e1a5022df0ec7e9d821d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30cf2ab584290fadfcb7d7cc6603444b" id="r_a30cf2ab584290fadfcb7d7cc6603444b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30cf2ab584290fadfcb7d7cc6603444b">DisableMotor</a> () noexcept</td></tr>
-<tr class="memdesc:a30cf2ab584290fadfcb7d7cc6603444b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the motor driver power stage.  <br /></td></tr>
-<tr class="separator:a30cf2ab584290fadfcb7d7cc6603444b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a886e33b5d5de426d64b2e006c90422a2" id="r_a886e33b5d5de426d64b2e006c90422a2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a886e33b5d5de426d64b2e006c90422a2">IsMotorEnabled</a> () noexcept</td></tr>
-<tr class="memdesc:a886e33b5d5de426d64b2e006c90422a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if motor is enabled.  <br /></td></tr>
-<tr class="separator:a886e33b5d5de426d64b2e006c90422a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45b1911c99feb98070b6da03f8daae61" id="r_a45b1911c99feb98070b6da03f8daae61"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45b1911c99feb98070b6da03f8daae61">SetCurrent</a> (uint8_t irun, uint8_t ihold) noexcept</td></tr>
-<tr class="memdesc:a45b1911c99feb98070b6da03f8daae61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set run and hold currents (raw register values).  <br /></td></tr>
-<tr class="separator:a45b1911c99feb98070b6da03f8daae61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad770c4a0060cee9c831a50d05ef92dd2" id="r_ad770c4a0060cee9c831a50d05ef92dd2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad770c4a0060cee9c831a50d05ef92dd2">SetTargetPosition</a> (int32_t position) noexcept</td></tr>
-<tr class="memdesc:ad770c4a0060cee9c831a50d05ef92dd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set target position (requires POSITIONING mode).  <br /></td></tr>
-<tr class="separator:ad770c4a0060cee9c831a50d05ef92dd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02f4a1f02afa4d51549be6c668757d68" id="r_a02f4a1f02afa4d51549be6c668757d68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02f4a1f02afa4d51549be6c668757d68">SetTargetVelocity</a> (int32_t velocity) noexcept</td></tr>
-<tr class="memdesc:a02f4a1f02afa4d51549be6c668757d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set target velocity (requires VELOCITY_POSITIVE or VELOCITY_NEGATIVE mode).  <br /></td></tr>
-<tr class="separator:a02f4a1f02afa4d51549be6c668757d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42887e17ceb499f269a8acfec5414083" id="r_a42887e17ceb499f269a8acfec5414083"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42887e17ceb499f269a8acfec5414083">SetMaxSpeed</a> (float speed, tmc51x0::Unit unit=tmc51x0::Unit::Steps) noexcept</td></tr>
-<tr class="memdesc:a42887e17ceb499f269a8acfec5414083"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set maximum speed for ramp generator.  <br /></td></tr>
-<tr class="separator:a42887e17ceb499f269a8acfec5414083"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a235c54932b2c7021b18885f5b1df17b4" id="r_a235c54932b2c7021b18885f5b1df17b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a235c54932b2c7021b18885f5b1df17b4">SetAcceleration</a> (float accel, tmc51x0::Unit unit=tmc51x0::Unit::Steps) noexcept</td></tr>
-<tr class="memdesc:a235c54932b2c7021b18885f5b1df17b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set acceleration for ramp generator.  <br /></td></tr>
-<tr class="separator:a235c54932b2c7021b18885f5b1df17b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc25e920be9b4093eb44b3a5da8bd0ed" id="r_abc25e920be9b4093eb44b3a5da8bd0ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc25e920be9b4093eb44b3a5da8bd0ed">Stop</a> () noexcept</td></tr>
-<tr class="memdesc:abc25e920be9b4093eb44b3a5da8bd0ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop motor immediately.  <br /></td></tr>
-<tr class="separator:abc25e920be9b4093eb44b3a5da8bd0ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acdb558e7d2b6c2548aca4fab849d5362" id="r_acdb558e7d2b6c2548aca4fab849d5362"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdb558e7d2b6c2548aca4fab849d5362">GetCurrentPosition</a> () noexcept</td></tr>
-<tr class="memdesc:acdb558e7d2b6c2548aca4fab849d5362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current position in microsteps.  <br /></td></tr>
-<tr class="separator:acdb558e7d2b6c2548aca4fab849d5362"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a477ffe28808df5706f1f3f15018665b7" id="r_a477ffe28808df5706f1f3f15018665b7"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a477ffe28808df5706f1f3f15018665b7">GetCurrentVelocity</a> () noexcept</td></tr>
-<tr class="memdesc:a477ffe28808df5706f1f3f15018665b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current velocity.  <br /></td></tr>
-<tr class="separator:a477ffe28808df5706f1f3f15018665b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1831c33ceedfac6dfb31c99c5009048" id="r_ad1831c33ceedfac6dfb31c99c5009048"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1831c33ceedfac6dfb31c99c5009048">IsTargetReached</a> () noexcept</td></tr>
-<tr class="memdesc:ad1831c33ceedfac6dfb31c99c5009048"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if target position has been reached.  <br /></td></tr>
-<tr class="separator:ad1831c33ceedfac6dfb31c99c5009048"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad72f4e8d1cb8848bd5967b87637d5f62" id="r_ad72f4e8d1cb8848bd5967b87637d5f62"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad72f4e8d1cb8848bd5967b87637d5f62">IsStandstill</a> () noexcept</td></tr>
-<tr class="memdesc:ad72f4e8d1cb8848bd5967b87637d5f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the motor is at standstill.  <br /></td></tr>
-<tr class="separator:ad72f4e8d1cb8848bd5967b87637d5f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92ab9f87e4c97d8be86e6ed29fa62814" id="r_a92ab9f87e4c97d8be86e6ed29fa62814"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92ab9f87e4c97d8be86e6ed29fa62814">IsOvertemperature</a> () noexcept</td></tr>
-<tr class="memdesc:a92ab9f87e4c97d8be86e6ed29fa62814"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for overtemperature condition.  <br /></td></tr>
-<tr class="separator:a92ab9f87e4c97d8be86e6ed29fa62814"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a25f971f0c8a23a489d35ce53fea164" id="r_a0a25f971f0c8a23a489d35ce53fea164"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a25f971f0c8a23a489d35ce53fea164">IsStallDetected</a> () noexcept</td></tr>
-<tr class="memdesc:a0a25f971f0c8a23a489d35ce53fea164"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for stall detection.  <br /></td></tr>
-<tr class="separator:a0a25f971f0c8a23a489d35ce53fea164"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af583b8d7baca711d2d0e3269bff68ba7" id="r_af583b8d7baca711d2d0e3269bff68ba7"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af583b8d7baca711d2d0e3269bff68ba7">GetStallGuardResult</a> () noexcept</td></tr>
-<tr class="memdesc:af583b8d7baca711d2d0e3269bff68ba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get StallGuard result value.  <br /></td></tr>
-<tr class="separator:af583b8d7baca711d2d0e3269bff68ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a90626550f36ea01dcd16a20877ca9e" id="r_a0a90626550f36ea01dcd16a20877ca9e"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a90626550f36ea01dcd16a20877ca9e">GetChipVersion</a> () noexcept</td></tr>
-<tr class="memdesc:a0a90626550f36ea01dcd16a20877ca9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the chip version info.  <br /></td></tr>
-<tr class="separator:a0a90626550f36ea01dcd16a20877ca9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4bf5aabef968f6f8ee66d08cf05913a" id="r_ab4bf5aabef968f6f8ee66d08cf05913a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4bf5aabef968f6f8ee66d08cf05913a">DumpDiagnostics</a> () noexcept</td></tr>
 <tr class="memdesc:ab4bf5aabef968f6f8ee66d08cf05913a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump diagnostic information to logger.  <br /></td></tr>
 <tr class="separator:ab4bf5aabef968f6f8ee66d08cf05913a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -557,38 +506,6 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a30cf2ab584290fadfcb7d7cc6603444b" name="a30cf2ab584290fadfcb7d7cc6603444b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30cf2ab584290fadfcb7d7cc6603444b">&#9670;&#160;</a></span>DisableMotor()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::DisableMotor </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Disable the motor driver power stage. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a30cf2ab584290fadfcb7d7cc6603444b_cgraph.svg" width="1202" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
 <a id="aa47c7b0c69a35aa3f9e9c6fc8d2bd95c" name="aa47c7b0c69a35aa3f9e9c6fc8d2bd95c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa47c7b0c69a35aa3f9e9c6fc8d2bd95c">&#9670;&#160;</a></span>driverViaSpi() <span class="overload">[1/2]</span></h2>
 
@@ -755,38 +672,6 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="af04426991f32e1a5022df0ec7e9d821d" name="af04426991f32e1a5022df0ec7e9d821d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af04426991f32e1a5022df0ec7e9d821d">&#9670;&#160;</a></span>EnableMotor()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::EnableMotor </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Enable the motor driver power stage. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_af04426991f32e1a5022df0ec7e9d821d_cgraph.svg" width="1196" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
 <a id="a5ad276d4fcd81765d0a5af064fdbf7b5" name="a5ad276d4fcd81765d0a5af064fdbf7b5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5ad276d4fcd81765d0a5af064fdbf7b5">&#9670;&#160;</a></span>EnsureInitialized()</h2>
 
@@ -855,103 +740,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a6d4fce2433e03bb11b05a4278ef66fd0_icgraph.svg" width="848" height="838"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="a0a90626550f36ea01dcd16a20877ca9e" name="a0a90626550f36ea01dcd16a20877ca9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a90626550f36ea01dcd16a20877ca9e">&#9670;&#160;</a></span>GetChipVersion()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t Tmc5160Handler::GetChipVersion </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the chip version info. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a0a90626550f36ea01dcd16a20877ca9e_cgraph.svg" width="1215" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="acdb558e7d2b6c2548aca4fab849d5362" name="acdb558e7d2b6c2548aca4fab849d5362"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdb558e7d2b6c2548aca4fab849d5362">&#9670;&#160;</a></span>GetCurrentPosition()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t Tmc5160Handler::GetCurrentPosition </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get current position in microsteps. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_acdb558e7d2b6c2548aca4fab849d5362_cgraph.svg" width="1186" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="a477ffe28808df5706f1f3f15018665b7" name="a477ffe28808df5706f1f3f15018665b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a477ffe28808df5706f1f3f15018665b7">&#9670;&#160;</a></span>GetCurrentVelocity()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t Tmc5160Handler::GetCurrentVelocity </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get current velocity. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a477ffe28808df5706f1f3f15018665b7_cgraph.svg" width="1186" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a6d4fce2433e03bb11b05a4278ef66fd0_icgraph.svg" width="840" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -983,8 +772,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="af583b8d7baca711d2d0e3269bff68ba7" name="af583b8d7baca711d2d0e3269bff68ba7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af583b8d7baca711d2d0e3269bff68ba7">&#9670;&#160;</a></span>GetStallGuardResult()</h2>
+<a id="a44ab36857e4e43062f81f7d6f10eab09" name="a44ab36857e4e43062f81f7d6f10eab09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44ab36857e4e43062f81f7d6f10eab09">&#9670;&#160;</a></span>Initialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -993,40 +782,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int32_t Tmc5160Handler::GetStallGuardResult </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get StallGuard result value. </p>
-<dl class="section return"><dt>Returns</dt><dd>StallGuard value, or -1 on error. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_af583b8d7baca711d2d0e3269bff68ba7_cgraph.svg" width="1167" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="a64755f326176b0a38485acf5ca69fd0c" name="a64755f326176b0a38485acf5ca69fd0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64755f326176b0a38485acf5ca69fd0c">&#9670;&#160;</a></span>Initialize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::Initialize </td>
+          <td class="memname">tmc51x0::ErrorCode Tmc5160Handler::Initialize </td>
           <td>(</td>
           <td class="paramtype">const tmc51x0::DriverConfig &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em>, </span></td>
         </tr>
@@ -1055,12 +811,12 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a64755f326176b0a38485acf5ca69fd0c_cgraph.svg" width="628" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a44ab36857e4e43062f81f7d6f10eab09_cgraph.svg" width="628" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a64755f326176b0a38485acf5ca69fd0c_icgraph.svg" width="1094" height="838"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a44ab36857e4e43062f81f7d6f10eab09_icgraph.svg" width="1086" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1092,70 +848,6 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a886e33b5d5de426d64b2e006c90422a2" name="a886e33b5d5de426d64b2e006c90422a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a886e33b5d5de426d64b2e006c90422a2">&#9670;&#160;</a></span>IsMotorEnabled()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::IsMotorEnabled </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Check if motor is enabled. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a886e33b5d5de426d64b2e006c90422a2_cgraph.svg" width="1216" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="a92ab9f87e4c97d8be86e6ed29fa62814" name="a92ab9f87e4c97d8be86e6ed29fa62814"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92ab9f87e4c97d8be86e6ed29fa62814">&#9670;&#160;</a></span>IsOvertemperature()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::IsOvertemperature </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Check for overtemperature condition. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a92ab9f87e4c97d8be86e6ed29fa62814_cgraph.svg" width="1238" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
 <a id="a7167cbb3ba74139d12e37e72d778d6b1" name="a7167cbb3ba74139d12e37e72d778d6b1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7167cbb3ba74139d12e37e72d778d6b1">&#9670;&#160;</a></span>IsSpi()</h2>
 
@@ -1180,102 +872,6 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Check if SPI is being used. </p>
-
-</div>
-</div>
-<a id="a0a25f971f0c8a23a489d35ce53fea164" name="a0a25f971f0c8a23a489d35ce53fea164"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a25f971f0c8a23a489d35ce53fea164">&#9670;&#160;</a></span>IsStallDetected()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::IsStallDetected </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Check for stall detection. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a0a25f971f0c8a23a489d35ce53fea164_cgraph.svg" width="1214" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="ad72f4e8d1cb8848bd5967b87637d5f62" name="ad72f4e8d1cb8848bd5967b87637d5f62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad72f4e8d1cb8848bd5967b87637d5f62">&#9670;&#160;</a></span>IsStandstill()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::IsStandstill </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Check if the motor is at standstill. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_ad72f4e8d1cb8848bd5967b87637d5f62_cgraph.svg" width="1187" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="ad1831c33ceedfac6dfb31c99c5009048" name="ad1831c33ceedfac6dfb31c99c5009048"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1831c33ceedfac6dfb31c99c5009048">&#9670;&#160;</a></span>IsTargetReached()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::IsTargetReached </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Check if target position has been reached. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_ad1831c33ceedfac6dfb31c99c5009048_cgraph.svg" width="1166" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1326,218 +922,6 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a235c54932b2c7021b18885f5b1df17b4" name="a235c54932b2c7021b18885f5b1df17b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a235c54932b2c7021b18885f5b1df17b4">&#9670;&#160;</a></span>SetAcceleration()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::SetAcceleration </td>
-          <td>(</td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>accel</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">tmc51x0::Unit</td>          <td class="paramname"><span class="paramname"><em>unit</em><span class="paramdefsep"> = </span><span class="paramdefval">tmc51x0::Unit::Steps</span></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set acceleration for ramp generator. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">accel</td><td>Acceleration value. </td></tr>
-    <tr><td class="paramname">unit</td><td>Unit for the acceleration value (default: Steps). </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a45b1911c99feb98070b6da03f8daae61" name="a45b1911c99feb98070b6da03f8daae61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45b1911c99feb98070b6da03f8daae61">&#9670;&#160;</a></span>SetCurrent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::SetCurrent </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>irun</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>ihold</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set run and hold currents (raw register values). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">irun</td><td>Run current register value (0-31, where 31 = full scale). </td></tr>
-    <tr><td class="paramname">ihold</td><td>Hold current register value (0-31, where 31 = full scale). </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a42887e17ceb499f269a8acfec5414083" name="a42887e17ceb499f269a8acfec5414083"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42887e17ceb499f269a8acfec5414083">&#9670;&#160;</a></span>SetMaxSpeed()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::SetMaxSpeed </td>
-          <td>(</td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>speed</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">tmc51x0::Unit</td>          <td class="paramname"><span class="paramname"><em>unit</em><span class="paramdefsep"> = </span><span class="paramdefval">tmc51x0::Unit::Steps</span></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set maximum speed for ramp generator. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">speed</td><td>Maximum speed value. </td></tr>
-    <tr><td class="paramname">unit</td><td>Unit for the speed value (default: Steps). </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ad770c4a0060cee9c831a50d05ef92dd2" name="ad770c4a0060cee9c831a50d05ef92dd2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad770c4a0060cee9c831a50d05ef92dd2">&#9670;&#160;</a></span>SetTargetPosition()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::SetTargetPosition </td>
-          <td>(</td>
-          <td class="paramtype">int32_t</td>          <td class="paramname"><span class="paramname"><em>position</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set target position (requires POSITIONING mode). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">position</td><td>Target position in microsteps. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a02f4a1f02afa4d51549be6c668757d68" name="a02f4a1f02afa4d51549be6c668757d68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02f4a1f02afa4d51549be6c668757d68">&#9670;&#160;</a></span>SetTargetVelocity()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::SetTargetVelocity </td>
-          <td>(</td>
-          <td class="paramtype">int32_t</td>          <td class="paramname"><span class="paramname"><em>velocity</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set target velocity (requires VELOCITY_POSITIVE or VELOCITY_NEGATIVE mode). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">velocity</td><td>Target velocity in internal units. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="abc25e920be9b4093eb44b3a5da8bd0ed" name="abc25e920be9b4093eb44b3a5da8bd0ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc25e920be9b4093eb44b3a5da8bd0ed">&#9670;&#160;</a></span>Stop()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tmc5160Handler::Stop </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Stop motor immediately. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_abc25e920be9b4093eb44b3a5da8bd0ed_cgraph.svg" width="1144" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1627,7 +1011,7 @@ template&lt;typename Fn &gt; </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a439a68f9d3f6785e0a493f9ed3821325_icgraph.svg" width="792" height="747"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc5160Handler_a439a68f9d3f6785e0a493f9ed3821325_icgraph.svg" width="784" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

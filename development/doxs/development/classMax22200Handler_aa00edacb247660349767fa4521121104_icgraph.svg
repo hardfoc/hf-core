@@ -111,7 +111,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="classMax22200Handler.html#a439f52e4acfac83872a74fa9eef5237f" target="_top" xlink:title="Clear all fault flags.">
+<g id="a_Node000007"><a xlink:href="classMax22200Handler.html#a963d65edae16cca4fd153b3af0c1e68e" target="_top" xlink:title="Clear all fault flags.">
 <polygon fill="white" stroke="#666666" points="166,-153 0,-153 0,-134 166,-134 166,-153"/>
 <text text-anchor="middle" x="83" y="-141" font-family="Helvetica,sans-Serif" font-size="10.00">Max22200Handler::ClearFaults</text>
 </a>
@@ -129,7 +129,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="classMax22200Handler.html#a8469fc41589ea672b8732769d2222443" target="_top" xlink:title="Disable all channels.">
+<g id="a_Node000008"><a xlink:href="classMax22200Handler.html#a9e9684818c7efddd45697f28051cbca2" target="_top" xlink:title="Disable all channels.">
 <polygon fill="white" stroke="#666666" points="157.5,-115.5 8.5,-115.5 8.5,-85.5 157.5,-85.5 157.5,-115.5"/>
 <text text-anchor="start" x="16.5" y="-103.5" font-family="Helvetica,sans-Serif" font-size="10.00">Max22200Handler::Disable</text>
 <text text-anchor="middle" x="83" y="-92.5" font-family="Helvetica,sans-Serif" font-size="10.00">AllChannels</text>
@@ -148,7 +148,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="classMax22200Handler.html#aa9e41274b5467db2e901be023d4dd061" target="_top" xlink:title="Enable all channels.">
+<g id="a_Node000009"><a xlink:href="classMax22200Handler.html#af7aba4f68825068e774badca04c49a07" target="_top" xlink:title="Enable all channels.">
 <polygon fill="white" stroke="#666666" points="162,-67.5 4,-67.5 4,-37.5 162,-37.5 162,-67.5"/>
 <text text-anchor="start" x="12" y="-55.5" font-family="Helvetica,sans-Serif" font-size="10.00">Max22200Handler::EnableAll</text>
 <text text-anchor="middle" x="83" y="-44.5" font-family="Helvetica,sans-Serif" font-size="10.00">Channels</text>

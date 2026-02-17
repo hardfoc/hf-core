@@ -8,7 +8,7 @@
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="581,62,638,50,752,33,854,21,854,27,753,38,639,55,582,67"/>
 <area shape="rect" id="Node000007" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="844,153,996,179"/>
 <area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="586,102,639,114,831,149,830,154,638,119,585,107"/>
-<area shape="rect" id="Node000008" href="$classTle92466edHandler.html#a0883f87dfe49cce3abd5acfc8cb2176c" title="Initialize driver (hardware reset + SPI init + enter config mode)." alt="" coords="639,65,796,105"/>
+<area shape="rect" id="Node000008" href="$classTle92466edHandler.html#ac607f9cf2453e8d1849b40d2dd8e8474" title="Initialize driver (hardware reset + SPI init + enter config mode)." alt="" coords="639,65,796,105"/>
 <area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="591,82,625,82,625,87,591,87"/>
 <area shape="rect" id="Node000005" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="1044,31,1216,56"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="973,22,1030,29,1030,34,973,27"/>

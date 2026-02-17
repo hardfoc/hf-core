@@ -10,11 +10,11 @@
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="641,120,447,184,446,179,640,114"/>
 <area shape="rect" id="Node000005" href="$classMax22200Handler.html#aee42537a3d2f0955a1479709b2d4b4b8" title=" " alt="" coords="10,75,222,100"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="287,107,222,101,222,95,287,102"/>
-<area shape="rect" id="Node000007" href="$classMax22200Handler.html#a439f52e4acfac83872a74fa9eef5237f" title="Clear all fault flags." alt="" coords="5,124,227,149"/>
+<area shape="rect" id="Node000007" href="$classMax22200Handler.html#a963d65edae16cca4fd153b3af0c1e68e" title="Clear all fault flags." alt="" coords="5,124,227,149"/>
 <area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="328,181,181,152,182,147,329,176"/>
-<area shape="rect" id="Node000008" href="$classMax22200Handler.html#a8469fc41589ea672b8732769d2222443" title="Disable all channels." alt="" coords="17,174,215,214"/>
+<area shape="rect" id="Node000008" href="$classMax22200Handler.html#a9e9684818c7efddd45697f28051cbca2" title="Disable all channels." alt="" coords="17,174,215,214"/>
 <area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="284,197,215,197,215,191,284,191"/>
-<area shape="rect" id="Node000009" href="$classMax22200Handler.html#aa9e41274b5467db2e901be023d4dd061" title="Enable all channels." alt="" coords="11,238,221,278"/>
+<area shape="rect" id="Node000009" href="$classMax22200Handler.html#af7aba4f68825068e774badca04c49a07" title="Enable all channels." alt="" coords="11,238,221,278"/>
 <area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="335,212,208,241,207,235,334,207"/>
 <area shape="rect" id="Node000010" href="$classMax22200Handler.html#ac5b60b117fec404c55597929134fa1a1" title="Check if any fault is present." alt="" coords="13,303,219,328"/>
 <area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="375,216,309,255,228,292,186,305,184,300,226,288,306,250,373,212"/>

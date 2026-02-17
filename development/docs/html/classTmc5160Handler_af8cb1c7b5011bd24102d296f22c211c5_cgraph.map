@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Get typed UART driver pointer (null if SPI mode or not initialized)." alt="" coords="5,80,233,105"/>
 <area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a6d4fce2433e03bb11b05a4278ef66fd0" title=" " alt="" coords="281,73,531,113"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="234,90,268,90,268,95,234,95"/>
-<area shape="rect" id="Node000003" href="$classTmc5160Handler.html#a64755f326176b0a38485acf5ca69fd0c" title="Initialize the TMC5160 driver with full configuration." alt="" coords="579,80,776,105"/>
+<area shape="rect" id="Node000003" href="$classTmc5160Handler.html#a44ab36857e4e43062f81f7d6f10eab09" title="Initialize the TMC5160 driver with full configuration." alt="" coords="579,80,776,105"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="531,90,565,90,565,95,531,95"/>
 <area shape="rect" id="Node000004" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="847,5,953,31"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="714,77,823,39,845,32,846,37,825,45,715,82"/>

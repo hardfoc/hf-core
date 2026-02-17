@@ -131,7 +131,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="classPcal95555Handler.html#aeb2c5589355cb9ae970fdf2d10b545e8" target="_top" xlink:title="Reset all registers to power&#45;on default state.">
+<g id="a_Node000009"><a xlink:href="classPcal95555Handler.html#ab614d32aa8d2c6bb775ebbbd148875b3" target="_top" xlink:title="Reset all registers to power&#45;on default state.">
 <polygon fill="white" stroke="#666666" points="347.5,-30 198.5,-30 198.5,0 347.5,0 347.5,-30"/>
 <text text-anchor="start" x="206.5" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">Pcal95555Handler::ResetTo</text>
 <text text-anchor="middle" x="273" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">Default</text>

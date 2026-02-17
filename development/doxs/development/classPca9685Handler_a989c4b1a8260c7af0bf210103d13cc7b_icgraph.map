@@ -1,5 +1,5 @@
 <map id="Pca9685Handler::Sleep" name="Pca9685Handler::Sleep">
-<area shape="rect" id="Node000001" title="Put PCA9685 into low&#45;power sleep mode." alt="" coords="221,13,393,38"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="221,13,393,38"/>
 <area shape="rect" id="Node000002" href="$classPca9685PwmAdapter.html#a825a19eb0b16cbf9ebb93a7b6da115d8" title="Put the PCA9685 into sleep mode (stop all outputs)." alt="" coords="5,5,173,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,28,173,28,173,23,207,23"/>
 </map>

@@ -12,9 +12,9 @@ var searchData=
   ['haluarttmc9660comm_9',['HalUartTmc9660Comm',['../classHalUartTmc9660Comm.html#a144c7a0f50237dff1fa25c235084c3e1',1,'HalUartTmc9660Comm']]],
   ['handlesensorerrors_10',['HandleSensorErrors',['../classAs5047uHandler.html#a6b29b6418f7b2d19cbdcc65aa6eb9756',1,'As5047uHandler']]],
   ['hardwareinterruptcallback_11',['HardwareInterruptCallback',['../classPcal95555Handler.html#a87e8b50faf5d3d815227068ff26b1a6b',1,'Pcal95555Handler']]],
-  ['hardwarereset_12',['HardwareReset',['../classIBno08xDriverOps.html#a66418ccb85cd8eb8eea327fa979a2b6a',1,'IBno08xDriverOps::HardwareReset()'],['../classBno08xDriverImpl.html#a438c41d8c26b4e4dccf60079d8861043',1,'Bno08xDriverImpl::HardwareReset()'],['../classBno08xHandler.html#a7c927165a6c2d3508239f3f0f71d6c4c',1,'Bno08xHandler::HardwareReset()']]],
+  ['hardwarereset_12',['HardwareReset',['../classIBno08xDriverOps.html#a66418ccb85cd8eb8eea327fa979a2b6a',1,'IBno08xDriverOps::HardwareReset()'],['../classBno08xDriverImpl.html#a438c41d8c26b4e4dccf60079d8861043',1,'Bno08xDriverImpl::HardwareReset()']]],
   ['hasagileio_13',['HasAgileIO',['../classPcal95555Handler.html#a997583346dffe6c95e5f8fcfc127c37b',1,'Pcal95555Handler']]],
   ['hasfault_14',['HasFault',['../classMax22200Handler.html#ac5b60b117fec404c55597929134fa1a1',1,'Max22200Handler::HasFault()'],['../classTle92466edHandler.html#ab86e6d3eb2dca25154a8fa7c42ddb945',1,'Tle92466edHandler::HasFault()']]],
   ['hasinterruptsupport_15',['HasInterruptSupport',['../classPcal95555Handler.html#a582a8375e50b2df78dfd91aa132955af',1,'Pcal95555Handler']]],
-  ['hasnewdata_16',['HasNewData',['../classIBno08xDriverOps.html#a1529def7c6fc77eed5dbc39aa16f3cc9',1,'IBno08xDriverOps::HasNewData()'],['../classBno08xDriverImpl.html#a3a097f73569d05c185c2d1d76bc7039b',1,'Bno08xDriverImpl::HasNewData()'],['../classBno08xHandler.html#a9a5d778fc61897d3d5d02b59812f51de',1,'Bno08xHandler::HasNewData()']]]
+  ['hasnewdata_16',['HasNewData',['../classIBno08xDriverOps.html#a1529def7c6fc77eed5dbc39aa16f3cc9',1,'IBno08xDriverOps::HasNewData()'],['../classBno08xDriverImpl.html#a3a097f73569d05c185c2d1d76bc7039b',1,'Bno08xDriverImpl::HasNewData()']]]
 ];

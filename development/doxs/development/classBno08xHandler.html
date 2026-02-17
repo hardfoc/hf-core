@@ -142,69 +142,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abdc987c8440f4a2394ae861a40766e10" id="r_abdc987c8440f4a2394ae861a40766e10"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdc987c8440f4a2394ae861a40766e10">IsInitialized</a> () const noexcept</td></tr>
 <tr class="memdesc:abdc987c8440f4a2394ae861a40766e10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if sensor is initialized and ready.  <br /></td></tr>
 <tr class="separator:abdc987c8440f4a2394ae861a40766e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74cdf0328224c1a3fad944bbf1312e7e" id="r_a74cdf0328224c1a3fad944bbf1312e7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74cdf0328224c1a3fad944bbf1312e7e">Update</a> () noexcept</td></tr>
-<tr class="memdesc:a74cdf0328224c1a3fad944bbf1312e7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update sensor - must be called regularly to pump the SH-2 service loop.  <br /></td></tr>
-<tr class="separator:a74cdf0328224c1a3fad944bbf1312e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a5d778fc61897d3d5d02b59812f51de" id="r_a9a5d778fc61897d3d5d02b59812f51de"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a5d778fc61897d3d5d02b59812f51de">HasNewData</a> (BNO085Sensor sensor) const noexcept</td></tr>
-<tr class="memdesc:a9a5d778fc61897d3d5d02b59812f51de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if new data is available for a specific sensor.  <br /></td></tr>
-<tr class="separator:a9a5d778fc61897d3d5d02b59812f51de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac86413211e0670e13b01b1cd569a003f" id="r_ac86413211e0670e13b01b1cd569a003f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac86413211e0670e13b01b1cd569a003f">ReadImuData</a> (<a class="el" href="structBno08xImuData.html">Bno08xImuData</a> &amp;imu_data) noexcept</td></tr>
-<tr class="memdesc:ac86413211e0670e13b01b1cd569a003f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read complete IMU data structure.  <br /></td></tr>
-<tr class="separator:ac86413211e0670e13b01b1cd569a003f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af440c1d38a92a30701534f3b27fb4be5" id="r_af440c1d38a92a30701534f3b27fb4be5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af440c1d38a92a30701534f3b27fb4be5">ReadAcceleration</a> (<a class="el" href="structBno08xVector3.html">Bno08xVector3</a> &amp;acceleration) noexcept</td></tr>
-<tr class="memdesc:af440c1d38a92a30701534f3b27fb4be5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read calibrated acceleration vector (m/s^2).  <br /></td></tr>
-<tr class="separator:af440c1d38a92a30701534f3b27fb4be5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26f453861a18da7df1a87872954af37d" id="r_a26f453861a18da7df1a87872954af37d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26f453861a18da7df1a87872954af37d">ReadGyroscope</a> (<a class="el" href="structBno08xVector3.html">Bno08xVector3</a> &amp;gyroscope) noexcept</td></tr>
-<tr class="memdesc:a26f453861a18da7df1a87872954af37d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read calibrated gyroscope data (rad/s).  <br /></td></tr>
-<tr class="separator:a26f453861a18da7df1a87872954af37d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ca061b54b64e58aa3ec4361a64584ee" id="r_a5ca061b54b64e58aa3ec4361a64584ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ca061b54b64e58aa3ec4361a64584ee">ReadMagnetometer</a> (<a class="el" href="structBno08xVector3.html">Bno08xVector3</a> &amp;magnetometer) noexcept</td></tr>
-<tr class="memdesc:a5ca061b54b64e58aa3ec4361a64584ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read calibrated magnetometer data (uT).  <br /></td></tr>
-<tr class="separator:a5ca061b54b64e58aa3ec4361a64584ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77a5ff4d48144115c4b14363190b41ad" id="r_a77a5ff4d48144115c4b14363190b41ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77a5ff4d48144115c4b14363190b41ad">ReadQuaternion</a> (<a class="el" href="structBno08xQuaternion.html">Bno08xQuaternion</a> &amp;quaternion) noexcept</td></tr>
-<tr class="memdesc:a77a5ff4d48144115c4b14363190b41ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read orientation quaternion (rotation vector).  <br /></td></tr>
-<tr class="separator:a77a5ff4d48144115c4b14363190b41ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3442e7924930f8fbda46a0f3c8318745" id="r_a3442e7924930f8fbda46a0f3c8318745"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3442e7924930f8fbda46a0f3c8318745">ReadEulerAngles</a> (<a class="el" href="structBno08xEulerAngles.html">Bno08xEulerAngles</a> &amp;euler_angles) noexcept</td></tr>
-<tr class="memdesc:a3442e7924930f8fbda46a0f3c8318745"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read Euler angles in radians (derived from rotation vector).  <br /></td></tr>
-<tr class="separator:a3442e7924930f8fbda46a0f3c8318745"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11c8fac5985ee0829af5de7783f707b0" id="r_a11c8fac5985ee0829af5de7783f707b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11c8fac5985ee0829af5de7783f707b0">ReadLinearAcceleration</a> (<a class="el" href="structBno08xVector3.html">Bno08xVector3</a> &amp;linear_accel) noexcept</td></tr>
-<tr class="memdesc:a11c8fac5985ee0829af5de7783f707b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read linear acceleration (m/s^2, gravity removed).  <br /></td></tr>
-<tr class="separator:a11c8fac5985ee0829af5de7783f707b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a338cf90bbf5e4618ce2a2d8192c54710" id="r_a338cf90bbf5e4618ce2a2d8192c54710"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a338cf90bbf5e4618ce2a2d8192c54710">ReadGravity</a> (<a class="el" href="structBno08xVector3.html">Bno08xVector3</a> &amp;gravity) noexcept</td></tr>
-<tr class="memdesc:a338cf90bbf5e4618ce2a2d8192c54710"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read gravity vector (m/s^2).  <br /></td></tr>
-<tr class="separator:a338cf90bbf5e4618ce2a2d8192c54710"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaba76336011ae5eeb987f04ffc4709a8" id="r_aaba76336011ae5eeb987f04ffc4709a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaba76336011ae5eeb987f04ffc4709a8">ReadActivityData</a> (<a class="el" href="structBno08xActivityData.html">Bno08xActivityData</a> &amp;activity_data) noexcept</td></tr>
-<tr class="memdesc:aaba76336011ae5eeb987f04ffc4709a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read activity and gesture detection data.  <br /></td></tr>
-<tr class="separator:aaba76336011ae5eeb987f04ffc4709a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ce394ca104e2c90ad0ed9992b1aea9f" id="r_a3ce394ca104e2c90ad0ed9992b1aea9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ce394ca104e2c90ad0ed9992b1aea9f">ReadCalibrationStatus</a> (<a class="el" href="structBno08xCalibrationStatus.html">Bno08xCalibrationStatus</a> &amp;status) noexcept</td></tr>
-<tr class="memdesc:a3ce394ca104e2c90ad0ed9992b1aea9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read calibration status from latest sensor accuracy values.  <br /></td></tr>
-<tr class="separator:a3ce394ca104e2c90ad0ed9992b1aea9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5327a9e31b53441c6a2a2d94e251156f" id="r_a5327a9e31b53441c6a2a2d94e251156f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5327a9e31b53441c6a2a2d94e251156f">EnableSensor</a> (BNO085Sensor sensor, uint32_t interval_ms, float sensitivity=0.0f) noexcept</td></tr>
-<tr class="memdesc:a5327a9e31b53441c6a2a2d94e251156f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable a specific sensor with the given interval.  <br /></td></tr>
-<tr class="separator:a5327a9e31b53441c6a2a2d94e251156f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2bd85f70a1a455427c7c0aa2e4e3f5b" id="r_ae2bd85f70a1a455427c7c0aa2e4e3f5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2bd85f70a1a455427c7c0aa2e4e3f5b">DisableSensor</a> (BNO085Sensor sensor) noexcept</td></tr>
-<tr class="memdesc:ae2bd85f70a1a455427c7c0aa2e4e3f5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable a specific sensor.  <br /></td></tr>
-<tr class="separator:ae2bd85f70a1a455427c7c0aa2e4e3f5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9246407f7c5b670d3cb43ca5fa116a3" id="r_aa9246407f7c5b670d3cb43ca5fa116a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9246407f7c5b670d3cb43ca5fa116a3">ApplyConfiguration</a> (const <a class="el" href="structBno08xConfig.html">Bno08xConfig</a> &amp;config) noexcept</td></tr>
-<tr class="memdesc:aa9246407f7c5b670d3cb43ca5fa116a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply a complete configuration to the sensor.  <br /></td></tr>
-<tr class="separator:aa9246407f7c5b670d3cb43ca5fa116a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6611b9ff2cab99824bff165396691301" id="r_a6611b9ff2cab99824bff165396691301"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structBno08xConfig.html">Bno08xConfig</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6611b9ff2cab99824bff165396691301">GetConfiguration</a> () const noexcept</td></tr>
-<tr class="memdesc:a6611b9ff2cab99824bff165396691301"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current configuration.  <br /></td></tr>
-<tr class="separator:a6611b9ff2cab99824bff165396691301"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c927165a6c2d3508239f3f0f71d6c4c" id="r_a7c927165a6c2d3508239f3f0f71d6c4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c927165a6c2d3508239f3f0f71d6c4c">HardwareReset</a> (uint32_t reset_duration_ms=10) noexcept</td></tr>
-<tr class="memdesc:a7c927165a6c2d3508239f3f0f71d6c4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform hardware reset via RSTN pin.  <br /></td></tr>
-<tr class="separator:a7c927165a6c2d3508239f3f0f71d6c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fa1278d2a9fe46c56dff84729a39cab" id="r_a7fa1278d2a9fe46c56dff84729a39cab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fa1278d2a9fe46c56dff84729a39cab">SetBootPin</a> (bool boot_state) noexcept</td></tr>
-<tr class="memdesc:a7fa1278d2a9fe46c56dff84729a39cab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control the BOOTN pin for DFU mode.  <br /></td></tr>
-<tr class="separator:a7fa1278d2a9fe46c56dff84729a39cab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08750b458da85b4fc36719e30de626bc" id="r_a08750b458da85b4fc36719e30de626bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08750b458da85b4fc36719e30de626bc">SetWakePin</a> (bool wake_state) noexcept</td></tr>
-<tr class="memdesc:a08750b458da85b4fc36719e30de626bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control the WAKE pin (SPI mode).  <br /></td></tr>
-<tr class="separator:a08750b458da85b4fc36719e30de626bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6c4372bc30b608206070bcf96723b2d" id="r_ac6c4372bc30b608206070bcf96723b2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6c4372bc30b608206070bcf96723b2d">SetSensorCallback</a> (SensorCallback callback) noexcept</td></tr>
-<tr class="memdesc:ac6c4372bc30b608206070bcf96723b2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set callback for sensor events.  <br /></td></tr>
-<tr class="separator:ac6c4372bc30b608206070bcf96723b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86c30e163a55db1e1dd3f1ce30635239" id="r_a86c30e163a55db1e1dd3f1ce30635239"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86c30e163a55db1e1dd3f1ce30635239">ClearSensorCallback</a> () noexcept</td></tr>
-<tr class="memdesc:a86c30e163a55db1e1dd3f1ce30635239"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear sensor event callback.  <br /></td></tr>
-<tr class="separator:a86c30e163a55db1e1dd3f1ce30635239"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88213b7fef4820d06b5972fac3702715" id="r_a88213b7fef4820d06b5972fac3702715"><td class="memItemLeft" align="right" valign="top">BNO085Interface&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88213b7fef4820d06b5972fac3702715">GetInterfaceType</a> () const noexcept</td></tr>
 <tr class="memdesc:a88213b7fef4820d06b5972fac3702715"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the communication interface type.  <br /></td></tr>
 <tr class="separator:a88213b7fef4820d06b5972fac3702715"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -238,12 +175,6 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a22e048169aa75988988ead370f8f176d" id="r_a22e048169aa75988988ead370f8f176d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22e048169aa75988988ead370f8f176d">readVectorSensor</a> (BNO085Sensor sensor, <a class="el" href="structBno08xVector3.html">Bno08xVector3</a> &amp;out) const noexcept</td></tr>
-<tr class="memdesc:a22e048169aa75988988ead370f8f176d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: read a vector-type sensor (no mutex, no init check).  <br /></td></tr>
-<tr class="separator:a22e048169aa75988988ead370f8f176d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada3191d2a5676e02773024e52589a1ed" id="r_ada3191d2a5676e02773024e52589a1ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada3191d2a5676e02773024e52589a1ed">applyConfigLocked</a> (const <a class="el" href="structBno08xConfig.html">Bno08xConfig</a> &amp;config) noexcept</td></tr>
-<tr class="memdesc:ada3191d2a5676e02773024e52589a1ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: apply configuration (assumes mutex is held).  <br /></td></tr>
-<tr class="separator:ada3191d2a5676e02773024e52589a1ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0479abc034d5417ba7dc524468a5ce82" id="r_a0479abc034d5417ba7dc524468a5ce82"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0479abc034d5417ba7dc524468a5ce82">ensureInitializedLocked</a> () noexcept</td></tr>
 <tr class="memdesc:a0479abc034d5417ba7dc524468a5ce82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal: ensure initialized (assumes mutex is held).  <br /></td></tr>
 <tr class="separator:a0479abc034d5417ba7dc524468a5ce82"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -274,9 +205,6 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a6a6864399d79e0363da35bd3e684c123" id="r_a6a6864399d79e0363da35bd3e684c123"><td class="memItemLeft" align="right" valign="top">BNO085Interface&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a6864399d79e0363da35bd3e684c123">interface_type_</a></td></tr>
 <tr class="memdesc:a6a6864399d79e0363da35bd3e684c123"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C or SPI.  <br /></td></tr>
 <tr class="separator:a6a6864399d79e0363da35bd3e684c123"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4be91e6bd9492c1824aa747db733c0f" id="r_ab4be91e6bd9492c1824aa747db733c0f"><td class="memItemLeft" align="right" valign="top">SensorCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4be91e6bd9492c1824aa747db733c0f">user_callback_</a></td></tr>
-<tr class="memdesc:ab4be91e6bd9492c1824aa747db733c0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">User's sensor callback.  <br /></td></tr>
-<tr class="separator:ab4be91e6bd9492c1824aa747db733c0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a2f0bb1bca336b49c6292c10475f64d" id="r_a8a2f0bb1bca336b49c6292c10475f64d"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a2f0bb1bca336b49c6292c10475f64d">description_</a> [64] {}</td></tr>
 <tr class="memdesc:a8a2f0bb1bca336b49c6292c10475f64d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Description string.  <br /></td></tr>
 <tr class="separator:a8a2f0bb1bca336b49c6292c10475f64d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -476,100 +404,6 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ada3191d2a5676e02773024e52589a1ed" name="ada3191d2a5676e02773024e52589a1ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada3191d2a5676e02773024e52589a1ed">&#9670;&#160;</a></span>applyConfigLocked()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Bno08xHandler::applyConfigLocked </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structBno08xConfig.html">Bno08xConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Internal: apply configuration (assumes mutex is held). </p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ada3191d2a5676e02773024e52589a1ed_icgraph.svg" width="1516" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="aa9246407f7c5b670d3cb43ca5fa116a3" name="aa9246407f7c5b670d3cb43ca5fa116a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9246407f7c5b670d3cb43ca5fa116a3">&#9670;&#160;</a></span>ApplyConfiguration()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::ApplyConfiguration </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structBno08xConfig.html">Bno08xConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Apply a complete configuration to the sensor. </p>
-<p>Enables/disables sensors according to the config flags and intervals.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">config</td><td>New configuration to apply </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> if all sensor enables succeeded </dd></dl>
-
-</div>
-</div>
-<a id="a86c30e163a55db1e1dd3f1ce30635239" name="a86c30e163a55db1e1dd3f1ce30635239"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86c30e163a55db1e1dd3f1ce30635239">&#9670;&#160;</a></span>ClearSensorCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Bno08xHandler::ClearSensorCallback </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Clear sensor event callback. </p>
-
-</div>
-</div>
 <a id="a2019941b7d9fa00ffe08630fee9ef340" name="a2019941b7d9fa00ffe08630fee9ef340"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2019941b7d9fa00ffe08630fee9ef340">&#9670;&#160;</a></span>Deinitialize()</h2>
 
@@ -600,40 +434,6 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a2019941b7d9fa00ffe08630fee9ef340_cgraph.svg" width="488" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-
-</div>
-</div>
-<a id="ae2bd85f70a1a455427c7c0aa2e4e3f5b" name="ae2bd85f70a1a455427c7c0aa2e4e3f5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2bd85f70a1a455427c7c0aa2e4e3f5b">&#9670;&#160;</a></span>DisableSensor()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::DisableSensor </td>
-          <td>(</td>
-          <td class="paramtype">BNO085Sensor</td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Disable a specific sensor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sensor</td><td>Sensor to disable </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> if successful </dd></dl>
 
 </div>
 </div>
@@ -669,51 +469,6 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a5327a9e31b53441c6a2a2d94e251156f" name="a5327a9e31b53441c6a2a2d94e251156f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5327a9e31b53441c6a2a2d94e251156f">&#9670;&#160;</a></span>EnableSensor()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::EnableSensor </td>
-          <td>(</td>
-          <td class="paramtype">BNO085Sensor</td>          <td class="paramname"><span class="paramname"><em>sensor</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>interval_ms</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>sensitivity</em><span class="paramdefsep"> = </span><span class="paramdefval">0.0f</span></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Enable a specific sensor with the given interval. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sensor</td><td>Sensor to enable </td></tr>
-    <tr><td class="paramname">interval_ms</td><td>Reporting interval in milliseconds (0 = on-change) </td></tr>
-    <tr><td class="paramname">sensitivity</td><td>Change sensitivity (for on-change sensors, default 0) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> if successful </dd></dl>
-
-</div>
-</div>
 <a id="afab341345c8ed8fed1a218e0df18c4aa" name="afab341345c8ed8fed1a218e0df18c4aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afab341345c8ed8fed1a218e0df18c4aa">&#9670;&#160;</a></span>EnsureInitialized()</h2>
 
@@ -742,7 +497,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_afab341345c8ed8fed1a218e0df18c4aa_cgraph.svg" width="1044" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_afab341345c8ed8fed1a218e0df18c4aa_cgraph.svg" width="1030" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -779,41 +534,13 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a0479abc034d5417ba7dc524468a5ce82_cgraph.svg" width="758" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a0479abc034d5417ba7dc524468a5ce82_cgraph.svg" width="743" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a0479abc034d5417ba7dc524468a5ce82_icgraph.svg" width="1027" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a0479abc034d5417ba7dc524468a5ce82_icgraph.svg" width="1027" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-
-</div>
-</div>
-<a id="a6611b9ff2cab99824bff165396691301" name="a6611b9ff2cab99824bff165396691301"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6611b9ff2cab99824bff165396691301">&#9670;&#160;</a></span>GetConfiguration()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="structBno08xConfig.html">Bno08xConfig</a> &amp; Bno08xHandler::GetConfiguration </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the current configuration. </p>
-<dl class="section return"><dt>Returns</dt><dd>Const reference to the active <a class="el" href="structBno08xConfig.html" title="BNO08x configuration structure.">Bno08xConfig</a> </dd></dl>
 
 </div>
 </div>
@@ -989,7 +716,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_abf3a81e646ebd6dd0a10890e5be21d6d_cgraph.svg" width="1535" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_abf3a81e646ebd6dd0a10890e5be21d6d_cgraph.svg" width="1520" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1018,96 +745,17 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Get direct access to the underlying sensor driver (type-erased). </p>
-<p>The returned pointer exposes the same SH-2 API as the concrete BNO085 driver: <a class="el" href="#a74cdf0328224c1a3fad944bbf1312e7e" title="Update sensor - must be called regularly to pump the SH-2 service loop.">Update()</a>, <a class="el" href="#a5327a9e31b53441c6a2a2d94e251156f" title="Enable a specific sensor with the given interval.">EnableSensor()</a>, <a class="el" href="#ae2bd85f70a1a455427c7c0aa2e4e3f5b" title="Disable a specific sensor.">DisableSensor()</a>, SetCallback(), <a class="el" href="#a9a5d778fc61897d3d5d02b59812f51de" title="Check if new data is available for a specific sensor.">HasNewData()</a>, GetLatest(), <a class="el" href="#abf7206fa6caf5e8cf5132b02cd7a62bc" title="Get the last handler error code.">GetLastError()</a>, <a class="el" href="#a7c927165a6c2d3508239f3f0f71d6c4c" title="Perform hardware reset via RSTN pin.">HardwareReset()</a>, etc. Use it when you need to call driver methods directly (e.g. custom callbacks, low-level control). Valid for the lifetime of this handler.</p>
+<p>The returned pointer exposes the same SH-2 API as the concrete BNO085 driver: Update(), EnableSensor(), DisableSensor(), SetCallback(), HasNewData(), GetLatest(), <a class="el" href="#abf7206fa6caf5e8cf5132b02cd7a62bc" title="Get the last handler error code.">GetLastError()</a>, HardwareReset(), etc. Use it when you need to call driver methods directly (e.g. custom callbacks, low-level control). Valid for the lifetime of this handler.</p>
 <dl class="section return"><dt>Returns</dt><dd>Non-owning pointer to the driver interface, or nullptr if not constructed </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a57e2952c0438e800c091cd0e3ebcdaf5_cgraph.svg" width="1290" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a57e2952c0438e800c091cd0e3ebcdaf5_cgraph.svg" width="1275" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a57e2952c0438e800c091cd0e3ebcdaf5_icgraph.svg" width="454" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="a7c927165a6c2d3508239f3f0f71d6c4c" name="a7c927165a6c2d3508239f3f0f71d6c4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c927165a6c2d3508239f3f0f71d6c4c">&#9670;&#160;</a></span>HardwareReset()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::HardwareReset </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>reset_duration_ms</em><span class="paramdefsep"> = </span><span class="paramdefval">10</span></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Perform hardware reset via RSTN pin. </p>
-<p>Drives RSTN LOW for the specified duration, then releases it and waits for the sensor to boot.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">reset_duration_ms</td><td>Duration to hold reset low (default 10 ms) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> if reset GPIO is available </dd></dl>
-
-</div>
-</div>
-<a id="a9a5d778fc61897d3d5d02b59812f51de" name="a9a5d778fc61897d3d5d02b59812f51de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a5d778fc61897d3d5d02b59812f51de">&#9670;&#160;</a></span>HasNewData()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Bno08xHandler::HasNewData </td>
-          <td>(</td>
-          <td class="paramtype">BNO085Sensor</td>          <td class="paramname"><span class="paramname"><em>sensor</em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Check if new data is available for a specific sensor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">sensor</td><td>Sensor to check </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if new unread data is available </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a9a5d778fc61897d3d5d02b59812f51de_cgraph.svg" width="226" height="60"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a9a5d778fc61897d3d5d02b59812f51de_icgraph.svg" width="226" height="60"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1141,12 +789,12 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ac1a1ff0d56324dcc09d9b48ca2e132e6_cgraph.svg" width="471" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ac1a1ff0d56324dcc09d9b48ca2e132e6_cgraph.svg" width="456" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ac1a1ff0d56324dcc09d9b48ca2e132e6_icgraph.svg" width="1262" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ac1a1ff0d56324dcc09d9b48ca2e132e6_icgraph.svg" width="1262" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1203,11 +851,6 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Internal: map SH-2 error code to Bno08xError. </p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a6e91ad7cdb2e1bb9a57eb797cf7d8e96_icgraph.svg" width="435" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1296,512 +939,6 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="af440c1d38a92a30701534f3b27fb4be5" name="af440c1d38a92a30701534f3b27fb4be5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af440c1d38a92a30701534f3b27fb4be5">&#9670;&#160;</a></span>ReadAcceleration()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::ReadAcceleration </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structBno08xVector3.html">Bno08xVector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>acceleration</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Read calibrated acceleration vector (m/s^2). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">acceleration</td><td>Output: x,y,z, accuracy, timestamp, valid </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> on success </dd></dl>
-
-</div>
-</div>
-<a id="aaba76336011ae5eeb987f04ffc4709a8" name="aaba76336011ae5eeb987f04ffc4709a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaba76336011ae5eeb987f04ffc4709a8">&#9670;&#160;</a></span>ReadActivityData()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::ReadActivityData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structBno08xActivityData.html">Bno08xActivityData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>activity_data</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Read activity and gesture detection data. </p>
-<p>Aggregates latest tap, step, shake, pickup, and stability data. Only populated for sensors that are enabled. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">activity_data</td><td>Output: tap, step count, shake, pickup, etc. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> on success </dd></dl>
-
-</div>
-</div>
-<a id="a3ce394ca104e2c90ad0ed9992b1aea9f" name="a3ce394ca104e2c90ad0ed9992b1aea9f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ce394ca104e2c90ad0ed9992b1aea9f">&#9670;&#160;</a></span>ReadCalibrationStatus()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::ReadCalibrationStatus </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structBno08xCalibrationStatus.html">Bno08xCalibrationStatus</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>status</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Read calibration status from latest sensor accuracy values. </p>
-<p>Accuracy is embedded in each sensor report (0=unreliable, 3=calibrated). This method reads the latest accuracy values from the most recently received reports. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">status</td><td>Output: per-sensor accuracy (0-3) and fully_calibrated flag </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> on success </dd></dl>
-
-</div>
-</div>
-<a id="a3442e7924930f8fbda46a0f3c8318745" name="a3442e7924930f8fbda46a0f3c8318745"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3442e7924930f8fbda46a0f3c8318745">&#9670;&#160;</a></span>ReadEulerAngles()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::ReadEulerAngles </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structBno08xEulerAngles.html">Bno08xEulerAngles</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>euler_angles</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Read Euler angles in radians (derived from rotation vector). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">euler_angles</td><td>Output: roll, pitch, yaw, accuracy, timestamp, valid </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> on success </dd></dl>
-
-</div>
-</div>
-<a id="a338cf90bbf5e4618ce2a2d8192c54710" name="a338cf90bbf5e4618ce2a2d8192c54710"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a338cf90bbf5e4618ce2a2d8192c54710">&#9670;&#160;</a></span>ReadGravity()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::ReadGravity </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structBno08xVector3.html">Bno08xVector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gravity</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Read gravity vector (m/s^2). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">gravity</td><td>Output: x,y,z, accuracy, timestamp, valid </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> on success </dd></dl>
-
-</div>
-</div>
-<a id="a26f453861a18da7df1a87872954af37d" name="a26f453861a18da7df1a87872954af37d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a26f453861a18da7df1a87872954af37d">&#9670;&#160;</a></span>ReadGyroscope()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::ReadGyroscope </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structBno08xVector3.html">Bno08xVector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gyroscope</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Read calibrated gyroscope data (rad/s). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">gyroscope</td><td>Output: x,y,z, accuracy, timestamp, valid </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> on success </dd></dl>
-
-</div>
-</div>
-<a id="ac86413211e0670e13b01b1cd569a003f" name="ac86413211e0670e13b01b1cd569a003f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac86413211e0670e13b01b1cd569a003f">&#9670;&#160;</a></span>ReadImuData()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::ReadImuData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structBno08xImuData.html">Bno08xImuData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>imu_data</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Read complete IMU data structure. </p>
-<p>Aggregates latest data from all enabled core sensors (accel, gyro, mag, linear accel, gravity, rotation vector) into a single structure.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">imu_data</td><td>Output structure for IMU data </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> if at least some data was populated </dd></dl>
-
-</div>
-</div>
-<a id="a11c8fac5985ee0829af5de7783f707b0" name="a11c8fac5985ee0829af5de7783f707b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11c8fac5985ee0829af5de7783f707b0">&#9670;&#160;</a></span>ReadLinearAcceleration()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::ReadLinearAcceleration </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structBno08xVector3.html">Bno08xVector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>linear_accel</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Read linear acceleration (m/s^2, gravity removed). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">linear_accel</td><td>Output: x,y,z, accuracy, timestamp, valid </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> on success </dd></dl>
-
-</div>
-</div>
-<a id="a5ca061b54b64e58aa3ec4361a64584ee" name="a5ca061b54b64e58aa3ec4361a64584ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ca061b54b64e58aa3ec4361a64584ee">&#9670;&#160;</a></span>ReadMagnetometer()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::ReadMagnetometer </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structBno08xVector3.html">Bno08xVector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>magnetometer</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Read calibrated magnetometer data (uT). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">magnetometer</td><td>Output: x,y,z, accuracy, timestamp, valid </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> on success </dd></dl>
-
-</div>
-</div>
-<a id="a77a5ff4d48144115c4b14363190b41ad" name="a77a5ff4d48144115c4b14363190b41ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77a5ff4d48144115c4b14363190b41ad">&#9670;&#160;</a></span>ReadQuaternion()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::ReadQuaternion </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structBno08xQuaternion.html">Bno08xQuaternion</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>quaternion</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Read orientation quaternion (rotation vector). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">quaternion</td><td>Output: w,x,y,z, accuracy, timestamp, valid </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> on success </dd></dl>
-
-</div>
-</div>
-<a id="a22e048169aa75988988ead370f8f176d" name="a22e048169aa75988988ead370f8f176d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a22e048169aa75988988ead370f8f176d">&#9670;&#160;</a></span>readVectorSensor()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::readVectorSensor </td>
-          <td>(</td>
-          <td class="paramtype">BNO085Sensor</td>          <td class="paramname"><span class="paramname"><em>sensor</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structBno08xVector3.html">Bno08xVector3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;) const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Internal: read a vector-type sensor (no mutex, no init check). </p>
-
-</div>
-</div>
-<a id="a7fa1278d2a9fe46c56dff84729a39cab" name="a7fa1278d2a9fe46c56dff84729a39cab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7fa1278d2a9fe46c56dff84729a39cab">&#9670;&#160;</a></span>SetBootPin()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::SetBootPin </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>boot_state</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Control the BOOTN pin for DFU mode. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">boot_state</td><td>true = drive LOW (enter bootloader), false = HIGH </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ac6c4372bc30b608206070bcf96723b2d" name="ac6c4372bc30b608206070bcf96723b2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6c4372bc30b608206070bcf96723b2d">&#9670;&#160;</a></span>SetSensorCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Bno08xHandler::SetSensorCallback </td>
-          <td>(</td>
-          <td class="paramtype">SensorCallback</td>          <td class="paramname"><span class="paramname"><em>callback</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set callback for sensor events. </p>
-<p>The callback is invoked from within <a class="el" href="#a74cdf0328224c1a3fad944bbf1312e7e" title="Update sensor - must be called regularly to pump the SH-2 service loop.">Update()</a> whenever a sensor report arrives. Only one callback can be active at a time.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">callback</td><td>Callback function for sensor events </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a08750b458da85b4fc36719e30de626bc" name="a08750b458da85b4fc36719e30de626bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08750b458da85b4fc36719e30de626bc">&#9670;&#160;</a></span>SetWakePin()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::SetWakePin </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>wake_state</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Control the WAKE pin (SPI mode). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">wake_state</td><td>true = drive LOW (wake sensor), false = release </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a74cdf0328224c1a3fad944bbf1312e7e" name="a74cdf0328224c1a3fad944bbf1312e7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74cdf0328224c1a3fad944bbf1312e7e">&#9670;&#160;</a></span>Update()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::Update </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Update sensor - must be called regularly to pump the SH-2 service loop. </p>
-<p>Call this every 5-10 ms (or faster) for optimal data throughput. Sensor callbacks are dispatched from within this method.</p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> if successful </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a74cdf0328224c1a3fad944bbf1312e7e_cgraph.svg" width="983" height="316"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1971,30 +1108,6 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Last error. </p>
-
-</div>
-</div>
-<a id="ab4be91e6bd9492c1824aa747db733c0f" name="ab4be91e6bd9492c1824aa747db733c0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4be91e6bd9492c1824aa747db733c0f">&#9670;&#160;</a></span>user_callback_</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">SensorCallback Bno08xHandler::user_callback_</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>User's sensor callback. </p>
 
 </div>
 </div>

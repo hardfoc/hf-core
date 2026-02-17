@@ -7,7 +7,7 @@
 <area shape="rect" id="Node000003" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="899,153,1005,179"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="510,110,565,125,623,138,763,155,886,162,885,167,763,160,622,143,563,131,508,115"/>
 <area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="575,71,862,28,863,34,575,76"/>
-<area shape="rect" id="Node000007" href="$classMax22200Handler.html#ad6c72b45a96c36cd1b450f5e330fad25" title="Initialize driver (ENABLE HIGH, read/clear STATUS, set ACTIVE)." alt="" coords="623,103,828,128"/>
+<area shape="rect" id="Node000007" href="$classMax22200Handler.html#a0dce05cd6639a10e52c0f669b72baf52" title="Initialize driver (ENABLE HIGH, read/clear STATUS, set ACTIVE)." alt="" coords="623,103,828,128"/>
 <area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="575,100,609,103,609,109,575,106"/>
 <area shape="rect" id="Node000004" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="1076,80,1248,105"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="996,151,1027,140,1075,116,1099,107,1100,112,1077,120,1029,144,998,156"/>

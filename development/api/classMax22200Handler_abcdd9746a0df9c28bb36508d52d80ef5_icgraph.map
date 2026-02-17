@@ -1,10 +1,10 @@
 <map id="Max22200Handler::withDriver" name="Max22200Handler::withDriver">
 <area shape="rect" id="Node000001" title="Execute a lambda with a locked, initialized driver." alt="" coords="275,95,492,120"/>
-<area shape="rect" id="Node000002" href="$classMax22200Handler.html#a439f52e4acfac83872a74fa9eef5237f" title="Clear all fault flags." alt="" coords="5,5,227,31"/>
+<area shape="rect" id="Node000002" href="$classMax22200Handler.html#a963d65edae16cca4fd153b3af0c1e68e" title="Clear all fault flags." alt="" coords="5,5,227,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="342,91,287,68,226,46,180,33,181,28,227,41,289,63,344,87"/>
-<area shape="rect" id="Node000003" href="$classMax22200Handler.html#a8469fc41589ea672b8732769d2222443" title="Disable all channels." alt="" coords="17,55,215,95"/>
+<area shape="rect" id="Node000003" href="$classMax22200Handler.html#a9e9684818c7efddd45697f28051cbca2" title="Disable all channels." alt="" coords="17,55,215,95"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="263,96,215,90,216,85,264,90"/>
-<area shape="rect" id="Node000004" href="$classMax22200Handler.html#aa9e41274b5467db2e901be023d4dd061" title="Enable all channels." alt="" coords="11,119,221,159"/>
+<area shape="rect" id="Node000004" href="$classMax22200Handler.html#af7aba4f68825068e774badca04c49a07" title="Enable all channels." alt="" coords="11,119,221,159"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="264,124,222,129,221,124,263,119"/>
 <area shape="rect" id="Node000005" href="$classMax22200Handler.html#ac5b60b117fec404c55597929134fa1a1" title="Check if any fault is present." alt="" coords="13,184,219,209"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="344,128,289,151,227,174,181,187,180,181,226,169,287,146,342,123"/>

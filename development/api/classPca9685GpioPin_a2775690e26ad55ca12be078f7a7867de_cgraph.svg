@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classPca9685Handler.html#addfe3b4c674c0b59eaba2945035ac13d" target="_top" xlink:title="Set a channel to fully ON (100% duty, no PWM).">
+<g id="a_Node000002"><a xlink:href="classPca9685Handler.html#addfe3b4c674c0b59eaba2945035ac13d" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="374,-30 216,-30 216,0 374,0 374,-30"/>
 <text text-anchor="start" x="224" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">Pca9685Handler::SetChannel</text>
 <text text-anchor="middle" x="295" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">FullOn</text>

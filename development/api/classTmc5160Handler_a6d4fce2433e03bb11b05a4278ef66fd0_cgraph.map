@@ -1,6 +1,6 @@
 <map id="Tmc5160Handler::EnsureInitializedLocked" name="Tmc5160Handler::EnsureInitializedLocked">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,73,255,113"/>
-<area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a64755f326176b0a38485acf5ca69fd0c" title="Initialize the TMC5160 driver with full configuration." alt="" coords="303,80,500,105"/>
+<area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a44ab36857e4e43062f81f7d6f10eab09" title="Initialize the TMC5160 driver with full configuration." alt="" coords="303,80,500,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,90,289,90,289,95,255,95"/>
 <area shape="rect" id="Node000003" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="571,5,677,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="438,77,547,39,569,32,570,37,549,45,439,82"/>

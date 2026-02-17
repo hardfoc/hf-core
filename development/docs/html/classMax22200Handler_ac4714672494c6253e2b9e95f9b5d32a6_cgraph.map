@@ -1,6 +1,6 @@
 <map id="Max22200Handler::~Max22200Handler" name="Max22200Handler::~Max22200Handler">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,23,233,63"/>
-<area shape="rect" id="Node000002" href="$classMax22200Handler.html#a56aeb5c7e58aa51bbb45eb3b78387152" title="Deinitialize — disable all channels, ACTIVE=0, ENABLE LOW." alt="" coords="281,31,504,56"/>
+<area shape="rect" id="Node000002" href="$classMax22200Handler.html#a96276218d9af520726b43745bcd0f0f5" title="Deinitialize — disable all channels, ACTIVE=0, ENABLE LOW." alt="" coords="281,31,504,56"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="233,41,268,41,268,46,233,46"/>
 <area shape="rect" id="Node000003" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="552,5,704,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="504,29,538,25,538,30,504,34"/>

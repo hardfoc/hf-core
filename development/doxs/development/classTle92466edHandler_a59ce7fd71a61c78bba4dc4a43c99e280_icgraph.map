@@ -10,15 +10,15 @@
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="473,153,313,311,309,307,470,149"/>
 <area shape="rect" id="Node000005" href="$classTle92466edHandler.html#a56ebe6e509ccd1b6b865728ba14d2533" title=" " alt="" coords="5,21,163,61"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="218,129,209,123,194,111,185,99,175,87,161,76,140,64,143,59,164,71,179,84,189,96,198,107,212,119,221,125"/>
-<area shape="rect" id="Node000007" href="$classTle92466edHandler.html#a61a76044cfd01bc741e5b86fce5cf592" title="Clear all fault flags." alt="" coords="5,85,163,125"/>
+<area shape="rect" id="Node000007" href="$classTle92466edHandler.html#ab3123678e6df690f5669fd89079e0a4e" title="Clear all fault flags." alt="" coords="5,85,163,125"/>
 <area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="272,298,229,219,198,177,161,139,143,128,146,123,164,135,202,173,233,216,276,295"/>
-<area shape="rect" id="Node000008" href="$classTle92466edHandler.html#ad8eb36eac8e534aee77e3862f59f4813" title="Disable all channels." alt="" coords="5,149,163,189"/>
+<area shape="rect" id="Node000008" href="$classTle92466edHandler.html#ac37cbbcce53c7a55657ee61cd5015190" title="Disable all channels." alt="" coords="5,149,163,189"/>
 <area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="262,300,218,251,161,204,140,192,143,187,164,199,222,248,266,297"/>
-<area shape="rect" id="Node000009" href="$classTle92466edHandler.html#a41e1f26179783158819584deb99203f8" title="Enable all channels." alt="" coords="5,213,163,253"/>
+<area shape="rect" id="Node000009" href="$classTle92466edHandler.html#a1ee30771436827a1499a379aa7e5ab49" title="Enable all channels." alt="" coords="5,213,163,253"/>
 <area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="237,305,162,268,134,256,137,251,164,263,240,300"/>
-<area shape="rect" id="Node000010" href="$classTle92466edHandler.html#a0fa95ebc85ab477497525eea4ab59d94" title="Enter config mode (for register writes)." alt="" coords="5,277,163,317"/>
+<area shape="rect" id="Node000010" href="$classTle92466edHandler.html#a19b966bb109b988eb98d319b76908667" title="Enter config mode (for register writes)." alt="" coords="5,277,163,317"/>
 <area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="197,318,162,312,163,307,197,312"/>
-<area shape="rect" id="Node000011" href="$classTle92466edHandler.html#a8e8602032981d1c684a3d9e5051c043a" title="Enter mission mode (enable outputs after configuration)." alt="" coords="5,341,163,381"/>
+<area shape="rect" id="Node000011" href="$classTle92466edHandler.html#aee10ff4c219a042d260a6b1f58a9219a" title="Enter mission mode (enable outputs after configuration)." alt="" coords="5,341,163,381"/>
 <area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="197,346,163,352,162,346,197,341"/>
 <area shape="rect" id="Node000012" href="$classTle92466edHandler.html#a4c646ee5db271f07517cc15e8a623f0e" title="Get chip ID (returns 0 on error)." alt="" coords="5,405,163,445"/>
 <area shape="poly" id="edge11_Node000006_Node000012" title=" " alt="" coords="240,358,164,396,137,408,134,403,162,391,237,353"/>

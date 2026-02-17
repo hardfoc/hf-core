@@ -147,41 +147,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae9ec3bcf1629765a26d627e48afc10b1" id="r_ae9ec3bcf1629765a26d627e48afc10b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9ec3bcf1629765a26d627e48afc10b1">IsInitialized</a> () const noexcept</td></tr>
 <tr class="memdesc:ae9ec3bcf1629765a26d627e48afc10b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the handler has been initialized.  <br /></td></tr>
 <tr class="separator:ae9ec3bcf1629765a26d627e48afc10b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">PWM Control</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>Per-channel and global PWM operations. </p>
-</div></td></tr>
-<tr class="memitem:adcdc86029bb4028ddcc8a3a099ffe635" id="r_adcdc86029bb4028ddcc8a3a099ffe635"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcdc86029bb4028ddcc8a3a099ffe635">SetFrequency</a> (float freq_hz) noexcept</td></tr>
-<tr class="memdesc:adcdc86029bb4028ddcc8a3a099ffe635"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the PWM frequency (global &ndash; all channels).  <br /></td></tr>
-<tr class="separator:adcdc86029bb4028ddcc8a3a099ffe635"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d7ea1f902efe9dabc6fea9b97e3e369" id="r_a1d7ea1f902efe9dabc6fea9b97e3e369"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d7ea1f902efe9dabc6fea9b97e3e369">SetDuty</a> (uint8_t channel, float duty) noexcept</td></tr>
-<tr class="memdesc:a1d7ea1f902efe9dabc6fea9b97e3e369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set duty cycle for a channel (0.0-1.0).  <br /></td></tr>
-<tr class="separator:a1d7ea1f902efe9dabc6fea9b97e3e369"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa40bf3968e55af7c7912870165d47297" id="r_aa40bf3968e55af7c7912870165d47297"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa40bf3968e55af7c7912870165d47297">SetPwm</a> (uint8_t channel, uint16_t on_time, uint16_t off_time) noexcept</td></tr>
-<tr class="memdesc:aa40bf3968e55af7c7912870165d47297"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set raw on/off tick values for a channel.  <br /></td></tr>
-<tr class="separator:aa40bf3968e55af7c7912870165d47297"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dbb42acc6660c88b281e8b96e84e41e" id="r_a2dbb42acc6660c88b281e8b96e84e41e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dbb42acc6660c88b281e8b96e84e41e">SetAllPwm</a> (uint16_t on_time, uint16_t off_time) noexcept</td></tr>
-<tr class="memdesc:a2dbb42acc6660c88b281e8b96e84e41e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set all channels to the same PWM value.  <br /></td></tr>
-<tr class="separator:a2dbb42acc6660c88b281e8b96e84e41e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addfe3b4c674c0b59eaba2945035ac13d" id="r_addfe3b4c674c0b59eaba2945035ac13d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addfe3b4c674c0b59eaba2945035ac13d">SetChannelFullOn</a> (uint8_t channel) noexcept</td></tr>
-<tr class="memdesc:addfe3b4c674c0b59eaba2945035ac13d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a channel to fully ON (100% duty, no PWM).  <br /></td></tr>
-<tr class="separator:addfe3b4c674c0b59eaba2945035ac13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6175f653b325713b0c80c5808ccbe45a" id="r_a6175f653b325713b0c80c5808ccbe45a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6175f653b325713b0c80c5808ccbe45a">SetChannelFullOff</a> (uint8_t channel) noexcept</td></tr>
-<tr class="memdesc:a6175f653b325713b0c80c5808ccbe45a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a channel to fully OFF (0% duty).  <br /></td></tr>
-<tr class="separator:a6175f653b325713b0c80c5808ccbe45a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Power Management</div></td></tr>
-<tr class="memitem:a989c4b1a8260c7af0bf210103d13cc7b" id="r_a989c4b1a8260c7af0bf210103d13cc7b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a989c4b1a8260c7af0bf210103d13cc7b">Sleep</a> () noexcept</td></tr>
-<tr class="memdesc:a989c4b1a8260c7af0bf210103d13cc7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Put PCA9685 into low-power sleep mode.  <br /></td></tr>
-<tr class="separator:a989c4b1a8260c7af0bf210103d13cc7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfea96039e525e253d0eab9234cdfa5f" id="r_abfea96039e525e253d0eab9234cdfa5f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfea96039e525e253d0eab9234cdfa5f">Wake</a> () noexcept</td></tr>
-<tr class="memdesc:abfea96039e525e253d0eab9234cdfa5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wake PCA9685 from sleep mode.  <br /></td></tr>
-<tr class="separator:abfea96039e525e253d0eab9234cdfa5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Output Configuration</div></td></tr>
-<tr class="memitem:a6e145fe83cb71c5a5f32fe397ad70e1a" id="r_a6e145fe83cb71c5a5f32fe397ad70e1a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e145fe83cb71c5a5f32fe397ad70e1a">SetOutputInvert</a> (bool invert) noexcept</td></tr>
-<tr class="memdesc:a6e145fe83cb71c5a5f32fe397ad70e1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set output polarity inversion (global).  <br /></td></tr>
-<tr class="separator:a6e145fe83cb71c5a5f32fe397ad70e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa447ac4404a59220bdf4de022feb89ed" id="r_aa447ac4404a59220bdf4de022feb89ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa447ac4404a59220bdf4de022feb89ed">SetOutputDriverMode</a> (bool totem_pole) noexcept</td></tr>
-<tr class="memdesc:aa447ac4404a59220bdf4de022feb89ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set output driver mode (global).  <br /></td></tr>
-<tr class="separator:aa447ac4404a59220bdf4de022feb89ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Error Management</div></td></tr>
 <tr class="memitem:aca456553a9db5bca8f474fe7cf456d9d" id="r_aca456553a9db5bca8f474fe7cf456d9d"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca456553a9db5bca8f474fe7cf456d9d">GetErrorFlags</a> () const noexcept</td></tr>
 <tr class="memdesc:aca456553a9db5bca8f474fe7cf456d9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the driver's error flags.  <br /></td></tr>
@@ -214,6 +179,26 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a8d6e386b561fb3ac96b9afb5386ad239" id="r_a8d6e386b561fb3ac96b9afb5386ad239"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d6e386b561fb3ac96b9afb5386ad239">validateChannel</a> (uint8_t channel) const noexcept</td></tr>
 <tr class="memdesc:a8d6e386b561fb3ac96b9afb5386ad239"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate channel number (0-15).  <br /></td></tr>
 <tr class="separator:a8d6e386b561fb3ac96b9afb5386ad239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcdc86029bb4028ddcc8a3a099ffe635" id="r_adcdc86029bb4028ddcc8a3a099ffe635"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcdc86029bb4028ddcc8a3a099ffe635">SetFrequency</a> (float freq_hz) noexcept</td></tr>
+<tr class="separator:adcdc86029bb4028ddcc8a3a099ffe635"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d7ea1f902efe9dabc6fea9b97e3e369" id="r_a1d7ea1f902efe9dabc6fea9b97e3e369"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d7ea1f902efe9dabc6fea9b97e3e369">SetDuty</a> (uint8_t channel, float duty) noexcept</td></tr>
+<tr class="separator:a1d7ea1f902efe9dabc6fea9b97e3e369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa40bf3968e55af7c7912870165d47297" id="r_aa40bf3968e55af7c7912870165d47297"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa40bf3968e55af7c7912870165d47297">SetPwm</a> (uint8_t channel, uint16_t on_time, uint16_t off_time) noexcept</td></tr>
+<tr class="separator:aa40bf3968e55af7c7912870165d47297"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dbb42acc6660c88b281e8b96e84e41e" id="r_a2dbb42acc6660c88b281e8b96e84e41e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dbb42acc6660c88b281e8b96e84e41e">SetAllPwm</a> (uint16_t on_time, uint16_t off_time) noexcept</td></tr>
+<tr class="separator:a2dbb42acc6660c88b281e8b96e84e41e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addfe3b4c674c0b59eaba2945035ac13d" id="r_addfe3b4c674c0b59eaba2945035ac13d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addfe3b4c674c0b59eaba2945035ac13d">SetChannelFullOn</a> (uint8_t channel) noexcept</td></tr>
+<tr class="separator:addfe3b4c674c0b59eaba2945035ac13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6175f653b325713b0c80c5808ccbe45a" id="r_a6175f653b325713b0c80c5808ccbe45a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6175f653b325713b0c80c5808ccbe45a">SetChannelFullOff</a> (uint8_t channel) noexcept</td></tr>
+<tr class="separator:a6175f653b325713b0c80c5808ccbe45a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a989c4b1a8260c7af0bf210103d13cc7b" id="r_a989c4b1a8260c7af0bf210103d13cc7b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a989c4b1a8260c7af0bf210103d13cc7b">Sleep</a> () noexcept</td></tr>
+<tr class="separator:a989c4b1a8260c7af0bf210103d13cc7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfea96039e525e253d0eab9234cdfa5f" id="r_abfea96039e525e253d0eab9234cdfa5f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfea96039e525e253d0eab9234cdfa5f">Wake</a> () noexcept</td></tr>
+<tr class="separator:abfea96039e525e253d0eab9234cdfa5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e145fe83cb71c5a5f32fe397ad70e1a" id="r_a6e145fe83cb71c5a5f32fe397ad70e1a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e145fe83cb71c5a5f32fe397ad70e1a">SetOutputInvert</a> (bool invert) noexcept</td></tr>
+<tr class="separator:a6e145fe83cb71c5a5f32fe397ad70e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa447ac4404a59220bdf4de022feb89ed" id="r_aa447ac4404a59220bdf4de022feb89ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa447ac4404a59220bdf4de022feb89ed">SetOutputDriverMode</a> (bool totem_pole) noexcept</td></tr>
+<tr class="separator:aa447ac4404a59220bdf4de022feb89ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -1070,20 +1055,10 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Set all channels to the same PWM value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">on_time</td><td>Tick count when signal turns ON (0-4095). </td></tr>
-    <tr><td class="paramname">off_time</td><td>Tick count when signal turns OFF (0-4095). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure. </dd></dl>
 
 </div>
 </div>
@@ -1105,19 +1080,10 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Set a channel to fully OFF (0% duty). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">channel</td><td>Channel number (0-15). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure. </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1144,19 +1110,10 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Set a channel to fully ON (100% duty, no PWM). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">channel</td><td>Channel number (0-15). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure. </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1187,20 +1144,10 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Set duty cycle for a channel (0.0-1.0). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">channel</td><td>Channel number (0-15). </td></tr>
-    <tr><td class="paramname">duty</td><td>Duty cycle (0.0 = off, 1.0 = fully on). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure. </dd></dl>
 
 </div>
 </div>
@@ -1222,19 +1169,10 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Set the PWM frequency (global &ndash; all channels). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">freq_hz</td><td>Desired frequency in Hz (24-1526). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure. </dd></dl>
 
 </div>
 </div>
@@ -1256,19 +1194,10 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Set output driver mode (global). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">totem_pole</td><td>true for totem-pole (default), false for open-drain. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure. </dd></dl>
 
 </div>
 </div>
@@ -1290,19 +1219,10 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Set output polarity inversion (global). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">invert</td><td>true to invert all outputs, false for normal. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure. </dd></dl>
 
 </div>
 </div>
@@ -1333,21 +1253,10 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Set raw on/off tick values for a channel. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">channel</td><td>Channel number (0-15). </td></tr>
-    <tr><td class="paramname">on_time</td><td>Tick count when signal turns ON (0-4095). </td></tr>
-    <tr><td class="paramname">off_time</td><td>Tick count when signal turns OFF (0-4095). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure. </dd></dl>
 
 </div>
 </div>
@@ -1369,13 +1278,10 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Put PCA9685 into low-power sleep mode. </p>
-<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1434,13 +1340,10 @@ Here is the caller graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Wake PCA9685 from sleep mode. </p>
-<dl class="section return"><dt>Returns</dt><dd>true on success, false on failure. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

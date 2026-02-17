@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Ensure strip resources are initialized (lazy init entrypoint)." alt="" coords="5,80,247,105"/>
 <area shape="rect" id="Node000002" href="$classWs2812Handler.html#afe5f397b22e9b92cf2fb2cebae6e123d" title=" " alt="" coords="295,73,536,113"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="247,90,281,90,281,95,247,95"/>
-<area shape="rect" id="Node000003" href="$classWs2812Handler.html#a172ae173d1e2bd93c9808452aad6e4cd" title="Initialize the RMT channel and LED strip." alt="" coords="584,80,773,105"/>
+<area shape="rect" id="Node000003" href="$classWs2812Handler.html#acce4955435f295ba4853b6239090982f" title="Initialize the RMT channel and LED strip." alt="" coords="584,80,773,105"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="536,90,570,90,570,95,536,95"/>
 <area shape="rect" id="Node000004" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="845,5,950,31"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="714,77,820,39,842,32,844,37,822,45,716,82"/>

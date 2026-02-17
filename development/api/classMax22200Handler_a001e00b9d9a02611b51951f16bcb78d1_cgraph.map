@@ -6,7 +6,7 @@
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="523,59,570,53,833,22,834,27,571,58,523,64"/>
 <area shape="rect" id="Node000006" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="824,153,976,179"/>
 <area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="514,98,811,148,810,154,513,103"/>
-<area shape="rect" id="Node000007" href="$classMax22200Handler.html#ad6c72b45a96c36cd1b450f5e330fad25" title="Initialize driver (ENABLE HIGH, read/clear STATUS, set ACTIVE)." alt="" coords="571,68,776,93"/>
+<area shape="rect" id="Node000007" href="$classMax22200Handler.html#a0dce05cd6639a10e52c0f669b72baf52" title="Initialize driver (ENABLE HIGH, read/clear STATUS, set ACTIVE)." alt="" coords="571,68,776,93"/>
 <area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="523,78,557,78,557,83,523,83"/>
 <area shape="rect" id="Node000004" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="1024,31,1196,56"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="953,22,1010,29,1010,34,953,27"/>

@@ -40,6 +40,9 @@ var hierarchy =
       [ "HalSpiBno08xComm", "classHalSpiBno08xComm.html", null ]
     ] ],
     [ "Ws2812Handler::Config", "structWs2812Handler_1_1Config.html", null ],
+    [ "std::false_type", null, [
+      [ "Tle92466edHandler::is_driver_result< T >", "structTle92466edHandler_1_1is__driver__result.html", null ]
+    ] ],
     [ "HandlerTaskArgs", "structHandlerTaskArgs.html", null ],
     [ "pca9685::I2cInterface", null, [
       [ "HalI2cPca9685Comm", "classHalI2cPca9685Comm.html", null ]
@@ -79,6 +82,9 @@ var hierarchy =
     [ "Tmc5160Handler", "classTmc5160Handler.html", null ],
     [ "Tmc9660CtrlPins", "structTmc9660CtrlPins.html", null ],
     [ "Tmc9660Handler", "classTmc9660Handler.html", null ],
+    [ "std::true_type", null, [
+      [ "Tle92466edHandler::is_driver_result< tle92466ed::DriverResult< T > >", "structTle92466edHandler_1_1is__driver__result_3_01tle92466ed_1_1DriverResult_3_01T_01_4_01_4.html", null ]
+    ] ],
     [ "tmc51x0::UartCommInterface", null, [
       [ "HalUartTmc5160Comm", "classHalUartTmc5160Comm.html", null ]
     ] ],

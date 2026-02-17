@@ -22,9 +22,9 @@
 <area shape="poly" id="edge13_Node000010_Node000007" title=" " alt="" coords="685,276,325,203,326,198,686,271"/>
 <area shape="rect" id="Node000011" href="$classPca9685Handler.html#a91f6e14b606d4007797234ec9599a134" title="Get the underlying PCA9685 driver for advanced register&#45;level operations." alt="" coords="431,283,629,309"/>
 <area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="664,299,629,299,629,293,664,293"/>
-<area shape="rect" id="Node000013" href="$classPca9685Handler.html#a989c4b1a8260c7af0bf210103d13cc7b" title="Put PCA9685 into low&#45;power sleep mode." alt="" coords="444,333,616,358"/>
+<area shape="rect" id="Node000013" href="$classPca9685Handler.html#a989c4b1a8260c7af0bf210103d13cc7b" title=" " alt="" coords="444,333,616,358"/>
 <area shape="poly" id="edge14_Node000010_Node000013" title=" " alt="" coords="677,321,600,335,599,330,676,316"/>
-<area shape="rect" id="Node000015" href="$classPca9685Handler.html#abfea96039e525e253d0eab9234cdfa5f" title="Wake PCA9685 from sleep mode." alt="" coords="445,389,615,414"/>
+<area shape="rect" id="Node000015" href="$classPca9685Handler.html#abfea96039e525e253d0eab9234cdfa5f" title=" " alt="" coords="445,389,615,414"/>
 <area shape="poly" id="edge16_Node000010_Node000015" title=" " alt="" coords="745,324,630,373,576,391,575,386,628,368,743,319"/>
 <area shape="rect" id="Node000012" href="$classPca9685Handler.html#a7d3b7d292f41670fcb1b1ecfc803b404" title=" " alt="" coords="162,275,361,301"/>
 <area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="417,295,361,294,361,288,417,290"/>

@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classTle92466edHandler.html#a1e2b512ab7612d76de3dff2e9d2ffdb9" target="_top" xlink:title="Configure a channel.">
+<g id="a_Node000002"><a xlink:href="classTle92466edHandler.html#ac14e1f8cf8996a259428969e237f8675" target="_top" xlink:title="Configure a channel.">
 <polygon fill="white" stroke="#666666" points="124.5,-318 6.5,-318 6.5,-288 124.5,-288 124.5,-318"/>
 <text text-anchor="start" x="14.5" y="-306" font-family="Helvetica,sans-Serif" font-size="10.00">Tle92466edHandler::</text>
 <text text-anchor="middle" x="65.5" y="-295" font-family="Helvetica,sans-Serif" font-size="10.00">ConfigureChannel</text>
@@ -39,7 +39,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classTle92466edHandler.html#aa20087457d9c12f935721357035ffbd3" target="_top" xlink:title="Configure raw PWM period for a channel.">
+<g id="a_Node000003"><a xlink:href="classTle92466edHandler.html#aa0ad7669bfe2830245b05e46846e6eca" target="_top" xlink:title="Configure raw PWM period for a channel.">
 <polygon fill="white" stroke="#666666" points="124.5,-270 6.5,-270 6.5,-240 124.5,-240 124.5,-270"/>
 <text text-anchor="start" x="14.5" y="-258" font-family="Helvetica,sans-Serif" font-size="10.00">Tle92466edHandler::</text>
 <text text-anchor="middle" x="65.5" y="-247" font-family="Helvetica,sans-Serif" font-size="10.00">ConfigurePwmRaw</text>
@@ -58,7 +58,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classTle92466edHandler.html#aca309d58a9703e9ac74fda1a2dd0a603" target="_top" xlink:title="Disable a channel.">
+<g id="a_Node000004"><a xlink:href="classTle92466edHandler.html#a33b7dc81c74a87723d9e4f0ad829e41a" target="_top" xlink:title="Disable a channel.">
 <polygon fill="white" stroke="#666666" points="124.5,-222 6.5,-222 6.5,-192 124.5,-192 124.5,-222"/>
 <text text-anchor="start" x="14.5" y="-210" font-family="Helvetica,sans-Serif" font-size="10.00">Tle92466edHandler::</text>
 <text text-anchor="middle" x="65.5" y="-199" font-family="Helvetica,sans-Serif" font-size="10.00">DisableChannel</text>
@@ -96,7 +96,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="classTle92466edHandler.html#a74163648a3e412ca1b99f5cd1ea2b6e8" target="_top" xlink:title="Enable a channel.">
+<g id="a_Node000006"><a xlink:href="classTle92466edHandler.html#a2e7ce0a3fa43f9abdba28e12df2740e6" target="_top" xlink:title="Enable a channel.">
 <polygon fill="white" stroke="#666666" points="124.5,-126 6.5,-126 6.5,-96 124.5,-96 124.5,-126"/>
 <text text-anchor="start" x="14.5" y="-114" font-family="Helvetica,sans-Serif" font-size="10.00">Tle92466edHandler::</text>
 <text text-anchor="middle" x="65.5" y="-103" font-family="Helvetica,sans-Serif" font-size="10.00">EnableChannel</text>
@@ -115,7 +115,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="classTle92466edHandler.html#a9d7006a957958c32ddd4f0f5b1aea301" target="_top" xlink:title="Get channel diagnostics.">
+<g id="a_Node000007"><a xlink:href="classTle92466edHandler.html#a460b8f8c43510396ad34f8928e3f72f9" target="_top" xlink:title="Get channel diagnostics.">
 <polygon fill="white" stroke="#666666" points="131,-78 0,-78 0,-48 131,-48 131,-78"/>
 <text text-anchor="start" x="8" y="-66" font-family="Helvetica,sans-Serif" font-size="10.00">Tle92466edHandler::</text>
 <text text-anchor="middle" x="65.5" y="-55" font-family="Helvetica,sans-Serif" font-size="10.00">GetChannelDiagnostics</text>
@@ -134,7 +134,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="classTle92466edHandler.html#ac4f2233b64443a4919fdbe1806063fac" target="_top" xlink:title="Set channel current setpoint.">
+<g id="a_Node000008"><a xlink:href="classTle92466edHandler.html#a534dece279e9cbb9a7648e2f95eedd22" target="_top" xlink:title="Set channel current setpoint.">
 <polygon fill="white" stroke="#666666" points="124.5,-30 6.5,-30 6.5,0 124.5,0 124.5,-30"/>
 <text text-anchor="start" x="14.5" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">Tle92466edHandler::</text>
 <text text-anchor="middle" x="65.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">SetChannelCurrent</text>

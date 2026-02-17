@@ -4,7 +4,7 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,90,260,90,260,95,225,95"/>
 <area shape="rect" id="Node000003" href="$classTmc5160Handler.html#a6d4fce2433e03bb11b05a4278ef66fd0" title=" " alt="" coords="541,73,791,113"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="494,90,528,90,528,95,494,95"/>
-<area shape="rect" id="Node000004" href="$classTmc5160Handler.html#a64755f326176b0a38485acf5ca69fd0c" title="Initialize the TMC5160 driver with full configuration." alt="" coords="839,80,1036,105"/>
+<area shape="rect" id="Node000004" href="$classTmc5160Handler.html#a44ab36857e4e43062f81f7d6f10eab09" title="Initialize the TMC5160 driver with full configuration." alt="" coords="839,80,1036,105"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="791,90,825,90,825,95,791,95"/>
 <area shape="rect" id="Node000005" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="1107,5,1213,31"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="974,77,1083,39,1105,32,1106,37,1085,45,975,82"/>

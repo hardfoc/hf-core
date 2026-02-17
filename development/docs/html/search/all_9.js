@@ -1,7 +1,7 @@
 var searchData=
 [
   ['kdefaultbootconfig_0',['kDefaultBootConfig',['../classTmc9660Handler.html#a4de763121aff441af52e492f3cff6f1c',1,'Tmc9660Handler']]],
-  ['kickwatchdog_1',['KickWatchdog',['../classTle92466edHandler.html#a0b64e2ae2b32b4e3ec31730798565fbf',1,'Tle92466edHandler']]],
+  ['kickwatchdog_1',['KickWatchdog',['../classTle92466edHandler.html#a1cc881741f12bec3e5e0042edfb47caf',1,'Tle92466edHandler']]],
   ['kmaxchannels_2',['kMaxChannels',['../classPca9685PwmAdapter.html#af55760adbbae32af83d3d4f68219f822',1,'Pca9685PwmAdapter']]],
   ['kmaxfrequencyhz_3',['kMaxFrequencyHz',['../classPca9685PwmAdapter.html#a99fbcd37f8ec3a7147f09895b6c8d0ce',1,'Pca9685PwmAdapter']]],
   ['kmaxrawvalue_4',['kMaxRawValue',['../classPca9685PwmAdapter.html#a4fae40d04fe23c1bda49465a724ca260',1,'Pca9685PwmAdapter']]],
