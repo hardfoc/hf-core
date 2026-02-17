@@ -1,7 +1,9 @@
 <map id="Bno08xHandler::Initialize" name="Bno08xHandler::Initialize">
-<area shape="rect" id="Node000001" title="Initialize the BNO08x sensor." alt="" coords="5,35,192,60"/>
-<area shape="rect" id="Node000002" href="$classIBno08xDriverOps.html#a0ca90c1a5664ab3eb83f691aff34faa0" title=" " alt="" coords="253,5,438,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,34,239,28,239,33,193,39"/>
-<area shape="rect" id="Node000003" href="$classIBno08xDriverOps.html#a66418ccb85cd8eb8eea327fa979a2b6a" title=" " alt="" coords="240,55,451,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="193,55,227,59,226,64,192,61"/>
+<area shape="rect" id="Node000001" title="Initialize the BNO08x sensor." alt="" coords="5,63,192,88"/>
+<area shape="rect" id="Node000002" href="$classIBno08xDriverOps.html#a0ca90c1a5664ab3eb83f691aff34faa0" title=" " alt="" coords="260,5,445,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,60,239,41,282,31,283,36,241,46,156,65"/>
+<area shape="rect" id="Node000003" href="$classIBno08xDriverOps.html#a66418ccb85cd8eb8eea327fa979a2b6a" title=" " alt="" coords="247,55,458,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="192,73,234,73,234,78,192,78"/>
+<area shape="rect" id="Node000004" href="$classIBno08xDriverOps.html#a04816a487d80027e6d6fe435f651b265" title=" " alt="" coords="240,120,465,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="156,85,241,105,283,114,282,120,239,110,155,91"/>
 </map>

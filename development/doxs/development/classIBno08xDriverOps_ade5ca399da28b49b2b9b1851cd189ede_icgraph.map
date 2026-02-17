@@ -1,7 +1,9 @@
 <map id="IBno08xDriverOps::GetLastError" name="IBno08xDriverOps::GetLastError">
-<area shape="rect" id="Node000001" title=" " alt="" coords="299,27,497,67"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="299,55,497,95"/>
 <area shape="rect" id="Node000002" href="$classBno08xHandler.html#a58384d1dfa272ba616140abb9fa55c2b" title="Dump comprehensive diagnostics to the logger." alt="" coords="5,5,251,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="285,38,245,33,245,28,285,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="292,55,250,46,191,33,192,28,251,41,293,50"/>
 <area shape="rect" id="Node000003" href="$classBno08xHandler.html#a0f3b0686f5cbab0f7af7690d188c89b8" title="Get the last driver&#45;level SH&#45;2 error code." alt="" coords="18,55,238,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="285,62,238,67,238,61,285,56"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="285,78,238,78,238,73,285,73"/>
+<area shape="rect" id="Node000004" href="$classBno08xHandler.html#a74cdf0328224c1a3fad944bbf1312e7e" title="Update sensor &#45; must be called regularly to pump the SH&#45;2 service loop." alt="" coords="39,120,217,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="293,101,251,110,192,123,191,117,250,105,292,96"/>
 </map>

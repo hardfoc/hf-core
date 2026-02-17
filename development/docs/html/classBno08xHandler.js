@@ -5,6 +5,7 @@ var classBno08xHandler =
     [ "~Bno08xHandler", "classBno08xHandler.html#a4bdec4a51e6c90b2354db27fbc8b3251", null ],
     [ "Bno08xHandler", "classBno08xHandler.html#a6b2e5e14222d04f15591b31b319bb605", null ],
     [ "Bno08xHandler", "classBno08xHandler.html#acf9772bf644ddfeff83371740dd6216b", null ],
+    [ "ClearSensorCallback", "classBno08xHandler.html#a86c30e163a55db1e1dd3f1ce30635239", null ],
     [ "Deinitialize", "classBno08xHandler.html#a2019941b7d9fa00ffe08630fee9ef340", null ],
     [ "DumpDiagnostics", "classBno08xHandler.html#a58384d1dfa272ba616140abb9fa55c2b", null ],
     [ "EnsureInitialized", "classBno08xHandler.html#afab341345c8ed8fed1a218e0df18c4aa", null ],
@@ -22,11 +23,14 @@ var classBno08xHandler =
     [ "operator=", "classBno08xHandler.html#a3116a61b5546a29048810a6849542438", null ],
     [ "operator=", "classBno08xHandler.html#ab8262b5c735887b095013d053acf7cc8", null ],
     [ "QuaternionToEuler", "classBno08xHandler.html#ac08bd345f853529de4448205be64cafb", null ],
+    [ "SetSensorCallback", "classBno08xHandler.html#ac6c4372bc30b608206070bcf96723b2d", null ],
+    [ "Update", "classBno08xHandler.html#a74cdf0328224c1a3fad944bbf1312e7e", null ],
     [ "config_", "classBno08xHandler.html#a04876261e622b918bd759f042ce025fc", null ],
     [ "description_", "classBno08xHandler.html#a8a2f0bb1bca336b49c6292c10475f64d", null ],
     [ "driver_ops_", "classBno08xHandler.html#af43f44ede1cc408c5141588a4b965fea", null ],
     [ "handler_mutex_", "classBno08xHandler.html#aa17448183bf8a9205830538ce86a3e1a", null ],
     [ "initialized_", "classBno08xHandler.html#a4f2e5fdd78f9f3fbb737bed060478287", null ],
     [ "interface_type_", "classBno08xHandler.html#a6a6864399d79e0363da35bd3e684c123", null ],
-    [ "last_error_", "classBno08xHandler.html#ae17c70536ddb4a4ae8931807347c9001", null ]
+    [ "last_error_", "classBno08xHandler.html#ae17c70536ddb4a4ae8931807347c9001", null ],
+    [ "user_callback_", "classBno08xHandler.html#ab4be91e6bd9492c1824aa747db733c0f", null ]
 ];

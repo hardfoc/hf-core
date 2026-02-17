@@ -13,13 +13,14 @@ var searchData=
   ['unregistermonitoringcontext_10',['UnregisterMonitoringContext',['../classNtcTemperatureHandler.html#a0b3fba99650d0b01b1347eae0c86abba',1,'NtcTemperatureHandler']]],
   ['unregisterpininterrupt_11',['UnregisterPinInterrupt',['../classPcal95555Handler.html#a49e5b18fcbd6762701009b564b90d481',1,'Pcal95555Handler']]],
   ['unsupported_5foperation_12',['UNSUPPORTED_OPERATION',['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a5a2ff7a2f2c3b40268e57995408f8e9d',1,'Bno08xHandler.h']]],
-  ['update_13',['Update',['../classIBno08xDriverOps.html#acf715744d1f45d38c44b6cbe6a2f56a4',1,'IBno08xDriverOps::Update()'],['../classBno08xDriverImpl.html#a6ad40347e415a1524b585498c87b4233',1,'Bno08xDriverImpl::Update()']]],
+  ['update_13',['Update',['../classIBno08xDriverOps.html#acf715744d1f45d38c44b6cbe6a2f56a4',1,'IBno08xDriverOps::Update()'],['../classBno08xDriverImpl.html#a6ad40347e415a1524b585498c87b4233',1,'Bno08xDriverImpl::Update()'],['../classBno08xHandler.html#a74cdf0328224c1a3fad944bbf1312e7e',1,'Bno08xHandler::Update()']]],
   ['updateall_14',['UpdateAll',['../classPca9685PwmAdapter.html#a20b32c0131c0265e0c50b2f7d66677f3',1,'Pca9685PwmAdapter']]],
   ['updatebasediagnostics_15',['UpdateBaseDiagnostics',['../classNtcTemperatureHandler.html#addc61cbd9e69f84bb6014a92b1c63496',1,'NtcTemperatureHandler']]],
   ['updatediagnostics_16',['UpdateDiagnostics',['../classAs5047uHandler.html#a6854be00365afbb2eeddfb3177939456',1,'As5047uHandler::UpdateDiagnostics()'],['../classNtcTemperatureHandler.html#ab867e35301fff064ce0e76dd85033f8c',1,'NtcTemperatureHandler::UpdateDiagnostics()'],['../classTmc9660Handler_1_1Adc.html#a95192f5ef76ba77cc2abce2581f44801',1,'Tmc9660Handler::Adc::UpdateDiagnostics()'],['../classTmc9660Handler_1_1Temperature.html#a824232f839a3c46684de17dabaca8b79',1,'Tmc9660Handler::Temperature::UpdateDiagnostics()']]],
   ['updatestatistics_17',['UpdateStatistics',['../classNtcTemperatureHandler.html#a2c8404fac12fa3e3d3655cd4430d2049',1,'NtcTemperatureHandler::UpdateStatistics()'],['../classTmc9660Handler_1_1Adc.html#a8f7aa9ea8e16d94e1a4166af1e3821d0',1,'Tmc9660Handler::Adc::UpdateStatistics()'],['../classTmc9660Handler_1_1Temperature.html#a909be22915a36d0ef677558f3c00c8c4',1,'Tmc9660Handler::Temperature::UpdateStatistics()']]],
   ['usage_20example_18',['Usage Example',['../Tmc5160Handler_8h.html#autotoc_md17',1,'Usage Example'],['../classTmc9660Handler.html#autotoc_md27',1,'Usage Example'],['../Ws2812Handler_8h.html#autotoc_md28',1,'Usage Example']]],
   ['use_5fspi_5f_19',['use_spi_',['../classTmc9660Handler.html#a01828de5ad5685ee4baac83943be3440',1,'Tmc9660Handler']]],
-  ['utilities_20',['🔧 Utilities',['../index.html#autotoc_md39',1,'']]],
-  ['uvw_5fpole_5fpairs_21',['uvw_pole_pairs',['../structAs5047uConfig.html#a5938deaf6c6b4684bd829bfa47792357',1,'As5047uConfig']]]
+  ['user_5fcallback_5f_20',['user_callback_',['../classBno08xHandler.html#ab4be91e6bd9492c1824aa747db733c0f',1,'Bno08xHandler']]],
+  ['utilities_21',['🔧 Utilities',['../index.html#autotoc_md39',1,'']]],
+  ['uvw_5fpole_5fpairs_22',['uvw_pole_pairs',['../structAs5047uConfig.html#a5938deaf6c6b4684bd829bfa47792357',1,'As5047uConfig']]]
 ];

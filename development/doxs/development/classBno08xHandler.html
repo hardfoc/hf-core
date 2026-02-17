@@ -142,6 +142,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abdc987c8440f4a2394ae861a40766e10" id="r_abdc987c8440f4a2394ae861a40766e10"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdc987c8440f4a2394ae861a40766e10">IsInitialized</a> () const noexcept</td></tr>
 <tr class="memdesc:abdc987c8440f4a2394ae861a40766e10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if sensor is initialized and ready.  <br /></td></tr>
 <tr class="separator:abdc987c8440f4a2394ae861a40766e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74cdf0328224c1a3fad944bbf1312e7e" id="r_a74cdf0328224c1a3fad944bbf1312e7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74cdf0328224c1a3fad944bbf1312e7e">Update</a> () noexcept</td></tr>
+<tr class="memdesc:a74cdf0328224c1a3fad944bbf1312e7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update sensor - must be called regularly to pump the SH-2 service loop.  <br /></td></tr>
+<tr class="separator:a74cdf0328224c1a3fad944bbf1312e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6c4372bc30b608206070bcf96723b2d" id="r_ac6c4372bc30b608206070bcf96723b2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6c4372bc30b608206070bcf96723b2d">SetSensorCallback</a> (SensorCallback callback) noexcept</td></tr>
+<tr class="memdesc:ac6c4372bc30b608206070bcf96723b2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set callback for sensor events.  <br /></td></tr>
+<tr class="separator:ac6c4372bc30b608206070bcf96723b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86c30e163a55db1e1dd3f1ce30635239" id="r_a86c30e163a55db1e1dd3f1ce30635239"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86c30e163a55db1e1dd3f1ce30635239">ClearSensorCallback</a> () noexcept</td></tr>
+<tr class="memdesc:a86c30e163a55db1e1dd3f1ce30635239"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear sensor event callback.  <br /></td></tr>
+<tr class="separator:a86c30e163a55db1e1dd3f1ce30635239"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88213b7fef4820d06b5972fac3702715" id="r_a88213b7fef4820d06b5972fac3702715"><td class="memItemLeft" align="right" valign="top">BNO085Interface&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88213b7fef4820d06b5972fac3702715">GetInterfaceType</a> () const noexcept</td></tr>
 <tr class="memdesc:a88213b7fef4820d06b5972fac3702715"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the communication interface type.  <br /></td></tr>
 <tr class="separator:a88213b7fef4820d06b5972fac3702715"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -205,6 +214,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a6a6864399d79e0363da35bd3e684c123" id="r_a6a6864399d79e0363da35bd3e684c123"><td class="memItemLeft" align="right" valign="top">BNO085Interface&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a6864399d79e0363da35bd3e684c123">interface_type_</a></td></tr>
 <tr class="memdesc:a6a6864399d79e0363da35bd3e684c123"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C or SPI.  <br /></td></tr>
 <tr class="separator:a6a6864399d79e0363da35bd3e684c123"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4be91e6bd9492c1824aa747db733c0f" id="r_ab4be91e6bd9492c1824aa747db733c0f"><td class="memItemLeft" align="right" valign="top">SensorCallback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4be91e6bd9492c1824aa747db733c0f">user_callback_</a></td></tr>
+<tr class="memdesc:ab4be91e6bd9492c1824aa747db733c0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">User's sensor callback.  <br /></td></tr>
+<tr class="separator:ab4be91e6bd9492c1824aa747db733c0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a2f0bb1bca336b49c6292c10475f64d" id="r_a8a2f0bb1bca336b49c6292c10475f64d"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a2f0bb1bca336b49c6292c10475f64d">description_</a> [64] {}</td></tr>
 <tr class="memdesc:a8a2f0bb1bca336b49c6292c10475f64d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Description string.  <br /></td></tr>
 <tr class="separator:a8a2f0bb1bca336b49c6292c10475f64d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -404,6 +416,33 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a86c30e163a55db1e1dd3f1ce30635239" name="a86c30e163a55db1e1dd3f1ce30635239"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86c30e163a55db1e1dd3f1ce30635239">&#9670;&#160;</a></span>ClearSensorCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Bno08xHandler::ClearSensorCallback </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clear sensor event callback. </p>
+
+</div>
+</div>
 <a id="a2019941b7d9fa00ffe08630fee9ef340" name="a2019941b7d9fa00ffe08630fee9ef340"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2019941b7d9fa00ffe08630fee9ef340">&#9670;&#160;</a></span>Deinitialize()</h2>
 
@@ -497,7 +536,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_afab341345c8ed8fed1a218e0df18c4aa_cgraph.svg" width="1030" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_afab341345c8ed8fed1a218e0df18c4aa_cgraph.svg" width="1044" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -534,12 +573,12 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a0479abc034d5417ba7dc524468a5ce82_cgraph.svg" width="743" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a0479abc034d5417ba7dc524468a5ce82_cgraph.svg" width="758" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a0479abc034d5417ba7dc524468a5ce82_icgraph.svg" width="1027" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a0479abc034d5417ba7dc524468a5ce82_icgraph.svg" width="1027" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -716,7 +755,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_abf3a81e646ebd6dd0a10890e5be21d6d_cgraph.svg" width="1520" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_abf3a81e646ebd6dd0a10890e5be21d6d_cgraph.svg" width="1535" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -745,12 +784,12 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Get direct access to the underlying sensor driver (type-erased). </p>
-<p>The returned pointer exposes the same SH-2 API as the concrete BNO085 driver: Update(), EnableSensor(), DisableSensor(), SetCallback(), HasNewData(), GetLatest(), <a class="el" href="#abf7206fa6caf5e8cf5132b02cd7a62bc" title="Get the last handler error code.">GetLastError()</a>, HardwareReset(), etc. Use it when you need to call driver methods directly (e.g. custom callbacks, low-level control). Valid for the lifetime of this handler.</p>
+<p>The returned pointer exposes the same SH-2 API as the concrete BNO085 driver: <a class="el" href="#a74cdf0328224c1a3fad944bbf1312e7e" title="Update sensor - must be called regularly to pump the SH-2 service loop.">Update()</a>, EnableSensor(), DisableSensor(), SetCallback(), HasNewData(), GetLatest(), <a class="el" href="#abf7206fa6caf5e8cf5132b02cd7a62bc" title="Get the last handler error code.">GetLastError()</a>, HardwareReset(), etc. Use it when you need to call driver methods directly (e.g. custom callbacks, low-level control). Valid for the lifetime of this handler.</p>
 <dl class="section return"><dt>Returns</dt><dd>Non-owning pointer to the driver interface, or nullptr if not constructed </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a57e2952c0438e800c091cd0e3ebcdaf5_cgraph.svg" width="1275" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a57e2952c0438e800c091cd0e3ebcdaf5_cgraph.svg" width="1290" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -789,12 +828,12 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ac1a1ff0d56324dcc09d9b48ca2e132e6_cgraph.svg" width="456" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ac1a1ff0d56324dcc09d9b48ca2e132e6_cgraph.svg" width="471" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ac1a1ff0d56324dcc09d9b48ca2e132e6_icgraph.svg" width="1262" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ac1a1ff0d56324dcc09d9b48ca2e132e6_icgraph.svg" width="1262" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -851,6 +890,11 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Internal: map SH-2 error code to Bno08xError. </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a6e91ad7cdb2e1bb9a57eb797cf7d8e96_icgraph.svg" width="435" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -939,6 +983,74 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ac6c4372bc30b608206070bcf96723b2d" name="ac6c4372bc30b608206070bcf96723b2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6c4372bc30b608206070bcf96723b2d">&#9670;&#160;</a></span>SetSensorCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Bno08xHandler::SetSensorCallback </td>
+          <td>(</td>
+          <td class="paramtype">SensorCallback</td>          <td class="paramname"><span class="paramname"><em>callback</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set callback for sensor events. </p>
+<p>The callback is invoked from within <a class="el" href="#a74cdf0328224c1a3fad944bbf1312e7e" title="Update sensor - must be called regularly to pump the SH-2 service loop.">Update()</a> whenever a sensor report arrives. Only one callback can be active at a time.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">callback</td><td>Callback function for sensor events </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a74cdf0328224c1a3fad944bbf1312e7e" name="a74cdf0328224c1a3fad944bbf1312e7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74cdf0328224c1a3fad944bbf1312e7e">&#9670;&#160;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832">Bno08xError</a> Bno08xHandler::Update </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update sensor - must be called regularly to pump the SH-2 service loop. </p>
+<p>Call this every 5-10 ms (or faster) for optimal data throughput. Sensor callbacks are dispatched from within this method.</p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c" title="Operation completed successfully.">Bno08xError::SUCCESS</a> if successful </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a74cdf0328224c1a3fad944bbf1312e7e_cgraph.svg" width="983" height="279"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -1108,6 +1220,30 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Last error. </p>
+
+</div>
+</div>
+<a id="ab4be91e6bd9492c1824aa747db733c0f" name="ab4be91e6bd9492c1824aa747db733c0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4be91e6bd9492c1824aa747db733c0f">&#9670;&#160;</a></span>user_callback_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SensorCallback Bno08xHandler::user_callback_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>User's sensor callback. </p>
 
 </div>
 </div>

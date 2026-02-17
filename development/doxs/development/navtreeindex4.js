@@ -1,5 +1,9 @@
 var NAVTREEINDEX4 =
 {
+"classTmc9660Handler_1_1Adc.html#a1abd9e2f3575e82c6679befeeba32b89":[11,14,0,0,11],
+"classTmc9660Handler_1_1Adc.html#a1ff51dc674661709a946c9622da98751":[11,14,0,0,13],
+"classTmc9660Handler_1_1Adc.html#a3b750314ba12d924c747518c3949bc1f":[11,14,0,0,8],
+"classTmc9660Handler_1_1Adc.html#a4252bc585fc61b87dd2fbd3ba3e5bbe1":[11,14,0,0,14],
 "classTmc9660Handler_1_1Adc.html#a44c5d06aa9c79fc2a38fdc53ffd69069":[11,14,0,0,18],
 "classTmc9660Handler_1_1Adc.html#a4ac45d019ddc392ca9e04194e81cc3ae":[11,14,0,0,20],
 "classTmc9660Handler_1_1Adc.html#a528e613422995ab34e5d923ed01c3dc0":[11,14,0,0,29],
@@ -245,9 +249,5 @@ var NAVTREEINDEX4 =
 "functions_vars_w.html":[13,3,2,20],
 "functions_vars_x.html":[13,3,2,21],
 "functions_vars_y.html":[13,3,2,22],
-"functions_vars_z.html":[13,3,2,23],
-"functions_w.html":[13,3,0,21],
-"functions_x.html":[13,3,0,22],
-"functions_y.html":[13,3,0,23],
-"functions_z.html":[13,3,0,24]
+"functions_vars_z.html":[13,3,2,23]
 };

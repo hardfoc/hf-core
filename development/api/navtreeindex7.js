@@ -1,5 +1,9 @@
 var NAVTREEINDEX7 =
 {
+"tle92466ed__handler__comprehensive__test_8cpp.html#afd752f1cd065b10fc0c00db78e2ab9c3":[14,0,0,0,0,0,6,31],
+"tle92466ed__handler__comprehensive__test_8cpp.html#afee7768b8b35ea709bb0a2dd90c24287":[14,0,0,0,0,0,6,10],
+"tmc5160__handler__comprehensive__test_8cpp.html":[14,0,0,0,0,0,7],
+"tmc5160__handler__comprehensive__test_8cpp.html#a027fc32513c84cb715eaa971fe791bc0":[14,0,0,0,0,0,7,26],
 "tmc5160__handler__comprehensive__test_8cpp.html#a0d6f0a3e0cbcb3d356f59a6046114bf0":[14,0,0,0,0,0,7,17],
 "tmc5160__handler__comprehensive__test_8cpp.html#a15956a153e964d345dba14cff6022898":[14,0,0,0,0,0,7,25],
 "tmc5160__handler__comprehensive__test_8cpp.html#a16479e08a1abef7505428fcbdf49eaed":[14,0,0,0,0,0,7,34],
