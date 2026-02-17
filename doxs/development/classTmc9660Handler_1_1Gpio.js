@@ -1,7 +1,7 @@
 var classTmc9660Handler_1_1Gpio =
 [
     [ "Gpio", "classTmc9660Handler_1_1Gpio.html#a819b8d57d9ed8f80145a1c88e216ee62", null ],
-    [ "~Gpio", "classTmc9660Handler_1_1Gpio.html#a49f30b86ff077c917f2c40fceaf98984", null ],
+    [ "~Gpio", "classTmc9660Handler_1_1Gpio.html#af9012cdaeb1678b7b82087ece4fc494f", null ],
     [ "Deinitialize", "classTmc9660Handler_1_1Gpio.html#ab51d1d37aef210699b8918ea78ede699", null ],
     [ "GetDescription", "classTmc9660Handler_1_1Gpio.html#a0370b84c0356793d8fc2529ba419bb41", null ],
     [ "GetDirectionImpl", "classTmc9660Handler_1_1Gpio.html#aaf312c1bbf7a2d2475909a8bde80a22c", null ],

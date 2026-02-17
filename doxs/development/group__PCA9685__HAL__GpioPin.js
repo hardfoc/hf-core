@@ -2,7 +2,7 @@ var group__PCA9685__HAL__GpioPin =
 [
     [ "Pca9685GpioPin", "classPca9685GpioPin.html", [
       [ "Pca9685GpioPin", "classPca9685GpioPin.html#a64892b616d817bd04eace3ab2c4ef4a8", null ],
-      [ "~Pca9685GpioPin", "classPca9685GpioPin.html#a1bef39a943f105717ca0577e79cd6a80", null ],
+      [ "~Pca9685GpioPin", "classPca9685GpioPin.html#ad911e7d226d0b94dcde49c1830567b1b", null ],
       [ "Deinitialize", "classPca9685GpioPin.html#afbbc12ce4cfbaba86fbc39a7274f3905", null ],
       [ "GetDescription", "classPca9685GpioPin.html#a9c781e39d938496324ce607b0d395fd5", null ],
       [ "GetDirectionImpl", "classPca9685GpioPin.html#aa1e8393edc0e47ab7b93e0240cc32b46", null ],

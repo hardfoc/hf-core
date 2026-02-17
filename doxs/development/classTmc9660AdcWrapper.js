@@ -1,7 +1,7 @@
 var classTmc9660AdcWrapper =
 [
     [ "Tmc9660AdcWrapper", "classTmc9660AdcWrapper.html#aaa1916aded3e1f9af9ed4c9a0d35af85", null ],
-    [ "~Tmc9660AdcWrapper", "classTmc9660AdcWrapper.html#a887fd3f85f165cfe128f9ff1bb226883", null ],
+    [ "~Tmc9660AdcWrapper", "classTmc9660AdcWrapper.html#a6e6b964a668298a31492d8020770bce8", null ],
     [ "Tmc9660AdcWrapper", "classTmc9660AdcWrapper.html#aa882341eb3bbf4bc62f53dea344f3297", null ],
     [ "Tmc9660AdcWrapper", "classTmc9660AdcWrapper.html#adb9d695d17dcd4909fd19024df2fefd9", null ],
     [ "Deinitialize", "classTmc9660AdcWrapper.html#a9d61893186aaa1d768cf61038ab285cb", null ],

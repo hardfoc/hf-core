@@ -1,31 +1,29 @@
 <map id="Tmc9660AdcWrapper::Deinitialize" name="Tmc9660AdcWrapper::Deinitialize">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,89,175,129"/>
-<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a7fe382c4dbf6bf84ed31586e52ec2e6e" title="Get a reference to the ADC wrapper." alt="" coords="223,67,387,92"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,95,209,90,210,95,175,100"/>
-<area shape="rect" id="Node000012" href="$classTmc9660Handler_1_1Adc.html#afde209e0b01c869413c927cca08bf4a2" title="Deinitialize ADC wrapper (no&#45;op)." alt="" coords="223,117,388,157"/>
-<area shape="poly" id="edge17_Node000001_Node000012" title=" " alt="" coords="175,117,210,122,209,127,174,122"/>
-<area shape="rect" id="Node000003" href="$classTmc9660Handler.html#a5a279ae9d4b5a8e0d71cb24577ad88ea" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="436,104,685,129"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="388,89,461,99,460,105,387,94"/>
-<area shape="rect" id="Node000011" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="979,29,1201,55"/>
-<area shape="poly" id="edge16_Node000002_Node000011" title=" " alt="" coords="387,73,965,45,965,51,388,78"/>
-<area shape="rect" id="Node000004" href="$classTmc9660Handler.html#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device." alt="" coords="733,129,931,155"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="686,126,720,129,719,134,685,131"/>
-<area shape="rect" id="Node000010" href="$classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f" title="Check if the TMC9660 driver has been initialized and is ready." alt="" coords="994,227,1186,267"/>
-<area shape="poly" id="edge15_Node000003_Node000010" title=" " alt="" coords="603,127,734,165,981,222,980,228,733,170,602,132"/>
-<area shape="rect" id="Node000005" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="1037,79,1143,104"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="897,127,1023,102,1024,107,898,132"/>
-<area shape="rect" id="Node000008" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="1014,128,1166,153"/>
-<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="931,139,1000,138,1000,144,931,144"/>
-<area shape="rect" id="Node000009" href="$classLogger.html#a4681229c521795685fc14f6b55c82300" title="Log info message." alt="" coords="1041,177,1139,203"/>
-<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="901,152,1027,176,1026,181,900,157"/>
-<area shape="poly" id="edge11_Node000004_Node000010" title=" " alt="" coords="857,152,912,182,980,213,1001,221,999,226,978,218,909,187,854,157"/>
-<area shape="poly" id="edge12_Node000004_Node000011" title=" " alt="" coords="885,127,929,108,943,97,952,86,962,74,977,64,993,57,995,61,980,68,966,78,956,89,947,101,932,112,887,132"/>
-<area shape="rect" id="Node000006" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="1249,92,1421,117"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1143,91,1236,97,1236,102,1143,97"/>
-<area shape="rect" id="Node000007" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="1262,153,1409,179"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="1143,98,1202,113,1293,146,1291,151,1201,118,1142,103"/>
-<area shape="poly" id="edge9_Node000009_Node000006" title=" " alt="" coords="1139,180,1200,164,1224,152,1248,138,1289,120,1291,125,1251,143,1227,156,1202,168,1140,185"/>
-<area shape="poly" id="edge10_Node000009_Node000007" title=" " alt="" coords="1140,183,1248,172,1248,177,1140,188"/>
-<area shape="poly" id="edge13_Node000011_Node000003" title=" " alt="" coords="999,57,666,105,665,99,999,52"/>
-<area shape="poly" id="edge14_Node000011_Node000011" title=" " alt="" coords="1050,31,1042,21,1046,11,1063,5,1090,3,1125,7,1135,11,1138,17,1134,20,1131,15,1123,12,1090,8,1064,10,1050,15,1047,20,1054,27"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,106,175,146"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a7fe382c4dbf6bf84ed31586e52ec2e6e" title="Get a reference to the ADC wrapper." alt="" coords="223,84,387,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,112,209,107,210,112,175,117"/>
+<area shape="rect" id="Node000012" href="$classTmc9660Handler_1_1Adc.html#afde209e0b01c869413c927cca08bf4a2" title="Deinitialize ADC wrapper (no&#45;op)." alt="" coords="223,134,388,174"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="175,134,210,139,209,144,174,140"/>
+<area shape="rect" id="Node000003" href="$classTmc9660Handler.html#a5a279ae9d4b5a8e0d71cb24577ad88ea" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="707,84,956,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="387,85,436,82,547,79,659,82,693,84,693,89,659,87,547,84,436,87,388,91"/>
+<area shape="rect" id="Node000011" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="436,121,659,147"/>
+<area shape="poly" id="edge12_Node000002_Node000011" title=" " alt="" coords="388,107,451,117,451,122,387,112"/>
+<area shape="rect" id="Node000004" href="$classTmc9660Handler.html#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device." alt="" coords="1004,55,1201,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="949,81,990,77,991,82,949,87"/>
+<area shape="rect" id="Node000010" href="$classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f" title="Check if the TMC9660 driver has been initialized and is ready." alt="" coords="1007,105,1199,145"/>
+<area shape="poly" id="edge11_Node000003_Node000010" title=" " alt="" coords="955,107,993,111,993,116,954,112"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="1273,55,1378,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1202,65,1258,65,1258,70,1202,70"/>
+<area shape="rect" id="Node000008" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="1249,104,1401,129"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="1161,77,1255,98,1254,104,1160,83"/>
+<area shape="rect" id="Node000009" href="$classLogger.html#a4681229c521795685fc14f6b55c82300" title="Log info message." alt="" coords="1276,5,1375,31"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="1160,52,1262,29,1263,34,1161,57"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="1449,5,1621,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1378,52,1467,31,1468,36,1379,58"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="1462,55,1609,80"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="1378,65,1448,65,1448,70,1378,70"/>
+<area shape="poly" id="edge9_Node000009_Node000006" title=" " alt="" coords="1375,15,1435,15,1435,21,1375,21"/>
+<area shape="poly" id="edge10_Node000009_Node000007" title=" " alt="" coords="1375,27,1468,49,1467,54,1374,32"/>
+<area shape="poly" id="edge13_Node000011_Node000003" title=" " alt="" coords="644,119,720,109,721,114,645,124"/>
+<area shape="poly" id="edge14_Node000011_Node000011" title=" " alt="" coords="508,123,500,113,504,103,520,97,547,95,581,99,594,108,591,112,579,103,547,100,522,102,508,107,505,112,512,119"/>
 </map>

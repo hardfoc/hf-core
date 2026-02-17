@@ -147,7 +147,7 @@ Architecture Overview</h2>
 <p>The file contains three layers:</p>
 <ol type="1">
 <li><b>CRTP Communication Adapters</b> (<a class="el" href="classHalSpiTmc5160Comm.html" title="Concrete SPI communication adapter for TMC5160 using BaseSpi and BaseGpio.">HalSpiTmc5160Comm</a>, <a class="el" href="classHalUartTmc5160Comm.html" title="Concrete UART communication adapter for TMC5160 using BaseUart and BaseGpio.">HalUartTmc5160Comm</a>): Bridge HardFOC BaseSpi/BaseUart/BaseGpio to the TMC5160 driver's CRTP-based communication interfaces (tmc51x0::SpiCommInterface, tmc51x0::UartCommInterface).</li>
-<li><b><a class="el" href="classTmc5160Handler.html" title="Unified handler for TMC5160/TMC5130 stepper motor driver.">Tmc5160Handler</a></b> (main class): Non-templated facade that owns one typed driver instance (SpiDriver or UartDriver). Uses the visitDriver() template to route calls to the active driver, keeping the public API free of template parameters. Provides:<ul>
+<li><b><a class="el" href="classTmc5160Handler.html" title="Unified handler for TMC5160/TMC5130 stepper motor driver.">Tmc5160Handler</a></b> (main class): Non-templated facade that owns one typed driver instance (SpiDriver or UartDriver). Uses driverViaSpi()/driverViaUart() typed pointers or the visitDriver() template to route calls to the active driver, keeping the public API free of template parameters. Provides:<ul>
 <li>Full driver initialization with DriverConfig or ConfigBuilder</li>
 <li>Direct access to all 15 driver subsystems (rampControl, motorControl, etc.)</li>
 <li>Convenience methods for common operations</li>
@@ -155,7 +155,7 @@ Architecture Overview</h2>
 <li>Lazy initialization pattern</li>
 </ul>
 </li>
-<li><b>Subsystem Access</b>: All TMC5160 subsystems are accessible through the visitDriver() template or typed driver pointers for advanced users.</li>
+<li><b>Subsystem Access</b>: All TMC5160 subsystems are accessible through typed driver pointers (driverViaSpi() / driverViaUart()) or the visitDriver() template.</li>
 </ol>
 <h2><a class="anchor" id="autotoc_md16"></a>
 Supported Subsystems</h2>
@@ -209,14 +209,14 @@ Usage Example</h2>
 <div class="line"><span class="comment">// 3. Initialize</span></div>
 <div class="line"><span class="keywordflow">if</span> (handler.Initialize(config)) {</div>
 <div class="line">    <span class="comment">// 4. Use motor control</span></div>
-<div class="line">    handler.visitDriver([](<span class="keyword">auto</span>&amp; drv) {</div>
-<div class="line">        drv.rampControl.SetRampMode(tmc51x0::RampMode::POSITIONING);</div>
-<div class="line">        drv.rampControl.SetMaxSpeed(tmc51x0::Speed::FromRPM(100));</div>
-<div class="line">        drv.rampControl.SetAcceleration(tmc51x0::Acceleration::FromRPMS2(50));</div>
-<div class="line">        drv.rampControl.SetTargetPosition(51200); <span class="comment">// 1 revolution at 256 usteps</span></div>
-<div class="line">    });</div>
+<div class="line">    <span class="keywordflow">if</span> (<span class="keyword">auto</span>* drv = handler.driverViaSpi()) {</div>
+<div class="line">        drv-&gt;rampControl.SetRampMode(tmc51x0::RampMode::POSITIONING);</div>
+<div class="line">        drv-&gt;rampControl.SetMaxSpeed(tmc51x0::Speed::FromRPM(100));</div>
+<div class="line">        drv-&gt;rampControl.SetAcceleration(tmc51x0::Acceleration::FromRPMS2(50));</div>
+<div class="line">        drv-&gt;rampControl.SetTargetPosition(51200); <span class="comment">// 1 revolution at 256 usteps</span></div>
+<div class="line">    }</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassTmc5160Handler_html"><div class="ttname"><a href="classTmc5160Handler.html">Tmc5160Handler</a></div><div class="ttdoc">Unified handler for TMC5160/TMC5130 stepper motor driver.</div><div class="ttdef"><b>Definition</b> Tmc5160Handler.h:262</div></div>
+<div class="ttc" id="aclassTmc5160Handler_html"><div class="ttname"><a href="classTmc5160Handler.html">Tmc5160Handler</a></div><div class="ttdoc">Unified handler for TMC5160/TMC5130 stepper motor driver.</div><div class="ttdef"><b>Definition</b> Tmc5160Handler.h:263</div></div>
 </div><!-- fragment --><dl class="section author"><dt>Author</dt><dd>HardFOC Team </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>HardFOC </dd></dl>

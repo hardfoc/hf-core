@@ -162,13 +162,14 @@ Build and Flash a Test</h2>
 <div class="fragment"><div class="line">cd examples/esp32/scripts</div>
 <div class="line"> </div>
 <div class="line"># Build a utility test (no hardware needed)</div>
-<div class="line">./build_app.sh --app general_utils_test --build-type debug</div>
+<div class="line">./build_app.sh general_utils_test Debug</div>
 <div class="line"> </div>
 <div class="line"># Flash and monitor</div>
 <div class="line">cd .. &amp;&amp; idf.py -p /dev/ttyUSB0 flash monitor</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md37"></a>
 Build All CI-Enabled Tests</h2>
-<div class="fragment"><div class="line">./build_app.sh --all --build-type debug</div>
+<p>Use the CI pipeline or iterate over <code>app_config.yml</code> entries:</p>
+<div class="fragment"><div class="line">./build_app.sh list  # See all available apps</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md38"></a>
 📖 Handlers</h1>
 <table class="markdownTable">
@@ -205,7 +206,7 @@ Build All CI-Enabled Tests</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code>hf-utils-general</code>   </td><td class="markdownTableBodyLeft">CircularBuffer, RingBuffer, AveragingFilter, CRC, ActionTimer, IntervalAction, SoftwareVersion, LinearInterpolation, SimpleLinkedList, FlagSet, PhysicalUnit, and more    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><code>hf-utils-rtos-wrap</code>   </td><td class="markdownTableBodyLeft">RtosMutex, MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags, OsSemaphore, OsRecursiveMutex, os_delay_msec    </td></tr>
+<td class="markdownTableBodyLeft"><code>hf-utils-rtos-wrap</code>   </td><td class="markdownTableBodyLeft">RtosMutex, MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags, OsSemaphore, os_delay_msec    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft"><code>hf-utils-canopen</code>   </td><td class="markdownTableBodyLeft">CanFrame, SDO helpers, NMT commands   </td></tr>
 </table>

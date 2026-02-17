@@ -120,9 +120,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8e9d68f8d2eee1414afb54c9bca28164" id="r_a8e9d68f8d2eee1414afb54c9bca28164"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e9d68f8d2eee1414afb54c9bca28164">Pcal95555GpioPin</a> (hf_pin_num_t pin, <a class="el" href="classPcal95555Handler.html">Pcal95555Handler</a> *parent_handler, hf_gpio_direction_t direction=hf_gpio_direction_t::HF_GPIO_DIRECTION_INPUT, hf_gpio_active_state_t active_state=hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH, hf_gpio_output_mode_t output_mode=hf_gpio_output_mode_t::HF_GPIO_OUTPUT_MODE_PUSH_PULL, hf_gpio_pull_mode_t pull_mode=hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_FLOATING) noexcept</td></tr>
 <tr class="memdesc:a8e9d68f8d2eee1414afb54c9bca28164"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a PCAL95555 GPIO pin wrapper.  <br /></td></tr>
 <tr class="separator:a8e9d68f8d2eee1414afb54c9bca28164"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2efa965ae09ebf7810add68bd20b84b0" id="r_a2efa965ae09ebf7810add68bd20b84b0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2efa965ae09ebf7810add68bd20b84b0">~Pcal95555GpioPin</a> () override=default</td></tr>
-<tr class="memdesc:a2efa965ae09ebf7810add68bd20b84b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <br /></td></tr>
-<tr class="separator:a2efa965ae09ebf7810add68bd20b84b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f4144b4e01a57439b4b1a43f1779ef6" id="r_a0f4144b4e01a57439b4b1a43f1779ef6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f4144b4e01a57439b4b1a43f1779ef6">~Pcal95555GpioPin</a> () noexcept override=default</td></tr>
+<tr class="memdesc:a0f4144b4e01a57439b4b1a43f1779ef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <br /></td></tr>
+<tr class="separator:a0f4144b4e01a57439b4b1a43f1779ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">BaseGpio Interface Implementation</div></td></tr>
 <tr class="memitem:a49b393914fbb14d0a5f32e4a597babb2" id="r_a49b393914fbb14d0a5f32e4a597babb2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49b393914fbb14d0a5f32e4a597babb2">Initialize</a> () noexcept override</td></tr>
 <tr class="memdesc:a49b393914fbb14d0a5f32e4a597babb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the pin (configures direction and pull mode on the expander).  <br /></td></tr>
@@ -288,8 +288,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a2efa965ae09ebf7810add68bd20b84b0" name="a2efa965ae09ebf7810add68bd20b84b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2efa965ae09ebf7810add68bd20b84b0">&#9670;&#160;</a></span>~Pcal95555GpioPin()</h2>
+<a id="a0f4144b4e01a57439b4b1a43f1779ef6" name="a0f4144b4e01a57439b4b1a43f1779ef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f4144b4e01a57439b4b1a43f1779ef6">&#9670;&#160;</a></span>~Pcal95555GpioPin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -306,7 +306,7 @@ Friends</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">default</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

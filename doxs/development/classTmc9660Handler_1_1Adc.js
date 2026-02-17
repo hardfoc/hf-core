@@ -1,7 +1,7 @@
 var classTmc9660Handler_1_1Adc =
 [
     [ "Adc", "classTmc9660Handler_1_1Adc.html#a6f5e9eb8f504a04682523c5097ae713e", null ],
-    [ "~Adc", "classTmc9660Handler_1_1Adc.html#a770e772b991a9d0f5e5cb50b290ab533", null ],
+    [ "~Adc", "classTmc9660Handler_1_1Adc.html#a9fd14f78ed8a833efb605a3359141b8f", null ],
     [ "Deinitialize", "classTmc9660Handler_1_1Adc.html#afde209e0b01c869413c927cca08bf4a2", null ],
     [ "GetChannelTypeString", "classTmc9660Handler_1_1Adc.html#a65034322c01356bb594c24214577bc03", null ],
     [ "GetCurrentTimeUs", "classTmc9660Handler_1_1Adc.html#aa0cecbf9aacc9b985945c73343c324e8", null ],

@@ -120,9 +120,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a64892b616d817bd04eace3ab2c4ef4a8" id="r_a64892b616d817bd04eace3ab2c4ef4a8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64892b616d817bd04eace3ab2c4ef4a8">Pca9685GpioPin</a> (hf_pin_num_t pin, <a class="el" href="classPca9685Handler.html">Pca9685Handler</a> *parent_handler, hf_gpio_active_state_t active_state=hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH) noexcept</td></tr>
 <tr class="memdesc:a64892b616d817bd04eace3ab2c4ef4a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a PCA9685 GPIO pin wrapper.  <br /></td></tr>
 <tr class="separator:a64892b616d817bd04eace3ab2c4ef4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bef39a943f105717ca0577e79cd6a80" id="r_a1bef39a943f105717ca0577e79cd6a80"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bef39a943f105717ca0577e79cd6a80">~Pca9685GpioPin</a> () override=default</td></tr>
-<tr class="memdesc:a1bef39a943f105717ca0577e79cd6a80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <br /></td></tr>
-<tr class="separator:a1bef39a943f105717ca0577e79cd6a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad911e7d226d0b94dcde49c1830567b1b" id="r_ad911e7d226d0b94dcde49c1830567b1b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad911e7d226d0b94dcde49c1830567b1b">~Pca9685GpioPin</a> () noexcept override=default</td></tr>
+<tr class="memdesc:ad911e7d226d0b94dcde49c1830567b1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <br /></td></tr>
+<tr class="separator:ad911e7d226d0b94dcde49c1830567b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">BaseGpio Interface Implementation</div></td></tr>
 <tr class="memitem:aad888b977f799ca7c4f1f35eb9644311" id="r_aad888b977f799ca7c4f1f35eb9644311"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad888b977f799ca7c4f1f35eb9644311">Initialize</a> () noexcept override</td></tr>
 <tr class="memdesc:aad888b977f799ca7c4f1f35eb9644311"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the GPIO pin (sets channel to full-off by default).  <br /></td></tr>
@@ -245,8 +245,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a1bef39a943f105717ca0577e79cd6a80" name="a1bef39a943f105717ca0577e79cd6a80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1bef39a943f105717ca0577e79cd6a80">&#9670;&#160;</a></span>~Pca9685GpioPin()</h2>
+<a id="ad911e7d226d0b94dcde49c1830567b1b" name="ad911e7d226d0b94dcde49c1830567b1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad911e7d226d0b94dcde49c1830567b1b">&#9670;&#160;</a></span>~Pca9685GpioPin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -263,7 +263,7 @@ Friends</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">default</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

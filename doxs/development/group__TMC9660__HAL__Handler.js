@@ -3,7 +3,7 @@ var group__TMC9660__HAL__Handler =
     [ "Tmc9660Handler", "classTmc9660Handler.html", [
       [ "Adc", "classTmc9660Handler_1_1Adc.html", [
         [ "Adc", "classTmc9660Handler_1_1Adc.html#a6f5e9eb8f504a04682523c5097ae713e", null ],
-        [ "~Adc", "classTmc9660Handler_1_1Adc.html#a770e772b991a9d0f5e5cb50b290ab533", null ],
+        [ "~Adc", "classTmc9660Handler_1_1Adc.html#a9fd14f78ed8a833efb605a3359141b8f", null ],
         [ "Deinitialize", "classTmc9660Handler_1_1Adc.html#afde209e0b01c869413c927cca08bf4a2", null ],
         [ "GetChannelTypeString", "classTmc9660Handler_1_1Adc.html#a65034322c01356bb594c24214577bc03", null ],
         [ "GetCurrentTimeUs", "classTmc9660Handler_1_1Adc.html#aa0cecbf9aacc9b985945c73343c324e8", null ],
@@ -35,7 +35,7 @@ var group__TMC9660__HAL__Handler =
       ] ],
       [ "Gpio", "classTmc9660Handler_1_1Gpio.html", [
         [ "Gpio", "classTmc9660Handler_1_1Gpio.html#a819b8d57d9ed8f80145a1c88e216ee62", null ],
-        [ "~Gpio", "classTmc9660Handler_1_1Gpio.html#a49f30b86ff077c917f2c40fceaf98984", null ],
+        [ "~Gpio", "classTmc9660Handler_1_1Gpio.html#af9012cdaeb1678b7b82087ece4fc494f", null ],
         [ "Deinitialize", "classTmc9660Handler_1_1Gpio.html#ab51d1d37aef210699b8918ea78ede699", null ],
         [ "GetDescription", "classTmc9660Handler_1_1Gpio.html#a0370b84c0356793d8fc2529ba419bb41", null ],
         [ "GetDirectionImpl", "classTmc9660Handler_1_1Gpio.html#aaf312c1bbf7a2d2475909a8bde80a22c", null ],
@@ -56,7 +56,7 @@ var group__TMC9660__HAL__Handler =
       ] ],
       [ "Temperature", "classTmc9660Handler_1_1Temperature.html", [
         [ "Temperature", "classTmc9660Handler_1_1Temperature.html#a39c2778d7ba493b3c5a620b26289218d", null ],
-        [ "~Temperature", "classTmc9660Handler_1_1Temperature.html#ac3b989bae541358b6f31d9cb5e37e909", null ],
+        [ "~Temperature", "classTmc9660Handler_1_1Temperature.html#a47ac469deac03d39024c8332a274d830", null ],
         [ "Deinitialize", "classTmc9660Handler_1_1Temperature.html#a0666ccf1178ec18b29ff9b04ed982a12", null ],
         [ "GetCapabilities", "classTmc9660Handler_1_1Temperature.html#a5aaa7a97dba72b8d7ffe3db213ab69b6", null ],
         [ "GetCurrentTimeUs", "classTmc9660Handler_1_1Temperature.html#a41a767273451c49bc03ab16243cfd7e0", null ],
@@ -75,8 +75,9 @@ var group__TMC9660__HAL__Handler =
       [ "UartDriver", "classTmc9660Handler.html#a68a5549c74095516db249e2c2d4afed7", null ],
       [ "Tmc9660Handler", "classTmc9660Handler.html#a33c5f6adfbd116fd717ac96c3e00fb0b", null ],
       [ "Tmc9660Handler", "classTmc9660Handler.html#aed1c579c5456e85070601f22b3f39a01", null ],
-      [ "~Tmc9660Handler", "classTmc9660Handler.html#abd6d65254b611d5c65919d16ff41a156", null ],
+      [ "~Tmc9660Handler", "classTmc9660Handler.html#acb01f56d0292ce5e7fcad4df46421fdc", null ],
       [ "Tmc9660Handler", "classTmc9660Handler.html#abcae1e86438604b16a5e92312e7eb8e5", null ],
+      [ "Tmc9660Handler", "classTmc9660Handler.html#ab69c4d42a99fb746ea79a0c861efd314", null ],
       [ "adc", "classTmc9660Handler.html#a7fe382c4dbf6bf84ed31586e52ec2e6e", null ],
       [ "bootConfig", "classTmc9660Handler.html#a2381670960d25634731a697f895c19ab", null ],
       [ "CalibrateCurrentSensing", "classTmc9660Handler.html#a677ea00c57e16f7c74268be5a3267cda", null ],
@@ -109,6 +110,7 @@ var group__TMC9660__HAL__Handler =
       [ "Initialize", "classTmc9660Handler.html#adc564847f8ae26c47412aaee0758991c", null ],
       [ "IsDriverReady", "classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f", null ],
       [ "operator=", "classTmc9660Handler.html#a15630492c4e23ca9b54e502b5c75ba08", null ],
+      [ "operator=", "classTmc9660Handler.html#af2e2baaba84789c9a5c89a07d965b415", null ],
       [ "ReadParameter", "classTmc9660Handler.html#a475b974c3760a7b70786d4ff3dbdb76e", null ],
       [ "SendCommand", "classTmc9660Handler.html#acfdc76ef9862f3186ccad5166cfa8338", null ],
       [ "SetCommutationMode", "classTmc9660Handler.html#a0fcac84f3503a436d82365ea5ca6c864", null ],

@@ -1,7 +1,7 @@
 var classPca9685PwmAdapter =
 [
     [ "Pca9685PwmAdapter", "classPca9685PwmAdapter.html#aff11c1ac9e63fd735a76497582a54bf0", null ],
-    [ "~Pca9685PwmAdapter", "classPca9685PwmAdapter.html#a8aa0dc4cc7676d3208761debd9d22b91", null ],
+    [ "~Pca9685PwmAdapter", "classPca9685PwmAdapter.html#aae4166b69c6c96f3429f2f42a2dba83a", null ],
     [ "Deinitialize", "classPca9685PwmAdapter.html#aca699f9fffd3ddf238ca3e833e85b919", null ],
     [ "DisableChannel", "classPca9685PwmAdapter.html#ae561cd717f09691cd9c45961ef739eb9", null ],
     [ "EnableChannel", "classPca9685PwmAdapter.html#a1ae2b30150d427183e7f171daf0af720", null ],
