@@ -59,14 +59,14 @@ public:
     /// @name CRTP-Required Methods
     /// @{
 
-    bool Initialize();
-    bool Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length);
-    bool SetChipSelect(bool state);
-    bool Configure(uint32_t speed_hz, uint8_t mode, bool msb_first = true);
-    [[nodiscard]] bool IsReady() const;
-    void DelayUs(uint32_t us);
-    void GpioSet(max22200::CtrlPin pin, max22200::GpioSignal signal);
-    bool GpioRead(max22200::CtrlPin pin, max22200::GpioSignal& signal);
+    bool Initialize() noexcept;
+    bool Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) noexcept;
+    bool SetChipSelect(bool state) noexcept;
+    bool Configure(uint32_t speed_hz, uint8_t mode, bool msb_first = true) noexcept;
+    [[nodiscard]] bool IsReady() const noexcept;
+    void DelayUs(uint32_t us) noexcept;
+    void GpioSet(max22200::CtrlPin pin, max22200::GpioSignal signal) noexcept;
+    bool GpioRead(max22200::CtrlPin pin, max22200::GpioSignal& signal) noexcept;
 
     /// @}
 
@@ -124,6 +124,10 @@ public:
     // Non-copyable
     Max22200Handler(const Max22200Handler&) = delete;
     Max22200Handler& operator=(const Max22200Handler&) = delete;
+
+    // Non-movable
+    Max22200Handler(Max22200Handler&&) = delete;
+    Max22200Handler& operator=(Max22200Handler&&) = delete;
 
     //=========================================================================
     // Initialization

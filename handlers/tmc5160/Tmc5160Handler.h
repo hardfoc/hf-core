@@ -17,8 +17,9 @@
  *
  * 2. **Tmc5160Handler** (main class):
  *    Non-templated facade that owns one typed driver instance (SpiDriver or UartDriver).
- *    Uses the visitDriver() template to route calls to the active driver, keeping the
- *    public API free of template parameters. Provides:
+ *    Uses driverViaSpi()/driverViaUart() typed pointers or the visitDriver() template
+ *    to route calls to the active driver, keeping the public API free of template
+ *    parameters. Provides:
  *    - Full driver initialization with DriverConfig or ConfigBuilder
  *    - Direct access to all 15 driver subsystems (rampControl, motorControl, etc.)
  *    - Convenience methods for common operations
@@ -26,8 +27,8 @@
  *    - Lazy initialization pattern
  *
  * 3. **Subsystem Access**:
- *    All TMC5160 subsystems are accessible through the visitDriver() template or
- *    typed driver pointers for advanced users.
+ *    All TMC5160 subsystems are accessible through typed driver pointers
+ *    (driverViaSpi() / driverViaUart()) or the visitDriver() template.
  *
  * ## Supported Subsystems
  *
@@ -66,12 +67,12 @@
  * // 3. Initialize
  * if (handler.Initialize(config)) {
  *     // 4. Use motor control
- *     handler.visitDriver([](auto& drv) {
- *         drv.rampControl.SetRampMode(tmc51x0::RampMode::POSITIONING);
- *         drv.rampControl.SetMaxSpeed(tmc51x0::Speed::FromRPM(100));
- *         drv.rampControl.SetAcceleration(tmc51x0::Acceleration::FromRPMS2(50));
- *         drv.rampControl.SetTargetPosition(51200); // 1 revolution at 256 usteps
- *     });
+ *     if (auto* drv = handler.driverViaSpi()) {
+ *         drv->rampControl.SetRampMode(tmc51x0::RampMode::POSITIONING);
+ *         drv->rampControl.SetMaxSpeed(tmc51x0::Speed::FromRPM(100));
+ *         drv->rampControl.SetAcceleration(tmc51x0::Acceleration::FromRPMS2(50));
+ *         drv->rampControl.SetTargetPosition(51200); // 1 revolution at 256 usteps
+ *     }
  * }
  * @endcode
  *
@@ -342,7 +343,7 @@ public:
     [[nodiscard]] bool IsSpi() const noexcept { return is_spi_; }
 
     //=========================================================================
-    // Direct Driver Access (visitDriver pattern)
+    // Direct Driver Access (typed pointers + visitDriver pattern)
     //=========================================================================
 
     /**

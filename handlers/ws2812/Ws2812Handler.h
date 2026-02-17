@@ -103,6 +103,10 @@ public:
     Ws2812Handler(const Ws2812Handler&) = delete;
     Ws2812Handler& operator=(const Ws2812Handler&) = delete;
 
+    // Non-movable
+    Ws2812Handler(Ws2812Handler&&) = delete;
+    Ws2812Handler& operator=(Ws2812Handler&&) = delete;
+
     //=========================================================================
     // Initialization
     //=========================================================================

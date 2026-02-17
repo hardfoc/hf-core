@@ -15,7 +15,6 @@
 
 #include <cstdarg>
 #include <cstring>
-#include <string>
 #include <memory>
 #include <atomic>
 
@@ -152,7 +151,7 @@ struct AsciiArtFormat {
  * logger.Info("TAG", "Hello World", LogColor::RED, LogStyle::BOLD);
  * 
  * // ASCII art
- * std::string ascii_art = "..."; // ASCII art string
+ * const char* ascii_art = "..."; // ASCII art string
  * logger.LogAsciiArt("BANNER", ascii_art, AsciiArtFormat{});
  * @endcode
  */
@@ -304,7 +303,7 @@ public:
      * @param ascii_art ASCII art string
      * @param format Formatting options
      */
-    void LogAsciiArt(const char* tag, const std::string& ascii_art, 
+    void LogAsciiArt(const char* tag, const char* ascii_art, 
                     const AsciiArtFormat& format = AsciiArtFormat{}) noexcept;
 
     /**
@@ -314,7 +313,7 @@ public:
      * @param ascii_art ASCII art string
      * @param format Formatting options
      */
-    void LogAsciiArt(LogLevel level, const char* tag, const std::string& ascii_art, 
+    void LogAsciiArt(LogLevel level, const char* tag, const char* ascii_art, 
                     const AsciiArtFormat& format = AsciiArtFormat{}) noexcept;
 
     /**
@@ -323,7 +322,7 @@ public:
      * @param ascii_art ASCII art string
      * @param format Formatting options
      */
-    void LogBanner(const char* tag, const std::string& ascii_art, 
+    void LogBanner(const char* tag, const char* ascii_art, 
                   const AsciiArtFormat& format = AsciiArtFormat{}) noexcept;
 
     //==============================================================================
@@ -432,50 +431,35 @@ private:
                     const char* format, va_list args) noexcept;
 
     /**
-     * @brief Format ASCII art
-     * @param ascii_art ASCII art string
-     * @param format Formatting options
-     * @return Formatted ASCII art
-     */
-    std::string FormatAsciiArt(const std::string& ascii_art, const AsciiArtFormat& format) const noexcept;
-
-    /**
-     * @brief Add color codes to text
-     * @param text Text to colorize
+     * @brief Write ANSI color/style prefix into a buffer
+     * @param buf Output buffer
+     * @param buf_size Buffer size
      * @param color Text color
      * @param background Background color
      * @param style Text style
-     * @return Colorized text
+     * @return Number of bytes written (excluding null terminator)
      */
-    std::string AddColorCodes(const std::string& text, LogColor color, LogBackground background, 
-                             LogStyle style) const noexcept;
+    size_t WriteColorPrefix(char* buf, size_t buf_size, LogColor color,
+                           LogBackground background, LogStyle style) const noexcept;
 
     /**
-     * @brief Get ANSI escape sequence for color
-     * @param color Color to get sequence for
-     * @return ANSI escape sequence
+     * @brief Write ANSI reset sequence into a buffer
+     * @param buf Output buffer
+     * @param buf_size Buffer size
+     * @return Number of bytes written (excluding null terminator)
      */
-    std::string GetColorSequence(LogColor color) const noexcept;
+    static size_t WriteResetSequence(char* buf, size_t buf_size) noexcept;
 
     /**
-     * @brief Get ANSI escape sequence for background
-     * @param background Background to get sequence for
-     * @return ANSI escape sequence
+     * @brief Format and log ASCII art line-by-line without heap allocation
+     * @param tag Log tag
+     * @param level Log level for output
+     * @param ascii_art ASCII art C string
+     * @param format Formatting options
      */
-    std::string GetBackgroundSequence(LogBackground background) const noexcept;
-
-    /**
-     * @brief Get ANSI escape sequence for style
-     * @param style Style to get sequence for
-     * @return ANSI escape sequence
-     */
-    std::string GetStyleSequence(LogStyle style) const noexcept;
-
-    /**
-     * @brief Get ANSI reset sequence
-     * @return ANSI reset sequence
-     */
-    std::string GetResetSequence() const noexcept;
+    void FormatAndLogAsciiArt(const char* tag, LogLevel level,
+                              const char* ascii_art,
+                              const AsciiArtFormat& format) noexcept;
 
     /**
      * @brief Check if log level is enabled for tag

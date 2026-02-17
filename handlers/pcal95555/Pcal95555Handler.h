@@ -242,7 +242,7 @@ public:
                      hf_gpio_pull_mode_t pull_mode = hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_FLOATING) noexcept;
 
     /** @brief Default destructor. */
-    ~Pcal95555GpioPin() override = default;
+    ~Pcal95555GpioPin() noexcept override = default;
 
     /// @name BaseGpio Interface Implementation
     /// @{
@@ -438,12 +438,17 @@ public:
     explicit Pcal95555Handler(BaseI2c& i2c_device, BaseGpio* interrupt_pin = nullptr) noexcept;
 
     /** @brief Destructor. Releases driver, adapter, and all pin wrappers. */
-    ~Pcal95555Handler() = default;
+    ~Pcal95555Handler() noexcept = default;
 
     /// Non-copyable.
     Pcal95555Handler(const Pcal95555Handler&) = delete;
     /// Non-copyable.
     Pcal95555Handler& operator=(const Pcal95555Handler&) = delete;
+
+    /// Non-movable.
+    Pcal95555Handler(Pcal95555Handler&&) = delete;
+    /// Non-movable.
+    Pcal95555Handler& operator=(Pcal95555Handler&&) = delete;
 
     /// @}
 

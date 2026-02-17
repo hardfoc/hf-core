@@ -253,7 +253,7 @@ private:
  */
 class IBno08xDriverOps {
 public:
-    virtual ~IBno08xDriverOps() = default;
+    virtual ~IBno08xDriverOps() noexcept = default;
 
     virtual bool Begin() noexcept = 0;
     virtual void Update() noexcept = 0;
@@ -516,9 +516,9 @@ public:
     Bno08xHandler(const Bno08xHandler&) = delete;
     Bno08xHandler& operator=(const Bno08xHandler&) = delete;
 
-    // Movable
-    Bno08xHandler(Bno08xHandler&&) noexcept = default;
-    Bno08xHandler& operator=(Bno08xHandler&&) noexcept = default;
+    // Non-movable
+    Bno08xHandler(Bno08xHandler&&) = delete;
+    Bno08xHandler& operator=(Bno08xHandler&&) = delete;
 
     // ========================================================================
     //  INITIALIZATION AND STATUS

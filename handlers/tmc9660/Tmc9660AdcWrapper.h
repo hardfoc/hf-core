@@ -79,7 +79,7 @@ public:
     explicit Tmc9660AdcWrapper(Tmc9660Handler& handler) noexcept;
 
     /** @brief Default destructor. Does not affect the handler or its ADC. */
-    ~Tmc9660AdcWrapper() override = default;
+    ~Tmc9660AdcWrapper() noexcept override = default;
 
     /// Non-copyable, non-movable (reference semantics -- cannot rebind handler_).
     Tmc9660AdcWrapper(const Tmc9660AdcWrapper&) = delete;

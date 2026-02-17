@@ -28,19 +28,28 @@ std::array<NtcTemperatureHandler*, NtcTemperatureHandler::kMonitoringContextSlot
 NtcTemperatureHandler::NtcTemperatureHandler(BaseAdc* adc_interface, 
                                              const ntc_temp_handler_config_t& config) noexcept
     : BaseTemperature()
+    , mutex_()
+    , ntc_adc_adapter_(nullptr)
     , ntc_thermistor_(nullptr)
     , adc_interface_(adc_interface)
     , config_(config)
+    , current_state_{}
+    , base_config_{}
+    , low_threshold_celsius_(0.0f)
+    , high_threshold_celsius_(0.0f)
     , threshold_callback_(nullptr)
     , threshold_user_data_(nullptr)
-    , monitoring_active_(false)
+    , sample_rate_hz_(0)
     , continuous_callback_(nullptr)
     , continuous_user_data_(nullptr)
     , monitoring_timer_()
     , monitoring_context_id_(0)
     , calibration_offset_(0.0f)
     , statistics_({})
-    , diagnostics_({}) {
+    , diagnostics_({})
+    , initialized_(false)
+    , threshold_monitoring_enabled_(false)
+    , monitoring_active_(false) {
     
     // Initialize statistics
     statistics_.total_operations = 0;
@@ -72,19 +81,28 @@ NtcTemperatureHandler::NtcTemperatureHandler(BaseAdc* adc_interface,
 NtcTemperatureHandler::NtcTemperatureHandler(NtcType ntc_type, BaseAdc* adc_interface,
                                              const char* sensor_name) noexcept
     : BaseTemperature()
+    , mutex_()
+    , ntc_adc_adapter_(nullptr)
     , ntc_thermistor_(nullptr)
     , adc_interface_(adc_interface)
     , config_({})
+    , current_state_{}
+    , base_config_{}
+    , low_threshold_celsius_(0.0f)
+    , high_threshold_celsius_(0.0f)
     , threshold_callback_(nullptr)
     , threshold_user_data_(nullptr)
-    , monitoring_active_(false)
+    , sample_rate_hz_(0)
     , continuous_callback_(nullptr)
     , continuous_user_data_(nullptr)
     , monitoring_timer_()
     , monitoring_context_id_(0)
     , calibration_offset_(0.0f)
     , statistics_({})
-    , diagnostics_({}) {
+    , diagnostics_({})
+    , initialized_(false)
+    , threshold_monitoring_enabled_(false)
+    , monitoring_active_(false) {
     
     // Apply default configuration and override NTC type / sensor name
     ntc_temp_handler_config_t default_config = NTC_TEMP_HANDLER_CONFIG_DEFAULT();

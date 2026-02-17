@@ -35,7 +35,6 @@
 
 #include <cstdint>
 #include <memory>
-#include <string>
 #include "core/hf-core-drivers/external/hf-as5047u-driver/inc/as5047u.hpp"
 #include "base/BaseSpi.h"
 #include "utils/RtosMutex.h"
@@ -212,9 +211,9 @@ public:
     As5047uHandler(const As5047uHandler&) = delete;
     As5047uHandler& operator=(const As5047uHandler&) = delete;
 
-    // Enable move construction and assignment
-    As5047uHandler(As5047uHandler&&) noexcept = default;
-    As5047uHandler& operator=(As5047uHandler&&) noexcept = default;
+    // Non-movable (holds mutex, unique_ptrs, and raw bus pointer)
+    As5047uHandler(As5047uHandler&&) = delete;
+    As5047uHandler& operator=(As5047uHandler&&) = delete;
 
     //======================================================//
     // INITIALIZATION AND STATUS
@@ -254,12 +253,12 @@ public:
     bool IsSensorReady() const noexcept;
 
     /**
-     * @brief Get shared pointer to AS5047U driver for advanced operations
-     * @return Shared pointer to AS5047U driver or nullptr if not initialized
+     * @brief Get pointer to AS5047U driver for advanced operations
+     * @return Pointer to AS5047U driver or nullptr if not initialized
      * 
-     * Note: Returns shared_ptr for safe cross-component sharing.
+     * Note: Caller must not delete the returned pointer; lifetime is owned by the handler.
      */
-    std::shared_ptr<as5047u::AS5047U<As5047uSpiAdapter>> GetSensor() noexcept;
+    as5047u::AS5047U<As5047uSpiAdapter>* GetSensor() noexcept;
 
     //======================================================//
     // SENSOR MEASUREMENTS
@@ -532,7 +531,7 @@ private:
 
     BaseSpi& spi_ref_;                               ///< Reference to SPI interface
     std::unique_ptr<As5047uSpiAdapter> spi_adapter_; ///< SPI CRTP adapter
-    std::shared_ptr<as5047u::AS5047U<As5047uSpiAdapter>> as5047u_sensor_; ///< AS5047U driver instance
+    std::unique_ptr<as5047u::AS5047U<As5047uSpiAdapter>> as5047u_sensor_; ///< AS5047U driver instance
     As5047uConfig config_;                           ///< Sensor configuration
     mutable RtosMutex handler_mutex_;                ///< Thread safety mutex
     bool initialized_;                               ///< Initialization state

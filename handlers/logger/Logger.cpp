@@ -22,8 +22,7 @@
 #include <cstdarg>
 #include <cstring>
 #include <algorithm>
-#include <sstream>
-#include <iomanip>
+#include <cstdio>
 
 //==============================================================================
 // CONSTRUCTOR/DESTRUCTOR
@@ -286,45 +285,25 @@ void Logger::Verbose(const char* tag, LogColor color, LogStyle style, const char
 // ASCII ART LOGGING METHODS
 //==============================================================================
 
-void Logger::LogAsciiArt(const char* tag, const std::string& ascii_art, 
+void Logger::LogAsciiArt(const char* tag, const char* ascii_art, 
                         const AsciiArtFormat& format) noexcept {
     if (!config_.enable_ascii_art || !IsLevelEnabled(LogLevel::INFO, tag)) {
         return;
     }
 
-    std::string formatted_art = FormatAsciiArt(ascii_art, format);
-    
-    // Split into lines and log each line
-    std::istringstream iss(formatted_art);
-    std::string line;
-    
-    while (std::getline(iss, line)) {
-        if (!line.empty()) {
-            base_logger_->Info(tag, "%s", line.c_str());
-        }
-    }
+    FormatAndLogAsciiArt(tag, LogLevel::INFO, ascii_art, format);
 }
 
-void Logger::LogAsciiArt(LogLevel level, const char* tag, const std::string& ascii_art, 
+void Logger::LogAsciiArt(LogLevel level, const char* tag, const char* ascii_art, 
                         const AsciiArtFormat& format) noexcept {
     if (!config_.enable_ascii_art || !IsLevelEnabled(level, tag)) {
         return;
     }
 
-    std::string formatted_art = FormatAsciiArt(ascii_art, format);
-    
-    // Split into lines and log each line
-    std::istringstream iss(formatted_art);
-    std::string line;
-    
-    while (std::getline(iss, line)) {
-        if (!line.empty()) {
-            base_logger_->Log(static_cast<hf_log_level_t>(level), tag, "%s", line.c_str());
-        }
-    }
+    FormatAndLogAsciiArt(tag, level, ascii_art, format);
 }
 
-void Logger::LogBanner(const char* tag, const std::string& ascii_art, 
+void Logger::LogBanner(const char* tag, const char* ascii_art, 
                       const AsciiArtFormat& format) noexcept {
     if (!config_.enable_ascii_art || !IsLevelEnabled(LogLevel::INFO, tag)) {
         return;
@@ -410,170 +389,189 @@ void Logger::LogInternal(LogLevel level, const char* tag, LogColor color, LogSty
         return;
     }
 
-    // Format the message
-    char buffer[1024];
-    vsnprintf(buffer, sizeof(buffer), format, args);
-    std::string message(buffer);
+    // Format the message into a stack buffer
+    char msg_buf[1024];
+    vsnprintf(msg_buf, sizeof(msg_buf), format, args);
 
-    // Add color codes if enabled
-    if (config_.enable_colors) {
-        message = AddColorCodes(message, color, config_.background, style);
+    // Add color codes if enabled and any non-default formatting requested
+    if (config_.enable_colors && 
+        (color != LogColor::DEFAULT || config_.background != LogBackground::DEFAULT || style != LogStyle::NORMAL)) {
+        char formatted[1200]; // msg_buf + room for ANSI escape codes
+        size_t pos = WriteColorPrefix(formatted, sizeof(formatted), color, config_.background, style);
+        size_t msg_len = std::strlen(msg_buf);
+        if (pos + msg_len < sizeof(formatted) - 16) {
+            std::memcpy(formatted + pos, msg_buf, msg_len);
+            pos += msg_len;
+            pos += WriteResetSequence(formatted + pos, sizeof(formatted) - pos);
+            formatted[pos] = '\0';
+            base_logger_->Log(static_cast<hf_log_level_t>(level), tag, "%s", formatted);
+        } else {
+            base_logger_->Log(static_cast<hf_log_level_t>(level), tag, "%s", msg_buf);
+        }
+    } else {
+        base_logger_->Log(static_cast<hf_log_level_t>(level), tag, "%s", msg_buf);
     }
-
-    // Log using base logger
-    base_logger_->Log(static_cast<hf_log_level_t>(level), tag, "%s", message.c_str());
 }
 
-std::string Logger::FormatAsciiArt(const std::string& ascii_art, const AsciiArtFormat& format) const noexcept {
-    if (!config_.format_ascii_art) {
-        return ascii_art;
+size_t Logger::WriteColorPrefix(char* buf, size_t buf_size, LogColor color,
+                                LogBackground background, LogStyle style) const noexcept {
+    size_t pos = 0;
+    // Color sequence: \033[XXXm
+    if (color != LogColor::DEFAULT && pos + 8 < buf_size) {
+        int n = snprintf(buf + pos, buf_size - pos, "\033[%um", static_cast<unsigned>(color));
+        if (n > 0) pos += static_cast<size_t>(n);
     }
-
-    std::string result = ascii_art;
-
-    // Split into lines for processing
-    std::istringstream iss(ascii_art);
-    std::vector<std::string> lines;
-    std::string line;
-    
-    while (std::getline(iss, line)) {
-        lines.push_back(line);
+    // Background sequence
+    if (background != LogBackground::DEFAULT && pos + 8 < buf_size) {
+        int n = snprintf(buf + pos, buf_size - pos, "\033[%um", static_cast<unsigned>(background));
+        if (n > 0) pos += static_cast<size_t>(n);
     }
-
-    // Apply centering
-    if (format.center_art) {
-        size_t max_length = 0;
-        for (const auto& l : lines) {
-            max_length = std::max(max_length, l.length());
+    // Style sequence
+    if (style != LogStyle::NORMAL && pos + 8 < buf_size) {
+        uint8_t code = 0;
+        switch (style) {
+            case LogStyle::BOLD:             code = 1; break;
+            case LogStyle::ITALIC:           code = 3; break;
+            case LogStyle::UNDERLINE:        code = 4; break;
+            case LogStyle::STRIKETHROUGH:    code = 9; break;
+            case LogStyle::DOUBLE_UNDERLINE: code = 21; break;
+            default: break;
         }
-
-        size_t padding = (format.max_width > max_length) ? (format.max_width - max_length) / 2 : 0;
-        
-        for (auto& l : lines) {
-            l = std::string(padding, ' ') + l;
+        if (code != 0) {
+            int n = snprintf(buf + pos, buf_size - pos, "\033[%um", static_cast<unsigned>(code));
+            if (n > 0) pos += static_cast<size_t>(n);
         }
     }
+    if (pos < buf_size) buf[pos] = '\0';
+    return pos;
+}
 
-    // Apply border
+size_t Logger::WriteResetSequence(char* buf, size_t buf_size) noexcept {
+    static constexpr const char kReset[] = "\033[0m";
+    static constexpr size_t kLen = sizeof(kReset) - 1;
+    if (kLen < buf_size) {
+        std::memcpy(buf, kReset, kLen);
+        buf[kLen] = '\0';
+        return kLen;
+    }
+    return 0;
+}
+
+void Logger::FormatAndLogAsciiArt(const char* tag, LogLevel level,
+                                  const char* ascii_art,
+                                  const AsciiArtFormat& format) noexcept {
+    if (!ascii_art || !base_logger_) return;
+    const hf_log_level_t base_level = static_cast<hf_log_level_t>(level);
+
+    // First pass: scan lines and find max length
+    static constexpr size_t kMaxLines = 64;
+    struct LineInfo { const char* start; size_t length; };
+    LineInfo lines[kMaxLines];
+    size_t line_count = 0;
+    size_t max_length = 0;
+
+    const char* p = ascii_art;
+    const char* line_start = p;
+    while (*p && line_count < kMaxLines) {
+        if (*p == '\n') {
+            size_t len = static_cast<size_t>(p - line_start);
+            lines[line_count++] = {line_start, len};
+            if (len > max_length) max_length = len;
+            line_start = p + 1;
+        }
+        ++p;
+    }
+    if (line_start < p && line_count < kMaxLines) {
+        size_t len = static_cast<size_t>(p - line_start);
+        lines[line_count++] = {line_start, len};
+        if (len > max_length) max_length = len;
+    }
+
+    // Prepare ANSI prefix/suffix if formatting enabled
+    char prefix[64] = {};
+    char suffix[16] = {};
+    size_t prefix_len = 0;
+    size_t suffix_len = 0;
+    if (config_.enable_colors && config_.format_ascii_art) {
+        prefix_len = WriteColorPrefix(prefix, sizeof(prefix), format.color, format.background, format.style);
+        suffix_len = WriteResetSequence(suffix, sizeof(suffix));
+    }
+
+    // Centering padding
+    size_t center_pad = 0;
+    if (format.center_art && format.max_width > max_length) {
+        center_pad = (format.max_width - max_length) / 2;
+    }
+
+    // Helper: assemble and log one output line
+    auto emit_line = [&](const char* content, size_t content_len) {
+        char out[512];
+        size_t pos = 0;
+        if (prefix_len > 0 && pos + prefix_len < sizeof(out)) {
+            std::memcpy(out + pos, prefix, prefix_len);
+            pos += prefix_len;
+        }
+        if (content_len > 0 && pos + content_len < sizeof(out)) {
+            std::memcpy(out + pos, content, content_len);
+            pos += content_len;
+        }
+        if (suffix_len > 0 && pos + suffix_len < sizeof(out)) {
+            std::memcpy(out + pos, suffix, suffix_len);
+            pos += suffix_len;
+        }
+        out[pos] = '\0';
+        base_logger_->Log(base_level, tag, "%s", out);
+    };
+
     if (format.add_border) {
-        size_t max_length = 0;
-        for (const auto& l : lines) {
-            max_length = std::max(max_length, l.length());
+        size_t border_content_w = max_length + 2;
+        size_t total_w = border_content_w + 2 * format.border_padding;
+        char border_line[512];
+        size_t bw = (total_w < sizeof(border_line) - 1) ? total_w : sizeof(border_line) - 1;
+        std::memset(border_line, format.border_char, bw);
+        border_line[bw] = '\0';
+
+        emit_line(border_line, bw);
+        for (size_t i = 0; i < format.border_padding; ++i) emit_line(border_line, bw);
+
+        for (size_t i = 0; i < line_count; ++i) {
+            char row[512];
+            size_t rp = 0;
+            for (size_t j = 0; j < format.border_padding && rp < sizeof(row) - 1; ++j)
+                row[rp++] = format.border_char;
+            if (rp < sizeof(row) - 1) row[rp++] = ' ';
+            for (size_t j = 0; j < center_pad && rp < sizeof(row) - 1; ++j)
+                row[rp++] = ' ';
+            size_t clen = lines[i].length;
+            if (rp + clen >= sizeof(row) - 1) clen = sizeof(row) - 1 - rp;
+            std::memcpy(row + rp, lines[i].start, clen);
+            rp += clen;
+            for (size_t j = lines[i].length; j < max_length && rp < sizeof(row) - 1; ++j)
+                row[rp++] = ' ';
+            if (rp < sizeof(row) - 1) row[rp++] = ' ';
+            for (size_t j = 0; j < format.border_padding && rp < sizeof(row) - 1; ++j)
+                row[rp++] = format.border_char;
+            row[rp] = '\0';
+            emit_line(row, rp);
         }
 
-        std::string top_border = std::string(format.border_padding, format.border_char) + 
-                                std::string(max_length + 2, format.border_char) + 
-                                std::string(format.border_padding, format.border_char);
-
-        std::vector<std::string> bordered_lines;
-        bordered_lines.push_back(top_border);
-
-        // Add padding lines
-        for (size_t i = 0; i < format.border_padding; ++i) {
-            bordered_lines.push_back(std::string(top_border.length(), format.border_char));
-        }
-
-        // Add art lines with side borders
-        for (const auto& l : lines) {
-            std::string bordered_line = std::string(format.border_padding, format.border_char) + 
-                                       " " + l + 
-                                       std::string(max_length - l.length(), ' ') + " " + 
-                                       std::string(format.border_padding, format.border_char);
-            bordered_lines.push_back(bordered_line);
-        }
-
-        // Add padding lines
-        for (size_t i = 0; i < format.border_padding; ++i) {
-            bordered_lines.push_back(std::string(top_border.length(), format.border_char));
-        }
-
-        // Add bottom border
-        bordered_lines.push_back(top_border);
-
-        lines = bordered_lines;
-    }
-
-    // Apply color codes to each line
-    if (config_.enable_colors) {
-        for (auto& l : lines) {
-            l = AddColorCodes(l, format.color, format.background, format.style);
+        for (size_t i = 0; i < format.border_padding; ++i) emit_line(border_line, bw);
+        emit_line(border_line, bw);
+    } else {
+        for (size_t i = 0; i < line_count; ++i) {
+            if (lines[i].length == 0) continue;
+            char row[512];
+            size_t rp = 0;
+            for (size_t j = 0; j < center_pad && rp < sizeof(row) - 1; ++j)
+                row[rp++] = ' ';
+            size_t clen = lines[i].length;
+            if (rp + clen >= sizeof(row) - 1) clen = sizeof(row) - 1 - rp;
+            std::memcpy(row + rp, lines[i].start, clen);
+            rp += clen;
+            row[rp] = '\0';
+            emit_line(row, rp);
         }
     }
-
-    // Reconstruct the result
-    result.clear();
-    for (size_t i = 0; i < lines.size(); ++i) {
-        result += lines[i];
-        if (i < lines.size() - 1) {
-            result += "\n";
-        }
-    }
-
-    return result;
-}
-
-std::string Logger::AddColorCodes(const std::string& text, LogColor color, LogBackground background, 
-                                 LogStyle style) const noexcept {
-    if (!config_.enable_colors) {
-        return text;
-    }
-
-    std::string result;
-    
-    // Add color sequence
-    if (color != LogColor::DEFAULT) {
-        result += GetColorSequence(color);
-    }
-    
-    // Add background sequence
-    if (background != LogBackground::DEFAULT) {
-        result += GetBackgroundSequence(background);
-    }
-    
-    // Add style sequence
-    if (style != LogStyle::NORMAL) {
-        result += GetStyleSequence(style);
-    }
-    
-    result += text;
-    result += GetResetSequence();
-    
-    return result;
-}
-
-std::string Logger::GetColorSequence(LogColor color) const noexcept {
-    if (color == LogColor::DEFAULT) {
-        return "";
-    }
-    return "\033[" + std::to_string(static_cast<uint8_t>(color)) + "m";
-}
-
-std::string Logger::GetBackgroundSequence(LogBackground background) const noexcept {
-    if (background == LogBackground::DEFAULT) {
-        return "";
-    }
-    return "\033[" + std::to_string(static_cast<uint8_t>(background)) + "m";
-}
-
-std::string Logger::GetStyleSequence(LogStyle style) const noexcept {
-    switch (style) {
-        case LogStyle::BOLD:
-            return "\033[1m";
-        case LogStyle::ITALIC:
-            return "\033[3m";
-        case LogStyle::UNDERLINE:
-            return "\033[4m";
-        case LogStyle::STRIKETHROUGH:
-            return "\033[9m";
-        case LogStyle::DOUBLE_UNDERLINE:
-            return "\033[21m";
-        default:
-            return "";
-    }
-}
-
-std::string Logger::GetResetSequence() const noexcept {
-    return "\033[0m";
 }
 
 bool Logger::IsLevelEnabled(LogLevel level, const char* tag) const noexcept {

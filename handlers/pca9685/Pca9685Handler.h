@@ -235,7 +235,7 @@ public:
     explicit Pca9685PwmAdapter(Pca9685Handler* parent_handler) noexcept;
 
     /** @brief Default destructor. */
-    ~Pca9685PwmAdapter() override = default;
+    ~Pca9685PwmAdapter() noexcept override = default;
 
     /// @name BasePwm Interface Implementation
     /// @{
@@ -419,7 +419,7 @@ public:
                        hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH) noexcept;
 
     /** @brief Default destructor. */
-    ~Pca9685GpioPin() override = default;
+    ~Pca9685GpioPin() noexcept override = default;
 
     /// @name BaseGpio Interface Implementation
     /// @{
@@ -555,12 +555,17 @@ public:
     explicit Pca9685Handler(BaseI2c& i2c_device) noexcept;
 
     /** @brief Destructor. Releases driver, adapter, and all wrappers. */
-    ~Pca9685Handler() = default;
+    ~Pca9685Handler() noexcept = default;
 
     /// Non-copyable.
     Pca9685Handler(const Pca9685Handler&) = delete;
     /// Non-copyable.
     Pca9685Handler& operator=(const Pca9685Handler&) = delete;
+
+    /// Non-movable.
+    Pca9685Handler(Pca9685Handler&&) = delete;
+    /// Non-movable.
+    Pca9685Handler& operator=(Pca9685Handler&&) = delete;
 
     /// @}
 

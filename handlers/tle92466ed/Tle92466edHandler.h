@@ -133,6 +133,10 @@ public:
     Tle92466edHandler(const Tle92466edHandler&) = delete;
     Tle92466edHandler& operator=(const Tle92466edHandler&) = delete;
 
+    // Non-movable
+    Tle92466edHandler(Tle92466edHandler&&) = delete;
+    Tle92466edHandler& operator=(Tle92466edHandler&&) = delete;
+
     //=========================================================================
     // Initialization
     //=========================================================================

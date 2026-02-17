@@ -528,12 +528,17 @@ public:
     /**
      * @brief Destructor. Releases the driver, communication adapter, and all wrappers.
      */
-    ~Tmc9660Handler();
+    ~Tmc9660Handler() noexcept;
 
     /// Non-copyable.
     Tmc9660Handler(const Tmc9660Handler&) = delete;
     /// Non-copyable.
     Tmc9660Handler& operator=(const Tmc9660Handler&) = delete;
+
+    /// Non-movable.
+    Tmc9660Handler(Tmc9660Handler&&) = delete;
+    /// Non-movable.
+    Tmc9660Handler& operator=(Tmc9660Handler&&) = delete;
 
     /// @}
 
@@ -963,7 +968,7 @@ public:
         Gpio(Tmc9660Handler& parent, uint8_t gpioNumber);
 
         /** @brief Default destructor. */
-        ~Gpio() override = default;
+        ~Gpio() noexcept override = default;
 
         /// @name BaseGpio Interface Implementation
         /// @{
@@ -1057,7 +1062,7 @@ public:
         Adc(Tmc9660Handler& parent);
 
         /** @brief Default destructor. */
-        ~Adc() override = default;
+        ~Adc() noexcept override = default;
 
         /// @name BaseAdc Interface Implementation
         /// @{
@@ -1266,7 +1271,7 @@ public:
         Temperature(Tmc9660Handler& parent);
 
         /** @brief Default destructor. */
-        ~Temperature() override = default;
+        ~Temperature() noexcept override = default;
 
         /// @name BaseTemperature Interface Implementation
         /// @{

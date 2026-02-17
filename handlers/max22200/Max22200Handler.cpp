@@ -19,7 +19,7 @@ HalSpiMax22200Comm::HalSpiMax22200Comm(
     BaseGpio* fault) noexcept
     : spi_(spi), enable_(enable), cmd_(cmd), fault_(fault) {}
 
-bool HalSpiMax22200Comm::Initialize() {
+bool HalSpiMax22200Comm::Initialize() noexcept {
     if (!spi_.EnsureInitialized()) {
         initialized_ = false;
         return false;
@@ -66,7 +66,7 @@ bool HalSpiMax22200Comm::Initialize() {
     return true;
 }
 
-bool HalSpiMax22200Comm::Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) {
+bool HalSpiMax22200Comm::Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) noexcept {
     if (!IsReady() || tx_data == nullptr || rx_data == nullptr || length == 0) {
         return false;
     }
@@ -74,17 +74,17 @@ bool HalSpiMax22200Comm::Transfer(const uint8_t* tx_data, uint8_t* rx_data, size
     return (err == hf_spi_err_t::SPI_SUCCESS);
 }
 
-bool HalSpiMax22200Comm::SetChipSelect(bool /*state*/) {
+bool HalSpiMax22200Comm::SetChipSelect(bool /*state*/) noexcept {
     // BaseSpi manages CS automatically per transfer
     return true;
 }
 
-bool HalSpiMax22200Comm::Configure(uint32_t /*speed_hz*/, uint8_t /*mode*/, bool /*msb_first*/) {
+bool HalSpiMax22200Comm::Configure(uint32_t /*speed_hz*/, uint8_t /*mode*/, bool /*msb_first*/) noexcept {
     // BaseSpi is pre-configured
     return true;
 }
 
-bool HalSpiMax22200Comm::IsReady() const {
+bool HalSpiMax22200Comm::IsReady() const noexcept {
     if (!initialized_) return false;
     if (!spi_.IsInitialized()) return false;
     if (!enable_.IsInitialized() || !cmd_.IsInitialized()) return false;
@@ -92,11 +92,11 @@ bool HalSpiMax22200Comm::IsReady() const {
     return true;
 }
 
-void HalSpiMax22200Comm::DelayUs(uint32_t us) {
+void HalSpiMax22200Comm::DelayUs(uint32_t us) noexcept {
     handler_utils::DelayUs(us);
 }
 
-void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal signal) {
+void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal signal) noexcept {
     if (!initialized_) return;
 
     BaseGpio* gpio = nullptr;
@@ -123,7 +123,7 @@ void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal sig
     }
 }
 
-bool HalSpiMax22200Comm::GpioRead(max22200::CtrlPin pin, max22200::GpioSignal& signal) {
+bool HalSpiMax22200Comm::GpioRead(max22200::CtrlPin pin, max22200::GpioSignal& signal) noexcept {
     if (!IsReady()) return false;
 
     BaseGpio* gpio = nullptr;

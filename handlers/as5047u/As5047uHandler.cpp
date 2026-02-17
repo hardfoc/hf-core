@@ -89,7 +89,7 @@ As5047uError As5047uHandler::Initialize() noexcept {
     }
     
     // Create AS5047U sensor instance (lazy initialization)
-    as5047u_sensor_ = std::make_shared<as5047u::AS5047U<As5047uSpiAdapter>>(*spi_adapter_, config_.frame_format);
+    as5047u_sensor_ = std::make_unique<as5047u::AS5047U<As5047uSpiAdapter>>(*spi_adapter_, config_.frame_format);
     if (!as5047u_sensor_) {
         spi_adapter_.reset();
         last_error_ = As5047uError::INITIALIZATION_FAILED;
@@ -155,7 +155,7 @@ bool As5047uHandler::IsSensorReady() const noexcept {
     return initialized_ && as5047u_sensor_ && spi_adapter_;
 }
 
-std::shared_ptr<as5047u::AS5047U<As5047uSpiAdapter>> As5047uHandler::GetSensor() noexcept {
+as5047u::AS5047U<As5047uSpiAdapter>* As5047uHandler::GetSensor() noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!lock.IsLocked()) {
         last_error_ = As5047uError::MUTEX_LOCK_FAILED;
@@ -164,7 +164,7 @@ std::shared_ptr<as5047u::AS5047U<As5047uSpiAdapter>> As5047uHandler::GetSensor()
     if (!EnsureInitializedLocked()) {
         return nullptr;
     }
-    return as5047u_sensor_;
+    return as5047u_sensor_.get();
 }
 
 //======================================================//

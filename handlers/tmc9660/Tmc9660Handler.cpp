@@ -294,7 +294,7 @@ Tmc9660Handler::Tmc9660Handler(BaseUart& uart, BaseGpio& rst, BaseGpio& drv_en,
     temperatureWrapper_ = std::make_unique<Temperature>(*this);
 }
 
-Tmc9660Handler::~Tmc9660Handler() = default;
+Tmc9660Handler::~Tmc9660Handler() noexcept = default;
 
 //==============================================================================
 // INITIALIZATION

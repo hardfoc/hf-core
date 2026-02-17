@@ -196,15 +196,10 @@ public:
      */
     NtcTemperatureHandler& operator=(const NtcTemperatureHandler&) = delete;
     
-    /**
-     * @brief Move constructor
-     */
-    NtcTemperatureHandler(NtcTemperatureHandler&&) noexcept = default;
-    
-    /**
-     * @brief Move assignment operator
-     */
-    NtcTemperatureHandler& operator=(NtcTemperatureHandler&&) noexcept = default;
+    /// Non-movable (holds mutex, unique_ptrs, raw pointers, and timer resources).
+    NtcTemperatureHandler(NtcTemperatureHandler&&) = delete;
+    /// Non-movable.
+    NtcTemperatureHandler& operator=(NtcTemperatureHandler&&) = delete;
     
     /**
      * @brief Virtual destructor - cleans up timer and thermistor resources
@@ -401,19 +396,16 @@ private:
     ntc_temp_handler_config_t config_;      ///< Handler configuration
     
     // BaseTemperature state
-    bool initialized_;                      ///< Initialization status
     hf_temp_state_t current_state_;         ///< Current state
     hf_temp_config_t base_config_;          ///< Base configuration
     
     // Threshold monitoring
     float low_threshold_celsius_;           ///< Low temperature threshold
     float high_threshold_celsius_;          ///< High temperature threshold
-    bool threshold_monitoring_enabled_;     ///< Threshold monitoring status
     hf_temp_threshold_callback_t threshold_callback_; ///< Threshold callback
     void* threshold_user_data_;             ///< Threshold callback user data
     
     // Continuous monitoring (using hardware-agnostic PeriodicTimer)
-    bool monitoring_active_;               ///< Continuous monitoring status
     hf_u32_t sample_rate_hz_;               ///< Sample rate for continuous monitoring
     hf_temp_reading_callback_t continuous_callback_; ///< Continuous monitoring callback
     void* continuous_user_data_;            ///< Continuous monitoring callback user data
@@ -424,6 +416,11 @@ private:
     // Statistics and diagnostics
     hf_temp_statistics_t statistics_;       ///< BaseTemperature statistics
     hf_temp_diagnostics_t diagnostics_;     ///< BaseTemperature diagnostics
+    
+    // Packed bools (grouped to avoid padding waste)
+    bool initialized_;                      ///< Initialization status
+    bool threshold_monitoring_enabled_;     ///< Threshold monitoring status
+    bool monitoring_active_;               ///< Continuous monitoring status
     
     //==============================================================//
     // PRIVATE HELPER METHODS
