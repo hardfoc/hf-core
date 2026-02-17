@@ -125,7 +125,7 @@ git push origin fix/improve-fallback-parsing
 - Affects lines: 256-261, 311, 342-344, 402, 510-512, 550
 - Tested and verified to work without yq installed
 
-Full patch available in `/tmp/fallback-parsing-fix.patch`
+Full patch available in `patches/fallback-parsing-fix.patch`
 
 ## Testing
 
@@ -175,9 +175,13 @@ This provides defense-in-depth: the workflow will work with yq (preferred), and 
 ### In N3b3x/hf-espidf-project-tools repository:
 - `config_loader.sh` - Configuration loader script (secondary fix available)
 
+### Patch Files
+- `patches/yq-installation-fix.patch` - Primary fix for yq installation
+- `patches/fallback-parsing-fix.patch` - Secondary fix for fallback parsing
+
 ## References
 
 - yq repository: https://github.com/mikefarah/yq
 - yq releases: https://github.com/mikefarah/yq/releases
 - ESP-IDF CI Action: https://github.com/espressif/esp-idf-ci-action
-- Patch files: `/tmp/yq-installation-fix.patch` and `/tmp/fallback-parsing-fix.patch`
+- Patch files location: `patches/` directory in this repository
