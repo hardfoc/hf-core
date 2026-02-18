@@ -181,6 +181,7 @@ Tmc5160Handler::Tmc5160Handler(
     , address_(daisy_chain_position)
 {
     spi_comm_ = std::make_unique<HalSpiTmc5160Comm>(spi, enable, diag0, diag1, active_levels);
+    std::snprintf(description_, sizeof(description_), "TMC5160 Stepper Driver (SPI @%u)", static_cast<unsigned>(daisy_chain_position));
     Logger::GetInstance().Info(TAG, "TMC5160 handler created (SPI, daisy_pos=%u)", static_cast<unsigned>(daisy_chain_position));
 }
 
@@ -193,6 +194,7 @@ Tmc5160Handler::Tmc5160Handler(
     , address_(uart_node_address)
 {
     uart_comm_ = std::make_unique<HalUartTmc5160Comm>(uart, enable, diag0, diag1, active_levels);
+    std::snprintf(description_, sizeof(description_), "TMC5160 Stepper Driver (UART @%u)", static_cast<unsigned>(uart_node_address));
     Logger::GetInstance().Info(TAG, "TMC5160 handler created (UART, node_addr=%u)", static_cast<unsigned>(uart_node_address));
 }
 
@@ -319,4 +321,8 @@ void Tmc5160Handler::DumpDiagnostics() noexcept {
     });
 
     log.Info(TAG, "=== End TMC5160 Diagnostics ===");
+}
+
+const char* Tmc5160Handler::GetDescription() const noexcept {
+    return description_;
 }

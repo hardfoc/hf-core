@@ -143,9 +143,6 @@ struct Tmc5160CtrlPins {
  */
 class HalSpiTmc5160Comm : public tmc51x0::SpiCommInterface<HalSpiTmc5160Comm> {
 public:
-    using DriverVariant = std::variant<std::monostate, SpiDriver*, UartDriver*>;
-    using ConstDriverVariant = std::variant<std::monostate, const SpiDriver*, const UartDriver*>;
-
     /**
      * @brief Construct the SPI communication adapter.
      * @param spi    Reference to a pre-configured BaseSpi implementation.
@@ -271,6 +268,11 @@ public:
     /// @brief UART driver type alias
     using UartDriver = tmc51x0::TMC51x0<HalUartTmc5160Comm>;
 
+    /** @brief Non-owning variant holding either driver type or empty (monostate). */
+    using DriverVariant = std::variant<std::monostate, SpiDriver*, UartDriver*>;
+    /** @brief Const version of DriverVariant. */
+    using ConstDriverVariant = std::variant<std::monostate, const SpiDriver*, const UartDriver*>;
+
     //=========================================================================
     // Construction
     //=========================================================================
@@ -320,9 +322,9 @@ public:
      * @brief Initialize the TMC5160 driver with full configuration.
      * @param config Driver configuration (motor, chopper, ramp, etc.).
      * @param verbose Print config summary if true.
-     * @return true if initialization succeeded.
+     * @return tmc51x0::ErrorCode::OK on success, or a specific error code.
      */
-    bool Initialize(const tmc51x0::DriverConfig& config, bool verbose = true) noexcept;
+    tmc51x0::ErrorCode Initialize(const tmc51x0::DriverConfig& config, bool verbose = true) noexcept;
 
     /**
      * @brief Ensure driver is initialized (lazy init entrypoint).
@@ -397,12 +399,16 @@ public:
 
     /**
      * @brief Get typed SPI driver pointer (null if UART mode or not initialized).
+     * @warning Raw pointer — NOT mutex-protected. Caller is responsible for
+     *          external synchronization in multi-task environments.
+     *          Prefer visitDriver() for thread-safe access.
      */
     [[nodiscard]] SpiDriver* driverViaSpi() noexcept;
     [[nodiscard]] const SpiDriver* driverViaSpi() const noexcept;
 
     /**
      * @brief Get typed UART driver pointer (null if SPI mode or not initialized).
+     * @warning Raw pointer — NOT mutex-protected. Prefer visitDriver().
      */
     [[nodiscard]] UartDriver* driverViaUart() noexcept;
     [[nodiscard]] const UartDriver* driverViaUart() const noexcept;
@@ -442,6 +448,22 @@ public:
     void DumpDiagnostics() noexcept;
 
     //=========================================================================
+    // Utility
+    //=========================================================================
+
+    /**
+     * @brief Get a human-readable description of the handler.
+     * @return String e.g. "TMC5160 Stepper Driver (SPI @0)"
+     */
+    const char* GetDescription() const noexcept;
+
+    /**
+     * @brief Get a sensible default DriverConfig.
+     * @return Default tmc51x0::DriverConfig structure.
+     */
+    static tmc51x0::DriverConfig GetDefaultConfig() noexcept { return tmc51x0::DriverConfig{}; }
+
+    //=========================================================================
     // Configuration Snapshot
     //=========================================================================
 
@@ -479,6 +501,9 @@ private:
 
     /// @brief Configuration snapshot
     tmc51x0::DriverConfig config_{};
+
+    /// @brief Human-readable handler description
+    char description_[64]{};
 
     /// @brief Helper: execute a visitor on the active driver (no lock, internal use)
     template <typename Fn>
