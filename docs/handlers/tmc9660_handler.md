@@ -7,8 +7,13 @@ nav_order: 6
 
 # Tmc9660Handler
 
-Unified handler for the TMC9660 3-phase BLDC motor controller with SPI/UART communication,
-GPIO, ADC, and temperature peripheral wrappers.
+Unified handler for the TMC9660 3-phase BLDC motor controller with SPI/UART
+communication and GPIO, ADC, and temperature peripheral wrappers.
+
+All motor control, telemetry, and feedback operations are accessed through the
+typed driver pointers or `visitDriver()`. The handler provides lifecycle
+management, peripheral wrapping (GPIO/ADC/Temperature via inner classes), and
+driver routing.
 
 ## Construction
 
@@ -28,36 +33,34 @@ Tmc9660Handler(BaseUart& uart, BaseGpio& rst, BaseGpio& drv_en,
 
 ## Key Methods
 
-### Initialization
+### Lifecycle
 
 | Method | Description |
 |:-------|:------------|
-| `Initialize(reset, bootInfo, failOnVerify)` | Reset → bootloader config → parameter mode |
-| `IsDriverReady()` | Check if driver instance exists and initialized |
+| `Initialize(reset, bootInfo, failOnVerify)` | Reset → bootloader config → parameter mode. Returns `bool`. |
+| `EnsureInitialized()` | Lazy init helper |
+| `IsDriverReady()` | Check if driver instance exists and is initialized |
 
-### Motor Control
-
-| Method | Description |
-|:-------|:------------|
-| `SetMotorType(type, polePairs)` | Configure motor type (BLDC, DC, Stepper) |
-| `SetCommutationMode(mode)` | Set FOC, block, or open-loop commutation |
-| `EnableMotor()` / `DisableMotor()` | Software enable/disable |
-| `SetTargetVelocity(int32_t)` | Velocity control target |
-| `SetTargetPosition(int32_t)` | Position control target |
-| `SetTargetTorque(int16_t)` | Torque (current) control target |
-
-### Telemetry
+### Communication Info
 
 | Method | Description |
 |:-------|:------------|
-| `GetSupplyVoltage()` | Motor supply voltage (V) |
-| `GetChipTemperature()` | Internal chip temperature (°C) |
-| `GetMotorCurrent()` | Phase current (mA) |
-| `GetActualVelocity()` | Measured velocity |
-| `GetStatusFlags(uint32_t&)` | General status register |
-| `GetErrorFlags(uint32_t&)` | Error flags register |
+| `GetCommMode()` | `tmc9660::CommMode::SPI` or `::UART` |
+| `bootConfig()` | Const reference to the active `BootloaderConfig` |
+
+### Driver Access
+
+| Method | Description |
+|:-------|:------------|
+| `driverViaSpi()` | Typed `SpiDriver*` (nullptr if UART or not init) |
+| `driverViaUart()` | Typed `UartDriver*` (nullptr if SPI or not init) |
+| `GetDriver()` | `std::variant<monostate, SpiDriver*, UartDriver*>` |
+| `visitDriver(fn)` | Execute callable on active driver (non-mutex) |
 
 ### Peripheral Wrappers
+
+The handler owns three inner-class adapters that implement HardFOC base
+interfaces, enabling manager-level integration:
 
 ```cpp
 handler.gpio(17).SetPinLevel(HF_GPIO_LEVEL_HIGH);  // TMC9660 GPIO17
@@ -65,33 +68,60 @@ handler.adc().ReadChannelV(20, voltage);            // Supply voltage ADC
 handler.temperature().ReadTemperatureCelsius(&temp); // Chip temperature
 ```
 
-### Direct Driver Access
+| Accessor | Type | Description |
+|:---------|:-----|:------------|
+| `gpio(uint8_t)` | `Gpio&` (BaseGpio) | TMC9660 internal GPIO (17, 18) |
+| `adc()` | `Adc&` (BaseAdc) | Multi-channel: AIN, current, voltage, temp, motor |
+| `temperature()` | `Temperature&` (BaseTemperature) | Chip temperature sensor |
 
-When you know the comm mode (you always do — you chose it at construction):
+### Diagnostics
+
+| Method | Description |
+|:-------|:------------|
+| `DumpDiagnostics()` | Log comm mode, voltage, temperature, flags, GPIO/ADC status |
+
+## Motor Control & Telemetry via Driver Subsystems
+
+Motor control and telemetry are accessed through the driver's subsystems,
+not through handler-level wrapper methods:
+
+### Typed Pointer Access (recommended)
 
 ```cpp
 // SPI mode — direct subsystem access
 auto* drv = handler.driverViaSpi();
-drv->feedbackSense.configureHall();
+drv->motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);
+drv->commutation.setMode(tmcl::CommutationMode::FOC);
+drv->motorControl.enable();
 drv->velocityControl.setTargetVelocity(1000);
 
-// UART mode equivalent
-auto* drv = handler.driverViaUart();
-drv->feedbackSense.configureABNEncoder(1024);
+// Telemetry
+float supply_v = drv->telemetry.getSupplyVoltage();
+float chip_t   = drv->telemetry.getChipTemperature();
 ```
 
-For generic code that works with either comm mode (rare):
+### Generic Access via `visitDriver()`
 
 ```cpp
 handler.visitDriver([](auto& driver) {
     driver.feedbackSense.configureHallSensor(1, 2, 3);
     driver.protection.setOvertemperatureLimit(120.0f);
 });
+```
 
-// Or fetch active driver pointer explicitly without visitor:
+### Variant Access via `GetDriver()`
+
+```cpp
 auto active = handler.GetDriver();
 // std::variant<std::monostate, SpiDriver*, UartDriver*>
 ```
+
+## Thread Safety
+
+Individual handler methods are NOT thread-safe by themselves. If multiple
+threads access the same handler, external synchronization is required.
+The `Adc` and `Temperature` inner classes use their own `RtosMutex` for
+internal statistics tracking.
 
 ## Test Coverage
 

@@ -33,16 +33,30 @@ struct Config {
 
 ## Key Methods
 
+### Lifecycle
+
 | Method | Description |
 |:-------|:------------|
-| `Initialize()` | Initialize RMT channel and LED strip |
+| `Initialize()` | Initialize RMT channel and LED strip. Returns `esp_err_t`. |
 | `EnsureInitialized()` | Lazy init entrypoint |
 | `Deinitialize()` | Release RMT resources |
+| `IsInitialized()` | Check initialization state |
+
+### Driver Access
+
+| Method | Description |
+|:-------|:------------|
 | `GetNumLeds()` | Get the number of LEDs |
 | `GetDriver()` / `GetStrip()` | Get underlying `WS2812Strip*` |
 | `GetAnimator()` | Get underlying `WS2812Animator*` |
-| `visitDriver(fn)` | Execute callable with `WS2812Strip&` |
-| `visitAnimator(fn)` | Execute callable with `WS2812Animator&` |
+| `visitDriver(fn)` | Execute callable with `WS2812Strip&` under mutex |
+| `visitAnimator(fn)` | Execute callable with `WS2812Animator&` under mutex |
+
+### Diagnostics
+
+| Method | Description |
+|:-------|:------------|
+| `DumpDiagnostics()` | Log LED count, config, init state |
 
 All pixel operations and animation effects are intentionally delegated to
 the underlying driver objects (`WS2812Strip`, `WS2812Animator`) exposed by
