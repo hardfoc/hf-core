@@ -1,0 +1,110 @@
+From cd3023ef125dbc64efb61e8b622c4e629516214b Mon Sep 17 00:00:00 2001
+From: GitHub Copilot <copilot@github.com>
+Date: Tue, 17 Feb 2026 00:10:54 +0000
+Subject: [PATCH] fix: increase grep context for fallback parsing
+
+The fallback parsing (when yq is not available) was failing because
+grep -A 10 only shows 10 lines after 'metadata:', but build_types
+and idf_versions can be further away in the config file.
+
+In app_config.yml:
+- metadata: is on line 13
+- idf_versions: is on line 23 (10 lines after)
+- build_types: is on line 26 (13 lines after)
+
+Changed all grep -A 10 to grep -A 20 to capture these fields
+reliably, allowing the fallback mechanism to work properly when
+yq is not installed.
+
+This fixes the error:
+  ERROR: Could not extract build types from config
+
+Tested: fallback parsing now successfully extracts build types,
+idf_versions, and other metadata fields.
+---
+ config_loader.sh | 32 +++++++++++++++++---------------
+ 1 file changed, 17 insertions(+), 15 deletions(-)
+
+diff --git a/config_loader.sh b/config_loader.sh
+index 677db9d..979dba9 100755
+--- a/config_loader.sh
++++ b/config_loader.sh
+@@ -253,12 +253,13 @@ load_config_yq() {
+ # Fallback: Basic parsing without yq
+ load_config_basic() {
+     # Extract basic configuration using grep and sed (cleaner quote handling)
+-    export CONFIG_DEFAULT_APP=$(grep -A 10 "metadata:" "$CONFIG_FILE" | grep "default_app:" | sed 's/.*default_app: *"*\([^"]*\)"*.*/\1/')
+-    export CONFIG_DEFAULT_BUILD_TYPE=$(grep -A 10 "metadata:" "$CONFIG_FILE" | grep "default_build_type:" | sed 's/.*default_build_type: *"*\([^"]*\)"*.*/\1/')
+-    export CONFIG_TARGET=$(grep -A 10 "metadata:" "$CONFIG_FILE" | grep "target:" | sed 's/.*target: *"*\([^"]*\)"*.*/\1/')
++    # Increased context to -A 20 to handle larger metadata sections
++    export CONFIG_DEFAULT_APP=$(grep -A 20 "metadata:" "$CONFIG_FILE" | grep "default_app:" | sed 's/.*default_app: *"*\([^"]*\)"*.*/\1/')
++    export CONFIG_DEFAULT_BUILD_TYPE=$(grep -A 20 "metadata:" "$CONFIG_FILE" | grep "default_build_type:" | sed 's/.*default_build_type: *"*\([^"]*\)"*.*/\1/')
++    export CONFIG_TARGET=$(grep -A 20 "metadata:" "$CONFIG_FILE" | grep "target:" | sed 's/.*target: *"*\([^"]*\)"*.*/\1/')
+     
+     # Extract default ESP-IDF version
+-    export CONFIG_DEFAULT_IDF_VERSION=$(grep -A 10 "metadata:" "$CONFIG_FILE" | grep "idf_versions:" | sed 's/.*idf_versions: *\[*"*\([^"]*\)"*.*/\1/' | head -1 || echo "release/v5.5")
++    export CONFIG_DEFAULT_IDF_VERSION=$(grep -A 20 "metadata:" "$CONFIG_FILE" | grep "idf_versions:" | sed 's/.*idf_versions: *\[*"*\([^"]*\)"*.*/\1/' | head -1 || echo "release/v5.5")
+     
+     return 0
+ }
+@@ -308,7 +309,8 @@ get_build_types() {
+         run_yq '.metadata.build_types | .[] | .[]' -r 2>/dev/null | sort -u | tr '\n' ' '
+     else
+         # Fallback: extract from metadata section
+-        local build_line=$(grep -A 10 "metadata:" "$CONFIG_FILE" | grep "build_types:")
++        # Increased context to -A 20 to handle files where build_types is further from metadata
++        local build_line=$(grep -A 20 "metadata:" "$CONFIG_FILE" | grep "build_types:")
+         if [[ -n "$build_line" ]]; then
+             # Extract all build types from nested array, handling quotes and commas
+             # Format: [["Debug", "Release"], ["Debug"]] -> Debug Release
+@@ -338,9 +340,9 @@ get_build_types_for_idf_version() {
+             return 1
+         fi
+     else
+-        # Fallback: extract using grep and sed
+-        local idf_line=$(grep -A 10 "metadata:" "$CONFIG_FILE" | grep "idf_versions:")
+-        local build_line=$(grep -A 10 "metadata:" "$CONFIG_FILE" | grep "build_types:")
++        # Fallback: extract using grep and sed (increased context to -A 20)
++        local idf_line=$(grep -A 20 "metadata:" "$CONFIG_FILE" | grep "idf_versions:")
++        local build_line=$(grep -A 20 "metadata:" "$CONFIG_FILE" | grep "build_types:")
+         
+         if [[ -n "$idf_line" && -n "$build_line" ]]; then
+             # Extract IDF versions array
+@@ -396,8 +398,8 @@ get_idf_version_index() {
+     if check_yq; then
+         run_yq ".metadata.idf_versions | index(\"$idf_version\")" -r 2>/dev/null
+     else
+-        # Fallback: extract using grep and find index
+-        local idf_line=$(grep -A 10 "metadata:" "$CONFIG_FILE" | grep "idf_versions:")
++        # Fallback: extract using grep and find index (increased context to -A 20)
++        local idf_line=$(grep -A 20 "metadata:" "$CONFIG_FILE" | grep "idf_versions:")
+         if [[ -n "$idf_line" ]]; then
+             local idf_content=$(echo "$idf_line" | sed 's/.*idf_versions: *\[//' | sed 's/\].*//' | sed 's/"//g' | sed 's/,/ /g')
+             
+@@ -505,9 +507,9 @@ get_app_build_types_for_idf_version() {
+             fi
+         fi
+         
+-        # Fall back to global metadata for this IDF version
+-        local global_idf_line=$(grep -A 10 "metadata:" "$CONFIG_FILE" | grep "idf_versions:")
+-        local global_build_line=$(grep -A 10 "metadata:" "$CONFIG_FILE" | grep "build_types:")
++        # Fall back to global metadata for this IDF version (increased context to -A 20)
++        local global_idf_line=$(grep -A 20 "metadata:" "$CONFIG_FILE" | grep "idf_versions:")
++        local global_build_line=$(grep -A 20 "metadata:" "$CONFIG_FILE" | grep "build_types:")
+         
+         if [[ -n "$global_idf_line" && -n "$global_build_line" ]]; then
+             local global_idf_content=$(echo "$global_idf_line" | sed 's/.*idf_versions: *\[//' | sed 's/\].*//' | sed 's/"//g' | sed 's/,/ /g')
+@@ -544,8 +546,8 @@ get_idf_versions() {
+     if check_yq; then
+         run_yq '.metadata.idf_versions | .[]' -r 2>/dev/null | tr '\n' ' '
+     else
+-        # Fallback: extract from metadata section
+-        local idf_line=$(grep -A 10 "metadata:" "$CONFIG_FILE" | grep "idf_versions:")
++        # Fallback: extract from metadata section (increased context to -A 20)
++        local idf_line=$(grep -A 20 "metadata:" "$CONFIG_FILE" | grep "idf_versions:")
+         if [[ -n "$idf_line" ]]; then
+             # Extract all versions from array, handling quotes and commas
+             echo "$idf_line" | sed 's/.*\[//' | sed 's/\].*//' | sed 's/"//g' | sed 's/,/ /g' | tr '\n' ' '
+-- 
+2.52.0
+
