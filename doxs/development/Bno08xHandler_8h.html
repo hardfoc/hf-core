@@ -233,15 +233,16 @@ Ownership Model</h2>
 <h2><a class="anchor" id="autotoc_md2"></a>
 Initialization Sequence</h2>
 <div class="fragment"><div class="line"><span class="comment">// 1. Obtain a BaseI2c device reference (address pre-configured, e.g. 0x4A)</span></div>
-<div class="line"><span class="comment">// 2. Construct the handler</span></div>
+<div class="line"><span class="comment">// 2. Construct the handler (config enables accel+gyro+mag+rotation by default)</span></div>
 <div class="line"><a class="code hl_class" href="classBno08xHandler.html">Bno08xHandler</a> handler(i2c_device);</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// 3. Initialize</span></div>
+<div class="line"><span class="comment">// 3. Initialize (runs Begin + applyConfigLocked to enable configured sensors)</span></div>
 <div class="line"><span class="keywordflow">if</span> (handler.Initialize() != <a class="code hl_enumvalue" href="#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c">Bno08xError::SUCCESS</a>) { <span class="keywordflow">return</span>; }</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// 4. Enable sensors</span></div>
-<div class="line">handler.EnableSensor(BNO085Sensor::RotationVector, 10);  <span class="comment">// 100 Hz</span></div>
-<div class="line">handler.EnableSensor(BNO085Sensor::Accelerometer, 20);   <span class="comment">// 50 Hz</span></div>
+<div class="line"><span class="comment">// 4. Optionally enable extra sensors via driver access</span></div>
+<div class="line">handler.visitDriver([](<a class="code hl_class" href="classIBno08xDriverOps.html">IBno08xDriverOps</a>&amp; drv) {</div>
+<div class="line">    drv.<a class="code hl_function" href="classIBno08xDriverOps.html#a1da5bdfd4c8d7fbd42475ae7ee37fb98">EnableSensor</a>(BNO085Sensor::GameRotationVector, 10);</div>
+<div class="line">});</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// 5. Set callback for event-driven data</span></div>
 <div class="line">handler.SetSensorCallback([](<span class="keyword">const</span> SensorEvent&amp; e) { ... });</div>
@@ -249,7 +250,9 @@ Initialization Sequence</h2>
 <div class="line"><span class="comment">// 6. Service loop</span></div>
 <div class="line"><span class="keywordflow">while</span> (<span class="keyword">true</span>) { handler.Update(); }</div>
 <div class="ttc" id="aBno08xHandler_8h_html_a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c"><div class="ttname"><a href="#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c">Bno08xError::SUCCESS</a></div><div class="ttdeci">@ SUCCESS</div><div class="ttdoc">Operation completed successfully.</div></div>
-<div class="ttc" id="aclassBno08xHandler_html"><div class="ttname"><a href="classBno08xHandler.html">Bno08xHandler</a></div><div class="ttdoc">Unified handler for BNO08x IMU sensor family.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:483</div></div>
+<div class="ttc" id="aclassBno08xHandler_html"><div class="ttname"><a href="classBno08xHandler.html">Bno08xHandler</a></div><div class="ttdoc">Unified handler for BNO08x IMU sensor family.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:484</div></div>
+<div class="ttc" id="aclassIBno08xDriverOps_html"><div class="ttname"><a href="classIBno08xDriverOps.html">IBno08xDriverOps</a></div><div class="ttdoc">Internal abstract interface for type-erasing the BNO085&lt;CommType&gt; template.</div><div class="ttdef"><b>Definition</b> Bno08xHandler.h:257</div></div>
+<div class="ttc" id="aclassIBno08xDriverOps_html_a1da5bdfd4c8d7fbd42475ae7ee37fb98"><div class="ttname"><a href="classIBno08xDriverOps.html#a1da5bdfd4c8d7fbd42475ae7ee37fb98">IBno08xDriverOps::EnableSensor</a></div><div class="ttdeci">virtual bool EnableSensor(BNO085Sensor sensor, uint32_t interval_ms, float sensitivity) noexcept=0</div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
 Thread Safety</h2>
 <p>The handler uses RtosMutex (recursive) for thread-safe access to all handler-level operations.</p>

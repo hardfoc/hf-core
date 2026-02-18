@@ -7,8 +7,6 @@ var group__TMC5160__HAL__CommAdapters =
       [ "enable", "structTmc5160CtrlPins.html#a0780705d1b4a6eef17a26bb9d7bceecc", null ]
     ] ],
     [ "HalSpiTmc5160Comm", "classHalSpiTmc5160Comm.html", [
-      [ "ConstDriverVariant", "classHalSpiTmc5160Comm.html#a8c31d6c7e8ac30d0281ae99324499b90", null ],
-      [ "DriverVariant", "classHalSpiTmc5160Comm.html#a3837b61e7f37dc67e3122db287b5a592", null ],
       [ "HalSpiTmc5160Comm", "classHalSpiTmc5160Comm.html#a460b9fe3ce0b0001cfed4cb1f818d49f", null ],
       [ "DebugLog", "classHalSpiTmc5160Comm.html#a9be312a17a2d104eff165383eadb37c7", null ],
       [ "DelayMs", "classHalSpiTmc5160Comm.html#a68134d1ddb4ce782d8aa4d367475f054", null ],
