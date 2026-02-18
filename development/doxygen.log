@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.z4Q0HV
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.z4Q0HV' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.BWnFBX
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.BWnFBX' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -904,17 +904,27 @@ Generating call graph for function Tmc9660Handler::adc
 Generating caller graph for function Tmc9660Handler::adc
 Generating call graph for function Tmc9660Handler::driverViaSpi
 Generating call graph for function Tmc9660Handler::driverViaSpi
+Generating caller graph for function Tmc9660Handler::driverViaSpi
 Generating call graph for function Tmc9660Handler::driverViaUart
 Generating call graph for function Tmc9660Handler::driverViaUart
+Generating caller graph for function Tmc9660Handler::driverViaUart
 Generating call graph for function Tmc9660Handler::DumpDiagnostics
 Generating call graph for function Tmc9660Handler::EnsureInitialized
 Generating caller graph for function Tmc9660Handler::EnsureInitialized
+Generating call graph for function Tmc9660Handler::EnsureInitializedLocked
+Generating caller graph for function Tmc9660Handler::EnsureInitializedLocked
+Generating call graph for function Tmc9660Handler::GetDriver
+Generating call graph for function Tmc9660Handler::GetDriver
 Generating call graph for function Tmc9660Handler::gpio
 Generating call graph for function Tmc9660Handler::Initialize
 Generating caller graph for function Tmc9660Handler::Initialize
 Generating caller graph for function Tmc9660Handler::IsDriverReady
 Generating call graph for function Tmc9660Handler::temperature
 Generating caller graph for function Tmc9660Handler::temperature
+Generating call graph for function Tmc9660Handler::visitDriver
+Generating call graph for function Tmc9660Handler::visitDriver
+Generating call graph for function Tmc9660Handler::visitDriverInternal
+Generating caller graph for function Tmc9660Handler::visitDriverInternal
 Generating docs for nested compound Tmc9660Handler::Adc...
 Generating caller graph for function Tmc9660Handler::Adc::Deinitialize
 Generating call graph for function Tmc9660Handler::Adc::GetChannelTypeString
@@ -969,18 +979,7 @@ Generating call graph for function Ws2812Handler::EnsureInitialized
 Generating call graph for function Ws2812Handler::EnsureInitializedLocked
 Generating caller graph for function Ws2812Handler::EnsureInitializedLocked
 Generating call graph for function Ws2812Handler::GetAnimator
-Generating call graph for function Ws2812Handler::GetAnimator
-Generating caller graph for function Ws2812Handler::GetAnimator
-Generating call graph for function Ws2812Handler::GetDriver
-Generating call graph for function Ws2812Handler::GetDriver
-Generating caller graph for function Ws2812Handler::GetDriver
-Generating call graph for function Ws2812Handler::GetStrip
-Generating call graph for function Ws2812Handler::GetStrip
-Generating caller graph for function Ws2812Handler::GetStrip
-Generating call graph for function Ws2812Handler::Initialize
-Generating caller graph for function Ws2812Handler::Initialize
-Generating call graph for function Ws2812Handler::visitAnimator
-Generating call graph for function Ws2812Handler:/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
+Generating call graph for function Ws2812Handle/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:20: warning: unable to resolve reference to '-features' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:21: warning: unable to resolve reference to '-architecture' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:22: warning: unable to resolve reference to '-quick-start' for \ref command
@@ -996,7 +995,18 @@ Generating call graph for function Ws2812Handler:/home/runner/work/hf-core/hf-co
 /home/runner/work/hf-core/hf-core/README.md:184: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:185: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:186: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
-:visitDriver
+r::GetAnimator
+Generating caller graph for function Ws2812Handler::GetAnimator
+Generating call graph for function Ws2812Handler::GetDriver
+Generating call graph for function Ws2812Handler::GetDriver
+Generating caller graph for function Ws2812Handler::GetDriver
+Generating call graph for function Ws2812Handler::GetStrip
+Generating call graph for function Ws2812Handler::GetStrip
+Generating caller graph for function Ws2812Handler::GetStrip
+Generating call graph for function Ws2812Handler::Initialize
+Generating caller graph for function Ws2812Handler::Initialize
+Generating call graph for function Ws2812Handler::visitAnimator
+Generating call graph for function Ws2812Handler::visitDriver
 Generating docs for nested compound Ws2812Handler::Config...
 Generating concept documentation...
 Generating module documentation...
@@ -1121,100 +1131,82 @@ Running dot for graph 66/69
 Running dot for graph 67/69
 Running dot for graph 68/69
 Running dot for graph 69/69
-Patching output file 1/94
-Patching output file 2/94
-Patching output file 3/94
-Patching output file 4/94
-Patching output file 5/94
-Patching output file 6/94
-Patching output file 7/94
-Patching output file 8/94
-Patching output file 9/94
-Patching output file 10/94
-Patching output file 11/94
-Patching output file 12/94
-Patching output file 13/94
-Patching output file 14/94
-Patching output file 15/94
-Patching output file 16/94
-Patching output file 17/94
-Patching output file 18/94
-Patching output file 19/94
-Patching output file 20/94
-Patching output file 21/94
-Patching output file 22/94
-Patching output file 23/94
-Patching output file 24/94
-Patching output file 25/94
-Patching output file 26/94
-Patching output file 27/94
-Patching output file 28/94
-Patching output file 29/94
-Patching output file 30/94
-Patching output file 31/94
-Patching output file 32/94
-Patching output file 33/94
-Patching output file 34/94
-Patching output file 35/94
-Patching output file 36/94
-Patching output file 37/94
-Patching output file 38/94
-Patching output file 39/94
-Patching output file 40/94
-Patching output file 41/94
-Patching output file 42/94
-Patching output file 43/94
-Patching output file 44/94
-Patching output file 45/94
-Patching output file 46/94
-Patching output file 47/94
-Patching output file 48/94
-Patching output file 49/94
-Patching output file 50/94
-Patching output file 51/94
-Patching output file 52/94
-Patching output file 53/94
-Patching output file 54/94
-Patching output file 55/94
-Patching output file 56/94
-Patching output file 57/94
-Patching output file 58/94
-Patching output file 59/94
-Patching output file 60/94
-Patching output file 61/94
-Patching output file 62/94
-Patching output file 63/94
-Patching output file 64/94
-Patching output file 65/94
-Patching output file 66/94
-Patching output file 67/94
-Patching output file 68/94
-Patching output file 69/94
-Patching output file 70/94
-Patching output file 71/94
-Patching output file 72/94
-Patching output file 73/94
-Patching output file 74/94
-Patching output file 75/94
-Patching output file 76/94
-Patching output file 77/94
-Patching output file 78/94
-Patching output file 79/94
-Patching output file 80/94
-Patching output file 81/94
-Patching output file 82/94
-Patching output file 83/94
-Patching output file 84/94
-Patching output file 85/94
-Patching output file 86/94
-Patching output file 87/94
-Patching output file 88/94
-Patching output file 89/94
-Patching output file 90/94
-Patching output file 91/94
-Patching output file 92/94
-Patching output file 93/94
-Patching output file 94/94
-type lookup cache used 5126/65536 hits=26752 misses=5469
-symbol lookup cache used 6765/65536 hits=31752 misses=6765
+Patching output file 1/76
+Patching output file 2/76
+Patching output file 3/76
+Patching output file 4/76
+Patching output file 5/76
+Patching output file 6/76
+Patching output file 7/76
+Patching output file 8/76
+Patching output file 9/76
+Patching output file 10/76
+Patching output file 11/76
+Patching output file 12/76
+Patching output file 13/76
+Patching output file 14/76
+Patching output file 15/76
+Patching output file 16/76
+Patching output file 17/76
+Patching output file 18/76
+Patching output file 19/76
+Patching output file 20/76
+Patching output file 21/76
+Patching output file 22/76
+Patching output file 23/76
+Patching output file 24/76
+Patching output file 25/76
+Patching output file 26/76
+Patching output file 27/76
+Patching output file 28/76
+Patching output file 29/76
+Patching output file 30/76
+Patching output file 31/76
+Patching output file 32/76
+Patching output file 33/76
+Patching output file 34/76
+Patching output file 35/76
+Patching output file 36/76
+Patching output file 37/76
+Patching output file 38/76
+Patching output file 39/76
+Patching output file 40/76
+Patching output file 41/76
+Patching output file 42/76
+Patching output file 43/76
+Patching output file 44/76
+Patching output file 45/76
+Patching output file 46/76
+Patching output file 47/76
+Patching output file 48/76
+Patching output file 49/76
+Patching output file 50/76
+Patching output file 51/76
+Patching output file 52/76
+Patching output file 53/76
+Patching output file 54/76
+Patching output file 55/76
+Patching output file 56/76
+Patching output file 57/76
+Patching output file 58/76
+Patching output file 59/76
+Patching output file 60/76
+Patching output file 61/76
+Patching output file 62/76
+Patching output file 63/76
+Patching output file 64/76
+Patching output file 65/76
+Patching output file 66/76
+Patching output file 67/76
+Patching output file 68/76
+Patching output file 69/76
+Patching output file 70/76
+Patching output file 71/76
+Patching output file 72/76
+Patching output file 73/76
+Patching output file 74/76
+Patching output file 75/76
+Patching output file 76/76
+type lookup cache used 5094/65536 hits=27544 misses=5437
+symbol lookup cache used 6733/65536 hits=31993 misses=6733
 finished...

@@ -1,30 +1,33 @@
 <map id="Tmc9660Handler::Temperature::ReadTemperatureCelsiusImpl" name="Tmc9660Handler::Temperature::ReadTemperatureCelsiusImpl">
-<area shape="rect" id="Node000001" title="Read the chip temperature in degrees Celsius." alt="" coords="5,44,228,84"/>
-<area shape="rect" id="Node000002" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="1113,154,1218,180"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,82,214,105,277,124,392,146,511,162,630,171,745,176,950,176,1099,169,1099,174,950,181,745,181,630,176,511,167,391,152,275,130,213,110,157,87"/>
-<area shape="rect" id="Node000005" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="1089,56,1241,81"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="228,52,276,50,659,36,826,38,1042,50,1076,53,1075,58,1041,55,826,44,659,42,276,55,228,57"/>
-<area shape="rect" id="Node000006" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="276,89,499,114"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="229,77,282,84,281,90,228,82"/>
-<area shape="rect" id="Node000011" href="$classLogger.html#aaa95ffa14d07a965d4a85bdec82cba26" title="Log warning message." alt="" coords="1112,6,1219,32"/>
-<area shape="poly" id="edge15_Node000001_Node000011" title=" " alt="" coords="195,42,276,27,393,15,512,8,746,3,950,6,1098,12,1098,18,950,11,746,8,513,13,393,21,276,32,196,47"/>
-<area shape="rect" id="Node000003" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="1289,81,1461,106"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1209,152,1240,140,1288,116,1312,108,1314,113,1290,121,1242,145,1211,157"/>
-<area shape="rect" id="Node000004" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="1302,130,1449,156"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="1218,158,1288,150,1288,156,1219,164"/>
-<area shape="poly" id="edge14_Node000006_Node000006" title=" " alt="" coords="344,91,334,81,339,71,357,64,387,62,426,66,436,71,440,77,436,80,433,75,424,72,387,68,358,70,343,75,340,80,348,87"/>
-<area shape="rect" id="Node000007" href="$classTmc9660Handler.html#a5a279ae9d4b5a8e0d71cb24577ad88ea" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="547,89,796,114"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="499,99,533,99,533,104,499,104"/>
-<area shape="rect" id="Node000008" href="$classTmc9660Handler.html#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device." alt="" coords="844,129,1041,154"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="758,112,843,124,842,130,758,117"/>
-<area shape="rect" id="Node000010" href="$classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f" title="Check if the TMC9660 driver has been initialized and is ready." alt="" coords="847,64,1039,104"/>
-<area shape="poly" id="edge13_Node000007_Node000010" title=" " alt="" coords="796,91,833,89,833,94,797,96"/>
-<area shape="poly" id="edge8_Node000008_Node000002" title=" " alt="" coords="1042,150,1099,157,1099,162,1041,156"/>
-<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="1000,126,1040,114,1088,90,1107,83,1109,88,1090,95,1042,119,1002,131"/>
-<area shape="rect" id="Node000009" href="$classLogger.html#a4681229c521795685fc14f6b55c82300" title="Log info message." alt="" coords="1116,105,1215,130"/>
-<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="1041,128,1102,122,1103,127,1042,134"/>
-<area shape="poly" id="edge11_Node000009_Node000003" title=" " alt="" coords="1214,109,1275,102,1276,108,1215,115"/>
-<area shape="poly" id="edge12_Node000009_Node000004" title=" " alt="" coords="1215,121,1289,130,1288,135,1214,126"/>
-<area shape="poly" id="edge16_Node000011_Node000003" title=" " alt="" coords="1208,29,1242,40,1330,73,1328,78,1240,45,1207,34"/>
-<area shape="poly" id="edge17_Node000011_Node000004" title=" " alt="" coords="1220,28,1243,41,1260,60,1268,80,1275,99,1291,117,1299,122,1296,126,1288,121,1271,102,1263,82,1255,63,1240,45,1218,33"/>
+<area shape="rect" id="Node000001" title="Read the chip temperature in degrees Celsius." alt="" coords="5,73,228,113"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="1410,183,1515,209"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,111,216,133,277,153,385,184,471,204,558,215,670,219,970,219,1205,212,1396,199,1396,204,1205,217,970,224,670,224,557,220,470,209,384,189,275,159,215,138,160,116"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="1387,85,1539,110"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="228,79,433,62,552,56,670,53,970,53,1079,56,1188,63,1373,83,1373,88,1188,69,1079,62,970,59,670,59,552,61,434,67,229,84"/>
+<area shape="rect" id="Node000006" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="276,118,499,143"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="229,106,282,114,281,119,228,111"/>
+<area shape="rect" id="Node000012" href="$classLogger.html#aaa95ffa14d07a965d4a85bdec82cba26" title="Log warning message." alt="" coords="1409,35,1516,61"/>
+<area shape="poly" id="edge17_Node000001_Node000012" title=" " alt="" coords="183,71,275,48,471,13,558,5,670,3,970,3,1088,6,1205,15,1396,36,1396,41,1205,20,1088,11,970,8,670,8,559,10,472,18,277,53,184,76"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="1587,110,1759,135"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1507,181,1538,170,1586,146,1609,137,1611,142,1588,150,1540,174,1508,186"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="1599,159,1746,185"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="1515,187,1585,179,1586,185,1516,193"/>
+<area shape="poly" id="edge16_Node000006_Node000006" title=" " alt="" coords="344,120,334,110,339,100,357,93,387,91,426,95,436,100,440,106,436,109,433,104,424,101,387,97,358,99,343,104,340,109,348,116"/>
+<area shape="rect" id="Node000007" href="$classTmc9660Handler.html#a5a279ae9d4b5a8e0d71cb24577ad88ea" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="547,118,796,143"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="499,137,533,137,533,142,499,142"/>
+<area shape="poly" id="edge15_Node000007_Node000006" title=" " alt="" coords="546,124,513,124,513,119,546,119"/>
+<area shape="rect" id="Node000008" href="$classTmc9660Handler.html#a7c1d8073576d678b09dac24c9eb12845" title="Ensure initialized while handler_mutex_ is already held." alt="" coords="844,111,1093,151"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="796,128,831,128,831,133,796,133"/>
+<area shape="rect" id="Node000009" href="$classTmc9660Handler.html#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device." alt="" coords="1141,158,1339,183"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1094,146,1140,153,1140,159,1093,152"/>
+<area shape="rect" id="Node000011" href="$classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f" title="Check if the TMC9660 driver has been initialized and is ready." alt="" coords="1144,93,1336,133"/>
+<area shape="poly" id="edge14_Node000008_Node000011" title=" " alt="" coords="1094,120,1130,118,1130,123,1094,125"/>
+<area shape="poly" id="edge9_Node000009_Node000002" title=" " alt="" coords="1339,179,1397,186,1396,191,1339,185"/>
+<area shape="poly" id="edge10_Node000009_Node000005" title=" " alt="" coords="1298,155,1338,143,1386,119,1404,112,1406,117,1388,124,1340,148,1299,160"/>
+<area shape="rect" id="Node000010" href="$classLogger.html#a4681229c521795685fc14f6b55c82300" title="Log info message." alt="" coords="1413,134,1512,159"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="1339,157,1400,151,1400,156,1339,163"/>
+<area shape="poly" id="edge12_Node000010_Node000003" title=" " alt="" coords="1512,138,1572,131,1573,137,1512,144"/>
+<area shape="poly" id="edge13_Node000010_Node000004" title=" " alt="" coords="1512,150,1586,159,1585,164,1512,155"/>
+<area shape="poly" id="edge18_Node000012_Node000003" title=" " alt="" coords="1506,58,1540,69,1628,102,1626,107,1538,75,1504,63"/>
+<area shape="poly" id="edge19_Node000012_Node000004" title=" " alt="" coords="1517,57,1540,70,1557,89,1565,109,1572,128,1588,146,1596,151,1593,155,1585,150,1568,131,1560,111,1553,92,1537,74,1515,62"/>
 </map>

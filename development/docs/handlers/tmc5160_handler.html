@@ -247,7 +247,10 @@
 </h1>
     
 
-<p>Stepper motor driver handler for TMC5160/TMC5130 with integrated motion controller.</p>
+<p>Stepper motor driver handler for TMC5160/TMC5130 with SPI/UART support.
+All motor control, ramp, chopper, and StallGuard operations are accessed
+through the typed driver pointers or <code class="language-plaintext highlighter-rouge">visitDriver()</code> — the handler itself
+provides only lifecycle management and driver routing.</p>
 <h2 id="construction">
   
   
@@ -288,6 +291,14 @@
   
 </h2>
     
+<h3 id="lifecycle">
+  
+  
+    <a href="#lifecycle" class="anchor-heading" aria-labelledby="lifecycle"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Lifecycle
+  
+  
+</h3>
+    
 
 <div class="table-wrapper"><table>
   <thead>
@@ -299,7 +310,7 @@
   <tbody>
     <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Initialize(config, verbose)</code></td>
-      <td style="text-align: left">Full driver initialization with <code class="language-plaintext highlighter-rouge">DriverConfig</code></td>
+      <td style="text-align: left">Full driver initialization with <code class="language-plaintext highlighter-rouge">DriverConfig</code>. Returns <code class="language-plaintext highlighter-rouge">bool</code>.</td>
     </tr>
     <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">EnsureInitialized()</code></td>
@@ -310,66 +321,167 @@
       <td style="text-align: left">Disable motor and release resources</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">EnableMotor()</code> / <code class="language-plaintext highlighter-rouge">DisableMotor()</code></td>
-      <td style="text-align: left">Drive enable control (DRV_ENN)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">IsInitialized()</code></td>
+      <td style="text-align: left">Check initialization state</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetTargetPosition(pos)</code></td>
-      <td style="text-align: left">Set target position in microsteps</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">IsSpi()</code></td>
+      <td style="text-align: left">Check if SPI mode is active</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetTargetVelocity(vel)</code></td>
-      <td style="text-align: left">Set target velocity</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetMaxSpeed(speed, unit)</code></td>
-      <td style="text-align: left">Configure ramp generator max speed</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetAcceleration(accel, unit)</code></td>
-      <td style="text-align: left">Configure ramp generator acceleration</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Stop()</code></td>
-      <td style="text-align: left">Immediate motor stop</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetCurrentPosition()</code></td>
-      <td style="text-align: left">Read current position in microsteps</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetCurrentVelocity()</code></td>
-      <td style="text-align: left">Read current velocity</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">IsTargetReached()</code></td>
-      <td style="text-align: left">Check if positioning is complete</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetCurrent(irun, ihold)</code></td>
-      <td style="text-align: left">Set run and hold current (0–31)</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">IsStallDetected()</code></td>
-      <td style="text-align: left">StallGuard detection flag</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetStallGuardResult()</code></td>
-      <td style="text-align: left">Raw StallGuard value</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">DumpDiagnostics()</code></td>
-      <td style="text-align: left">Print diagnostic info to Logger</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetDriverConfig()</code></td>
+      <td style="text-align: left">Get the <code class="language-plaintext highlighter-rouge">DriverConfig</code> snapshot used at init</td>
     </tr>
   </tbody>
 </table></div>
-<h2 id="direct-driver-access">
+<h3 id="driver-access">
   
   
-    <a href="#direct-driver-access" class="anchor-heading" aria-labelledby="direct-driver-access"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Direct Driver Access
+    <a href="#driver-access" class="anchor-heading" aria-labelledby="driver-access"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Driver Access
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Method</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">driverViaSpi()</code></td>
+      <td style="text-align: left">Typed <code class="language-plaintext highlighter-rouge">SpiDriver*</code> (nullptr if UART or not init)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">driverViaUart()</code></td>
+      <td style="text-align: left">Typed <code class="language-plaintext highlighter-rouge">UartDriver*</code> (nullptr if SPI or not init)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetDriver()</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">std::variant&lt;monostate, SpiDriver*, UartDriver*&gt;</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">visitDriver(fn)</code></td>
+      <td style="text-align: left">Execute callable on active driver under mutex</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="diagnostics">
+  
+  
+    <a href="#diagnostics" class="anchor-heading" aria-labelledby="diagnostics"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Diagnostics
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Method</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">DumpDiagnostics()</code></td>
+      <td style="text-align: left">Log status, registers, and driver info</td>
+    </tr>
+  </tbody>
+</table></div>
+<h2 id="driver-subsystem-access">
+  
+  
+    <a href="#driver-subsystem-access" class="anchor-heading" aria-labelledby="driver-subsystem-access"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Driver Subsystem Access
   
   
 </h2>
+    
+
+<p>The TMC5160 driver exposes 15 subsystems. You access them through the
+typed driver pointer or <code class="language-plaintext highlighter-rouge">visitDriver()</code> — <strong>not</strong> through handler-level
+convenience wrappers:</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Subsystem</th>
+      <th style="text-align: left">Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">rampControl</code></td>
+      <td style="text-align: left">Motion profile: position, velocity, acceleration</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">motorControl</code></td>
+      <td style="text-align: left">Enable/disable, current setting, chopper config</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">stallGuard</code></td>
+      <td style="text-align: left">StallGuard2 load detection</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">encoder</code></td>
+      <td style="text-align: left">ABN encoder interface</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">homing</code></td>
+      <td style="text-align: left">Sensorless/switch/encoder homing routines</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">thresholds</code></td>
+      <td style="text-align: left">Velocity threshold configuration</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">switches</code></td>
+      <td style="text-align: left">Reference switch control</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">tuning</code></td>
+      <td style="text-align: left">Auto-tuning routines</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">status</code></td>
+      <td style="text-align: left">Status register and diagnostics</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">powerStage</code></td>
+      <td style="text-align: left">Over-current / short protection</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">communication</code></td>
+      <td style="text-align: left">Raw register read/write</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">io</code></td>
+      <td style="text-align: left">Pin / mode helpers</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">events</code></td>
+      <td style="text-align: left">XCompare / ramp events</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">printer</code></td>
+      <td style="text-align: left">Debug printing</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">uartConfig</code></td>
+      <td style="text-align: left">UART node addressing</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="typed-pointer-access-recommended">
+  
+  
+    <a href="#typed-pointer-access-recommended" class="anchor-heading" aria-labelledby="typed-pointer-access-recommended"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Typed Pointer Access (recommended)
+  
+  
+</h3>
     
 
 <p>When you know the comm mode (you always do — you chose it at construction):</p>
@@ -391,8 +503,16 @@
 <span class="k">auto</span><span class="o">*</span> <span class="n">drv</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">driverViaUart</span><span class="p">();</span>
 <span class="n">drv</span><span class="o">-&gt;</span><span class="n">rampControl</span><span class="p">.</span><span class="n">SetMaxSpeed</span><span class="p">(</span><span class="mi">50000</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="generic-access-via-visitdriver">
+  
+  
+    <a href="#generic-access-via-visitdriver" class="anchor-heading" aria-labelledby="generic-access-via-visitdriver"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Generic Access via <code class="language-plaintext highlighter-rouge">visitDriver()</code>
+  
+  
+</h3>
+    
 
-<p>For generic code that works with either comm mode (rare), use <code class="language-plaintext highlighter-rouge">visitDriver()</code>:</p>
+<p>For code that must work with either comm mode:</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -403,10 +523,6 @@
 7
 8
 9
-10
-11
-12
-13
 </pre></td><td class="rouge-code"><pre><span class="n">handler</span><span class="p">.</span><span class="n">visitDriver</span><span class="p">([](</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">drv</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">drv</span><span class="p">.</span><span class="n">motorControl</span><span class="p">.</span><span class="n">Enable</span><span class="p">();</span>
     <span class="n">drv</span><span class="p">.</span><span class="n">rampControl</span><span class="p">.</span><span class="n">SetTargetPosition</span><span class="p">(</span><span class="mi">51200</span><span class="p">);</span>
@@ -416,9 +532,19 @@
     <span class="k">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">drv</span><span class="p">.</span><span class="n">rampControl</span><span class="p">.</span><span class="n">GetCurrentPosition</span><span class="p">();</span>
     <span class="k">return</span> <span class="n">result</span> <span class="o">?</span> <span class="n">result</span><span class="p">.</span><span class="n">Value</span><span class="p">()</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">});</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="variant-access-via-getdriver">
+  
+  
+    <a href="#variant-access-via-getdriver" class="anchor-heading" aria-labelledby="variant-access-via-getdriver"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Variant Access via <code class="language-plaintext highlighter-rouge">GetDriver()</code>
+  
+  
+</h3>
+    
 
-<span class="c1">// Or fetch active driver pointer explicitly without visitor:</span>
-<span class="k">auto</span> <span class="n">active</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">GetDriver</span><span class="p">();</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="k">auto</span> <span class="n">active</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">GetDriver</span><span class="p">();</span>
 <span class="c1">// std::variant&lt;std::monostate, SpiDriver*, UartDriver*&gt;</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="thread-safety">
@@ -430,7 +556,8 @@
 </h2>
     
 
-<p>All methods are protected by an internal <code class="language-plaintext highlighter-rouge">RtosMutex</code>.</p>
+<p>All public methods are protected by an internal <code class="language-plaintext highlighter-rouge">RtosMutex</code>.
+<code class="language-plaintext highlighter-rouge">visitDriver()</code> holds the mutex for the duration of the callable.</p>
 <h2 id="test-coverage">
   
   

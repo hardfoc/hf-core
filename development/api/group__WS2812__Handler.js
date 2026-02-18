@@ -22,6 +22,8 @@ var group__WS2812__Handler =
       [ "EnsureInitializedLocked", "classWs2812Handler.html#afe5f397b22e9b92cf2fb2cebae6e123d", null ],
       [ "GetAnimator", "classWs2812Handler.html#ad564e91a669c0a06f5abde5a3ae8a6a6", null ],
       [ "GetAnimator", "classWs2812Handler.html#a3e09ba2c15d5b0e7d6d254e22f634ae8", null ],
+      [ "GetDefaultConfig", "classWs2812Handler.html#afaed7a0963afc1bf8288fe17ccacde07", null ],
+      [ "GetDescription", "classWs2812Handler.html#a807459e442df75bcfae26a18dcd1622b", null ],
       [ "GetDriver", "classWs2812Handler.html#a8180b47ace28b9d2af1e6f610bc46867", null ],
       [ "GetDriver", "classWs2812Handler.html#a2511358625ce2eeb89eae9ca17495b6c", null ],
       [ "GetNumLeds", "classWs2812Handler.html#ae1c94f58ab9ca971f6801c10556192f9", null ],
@@ -35,6 +37,7 @@ var group__WS2812__Handler =
       [ "visitDriver", "classWs2812Handler.html#a338df7ac09cd31e3b70d7dd488c1baa6", null ],
       [ "animator_", "classWs2812Handler.html#aba9a27e605659de49f6b8c745cebf050", null ],
       [ "config_", "classWs2812Handler.html#ac0a3dc379fcdb7964fe6e6995c37598e", null ],
+      [ "description_", "classWs2812Handler.html#a0bc6bf24df5f102cf5c04e1e70eb63a3", null ],
       [ "initialized_", "classWs2812Handler.html#a4a5ea3c76506c449dc37c70d664aa033", null ],
       [ "mutex_", "classWs2812Handler.html#ab05395f0e7509f80ed86011bddd09d73", null ],
       [ "strip_", "classWs2812Handler.html#a4387bbc8038b920f3a2f5851f63307b2", null ]

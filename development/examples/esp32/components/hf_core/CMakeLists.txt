@@ -202,6 +202,63 @@ target_compile_definitions(${COMPONENT_LIB} PUBLIC
     CONFIG_WS2812_LED_RMT_TX_CHANNEL=0
 )
 
+# ── MCU target definitions based on ESP-IDF target ───────────────────────
+if(CONFIG_IDF_TARGET_ESP32)
+    target_compile_definitions(${COMPONENT_LIB} PUBLIC
+        HF_TARGET_MCU_ESP32=1
+        HF_MCU_ESP32=1
+        HF_MCU_FAMILY_ESP32=1
+        HF_THREAD_SAFE=1
+        ESP32=1
+    )
+elseif(CONFIG_IDF_TARGET_ESP32S3)
+    target_compile_definitions(${COMPONENT_LIB} PUBLIC
+        HF_TARGET_MCU_ESP32S3=1
+        HF_MCU_ESP32S3=1
+        HF_MCU_FAMILY_ESP32=1
+        HF_THREAD_SAFE=1
+        ESP32S3=1
+    )
+elseif(CONFIG_IDF_TARGET_ESP32C6)
+    target_compile_definitions(${COMPONENT_LIB} PUBLIC
+        HF_TARGET_MCU_ESP32C6=1
+        HF_MCU_ESP32C6=1
+        HF_MCU_FAMILY_ESP32=1
+        HF_THREAD_SAFE=1
+        ESP32C6=1
+    )
+elseif(CONFIG_IDF_TARGET_ESP32S2)
+    target_compile_definitions(${COMPONENT_LIB} PUBLIC
+        HF_TARGET_MCU_ESP32S2=1
+        HF_MCU_ESP32S2=1
+        HF_MCU_FAMILY_ESP32=1
+        HF_THREAD_SAFE=1
+        ESP32S2=1
+    )
+elseif(CONFIG_IDF_TARGET_ESP32C3)
+    target_compile_definitions(${COMPONENT_LIB} PUBLIC
+        HF_TARGET_MCU_ESP32C3=1
+        HF_MCU_ESP32C3=1
+        HF_MCU_FAMILY_ESP32=1
+        HF_THREAD_SAFE=1
+        ESP32C3=1
+    )
+elseif(CONFIG_IDF_TARGET_ESP32H2)
+    target_compile_definitions(${COMPONENT_LIB} PUBLIC
+        HF_TARGET_MCU_ESP32H2=1
+        HF_MCU_ESP32H2=1
+        HF_MCU_FAMILY_ESP32=1
+        HF_THREAD_SAFE=1
+        ESP32H2=1
+    )
+else()
+    target_compile_definitions(${COMPONENT_LIB} PUBLIC
+        HF_MCU_ESP32=1
+        HF_MCU_FAMILY_ESP32=1
+        HF_THREAD_SAFE=1
+    )
+endif()
+
 # ── Suppress warnings in third-party/generated code ──────────────────────
 target_compile_options(${COMPONENT_LIB} PRIVATE
     -Wall -Wextra

@@ -94,6 +94,7 @@ $(function(){initNavTree('classWs2812Handler.html',''); initResizable(); });
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classWs2812Handler-members.html">List of all members</a>  </div>
@@ -173,6 +174,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a586683dcf63f17194b77c026972c7b2b" id="r_a586683dcf63f17194b77c026972c7b2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a586683dcf63f17194b77c026972c7b2b">DumpDiagnostics</a> () noexcept</td></tr>
 <tr class="memdesc:a586683dcf63f17194b77c026972c7b2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump diagnostics to logger.  <br /></td></tr>
 <tr class="separator:a586683dcf63f17194b77c026972c7b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a807459e442df75bcfae26a18dcd1622b" id="r_a807459e442df75bcfae26a18dcd1622b"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a807459e442df75bcfae26a18dcd1622b">GetDescription</a> () const noexcept</td></tr>
+<tr class="memdesc:a807459e442df75bcfae26a18dcd1622b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a human-readable description of the handler.  <br /></td></tr>
+<tr class="separator:a807459e442df75bcfae26a18dcd1622b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:afaed7a0963afc1bf8288fe17ccacde07" id="r_afaed7a0963afc1bf8288fe17ccacde07"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structWs2812Handler_1_1Config.html">Config</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afaed7a0963afc1bf8288fe17ccacde07">GetDefaultConfig</a> () noexcept</td></tr>
+<tr class="memdesc:afaed7a0963afc1bf8288fe17ccacde07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a sensible default <a class="el" href="structWs2812Handler_1_1Config.html" title="Configuration structure for the WS2812 handler.">Config</a>.  <br /></td></tr>
+<tr class="separator:afaed7a0963afc1bf8288fe17ccacde07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -191,6 +201,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a4387bbc8038b920f3a2f5851f63307b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba9a27e605659de49f6b8c745cebf050" id="r_aba9a27e605659de49f6b8c745cebf050"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; WS2812Animator &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba9a27e605659de49f6b8c745cebf050">animator_</a></td></tr>
 <tr class="separator:aba9a27e605659de49f6b8c745cebf050"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bc6bf24df5f102cf5c04e1e70eb63a3" id="r_a0bc6bf24df5f102cf5c04e1e70eb63a3"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bc6bf24df5f102cf5c04e1e70eb63a3">description_</a> [64] {}</td></tr>
+<tr class="memdesc:a0bc6bf24df5f102cf5c04e1e70eb63a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Human-readable handler description.  <br /></td></tr>
+<tr class="separator:a0bc6bf24df5f102cf5c04e1e70eb63a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Unified handler for WS2812 addressable LED strips. </p>
@@ -507,6 +520,7 @@ Here is the call graph for this function:</div>
 
 <p>Get the animator object. </p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to WS2812Animator, or nullptr if not initialized. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Prefer <a class="el" href="#ae6bb3e858c86d80d69edc1fced893293" title="Visit animator object with a callable.">visitAnimator()</a>. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -517,6 +531,62 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classWs2812Handler_a3e09ba2c15d5b0e7d6d254e22f634ae8_icgraph.svg" width="491" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+
+</div>
+</div>
+<a id="afaed7a0963afc1bf8288fe17ccacde07" name="afaed7a0963afc1bf8288fe17ccacde07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afaed7a0963afc1bf8288fe17ccacde07">&#9670;&#160;</a></span>GetDefaultConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="structWs2812Handler_1_1Config.html">Config</a> Ws2812Handler::GetDefaultConfig </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a sensible default <a class="el" href="structWs2812Handler_1_1Config.html" title="Configuration structure for the WS2812 handler.">Config</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>Default <a class="el" href="structWs2812Handler_1_1Config.html" title="Configuration structure for the WS2812 handler.">Config</a> structure. </dd></dl>
+
+</div>
+</div>
+<a id="a807459e442df75bcfae26a18dcd1622b" name="a807459e442df75bcfae26a18dcd1622b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a807459e442df75bcfae26a18dcd1622b">&#9670;&#160;</a></span>GetDescription()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * Ws2812Handler::GetDescription </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a human-readable description of the handler. </p>
+<dl class="section return"><dt>Returns</dt><dd>String e.g. "WS2812 LED Strip (GPIO48, 30 LEDs)" </dd></dl>
 
 </div>
 </div>
@@ -574,6 +644,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Naming-consistent alias of <a class="el" href="#a7471840392adad3cab496e2dc57dc792" title="Get the underlying LED strip object.">GetStrip()</a>. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Prefer <a class="el" href="#a338df7ac09cd31e3b70d7dd488c1baa6" title="Visit strip driver with a callable.">visitDriver()</a>. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -669,6 +740,7 @@ Here is the call graph for this function:</div>
 
 <p>Get the underlying LED strip object. </p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to WS2812Strip, or nullptr if not initialized. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Caller is responsible for external synchronization in multi-task environments. Prefer <a class="el" href="#a338df7ac09cd31e3b70d7dd488c1baa6" title="Visit strip driver with a callable.">visitDriver()</a> for thread-safe access. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -909,6 +981,30 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0bc6bf24df5f102cf5c04e1e70eb63a3" name="a0bc6bf24df5f102cf5c04e1e70eb63a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bc6bf24df5f102cf5c04e1e70eb63a3">&#9670;&#160;</a></span>description_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char Ws2812Handler::description_[64] {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Human-readable handler description. </p>
 
 </div>
 </div>

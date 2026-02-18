@@ -18,6 +18,7 @@ var pca9685__handler__comprehensive__test_8cpp =
     [ "ENABLE_PWM_DUTY_TESTS", "pca9685__handler__comprehensive__test_8cpp.html#a240da635bf6dd898757a70c8c35fd3d7", null ],
     [ "ENABLE_SLEEP_WAKE_TESTS", "pca9685__handler__comprehensive__test_8cpp.html#a28ad4cc00158e4311c2285901fb3d6e7", null ],
     [ "g_handler", "pca9685__handler__comprehensive__test_8cpp.html#aa4bfeda8b834ed631e9776476f1bb5df", null ],
+    [ "g_pwm", "pca9685__handler__comprehensive__test_8cpp.html#a567676674d98e79afb9b749c89028f3a", null ],
     [ "g_test_results", "pca9685__handler__comprehensive__test_8cpp.html#aaff89257c54366921eebb8ec1348b1fd", null ],
     [ "TAG", "pca9685__handler__comprehensive__test_8cpp.html#a5a85b9c772bbeb480b209a3e6ea92b4c", null ]
 ];

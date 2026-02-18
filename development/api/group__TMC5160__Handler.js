@@ -1,6 +1,8 @@
 var group__TMC5160__Handler =
 [
     [ "Tmc5160Handler", "classTmc5160Handler.html", [
+      [ "ConstDriverVariant", "classTmc5160Handler.html#ae9ac81d930499aae3a3bb7a6dc632cda", null ],
+      [ "DriverVariant", "classTmc5160Handler.html#a4b00981028b5ff6cb89eeed105a8eed1", null ],
       [ "SpiDriver", "classTmc5160Handler.html#a93e7a35d8a8b4dc3ec97bb1a9d26c3a1", null ],
       [ "UartDriver", "classTmc5160Handler.html#a31e66827548c966a076877961d3e852f", null ],
       [ "Tmc5160Handler", "classTmc5160Handler.html#a3734595897a34600986242dbbefd9ed3", null ],
@@ -16,6 +18,8 @@ var group__TMC5160__Handler =
       [ "DumpDiagnostics", "classTmc5160Handler.html#ab4bf5aabef968f6f8ee66d08cf05913a", null ],
       [ "EnsureInitialized", "classTmc5160Handler.html#a5ad276d4fcd81765d0a5af064fdbf7b5", null ],
       [ "EnsureInitializedLocked", "classTmc5160Handler.html#a6d4fce2433e03bb11b05a4278ef66fd0", null ],
+      [ "GetDefaultConfig", "classTmc5160Handler.html#aee9861399d8eee4660d17ba4122bec8a", null ],
+      [ "GetDescription", "classTmc5160Handler.html#a28d5365ad7e7ef2af60d599388e9df37", null ],
       [ "GetDriver", "classTmc5160Handler.html#a755fbb0bd0c5faa03c807522e4ea469a", null ],
       [ "GetDriver", "classTmc5160Handler.html#a8753f4b21ffb25d294d4ce41951f11f7", null ],
       [ "GetDriverConfig", "classTmc5160Handler.html#a4fac52db1a50fc8f24350ac804c5fd4b", null ],
@@ -28,6 +32,7 @@ var group__TMC5160__Handler =
       [ "visitDriverInternal", "classTmc5160Handler.html#a439a68f9d3f6785e0a493f9ed3821325", null ],
       [ "address_", "classTmc5160Handler.html#a43ccc6febdbf53eb85fcec87cc9a8c99", null ],
       [ "config_", "classTmc5160Handler.html#ad7f9b019221efb2adcdc0d21d562a8dc", null ],
+      [ "description_", "classTmc5160Handler.html#ac72f7509b90ed545349b9556e28da075", null ],
       [ "initialized_", "classTmc5160Handler.html#a9611596b31235838079bb847dbeb0ac6", null ],
       [ "is_spi_", "classTmc5160Handler.html#a8affb73f8819802955910b46d886048f", null ],
       [ "mutex_", "classTmc5160Handler.html#ae5cc2c89041026e9627b3f2defe2b75c", null ],

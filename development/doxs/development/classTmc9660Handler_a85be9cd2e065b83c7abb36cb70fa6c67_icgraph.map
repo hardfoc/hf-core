@@ -1,0 +1,7 @@
+<map id="Tmc9660Handler::driverViaSpi" name="Tmc9660Handler::driverViaSpi">
+<area shape="rect" id="Node000001" title="Get the TMC9660 driver instance connected via SPI (nullptr if using UART)." alt="" coords="257,31,477,56"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#ae1d6f6676180aff28d02dcb954917b79" title="Const overload of GetDriver()." alt="" coords="5,5,209,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,34,209,31,210,25,244,29"/>
+<area shape="rect" id="Node000003" href="$classTmc9660Handler.html#ac29a3cfd55b2186f357c8b2f56d16bce" title="Get the active driver pointer without requiring visitor usage." alt="" coords="5,55,209,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="244,57,210,61,209,55,244,52"/>
+</map>

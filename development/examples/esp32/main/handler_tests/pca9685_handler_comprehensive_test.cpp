@@ -42,6 +42,7 @@ static constexpr bool ENABLE_PHASE_OFFSET_TESTS    = true;
 static constexpr bool ENABLE_ERROR_HANDLING_TESTS   = true;
 
 static std::unique_ptr<Pca9685Handler> g_handler;
+static std::shared_ptr<BasePwm> g_pwm;
 
 static bool create_handler() noexcept {
     auto* dev = get_i2c_device(PCA9685_I2C_ADDR);
@@ -54,54 +55,63 @@ static bool test_initialize() noexcept {
     if (!g_handler) return false;
     bool ok = g_handler->EnsureInitialized();
     ESP_LOGI(TAG, "EnsureInitialized: %s", ok ? "OK" : "FAILED");
+    if (ok) {
+        g_pwm = g_handler->GetPwmAdapter();
+        if (!g_pwm) {
+            ESP_LOGE(TAG, "GetPwmAdapter() returned nullptr");
+            return false;
+        }
+    }
     return ok;
 }
 
 static bool test_set_duty_cycle() noexcept {
-    if (!g_handler) return false;
-    bool ok = g_handler->SetDuty(0, 0.5f);
-    ESP_LOGI(TAG, "SetDuty(ch0, 50%%): %s", ok ? "OK" : "FAILED");
-    ok = ok && g_handler->SetDuty(1, 0.0f);
-    ok = ok && g_handler->SetDuty(2, 1.0f);
-    ok = ok && g_handler->SetDuty(15, 0.25f);
+    if (!g_pwm) return false;
+    auto err = g_pwm->SetDutyCycle(0, 0.5f);
+    ESP_LOGI(TAG, "SetDutyCycle(ch0, 50%%%%): %s", err == hf_pwm_err_t::PWM_SUCCESS ? "OK" : "FAILED");
+    bool ok = (err == hf_pwm_err_t::PWM_SUCCESS);
+    ok = ok && (g_pwm->SetDutyCycle(1, 0.0f) == hf_pwm_err_t::PWM_SUCCESS);
+    ok = ok && (g_pwm->SetDutyCycle(2, 1.0f) == hf_pwm_err_t::PWM_SUCCESS);
+    ok = ok && (g_pwm->SetDutyCycle(15, 0.25f) == hf_pwm_err_t::PWM_SUCCESS);
     ESP_LOGI(TAG, "Multi-channel duty set: %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_set_duty_raw() noexcept {
-    if (!g_handler) return false;
-    auto pwm = g_handler->GetPwmAdapter();
-    if (!pwm) return false;
+    if (!g_pwm) return false;
     // Raw value with phase offset — exercises the (on_time + raw) & max fix
-    auto err = pwm->SetDutyCycleRaw(0, 2048);
+    auto err = g_pwm->SetDutyCycleRaw(0, 2048);
     ESP_LOGI(TAG, "SetDutyCycleRaw: %d", static_cast<int>(err));
     return err == hf_pwm_err_t::PWM_SUCCESS;
 }
 
 static bool test_frequency() noexcept {
-    if (!g_handler) return false;
-    bool ok = g_handler->SetFrequency(50.0f);  // Servo frequency
+    if (!g_pwm) return false;
+    auto err = g_pwm->SetFrequency(0, 50.0f);  // Servo frequency
+    bool ok = (err == hf_pwm_err_t::PWM_SUCCESS);
     ESP_LOGI(TAG, "SetFrequency(50Hz): %s", ok ? "OK" : "FAILED");
-    ok = ok && g_handler->SetFrequency(1000.0f);  // LED frequency
+    ok = ok && (g_pwm->SetFrequency(0, 1000.0f) == hf_pwm_err_t::PWM_SUCCESS);  // LED frequency
     ESP_LOGI(TAG, "SetFrequency(1kHz): %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_sleep_wake() noexcept {
-    if (!g_handler) return false;
-    bool ok = g_handler->Sleep();
-    ESP_LOGI(TAG, "Sleep: %s", ok ? "OK" : "FAILED");
+    if (!g_pwm) return false;
+    auto err = g_pwm->StopAll();
+    bool ok = (err == hf_pwm_err_t::PWM_SUCCESS);
+    ESP_LOGI(TAG, "StopAll (sleep): %s", ok ? "OK" : "FAILED");
     vTaskDelay(pdMS_TO_TICKS(100));
-    ok = ok && g_handler->Wake();
-    ESP_LOGI(TAG, "Wake: %s", ok ? "OK" : "FAILED");
+    err = g_pwm->StartAll();
+    ok = ok && (err == hf_pwm_err_t::PWM_SUCCESS);
+    ESP_LOGI(TAG, "StartAll (wake): %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_gpio_pin_wrapper() noexcept {
     if (!g_handler) return false;
-    auto pin = g_handler->GetGpioPin(0);
+    auto pin = g_handler->CreateGpioPin(0);
     if (!pin) {
-        ESP_LOGE(TAG, "GetGpioPin(0) returned nullptr");
+        ESP_LOGE(TAG, "CreateGpioPin(0) returned nullptr");
         return false;
     }
     auto err = pin->SetState(hf_gpio_state_t::HF_GPIO_STATE_ACTIVE);
@@ -110,10 +120,11 @@ static bool test_gpio_pin_wrapper() noexcept {
 }
 
 static bool test_error_invalid_channel() noexcept {
-    if (!g_handler) return false;
-    bool ok = g_handler->SetDuty(16, 0.5f);  // Channel 16 invalid (0-15)
-    ESP_LOGI(TAG, "Invalid channel: %s (expected false)", ok ? "UNEXPECTED" : "CORRECT");
-    return !ok;
+    if (!g_pwm) return false;
+    auto err = g_pwm->SetDutyCycle(16, 0.5f);  // Channel 16 invalid (0-15)
+    bool ok = (err != hf_pwm_err_t::PWM_SUCCESS);
+    ESP_LOGI(TAG, "Invalid channel: %s (expected error)", ok ? "CORRECT" : "UNEXPECTED");
+    return ok;
 }
 
 extern "C" void app_main(void) {

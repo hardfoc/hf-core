@@ -737,6 +737,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Naming-consistent alias of <a class="el" href="#a57e2952c0438e800c091cd0e3ebcdaf5" title="Get direct access to the underlying sensor driver (type-erased).">GetSensor()</a>. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Prefer <a class="el" href="#ac1692884d36e285a1f4e4cf2968f46bc" title="Visit the underlying IMU driver under handler mutex protection.">visitDriver()</a>. </dd></dl>
 
 </div>
 </div>
@@ -886,7 +887,8 @@ Here is the call graph for this function:</div>
 
 <p>Get direct access to the underlying sensor driver (type-erased). </p>
 <p>The returned pointer exposes the same SH-2 API as the concrete BNO085 driver: <a class="el" href="#a74cdf0328224c1a3fad944bbf1312e7e" title="Update sensor - must be called regularly to pump the SH-2 service loop.">Update()</a>, EnableSensor(), DisableSensor(), SetCallback(), HasNewData(), GetLatest(), <a class="el" href="#abf7206fa6caf5e8cf5132b02cd7a62bc" title="Get the last handler error code.">GetLastError()</a>, HardwareReset(), etc. Use it when you need to call driver methods directly (e.g. custom callbacks, low-level control). Valid for the lifetime of this handler.</p>
-<dl class="section return"><dt>Returns</dt><dd>Non-owning pointer to the driver interface, or nullptr if not constructed </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Non-owning pointer to the driver interface, or nullptr if not constructed</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Caller is responsible for external synchronization in multi-task environments. Prefer <a class="el" href="#ac1692884d36e285a1f4e4cf2968f46bc" title="Visit the underlying IMU driver under handler mutex protection.">visitDriver()</a> for thread-safe access. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

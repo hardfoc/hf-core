@@ -247,7 +247,9 @@
 </h1>
     
 
-<p>9-DOF IMU handler supporting accelerometer, gyroscope, magnetometer, and fused orientation.</p>
+<p>9-DOF IMU handler supporting accelerometer, gyroscope, magnetometer, and fused
+orientation via I2C or SPI. Uses type-erased <code class="language-plaintext highlighter-rouge">IBno08xDriverOps</code> interface to
+hide transport template complexity.</p>
 <h2 id="construction">
   
   
@@ -258,7 +260,43 @@
     
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">Bno08xHandler</span><span class="p">(</span><span class="n">BaseI2c</span><span class="o">&amp;</span> <span class="n">i2c</span><span class="p">,</span> <span class="n">BaseGpio</span><span class="o">*</span> <span class="n">int_pin</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">,</span> <span class="n">BaseGpio</span><span class="o">*</span> <span class="n">rst_pin</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">);</span>
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="c1">// I2C mode</span>
+<span class="k">explicit</span> <span class="n">Bno08xHandler</span><span class="p">(</span><span class="n">BaseI2c</span><span class="o">&amp;</span> <span class="n">i2c_device</span><span class="p">,</span>
+                       <span class="k">const</span> <span class="n">Bno08xConfig</span><span class="o">&amp;</span> <span class="n">config</span> <span class="o">=</span> <span class="n">Bno08xConfig</span><span class="p">{},</span>
+                       <span class="n">BaseGpio</span><span class="o">*</span> <span class="n">reset_gpio</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">,</span>
+                       <span class="n">BaseGpio</span><span class="o">*</span> <span class="n">int_gpio</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+
+<span class="c1">// SPI mode</span>
+<span class="k">explicit</span> <span class="n">Bno08xHandler</span><span class="p">(</span><span class="n">BaseSpi</span><span class="o">&amp;</span> <span class="n">spi_device</span><span class="p">,</span>
+                       <span class="k">const</span> <span class="n">Bno08xConfig</span><span class="o">&amp;</span> <span class="n">config</span> <span class="o">=</span> <span class="n">Bno08xConfig</span><span class="p">{},</span>
+                       <span class="n">BaseGpio</span><span class="o">*</span> <span class="n">reset_gpio</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">,</span>
+                       <span class="n">BaseGpio</span><span class="o">*</span> <span class="n">int_gpio</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">,</span>
+                       <span class="n">BaseGpio</span><span class="o">*</span> <span class="n">wake_gpio</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="factories">
+  
+  
+    <a href="#factories" class="anchor-heading" aria-labelledby="factories"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Factories
+  
+  
+</h3>
+    
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="k">auto</span> <span class="n">handler</span> <span class="o">=</span> <span class="n">CreateBno08xHandlerI2c</span><span class="p">(</span><span class="n">i2c</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">rst</span><span class="p">,</span> <span class="n">intr</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">handler</span> <span class="o">=</span> <span class="n">CreateBno08xHandlerSpi</span><span class="p">(</span><span class="n">spi</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">rst</span><span class="p">,</span> <span class="n">intr</span><span class="p">,</span> <span class="n">wake</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="key-methods">
   
@@ -267,6 +305,14 @@
   
   
 </h2>
+    
+<h3 id="lifecycle">
+  
+  
+    <a href="#lifecycle" class="anchor-heading" aria-labelledby="lifecycle"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Lifecycle
+  
+  
+</h3>
     
 
 <div class="table-wrapper"><table>
@@ -279,37 +325,190 @@
   <tbody>
     <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Initialize()</code></td>
-      <td style="text-align: left">Full init: reset, configure SH2</td>
+      <td style="text-align: left">Reset → Begin → applyConfigLocked. Returns <code class="language-plaintext highlighter-rouge">Bno08xError</code>.</td>
     </tr>
     <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">EnsureInitialized()</code></td>
-      <td style="text-align: left">Lazy init delegation</td>
+      <td style="text-align: left">Lazy init helper</td>
     </tr>
     <tr>
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Deinitialize()</code></td>
-      <td style="text-align: left">Release resources</td>
+      <td style="text-align: left">Release resources. Returns <code class="language-plaintext highlighter-rouge">Bno08xError</code>.</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetSensor()</code> / <code class="language-plaintext highlighter-rouge">GetDriver()</code></td>
-      <td style="text-align: left">Get underlying <code class="language-plaintext highlighter-rouge">IBno08xDriverOps*</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">visitDriver(fn)</code></td>
-      <td style="text-align: left">Execute callable with <code class="language-plaintext highlighter-rouge">IBno08xDriverOps&amp;</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Update()</code></td>
-      <td style="text-align: left">Service SH-2 transport</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetSensorCallback(cb)</code></td>
-      <td style="text-align: left">Register event callback</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">IsInitialized()</code></td>
+      <td style="text-align: left">Check initialization state</td>
     </tr>
   </tbody>
 </table></div>
+<h3 id="service-loop">
+  
+  
+    <a href="#service-loop" class="anchor-heading" aria-labelledby="service-loop"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Service Loop
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Method</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Update()</code></td>
+      <td style="text-align: left">Pump SH-2 transport — call every 5–10 ms</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="callback-management">
+  
+  
+    <a href="#callback-management" class="anchor-heading" aria-labelledby="callback-management"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Callback Management
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Method</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetSensorCallback(cb)</code></td>
+      <td style="text-align: left">Register event callback (dispatched from <code class="language-plaintext highlighter-rouge">Update()</code>)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ClearSensorCallback()</code></td>
+      <td style="text-align: left">Remove callback</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="driver-access">
+  
+  
+    <a href="#driver-access" class="anchor-heading" aria-labelledby="driver-access"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Driver Access
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Method</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetSensor()</code> / <code class="language-plaintext highlighter-rouge">GetDriver()</code></td>
+      <td style="text-align: left">Direct <code class="language-plaintext highlighter-rouge">IBno08xDriverOps*</code> (nullptr if not init)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">visitDriver(fn)</code></td>
+      <td style="text-align: left">Execute callable under handler mutex</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="utility">
+  
+  
+    <a href="#utility" class="anchor-heading" aria-labelledby="utility"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Utility
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Method</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetInterfaceType()</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">BNO085Interface::I2C</code> or <code class="language-plaintext highlighter-rouge">BNO085Interface::SPI</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetLastError()</code></td>
+      <td style="text-align: left">Last <code class="language-plaintext highlighter-rouge">Bno08xError</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetLastDriverError()</code></td>
+      <td style="text-align: left">Last SH-2 error code (int)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetDescription()</code></td>
+      <td style="text-align: left">Human-readable string (e.g. <code class="language-plaintext highlighter-rouge">"BNO08x IMU (I2C @0x4A)"</code>)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetDefaultConfig()</code></td>
+      <td style="text-align: left">Static — returns default <code class="language-plaintext highlighter-rouge">Bno08xConfig</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">QuaternionToEuler(quat, euler)</code></td>
+      <td style="text-align: left">Static utility</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">DumpDiagnostics()</code></td>
+      <td style="text-align: left">Log comprehensive handler/driver status</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="sensor-operations-via-driver">
+  
+  
+    <a href="#sensor-operations-via-driver" class="anchor-heading" aria-labelledby="sensor-operations-via-driver"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Sensor Operations (via driver)
+  
+  
+</h3>
+    
 
 <p>Sensor enable/disable/read operations are performed through the underlying
-driver object returned by <code class="language-plaintext highlighter-rouge">GetSensor()</code> / <code class="language-plaintext highlighter-rouge">GetDriver()</code>.</p>
+driver object returned by <code class="language-plaintext highlighter-rouge">GetSensor()</code> / <code class="language-plaintext highlighter-rouge">GetDriver()</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="c1">// Direct driver access</span>
+<span class="k">auto</span><span class="o">*</span> <span class="n">drv</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">GetSensor</span><span class="p">();</span>
+<span class="n">drv</span><span class="o">-&gt;</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>  <span class="c1">// 100 Hz</span>
+<span class="n">drv</span><span class="o">-&gt;</span><span class="n">Update</span><span class="p">();</span>
+<span class="k">auto</span> <span class="n">event</span> <span class="o">=</span> <span class="n">drv</span><span class="o">-&gt;</span><span class="n">GetLatest</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">RotationVector</span><span class="p">);</span>
+
+<span class="c1">// Or mutex-protected via visitDriver</span>
+<span class="n">handler</span><span class="p">.</span><span class="n">visitDriver</span><span class="p">([](</span><span class="n">IBno08xDriverOps</span><span class="o">&amp;</span> <span class="n">drv</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">drv</span><span class="p">.</span><span class="n">EnableSensor</span><span class="p">(</span><span class="n">BNO085Sensor</span><span class="o">::</span><span class="n">Accelerometer</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h2 id="thread-safety">
+  
+  
+    <a href="#thread-safety" class="anchor-heading" aria-labelledby="thread-safety"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Thread Safety
+  
+  
+</h2>
+    
+
+<p>All public methods are protected by an internal <code class="language-plaintext highlighter-rouge">RtosMutex</code> (recursive).
+<code class="language-plaintext highlighter-rouge">visitDriver()</code> additionally holds the mutex for the duration of the callable.</p>
 <h2 id="test-coverage">
   
   
@@ -320,7 +519,7 @@ driver object returned by <code class="language-plaintext highlighter-rouge">Get
     
 
 <p>See <code class="language-plaintext highlighter-rouge">examples/esp32/main/handler_tests/bno08x_handler_comprehensive_test.cpp</code> — 9 test
-sections including sensor enable/disable, freshness gating validation, and hardware reset.</p>
+sections including sensor enable/disable, config apply validation, and hardware reset.</p>
 
           
 

@@ -112,7 +112,7 @@ static bool test_construction() noexcept {
 
 static bool test_initialize() noexcept {
     if (!g_handler) return false;
-    bool ok = g_handler->Initialize();
+    bool ok = (g_handler->Initialize() == max22200::DriverStatus::OK);
     g_hw_present = ok;
     ESP_LOGI(TAG, "Initialize: %s (hw_present=%d)", ok ? "OK" : "FAILED", g_hw_present);
     return true;
@@ -129,28 +129,28 @@ static bool test_is_initialized() noexcept {
 
 static bool test_enable_channel() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->EnableChannel(0);
+    bool ok = (g_handler->EnableChannel(0) == max22200::DriverStatus::OK);
     ESP_LOGI(TAG, "EnableChannel(0): %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_disable_channel() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->DisableChannel(0);
+    bool ok = (g_handler->DisableChannel(0) == max22200::DriverStatus::OK);
     ESP_LOGI(TAG, "DisableChannel(0): %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_enable_all_channels() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->EnableAllChannels();
+    bool ok = (g_handler->EnableAllChannels() == max22200::DriverStatus::OK);
     ESP_LOGI(TAG, "EnableAllChannels: %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_disable_all_channels() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->DisableAllChannels();
+    bool ok = (g_handler->DisableAllChannels() == max22200::DriverStatus::OK);
     ESP_LOGI(TAG, "DisableAllChannels: %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -166,7 +166,7 @@ static bool test_is_channel_enabled() noexcept {
 
 static bool test_set_channels_mask() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->SetChannelsMask(0x55); // Channels 0,2,4,6
+    bool ok = (g_handler->SetChannelsMask(0x55) == max22200::DriverStatus::OK); // Channels 0,2,4,6
     ESP_LOGI(TAG, "SetChannelsMask(0x55): %s", ok ? "OK" : "FAILED");
     g_handler->DisableAllChannels();
     return ok;
@@ -174,7 +174,7 @@ static bool test_set_channels_mask() noexcept {
 
 static bool test_channel_range_guard() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->EnableChannel(8); // out of range (0-7)
+    bool ok = (g_handler->EnableChannel(8) == max22200::DriverStatus::OK); // out of range (0-7)
     ESP_LOGI(TAG, "EnableChannel(8) out-of-range: %s (expected false)", ok ? "OK" : "FAILED");
     return !ok;
 }
@@ -183,14 +183,14 @@ static bool test_channel_range_guard() noexcept {
 
 static bool test_setup_cdr_channel() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->SetupCdrChannel(0, 1000, 300, 10.0f); // 1A hit, 300mA hold, 10ms
+    bool ok = (g_handler->SetupCdrChannel(0, 1000, 300, 10.0f) == max22200::DriverStatus::OK); // 1A hit, 300mA hold, 10ms
     ESP_LOGI(TAG, "SetupCdrChannel(0, 1000, 300, 10ms): %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_setup_vdr_channel() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->SetupVdrChannel(1, 100.0f, 30.0f, 15.0f); // 100% hit, 30% hold, 15ms
+    bool ok = (g_handler->SetupVdrChannel(1, 100.0f, 30.0f, 15.0f) == max22200::DriverStatus::OK); // 100% hit, 30% hold, 15ms
     ESP_LOGI(TAG, "SetupVdrChannel(1, 100%%, 30%%, 15ms): %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -200,7 +200,7 @@ static bool test_setup_vdr_channel() noexcept {
 static bool test_get_status() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     max22200::StatusConfig status = {};
-    bool ok = g_handler->GetStatus(status);
+    bool ok = (g_handler->GetStatus(status) == max22200::DriverStatus::OK);
     ESP_LOGI(TAG, "GetStatus: %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -208,7 +208,7 @@ static bool test_get_status() noexcept {
 static bool test_get_channel_faults() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     max22200::FaultStatus faults = {};
-    bool ok = g_handler->GetChannelFaults(0, faults);
+    bool ok = (g_handler->GetChannelFaults(0, faults) == max22200::DriverStatus::OK);
     ESP_LOGI(TAG, "GetChannelFaults(0): %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -222,7 +222,7 @@ static bool test_has_fault() noexcept {
 
 static bool test_clear_faults() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->ClearFaults();
+    bool ok = (g_handler->ClearFaults() == max22200::DriverStatus::OK);
     ESP_LOGI(TAG, "ClearFaults: %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -232,7 +232,7 @@ static bool test_clear_faults() noexcept {
 static bool test_read_fault_register() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     max22200::FaultStatus faults{};
-    bool ok = g_handler->ReadFaultRegister(faults);
+    bool ok = (g_handler->ReadFaultRegister(faults) == max22200::DriverStatus::OK);
     ESP_LOGI(TAG, "ReadFaultRegister: %s, hasFault=%d", ok ? "OK" : "FAILED", faults.hasFault());
     return ok;
 }
@@ -276,7 +276,7 @@ static bool test_operations_before_init() noexcept {
         *g_spi_device, *g_enable_gpio, *g_cmd_gpio);
 
     bool init = uninit->IsInitialized();
-    bool en_ok = uninit->EnableChannel(0);
+    bool en_ok = (uninit->EnableChannel(0) == max22200::DriverStatus::OK);
     bool fault = uninit->HasFault();
 
     ESP_LOGI(TAG, "Uninit handler: init=%d, enable_ch0=%d, fault=%d",
@@ -286,7 +286,7 @@ static bool test_operations_before_init() noexcept {
 
 static bool test_deinitialize() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->Deinitialize();
+    bool ok = (g_handler->Deinitialize() == max22200::DriverStatus::OK);
     ESP_LOGI(TAG, "Deinitialize: %s", ok ? "OK" : "FAILED");
     bool still_init = g_handler->IsInitialized();
     ESP_LOGI(TAG, "IsInitialized after deinit: %d (expected false)", still_init);

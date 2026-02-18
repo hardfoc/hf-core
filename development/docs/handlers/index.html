@@ -241,10 +241,12 @@
 CRTP-templated device drivers. Each handler:</p>
 
 <ul>
-  <li>Accepts <code class="language-plaintext highlighter-rouge">BaseXxx&amp;</code> references (I2C, SPI, GPIO, ADC) at construction</li>
+  <li>Accepts <code class="language-plaintext highlighter-rouge">BaseXxx&amp;</code> references (I2C, SPI, UART, GPIO, ADC) at construction</li>
   <li>Performs lazy initialization of the underlying driver</li>
-  <li>Provides a thread-safe public API via <code class="language-plaintext highlighter-rouge">RtosMutex</code></li>
-  <li>Maps driver-specific errors to interface error codes</li>
+  <li>Provides a thread-safe public API (most handlers use <code class="language-plaintext highlighter-rouge">RtosMutex</code>)</li>
+  <li>Exposes <code class="language-plaintext highlighter-rouge">GetDriver()</code> / <code class="language-plaintext highlighter-rouge">GetSensor()</code> for direct driver access</li>
+  <li>Optionally provides <code class="language-plaintext highlighter-rouge">visitDriver(fn)</code> for mutex-protected callable dispatch</li>
+  <li>Reports errors via handler-specific return types or driver-native codes</li>
 </ul>
 <h2 id="handler-summary">
   
@@ -269,13 +271,13 @@ CRTP-templated device drivers. Each handler:</p>
       <td style="text-align: left"><a href="/hf-core/development/docs/handlers/as5047u_handler.html">As5047uHandler</a></td>
       <td style="text-align: left">hf-as5047u-driver</td>
       <td style="text-align: left">BaseSpi</td>
-      <td style="text-align: left">14-bit angle, velocity, DAEC, zero position</td>
+      <td style="text-align: left">14-bit angle, velocity, DAEC, GetDriver/visitDriver</td>
     </tr>
     <tr>
       <td style="text-align: left"><a href="/hf-core/development/docs/handlers/bno08x_handler.html">Bno08xHandler</a></td>
       <td style="text-align: left">hf-bno08x-driver</td>
-      <td style="text-align: left">BaseI2c</td>
-      <td style="text-align: left">9-DOF IMU, sensor enable/disable, freshness gating</td>
+      <td style="text-align: left">BaseI2c / BaseSpi</td>
+      <td style="text-align: left">9-DOF IMU, type-erased IBno08xDriverOps, GetDriver/visitDriver</td>
     </tr>
     <tr>
       <td style="text-align: left"><a href="/hf-core/development/docs/handlers/pca9685_handler.html">Pca9685Handler</a></td>
@@ -298,14 +300,14 @@ CRTP-templated device drivers. Each handler:</p>
     <tr>
       <td style="text-align: left"><a href="/hf-core/development/docs/handlers/tmc9660_handler.html">Tmc9660Handler</a></td>
       <td style="text-align: left">hf-tmc9660-driver</td>
-      <td style="text-align: left">BaseSpi</td>
-      <td style="text-align: left">Motor control, GPIO/ADC/Temp wrappers, bootloader</td>
+      <td style="text-align: left">BaseSpi / BaseUart</td>
+      <td style="text-align: left">BLDC motor, GPIO/ADC/Temp wrappers, GetDriver/visitDriver</td>
     </tr>
     <tr>
       <td style="text-align: left"><a href="/hf-core/development/docs/handlers/tmc5160_handler.html">Tmc5160Handler</a></td>
       <td style="text-align: left">hf-tmc5160-driver</td>
-      <td style="text-align: left">BaseSpi/BaseUart</td>
-      <td style="text-align: left">Stepper motor, ramp generator, StallGuard, visitDriver</td>
+      <td style="text-align: left">BaseSpi / BaseUart</td>
+      <td style="text-align: left">Stepper motor, 15 subsystems, GetDriver/visitDriver</td>
     </tr>
     <tr>
       <td style="text-align: left"><a href="/hf-core/development/docs/handlers/tle92466ed_handler.html">Tle92466edHandler</a></td>
@@ -323,7 +325,7 @@ CRTP-templated device drivers. Each handler:</p>
       <td style="text-align: left"><a href="/hf-core/development/docs/handlers/ws2812_handler.html">Ws2812Handler</a></td>
       <td style="text-align: left">hf-ws2812-rmt-driver</td>
       <td style="text-align: left">RMT</td>
-      <td style="text-align: left">Addressable LED strip, pixel control, animations</td>
+      <td style="text-align: left">Addressable LED strip, GetDriver/visitDriver/visitAnimator</td>
     </tr>
     <tr>
       <td style="text-align: left"><a href="/hf-core/development/docs/handlers/logger.html">Logger</a></td>

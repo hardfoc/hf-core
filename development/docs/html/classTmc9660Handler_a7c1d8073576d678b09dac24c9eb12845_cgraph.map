@@ -1,0 +1,19 @@
+<map id="Tmc9660Handler::EnsureInitializedLocked" name="Tmc9660Handler::EnsureInitializedLocked">
+<area shape="rect" id="Node000001" title="Ensure initialized while handler_mutex_ is already held." alt="" coords="5,77,255,117"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device." alt="" coords="303,55,500,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,81,289,77,289,82,255,86"/>
+<area shape="rect" id="Node000008" href="$classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f" title="Check if the TMC9660 driver has been initialized and is ready." alt="" coords="305,105,497,145"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="255,107,292,111,291,116,255,112"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="571,55,677,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="500,65,557,65,557,70,500,70"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="548,104,700,129"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="460,77,553,98,552,104,459,83"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a4681229c521795685fc14f6b55c82300" title="Log info message." alt="" coords="575,5,673,31"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="459,52,561,29,562,34,460,57"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="748,5,920,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="677,52,765,31,767,36,678,58"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="761,55,907,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="677,65,747,65,747,70,677,70"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="673,15,734,15,734,21,673,21"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="674,27,767,49,766,54,673,32"/>
+</map>

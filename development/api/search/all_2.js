@@ -42,7 +42,7 @@ var searchData=
   ['configurehardwareinterrupt_39',['ConfigureHardwareInterrupt',['../classPcal95555Handler.html#add6bf45bbac47b7d8d579fbd9bc50d2e',1,'Pcal95555Handler']]],
   ['configureinterrupt_40',['ConfigureInterrupt',['../classPcal95555GpioPin.html#adfadb2f35d756b7660c28fd419120c01',1,'Pcal95555GpioPin']]],
   ['configurepwmraw_41',['ConfigurePwmRaw',['../classTle92466edHandler.html#aa0ad7669bfe2830245b05e46846e6eca',1,'Tle92466edHandler']]],
-  ['constdrivervariant_42',['ConstDriverVariant',['../classHalSpiTmc5160Comm.html#a8c31d6c7e8ac30d0281ae99324499b90',1,'HalSpiTmc5160Comm::ConstDriverVariant'],['../classHalSpiTmc9660Comm.html#a5476c1d54a727f13bff659a8da4b9182',1,'HalSpiTmc9660Comm::ConstDriverVariant']]],
+  ['constdrivervariant_42',['ConstDriverVariant',['../classTmc5160Handler.html#ae9ac81d930499aae3a3bb7a6dc632cda',1,'Tmc5160Handler::ConstDriverVariant'],['../classTmc9660Handler.html#a110c823022b879cd6d2c47cdc4468321',1,'Tmc9660Handler::ConstDriverVariant']]],
   ['constraints_43',['Hardware Constraints',['../classPca9685PwmAdapter.html#autotoc_md8',1,'']]],
   ['contents_44',['📚 Table of Contents',['../index.html#autotoc_md30',1,'']]],
   ['continuous_5fcallback_45',['continuous_callback',['../ntc__handler__comprehensive__test_8cpp.html#a8f2e9dd101d42a48dd6774e898538ed8',1,'ntc_handler_comprehensive_test.cpp']]],

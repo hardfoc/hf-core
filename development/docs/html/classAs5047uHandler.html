@@ -628,6 +628,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Naming-consistent alias of <a class="el" href="#a7935a51fb2973e3a1793d378fc50118a" title="Get pointer to AS5047U driver for advanced operations.">GetSensor()</a>. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Prefer <a class="el" href="#a60c746a9c38be3c77de2c6148fbfbe54" title="Visit the underlying AS5047U driver under handler mutex protection.">visitDriver()</a>. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -694,6 +695,7 @@ Here is the caller graph for this function:</div>
 
 <p>Get pointer to AS5047U driver for advanced operations. </p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to AS5047U driver or nullptr if not initialized</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Caller is responsible for external synchronization in multi-task environments. Prefer <a class="el" href="#a60c746a9c38be3c77de2c6148fbfbe54" title="Visit the underlying AS5047U driver under handler mutex protection.">visitDriver()</a> for thread-safe access.</dd></dl>
 <p>Note: Caller must not delete the returned pointer; lifetime is owned by the handler. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>

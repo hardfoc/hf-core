@@ -94,6 +94,7 @@ $(function(){initNavTree('classTmc5160Handler.html',''); initResizable(); });
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classTmc5160Handler-members.html">List of all members</a>  </div>
@@ -119,6 +120,12 @@ Public Types</h2></td></tr>
 <tr class="memitem:a31e66827548c966a076877961d3e852f" id="r_a31e66827548c966a076877961d3e852f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31e66827548c966a076877961d3e852f">UartDriver</a> = tmc51x0::TMC51x0&lt;<a class="el" href="classHalUartTmc5160Comm.html">HalUartTmc5160Comm</a>&gt;</td></tr>
 <tr class="memdesc:a31e66827548c966a076877961d3e852f"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART driver type alias.  <br /></td></tr>
 <tr class="separator:a31e66827548c966a076877961d3e852f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b00981028b5ff6cb89eeed105a8eed1" id="r_a4b00981028b5ff6cb89eeed105a8eed1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b00981028b5ff6cb89eeed105a8eed1">DriverVariant</a> = std::variant&lt;std::monostate, <a class="el" href="#a93e7a35d8a8b4dc3ec97bb1a9d26c3a1">SpiDriver</a>*, <a class="el" href="#a31e66827548c966a076877961d3e852f">UartDriver</a>*&gt;</td></tr>
+<tr class="memdesc:a4b00981028b5ff6cb89eeed105a8eed1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-owning variant holding either driver type or empty (monostate).  <br /></td></tr>
+<tr class="separator:a4b00981028b5ff6cb89eeed105a8eed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9ac81d930499aae3a3bb7a6dc632cda" id="r_ae9ac81d930499aae3a3bb7a6dc632cda"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9ac81d930499aae3a3bb7a6dc632cda">ConstDriverVariant</a> = std::variant&lt;std::monostate, const <a class="el" href="#a93e7a35d8a8b4dc3ec97bb1a9d26c3a1">SpiDriver</a>*, const <a class="el" href="#a31e66827548c966a076877961d3e852f">UartDriver</a>*&gt;</td></tr>
+<tr class="memdesc:ae9ac81d930499aae3a3bb7a6dc632cda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const version of DriverVariant.  <br /></td></tr>
+<tr class="separator:ae9ac81d930499aae3a3bb7a6dc632cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -139,7 +146,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa4ba39d1f580c80119eb34943dd6e7ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dba946e59e91c2d5b16eccc25992b6e" id="r_a6dba946e59e91c2d5b16eccc25992b6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTmc5160Handler.html">Tmc5160Handler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dba946e59e91c2d5b16eccc25992b6e">operator=</a> (<a class="el" href="classTmc5160Handler.html">Tmc5160Handler</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:a6dba946e59e91c2d5b16eccc25992b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44ab36857e4e43062f81f7d6f10eab09" id="r_a44ab36857e4e43062f81f7d6f10eab09"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44ab36857e4e43062f81f7d6f10eab09">Initialize</a> (const tmc51x0::DriverConfig &amp;config, bool verbose=true) noexcept</td></tr>
+<tr class="memitem:a44ab36857e4e43062f81f7d6f10eab09" id="r_a44ab36857e4e43062f81f7d6f10eab09"><td class="memItemLeft" align="right" valign="top">tmc51x0::ErrorCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44ab36857e4e43062f81f7d6f10eab09">Initialize</a> (const tmc51x0::DriverConfig &amp;config, bool verbose=true) noexcept</td></tr>
 <tr class="memdesc:a44ab36857e4e43062f81f7d6f10eab09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the TMC5160 driver with full configuration.  <br /></td></tr>
 <tr class="separator:a44ab36857e4e43062f81f7d6f10eab09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ad276d4fcd81765d0a5af064fdbf7b5" id="r_a5ad276d4fcd81765d0a5af064fdbf7b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ad276d4fcd81765d0a5af064fdbf7b5">EnsureInitialized</a> () noexcept</td></tr>
@@ -168,18 +175,27 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af8cb1c7b5011bd24102d296f22c211c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a845e1879a4606367f419f3892061ff31" id="r_a845e1879a4606367f419f3892061ff31"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a31e66827548c966a076877961d3e852f">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a845e1879a4606367f419f3892061ff31">driverViaUart</a> () const noexcept</td></tr>
 <tr class="separator:a845e1879a4606367f419f3892061ff31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8753f4b21ffb25d294d4ce41951f11f7" id="r_a8753f4b21ffb25d294d4ce41951f11f7"><td class="memItemLeft" align="right" valign="top">DriverVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8753f4b21ffb25d294d4ce41951f11f7">GetDriver</a> () noexcept</td></tr>
+<tr class="memitem:a8753f4b21ffb25d294d4ce41951f11f7" id="r_a8753f4b21ffb25d294d4ce41951f11f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a4b00981028b5ff6cb89eeed105a8eed1">DriverVariant</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8753f4b21ffb25d294d4ce41951f11f7">GetDriver</a> () noexcept</td></tr>
 <tr class="memdesc:a8753f4b21ffb25d294d4ce41951f11f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the active driver pointer without requiring visitor usage.  <br /></td></tr>
 <tr class="separator:a8753f4b21ffb25d294d4ce41951f11f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a755fbb0bd0c5faa03c807522e4ea469a" id="r_a755fbb0bd0c5faa03c807522e4ea469a"><td class="memItemLeft" align="right" valign="top">ConstDriverVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a755fbb0bd0c5faa03c807522e4ea469a">GetDriver</a> () const noexcept</td></tr>
+<tr class="memitem:a755fbb0bd0c5faa03c807522e4ea469a" id="r_a755fbb0bd0c5faa03c807522e4ea469a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ae9ac81d930499aae3a3bb7a6dc632cda">ConstDriverVariant</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a755fbb0bd0c5faa03c807522e4ea469a">GetDriver</a> () const noexcept</td></tr>
 <tr class="memdesc:a755fbb0bd0c5faa03c807522e4ea469a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const overload of <a class="el" href="#a8753f4b21ffb25d294d4ce41951f11f7" title="Get the active driver pointer without requiring visitor usage.">GetDriver()</a>.  <br /></td></tr>
 <tr class="separator:a755fbb0bd0c5faa03c807522e4ea469a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4bf5aabef968f6f8ee66d08cf05913a" id="r_ab4bf5aabef968f6f8ee66d08cf05913a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4bf5aabef968f6f8ee66d08cf05913a">DumpDiagnostics</a> () noexcept</td></tr>
 <tr class="memdesc:ab4bf5aabef968f6f8ee66d08cf05913a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump diagnostic information to logger.  <br /></td></tr>
 <tr class="separator:ab4bf5aabef968f6f8ee66d08cf05913a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28d5365ad7e7ef2af60d599388e9df37" id="r_a28d5365ad7e7ef2af60d599388e9df37"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28d5365ad7e7ef2af60d599388e9df37">GetDescription</a> () const noexcept</td></tr>
+<tr class="memdesc:a28d5365ad7e7ef2af60d599388e9df37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a human-readable description of the handler.  <br /></td></tr>
+<tr class="separator:a28d5365ad7e7ef2af60d599388e9df37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fac52db1a50fc8f24350ac804c5fd4b" id="r_a4fac52db1a50fc8f24350ac804c5fd4b"><td class="memItemLeft" align="right" valign="top">const tmc51x0::DriverConfig &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fac52db1a50fc8f24350ac804c5fd4b">GetDriverConfig</a> () const noexcept</td></tr>
 <tr class="memdesc:a4fac52db1a50fc8f24350ac804c5fd4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the driver configuration used during initialization.  <br /></td></tr>
 <tr class="separator:a4fac52db1a50fc8f24350ac804c5fd4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aee9861399d8eee4660d17ba4122bec8a" id="r_aee9861399d8eee4660d17ba4122bec8a"><td class="memItemLeft" align="right" valign="top">static tmc51x0::DriverConfig&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee9861399d8eee4660d17ba4122bec8a">GetDefaultConfig</a> () noexcept</td></tr>
+<tr class="memdesc:aee9861399d8eee4660d17ba4122bec8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a sensible default DriverConfig.  <br /></td></tr>
+<tr class="separator:aee9861399d8eee4660d17ba4122bec8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -219,11 +235,46 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ad7f9b019221efb2adcdc0d21d562a8dc" id="r_ad7f9b019221efb2adcdc0d21d562a8dc"><td class="memItemLeft" align="right" valign="top">tmc51x0::DriverConfig&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7f9b019221efb2adcdc0d21d562a8dc">config_</a> {}</td></tr>
 <tr class="memdesc:ad7f9b019221efb2adcdc0d21d562a8dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration snapshot.  <br /></td></tr>
 <tr class="separator:ad7f9b019221efb2adcdc0d21d562a8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac72f7509b90ed545349b9556e28da075" id="r_ac72f7509b90ed545349b9556e28da075"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac72f7509b90ed545349b9556e28da075">description_</a> [64] {}</td></tr>
+<tr class="memdesc:ac72f7509b90ed545349b9556e28da075"><td class="mdescLeft">&#160;</td><td class="mdescRight">Human-readable handler description.  <br /></td></tr>
+<tr class="separator:ac72f7509b90ed545349b9556e28da075"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Unified handler for TMC5160/TMC5130 stepper motor driver. </p>
 <p>Non-templated facade that owns one typed driver instance (SPI or UART). Provides convenience methods for common operations and direct access to all driver subsystems through <a class="el" href="#adf1b6ae5b680756f1b68169789cf0c1f" title="Visit the typed driver with a callable.">visitDriver()</a>. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="ae9ac81d930499aae3a3bb7a6dc632cda" name="ae9ac81d930499aae3a3bb7a6dc632cda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9ac81d930499aae3a3bb7a6dc632cda">&#9670;&#160;</a></span>ConstDriverVariant</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#ae9ac81d930499aae3a3bb7a6dc632cda">Tmc5160Handler::ConstDriverVariant</a> = std::variant&lt;std::monostate, const <a class="el" href="#a93e7a35d8a8b4dc3ec97bb1a9d26c3a1">SpiDriver</a>*, const <a class="el" href="#a31e66827548c966a076877961d3e852f">UartDriver</a>*&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Const version of DriverVariant. </p>
+
+</div>
+</div>
+<a id="a4b00981028b5ff6cb89eeed105a8eed1" name="a4b00981028b5ff6cb89eeed105a8eed1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b00981028b5ff6cb89eeed105a8eed1">&#9670;&#160;</a></span>DriverVariant</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a4b00981028b5ff6cb89eeed105a8eed1">Tmc5160Handler::DriverVariant</a> = std::variant&lt;std::monostate, <a class="el" href="#a93e7a35d8a8b4dc3ec97bb1a9d26c3a1">SpiDriver</a>*, <a class="el" href="#a31e66827548c966a076877961d3e852f">UartDriver</a>*&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Non-owning variant holding either driver type or empty (monostate). </p>
+
+</div>
+</div>
 <a id="a93e7a35d8a8b4dc3ec97bb1a9d26c3a1" name="a93e7a35d8a8b4dc3ec97bb1a9d26c3a1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a93e7a35d8a8b4dc3ec97bb1a9d26c3a1">&#9670;&#160;</a></span>SpiDriver</h2>
 
@@ -566,6 +617,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Get typed SPI driver pointer (null if UART mode or not initialized). </p>
+<dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Caller is responsible for external synchronization in multi-task environments. Prefer <a class="el" href="#adf1b6ae5b680756f1b68169789cf0c1f" title="Visit the typed driver with a callable.">visitDriver()</a> for thread-safe access. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -633,6 +685,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Get typed UART driver pointer (null if SPI mode or not initialized). </p>
+<dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Prefer <a class="el" href="#adf1b6ae5b680756f1b68169789cf0c1f" title="Visit the typed driver with a callable.">visitDriver()</a>. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -751,6 +804,62 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="aee9861399d8eee4660d17ba4122bec8a" name="aee9861399d8eee4660d17ba4122bec8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee9861399d8eee4660d17ba4122bec8a">&#9670;&#160;</a></span>GetDefaultConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static tmc51x0::DriverConfig Tmc5160Handler::GetDefaultConfig </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a sensible default DriverConfig. </p>
+<dl class="section return"><dt>Returns</dt><dd>Default tmc51x0::DriverConfig structure. </dd></dl>
+
+</div>
+</div>
+<a id="a28d5365ad7e7ef2af60d599388e9df37" name="a28d5365ad7e7ef2af60d599388e9df37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28d5365ad7e7ef2af60d599388e9df37">&#9670;&#160;</a></span>GetDescription()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * Tmc5160Handler::GetDescription </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a human-readable description of the handler. </p>
+<dl class="section return"><dt>Returns</dt><dd>String e.g. "TMC5160 Stepper Driver (SPI @0)" </dd></dl>
+
+</div>
+</div>
 <a id="a755fbb0bd0c5faa03c807522e4ea469a" name="a755fbb0bd0c5faa03c807522e4ea469a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a755fbb0bd0c5faa03c807522e4ea469a">&#9670;&#160;</a></span>GetDriver() <span class="overload">[1/2]</span></h2>
 
@@ -761,7 +870,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ConstDriverVariant Tmc5160Handler::GetDriver </td>
+          <td class="memname"><a class="el" href="#ae9ac81d930499aae3a3bb7a6dc632cda">ConstDriverVariant</a> Tmc5160Handler::GetDriver </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -793,7 +902,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DriverVariant Tmc5160Handler::GetDriver </td>
+          <td class="memname"><a class="el" href="#a4b00981028b5ff6cb89eeed105a8eed1">DriverVariant</a> Tmc5160Handler::GetDriver </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -878,7 +987,7 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if initialization succeeded. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>tmc51x0::ErrorCode::OK on success, or a specific error code. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1133,6 +1242,30 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Configuration snapshot. </p>
+
+</div>
+</div>
+<a id="ac72f7509b90ed545349b9556e28da075" name="ac72f7509b90ed545349b9556e28da075"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac72f7509b90ed545349b9556e28da075">&#9670;&#160;</a></span>description_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char Tmc5160Handler::description_[64] {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Human-readable handler description. </p>
 
 </div>
 </div>
