@@ -276,6 +276,7 @@ Tmc9660Handler::Tmc9660Handler(BaseSpi& spi, BaseGpio& rst, BaseGpio& drv_en,
     gpioWrappers_[1] = std::make_unique<Gpio>(*this, 18);
     adcWrapper_         = std::make_unique<Adc>(*this);
     temperatureWrapper_ = std::make_unique<Temperature>(*this);
+    std::snprintf(description_, sizeof(description_), "TMC9660 Motor Driver (SPI @0x%02X)", address);
 }
 
 Tmc9660Handler::Tmc9660Handler(BaseUart& uart, BaseGpio& rst, BaseGpio& drv_en,
@@ -292,6 +293,7 @@ Tmc9660Handler::Tmc9660Handler(BaseUart& uart, BaseGpio& rst, BaseGpio& drv_en,
     gpioWrappers_[1] = std::make_unique<Gpio>(*this, 18);
     adcWrapper_         = std::make_unique<Adc>(*this);
     temperatureWrapper_ = std::make_unique<Temperature>(*this);
+    std::snprintf(description_, sizeof(description_), "TMC9660 Motor Driver (UART @0x%02X)", address);
 }
 
 Tmc9660Handler::~Tmc9660Handler() noexcept = default;
@@ -358,6 +360,11 @@ bool Tmc9660Handler::Initialize(bool performReset, bool retrieveBootloaderInfo,
 }
 
 bool Tmc9660Handler::EnsureInitialized() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    return EnsureInitializedLocked();
+}
+
+bool Tmc9660Handler::EnsureInitializedLocked() noexcept {
     if (IsDriverReady()) {
         return true;
     }
@@ -707,7 +714,8 @@ hf_adc_err_t Tmc9660Handler::Adc::ReadCurrentSenseChannel(uint8_t current_channe
     }
 
     uint32_t value = 0;
-    if (!parent_.ReadParameter(param, value)) return hf_adc_err_t::ADC_ERR_CHANNEL_READ_ERR;
+    if (!parent_.visitDriver([&](auto& driver) { return driver.readParameter(param, value); }))
+        return hf_adc_err_t::ADC_ERR_CHANNEL_READ_ERR;
 
     raw_value = static_cast<hf_u32_t>(value);
     voltage = static_cast<float>(value) * 3.3f / 65535.0f;
@@ -720,11 +728,11 @@ hf_adc_err_t Tmc9660Handler::Adc::ReadVoltageChannel(uint8_t voltage_channel,
 
     switch (voltage_channel) {
         case 0: // Supply voltage
-            voltage = parent_.GetSupplyVoltage();
+            voltage = parent_.visitDriver([](auto& driver) { return driver.telemetry.getSupplyVoltage(); });
             raw_value = static_cast<hf_u32_t>(voltage * 1000.0f);
             break;
         case 1: // Driver voltage (use supply as approximation)
-            voltage = parent_.GetSupplyVoltage();
+            voltage = parent_.visitDriver([](auto& driver) { return driver.telemetry.getSupplyVoltage(); });
             raw_value = static_cast<hf_u32_t>(voltage * 1000.0f);
             break;
         default:
@@ -739,13 +747,13 @@ hf_adc_err_t Tmc9660Handler::Adc::ReadTemperatureChannel(uint8_t temp_channel,
 
     switch (temp_channel) {
         case 0: { // Chip temperature
-            float temp_c = parent_.GetChipTemperature();
+            float temp_c = parent_.visitDriver([](auto& driver) { return driver.telemetry.getChipTemperature(); });
             raw_value = static_cast<hf_u32_t>(temp_c * 100.0f);
             voltage = temp_c;
             break;
         }
         case 1: { // External temperature
-            uint16_t ext_temp_raw = parent_.GetExternalTemperature();
+            uint16_t ext_temp_raw = parent_.visitDriver([](auto& driver) { return driver.telemetry.getExternalTemperature(); });
             raw_value = static_cast<hf_u32_t>(ext_temp_raw);
             voltage = static_cast<float>(ext_temp_raw) * 3.3f / 65535.0f;
             break;
@@ -762,19 +770,19 @@ hf_adc_err_t Tmc9660Handler::Adc::ReadMotorDataChannel(uint8_t motor_channel,
 
     switch (motor_channel) {
         case 0: { // Motor current
-            int16_t current_ma = parent_.GetMotorCurrent();
+            int16_t current_ma = parent_.visitDriver([](auto& driver) { return driver.telemetry.getMotorCurrent(); });
             raw_value = static_cast<hf_u32_t>(current_ma);
             voltage = static_cast<float>(current_ma) / 1000.0f;
             break;
         }
         case 1: { // Motor velocity
-            int32_t vel = parent_.GetActualVelocity();
+            int32_t vel = parent_.visitDriver([](auto& driver) { return driver.telemetry.getActualVelocity(); });
             raw_value = static_cast<hf_u32_t>(vel);
             voltage = static_cast<float>(vel);
             break;
         }
         case 2: { // Motor position
-            int32_t pos = parent_.GetActualPosition();
+            int32_t pos = parent_.visitDriver([](auto& driver) { return driver.telemetry.getActualPosition(); });
             raw_value = static_cast<hf_u32_t>(pos);
             voltage = static_cast<float>(pos);
             break;
@@ -833,7 +841,7 @@ hf_temp_err_t Tmc9660Handler::Temperature::ReadTemperatureCelsiusImpl(float* tem
         return hf_temp_err_t::TEMP_ERR_NOT_INITIALIZED;
     }
 
-    float temp_c = parent_.GetChipTemperature();
+    float temp_c = parent_.visitDriver([](auto& driver) { return driver.telemetry.getChipTemperature(); });
 
     // Check for error condition (TMC9660 returns -273.0f on error)
     if (temp_c < -270.0f || std::isnan(temp_c)) {
@@ -927,19 +935,21 @@ void Tmc9660Handler::Temperature::UpdateDiagnostics(hf_temp_err_t error) noexcep
 
 void Tmc9660Handler::DumpDiagnostics() noexcept {
     static constexpr const char* TAG = "Tmc9660Handler";
-    const bool ready = EnsureInitialized();
+    MutexLockGuard lock(handler_mutex_);
+    const bool ready = EnsureInitializedLocked();
 
     Logger::GetInstance().Info(TAG, "=== TMC9660 HANDLER DIAGNOSTICS ===");
+    Logger::GetInstance().Info(TAG, "Description: %s", description_);
     Logger::GetInstance().Info(TAG, "Driver Ready: %s", ready ? "YES" : "NO");
     Logger::GetInstance().Info(TAG, "Comm Mode: %s", use_spi_ ? "SPI" : "UART");
     Logger::GetInstance().Info(TAG, "Device Address: %d", device_address_);
 
     if (ready) {
         uint32_t status_flags = 0, error_flags = 0;
-        float voltage = GetSupplyVoltage();
-        float temp = GetChipTemperature();
-        GetStatusFlags(status_flags);
-        GetErrorFlags(error_flags);
+        float voltage = visitDriverInternal([](auto& driver) { return driver.telemetry.getSupplyVoltage(); });
+        float temp = visitDriverInternal([](auto& driver) { return driver.telemetry.getChipTemperature(); });
+        visitDriverInternal([&](auto& driver) { return driver.telemetry.getGeneralStatusFlags(status_flags); });
+        visitDriverInternal([&](auto& driver) { return driver.telemetry.getGeneralErrorFlags(error_flags); });
 
         Logger::GetInstance().Info(TAG, "Supply Voltage: %.2fV", voltage);
         Logger::GetInstance().Info(TAG, "Chip Temperature: %.2f°C", temp);
@@ -968,4 +978,8 @@ void Tmc9660Handler::DumpDiagnostics() noexcept {
     }
 
     Logger::GetInstance().Info(TAG, "=== END TMC9660 HANDLER DIAGNOSTICS ===");
+}
+
+const char* Tmc9660Handler::GetDescription() const noexcept {
+    return description_;
 }

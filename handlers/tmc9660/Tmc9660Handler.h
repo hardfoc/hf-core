@@ -23,10 +23,9 @@
  *    Uses the visitDriver() template to route calls to the active driver, keeping
  *    the public API free of template parameters. Provides:
  *    - Bootloader initialization with configurable reset and verification options
- *    - TMCL parameter read/write and raw command access
- *    - Convenience methods for motor control (velocity, position, torque)
- *    - Telemetry (voltage, temperature, current, flags)
- *    - visitDriver() for advanced users needing direct subsystem access
+ *    - Typed driver pointers (driverViaSpi/driverViaUart) and GetDriver() variant
+ *    - visitDriver() for generic comm-agnostic code
+ *    - Peripheral wrappers (GPIO, ADC, Temperature) via inner classes
  *
  * 3. **Peripheral Wrappers** (Gpio, Adc, Temperature inner classes):
  *    Implement BaseGpio, BaseAdc, and BaseTemperature respectively, delegating to the
@@ -56,16 +55,25 @@
  * // 3. Initialize (runs bootloader config, enters parameter mode)
  * if (!handler.Initialize()) { return; }
  *
- * // 4. Use motor control, telemetry, GPIO, ADC, etc.
- * handler.SetTargetVelocity(1000);
- * float voltage = handler.GetSupplyVoltage();
+ * // 4. Access motor control via typed driver pointer
+ * auto* drv = handler.driverViaSpi();
+ * drv->velocityControl.setTargetVelocity(1000);
+ * float voltage = drv->telemetry.getSupplyVoltage();
+ *
+ * // 5. Or via visitDriver for generic code
+ * handler.visitDriver([](auto& d) {
+ *     d.motorControl.enable();
+ * });
  * @endcode
  *
  * ## Thread Safety
  *
- * Individual handler methods are NOT thread-safe by themselves. If multiple threads
- * access the same handler, external synchronization is required. The Adc and Temperature
- * inner classes use RtosMutex for their internal statistics tracking.
+ * The handler uses RtosMutex (recursive) for thread-safe access to all public
+ * methods. visitDriver() acquires the lock automatically. Raw pointer methods
+ * (driverViaSpi(), driverViaUart()) are NOT mutex-protected — the caller is
+ * responsible for synchronization when using them from multiple tasks.
+ * The Adc and Temperature inner classes use additional RtosMutex instances
+ * for their internal statistics tracking.
  *
  * @see Tmc9660AdcWrapper       Thin adapter for AdcManager ownership
  * @see Tmc9660TemperatureWrapper  Thin adapter for TemperatureManager ownership
@@ -174,9 +182,6 @@ struct Tmc9660CtrlPins {
  */
 class HalSpiTmc9660Comm : public tmc9660::SpiCommInterface<HalSpiTmc9660Comm> {
 public:
-    using DriverVariant = std::variant<std::monostate, SpiDriver*, UartDriver*>;
-    using ConstDriverVariant = std::variant<std::monostate, const SpiDriver*, const UartDriver*>;
-
     /**
      * @brief Construct the SPI communication adapter.
      *
@@ -414,15 +419,16 @@ private:
  *     return;
  * }
  *
- * // Motor control
- * handler.SetMotorType(tmc9660::tmcl::MotorType::BLDC, 7);
- * handler.SetCommutationMode(tmc9660::tmcl::CommutationMode::FOC);
- * handler.EnableMotor();
- * handler.SetTargetVelocity(1000);
+ * // Motor control via typed driver pointer
+ * auto* drv = handler.driverViaSpi();
+ * drv->motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);
+ * drv->commutation.setMode(tmcl::CommutationMode::FOC);
+ * drv->motorControl.enable();
+ * drv->velocityControl.setTargetVelocity(1000);
  *
- * // Telemetry
- * float supply_v = handler.GetSupplyVoltage();
- * float chip_temp = handler.GetChipTemperature();
+ * // Telemetry via driver
+ * float supply_v = drv->telemetry.getSupplyVoltage();
+ * float chip_temp = drv->telemetry.getChipTemperature();
  *
  * // GPIO (TMC9660 internal GPIO17)
  * handler.gpio(17).SetPinLevel(hf_gpio_level_t::HF_GPIO_LEVEL_HIGH);
@@ -431,7 +437,7 @@ private:
  * float voltage;
  * handler.adc().ReadChannelV(0, voltage);
  *
- * // Advanced: direct driver access via visitor
+ * // Generic driver access via visitor
  * handler.visitDriver([](auto& driver) {
  *     driver.feedbackSense.configureHallSensor(1, 2, 3);
  *     driver.protection.setOvertemperatureLimit(120.0f);
@@ -455,6 +461,12 @@ public:
 
     /** @brief TMC9660 driver instantiated with UART communication. */
     using UartDriver = tmc9660::TMC9660<HalUartTmc9660Comm>;
+
+    /** @brief Non-owning variant holding either driver type or empty (monostate). */
+    using DriverVariant = std::variant<std::monostate, SpiDriver*, UartDriver*>;
+
+    /** @brief Const version of DriverVariant. */
+    using ConstDriverVariant = std::variant<std::monostate, const SpiDriver*, const UartDriver*>;
 
     /// @}
 
@@ -1053,6 +1065,12 @@ public:
      */
     void DumpDiagnostics() noexcept;
 
+    /**
+     * @brief Get a human-readable description of the handler.
+     * @return String e.g. "TMC9660 Motor Driver (SPI @0x01)"
+     */
+    const char* GetDescription() const noexcept;
+
     /// @}
 
     //==========================================================================
@@ -1083,6 +1101,10 @@ public:
      * drv->velocityControl.setTargetVelocity(1000);
      * drv->protection.configureVoltage(48000, 10000);
      * @endcode
+     *
+     * @warning Raw pointer — NOT mutex-protected. Caller is responsible for
+     *          external synchronization in multi-task environments.
+     *          Prefer visitDriver() for thread-safe access.
      */
     SpiDriver* driverViaSpi() noexcept;
 
@@ -1099,6 +1121,8 @@ public:
      * auto* drv = handler->driverViaUart();
      * drv->feedbackSense.configureABNEncoder(1024);
      * @endcode
+     *
+     * @warning Raw pointer — NOT mutex-protected. Prefer visitDriver().
      */
     UartDriver* driverViaUart() noexcept;
 
@@ -1153,9 +1177,10 @@ public:
      *         driver is not ready.
      */
     template <typename Func>
-    auto visitDriver(Func&& func) {
-        if (!EnsureInitialized()) {
-            using ReturnType = decltype(func(*spi_driver_));
+    auto visitDriver(Func&& func) noexcept {
+        using ReturnType = decltype(func(*spi_driver_));
+        MutexLockGuard lock(handler_mutex_);
+        if (!EnsureInitializedLocked()) {
             if constexpr (std::is_void_v<ReturnType>) {
                 return;
             } else {
@@ -1167,7 +1192,6 @@ public:
         } else {
             if (uart_driver_) return func(*uart_driver_);
         }
-        using ReturnType = decltype(func(*spi_driver_));
         if constexpr (std::is_void_v<ReturnType>) {
             return;
         } else {
@@ -1177,10 +1201,11 @@ public:
 
     /** @brief Const overload of visitDriver(). */
     template <typename Func>
-    auto visitDriver(Func&& func) const {
+    auto visitDriver(Func&& func) const noexcept {
+        using ReturnType = decltype(func(std::as_const(*spi_driver_)));
+        MutexLockGuard lock(handler_mutex_);
         auto* self = const_cast<Tmc9660Handler*>(this);
-        if (!self->EnsureInitialized()) {
-            using ReturnType = decltype(func(std::as_const(*spi_driver_)));
+        if (!self->EnsureInitializedLocked()) {
             if constexpr (std::is_void_v<ReturnType>) {
                 return;
             } else {
@@ -1188,11 +1213,10 @@ public:
             }
         }
         if (use_spi_) {
-            if (spi_driver_) return func(*spi_driver_);
+            if (spi_driver_) return func(std::as_const(*spi_driver_));
         } else {
-            if (uart_driver_) return func(*uart_driver_);
+            if (uart_driver_) return func(std::as_const(*uart_driver_));
         }
-        using ReturnType = decltype(func(std::as_const(*spi_driver_)));
         if constexpr (std::is_void_v<ReturnType>) {
             return;
         } else {
@@ -1203,6 +1227,29 @@ public:
     /// @}
 
 private:
+    //==========================================================================
+    // Private Helpers
+    //==========================================================================
+
+    /** @brief Ensure initialized while handler_mutex_ is already held. */
+    bool EnsureInitializedLocked() noexcept;
+
+    /** @brief Internal no-lock visitDriver for use from already-locked contexts. */
+    template <typename Func>
+    auto visitDriverInternal(Func&& func) noexcept {
+        using ReturnType = decltype(func(*spi_driver_));
+        if (use_spi_) {
+            if (spi_driver_) return func(*spi_driver_);
+        } else {
+            if (uart_driver_) return func(*uart_driver_);
+        }
+        if constexpr (std::is_void_v<ReturnType>) {
+            return;
+        } else {
+            return ReturnType{};
+        }
+    }
+
     //==========================================================================
     // Private Members
     //==========================================================================
@@ -1236,6 +1283,13 @@ private:
     const tmc9660::BootloaderConfig* bootCfg_;   ///< Bootloader config (not owned; must outlive handler).
     uint8_t device_address_;                      ///< 7-bit TMCL device address.
     /// @}
+
+    /// @name Thread Safety
+    /// @{
+    mutable RtosMutex handler_mutex_;   ///< Recursive mutex for thread-safe access.
+    /// @}
+
+    char description_[64]{};   ///< Human-readable handler description.
 };
 
 /// @} // end of TMC9660_HAL_Handler
