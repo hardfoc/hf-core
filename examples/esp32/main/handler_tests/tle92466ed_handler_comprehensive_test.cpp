@@ -112,7 +112,7 @@ static bool test_construction() noexcept {
 
 static bool test_initialize() noexcept {
     if (!g_handler) return false;
-    bool ok = g_handler->Initialize();
+    bool ok = g_handler->Initialize().has_value();
     g_hw_present = ok;
     ESP_LOGI(TAG, "Initialize: %s (hw_present=%d)", ok ? "OK" : "FAILED", g_hw_present);
     return true;
@@ -129,42 +129,42 @@ static bool test_is_initialized() noexcept {
 
 static bool test_enable_channel() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->EnableChannel(0);
+    bool ok = g_handler->EnableChannel(0).has_value();
     ESP_LOGI(TAG, "EnableChannel(0): %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_disable_channel() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->DisableChannel(0);
+    bool ok = g_handler->DisableChannel(0).has_value();
     ESP_LOGI(TAG, "DisableChannel(0): %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_enable_all_channels() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->EnableAllChannels();
+    bool ok = g_handler->EnableAllChannels().has_value();
     ESP_LOGI(TAG, "EnableAllChannels: %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_disable_all_channels() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->DisableAllChannels();
+    bool ok = g_handler->DisableAllChannels().has_value();
     ESP_LOGI(TAG, "DisableAllChannels: %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_set_channel_current() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->SetChannelCurrent(0, 500); // 500 mA
+    bool ok = g_handler->SetChannelCurrent(0, 500).has_value(); // 500 mA
     ESP_LOGI(TAG, "SetChannelCurrent(0, 500mA): %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_configure_pwm_raw() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->ConfigurePwmRaw(0, 128, 3); // mantissa=128, exponent=3
+    bool ok = g_handler->ConfigurePwmRaw(0, 128, 3).has_value(); // mantissa=128, exponent=3
     ESP_LOGI(TAG, "ConfigurePwmRaw(0, 128, 3): %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -172,7 +172,7 @@ static bool test_configure_pwm_raw() noexcept {
 static bool test_channel_range_guard() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     // Channel 6 is out of range (0-5)
-    bool ok = g_handler->EnableChannel(6);
+    bool ok = g_handler->EnableChannel(6).has_value();
     ESP_LOGI(TAG, "EnableChannel(6) out-of-range: %s (expected false)", ok ? "OK" : "FAILED");
     return !ok;
 }
@@ -182,7 +182,7 @@ static bool test_channel_range_guard() noexcept {
 static bool test_get_status() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     tle92466ed::DeviceStatus status = {};
-    bool ok = g_handler->GetStatus(status);
+    bool ok = g_handler->GetStatus(status).has_value();
     ESP_LOGI(TAG, "GetStatus: %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -190,7 +190,7 @@ static bool test_get_status() noexcept {
 static bool test_get_channel_diagnostics() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     tle92466ed::ChannelDiagnostics diag = {};
-    bool ok = g_handler->GetChannelDiagnostics(0, diag);
+    bool ok = g_handler->GetChannelDiagnostics(0, diag).has_value();
     ESP_LOGI(TAG, "GetChannelDiagnostics(0): %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -198,7 +198,7 @@ static bool test_get_channel_diagnostics() noexcept {
 static bool test_get_fault_report() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     tle92466ed::FaultReport report = {};
-    bool ok = g_handler->GetFaultReport(report);
+    bool ok = g_handler->GetFaultReport(report).has_value();
     ESP_LOGI(TAG, "GetFaultReport: %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -212,7 +212,7 @@ static bool test_has_fault() noexcept {
 
 static bool test_clear_faults() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->ClearFaults();
+    bool ok = g_handler->ClearFaults().has_value();
     ESP_LOGI(TAG, "ClearFaults: %s", ok ? "OK" : "FAILED");
     return ok;
 }
@@ -221,14 +221,14 @@ static bool test_clear_faults() noexcept {
 
 static bool test_kick_watchdog() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->KickWatchdog();
+    bool ok = g_handler->KickWatchdog().has_value();
     ESP_LOGI(TAG, "KickWatchdog: %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_enter_mission_mode() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->EnterMissionMode();
+    bool ok = g_handler->EnterMissionMode().has_value();
     ESP_LOGI(TAG, "EnterMissionMode: %s", ok ? "OK" : "FAILED");
     if (ok) {
         bool is_mission = g_handler->IsMissionMode();
@@ -272,7 +272,7 @@ static bool test_operations_before_init() noexcept {
         *g_spi_device, *g_resn_gpio, *g_en_gpio);
 
     bool init = uninit->IsInitialized();
-    bool en_ok = uninit->EnableChannel(0);
+    bool en_ok = uninit->EnableChannel(0).has_value();
     bool fault = uninit->HasFault();
 
     ESP_LOGI(TAG, "Uninit handler: init=%d, enable_ch0=%d, fault=%d",
@@ -282,7 +282,7 @@ static bool test_operations_before_init() noexcept {
 
 static bool test_deinitialize() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->Deinitialize();
+    bool ok = g_handler->Deinitialize().has_value();
     ESP_LOGI(TAG, "Deinitialize: %s", ok ? "OK" : "FAILED");
     bool still_init = g_handler->IsInitialized();
     ESP_LOGI(TAG, "IsInitialized after deinit: %d (expected false)", still_init);

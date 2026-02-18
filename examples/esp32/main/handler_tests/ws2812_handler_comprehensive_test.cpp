@@ -76,9 +76,9 @@ static bool test_construction() noexcept {
 
 static bool test_initialize() noexcept {
     if (!g_handler) return false;
-    bool ok = g_handler->Initialize();
-    g_hw_present = ok;
-    ESP_LOGI(TAG, "Initialize: %s", ok ? "OK" : "FAILED");
+    esp_err_t err = g_handler->Initialize();
+    g_hw_present = (err == ESP_OK);
+    ESP_LOGI(TAG, "Initialize: %s (err=%d)", g_hw_present ? "OK" : "FAILED", err);
     return true; // RMT init may succeed even without LEDs attached
 }
 
@@ -93,37 +93,55 @@ static bool test_is_initialized() noexcept {
 
 static bool test_set_pixel() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->SetPixel(0, 255, 0, 0); // Red
-    ESP_LOGI(TAG, "SetPixel(0, R=255): %s", ok ? "OK" : "FAILED");
-    return ok;
+    auto* strip = g_handler->GetStrip();
+    if (!strip) return false;
+    strip->SetPixel(0, 0xFF0000); // Red
+    ESP_LOGI(TAG, "SetPixel(0, Red): OK");
+    return true;
 }
 
 static bool test_set_all_pixels() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->SetAllPixels(0, 255, 0); // All green
-    ESP_LOGI(TAG, "SetAllPixels(G=255): %s", ok ? "OK" : "FAILED");
-    return ok;
+    auto* strip = g_handler->GetStrip();
+    if (!strip) return false;
+    for (uint32_t i = 0; i < g_handler->GetNumLeds(); ++i) {
+        strip->SetPixel(i, 0x00FF00); // Green
+    }
+    ESP_LOGI(TAG, "SetAllPixels(Green): OK");
+    return true;
 }
 
 static bool test_show() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->Show();
+    auto* strip = g_handler->GetStrip();
+    if (!strip) return false;
+    esp_err_t err = strip->Show();
+    bool ok = (err == ESP_OK);
     ESP_LOGI(TAG, "Show: %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_clear() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->Clear();
+    auto* strip = g_handler->GetStrip();
+    if (!strip) return false;
+    for (uint32_t i = 0; i < g_handler->GetNumLeds(); ++i) {
+        strip->SetPixel(i, 0x000000);
+    }
+    esp_err_t err = strip->Show();
+    bool ok = (err == ESP_OK);
     ESP_LOGI(TAG, "Clear: %s", ok ? "OK" : "FAILED");
     return ok;
 }
 
 static bool test_pixel_out_of_range() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->SetPixel(WS2812_NUM_LEDS + 10, 255, 255, 255);
-    ESP_LOGI(TAG, "SetPixel(out-of-range): %s (expected false)", ok ? "OK" : "FAILED");
-    return !ok;
+    auto* strip = g_handler->GetStrip();
+    if (!strip) return false;
+    // SetPixel with out-of-range index — strip silently ignores (void return)
+    strip->SetPixel(WS2812_NUM_LEDS + 10, 0xFFFFFF);
+    ESP_LOGI(TAG, "SetPixel(out-of-range): no crash");
+    return true;
 }
 
 // ─────────────────────── Color Sequence ───────────────────────
@@ -131,15 +149,18 @@ static bool test_pixel_out_of_range() noexcept {
 static bool test_color_sequence() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
 
+    auto* strip = g_handler->GetStrip();
+    if (!strip) return false;
+
     // Walk through red, green, blue on first 3 LEDs
-    g_handler->SetPixel(0, 255, 0, 0);
-    if (WS2812_NUM_LEDS > 1) g_handler->SetPixel(1, 0, 255, 0);
-    if (WS2812_NUM_LEDS > 2) g_handler->SetPixel(2, 0, 0, 255);
-    g_handler->Show();
+    strip->SetPixel(0, 0xFF0000);
+    if (WS2812_NUM_LEDS > 1) strip->SetPixel(1, 0x00FF00);
+    if (WS2812_NUM_LEDS > 2) strip->SetPixel(2, 0x0000FF);
+    strip->Show();
     vTaskDelay(pdMS_TO_TICKS(500));
 
-    g_handler->Clear();
-    g_handler->Show();
+    for (uint32_t i = 0; i < g_handler->GetNumLeds(); ++i) strip->SetPixel(i, 0);
+    strip->Show();
     ESP_LOGI(TAG, "Color sequence: R-G-B displayed for 500ms");
     return true;
 }
@@ -148,36 +169,43 @@ static bool test_color_sequence() noexcept {
 
 static bool test_set_brightness() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->SetBrightness(100);
-    ESP_LOGI(TAG, "SetBrightness(100): %s", ok ? "OK" : "FAILED");
-    // Restore
-    g_handler->SetBrightness(50);
-    return ok;
+    auto* strip = g_handler->GetStrip();
+    if (!strip) return false;
+    strip->SetBrightness(100);
+    ESP_LOGI(TAG, "SetBrightness(100): OK");
+    strip->SetBrightness(50); // Restore
+    return true;
 }
 
 static bool test_brightness_range() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok_min = g_handler->SetBrightness(0);
-    bool ok_max = g_handler->SetBrightness(255);
-    ESP_LOGI(TAG, "Brightness min=%d, max=%d", ok_min, ok_max);
-    g_handler->SetBrightness(50);
-    return ok_min && ok_max;
+    auto* strip = g_handler->GetStrip();
+    if (!strip) return false;
+    strip->SetBrightness(0);
+    strip->SetBrightness(255);
+    ESP_LOGI(TAG, "Brightness min/max: OK");
+    strip->SetBrightness(50);
+    return true;
 }
 
 // ─────────────────────── Animation Effects ───────────────────────
 
 static bool test_set_effect_rainbow() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->SetEffect(WS2812Animator::Effect::Rainbow, 0xFFFFFF);
-    ESP_LOGI(TAG, "SetEffect(RAINBOW): %s", ok ? "OK" : "FAILED");
-    return ok;
+    auto* anim = g_handler->GetAnimator();
+    if (!anim) return false;
+    anim->SetEffect(WS2812Animator::Effect::Rainbow, 0xFFFFFF);
+    ESP_LOGI(TAG, "SetEffect(RAINBOW): OK");
+    return true;
 }
 
 static bool test_tick() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
+    auto* anim = g_handler->GetAnimator();
+    if (!anim) return false;
     // Run a few animation ticks
     for (int i = 0; i < 10; ++i) {
-        g_handler->Tick();
+        anim->Tick();
         vTaskDelay(pdMS_TO_TICKS(20));
     }
     ESP_LOGI(TAG, "Tick x10: completed");
@@ -186,9 +214,11 @@ static bool test_tick() noexcept {
 
 static bool test_step() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    bool ok = g_handler->Step();
-    ESP_LOGI(TAG, "Step: %s", ok ? "OK" : "FAILED");
-    return ok;
+    auto* anim = g_handler->GetAnimator();
+    if (!anim) return false;
+    uint16_t step = anim->Step();
+    ESP_LOGI(TAG, "Step: %u", step);
+    return true;
 }
 
 // ─────────────────────── Direct Access ───────────────────────
@@ -234,12 +264,12 @@ static bool test_operations_before_init() noexcept {
     auto uninit = std::make_unique<Ws2812Handler>(cfg);
 
     bool init = uninit->IsInitialized();
-    bool set_ok = uninit->SetPixel(0, 255, 0, 0);
-    bool show_ok = uninit->Show();
+    auto* strip = uninit->GetStrip();
+    auto* anim  = uninit->GetAnimator();
 
-    ESP_LOGI(TAG, "Uninit handler: init=%d, set_pixel=%d, show=%d",
-             init, set_ok, show_ok);
-    return !init && !set_ok && !show_ok;
+    ESP_LOGI(TAG, "Uninit handler: init=%d, strip=%p, anim=%p",
+             init, static_cast<void*>(strip), static_cast<void*>(anim));
+    return !init && strip == nullptr && anim == nullptr;
 }
 
 static bool test_deinitialize() noexcept {

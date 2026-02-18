@@ -121,9 +121,11 @@ static bool test_initialize() noexcept {
 
     tmc51x0::DriverConfig config = {};
     // Use conservative defaults for test — actual values depend on motor
-    bool ok = g_handler->Initialize(config, true /*verbose*/);
+    auto err = g_handler->Initialize(config, true /*verbose*/);
+    bool ok = (err == tmc51x0::ErrorCode::OK);
     g_hw_present = ok;
-    ESP_LOGI(TAG, "Initialize: %s (hw_present=%d)", ok ? "OK" : "FAILED", g_hw_present);
+    ESP_LOGI(TAG, "Initialize: %s (err=%d, hw_present=%d)",
+             ok ? "OK" : "FAILED", static_cast<int>(err), g_hw_present);
     return true; // Always pass — no hardware is a valid scenario
 }
 
