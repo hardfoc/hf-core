@@ -214,12 +214,19 @@ public:
     /**
      * @brief Get pointer to AS5047U driver for advanced operations
      * @return Pointer to AS5047U driver or nullptr if not initialized
+     *
+     * @warning Raw pointer — NOT mutex-protected. Caller is responsible for
+     *          external synchronization in multi-task environments.
+     *          Prefer visitDriver() for thread-safe access.
      * 
      * Note: Caller must not delete the returned pointer; lifetime is owned by the handler.
      */
     as5047u::AS5047U<As5047uSpiAdapter>* GetSensor() noexcept;
 
-    /** @brief Naming-consistent alias of GetSensor(). */
+    /**
+     * @brief Naming-consistent alias of GetSensor().
+     * @warning Raw pointer — NOT mutex-protected. Prefer visitDriver().
+     */
     as5047u::AS5047U<As5047uSpiAdapter>* GetDriver() noexcept;
     const as5047u::AS5047U<As5047uSpiAdapter>* GetDriver() const noexcept;
 

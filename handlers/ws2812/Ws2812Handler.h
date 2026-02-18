@@ -139,17 +139,24 @@ public:
     /**
      * @brief Get the underlying LED strip object.
      * @return Pointer to WS2812Strip, or nullptr if not initialized.
+     * @warning Raw pointer — NOT mutex-protected. Caller is responsible for
+     *          external synchronization in multi-task environments.
+     *          Prefer visitDriver() for thread-safe access.
      */
     [[nodiscard]] WS2812Strip* GetStrip() noexcept;
     [[nodiscard]] const WS2812Strip* GetStrip() const noexcept;
 
-    /** @brief Naming-consistent alias of GetStrip(). */
+    /**
+     * @brief Naming-consistent alias of GetStrip().
+     * @warning Raw pointer — NOT mutex-protected. Prefer visitDriver().
+     */
     [[nodiscard]] WS2812Strip* GetDriver() noexcept;
     [[nodiscard]] const WS2812Strip* GetDriver() const noexcept;
 
     /**
      * @brief Get the animator object.
      * @return Pointer to WS2812Animator, or nullptr if not initialized.
+     * @warning Raw pointer — NOT mutex-protected. Prefer visitAnimator().
      */
     [[nodiscard]] WS2812Animator* GetAnimator() noexcept;
     [[nodiscard]] const WS2812Animator* GetAnimator() const noexcept;
@@ -193,6 +200,18 @@ public:
     /** @brief Dump diagnostics to logger. */
     void DumpDiagnostics() noexcept;
 
+    /**
+     * @brief Get a human-readable description of the handler.
+     * @return String e.g. "WS2812 LED Strip (GPIO48, 30 LEDs)"
+     */
+    const char* GetDescription() const noexcept;
+
+    /**
+     * @brief Get a sensible default Config.
+     * @return Default Config structure.
+     */
+    static Config GetDefaultConfig() noexcept { return Config{}; }
+
 private:
     bool EnsureInitializedLocked() noexcept;
 
@@ -201,6 +220,7 @@ private:
     mutable RtosMutex mutex_;
     std::unique_ptr<WS2812Strip> strip_;
     std::unique_ptr<WS2812Animator> animator_;
+    char description_[64]{};   ///< Human-readable handler description.
 };
 
 /// @}

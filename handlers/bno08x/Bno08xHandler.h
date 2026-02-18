@@ -46,15 +46,16 @@
  *
  * @code
  * // 1. Obtain a BaseI2c device reference (address pre-configured, e.g. 0x4A)
- * // 2. Construct the handler
+ * // 2. Construct the handler (config enables accel+gyro+mag+rotation by default)
  * Bno08xHandler handler(i2c_device);
  *
- * // 3. Initialize
+ * // 3. Initialize (runs Begin + applyConfigLocked to enable configured sensors)
  * if (handler.Initialize() != Bno08xError::SUCCESS) { return; }
  *
- * // 4. Enable sensors
- * handler.EnableSensor(BNO085Sensor::RotationVector, 10);  // 100 Hz
- * handler.EnableSensor(BNO085Sensor::Accelerometer, 20);   // 50 Hz
+ * // 4. Optionally enable extra sensors via driver access
+ * handler.visitDriver([](IBno08xDriverOps& drv) {
+ *     drv.EnableSensor(BNO085Sensor::GameRotationVector, 10);
+ * });
  *
  * // 5. Set callback for event-driven data
  * handler.SetSensorCallback([](const SensorEvent& e) { ... });
@@ -615,13 +616,20 @@ public:
      * callbacks, low-level control). Valid for the lifetime of this handler.
      *
      * @return Non-owning pointer to the driver interface, or nullptr if not constructed
+     *
+     * @warning Raw pointer — NOT mutex-protected. Caller is responsible for
+     *          external synchronization in multi-task environments.
+     *          Prefer visitDriver() for thread-safe access.
      */
     IBno08xDriverOps* GetSensor() noexcept;
 
     /** @brief Const overload of GetSensor(). */
     const IBno08xDriverOps* GetSensor() const noexcept;
 
-    /** @brief Naming-consistent alias of GetSensor(). */
+    /**
+     * @brief Naming-consistent alias of GetSensor().
+     * @warning Raw pointer — NOT mutex-protected. Prefer visitDriver().
+     */
     IBno08xDriverOps* GetDriver() noexcept { return GetSensor(); }
     const IBno08xDriverOps* GetDriver() const noexcept { return GetSensor(); }
 

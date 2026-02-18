@@ -15,6 +15,9 @@ static constexpr const char* TAG = "WS2812";
 
 Ws2812Handler::Ws2812Handler(const Config& config) noexcept
     : config_(config) {
+    std::snprintf(description_, sizeof(description_), "WS2812 LED Strip (GPIO%d, %lu LEDs)",
+                  static_cast<int>(config_.gpio_pin),
+                  static_cast<unsigned long>(config_.num_leds));
     Logger::GetInstance().Info(TAG, "WS2812 handler created (GPIO=%d, LEDs=%lu)",
                               static_cast<int>(config_.gpio_pin),
                               static_cast<unsigned long>(config_.num_leds));
@@ -149,4 +152,8 @@ void Ws2812Handler::DumpDiagnostics() noexcept {
         log.Info(TAG, "  Strip Length: %lu", static_cast<unsigned long>(strip_->Length()));
     }
     log.Info(TAG, "=== End WS2812 Diagnostics ===");
+}
+
+const char* Ws2812Handler::GetDescription() const noexcept {
+    return description_;
 }
