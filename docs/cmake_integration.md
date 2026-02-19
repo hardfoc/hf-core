@@ -31,13 +31,13 @@ which drivers, handlers, and utilities are compiled into their build.
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │            core/cmake/hf_core_build_settings.cmake           │
-│              (Configurable Source/Include Collector)          │
+│              (Configurable Source/Include Collector)         │
 │                                                              │
 │  • Feature toggles (HF_CORE_ENABLE_xxx)                      │
 │  • Auto-enables bus dependencies                             │
 │  • Includes each driver's build_settings.cmake               │
-│  • Collects HF_CORE_SOURCES, HF_CORE_INCLUDE_DIRS,          │
-│    HF_CORE_IDF_REQUIRES, HF_CORE_COMPILE_DEFINITIONS        │
+│  • Collects HF_CORE_SOURCES, HF_CORE_INCLUDE_DIRS,           │
+│    HF_CORE_IDF_REQUIRES, HF_CORE_COMPILE_DEFINITIONS         │
 └────────────┬────────────────────────────┬────────────────────┘
              │                            │
 ┌────────────▼───────────────┐ ┌──────────▼──────────────────┐
@@ -47,7 +47,7 @@ which drivers, handlers, and utilities are compiled into their build.
 │                            │ │  • Enables feature subset   │
 │  • Enables ALL features    │ │  • Includes build settings  │
 │  • Includes build settings │ │  • Adds HAL-specific API +  │
-│  • idf_component_register()│ │    managers on top           │
+│  • idf_component_register()│ │    managers on top          │
 └────────────────────────────┘ └─────────────────────────────┘
 ```
 
