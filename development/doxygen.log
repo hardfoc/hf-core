@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.2zK8OW
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.2zK8OW' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.1km1zD
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.1km1zD' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -11,21 +11,21 @@ Searching for dia files...
 Searching for files to exclude
 Searching INPUT for files to process...
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/common
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/logger
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tle92466ed
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/pcal95555
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/max22200
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ntc
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ws2812
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/pca9685
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ntc
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tmc9660
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tle92466ed
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tmc5160
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/bno08x
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/pcal95555
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/logger
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ws2812
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/common
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/as5047u
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/max22200
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/bno08x
 Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main
-Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests
 Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests
+Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests
 Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/integration_tests
 Reading and parsing tag files
 Parsing files
