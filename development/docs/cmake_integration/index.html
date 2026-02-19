@@ -1,0 +1,912 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <link rel="stylesheet" href="/hf-core/development/assets/css/just-the-docs-default.css">
+
+  <link rel="stylesheet" href="/hf-core/development/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+
+  <style id="jtd-nav-activation">
+  
+
+    
+    .site-nav > ul.nav-list:first-child > li:not(:nth-child(6)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:not(:first-child) a,
+    .site-nav li.external a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:first-child > li:nth-child(6) > a {
+      font-weight: 600;
+      text-decoration: none;
+    }.site-nav > ul.nav-list:first-child > li:nth-child(6) > button svg {
+      transform: rotate(-90deg);
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(6) > ul.nav-list {
+      display: block;
+    }
+  </style>
+
+  
+
+  
+    <script src="/hf-core/development/assets/js/vendor/lunr.min.js"></script>
+  
+
+  <script src="/hf-core/development/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>⚙️ CMake Integration | HardFOC Core Platform (hf-core) - development</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="⚙️ CMake Integration" />
+<meta name="author" content="hardfoc" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Configurable CMake build system for hf-core" />
+<meta property="og:description" content="Configurable CMake build system for hf-core" />
+<link rel="canonical" href="https://hardfoc.github.io/hf-core/development/docs/cmake_integration/" />
+<meta property="og:url" content="https://hardfoc.github.io/hf-core/development/docs/cmake_integration/" />
+<meta property="og:site_name" content="HardFOC Core Platform (hf-core) - development" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="⚙️ CMake Integration" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"hardfoc","url":"https://github.com/hardfoc"},"description":"Configurable CMake build system for hf-core","headline":"⚙️ CMake Integration","url":"https://hardfoc.github.io/hf-core/development/docs/cmake_integration/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+</head>
+
+<body>
+  <a class="skip-to-main" href="#main-content">Skip to main content</a>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="svg-link" viewBox="0 0 24 24">
+  <title>Link</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+  </svg>
+</symbol>
+
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+  <title>Menu</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+    <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</symbol>
+
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+  <title>Expand</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+</symbol>
+
+  <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE -->
+<symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+  <title id="svg-external-link-title">(external link)</title>
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+</symbol>
+
+  
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+  <title>Document</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+  </svg>
+</symbol>
+
+    <symbol id="svg-search" viewBox="0 0 24 24">
+  <title>Search</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</symbol>
+
+  
+  
+    <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md -->
+<symbol id="svg-copy" viewBox="0 0 16 16">
+  <title>Copy</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg>
+</symbol>
+<symbol id="svg-copied" viewBox="0 0 16 16">
+  <title>Copied</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/>
+  </svg>
+</symbol>
+
+  
+</svg>
+
+  
+    <header class="side-bar">
+  <div class="site-header">
+    <a href="/hf-core/development/" class="site-title lh-tight">
+  HardFOC Core Platform (hf-core) - development
+
+</a>
+    <button id="menu-button" class="site-button btn-reset" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
+    </button>
+  </div>
+
+  <nav aria-label="Main" id="site-nav" class="site-nav">
+  
+  
+    <ul class="nav-list"><li class="nav-list-item"><a href="/hf-core/development/README.html" class="nav-list-link">HardFOC Core Platform</a></li><li class="nav-list-item"><a href="/hf-core/development/" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/architecture.html" class="nav-list-link">Architecture</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/folder_structure.html" class="nav-list-link">Folder Structure</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Handlers submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-core/development/docs/handlers/" class="nav-list-link">Handlers</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/as5047u_handler.html" class="nav-list-link">AS5047U Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/bno08x_handler.html" class="nav-list-link">BNO08x Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/pca9685_handler.html" class="nav-list-link">PCA9685 Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/pcal95555_handler.html" class="nav-list-link">PCAL95555 Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/ntc_temperature_handler.html" class="nav-list-link">NTC Temperature Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/tmc9660_handler.html" class="nav-list-link">TMC9660 Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/logger.html" class="nav-list-link">Logger</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/tmc5160_handler.html" class="nav-list-link">TMC5160 Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/tle92466ed_handler.html" class="nav-list-link">TLE92466ED Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/max22200_handler.html" class="nav-list-link">MAX22200 Handler</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/handlers/ws2812_handler.html" class="nav-list-link">WS2812 Handler</a></li></ul></li><li class="nav-list-item"><a href="/hf-core/development/docs/cmake_integration/" class="nav-list-link">⚙️ CMake Integration</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Utilities submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-core/development/docs/utils/" class="nav-list-link">Utilities</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-core/development/docs/utils/general_utilities.html" class="nav-list-link">General Utilities</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/utils/rtos_wrappers.html" class="nav-list-link">RTOS Wrappers</a></li><li class="nav-list-item"><a href="/hf-core/development/docs/utils/canopen.html" class="nav-list-link">CANopen</a></li></ul></li></ul>
+  
+</nav>
+
+
+<div class="d-md-block d-none site-footer">
+  
+  
+    This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+  
+  </div>
+</header>
+
+  
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+  
+    
+
+<div class="search" role="search">
+  <div class="search-input-wrap">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search HardFOC Core Platform (hf-core) - development" autocomplete="off">
+    <label for="search-input" class="search-label">
+      <span class="sr-only">Search HardFOC Core Platform (hf-core) - development</span>
+      <svg viewBox="0 0 24 24" class="search-icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg>
+    </label>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+  
+  
+  
+    <nav aria-label="Auxiliary" class="aux-nav">
+  <ul class="aux-nav-list">
+    
+      <li class="aux-nav-list-item">
+        <a href="/hf-core/development/api/index.html" class="site-button"
+          
+        >
+          📖 API Reference
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://github.com/hardfoc/hf-hal-vortex-v1" class="site-button"
+          
+        >
+          📚 GitHub Repository
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://github.com/hardfoc/hf-hal-vortex-v1/issues" class="site-button"
+          
+        >
+          🐛 Report Issues
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+  
+</div>
+
+    <div class="main-content-wrap">
+      
+      <div id="main-content" class="main-content">
+        <main>
+          
+            <h1 id="hf-core-cmake-integration">
+  
+  
+    <a href="#hf-core-cmake-integration" class="anchor-heading" aria-labelledby="hf-core-cmake-integration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> hf-core CMake Integration
+  
+  
+</h1>
+    
+
+<p>This document describes the <strong>configurable CMake build system</strong> that allows
+consumers (HAL layers, standalone projects, core examples) to select exactly
+which drivers, handlers, and utilities are compiled into their build.</p><hr />
+<h2 id="design-goals">
+  
+  
+    <a href="#design-goals" class="anchor-heading" aria-labelledby="design-goals"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Design Goals
+  
+  
+</h2>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>How It’s Achieved</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Lean builds</strong></td>
+      <td>Each driver/handler is opt-in — only enabled features are compiled</td>
+    </tr>
+    <tr>
+      <td><strong>Zero duplication</strong></td>
+      <td>HAL CMakeLists.txt no longer re-enumerate core source files</td>
+    </tr>
+    <tr>
+      <td><strong>Driver delegation</strong></td>
+      <td>Each external driver’s <code class="language-plaintext highlighter-rouge">build_settings.cmake</code> is the single source of truth for its sources and includes</td>
+    </tr>
+    <tr>
+      <td><strong>Auto dependencies</strong></td>
+      <td>Enabling a driver automatically enables the bus interfaces it needs (e.g., TMC9660 → UART)</td>
+    </tr>
+    <tr>
+      <td><strong>Familiar pattern</strong></td>
+      <td>Follows the same 3-layer CMake contract used by all HardFOC external drivers</td>
+    </tr>
+  </tbody>
+</table></div><hr />
+<h2 id="architecture">
+  
+  
+    <a href="#architecture" class="anchor-heading" aria-labelledby="architecture"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Architecture
+  
+  
+</h2>
+    
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre>┌──────────────────────────────────────────────────────────────┐
+│            core/cmake/hf_core_build_settings.cmake           │
+│              (Configurable Source/Include Collector)          │
+│                                                              │
+│  • Feature toggles (HF_CORE_ENABLE_xxx)                      │
+│  • Auto-enables bus dependencies                             │
+│  • Includes each driver's build_settings.cmake               │
+│  • Collects HF_CORE_SOURCES, HF_CORE_INCLUDE_DIRS,          │
+│    HF_CORE_IDF_REQUIRES, HF_CORE_COMPILE_DEFINITIONS        │
+└────────────┬────────────────────────────┬────────────────────┘
+             │                            │
+┌────────────▼───────────────┐ ┌──────────▼──────────────────┐
+│  Core ESP-IDF Wrapper      │ │  HAL CMakeLists.txt         │
+│  (examples/esp32/          │ │  (hf-hal-vortex-v1/ etc.)   │
+│   components/hf_core/)     │ │                             │
+│                            │ │  • Enables feature subset   │
+│  • Enables ALL features    │ │  • Includes build settings  │
+│  • Includes build settings │ │  • Adds HAL-specific API +  │
+│  • idf_component_register()│ │    managers on top           │
+└────────────────────────────┘ └─────────────────────────────┘
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h2 id="usage">
+  
+  
+    <a href="#usage" class="anchor-heading" aria-labelledby="usage"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Usage
+  
+  
+</h2>
+    
+<h3 id="1-set-feature-toggles">
+  
+  
+    <a href="#1-set-feature-toggles" class="anchor-heading" aria-labelledby="1-set-feature-toggles"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1. Set Feature Toggles
+  
+  
+</h3>
+    
+
+<p>Before including the build settings, set variables for the features you need:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="c1"># Enable only what your HAL uses</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_TMC9660        ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_PCAL95555      ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_AS5047U        ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_BNO08X         ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_NTC_THERMISTOR ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_WS2812         ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_LOGGER         ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_UTILS_CANOPEN  ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_CAN            ON<span class="p">)</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="2-include-the-build-settings">
+  
+  
+    <a href="#2-include-the-build-settings" class="anchor-heading" aria-labelledby="2-include-the-build-settings"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 2. Include the Build Settings
+  
+  
+</h3>
+    
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">include</span><span class="p">(</span><span class="s2">"</span><span class="si">${</span><span class="nv">CORE_PATH</span><span class="si">}</span><span class="s2">/cmake/hf_core_build_settings.cmake"</span><span class="p">)</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="3-use-the-collected-variables">
+  
+  
+    <a href="#3-use-the-collected-variables" class="anchor-heading" aria-labelledby="3-use-the-collected-variables"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 3. Use the Collected Variables
+  
+  
+</h3>
+    
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="nf">idf_component_register</span><span class="p">(</span>
+    SRCS
+        <span class="si">${</span><span class="nv">HF_CORE_SOURCES</span><span class="si">}</span>
+        <span class="si">${</span><span class="nv">MY_HAL_SOURCES</span><span class="si">}</span>
+    INCLUDE_DIRS
+        <span class="si">${</span><span class="nv">HF_CORE_INCLUDE_DIRS</span><span class="si">}</span>
+        <span class="si">${</span><span class="nv">MY_HAL_INCLUDE_DIRS</span><span class="si">}</span>
+    REQUIRES
+        <span class="si">${</span><span class="nv">HF_CORE_IDF_REQUIRES</span><span class="si">}</span>
+<span class="p">)</span>
+
+<span class="nb">target_compile_definitions</span><span class="p">(</span><span class="si">${</span><span class="nv">COMPONENT_LIB</span><span class="si">}</span> PUBLIC <span class="si">${</span><span class="nv">HF_CORE_COMPILE_DEFINITIONS</span><span class="si">}</span><span class="p">)</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h2 id="feature-toggles-reference">
+  
+  
+    <a href="#feature-toggles-reference" class="anchor-heading" aria-labelledby="feature-toggles-reference"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Feature Toggles Reference
+  
+  
+</h2>
+    
+<h3 id="external-drivers--handlers-opt-in-default-off">
+  
+  
+    <a href="#external-drivers--handlers-opt-in-default-off" class="anchor-heading" aria-labelledby="external-drivers--handlers-opt-in-default-off"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> External Drivers + Handlers (opt-in, default OFF)
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Toggle</th>
+      <th>Driver</th>
+      <th>Bus</th>
+      <th>Handler</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_AS5047U</code></td>
+      <td>hf-as5047u-driver</td>
+      <td>SPI</td>
+      <td>As5047uHandler</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_BNO08X</code></td>
+      <td>hf-bno08x-driver</td>
+      <td>I2C/SPI</td>
+      <td>Bno08xHandler</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_MAX22200</code></td>
+      <td>hf-max22200-driver</td>
+      <td>SPI</td>
+      <td>Max22200Handler</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_NTC_THERMISTOR</code></td>
+      <td>hf-ntc-thermistor-driver</td>
+      <td>ADC</td>
+      <td>NtcTemperatureHandler</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_PCA9685</code></td>
+      <td>hf-pca9685-driver</td>
+      <td>I2C</td>
+      <td>Pca9685Handler</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_PCAL95555</code></td>
+      <td>hf-pcal95555-driver</td>
+      <td>I2C</td>
+      <td>Pcal95555Handler</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_TLE92466ED</code></td>
+      <td>hf-tle92466ed-driver</td>
+      <td>SPI</td>
+      <td>Tle92466edHandler</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_TMC5160</code></td>
+      <td>hf-tmc5160-driver</td>
+      <td>SPI/UART</td>
+      <td>Tmc5160Handler</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_TMC9660</code></td>
+      <td>hf-tmc9660-driver</td>
+      <td>SPI/UART</td>
+      <td>Tmc9660Handler + Tmc9660AdcWrapper</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_WS2812</code></td>
+      <td>hf-ws2812-rmt-driver</td>
+      <td>RMT</td>
+      <td>Ws2812Handler</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_LOGGER</code></td>
+      <td>internal</td>
+      <td>—</td>
+      <td>Logger (default ON)</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="optional-interface-implementations-default-off">
+  
+  
+    <a href="#optional-interface-implementations-default-off" class="anchor-heading" aria-labelledby="optional-interface-implementations-default-off"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Optional Interface Implementations (default OFF)
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Toggle</th>
+      <th>ESP32 Implementation</th>
+      <th>Auto-Enabled By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_UART</code></td>
+      <td>EspUart</td>
+      <td>TMC5160, TMC9660</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_CAN</code></td>
+      <td>EspCan</td>
+      <td>(manual only)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_PWM</code></td>
+      <td>EspPwm</td>
+      <td>(manual only)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_PIO</code></td>
+      <td>EspPio</td>
+      <td>(manual only)</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="optional-utility-groups-default-off">
+  
+  
+    <a href="#optional-utility-groups-default-off" class="anchor-heading" aria-labelledby="optional-utility-groups-default-off"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Optional Utility Groups (default OFF)
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Toggle</th>
+      <th>Module</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_UTILS_CANOPEN</code></td>
+      <td>hf-utils-canopen (CanOpenUtils, CanOpenMotorUtils)</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="foundation-always-included-cannot-be-disabled">
+  
+  
+    <a href="#foundation-always-included-cannot-be-disabled" class="anchor-heading" aria-labelledby="foundation-always-included-cannot-be-disabled"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Foundation (always included, cannot be disabled)
+  
+  
+</h3>
+    
+
+<ul>
+  <li><strong>ESP32 Interface Implementations</strong>: EspSpi, EspI2c, EspGpio, EspAdc, EspNvs, EspLogger, EspTemperature, EspPeriodicTimer, AsciiArtGenerator, DigitalOutputGuard</li>
+  <li><strong>RTOS Wrappers</strong>: BaseThread, CriticalSection, FreeRTOSUtils, Mutex, MutexGuard, OsUtility, PeriodicTimer, SignalSemaphore</li>
+  <li><strong>General Utilities</strong>: SoftwareVersion, TimestampedVariable, CrcCalculator, Utility, VariableAnomalyMonitor, VariableMonitor</li>
+</ul><hr />
+<h2 id="auto-enabled-dependencies">
+  
+  
+    <a href="#auto-enabled-dependencies" class="anchor-heading" aria-labelledby="auto-enabled-dependencies"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Auto-Enabled Dependencies
+  
+  
+</h2>
+    
+
+<p>The build settings automatically enable bus interfaces required by selected drivers:</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>If You Enable…</th>
+      <th>Auto-Enabled</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">TMC5160</code> or <code class="language-plaintext highlighter-rouge">TMC9660</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_UART</code> + <code class="language-plaintext highlighter-rouge">esp_driver_uart</code> IDF component</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">WS2812</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_RMT</code> + <code class="language-plaintext highlighter-rouge">esp_driver_rmt</code> IDF component</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">NTC_THERMISTOR</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_ADC</code> + <code class="language-plaintext highlighter-rouge">esp_adc</code> IDF component</td>
+    </tr>
+  </tbody>
+</table></div><hr />
+<h2 id="output-variables">
+  
+  
+    <a href="#output-variables" class="anchor-heading" aria-labelledby="output-variables"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Output Variables
+  
+  
+</h2>
+    
+
+<p>After including <code class="language-plaintext highlighter-rouge">hf_core_build_settings.cmake</code>, these variables are available:</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Contents</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_SOURCES</code></td>
+      <td>All collected <code class="language-plaintext highlighter-rouge">.cpp</code>/<code class="language-plaintext highlighter-rouge">.c</code> source files</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_INCLUDE_DIRS</code></td>
+      <td>All include directories (core + driver + handler)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_IDF_REQUIRES</code></td>
+      <td>ESP-IDF component requirements list</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_COMPILE_DEFINITIONS</code></td>
+      <td>Feature-based preprocessor definitions</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_ROOT</code></td>
+      <td>Resolved path to core/ directory</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="compile-definitions-generated">
+  
+  
+    <a href="#compile-definitions-generated" class="anchor-heading" aria-labelledby="compile-definitions-generated"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Compile Definitions Generated
+  
+  
+</h3>
+    
+
+<p>Each enabled feature adds a preprocessor definition:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>HARDFOC_AS5047U_SUPPORT=1      (if HF_CORE_ENABLE_AS5047U)
+HARDFOC_BNO08X_SUPPORT=1       (if HF_CORE_ENABLE_BNO08X)
+HARDFOC_TMC9660_SUPPORT=1      (if HF_CORE_ENABLE_TMC9660)
+HARDFOC_LOGGER=1               (if HF_CORE_ENABLE_LOGGER)
+HARDFOC_CANOPEN_UTILS=1        (if HF_CORE_ENABLE_UTILS_CANOPEN)
+HF_MCU_FAMILY_ESP32=1          (always)
+HF_THREAD_SAFE=1               (always)
+HARDFOC_RTOS_WRAP=1            (always)
+HARDFOC_CORE_UTILS=1           (always)
+HARDFOC_CORE_DRIVERS=1         (always)
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h2 id="configuration-summary">
+  
+  
+    <a href="#configuration-summary" class="anchor-heading" aria-labelledby="configuration-summary"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Configuration Summary
+  
+  
+</h2>
+    
+
+<p>During CMake configuration, a summary is printed showing enabled features
+and source/include counts:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>╔══════════════════════════════════════════════════════╗
+║           hf-core Build Configuration               ║
+╚══════════════════════════════════════════════════════╝
+  Features:      TMC9660 PCAL95555 AS5047U BNO08x NTC WS2812 Logger CANopen
+  Interfaces:    SPI I2C GPIO ADC NVS Timer UART
+  Sources:       42 total (8 handlers, 7 driver)
+  Include dirs:  28
+  IDF requires:  driver;freertos;nvs_flash;esp_timer;hal;soc;log;...
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h2 id="examples">
+  
+  
+    <a href="#examples" class="anchor-heading" aria-labelledby="examples"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Examples
+  
+  
+</h2>
+    
+<h3 id="minimal-build-foundation-only">
+  
+  
+    <a href="#minimal-build-foundation-only" class="anchor-heading" aria-labelledby="minimal-build-foundation-only"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Minimal Build (foundation only)
+  
+  
+</h3>
+    
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="c1"># No drivers enabled — just interfaces, RTOS, and general utils</span>
+<span class="nb">include</span><span class="p">(</span><span class="s2">"</span><span class="si">${</span><span class="nv">CORE_PATH</span><span class="si">}</span><span class="s2">/cmake/hf_core_build_settings.cmake"</span><span class="p">)</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="hal-build-vortex-subset">
+  
+  
+    <a href="#hal-build-vortex-subset" class="anchor-heading" aria-labelledby="hal-build-vortex-subset"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> HAL Build (Vortex subset)
+  
+  
+</h3>
+    
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_TMC9660        ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_PCAL95555      ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_AS5047U        ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_BNO08X         ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_NTC_THERMISTOR ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_WS2812         ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_LOGGER         ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_UTILS_CANOPEN  ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_UART           ON<span class="p">)</span>  <span class="c1"># Already auto-enabled by TMC9660</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_CAN            ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_PWM            ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_PIO            ON<span class="p">)</span>
+<span class="nb">include</span><span class="p">(</span><span class="s2">"</span><span class="si">${</span><span class="nv">CORE_PATH</span><span class="si">}</span><span class="s2">/cmake/hf_core_build_settings.cmake"</span><span class="p">)</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="core-examples-all-features">
+  
+  
+    <a href="#core-examples-all-features" class="anchor-heading" aria-labelledby="core-examples-all-features"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Core Examples (all features)
+  
+  
+</h3>
+    
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre><span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_AS5047U        ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_BNO08X         ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_MAX22200       ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_NTC_THERMISTOR ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_PCA9685        ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_PCAL95555      ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_TLE92466ED     ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_TMC5160        ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_TMC9660        ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_WS2812         ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_LOGGER         ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_UTILS_CANOPEN  ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_UART           ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_CAN            ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_PWM            ON<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>HF_CORE_ENABLE_PIO            ON<span class="p">)</span>
+<span class="nb">include</span><span class="p">(</span><span class="s2">"</span><span class="si">${</span><span class="nv">CORE_PATH</span><span class="si">}</span><span class="s2">/cmake/hf_core_build_settings.cmake"</span><span class="p">)</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h2 id="driver-build-settings-styles">
+  
+  
+    <a href="#driver-build-settings-styles" class="anchor-heading" aria-labelledby="driver-build-settings-styles"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Driver Build Settings Styles
+  
+  
+</h2>
+    
+
+<p>The 10 external drivers use two build settings patterns. The core build settings
+handles both transparently:</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Style</th>
+      <th>Drivers</th>
+      <th>Guard</th>
+      <th>Root Path</th>
+      <th>Include Var</th>
+      <th>Source Var</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>A</strong></td>
+      <td>AS5047U, BNO08x, MAX22200, PCA9685, PCAL95555, TLE92466ED, TMC5160</td>
+      <td><code class="language-plaintext highlighter-rouge">include_guard(GLOBAL)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">CMAKE_CURRENT_LIST_DIR</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HF_&lt;NAME&gt;_PUBLIC_INCLUDE_DIRS</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HF_&lt;NAME&gt;_SOURCE_FILES</code></td>
+    </tr>
+    <tr>
+      <td><strong>B</strong></td>
+      <td>NTC Thermistor, TMC9660, WS2812</td>
+      <td>Manual boolean</td>
+      <td>Requires <code class="language-plaintext highlighter-rouge">HF_&lt;NAME&gt;_ROOT</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HF_&lt;NAME&gt;_INCLUDE_DIRS</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HF_&lt;NAME&gt;_SOURCES</code></td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p>The core build settings sets <code class="language-plaintext highlighter-rouge">HF_&lt;NAME&gt;_ROOT</code> automatically for Style B drivers
+before including them.</p>
+
+          
+
+          
+            
+          
+        </main>
+        
+<hr>
+<footer>
+  
+
+  <p class="text-small mb-0">Built with ❤️ using <a href='https://just-the-docs.github.io/just-the-docs/'>Just the Docs</a> • <a href='https://github.com/hardfoc/hf-hal-vortex-v1/blob/main/LICENSE'>GPL v3 License</a> • <a href='https://github.com/hardfoc/hf-hal-vortex-v1'>View on GitHub</a>
+</p>
+
+  <div class="d-md-none mt-4 fs-2">
+    
+    
+      This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    
+  </div>
+</footer>
+
+      </div>
+    </div>
+    
+      
+<button id="search-button" class="search-button btn-reset" aria-label="Focus on search">
+  <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg>
+</button>
+
+
+<div class="search-overlay"></div>
+
+    
+  </div>
+
+  
+</body>
+</html>
+
