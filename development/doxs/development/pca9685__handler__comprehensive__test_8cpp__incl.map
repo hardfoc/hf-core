@@ -1,59 +1,59 @@
 <map id="pca9685_handler_comprehensive_test.cpp" name="pca9685_handler_comprehensive_test.cpp">
-<area shape="rect" id="Node000001" title="Comprehensive test suite for Pca9685Handler." alt="" coords="1783,5,2023,45"/>
-<area shape="rect" id="Node000002" href="$TestFramework_8h.html" title="Shared testing framework for ESP32&#45;C6 comprehensive test suites." alt="" coords="2368,101,2501,126"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2020,43,2355,96,2354,102,2019,48"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="2053,196,2137,221"/>
-<area shape="poly" id="edge30_Node000001_Node000003" title=" " alt="" coords="1925,44,2074,185,2071,189,1921,48"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="2727,196,2878,221"/>
-<area shape="poly" id="edge31_Node000001_Node000006" title=" " alt="" coords="2023,28,2129,34,2253,46,2384,64,2514,91,2587,112,2657,138,2769,188,2767,192,2655,143,2585,117,2513,96,2383,70,2252,51,2128,40,2023,33"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="2903,196,3020,221"/>
-<area shape="poly" id="edge32_Node000001_Node000009" title=" " alt="" coords="2023,29,2286,48,2441,66,2594,91,2687,112,2778,139,2921,189,2919,194,2776,144,2685,118,2593,96,2440,71,2286,53,2023,34"/>
-<area shape="rect" id="Node000010" href="$esp32__bus__setup_8hpp.html" title="Shared ESP32 bus initialization for hf&#45;core handler tests." alt="" coords="1567,101,1729,126"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1848,48,1696,99,1694,94,1846,43"/>
-<area shape="rect" id="Node000011" href="$esp32__test__config_8hpp.html" title="Centralized hardware pin and address configuration for hf&#45;core tests." alt="" coords="1142,196,1309,221"/>
-<area shape="poly" id="edge18_Node000001_Node000011" title=" " alt="" coords="1783,48,1672,69,1555,96,1395,146,1268,193,1266,188,1393,141,1554,91,1671,64,1782,43"/>
-<area shape="rect" id="Node000017" title=" " alt="" coords="1040,196,1117,221"/>
-<area shape="poly" id="edge29_Node000001_Node000017" title=" " alt="" coords="1783,41,1611,62,1422,96,1274,132,1130,184,1112,192,1110,187,1128,179,1272,127,1421,91,1610,57,1782,35"/>
-<area shape="rect" id="Node000018" href="$Pca9685Handler_8h.html" title="Unified handler for the PCA9685 16&#45;channel 12&#45;bit PWM controller." alt="" coords="533,93,729,133"/>
-<area shape="poly" id="edge19_Node000001_Node000018" title=" " alt="" coords="1783,37,743,107,742,102,1782,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="2369,128,2264,150,2149,184,2129,192,2127,187,2147,179,2263,145,2367,123"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="2323,196,2421,221"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="2429,128,2390,186,2385,183,2425,125"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="2445,196,2549,221"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="2445,125,2484,183,2480,186,2440,128"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="2487,123,2715,179,2753,189,2752,195,2714,184,2485,129"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="2574,196,2703,221"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="2461,124,2602,188,2600,193,2459,128"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="2161,196,2298,221"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="2411,128,2268,193,2266,188,2408,124"/>
-<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="2502,117,2679,138,2786,156,2891,179,2923,189,2921,194,2890,184,2785,161,2678,143,2501,123"/>
-<area shape="poly" id="edge17_Node000010_Node000003" title=" " alt="" coords="1730,119,1876,140,1959,157,2041,179,2063,187,2061,192,2039,184,1958,162,1875,145,1729,125"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1586,129,1463,153,1321,184,1278,195,1277,190,1319,179,1462,148,1585,123"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="1685,196,1841,221"/>
-<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="1664,124,1740,185,1736,190,1660,128"/>
-<area shape="rect" id="Node000014" title=" " alt="" coords="1865,196,2028,221"/>
-<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="1685,123,1898,189,1896,194,1684,129"/>
-<area shape="rect" id="Node000015" title=" " alt="" coords="1333,196,1483,221"/>
-<area shape="poly" id="edge14_Node000010_Node000015" title=" " alt="" coords="1620,129,1451,193,1450,188,1618,124"/>
-<area shape="rect" id="Node000016" title=" " alt="" coords="1508,196,1660,221"/>
-<area shape="poly" id="edge15_Node000010_Node000016" title=" " alt="" coords="1642,128,1602,186,1597,183,1638,125"/>
-<area shape="poly" id="edge16_Node000010_Node000017" title=" " alt="" coords="1567,119,1476,125,1366,136,1247,155,1130,184,1110,192,1108,187,1129,179,1246,150,1365,130,1475,119,1566,114"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="1080,284,1147,309"/>
-<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="1212,224,1141,277,1138,273,1209,219"/>
-<area shape="poly" id="edge20_Node000018_Node000012" title=" " alt="" coords="729,115,787,122,851,133,916,152,977,179,995,192,1006,205,1015,219,1030,234,1085,274,1082,279,1026,238,1011,222,1001,208,991,196,975,184,914,157,850,139,787,127,728,120"/>
-<area shape="poly" id="edge21_Node000018_Node000017" title=" " alt="" coords="729,122,869,143,947,159,1022,179,1046,188,1044,193,1021,184,945,164,868,148,729,127"/>
-<area shape="rect" id="Node000019" title=" " alt="" coords="165,196,221,221"/>
-<area shape="poly" id="edge22_Node000018_Node000019" title=" " alt="" coords="533,123,465,130,389,142,310,159,234,184,220,191,218,186,232,179,309,154,388,136,464,125,532,117"/>
-<area shape="rect" id="Node000020" title=" " alt="" coords="246,196,309,221"/>
-<area shape="poly" id="edge23_Node000018_Node000020" title=" " alt="" coords="533,130,430,151,375,166,322,184,307,191,305,186,320,179,374,161,429,146,532,125"/>
-<area shape="rect" id="Node000021" title=" " alt="" coords="333,196,464,221"/>
-<area shape="poly" id="edge24_Node000018_Node000021" title=" " alt="" coords="585,136,441,193,439,188,583,131"/>
-<area shape="rect" id="Node000022" title=" " alt="" coords="488,196,621,221"/>
-<area shape="poly" id="edge25_Node000018_Node000022" title=" " alt="" coords="617,135,575,187,571,184,613,132"/>
-<area shape="rect" id="Node000023" title=" " alt="" coords="645,196,765,221"/>
-<area shape="poly" id="edge26_Node000018_Node000023" title=" " alt="" coords="648,132,690,184,685,187,644,135"/>
-<area shape="rect" id="Node000024" title=" " alt="" coords="790,181,965,236"/>
-<area shape="poly" id="edge27_Node000018_Node000024" title=" " alt="" coords="682,131,796,174,794,179,680,136"/>
-<area shape="rect" id="Node000025" title=" " alt="" coords="5,196,141,221"/>
-<area shape="poly" id="edge28_Node000018_Node000025" title=" " alt="" coords="533,126,355,147,254,164,154,184,118,194,116,189,153,179,253,158,355,142,532,121"/>
+<area shape="rect" id="Node000001" title="Comprehensive test suite for Pca9685Handler." alt="" coords="1751,5,1991,45"/>
+<area shape="rect" id="Node000002" href="$TestFramework_8h.html" title="Shared testing framework for ESP32&#45;C6 comprehensive test suites." alt="" coords="2336,101,2469,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1988,43,2323,96,2322,102,1987,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="2021,196,2105,221"/>
+<area shape="poly" id="edge30_Node000001_Node000003" title=" " alt="" coords="1893,44,2042,185,2039,189,1889,48"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="2695,196,2846,221"/>
+<area shape="poly" id="edge31_Node000001_Node000006" title=" " alt="" coords="1991,28,2097,34,2221,46,2352,64,2482,91,2555,112,2625,138,2737,188,2735,192,2623,143,2553,117,2481,96,2351,70,2220,51,2096,40,1991,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="2871,196,2988,221"/>
+<area shape="poly" id="edge32_Node000001_Node000009" title=" " alt="" coords="1991,29,2254,48,2409,66,2562,91,2655,112,2746,139,2889,189,2887,194,2744,144,2653,118,2561,96,2408,71,2254,53,1991,34"/>
+<area shape="rect" id="Node000010" href="$esp32__bus__setup_8hpp.html" title="Shared ESP32 bus initialization for hf&#45;core handler tests." alt="" coords="1535,101,1697,126"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1816,48,1664,99,1662,94,1814,43"/>
+<area shape="rect" id="Node000011" href="$esp32__test__config_8hpp.html" title="Centralized hardware pin and address configuration for hf&#45;core tests." alt="" coords="1110,196,1277,221"/>
+<area shape="poly" id="edge18_Node000001_Node000011" title=" " alt="" coords="1751,48,1640,69,1523,96,1363,146,1236,193,1234,188,1361,141,1522,91,1639,64,1750,43"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="1008,196,1085,221"/>
+<area shape="poly" id="edge29_Node000001_Node000017" title=" " alt="" coords="1751,41,1579,62,1390,96,1242,132,1098,184,1080,192,1078,187,1096,179,1240,127,1389,91,1578,57,1750,35"/>
+<area shape="rect" id="Node000018" href="$Pca9685Handler_8h.html" title="Unified handler for the PCA9685 16&#45;channel 12&#45;bit PWM controller." alt="" coords="501,93,697,133"/>
+<area shape="poly" id="edge19_Node000001_Node000018" title=" " alt="" coords="1751,37,711,107,710,102,1750,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="2337,128,2232,150,2117,184,2097,192,2095,187,2115,179,2231,145,2335,123"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="2291,196,2389,221"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="2397,128,2358,186,2353,183,2393,125"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="2413,196,2517,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="2413,125,2452,183,2448,186,2408,128"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="2455,123,2683,179,2721,189,2720,195,2682,184,2453,129"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="2542,196,2671,221"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="2429,124,2570,188,2568,193,2427,128"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="2129,196,2266,221"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="2379,128,2236,193,2234,188,2376,124"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="2470,117,2647,138,2754,156,2859,179,2891,189,2889,194,2858,184,2753,161,2646,143,2469,123"/>
+<area shape="poly" id="edge17_Node000010_Node000003" title=" " alt="" coords="1698,119,1844,140,1927,157,2009,179,2031,187,2029,192,2007,184,1926,162,1843,145,1697,125"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1554,129,1431,153,1289,184,1246,195,1245,190,1287,179,1430,148,1553,123"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1653,196,1809,221"/>
+<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="1632,124,1708,185,1704,190,1628,128"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="1833,196,1996,221"/>
+<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="1653,123,1866,189,1864,194,1652,129"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="1301,196,1451,221"/>
+<area shape="poly" id="edge14_Node000010_Node000015" title=" " alt="" coords="1588,129,1419,193,1418,188,1586,124"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="1476,196,1628,221"/>
+<area shape="poly" id="edge15_Node000010_Node000016" title=" " alt="" coords="1610,128,1570,186,1565,183,1606,125"/>
+<area shape="poly" id="edge16_Node000010_Node000017" title=" " alt="" coords="1535,119,1444,125,1334,136,1215,155,1098,184,1078,192,1076,187,1097,179,1214,150,1333,130,1443,119,1534,114"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="1048,284,1115,309"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="1180,224,1109,277,1106,273,1177,219"/>
+<area shape="poly" id="edge20_Node000018_Node000012" title=" " alt="" coords="697,115,755,122,819,133,884,152,945,179,963,192,974,205,983,219,998,234,1053,274,1050,279,994,238,979,222,969,208,959,196,943,184,882,157,818,139,755,127,696,120"/>
+<area shape="poly" id="edge21_Node000018_Node000017" title=" " alt="" coords="697,122,837,143,915,159,990,179,1014,188,1012,193,989,184,913,164,836,148,697,127"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="133,196,189,221"/>
+<area shape="poly" id="edge22_Node000018_Node000019" title=" " alt="" coords="501,123,433,130,357,142,278,159,202,184,188,191,186,186,200,179,277,154,356,136,432,125,500,117"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="214,196,277,221"/>
+<area shape="poly" id="edge23_Node000018_Node000020" title=" " alt="" coords="501,130,398,151,343,166,290,184,275,191,273,186,288,179,342,161,397,146,500,125"/>
+<area shape="rect" id="Node000021" title=" " alt="" coords="301,196,432,221"/>
+<area shape="poly" id="edge24_Node000018_Node000021" title=" " alt="" coords="553,136,409,193,407,188,551,131"/>
+<area shape="rect" id="Node000022" title=" " alt="" coords="456,196,589,221"/>
+<area shape="poly" id="edge25_Node000018_Node000022" title=" " alt="" coords="585,135,543,187,539,184,581,132"/>
+<area shape="rect" id="Node000023" title=" " alt="" coords="613,196,733,221"/>
+<area shape="poly" id="edge26_Node000018_Node000023" title=" " alt="" coords="616,132,658,184,653,187,612,135"/>
+<area shape="rect" id="Node000024" title=" " alt="" coords="758,181,933,236"/>
+<area shape="poly" id="edge27_Node000018_Node000024" title=" " alt="" coords="650,131,764,174,762,179,648,136"/>
+<area shape="rect" id="Node000025" title=" " alt="" coords="5,196,109,221"/>
+<area shape="poly" id="edge28_Node000018_Node000025" title=" " alt="" coords="501,124,323,144,222,161,122,184,96,193,94,188,121,179,221,156,322,139,500,119"/>
 </map>

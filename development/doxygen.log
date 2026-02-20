@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.BYF5zT
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.BYF5zT' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.iS2E4k
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.iS2E4k' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -1061,7 +1061,104 @@ finalizing index lists...
 writing tag file...
 Running plantuml with JAVA...
 Running dot...
-Patching output file 1/1
+Generating dot graphs using 5 parallel threads...
+Running dot for graph 1/32
+Running dot for graph 2/32
+Running dot for graph 3/32
+Running dot for graph 4/32
+Running dot for graph 5/32
+Running dot for graph 6/32
+Running dot for graph 7/32
+Running dot for graph 8/32
+Running dot for graph 9/32
+Running dot for graph 10/32
+Running dot for graph 11/32
+Running dot for graph 12/32
+Running dot for graph 13/32
+Running dot for graph 14/32
+Running dot for graph 15/32
+Running dot for graph 16/32
+Running dot for graph 17/32
+Running dot for graph 18/32
+Running dot for graph 19/32
+Running dot for graph 20/32
+Running dot for graph 21/32
+Running dot for graph 22/32
+Running dot for graph 23/32
+Running dot for graph 24/32
+Running dot for graph 25/32
+Running dot for graph 26/32
+Running dot for graph 27/32
+Running dot for graph 28/32
+Running dot for graph 29/32
+Running dot for graph 30/32
+Running dot for graph 31/32
+Running dot for graph 32/32
+Patching output file 1/65
+Patching output file 2/65
+Patching output file 3/65
+Patching output file 4/65
+Patching output file 5/65
+Patching output file 6/65
+Patching output file 7/65
+Patching output file 8/65
+Patching output file 9/65
+Patching output file 10/65
+Patching output file 11/65
+Patching output file 12/65
+Patching output file 13/65
+Patching output file 14/65
+Patching output file 15/65
+Patching output file 16/65
+Patching output file 17/65
+Patching output file 18/65
+Patching output file 19/65
+Patching output file 20/65
+Patching output file 21/65
+Patching output file 22/65
+Patching output file 23/65
+Patching output file 24/65
+Patching output file 25/65
+Patching output file 26/65
+Patching output file 27/65
+Patching output file 28/65
+Patching output file 29/65
+Patching output file 30/65
+Patching output file 31/65
+Patching output file 32/65
+Patching output file 33/65
+Patching output file 34/65
+Patching output file 35/65
+Patching output file 36/65
+Patching output file 37/65
+Patching output file 38/65
+Patching output file 39/65
+Patching output file 40/65
+Patching output file 41/65
+Patching output file 42/65
+Patching output file 43/65
+Patching output file 44/65
+Patching output file 45/65
+Patching output file 46/65
+Patching output file 47/65
+Patching output file 48/65
+Patching output file 49/65
+Patching output file 50/65
+Patching output file 51/65
+Patching output file 52/65
+Patching output file 53/65
+Patching output file 54/65
+Patching output file 55/65
+Patching output file 56/65
+Patching output file 57/65
+Patching output file 58/65
+Patching output file 59/65
+Patching output file 60/65
+Patching output file 61/65
+Patching output file 62/65
+Patching output file 63/65
+Patching output file 64/65
+Patching output file 65/65
 type lookup cache used 5094/65536 hits=27544 misses=5437
 symbol lookup cache used 6733/65536 hits=31993 misses=6733
 finished...

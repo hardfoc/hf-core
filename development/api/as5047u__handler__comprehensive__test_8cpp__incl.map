@@ -1,55 +1,55 @@
 <map id="as5047u_handler_comprehensive_test.cpp" name="as5047u_handler_comprehensive_test.cpp">
-<area shape="rect" id="Node000001" title="Comprehensive test suite for As5047uHandler." alt="" coords="1510,5,1750,45"/>
-<area shape="rect" id="Node000002" href="$TestFramework_8h.html" title="Shared testing framework for ESP32&#45;C6 comprehensive test suites." alt="" coords="2081,101,2214,126"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1744,43,2067,96,2066,101,1743,48"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="1775,196,1859,221"/>
-<area shape="poly" id="edge28_Node000001_Node000003" title=" " alt="" coords="1651,44,1797,185,1793,189,1648,48"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="2451,196,2601,221"/>
-<area shape="poly" id="edge29_Node000001_Node000006" title=" " alt="" coords="1750,29,1853,36,1973,47,2101,65,2227,91,2302,112,2375,139,2491,188,2489,193,2373,144,2300,117,2225,96,2100,71,1973,53,1853,41,1750,34"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="2626,196,2743,221"/>
-<area shape="poly" id="edge30_Node000001_Node000009" title=" " alt="" coords="1751,29,2008,49,2159,67,2309,91,2404,112,2497,139,2643,189,2641,194,2495,144,2403,118,2308,96,2159,72,2008,54,1750,35"/>
-<area shape="rect" id="Node000010" href="$esp32__bus__setup_8hpp.html" title="Shared ESP32 bus initialization for hf&#45;core handler tests." alt="" coords="1299,101,1462,126"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1576,48,1428,99,1426,94,1574,43"/>
-<area shape="rect" id="Node000011" href="$esp32__test__config_8hpp.html" title="Centralized hardware pin and address configuration for hf&#45;core tests." alt="" coords="864,196,1031,221"/>
-<area shape="poly" id="edge18_Node000001_Node000011" title=" " alt="" coords="1514,48,1404,69,1288,96,1122,147,990,194,989,189,1121,142,1287,91,1403,64,1513,43"/>
-<area shape="rect" id="Node000017" title=" " alt="" coords="762,196,839,221"/>
-<area shape="poly" id="edge27_Node000001_Node000017" title=" " alt="" coords="1510,39,1373,56,1206,84,1027,126,938,153,852,184,834,192,832,187,850,179,936,148,1025,121,1205,79,1372,51,1509,34"/>
-<area shape="rect" id="Node000018" href="$As5047uHandler_8h.html" title="Unified handler for AS5047U magnetic rotary position sensor with SPI integration." alt="" coords="509,93,706,133"/>
-<area shape="poly" id="edge19_Node000001_Node000018" title=" " alt="" coords="1510,39,720,105,720,100,1509,34"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="2085,129,1984,151,1872,184,1851,192,1849,187,1870,179,1983,146,2084,123"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="2327,196,2426,221"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="2177,124,2315,179,2338,188,2336,193,2313,184,2175,129"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="1883,196,1987,221"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="2122,128,1975,193,1973,188,2120,124"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="2202,123,2439,179,2477,189,2476,195,2437,184,2201,129"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="2012,196,2141,221"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="2141,128,2096,186,2092,183,2137,124"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="2165,196,2303,221"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="2160,124,2216,184,2212,188,2156,128"/>
-<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="2215,117,2396,138,2506,155,2615,179,2646,189,2644,194,2613,184,2505,161,2396,143,2214,122"/>
-<area shape="poly" id="edge17_Node000010_Node000003" title=" " alt="" coords="1463,120,1604,141,1684,157,1763,179,1785,187,1783,192,1761,184,1683,162,1603,146,1462,125"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1317,129,1190,153,1044,184,1001,195,999,190,1043,179,1189,147,1316,123"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="1595,196,1751,221"/>
-<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="1417,123,1624,189,1623,194,1416,129"/>
-<area shape="rect" id="Node000014" title=" " alt="" coords="1055,196,1218,221"/>
-<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="1352,129,1181,193,1179,188,1350,124"/>
-<area shape="rect" id="Node000015" title=" " alt="" coords="1243,196,1393,221"/>
-<area shape="poly" id="edge14_Node000010_Node000015" title=" " alt="" coords="1375,128,1336,186,1331,183,1371,125"/>
-<area shape="rect" id="Node000016" title=" " alt="" coords="1418,196,1570,221"/>
-<area shape="poly" id="edge15_Node000010_Node000016" title=" " alt="" coords="1396,124,1471,185,1467,189,1393,128"/>
-<area shape="poly" id="edge16_Node000010_Node000017" title=" " alt="" coords="1299,119,1206,124,1093,135,972,154,852,184,832,192,830,187,851,179,971,149,1093,130,1206,119,1299,114"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="802,284,869,309"/>
-<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="934,224,863,277,860,273,931,219"/>
-<area shape="poly" id="edge20_Node000018_Node000012" title=" " alt="" coords="637,131,700,179,726,207,752,234,807,274,804,279,748,238,722,211,696,183,634,136"/>
-<area shape="poly" id="edge21_Node000018_Node000017" title=" " alt="" coords="648,131,766,188,763,192,645,136"/>
-<area shape="rect" id="Node000019" title=" " alt="" coords="511,196,603,221"/>
-<area shape="poly" id="edge22_Node000018_Node000019" title=" " alt="" coords="599,135,572,185,567,183,595,132"/>
-<area shape="rect" id="Node000020" title=" " alt="" coords="627,196,687,221"/>
-<area shape="poly" id="edge23_Node000018_Node000020" title=" " alt="" coords="620,132,647,183,642,185,615,135"/>
+<area shape="rect" id="Node000001" title="Comprehensive test suite for As5047uHandler." alt="" coords="1478,5,1718,45"/>
+<area shape="rect" id="Node000002" href="$TestFramework_8h.html" title="Shared testing framework for ESP32&#45;C6 comprehensive test suites." alt="" coords="2049,101,2182,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1712,43,2035,96,2034,101,1711,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="1743,196,1827,221"/>
+<area shape="poly" id="edge28_Node000001_Node000003" title=" " alt="" coords="1619,44,1765,185,1761,189,1616,48"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="2419,196,2569,221"/>
+<area shape="poly" id="edge29_Node000001_Node000006" title=" " alt="" coords="1718,29,1821,36,1941,47,2069,65,2195,91,2270,112,2343,139,2459,188,2457,193,2341,144,2268,117,2193,96,2068,71,1941,53,1821,41,1718,34"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="2594,196,2711,221"/>
+<area shape="poly" id="edge30_Node000001_Node000009" title=" " alt="" coords="1719,29,1976,49,2127,67,2277,91,2372,112,2465,139,2611,189,2609,194,2463,144,2371,118,2276,96,2127,72,1976,54,1718,35"/>
+<area shape="rect" id="Node000010" href="$esp32__bus__setup_8hpp.html" title="Shared ESP32 bus initialization for hf&#45;core handler tests." alt="" coords="1267,101,1430,126"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1544,48,1396,99,1394,94,1542,43"/>
+<area shape="rect" id="Node000011" href="$esp32__test__config_8hpp.html" title="Centralized hardware pin and address configuration for hf&#45;core tests." alt="" coords="832,196,999,221"/>
+<area shape="poly" id="edge18_Node000001_Node000011" title=" " alt="" coords="1482,48,1372,69,1256,96,1090,147,958,194,957,189,1089,142,1255,91,1371,64,1481,43"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="730,196,807,221"/>
+<area shape="poly" id="edge27_Node000001_Node000017" title=" " alt="" coords="1478,39,1341,56,1174,84,995,126,906,153,820,184,802,192,800,187,818,179,904,148,993,121,1173,79,1340,51,1477,34"/>
+<area shape="rect" id="Node000018" href="$As5047uHandler_8h.html" title="Unified handler for AS5047U magnetic rotary position sensor with SPI integration." alt="" coords="477,93,674,133"/>
+<area shape="poly" id="edge19_Node000001_Node000018" title=" " alt="" coords="1478,39,688,105,688,100,1477,34"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="2053,129,1952,151,1840,184,1819,192,1817,187,1838,179,1951,146,2052,123"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="2295,196,2394,221"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="2145,124,2283,179,2306,188,2304,193,2281,184,2143,129"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="1851,196,1955,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="2090,128,1943,193,1941,188,2088,124"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="2170,123,2407,179,2445,189,2444,195,2405,184,2169,129"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1980,196,2109,221"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="2109,128,2064,186,2060,183,2105,124"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="2133,196,2271,221"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="2128,124,2184,184,2180,188,2124,128"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="2183,117,2364,138,2474,155,2583,179,2614,189,2612,194,2581,184,2473,161,2364,143,2182,122"/>
+<area shape="poly" id="edge17_Node000010_Node000003" title=" " alt="" coords="1431,120,1572,141,1652,157,1731,179,1753,187,1751,192,1729,184,1651,162,1571,146,1430,125"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1285,129,1158,153,1012,184,969,195,967,190,1011,179,1157,147,1284,123"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1563,196,1719,221"/>
+<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="1385,123,1592,189,1591,194,1384,129"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="1023,196,1186,221"/>
+<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="1320,129,1149,193,1147,188,1318,124"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="1211,196,1361,221"/>
+<area shape="poly" id="edge14_Node000010_Node000015" title=" " alt="" coords="1343,128,1304,186,1299,183,1339,125"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="1386,196,1538,221"/>
+<area shape="poly" id="edge15_Node000010_Node000016" title=" " alt="" coords="1364,124,1439,185,1435,189,1361,128"/>
+<area shape="poly" id="edge16_Node000010_Node000017" title=" " alt="" coords="1267,119,1174,124,1061,135,940,154,820,184,800,192,798,187,819,179,939,149,1061,130,1174,119,1267,114"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="770,284,837,309"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="902,224,831,277,828,273,899,219"/>
+<area shape="poly" id="edge20_Node000018_Node000012" title=" " alt="" coords="605,131,668,179,694,207,720,234,775,274,772,279,716,238,690,211,664,183,602,136"/>
+<area shape="poly" id="edge21_Node000018_Node000017" title=" " alt="" coords="616,131,734,188,731,192,613,136"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="479,196,571,221"/>
+<area shape="poly" id="edge22_Node000018_Node000019" title=" " alt="" coords="567,135,540,185,535,183,563,132"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="595,196,655,221"/>
+<area shape="poly" id="edge23_Node000018_Node000020" title=" " alt="" coords="588,132,615,183,610,185,583,135"/>
 <area shape="rect" id="Node000021" title=" " alt="" coords="5,181,180,236"/>
-<area shape="poly" id="edge24_Node000018_Node000021" title=" " alt="" coords="509,130,364,152,194,184,193,178,363,147,508,125"/>
+<area shape="poly" id="edge24_Node000018_Node000021" title=" " alt="" coords="477,132,346,154,194,184,193,178,345,149,476,127"/>
 <area shape="rect" id="Node000022" title=" " alt="" coords="204,196,325,221"/>
-<area shape="poly" id="edge25_Node000018_Node000022" title=" " alt="" coords="523,136,339,184,308,194,307,189,337,179,522,131"/>
-<area shape="rect" id="Node000023" title=" " alt="" coords="350,196,486,221"/>
-<area shape="poly" id="edge26_Node000018_Node000023" title=" " alt="" coords="570,136,455,192,452,188,568,131"/>
+<area shape="poly" id="edge25_Node000018_Node000022" title=" " alt="" coords="505,136,339,184,309,194,307,189,337,179,503,131"/>
+<area shape="rect" id="Node000023" title=" " alt="" coords="350,196,454,221"/>
+<area shape="poly" id="edge26_Node000018_Node000023" title=" " alt="" coords="542,136,437,192,434,187,539,131"/>
 </map>

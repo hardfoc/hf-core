@@ -32,7 +32,7 @@
 #include "handlers/logger/Logger.h"
 
 // RTOS utilities (RtosMutex + RtosUniqueLock are both in this header)
-#include "utils/RtosMutex.h"
+#include "RtosMutex.h"
 
 #include <memory>
 #include <atomic>
