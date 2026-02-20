@@ -96,7 +96,7 @@
 #include "base/BaseSpi.h"
 #include "base/BaseUart.h"
 #include "base/BaseGpio.h"
-#include "core/hf-core-drivers/internal/hf-internal-interface-wrap/inc/utils/RtosMutex.h"
+#include "RtosMutex.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @defgroup TMC5160_HAL_CommAdapters HAL Communication Adapters

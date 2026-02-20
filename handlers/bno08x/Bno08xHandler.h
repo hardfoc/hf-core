@@ -91,7 +91,7 @@
 #include "base/BaseI2c.h"
 #include "base/BaseSpi.h"
 #include "base/BaseGpio.h"
-#include "utils/RtosMutex.h"
+#include "RtosMutex.h"
 
 // ============================================================================
 //  BNO08X ERROR CODES

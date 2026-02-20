@@ -30,7 +30,7 @@
 #include "core/hf-core-drivers/external/hf-max22200-driver/inc/max22200_types.hpp"
 #include "base/BaseSpi.h"
 #include "base/BaseGpio.h"
-#include "core/hf-core-drivers/internal/hf-internal-interface-wrap/inc/utils/RtosMutex.h"
+#include "RtosMutex.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @defgroup MAX22200_HAL_CommAdapter HAL Communication Adapter

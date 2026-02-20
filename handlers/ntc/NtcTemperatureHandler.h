@@ -16,7 +16,7 @@
 #include "core/hf-core-drivers/internal/hf-internal-interface-wrap/inc/base/BaseTemperature.h"
 #include "core/hf-core-drivers/internal/hf-internal-interface-wrap/inc/base/BaseAdc.h"
 #include "core/hf-core-drivers/external/hf-ntc-thermistor-driver/inc/ntc_thermistor.hpp"
-#include "utils/RtosMutex.h"
+#include "RtosMutex.h"
 #include "core/hf-core-utils/hf-utils-rtos-wrap/include/PeriodicTimer.h"
 
 #include <memory>

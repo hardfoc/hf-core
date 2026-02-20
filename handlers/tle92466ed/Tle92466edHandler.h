@@ -30,7 +30,7 @@
 #include "core/hf-core-drivers/external/hf-tle92466ed-driver/inc/tle92466ed_spi_interface.hpp"
 #include "base/BaseSpi.h"
 #include "base/BaseGpio.h"
-#include "core/hf-core-drivers/internal/hf-internal-interface-wrap/inc/utils/RtosMutex.h"
+#include "RtosMutex.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @defgroup TLE92466ED_HAL_CommAdapter HAL Communication Adapter

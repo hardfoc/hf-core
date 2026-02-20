@@ -39,7 +39,7 @@
 #include <utility>
 #include "core/hf-core-drivers/external/hf-as5047u-driver/inc/as5047u.hpp"
 #include "base/BaseSpi.h"
-#include "utils/RtosMutex.h"
+#include "RtosMutex.h"
 
 //======================================================//
 // AS5047U SPI BRIDGE ADAPTER

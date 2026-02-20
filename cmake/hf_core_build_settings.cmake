@@ -67,7 +67,7 @@ if(NOT DEFINED HF_CORE_MCU)
 endif()
 string(TOUPPER "${HF_CORE_MCU}" HF_CORE_MCU)
 
-set(_HF_SUPPORTED_MCUS "ESP32")   # extend: "ESP32;STM32;RP2040"
+set(_HF_SUPPORTED_MCUS "ESP32;STM32;NONE")   # extend: RP2040
 if(NOT HF_CORE_MCU IN_LIST _HF_SUPPORTED_MCUS)
     message(FATAL_ERROR
         "[hf-core] Unsupported MCU '${HF_CORE_MCU}'. "
@@ -75,7 +75,11 @@ if(NOT HF_CORE_MCU IN_LIST _HF_SUPPORTED_MCUS)
 endif()
 
 # Derive lowercase directory name from MCU family
-string(TOLOWER "${HF_CORE_MCU}" _HF_MCU_DIR)  # "esp32", "stm32", ...
+if(NOT HF_CORE_MCU STREQUAL "NONE")
+    string(TOLOWER "${HF_CORE_MCU}" _HF_MCU_DIR)  # "esp32", "stm32", ...
+else()
+    set(_HF_MCU_DIR "")  # No MCU directory for NONE
+endif()
 
 # ── RTOS Selection ────────────────────────────────────────────────────────
 if(NOT DEFINED HF_CORE_RTOS)
@@ -83,7 +87,7 @@ if(NOT DEFINED HF_CORE_RTOS)
 endif()
 string(TOUPPER "${HF_CORE_RTOS}" HF_CORE_RTOS)
 
-set(_HF_SUPPORTED_RTOS "FREERTOS")   # extend: "FREERTOS;THREADX;ZEPHYR"
+set(_HF_SUPPORTED_RTOS "FREERTOS;NONE")   # extend: THREADX, ZEPHYR
 if(NOT HF_CORE_RTOS IN_LIST _HF_SUPPORTED_RTOS)
     message(FATAL_ERROR
         "[hf-core] Unsupported RTOS '${HF_CORE_RTOS}'. "
@@ -261,12 +265,37 @@ if(HF_CORE_MCU STREQUAL "ESP32")
         list(APPEND HF_CORE_INTERFACE_SOURCES "${_HF_MCU_SRC}/EspPio.cpp")
     endif()
 
-# elseif(HF_CORE_MCU STREQUAL "STM32")
-#     set(HF_CORE_INTERFACE_SOURCES
-#         "${_HF_MCU_SRC}/StmSpi.cpp"
-#         "${_HF_MCU_SRC}/StmI2c.cpp"
-#         ...
-#     )
+elseif(HF_CORE_MCU STREQUAL "STM32")
+    # STM32 family — StmSpi, StmI2c, StmGpio, StmAdc, etc.
+    # These are stub implementations; users integrate STM32CubeMX-generated
+    # HAL init code at the manager level.
+    set(HF_CORE_INTERFACE_SOURCES
+        "${_HF_MCU_SRC}/StmSpi.cpp"
+        "${_HF_MCU_SRC}/StmI2c.cpp"
+        "${_HF_MCU_SRC}/StmGpio.cpp"
+        "${_HF_MCU_SRC}/StmAdc.cpp"
+        "${_HF_MCU_SRC}/StmNvs.cpp"
+        "${_HF_MCU_SRC}/StmLogger.cpp"
+        "${_HF_MCU_SRC}/StmTemperature.cpp"
+        "${_HF_MCU_SRC}/StmPeriodicTimer.cpp"
+    )
+
+    # Optional interfaces (STM32)
+    if(HF_CORE_ENABLE_UART)
+        list(APPEND HF_CORE_INTERFACE_SOURCES "${_HF_MCU_SRC}/StmUart.cpp")
+    endif()
+    if(HF_CORE_ENABLE_CAN)
+        list(APPEND HF_CORE_INTERFACE_SOURCES "${_HF_MCU_SRC}/StmCan.cpp")
+    endif()
+    if(HF_CORE_ENABLE_PWM)
+        list(APPEND HF_CORE_INTERFACE_SOURCES "${_HF_MCU_SRC}/StmPwm.cpp")
+    endif()
+
+elseif(HF_CORE_MCU STREQUAL "NONE")
+    # No MCU — software-only build (unit testing, host compilation, CI)
+    # No interface sources compiled; only hardware-agnostic code included.
+    set(HF_CORE_INTERFACE_SOURCES "")
+
 endif()
 
 # Shared utilities from internal interface wrap (MCU-agnostic)
@@ -313,6 +342,12 @@ if(HF_CORE_RTOS STREQUAL "FREERTOS")
 #         "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/threadx/BaseThread.cpp"
 #         ...
 #     )
+
+elseif(HF_CORE_RTOS STREQUAL "NONE")
+    # No RTOS — bare-metal or host-only build.
+    # Headers provide inline no-op stubs; no .cpp files compiled.
+    set(HF_CORE_RTOS_SOURCES "")
+
 endif()
 
 # ── General Utilities (always included, hardware-agnostic) ────────────────
@@ -480,9 +515,17 @@ set(HF_CORE_INCLUDE_DIRS
     "${HF_CORE_DRIVER_INT}/hf-internal-interface-wrap/inc/utils"
     # Internal interface — MCU-selected implementations
     "${HF_CORE_DRIVER_INT}/hf-internal-interface-wrap/inc/mcu"
-    "${_HF_MCU_INC}"
-    "${_HF_MCU_INC}/utils"
-    # Pin configuration
+)
+
+# Add MCU-specific include dirs only when a real MCU is selected
+if(NOT HF_CORE_MCU STREQUAL "NONE")
+    list(APPEND HF_CORE_INCLUDE_DIRS
+        "${_HF_MCU_INC}"
+        "${_HF_MCU_INC}/utils"
+    )
+endif()
+
+list(APPEND HF_CORE_INCLUDE_DIRS
     "${HF_CORE_DRIVER_INT}/hf-pincfg"
     "${HF_CORE_DRIVER_INT}/hf-pincfg/src"
     # General utilities (hardware-agnostic)
@@ -586,6 +629,10 @@ if(HF_CORE_MCU STREQUAL "ESP32")
 #     if(HF_CORE_ENABLE_CAN)
 #         list(APPEND HF_CORE_STM32_HAL_MODULES FDCAN)
 #     endif()
+
+else()
+    # STM32 / NONE — no ESP-IDF component requirements
+    set(HF_CORE_IDF_REQUIRES "")
 endif()
 
 # ===========================================================================
@@ -598,18 +645,23 @@ set(HF_CORE_COMPILE_DEFINITIONS "")
 # Exactly one HF_MCU_FAMILY_* is defined, allowing #ifdef guards in code.
 if(HF_CORE_MCU STREQUAL "ESP32")
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_MCU_FAMILY_ESP32=1)
-# elseif(HF_CORE_MCU STREQUAL "STM32")
-#     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_MCU_FAMILY_STM32=1)
+elseif(HF_CORE_MCU STREQUAL "STM32")
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_MCU_FAMILY_STM32=1)
+elseif(HF_CORE_MCU STREQUAL "NONE")
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_MCU_FAMILY_NONE=1)
 endif()
 
 # ── RTOS Definition ───────────────────────────────────────────────────────
 if(HF_CORE_RTOS STREQUAL "FREERTOS")
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_RTOS_FREERTOS=1)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_THREAD_SAFE=1)
 # elseif(HF_CORE_RTOS STREQUAL "THREADX")
 #     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_RTOS_THREADX=1)
+#     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_THREAD_SAFE=1)
+elseif(HF_CORE_RTOS STREQUAL "NONE")
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_RTOS_NONE=1)
+    # No HF_THREAD_SAFE — single-threaded, no mutex/semaphore overhead
 endif()
-
-list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_THREAD_SAFE=1)
 
 # ── Feature Definitions ───────────────────────────────────────────────────
 if(HF_CORE_ENABLE_AS5047U)

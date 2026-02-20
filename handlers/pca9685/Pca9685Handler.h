@@ -94,7 +94,7 @@
 #include "base/BasePwm.h"
 #include "base/BaseI2c.h"
 #include "core/hf-core-drivers/external/hf-pca9685-driver/inc/pca9685.hpp"
-#include "utils/RtosMutex.h"
+#include "RtosMutex.h"
 
 // Forward declarations
 class Pca9685Handler;

@@ -90,7 +90,7 @@
 #include "base/BaseGpio.h"
 #include "base/BaseI2c.h"
 #include "core/hf-core-drivers/external/hf-pcal95555-driver/inc/pcal95555.hpp"
-#include "utils/RtosMutex.h"
+#include "RtosMutex.h"
 
 // Forward declarations
 class Pcal95555Handler;
