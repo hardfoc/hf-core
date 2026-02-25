@@ -727,40 +727,40 @@
     
     "relUrl": "/docs/utils/general_utilities.html"
   },"104": {
-    "doc": "Utilities",
-    "title": "Utility Libraries",
-    "content": "hf-core includes three utility libraries providing reusable infrastructure: . | Library | Description | Header Count | . | General Utilities | Data structures, algorithms, filters | ~30 headers | . | RTOS Wrappers | FreeRTOS C++ abstractions | ~22 headers | . | CANopen | CAN frame + protocol helpers | 3 headers | . All utilities are designed to be: . | Platform-portable — General utilities are header-only with no RTOS dependency | Thread-safe — RTOS wrappers manage synchronization internally | Zero-allocation — Fixed-size containers, no dynamic memory in hot paths | . ",
-    "url": "/hf-core/development/docs/utils/#utility-libraries",
-    
-    "relUrl": "/docs/utils/#utility-libraries"
-  },"105": {
-    "doc": "Utilities",
-    "title": "Utilities",
-    "content": " ",
-    "url": "/hf-core/development/docs/utils/",
-    
-    "relUrl": "/docs/utils/"
-  },"106": {
     "doc": "Handlers",
     "title": "Handler Reference",
     "content": "Handlers are the bridge layer between platform-agnostic base interfaces and CRTP-templated device drivers. Each handler: . | Accepts BaseXxx&amp; references (I2C, SPI, UART, GPIO, ADC) at construction | Performs lazy initialization of the underlying driver | Provides a thread-safe public API (most handlers use RtosMutex) | Exposes GetDriver() / GetSensor() for direct driver access | Optionally provides visitDriver(fn) for mutex-protected callable dispatch | Reports errors via handler-specific return types or driver-native codes | . ",
     "url": "/hf-core/development/docs/handlers/#handler-reference",
     
     "relUrl": "/docs/handlers/#handler-reference"
-  },"107": {
+  },"105": {
     "doc": "Handlers",
     "title": "Handler Summary",
     "content": "| Handler | Driver | Interface | Key Features | . | As5047uHandler | hf-as5047u-driver | BaseSpi | 14-bit angle, velocity, DAEC, GetDriver/visitDriver | . | Bno08xHandler | hf-bno08x-driver | BaseI2c / BaseSpi | 9-DOF IMU, type-erased IBno08xDriverOps, GetDriver/visitDriver | . | Pca9685Handler | hf-pca9685-driver | BaseI2c | 16-ch PWM, duty + phase, sleep/wake, PwmAdapter | . | Pcal95555Handler | hf-pcal95555-driver | BaseI2c | 16-pin GPIO expander, interrupts, Agile I/O, batch ops | . | NtcTemperatureHandler | hf-ntc-thermistor-driver | BaseAdc | Temperature sensing, EMA filter, thresholds, monitoring | . | Tmc9660Handler | hf-tmc9660-driver | BaseSpi / BaseUart | BLDC motor, GPIO/ADC/Temp wrappers, GetDriver/visitDriver | . | Tmc5160Handler | hf-tmc5160-driver | BaseSpi / BaseUart | Stepper motor, 15 subsystems, GetDriver/visitDriver | . | Tle92466edHandler | hf-tle92466ed-driver | BaseSpi | 6-ch solenoid driver, PWM, diagnostics, watchdog | . | Max22200Handler | hf-max22200-driver | BaseSpi | 8-ch solenoid/motor, CDR/VDR, HIT/HOLD, DPM | . | Ws2812Handler | hf-ws2812-rmt-driver | RMT | Addressable LED strip, GetDriver/visitDriver/visitAnimator | . | Logger | — | — | Singleton, colors, ASCII art, per-tag filtering | . ",
     "url": "/hf-core/development/docs/handlers/#handler-summary",
     
     "relUrl": "/docs/handlers/#handler-summary"
-  },"108": {
+  },"106": {
     "doc": "Handlers",
     "title": "Handlers",
     "content": " ",
     "url": "/hf-core/development/docs/handlers/",
     
     "relUrl": "/docs/handlers/"
+  },"107": {
+    "doc": "Utilities",
+    "title": "Utility Libraries",
+    "content": "hf-core includes three utility libraries providing reusable infrastructure: . | Library | Description | Header Count | . | General Utilities | Data structures, algorithms, filters | ~30 headers | . | RTOS Wrappers | FreeRTOS C++ abstractions | ~22 headers | . | CANopen | CAN frame + protocol helpers | 3 headers | . All utilities are designed to be: . | Platform-portable — General utilities are header-only with no RTOS dependency | Thread-safe — RTOS wrappers manage synchronization internally | Zero-allocation — Fixed-size containers, no dynamic memory in hot paths | . ",
+    "url": "/hf-core/development/docs/utils/#utility-libraries",
+    
+    "relUrl": "/docs/utils/#utility-libraries"
+  },"108": {
+    "doc": "Utilities",
+    "title": "Utilities",
+    "content": " ",
+    "url": "/hf-core/development/docs/utils/",
+    
+    "relUrl": "/docs/utils/"
   },"109": {
     "doc": "Home",
     "title": "HF-Core Platform Documentation",
