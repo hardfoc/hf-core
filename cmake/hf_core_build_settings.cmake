@@ -382,11 +382,9 @@ set(HF_CORE_EXT_DRIVER_INCLUDE_DIRS "")
 # sources and include directories. We delegate to these files completely to
 # avoid duplicating source/include lists.
 #
-# Two driver styles exist:
-#   Style A: Uses include_guard(GLOBAL) + CMAKE_CURRENT_LIST_DIR. Exports:
-#            HF_<NAME>_PUBLIC_INCLUDE_DIRS, HF_<NAME>_SOURCE_FILES
-#   Style B: Requires HF_<NAME>_ROOT set before inclusion.     Exports:
-#            HF_<NAME>_INCLUDE_DIRS,        HF_<NAME>_SOURCES
+# All drivers use the same style:
+#   include_guard(GLOBAL) + CMAKE_CURRENT_LIST_DIR (self-contained). Exports:
+#   HF_<NAME>_PUBLIC_INCLUDE_DIRS, HF_<NAME>_SOURCE_FILES
 #
 # Driver portability classification:
 #   PORTABLE  — Uses Base* interfaces (SPI, I2C, ADC). Works on any MCU.
@@ -419,14 +417,13 @@ if(HF_CORE_ENABLE_MAX22200)
     list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_MAX22200_SOURCE_FILES})
 endif()
 
-# ── NTC Thermistor (ADC — PORTABLE, has lookup table sources, Style B) ───
+# ── NTC Thermistor (ADC — PORTABLE, has lookup table sources) ───────────
 if(HF_CORE_ENABLE_NTC_THERMISTOR)
-    set(HF_NTC_THERMISTOR_ROOT "${HF_CORE_DRIVER_EXT}/hf-ntc-thermistor-driver")
-    include("${HF_NTC_THERMISTOR_ROOT}/cmake/hf_ntc_thermistor_build_settings.cmake")
+    include("${HF_CORE_DRIVER_EXT}/hf-ntc-thermistor-driver/cmake/hf_ntc_thermistor_build_settings.cmake")
     list(APPEND HF_CORE_HANDLER_SOURCES
         "${HF_CORE_HANDLER_ROOT}/ntc/NtcTemperatureHandler.cpp")
-    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_NTC_THERMISTOR_INCLUDE_DIRS})
-    list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_NTC_THERMISTOR_SOURCES})
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_NTC_THERMISTOR_PUBLIC_INCLUDE_DIRS})
+    list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_NTC_THERMISTOR_SOURCE_FILES})
 endif()
 
 # ── PCA9685 (I2C PWM driver — PORTABLE, header-only with .ipp, Style A) ──
@@ -468,27 +465,25 @@ if(HF_CORE_ENABLE_TMC5160)
     list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_TMC51X0_SOURCE_FILES})
 endif()
 
-# ── TMC9660 (SPI/UART BLDC — PORTABLE, has bootloader, Style B) ──────────
+# ── TMC9660 (SPI/UART BLDC — PORTABLE, has bootloader) ─────────────────
 if(HF_CORE_ENABLE_TMC9660)
-    set(HF_TMC9660_ROOT "${HF_CORE_DRIVER_EXT}/hf-tmc9660-driver")
-    include("${HF_TMC9660_ROOT}/cmake/hf_tmc9660_build_settings.cmake")
+    include("${HF_CORE_DRIVER_EXT}/hf-tmc9660-driver/cmake/hf_tmc9660_build_settings.cmake")
     list(APPEND HF_CORE_HANDLER_SOURCES
         "${HF_CORE_HANDLER_ROOT}/tmc9660/Tmc9660Handler.cpp"
         "${HF_CORE_HANDLER_ROOT}/tmc9660/Tmc9660AdcWrapper.cpp"
     )
-    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_TMC9660_INCLUDE_DIRS})
-    list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_TMC9660_SOURCES})
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_TMC9660_PUBLIC_INCLUDE_DIRS})
+    list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_TMC9660_SOURCE_FILES})
 endif()
 
-# ── WS2812 (RMT LED — MCU-GATED:ESP32, mixed C/C++, Style B) ─────────────
+# ── WS2812 (RMT LED — MCU-GATED:ESP32, mixed C/C++) ───────────────────
 # Requires ESP32 RMT peripheral. Gated by MCU compatibility check above.
 if(HF_CORE_ENABLE_WS2812)
-    set(HF_WS2812_RMT_ROOT "${HF_CORE_DRIVER_EXT}/hf-ws2812-rmt-driver")
-    include("${HF_WS2812_RMT_ROOT}/cmake/hf_ws2812_rmt_build_settings.cmake")
+    include("${HF_CORE_DRIVER_EXT}/hf-ws2812-rmt-driver/cmake/hf_ws2812_rmt_build_settings.cmake")
     list(APPEND HF_CORE_HANDLER_SOURCES
         "${HF_CORE_HANDLER_ROOT}/ws2812/Ws2812Handler.cpp")
-    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_WS2812_RMT_INCLUDE_DIRS})
-    list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_WS2812_RMT_SOURCES})
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_WS2812_RMT_PUBLIC_INCLUDE_DIRS})
+    list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_WS2812_RMT_SOURCE_FILES})
 endif()
 
 # ── Logger Handler (hardware-agnostic via ConsolePort abstraction) ────────
@@ -649,6 +644,8 @@ elseif(HF_CORE_MCU STREQUAL "STM32")
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_MCU_FAMILY_STM32=1)
 elseif(HF_CORE_MCU STREQUAL "NONE")
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_MCU_FAMILY_NONE=1)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_TARGET_MCU_NONE=1)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_BOARD_NONE=1)
 endif()
 
 # ── RTOS Definition ───────────────────────────────────────────────────────
