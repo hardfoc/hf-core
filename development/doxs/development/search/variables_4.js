@@ -109,6 +109,8 @@ var searchData=
   ['enable_5fvisit_5fdriver_5ftests_106',['ENABLE_VISIT_DRIVER_TESTS',['../tmc5160__handler__comprehensive__test_8cpp.html#ae64e39768afd4980efce2ab40ba519b1',1,'tmc5160_handler_comprehensive_test.cpp']]],
   ['enable_5fwatchdog_5ftests_107',['ENABLE_WATCHDOG_TESTS',['../tle92466ed__handler__comprehensive__test_8cpp.html#afd752f1cd065b10fc0c00db78e2ab9c3',1,'tle92466ed_handler_comprehensive_test.cpp']]],
   ['enable_5fzero_5fposition_5ftests_108',['ENABLE_ZERO_POSITION_TESTS',['../as5047u__handler__comprehensive__test_8cpp.html#a26a1d953e6ff3f52b1c7126a28cf612d',1,'as5047u_handler_comprehensive_test.cpp']]],
-  ['error_5fflags_109',['error_flags',['../structAs5047uMeasurement.html#a51e4df549e1fdae289d49bb9f9db7cd3',1,'As5047uMeasurement']]],
-  ['euler_110',['euler',['../structBno08xImuData.html#ae8c416d04df52796b7fcc9843d81cb49',1,'Bno08xImuData']]]
+  ['error_5fcount_109',['error_count',['../structAds7952Diagnostics.html#a7b89100e37bacd9b01d325b115c965bf',1,'Ads7952Diagnostics']]],
+  ['error_5fcount_5f_110',['error_count_',['../classAds7952Handler.html#acc134b2af544d0d3066d2edf4c50b8e7',1,'Ads7952Handler']]],
+  ['error_5fflags_111',['error_flags',['../structAs5047uMeasurement.html#a51e4df549e1fdae289d49bb9f9db7cd3',1,'As5047uMeasurement']]],
+  ['euler_112',['euler',['../structBno08xImuData.html#ae8c416d04df52796b7fcc9843d81cb49',1,'Bno08xImuData']]]
 ];

@@ -1,5 +1,9 @@
 var annotated_dup =
 [
+    [ "Ads7952Diagnostics", "structAds7952Diagnostics.html", "structAds7952Diagnostics" ],
+    [ "Ads7952Handler", "classAds7952Handler.html", "classAds7952Handler" ],
+    [ "Ads7952HandlerConfig", "structAds7952HandlerConfig.html", "structAds7952HandlerConfig" ],
+    [ "Ads7952SpiAdapter", "classAds7952SpiAdapter.html", "classAds7952SpiAdapter" ],
     [ "As5047uConfig", "structAs5047uConfig.html", "structAs5047uConfig" ],
     [ "As5047uDiagnostics", "structAs5047uDiagnostics.html", "structAs5047uDiagnostics" ],
     [ "As5047uHandler", "classAs5047uHandler.html", "classAs5047uHandler" ],

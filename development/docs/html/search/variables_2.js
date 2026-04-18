@@ -14,7 +14,7 @@ var searchData=
   ['communication_5ferrors_11',['communication_errors',['../structAs5047uDiagnostics.html#a44c0983e85ef16a245011892369471a3',1,'As5047uDiagnostics']]],
   ['communication_5fok_12',['communication_ok',['../structAs5047uDiagnostics.html#ae9f8a494782de68b41318d8621c2a3ac',1,'As5047uDiagnostics']]],
   ['completion_5fsemaphore_13',['completion_semaphore',['../structTestTaskContext.html#ab82bee11b198be2f2b4d6c908573ddb6',1,'TestTaskContext']]],
-  ['config_5f_14',['config_',['../classAs5047uHandler.html#afe844da69eb5d41abf3f5a7a4ed7d5b0',1,'As5047uHandler::config_'],['../classBno08xHandler.html#a04876261e622b918bd759f042ce025fc',1,'Bno08xHandler::config_'],['../classLogger.html#a14d456263913f3ae7f05e30326796836',1,'Logger::config_'],['../classNtcTemperatureHandler.html#a1c8980812318a321753cd5ba821f35a5',1,'NtcTemperatureHandler::config_'],['../classTmc5160Handler.html#ad7f9b019221efb2adcdc0d21d562a8dc',1,'Tmc5160Handler::config_'],['../classWs2812Handler.html#ac0a3dc379fcdb7964fe6e6995c37598e',1,'Ws2812Handler::config_']]],
+  ['config_5f_14',['config_',['../classAds7952Handler.html#a2703e257a893f7bd4b14c2de006ade9c',1,'Ads7952Handler::config_'],['../classAs5047uHandler.html#afe844da69eb5d41abf3f5a7a4ed7d5b0',1,'As5047uHandler::config_'],['../classBno08xHandler.html#a04876261e622b918bd759f042ce025fc',1,'Bno08xHandler::config_'],['../classLogger.html#a14d456263913f3ae7f05e30326796836',1,'Logger::config_'],['../classNtcTemperatureHandler.html#a1c8980812318a321753cd5ba821f35a5',1,'NtcTemperatureHandler::config_'],['../classTmc5160Handler.html#ad7f9b019221efb2adcdc0d21d562a8dc',1,'Tmc5160Handler::config_'],['../classWs2812Handler.html#ac0a3dc379fcdb7964fe6e6995c37598e',1,'Ws2812Handler::config_']]],
   ['continuous_5fcallback_5f_15',['continuous_callback_',['../classNtcTemperatureHandler.html#af1eb1c7171b474d8d121b7b443e99067',1,'NtcTemperatureHandler']]],
   ['continuous_5fuser_5fdata_5f_16',['continuous_user_data_',['../classNtcTemperatureHandler.html#a83d109b4035a696dac6b1b82bfab5976',1,'NtcTemperatureHandler']]],
   ['conversion_5fmethod_17',['conversion_method',['../structntc__temp__handler__config__t.html#aa83a38e6f657a9eefe13a27dc9ae5728',1,'ntc_temp_handler_config_t']]],
@@ -22,5 +22,7 @@ var searchData=
   ['crc_5fretries_19',['crc_retries',['../structAs5047uConfig.html#ad4039ffbfdad7f1fda749ff1ad8f8394',1,'As5047uConfig']]],
   ['ctrl_5fpins_5f_20',['ctrl_pins_',['../classHalSpiTmc5160Comm.html#aa9c18495a245e766e9b7204fb81e5818',1,'HalSpiTmc5160Comm::ctrl_pins_'],['../classHalUartTmc5160Comm.html#aa814d4f11e76e735658a00e84d9b8895',1,'HalUartTmc5160Comm::ctrl_pins_'],['../classHalSpiTmc9660Comm.html#a57a03a0afc398cb7af11919a42aff141',1,'HalSpiTmc9660Comm::ctrl_pins_'],['../classHalUartTmc9660Comm.html#a7d842bccb7b871b4fa3367935b3c4024',1,'HalUartTmc9660Comm::ctrl_pins_']]],
   ['current_5ffrequency_5fhz_5f_21',['current_frequency_hz_',['../classPca9685PwmAdapter.html#aee02c1bfca7d8dae6d0c1bf6e662b9a4',1,'Pca9685PwmAdapter']]],
-  ['current_5fstate_5f_22',['current_state_',['../classNtcTemperatureHandler.html#a74b308efe15b28f81e5c48f23470fba1',1,'NtcTemperatureHandler']]]
+  ['current_5fmode_22',['current_mode',['../structAds7952Diagnostics.html#a909ef51163cdd4bb49e6bcdd323eacb4',1,'Ads7952Diagnostics']]],
+  ['current_5frange_23',['current_range',['../structAds7952Diagnostics.html#a2dd09f9ce8fd131638c2132eae9d39fd',1,'Ads7952Diagnostics']]],
+  ['current_5fstate_5f_24',['current_state_',['../classNtcTemperatureHandler.html#a74b308efe15b28f81e5c48f23470fba1',1,'NtcTemperatureHandler']]]
 ];

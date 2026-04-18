@@ -44,7 +44,7 @@ var searchData=
   ['setpullmodeimpl_41',['SetPullModeImpl',['../classPca9685GpioPin.html#ae3ee349427e82d8069ac2935ae7cde00',1,'Pca9685GpioPin::SetPullModeImpl()'],['../classPcal95555GpioPin.html#a019aa1c94129daff3c817d73499cbb9c',1,'Pcal95555GpioPin::SetPullModeImpl()'],['../classTmc9660Handler_1_1Gpio.html#a9ce2b675e2bfacb82b957f4f2ec39e4a',1,'Tmc9660Handler::Gpio::SetPullModeImpl()']]],
   ['setpullmodes_42',['SetPullModes',['../classPcal95555Handler.html#a72ce8f8a0f79654cfeb2a4ce7e7559d8',1,'Pcal95555Handler']]],
   ['setpwm_43',['SetPwm',['../classPca9685Handler.html#aa40bf3968e55af7c7912870165d47297',1,'Pca9685Handler']]],
-  ['setrange_44',['SetRange',['../classNtcTemperatureHandler.html#a4fa05ac2c5ffc286cf9786a8d551f781',1,'NtcTemperatureHandler']]],
+  ['setrange_44',['SetRange',['../classAds7952Handler.html#a163bcf0a7f0b0a9c62d3d716ba34e8ba',1,'Ads7952Handler::SetRange()'],['../classNtcTemperatureHandler.html#a4fa05ac2c5ffc286cf9786a8d551f781',1,'NtcTemperatureHandler::SetRange(float min_celsius, float max_celsius) noexcept override']]],
   ['setreferencevoltage_45',['SetReferenceVoltage',['../classNtcTemperatureHandler.html#ae0c1091e78debcf710e7dc98c370405b',1,'NtcTemperatureHandler']]],
   ['setsamplingparameters_46',['SetSamplingParameters',['../classNtcTemperatureHandler.html#aaa2a51bfdacb214f281f2562966d4db7',1,'NtcTemperatureHandler']]],
   ['setsensorcallback_47',['SetSensorCallback',['../classBno08xHandler.html#ac6c4372bc30b608206070bcf96723b2d',1,'Bno08xHandler']]],

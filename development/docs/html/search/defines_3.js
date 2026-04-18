@@ -1,7 +1,7 @@
 var searchData=
 [
   ['log_5fascii_5fart_0',['LOG_ASCII_ART',['../Logger_8h.html#ab29585be7729d8a20e2da2c3f1793205',1,'Logger.h']]],
-  ['log_5fbanner_1',['LOG_BANNER',['../As5047uHandler_8cpp.html#a3f8ce72359938b8bedeba7a51bbba110',1,'LOG_BANNER:&#160;As5047uHandler.cpp'],['../Logger_8h.html#a3f8ce72359938b8bedeba7a51bbba110',1,'LOG_BANNER:&#160;Logger.h']]],
+  ['log_5fbanner_1',['LOG_BANNER',['../Ads7952Handler_8cpp.html#a3f8ce72359938b8bedeba7a51bbba110',1,'LOG_BANNER:&#160;Ads7952Handler.cpp'],['../Logger_8h.html#a3f8ce72359938b8bedeba7a51bbba110',1,'LOG_BANNER:&#160;Logger.h']]],
   ['log_5fdebug_2',['LOG_DEBUG',['../Logger_8h.html#a86952bc1b765abd64f032f9f6fce9fe3',1,'Logger.h']]],
   ['log_5fdebug_5fformatted_3',['LOG_DEBUG_FORMATTED',['../Logger_8h.html#a3b282a96665d912c411a9209e2896746',1,'Logger.h']]],
   ['log_5ferror_4',['LOG_ERROR',['../Logger_8h.html#a53c554c9625bc6ee2727f52091346c17',1,'Logger.h']]],

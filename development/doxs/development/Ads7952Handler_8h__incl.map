@@ -1,0 +1,19 @@
+<map id="Ads7952Handler.h" name="Ads7952Handler.h">
+<area shape="rect" id="Node000001" title="Unified handler for ADS7952 12&#45;channel 12&#45;bit SAR ADC with SPI integration." alt="" coords="345,5,485,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,72,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="345,28,222,45,152,61,85,81,69,89,66,84,83,76,151,55,221,40,344,22"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="96,93,173,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="357,33,275,53,186,81,168,89,165,85,184,76,274,48,355,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="198,93,290,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="393,33,280,89,278,85,390,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="314,93,374,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="407,33,365,84,360,81,403,29"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="398,79,573,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="426,29,457,66,453,70,422,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="597,93,718,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="449,28,586,76,614,86,612,91,584,81,447,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="743,93,868,119"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="485,27,601,47,731,76,764,86,762,91,730,81,600,52,485,32"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="892,93,996,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="485,20,666,37,774,53,881,76,909,86,907,91,879,81,773,58,665,42,484,25"/>
+</map>

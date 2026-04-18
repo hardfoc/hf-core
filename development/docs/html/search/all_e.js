@@ -67,8 +67,10 @@ var searchData=
   ['print_5ftest_5fsection_5fstatus_64',['print_test_section_status',['../TestFramework_8h.html#a200bb35a3a48c625b9cb8d2511d6bd87',1,'TestFramework.h']]],
   ['print_5ftest_5fsummary_65',['print_test_summary',['../TestFramework_8h.html#ab7e4c076755ecdf2ad6212cb8f6578ab',1,'TestFramework.h']]],
   ['processinterrupts_66',['ProcessInterrupts',['../classPcal95555Handler.html#a7b9a82a463f57e0394b55a4f3ecead39',1,'Pcal95555Handler']]],
-  ['pull_5fmode_5fcache_5f_67',['pull_mode_cache_',['../classPcal95555Handler.html#aa2bb96cbbd906cb83a398e3a8d310bc6',1,'Pcal95555Handler']]],
-  ['purpose_68',['Purpose',['../Tmc9660AdcWrapper_8h.html#autotoc_md18',1,'']]],
-  ['pwm_20adapter_69',['Multi-Channel PWM Adapter',['../group__PCA9685__HAL__PwmAdapter.html',1,'']]],
-  ['pwm_5fadapter_5f_70',['pwm_adapter_',['../classPca9685Handler.html#a6f6e37a5f910fb63c8d02db3192eb296',1,'Pca9685Handler']]]
+  ['programalarm_67',['ProgramAlarm',['../classAds7952Handler.html#a0efbed6e9ec52986720b088d74310743',1,'Ads7952Handler']]],
+  ['programalarmvoltage_68',['ProgramAlarmVoltage',['../classAds7952Handler.html#a1cda2d2ebe4ce49e2c600cae260cb9ea',1,'Ads7952Handler']]],
+  ['pull_5fmode_5fcache_5f_69',['pull_mode_cache_',['../classPcal95555Handler.html#aa2bb96cbbd906cb83a398e3a8d310bc6',1,'Pcal95555Handler']]],
+  ['purpose_70',['Purpose',['../Tmc9660AdcWrapper_8h.html#autotoc_md18',1,'']]],
+  ['pwm_20adapter_71',['Multi-Channel PWM Adapter',['../group__PCA9685__HAL__PwmAdapter.html',1,'']]],
+  ['pwm_5fadapter_5f_72',['pwm_adapter_',['../classPca9685Handler.html#a6f6e37a5f910fb63c8d02db3192eb296',1,'Pca9685Handler']]]
 ];

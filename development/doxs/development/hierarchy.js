@@ -3,12 +3,15 @@ var hierarchy =
     [ "ntc::AdcInterface", null, [
       [ "NtcAdcAdapter", "classNtcAdcAdapter.html", null ]
     ] ],
+    [ "Ads7952Diagnostics", "structAds7952Diagnostics.html", null ],
+    [ "Ads7952HandlerConfig", "structAds7952HandlerConfig.html", null ],
     [ "As5047uConfig", "structAs5047uConfig.html", null ],
     [ "As5047uDiagnostics", "structAs5047uDiagnostics.html", null ],
     [ "As5047uHandler", "classAs5047uHandler.html", null ],
     [ "As5047uMeasurement", "structAs5047uMeasurement.html", null ],
     [ "AsciiArtFormat", "structAsciiArtFormat.html", null ],
     [ "BaseAdc", null, [
+      [ "Ads7952Handler", "classAds7952Handler.html", null ],
       [ "Tmc9660AdcWrapper", "classTmc9660AdcWrapper.html", null ],
       [ "Tmc9660Handler::Adc", "classTmc9660Handler_1_1Adc.html", null ]
     ] ],
@@ -64,6 +67,9 @@ var hierarchy =
     ] ],
     [ "tmc9660::SpiCommInterface", null, [
       [ "HalSpiTmc9660Comm", "classHalSpiTmc9660Comm.html", null ]
+    ] ],
+    [ "ads7952::SpiInterface", null, [
+      [ "Ads7952SpiAdapter", "classAds7952SpiAdapter.html", null ]
     ] ],
     [ "as5047u::SpiInterface", null, [
       [ "As5047uSpiAdapter", "classAs5047uSpiAdapter.html", null ]

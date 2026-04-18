@@ -1,0 +1,5 @@
+<map id="Ads7952Handler.h" name="Ads7952Handler.h">
+<area shape="rect" id="Node000001" title="Unified handler for ADS7952 12&#45;channel 12&#45;bit SAR ADC with SPI integration." alt="" coords="13,5,153,31"/>
+<area shape="rect" id="Node000002" href="$Ads7952Handler_8cpp.html" title="Implementation of the ADS7952 12&#45;channel SAR ADC handler." alt="" coords="5,79,160,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,44,85,79,80,79,80,44"/>
+</map>

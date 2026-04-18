@@ -1,0 +1,23 @@
+<map id="Ads7952Handler::EnsureInitializedLocked" name="Ads7952Handler::EnsureInitializedLocked">
+<area shape="rect" id="Node000001" title="Ensure initialized while mutex is already held." alt="" coords="5,97,251,137"/>
+<area shape="rect" id="Node000002" href="$classAds7952Handler.html#a0644e9b1c82bc200591155b36a9ca4dd" title="Initialize the ADS7952 ADC (lazy initialization)." alt="" coords="299,104,492,129"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="251,114,285,114,285,119,251,119"/>
+<area shape="rect" id="Node000003" href="$classAds7952Handler.html#a3cc3a33955e1e0b218f801f1b98192f2" title="Apply configuration to the driver after init." alt="" coords="540,5,801,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="415,101,470,70,539,39,567,31,569,36,541,45,472,75,418,106"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="618,55,723,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="466,101,604,76,605,82,467,107"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="595,203,747,228"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="418,127,472,158,541,189,582,200,580,205,539,194,470,163,415,132"/>
+<area shape="rect" id="Node000008" href="$classLogger.html#a4681229c521795685fc14f6b55c82300" title="Log info message." alt="" coords="621,104,720,129"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="492,114,608,114,608,119,492,119"/>
+<area shape="rect" id="Node000009" href="$classLogger.html#aaa95ffa14d07a965d4a85bdec82cba26" title="Log warning message." alt="" coords="617,153,724,179"/>
+<area shape="poly" id="edge10_Node000002_Node000009" title=" " alt="" coords="467,127,604,151,603,157,466,132"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="849,80,1021,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="724,70,835,80,835,86,724,75"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="862,129,1009,155"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="724,71,763,78,802,89,827,101,850,114,873,123,871,128,848,119,824,106,800,94,762,83,723,76"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="720,110,835,99,836,104,720,115"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="720,119,848,131,848,136,720,124"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="724,156,800,138,824,127,848,114,870,107,871,112,850,119,827,131,802,143,725,162"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="724,159,848,147,849,153,725,164"/>
+</map>
