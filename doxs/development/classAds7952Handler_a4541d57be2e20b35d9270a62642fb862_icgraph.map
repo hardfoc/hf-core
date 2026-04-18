@@ -1,0 +1,9 @@
+<map id="Ads7952Handler::EnsureInitializedLocked" name="Ads7952Handler::EnsureInitializedLocked">
+<area shape="rect" id="Node000001" title="Ensure initialized while mutex is already held." alt="" coords="507,23,752,63"/>
+<area shape="rect" id="Node000002" href="$classAds7952Handler.html#a7703915b68bb1ef88fbbd980bf938d90" title="Get raw pointer to the ADS7952 driver for advanced operations." alt="" coords="256,5,456,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="493,33,456,30,456,25,493,28"/>
+<area shape="rect" id="Node000004" href="$classAds7952Handler.html#a69677cd8a49a9d456c739755d3bd2943" title="Visit the underlying ADS7952 driver under handler mutex protection." alt="" coords="253,55,459,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="493,58,459,61,459,56,493,53"/>
+<area shape="rect" id="Node000003" href="$classAds7952Handler.html#ae85d3136bffa914057733aacd43ecd65" title=" " alt="" coords="5,5,205,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="243,21,205,21,205,15,243,15"/>
+</map>

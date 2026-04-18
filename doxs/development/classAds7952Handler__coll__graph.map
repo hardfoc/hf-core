@@ -1,0 +1,15 @@
+<map id="Ads7952Handler" name="Ads7952Handler">
+<area shape="rect" id="Node000001" title="Unified handler for ADS7952 12&#45;channel SAR ADC with BaseAdc integration." alt="" coords="851,95,980,120"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="545,5,623,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="637,24,727,42,828,69,887,92,885,97,826,74,726,47,636,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="489,55,679,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="694,83,851,98,850,104,693,88"/>
+<area shape="rect" id="Node000004" href="$classAds7952SpiAdapter.html" title="CRTP adapter connecting BaseSpi interface to ADS7952 SpiInterface." alt="" coords="233,63,383,88"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="397,73,488,73,488,78,397,78"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,55,184,95"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="198,73,233,73,233,78,198,78"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="453,119,715,159"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="729,126,826,117,850,114,851,119,827,122,729,131"/>
+<area shape="rect" id="Node000007" href="$structAds7952HandlerConfig.html" title="Configuration for ADS7952 handler initialization." alt="" coords="499,184,669,209"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="683,180,754,166,826,146,890,118,892,123,828,151,755,171,684,185"/>
+</map>
