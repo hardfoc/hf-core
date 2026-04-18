@@ -1,5 +1,7 @@
 var NAVTREEINDEX4 =
 {
+"classTmc9660Handler.html#adee8a764564554f060b879752048bf74":[11,14,0,18],
+"classTmc9660Handler.html#ae1d6f6676180aff28d02dcb954917b79":[11,14,0,23],
 "classTmc9660Handler.html#aed1c579c5456e85070601f22b3f39a01":[11,14,0,8],
 "classTmc9660Handler.html#af2e2baaba84789c9a5c89a07d965b415":[11,14,0,29],
 "classTmc9660Handler_1_1Adc.html":[11,14,0,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX4 =
 "functions_vars_g.html":[13,3,2,6],
 "functions_vars_h.html":[13,3,2,7],
 "functions_vars_i.html":[13,3,2,8],
-"functions_vars_k.html":[13,3,2,9],
-"functions_vars_l.html":[13,3,2,10],
-"functions_vars_m.html":[13,3,2,11]
+"functions_vars_k.html":[13,3,2,9]
 };

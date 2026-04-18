@@ -1,5 +1,7 @@
 var NAVTREEINDEX3 =
 {
+"classPca9685PwmAdapter.html#aefb37b4910fa3c338f25ddf88b0a1f5f":[11,3,0,11],
+"classPca9685PwmAdapter.html#af55760adbbae32af83d3d4f68219f822":[11,3,0,22],
 "classPca9685PwmAdapter.html#aff11c1ac9e63fd735a76497582a54bf0":[11,3,0,0],
 "classPcal95555GpioPin.html":[11,7,0],
 "classPcal95555GpioPin.html#a019aa1c94129daff3c817d73499cbb9c":[11,7,0,18],
@@ -247,7 +249,5 @@ var NAVTREEINDEX3 =
 "classTmc9660Handler.html#acdf20446a664a0c84b2b2b7cb21f3d36":[11,14,0,36],
 "classTmc9660Handler.html#acf7d1583239c9f767f82b42fc03b56cf":[11,14,0,25],
 "classTmc9660Handler.html#ad8946c2dd3a3d5e26620c514988fa2df":[11,14,0,14],
-"classTmc9660Handler.html#adc564847f8ae26c47412aaee0758991c":[11,14,0,26],
-"classTmc9660Handler.html#adee8a764564554f060b879752048bf74":[11,14,0,18],
-"classTmc9660Handler.html#ae1d6f6676180aff28d02dcb954917b79":[11,14,0,23]
+"classTmc9660Handler.html#adc564847f8ae26c47412aaee0758991c":[11,14,0,26]
 };

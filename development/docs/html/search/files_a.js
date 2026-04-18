@@ -5,5 +5,6 @@ var searchData=
   ['pca9685handler_2eh_2',['Pca9685Handler.h',['../Pca9685Handler_8h.html',1,'']]],
   ['pcal95555_5fhandler_5fcomprehensive_5ftest_2ecpp_3',['pcal95555_handler_comprehensive_test.cpp',['../pcal95555__handler__comprehensive__test_8cpp.html',1,'']]],
   ['pcal95555handler_2ecpp_4',['Pcal95555Handler.cpp',['../Pcal95555Handler_8cpp.html',1,'']]],
-  ['pcal95555handler_2eh_5',['Pcal95555Handler.h',['../Pcal95555Handler_8h.html',1,'']]]
+  ['pcal95555handler_2eh_5',['Pcal95555Handler.h',['../Pcal95555Handler_8h.html',1,'']]],
+  ['platformmutexbackend_2eh_6',['PlatformMutexBackend.h',['../PlatformMutexBackend_8h.html',1,'']]]
 ];
