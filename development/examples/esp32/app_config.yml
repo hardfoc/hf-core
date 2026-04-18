@@ -14,18 +14,12 @@ metadata:
   project: "ESP32 HardFOC Core — Handler & Utils Tests"
   description: >
     Comprehensive test suite for the hf-core platform layer.
-    Tests all handlers (exercising underlying drivers), RTOS utilities,
-    general utilities, and cross-component integration scenarios on
-    real ESP32 hardware.
   default_app: "general_utils_test"
   default_build_type: "Debug"
   target: "esp32s3"
-  idf_versions:
-    - "release/v5.5"
-    - "release/v5.4"
-  build_types:
-    - ["Debug", "Release"]
-    - ["Debug"]
+  idf_versions: ["release/v5.5", "release/v5.4"]
+  build_types: [["Debug", "Release"], ["Debug"]]
+
 
 # ===========================================================================
 # HANDLER TESTS — Each tests one handler (and its underlying driver)
