@@ -24,6 +24,27 @@
 #include <algorithm>
 #include <cstdio>
 
+namespace {
+
+// Logger::LogLevel and hf_log_level_t use different enumerator values
+// (Logger:    ERROR=0, WARN=1, INFO=2, DEBUG=3, VERBOSE=4)
+// (hf_log_*:  NONE=0, ERROR=1, WARN=2, INFO=3, DEBUG=4, VERBOSE=5)
+// A naive static_cast silently downgrades INFO to LOG_LEVEL_WARN which then
+// makes EspLogger::Initialize() call esp_log_level_set("*", ESP_LOG_WARN),
+// dropping every ESP_LOGI in the firmware. Translate explicitly.
+inline hf_log_level_t ToBaseLevel(LogLevel level) noexcept {
+    switch (level) {
+        case LogLevel::ERROR:   return hf_log_level_t::LOG_LEVEL_ERROR;
+        case LogLevel::WARN:    return hf_log_level_t::LOG_LEVEL_WARN;
+        case LogLevel::INFO:    return hf_log_level_t::LOG_LEVEL_INFO;
+        case LogLevel::DEBUG:   return hf_log_level_t::LOG_LEVEL_DEBUG;
+        case LogLevel::VERBOSE: return hf_log_level_t::LOG_LEVEL_VERBOSE;
+    }
+    return hf_log_level_t::LOG_LEVEL_INFO;
+}
+
+}  // namespace
+
 //==============================================================================
 // CONSTRUCTOR/DESTRUCTOR
 //==============================================================================
@@ -82,7 +103,7 @@ bool Logger::Initialize(const LogConfig& config) noexcept {
 
     // Initialize base logger with the fields that hf_logger_config_t actually has
     hf_logger_config_t base_config{};
-    base_config.default_level = static_cast<hf_log_level_t>(config.level);
+    base_config.default_level = ToBaseLevel(config.level);
     base_config.output_destination = hf_log_output_t::LOG_OUTPUT_UART;
     base_config.format_options = hf_log_format_t::LOG_FORMAT_DEFAULT;
     base_config.max_message_length = 512;   // Reasonable default
@@ -133,7 +154,7 @@ void Logger::SetLogLevel(const char* tag, LogLevel level) noexcept {
         if (tag_levels_[i].in_use && std::strncmp(tag_levels_[i].tag, tag, kMaxTagLength - 1) == 0) {
             tag_levels_[i].level = level;
             if (base_logger_) {
-                base_logger_->SetLogLevel(tag, static_cast<hf_log_level_t>(level));
+                base_logger_->SetLogLevel(tag, ToBaseLevel(level));
             }
             return;
         }
@@ -151,7 +172,7 @@ void Logger::SetLogLevel(const char* tag, LogLevel level) noexcept {
     }
 
     if (base_logger_) {
-        base_logger_->SetLogLevel(tag, static_cast<hf_log_level_t>(level));
+        base_logger_->SetLogLevel(tag, ToBaseLevel(level));
     }
 }
 
@@ -344,9 +365,9 @@ void Logger::SetConfig(const LogConfig& config) noexcept {
     
     if (base_logger_) {
         hf_logger_config_t base_config{};
-        base_config.default_level = static_cast<hf_log_level_t>(config.level);
+        base_config.default_level = ToBaseLevel(config.level);
         base_config.enable_thread_safety = true;
-        
+
         base_logger_->Initialize(base_config);
     }
 }
@@ -359,7 +380,7 @@ void Logger::EnableColors(bool enable) noexcept {
     config_.enable_colors = enable;
     if (base_logger_) {
         hf_logger_config_t base_config{};
-        base_config.default_level = static_cast<hf_log_level_t>(config_.level);
+        base_config.default_level = ToBaseLevel(config_.level);
         base_config.enable_thread_safety = true;
         base_logger_->Initialize(base_config);
     }
@@ -369,7 +390,7 @@ void Logger::EnableEffects(bool enable) noexcept {
     config_.enable_effects = enable;
     if (base_logger_) {
         hf_logger_config_t base_config{};
-        base_config.default_level = static_cast<hf_log_level_t>(config_.level);
+        base_config.default_level = ToBaseLevel(config_.level);
         base_config.enable_thread_safety = true;
         base_logger_->Initialize(base_config);
     }
@@ -410,12 +431,12 @@ void Logger::LogInternal(LogLevel level, const char* tag, LogColor color, LogSty
             pos += msg_len;
             pos += WriteResetSequence(formatted + pos, sizeof(formatted) - pos);
             formatted[pos] = '\0';
-            base_logger_->Log(static_cast<hf_log_level_t>(level), tag, "%s", formatted);
+            base_logger_->Log(ToBaseLevel(level), tag, "%s", formatted);
         } else {
-            base_logger_->Log(static_cast<hf_log_level_t>(level), tag, "%s", msg_buf);
+            base_logger_->Log(ToBaseLevel(level), tag, "%s", msg_buf);
         }
     } else {
-        base_logger_->Log(static_cast<hf_log_level_t>(level), tag, "%s", msg_buf);
+        base_logger_->Log(ToBaseLevel(level), tag, "%s", msg_buf);
     }
 }
 
@@ -467,7 +488,7 @@ void Logger::FormatAndLogAsciiArt(const char* tag, LogLevel level,
                                   const char* ascii_art,
                                   const AsciiArtFormat& format) noexcept {
     if (!ascii_art || !base_logger_) return;
-    const hf_log_level_t base_level = static_cast<hf_log_level_t>(level);
+    const hf_log_level_t base_level = ToBaseLevel(level);
 
     // First pass: scan lines and find max length
     static constexpr size_t kMaxLines = 64;
