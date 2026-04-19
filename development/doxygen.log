@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.ghn1j6
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.ghn1j6' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.jUDUJ3
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.jUDUJ3' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -694,12 +694,14 @@ Generating docs for compound HalSpiBno08xComm...
 Generating docs for compound HalSpiMax22200Comm...
 Generating call graph for function HalSpiMax22200Comm::DelayUs
 Generating call graph for function HalSpiMax22200Comm::GpioSet
+Generating call graph for function HalSpiMax22200Comm::Initialize
 Generating docs for compound HalSpiTle92466edComm...
 Generating call graph for function HalSpiTle92466edComm::Delay
 Generating call graph for function HalSpiTle92466edComm::Log
+Generating call graph for warning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (63), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
+function HalSpiTle92466edComm::Transfer32
 Generating docs for compound HalSpiTmc5160Comm...
-Generating call graph for function HalSpiTwarning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (61), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
-mc5160Comm::DebugLog
+Generating call graph for function HalSpiTmc5160Comm::DebugLog
 Generating call graph for function HalSpiTmc5160Comm::DelayMs
 Generating call graph for function HalSpiTmc5160Comm::DelayUs
 Generating docs for compound HalSpiTmc9660Comm...
@@ -887,9 +889,7 @@ Generating call graph for function Tle92466edHandler::DumpDiagnostics
 Generating call graph for function Tle92466edHandler::EnableAllChannels
 Generating call graph for function Tle92466edHandler::EnableChannel
 Generating call graph for function Tle92466edHandler::EnsureInitialized
-Generating call graph for function Tle92466edHandler::EnsureInitializedLocked
-Generating caller graph for function Tle92466edHandler::EnsureInitializedLocked
-Generating call graph for function Tle92466ed/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
+Generating call graph for function Tle92466edHandler::EnsureInitializ/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
@@ -925,7 +925,9 @@ Generating call graph for function Tle92466ed/home/runner/work/hf-core/hf-core/h
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:135: warning: @copydetails or @copydoc target 'BaseAdc::ResetDiagnostics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:132: warning: @copydetails or @copydoc target 'BaseAdc::ResetStatistics' not found
-Handler::EnterConfigMode
+edLocked
+Generating caller graph for function Tle92466edHandler::EnsureInitializedLocked
+Generating call graph for function Tle92466edHandler::EnterConfigMode
 Generating call graph for function Tle92466edHandler::EnterMissionMode
 Generating call graph for function Tle92466edHandler::GetChannelDiagnostics
 Generating call graph for function Tle92466edHandler::GetChipId
@@ -1108,10 +1110,7 @@ Generating dependency graph for directory mcp9700
 Generating dependency graph for directory ntc
 Generating dependency graph for directory pca9685
 Generating dependency graph for directory pcal95555
-Generating dependency graph for directory tle92466ed
-Generating dependency graph for directory tmc5160
-Generating dependency graph for directory tmc9660
-Generating dependenc/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
+Generating dependency graph for directo/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:20: warning: unable to resolve reference to '-features' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:21: warning: unable to resolve reference to '-architecture' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:22: warning: unable to resolve reference to '-quick-start' for \ref command
@@ -1127,7 +1126,10 @@ Generating dependenc/home/runner/work/hf-core/hf-core/README.md:19: warning: una
 /home/runner/work/hf-core/hf-core/README.md:184: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:185: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:186: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
-y graph for directory utils_tests
+ry tle92466ed
+Generating dependency graph for directory tmc5160
+Generating dependency graph for directory tmc9660
+Generating dependency graph for directory utils_tests
 Generating dependency graph for directory ws2812
 Generating index page...
 Generating main page...
@@ -1151,136 +1153,26 @@ writing tag file...
 Running plantuml with JAVA...
 Running dot...
 Generating dot graphs using 5 parallel threads...
-Running dot for graph 1/62
-Running dot for graph 2/62
-Running dot for graph 3/62
-Running dot for graph 4/62
-Running dot for graph 5/62
-Running dot for graph 6/62
-Running dot for graph 7/62
-Running dot for graph 8/62
-Running dot for graph 9/62
-Running dot for graph 10/62
-Running dot for graph 11/62
-Running dot for graph 12/62
-Running dot for graph 13/62
-Running dot for graph 14/62
-Running dot for graph 15/62
-Running dot for graph 16/62
-Running dot for graph 17/62
-Running dot for graph 18/62
-Running dot for graph 19/62
-Running dot for graph 20/62
-Running dot for graph 21/62
-Running dot for graph 22/62
-Running dot for graph 23/62
-Running dot for graph 24/62
-Running dot for graph 25/62
-Running dot for graph 26/62
-Running dot for graph 27/62
-Running dot for graph 28/62
-Running dot for graph 29/62
-Running dot for graph 30/62
-Running dot for graph 31/62
-Running dot for graph 32/62
-Running dot for graph 33/62
-Running dot for graph 34/62
-Running dot for graph 35/62
-Running dot for graph 36/62
-Running dot for graph 37/62
-Running dot for graph 38/62
-Running dot for graph 39/62
-Running dot for graph 40/62
-Running dot for graph 41/62
-Running dot for graph 42/62
-Running dot for graph 43/62
-Running dot for graph 44/62
-Running dot for graph 45/62
-Running dot for graph 46/62
-Running dot for graph 47/62
-Running dot for graph 48/62
-Running dot for graph 49/62
-Running dot for graph 50/62
-Running dot for graph 51/62
-Running dot for graph 52/62
-Running dot for graph 53/62
-Running dot for graph 54/62
-Running dot for graph 55/62
-Running dot for graph 56/62
-Running dot for graph 57/62
-Running dot for graph 58/62
-Running dot for graph 59/62
-Running dot for graph 60/62
-Running dot for graph 61/62
-Running dot for graph 62/62
-Patching output file 1/68
-Patching output file 2/68
-Patching output file 3/68
-Patching output file 4/68
-Patching output file 5/68
-Patching output file 6/68
-Patching output file 7/68
-Patching output file 8/68
-Patching output file 9/68
-Patching output file 10/68
-Patching output file 11/68
-Patching output file 12/68
-Patching output file 13/68
-Patching output file 14/68
-Patching output file 15/68
-Patching output file 16/68
-Patching output file 17/68
-Patching output file 18/68
-Patching output file 19/68
-Patching output file 20/68
-Patching output file 21/68
-Patching output file 22/68
-Patching output file 23/68
-Patching output file 24/68
-Patching output file 25/68
-Patching output file 26/68
-Patching output file 27/68
-Patching output file 28/68
-Patching output file 29/68
-Patching output file 30/68
-Patching output file 31/68
-Patching output file 32/68
-Patching output file 33/68
-Patching output file 34/68
-Patching output file 35/68
-Patching output file 36/68
-Patching output file 37/68
-Patching output file 38/68
-Patching output file 39/68
-Patching output file 40/68
-Patching output file 41/68
-Patching output file 42/68
-Patching output file 43/68
-Patching output file 44/68
-Patching output file 45/68
-Patching output file 46/68
-Patching output file 47/68
-Patching output file 48/68
-Patching output file 49/68
-Patching output file 50/68
-Patching output file 51/68
-Patching output file 52/68
-Patching output file 53/68
-Patching output file 54/68
-Patching output file 55/68
-Patching output file 56/68
-Patching output file 57/68
-Patching output file 58/68
-Patching output file 59/68
-Patching output file 60/68
-Patching output file 61/68
-Patching output file 62/68
-Patching output file 63/68
-Patching output file 64/68
-Patching output file 65/68
-Patching output file 66/68
-Patching output file 67/68
-Patching output file 68/68
-type lookup cache used 5627/65536 hits=29302 misses=5994
-symbol lookup cache used 7383/65536 hits=34997 misses=7383
+Running dot for graph 1/7
+Running dot for graph 2/7
+Running dot for graph 3/7
+Running dot for graph 4/7
+Running dot for graph 5/7
+Running dot for graph 6/7
+Running dot for graph 7/7
+Patching output file 1/13
+Patching output file 2/13
+Patching output file 3/13
+Patching output file 4/13
+Patching output file 5/13
+Patching output file 6/13
+Patching output file 7/13
+Patching output file 8/13
+Patching output file 9/13
+Patching output file 10/13
+Patching output file 11/13
+Patching output file 12/13
+Patching output file 13/13
+type lookup cache used 5633/65536 hits=29331 misses=6000
+symbol lookup cache used 7387/65536 hits=35055 misses=7387
 finished...
