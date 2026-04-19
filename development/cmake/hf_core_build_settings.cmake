@@ -618,7 +618,11 @@ if(HF_CORE_MCU STREQUAL "ESP32")
         list(APPEND HF_CORE_IDF_REQUIRES esp_driver_uart)
     endif()
     if(HF_CORE_ENABLE_CAN)
-        list(APPEND HF_CORE_IDF_REQUIRES esp_driver_twai)
+        # esp_driver_twai was split from 'driver' in IDF >= 5.5.
+        # For older IDF versions, TWAI is part of 'driver' (already required above).
+        if(EXISTS "$ENV{IDF_PATH}/components/esp_driver_twai")
+            list(APPEND HF_CORE_IDF_REQUIRES esp_driver_twai)
+        endif()
     endif()
     if(HF_CORE_ENABLE_ADC)
         list(APPEND HF_CORE_IDF_REQUIRES esp_adc)
