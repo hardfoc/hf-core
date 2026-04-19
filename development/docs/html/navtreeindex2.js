@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"classHalSpiTle92466edComm.html#a50b2039ea26470371f6e75af11ff7b17":[11,9,0,14],
+"classHalSpiTle92466edComm.html#a63f84b0db1a338f4c02e76e8d01c8b65":[11,9,0,11],
+"classHalSpiTle92466edComm.html#a69ba2d992118332b715f6ab8e1fa0a56":[11,9,0,5],
 "classHalSpiTle92466edComm.html#a74ccbe3aa8f726c7b9ca9096636dcf14":[11,9,0,9],
 "classHalSpiTle92466edComm.html#a9aca0311d71b2663db79601720b3de07":[11,9,0,2],
 "classHalSpiTle92466edComm.html#aca4238d0c15c631b7fca413fdf7420ab":[11,9,0,4],
@@ -246,8 +249,5 @@ var NAVTREEINDEX2 =
 "classNtcTemperatureHandler.html#a83d109b4035a696dac6b1b82bfab5976":[13,0,41,74],
 "classNtcTemperatureHandler.html#a881e82a3cd93b8d3596dddfa5ce921a7":[13,0,41,22],
 "classNtcTemperatureHandler.html#a8c1949119402a748e1000e473e263703":[13,0,41,10],
-"classNtcTemperatureHandler.html#a8d529921d7de8911e42ed5ba0af27762":[13,0,41,30],
-"classNtcTemperatureHandler.html#a8eb11d54de41d7ce2a1a67c4b2af1188":[13,0,41,29],
-"classNtcTemperatureHandler.html#a8eb439565fe06b8e62fb87ad9ee0b0a1":[13,0,41,16],
-"classNtcTemperatureHandler.html#a97fa93b2ed6337e24e056b46fbe331c7":[13,0,41,35]
+"classNtcTemperatureHandler.html#a8d529921d7de8911e42ed5ba0af27762":[13,0,41,30]
 };

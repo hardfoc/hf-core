@@ -1,5 +1,8 @@
 var NAVTREEINDEX6 =
 {
+"logger__comprehensive__test_8cpp.html#a9b574642318732afa08d5a9bde7097b4":[14,0,0,0,0,2,2,12],
+"logger__comprehensive__test_8cpp.html#aa3eec9edd2cb6d63a4a0e25e755ec9b7":[14,0,0,0,0,2,2,4],
+"logger__comprehensive__test_8cpp.html#aa71717d38673c8c6f0a710c66ffcd3f7":[14,0,0,0,0,2,2,14],
 "logger__comprehensive__test_8cpp.html#aaff89257c54366921eebb8ec1348b1fd":[14,0,0,0,0,2,2,17],
 "logger__comprehensive__test_8cpp.html#ab5b0c2bb9ce717836b0e59a1e21b1d87":[14,0,0,0,0,2,2,13],
 "logger__comprehensive__test_8cpp.html#abb683f84ebb2997730a8f0a9971ab81e":[14,0,0,0,0,2,2,8],
@@ -246,8 +249,5 @@ var NAVTREEINDEX6 =
 "structBno08xCalibrationStatus.html#a115a17c08837ca2ac2512c3e7816c5e8":[13,0,13,0],
 "structBno08xCalibrationStatus.html#a1682b52f8db214f1d43c3a249843f765":[13,0,13,1],
 "structBno08xCalibrationStatus.html#a377e8ca2f2ce5d05dc035906ace9be47":[13,0,13,4],
-"structBno08xCalibrationStatus.html#a3d84d0ced6d22135f0654d2ba2a3bbe6":[13,0,13,3],
-"structBno08xCalibrationStatus.html#ad8fbed7b8273a998f3ce83c4f61e65bc":[13,0,13,2],
-"structBno08xConfig.html":[13,0,14],
-"structBno08xConfig.html#a0cd624ccac722809d72a994bc808747b":[13,0,14,10]
+"structBno08xCalibrationStatus.html#a3d84d0ced6d22135f0654d2ba2a3bbe6":[13,0,13,3]
 };

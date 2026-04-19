@@ -1,5 +1,8 @@
 var NAVTREEINDEX7 =
 {
+"structBno08xCalibrationStatus.html#ad8fbed7b8273a998f3ce83c4f61e65bc":[13,0,13,2],
+"structBno08xConfig.html":[13,0,14],
+"structBno08xConfig.html#a0cd624ccac722809d72a994bc808747b":[13,0,14,10],
 "structBno08xConfig.html#a1cd7b744e9d407cd6e0af992f5fe3d05":[13,0,14,7],
 "structBno08xConfig.html#a1e6923fc6542b050c2ab4fdc587d55bb":[13,0,14,15],
 "structBno08xConfig.html#a288386b0400202469a3657b3d7c9b38e":[13,0,14,4],
@@ -246,8 +249,5 @@ var NAVTREEINDEX7 =
 "tmc9660__handler__comprehensive__test_8cpp.html#a95410ca8457f6d2bdcb84c55e6ae570b":[14,0,0,0,0,0,8,25],
 "tmc9660__handler__comprehensive__test_8cpp.html#aa2426cd2dfabbaf507101f87f03d4618":[14,0,0,0,0,0,8,28],
 "tmc9660__handler__comprehensive__test_8cpp.html#aaff89257c54366921eebb8ec1348b1fd":[14,0,0,0,0,0,8,37],
-"tmc9660__handler__comprehensive__test_8cpp.html#ab1b5aee0d0a3683b28ff6764bdaf545a":[14,0,0,0,0,0,8,8],
-"tmc9660__handler__comprehensive__test_8cpp.html#ab1eea92e5b15a7f4cf1f02166c6851c9":[14,0,0,0,0,0,8,24],
-"tmc9660__handler__comprehensive__test_8cpp.html#ab211e869f762bcf4e00d4e41f2c51cd5":[14,0,0,0,0,0,8,17],
-"tmc9660__handler__comprehensive__test_8cpp.html#ab7772e69feb610f76ed793f35074a592":[14,0,0,0,0,0,8,26]
+"tmc9660__handler__comprehensive__test_8cpp.html#ab1b5aee0d0a3683b28ff6764bdaf545a":[14,0,0,0,0,0,8,8]
 };

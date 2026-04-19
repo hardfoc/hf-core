@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.dhPE2t
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.dhPE2t' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.FGFw8x
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.FGFw8x' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -551,7 +551,7 @@ Generating caller graph for function test_singleton_access
 Generating docs for file rtos_wrap_comprehensive_test.cpp...
 Generating call graph for function app_main
 Generating call graph for function test_base_thread
-Generating caller graph for function te/home/runner/work/hf-core/hf-core/handlers/alicat_basis2/AlicatBasis2Handler.h:169: warning: The following parameter of AlicatBasis2Handler::Discover(std::uint8_t *present_bitmap, std::size_t bitmap_bytes, std::uint16_t probe_timeout_ms=30) is not documented:
+Generating caller graph for function te/home/runner/work/hf-core/hf-core/handlers/alicat_basis2/AlicatBasis2Handler.h:172: warning: The following parameter of AlicatBasis2Handler::Discover(std::uint8_t *present_bitmap, std::size_t bitmap_bytes, std::uint16_t probe_timeout_ms=30) is not documented:
   parameter 'bitmap_bytes'
 st_base_thread
 Generating caller graph for function test_event_flags
@@ -1139,6 +1139,6 @@ writing tag file...
 Running plantuml with JAVA...
 Running dot...
 Patching output file 1/1
-type lookup cache used 5558/65536 hits=29107 misses=5925
-symbol lookup cache used 7298/65536 hits=34579 misses=7298
+type lookup cache used 5571/65536 hits=29135 misses=5938
+symbol lookup cache used 7314/65536 hits=34656 misses=7314
 finished...

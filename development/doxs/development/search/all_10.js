@@ -1,8 +1,8 @@
 var searchData=
 [
   ['range_0',['range',['../structAds7952HandlerConfig.html#a412f1a1bd62d08b4ce5139ac34e9a469',1,'Ads7952HandlerConfig']]],
-  ['read_1',['read',['../classHalUartAlicatBasis2Comm.html#a9a370f8aee1dc9745cbb5c3ff8dc1ba9',1,'HalUartAlicatBasis2Comm']]],
-  ['read_2',['Read',['../classHalI2cBno08xComm.html#abcc28793c108a7f216b6e09247c5d849',1,'HalI2cBno08xComm::Read()'],['../classHalSpiBno08xComm.html#adcd09b77763bed245b9573e6f743f2a0',1,'HalSpiBno08xComm::Read()'],['../classHalI2cPca9685Comm.html#a527a3e92d1b7e9ee2e4d188f179b6929',1,'HalI2cPca9685Comm::Read()'],['../classHalI2cPcal95555Comm.html#a4a772bc05d784a0ef807a4c3c099beb0',1,'HalI2cPcal95555Comm::Read()']]],
+  ['read_1',['Read',['../classHalI2cBno08xComm.html#abcc28793c108a7f216b6e09247c5d849',1,'HalI2cBno08xComm::Read()'],['../classHalSpiBno08xComm.html#adcd09b77763bed245b9573e6f743f2a0',1,'HalSpiBno08xComm::Read()'],['../classHalI2cPca9685Comm.html#a527a3e92d1b7e9ee2e4d188f179b6929',1,'HalI2cPca9685Comm::Read()'],['../classHalI2cPcal95555Comm.html#a4a772bc05d784a0ef807a4c3c099beb0',1,'HalI2cPcal95555Comm::Read()']]],
+  ['read_2',['read',['../classHalUartAlicatBasis2Comm.html#a9a370f8aee1dc9745cbb5c3ff8dc1ba9',1,'HalUartAlicatBasis2Comm']]],
   ['readainchannel_3',['ReadAinChannel',['../classTmc9660Handler_1_1Adc.html#a7b53c42cd28f39699d34fc180a3df8f6',1,'Tmc9660Handler::Adc']]],
   ['readallchannels_4',['ReadAllChannels',['../classAds7952Handler.html#adf5fd6ce6e060862d6d0f83b896b403f',1,'Ads7952Handler']]],
   ['readchannel_5',['ReadChannel',['../classAds7952Handler.html#a4796fe85c52cfd13d55f550063bf18af',1,'Ads7952Handler::ReadChannel()'],['../classTmc9660AdcWrapper.html#a42eebe0e3090b205a166cf3186bd121e',1,'Tmc9660AdcWrapper::ReadChannel()'],['../classTmc9660Handler_1_1Adc.html#a1abd9e2f3575e82c6679befeeba32b89',1,'Tmc9660Handler::Adc::ReadChannel()']]],
