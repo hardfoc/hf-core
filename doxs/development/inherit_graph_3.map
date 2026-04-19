@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,168,31"/>
-<area shape="rect" id="Node000001" href="$classAs5047uSpiAdapter.html" title="CRTP adapter connecting BaseSpi interface to AS5047U SpiInterface." alt="" coords="216,5,365,31"/>
-<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="182,15,216,15,216,21,182,21"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,207,31"/>
+<area shape="rect" id="Node000001" href="$classHalUartAlicatBasis2Comm.html" title="CRTP adapter that turns a BaseUart&amp; into a transport the alicat_basis2::Driver can drive." alt="" coords="255,5,449,31"/>
+<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="221,15,254,15,254,21,221,21"/>
 </map>

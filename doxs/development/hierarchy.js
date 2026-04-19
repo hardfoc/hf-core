@@ -5,6 +5,8 @@ var hierarchy =
     ] ],
     [ "Ads7952Diagnostics", "structAds7952Diagnostics.html", null ],
     [ "Ads7952HandlerConfig", "structAds7952HandlerConfig.html", null ],
+    [ "AlicatBasis2Handler", "classAlicatBasis2Handler.html", null ],
+    [ "AlicatBasis2HandlerConfig", "structAlicatBasis2HandlerConfig.html", null ],
     [ "As5047uConfig", "structAs5047uConfig.html", null ],
     [ "As5047uDiagnostics", "structAs5047uDiagnostics.html", null ],
     [ "As5047uHandler", "classAs5047uHandler.html", null ],
@@ -98,6 +100,9 @@ var hierarchy =
     ] ],
     [ "tmc9660::UartCommInterface", null, [
       [ "HalUartTmc9660Comm", "classHalUartTmc9660Comm.html", null ]
+    ] ],
+    [ "alicat_basis2::UartInterface", null, [
+      [ "HalUartAlicatBasis2Comm", "classHalUartAlicatBasis2Comm.html", null ]
     ] ],
     [ "Ws2812Handler", "classWs2812Handler.html", null ]
 ];
