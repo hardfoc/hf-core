@@ -24,11 +24,14 @@ public:
         return adc_ != nullptr && adc_->EnsureInitialized();
     }
 
-    hf_adc_err_t ReadChannelV(uint8_t channel, float* voltage_v) noexcept {
+    /** @return 0 on success (matches Mcp9700Thermistor<> driver template). */
+    int ReadChannelV(uint8_t channel, float* voltage_v) noexcept {
         if (adc_ == nullptr || voltage_v == nullptr) {
-            return hf_adc_err_t::ADC_ERR_NULL_POINTER;
+            return static_cast<int>(hf_adc_err_t::ADC_ERR_NULL_POINTER);
         }
-        return adc_->ReadChannelV(static_cast<hf_channel_id_t>(channel), *voltage_v);
+        const hf_adc_err_t err =
+            adc_->ReadChannelV(static_cast<hf_channel_id_t>(channel), *voltage_v);
+        return (err == hf_adc_err_t::ADC_SUCCESS) ? 0 : static_cast<int>(err);
     }
 
 private:
