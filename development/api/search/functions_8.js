@@ -21,5 +21,6 @@ var searchData=
   ['isready_18',['IsReady',['../classHalSpiMax22200Comm.html#a6217c4c3006d026b9bdbe2155fcb16b2',1,'HalSpiMax22200Comm::IsReady()'],['../classHalSpiTle92466edComm.html#a74ccbe3aa8f726c7b9ca9096636dcf14',1,'HalSpiTle92466edComm::IsReady()']]],
   ['issensorready_19',['IsSensorReady',['../classAs5047uHandler.html#abe61e6ac904d2cb3ab8b6d679aacfb97',1,'As5047uHandler']]],
   ['issleeping_20',['IsSleeping',['../classNtcTemperatureHandler.html#a4c4dba5256ded055f5b3461f8d435286',1,'NtcTemperatureHandler']]],
-  ['isspi_21',['IsSpi',['../classTmc5160Handler.html#a7167cbb3ba74139d12e37e72d778d6b1',1,'Tmc5160Handler']]]
+  ['isspi_21',['IsSpi',['../classTmc5160Handler.html#a7167cbb3ba74139d12e37e72d778d6b1',1,'Tmc5160Handler']]],
+  ['issupportedbaudbps_22',['IsSupportedBaudBps',['../namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#aeb2770bf09308f306ebf0b62df9fab6d',1,'anonymous_namespace{AlicatBasis2Handler.cpp}']]]
 ];

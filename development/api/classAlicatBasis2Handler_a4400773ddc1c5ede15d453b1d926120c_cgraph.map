@@ -1,0 +1,6 @@
+<map id="AlicatBasis2Handler::DiscoverAcrossBauds" name="AlicatBasis2Handler::DiscoverAcrossBauds">
+<area shape="rect" id="Node000001" title="Sweep multiple baud rates, returning every BASIS&#45;2 found on the bus along with the baud rate it answe..." alt="" coords="5,37,176,77"/>
+<area shape="rect" id="Node000002" href="$namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#ac74ab57c3bd5279c52f56c677d73730d" title=" " alt="" coords="224,29,404,84"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,54,210,54,210,59,176,59"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="271,29,271,19,279,10,293,5,314,3,339,6,353,14,351,18,337,11,314,8,294,10,282,15,276,21,276,29"/>
+</map>

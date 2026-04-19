@@ -1,0 +1,12 @@
+<map id="AlicatBasis2Handler::NormalizeBusBaud" name="AlicatBasis2Handler::NormalizeBusBaud">
+<area shape="rect" id="Node000001" title="Normalise every device on the bus to the same baud rate." alt="" coords="5,139,160,179"/>
+<area shape="rect" id="Node000002" href="$namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#a50d9ea9c8b3553537fef28c9ee07cb30" title=" " alt="" coords="219,29,399,84"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,137,207,93,221,87,223,92,209,98,122,142"/>
+<area shape="rect" id="Node000003" href="$namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#aeb2770bf09308f306ebf0b62df9fab6d" title=" " alt="" coords="208,132,411,187"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="160,157,194,157,194,162,160,162"/>
+<area shape="rect" id="Node000004" href="$namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#ac74ab57c3bd5279c52f56c677d73730d" title=" " alt="" coords="219,235,399,289"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="129,177,237,227,235,231,127,182"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="265,29,265,19,273,10,288,5,309,3,335,6,350,14,347,18,333,11,309,8,289,10,276,15,270,21,270,29"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="265,132,265,122,273,113,288,107,309,105,335,108,350,116,347,121,333,114,309,111,289,113,276,117,270,124,270,132"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="265,235,265,224,273,216,288,210,309,208,335,211,350,219,347,224,333,216,309,213,289,215,276,220,270,226,270,235"/>
+</map>

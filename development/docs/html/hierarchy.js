@@ -46,6 +46,7 @@ var hierarchy =
       [ "HalSpiBno08xComm", "classHalSpiBno08xComm.html", null ]
     ] ],
     [ "Ws2812Handler::Config", "structWs2812Handler_1_1Config.html", null ],
+    [ "AlicatBasis2Handler::DiscoveredDevice", "structAlicatBasis2Handler_1_1DiscoveredDevice.html", null ],
     [ "std::false_type", null, [
       [ "Tle92466edHandler::is_driver_result< T >", "structTle92466edHandler_1_1is__driver__result.html", null ]
     ] ],

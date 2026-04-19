@@ -53,6 +53,7 @@ var searchData=
   ['issensorready_50',['IsSensorReady',['../classAs5047uHandler.html#abe61e6ac904d2cb3ab8b6d679aacfb97',1,'As5047uHandler']]],
   ['issleeping_51',['IsSleeping',['../classNtcTemperatureHandler.html#a4c4dba5256ded055f5b3461f8d435286',1,'NtcTemperatureHandler']]],
   ['isspi_52',['IsSpi',['../classTmc5160Handler.html#a7167cbb3ba74139d12e37e72d778d6b1',1,'Tmc5160Handler']]],
-  ['italic_53',['ITALIC',['../Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a25093123b8943308104129e1d762f3b7',1,'Logger.h']]],
-  ['iterations_54',['iterations',['../structHandlerTaskArgs.html#abca62a9df4baab74ed4369b05b2cb2e2',1,'HandlerTaskArgs']]]
+  ['issupportedbaudbps_53',['IsSupportedBaudBps',['../namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#aeb2770bf09308f306ebf0b62df9fab6d',1,'anonymous_namespace{AlicatBasis2Handler.cpp}']]],
+  ['italic_54',['ITALIC',['../Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a25093123b8943308104129e1d762f3b7',1,'Logger.h']]],
+  ['iterations_55',['iterations',['../structHandlerTaskArgs.html#abca62a9df4baab74ed4369b05b2cb2e2',1,'HandlerTaskArgs']]]
 ];

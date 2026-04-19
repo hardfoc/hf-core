@@ -224,8 +224,8 @@ var searchData=
   ['total_5freads_221',['total_reads',['../structAds7952Diagnostics.html#ae63b7d77f408be06c65dd7e2d7207bef',1,'Ads7952Diagnostics']]],
   ['total_5freads_5f_222',['total_reads_',['../classAds7952Handler.html#a22605a5709c4b52434d13325edc726de',1,'Ads7952Handler']]],
   ['total_5ftests_223',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
-  ['transfer_224',['Transfer',['../classHalSpiMax22200Comm.html#ab69a5625afd94e62e4f973eea89979a2',1,'HalSpiMax22200Comm']]],
-  ['transfer_225',['transfer',['../classAds7952SpiAdapter.html#a58116a4703d7b30c2c215ca1539317c5',1,'Ads7952SpiAdapter::transfer()'],['../classAs5047uSpiAdapter.html#a5c90fccf33a360042821dcd5f94aa941',1,'As5047uSpiAdapter::transfer()']]],
+  ['transfer_224',['transfer',['../classAds7952SpiAdapter.html#a58116a4703d7b30c2c215ca1539317c5',1,'Ads7952SpiAdapter::transfer()'],['../classAs5047uSpiAdapter.html#a5c90fccf33a360042821dcd5f94aa941',1,'As5047uSpiAdapter::transfer()']]],
+  ['transfer_225',['Transfer',['../classHalSpiMax22200Comm.html#ab69a5625afd94e62e4f973eea89979a2',1,'HalSpiMax22200Comm']]],
   ['transfer32_226',['Transfer32',['../classHalSpiTle92466edComm.html#a63f84b0db1a338f4c02e76e8d01c8b65',1,'HalSpiTle92466edComm']]],
   ['transfermulti_227',['TransferMulti',['../classHalSpiTle92466edComm.html#a058b8f150542b2e746f08a1f3b84208b',1,'HalSpiTle92466edComm']]]
 ];

@@ -1,5 +1,12 @@
 var NAVTREEINDEX2 =
 {
+"classHalSpiTle92466edComm.html#a082f6fda7c85de00474f24f2bae90691":[11,9,0,6],
+"classHalSpiTle92466edComm.html#a1866f3c39835beae58426fdfd47d7435":[11,9,0,17],
+"classHalSpiTle92466edComm.html#a2155df77a576e4c58d2365bc3ae39951":[11,9,0,16],
+"classHalSpiTle92466edComm.html#a25410af1693bc75af0fcb40d7cce22ab":[11,9,0,3],
+"classHalSpiTle92466edComm.html#a2f62649da77db8dcc44340f1bcf31973":[11,9,0,8],
+"classHalSpiTle92466edComm.html#a324a1156fd81d3aaf3c6d6f07296ae3b":[11,9,0,7],
+"classHalSpiTle92466edComm.html#a3e4ab75d1716561d08697a47917f56a3":[11,9,0,15],
 "classHalSpiTle92466edComm.html#a50b2039ea26470371f6e75af11ff7b17":[11,9,0,14],
 "classHalSpiTle92466edComm.html#a63f84b0db1a338f4c02e76e8d01c8b65":[11,9,0,11],
 "classHalSpiTle92466edComm.html#a69ba2d992118332b715f6ab8e1fa0a56":[11,9,0,5],
@@ -242,12 +249,5 @@ var NAVTREEINDEX2 =
 "classNtcTemperatureHandler.html#a69d2acbb9fad640b19febc3db8f76773":[13,0,41,67],
 "classNtcTemperatureHandler.html#a6f1cba555ce4adf0309324532dfb60e8":[13,0,41,76],
 "classNtcTemperatureHandler.html#a6f587e3c3ec35f09364655144e325a36":[13,0,41,59],
-"classNtcTemperatureHandler.html#a7241123186a31ae2bccd66c1e042e789":[13,0,41,54],
-"classNtcTemperatureHandler.html#a7445e75a00f245e9a74ee1d846d3248e":[13,0,41,71],
-"classNtcTemperatureHandler.html#a74b308efe15b28f81e5c48f23470fba1":[13,0,41,75],
-"classNtcTemperatureHandler.html#a7cd3aa59989bec0514d6717d345d8466":[13,0,41,61],
-"classNtcTemperatureHandler.html#a83d109b4035a696dac6b1b82bfab5976":[13,0,41,74],
-"classNtcTemperatureHandler.html#a881e82a3cd93b8d3596dddfa5ce921a7":[13,0,41,22],
-"classNtcTemperatureHandler.html#a8c1949119402a748e1000e473e263703":[13,0,41,10],
-"classNtcTemperatureHandler.html#a8d529921d7de8911e42ed5ba0af27762":[13,0,41,30]
+"classNtcTemperatureHandler.html#a7241123186a31ae2bccd66c1e042e789":[13,0,41,54]
 };

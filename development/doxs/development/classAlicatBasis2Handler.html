@@ -92,6 +92,7 @@ $(function(){initNavTree('classAlicatBasis2Handler.html',''); initResizable(); }
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
@@ -111,10 +112,19 @@ Collaboration diagram for AlicatBasis2Handler:</div>
 <div class="center"><iframe scrolling="no" frameborder="0" src="classAlicatBasis2Handler__coll__graph.svg" width="782" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAlicatBasis2Handler_1_1DiscoveredDevice.html">DiscoveredDevice</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One discovered instrument and the baud rate it was found at.  <a href="structAlicatBasis2Handler_1_1DiscoveredDevice.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a9d598dbc4dee826db750abd1d6735d4c" id="r_a9d598dbc4dee826db750abd1d6735d4c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d598dbc4dee826db750abd1d6735d4c">DriverType</a> = alicat_basis2::Driver&lt;<a class="el" href="classHalUartAlicatBasis2Comm.html">HalUartAlicatBasis2Comm</a>&gt;</td></tr>
 <tr class="separator:a9d598dbc4dee826db750abd1d6735d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5e74b2aaf285a5292b5e7fe2a46aae3" id="r_ad5e74b2aaf285a5292b5e7fe2a46aae3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5e74b2aaf285a5292b5e7fe2a46aae3">HostBaudSetter</a> = std::function&lt;bool(std::uint32_t bps)&gt;</td></tr>
+<tr class="memdesc:ad5e74b2aaf285a5292b5e7fe2a46aae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback used by <code>DiscoverAcrossBauds</code> / <code>NormalizeBusBaud</code> to retune the <b>host UART</b> when probing a new baud rate.  <br /></td></tr>
+<tr class="separator:ad5e74b2aaf285a5292b5e7fe2a46aae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -181,8 +191,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a898466d43a57b153814e922dbc428727" id="r_a898466d43a57b153814e922dbc428727"><td class="memItemLeft" align="right" valign="top">alicat_basis2::DriverResult&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a898466d43a57b153814e922dbc428727">FactoryRestore</a> () noexcept</td></tr>
 <tr class="separator:a898466d43a57b153814e922dbc428727"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bdba31a2f80ef97a6b2c98dc83d90a0" id="r_a9bdba31a2f80ef97a6b2c98dc83d90a0"><td class="memItemLeft" align="right" valign="top">alicat_basis2::DriverResult&lt; std::uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9bdba31a2f80ef97a6b2c98dc83d90a0">Discover</a> (std::uint8_t *present_bitmap, std::size_t bitmap_bytes, std::uint16_t probe_timeout_ms=30) noexcept</td></tr>
-<tr class="memdesc:a9bdba31a2f80ef97a6b2c98dc83d90a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bus-wide discovery sweep.  <br /></td></tr>
+<tr class="memdesc:a9bdba31a2f80ef97a6b2c98dc83d90a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bus-wide discovery sweep at the <b>current host baud only</b>.  <br /></td></tr>
 <tr class="separator:a9bdba31a2f80ef97a6b2c98dc83d90a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4400773ddc1c5ede15d453b1d926120c" id="r_a4400773ddc1c5ede15d453b1d926120c"><td class="memItemLeft" align="right" valign="top">alicat_basis2::DriverResult&lt; std::size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4400773ddc1c5ede15d453b1d926120c">DiscoverAcrossBauds</a> (<a class="el" href="structAlicatBasis2Handler_1_1DiscoveredDevice.html">DiscoveredDevice</a> *out, std::size_t max_devices, const <a class="el" href="#ad5e74b2aaf285a5292b5e7fe2a46aae3">HostBaudSetter</a> &amp;set_host_baud, std::uint16_t probe_timeout_ms=30, std::uint32_t settle_ms=25, const std::uint32_t *baud_list_bps=nullptr, std::size_t baud_list_count=0) noexcept</td></tr>
+<tr class="memdesc:a4400773ddc1c5ede15d453b1d926120c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sweep multiple baud rates, returning every BASIS-2 found on the bus along with the baud rate it answered at.  <br /></td></tr>
+<tr class="separator:a4400773ddc1c5ede15d453b1d926120c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd0909cb398b2b50a90f161bd3b805d0" id="r_acd0909cb398b2b50a90f161bd3b805d0"><td class="memItemLeft" align="right" valign="top">alicat_basis2::DriverResult&lt; std::size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd0909cb398b2b50a90f161bd3b805d0">NormalizeBusBaud</a> (std::uint32_t target_bps, const <a class="el" href="structAlicatBasis2Handler_1_1DiscoveredDevice.html">DiscoveredDevice</a> *devices, std::size_t device_count, const <a class="el" href="#ad5e74b2aaf285a5292b5e7fe2a46aae3">HostBaudSetter</a> &amp;set_host_baud, std::uint8_t *failed_addresses_bitmap=nullptr, std::size_t failed_bitmap_bytes=0, std::uint16_t verify_timeout_ms=100) noexcept</td></tr>
+<tr class="memdesc:acd0909cb398b2b50a90f161bd3b805d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalise every device on the bus to the same baud rate.  <br /></td></tr>
+<tr class="separator:acd0909cb398b2b50a90f161bd3b805d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add62849756ef0690f6ce7eca4109d356" id="r_add62849756ef0690f6ce7eca4109d356"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9d598dbc4dee826db750abd1d6735d4c">DriverType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add62849756ef0690f6ce7eca4109d356">GetDriver</a> () noexcept</td></tr>
 <tr class="memdesc:add62849756ef0690f6ce7eca4109d356"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direct access to the underlying driver (for advanced use; mutex must be held).  <br /></td></tr>
 <tr class="separator:add62849756ef0690f6ce7eca4109d356"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -232,6 +248,24 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad5e74b2aaf285a5292b5e7fe2a46aae3" name="ad5e74b2aaf285a5292b5e7fe2a46aae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5e74b2aaf285a5292b5e7fe2a46aae3">&#9670;&#160;</a></span>HostBaudSetter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#ad5e74b2aaf285a5292b5e7fe2a46aae3">AlicatBasis2Handler::HostBaudSetter</a> = std::function&lt;bool(std::uint32_t bps)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback used by <code>DiscoverAcrossBauds</code> / <code>NormalizeBusBaud</code> to retune the <b>host UART</b> when probing a new baud rate. </p>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the host UART successfully switched to <code>bps</code>, <code>false</code> to skip that baud entry.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This is intentionally injected from the application — the handler only knows about a <code>BaseUart&amp;</code> (which has no runtime baud setter), so the caller wires in whichever MCU-specific call applies (e.g. <code>EspUart::SetBaudRate(bps)</code>). </dd></dl>
 
 </div>
 </div>
@@ -411,16 +445,99 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Bus-wide discovery sweep. </p>
+<p>Bus-wide discovery sweep at the <b>current host baud only</b>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">present_bitmap</td><td>31-byte bitmap; bit N = address N is alive. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">present_bitmap</td><td>≥32-byte bitmap; bit N = address N is alive. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">bitmap_bytes</td><td>Size of <code>present_bitmap</code> (must be ≥32). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">probe_timeout_ms</td><td>Per-address probe timeout (ms). </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number of present devices, or DriverError on bus failure.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Disables the per-handler address temporarily; restored on exit. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Disables the per-handler address temporarily; restored on exit. This finds devices that match the host UART's current baud only — use <code><a class="el" href="#a4400773ddc1c5ede15d453b1d926120c" title="Sweep multiple baud rates, returning every BASIS-2 found on the bus along with the baud rate it answe...">DiscoverAcrossBauds()</a></code> to also find devices at other baud rates. </dd></dl>
+
+</div>
+</div>
+<a id="a4400773ddc1c5ede15d453b1d926120c" name="a4400773ddc1c5ede15d453b1d926120c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4400773ddc1c5ede15d453b1d926120c">&#9670;&#160;</a></span>DiscoverAcrossBauds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">al::DriverResult&lt; std::size_t &gt; AlicatBasis2Handler::DiscoverAcrossBauds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structAlicatBasis2Handler_1_1DiscoveredDevice.html">DiscoveredDevice</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>max_devices</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#ad5e74b2aaf285a5292b5e7fe2a46aae3">HostBaudSetter</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>set_host_baud</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint16_t</td>          <td class="paramname"><span class="paramname"><em>probe_timeout_ms</em><span class="paramdefsep"> = </span><span class="paramdefval">30</span>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint32_t</td>          <td class="paramname"><span class="paramname"><em>settle_ms</em><span class="paramdefsep"> = </span><span class="paramdefval">25</span>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::uint32_t *</td>          <td class="paramname"><span class="paramname"><em>baud_list_bps</em><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>baud_list_count</em><span class="paramdefsep"> = </span><span class="paramdefval">0</span></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sweep multiple baud rates, returning every BASIS-2 found on the bus along with the baud rate it answered at. </p>
+<p>For each baud in <code>baud_list</code> the handler:</p><ol type="1">
+<li>Calls <code>set_host_baud(baud)</code> to retune the host UART.</li>
+<li>Sleeps <code>settle_ms</code> so any stale RX bytes drain.</li>
+<li>Runs <code>DiscoverPresentAddresses()</code> at that baud.</li>
+<li>Records <code>{addr, baud}</code> for every responder that isn't already in <code>out</code> (first-seen-baud wins).</li>
+</ol>
+<p>When <code>baud_list</code> is <code>nullptr</code> the handler iterates over every value in <code>alicat_basis2::BaudRate</code> (4800/9600/19200/38400/57600/115200).</p>
+<p>On exit the host UART is restored to whatever baud was active <b>last</b> — typically you should follow the call with <code><a class="el" href="#acd0909cb398b2b50a90f161bd3b805d0" title="Normalise every device on the bus to the same baud rate.">NormalizeBusBaud()</a></code> (which retunes again) or an explicit <code>set_host_baud(target)</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Destination buffer (caller-allocated). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">max_devices</td><td>Capacity of <code>out</code> in elements. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">set_host_baud</td><td>Callback that retunes the host UART. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">probe_timeout_ms</td><td>Per-address timeout passed to the sweep. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">settle_ms</td><td>Delay after each baud change to let UART glitches subside (default 25 ms). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">baud_list_bps</td><td>Optional explicit baud-rate list in bits-per-second. <code>nullptr</code> = all six supported rates. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">baud_list_count</td><td>Number of entries in <code>baud_list_bps</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of devices populated into <code>out</code> on success; <code>BufferTooSmall</code> if <code>out</code> overflows; transport error if <code>set_host_baud</code> rejects every requested rate. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAlicatBasis2Handler_a4400773ddc1c5ede15d453b1d926120c_cgraph.svg" width="410" height="90"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -622,6 +739,86 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="acd0909cb398b2b50a90f161bd3b805d0" name="acd0909cb398b2b50a90f161bd3b805d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd0909cb398b2b50a90f161bd3b805d0">&#9670;&#160;</a></span>NormalizeBusBaud()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">al::DriverResult&lt; std::size_t &gt; AlicatBasis2Handler::NormalizeBusBaud </td>
+          <td>(</td>
+          <td class="paramtype">std::uint32_t</td>          <td class="paramname"><span class="paramname"><em>target_bps</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structAlicatBasis2Handler_1_1DiscoveredDevice.html">DiscoveredDevice</a> *</td>          <td class="paramname"><span class="paramname"><em>devices</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>device_count</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#ad5e74b2aaf285a5292b5e7fe2a46aae3">HostBaudSetter</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>set_host_baud</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint8_t *</td>          <td class="paramname"><span class="paramname"><em>failed_addresses_bitmap</em><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>failed_bitmap_bytes</em><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint16_t</td>          <td class="paramname"><span class="paramname"><em>verify_timeout_ms</em><span class="paramdefsep"> = </span><span class="paramdefval">100</span></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Normalise every device on the bus to the same baud rate. </p>
+<p>For every <code>{addr, baud}</code> in <code>devices</code> whose <code>baud != target_bps</code>:</p><ol type="1">
+<li>Retune the host UART to the device's current baud.</li>
+<li>Address that slave and issue <code>SetBaudRate(target)</code>. The device switches immediately — the response may be lost or garbled (datasheet calls this out explicitly), so the operation is logged but never aborts on a single failure.</li>
+<li>Retune the host UART to <code>target_bps</code>.</li>
+<li>Verify with a short identity read; on failure the device is left in <code>failed_addresses</code> (if provided).</li>
+</ol>
+<p>Devices already at <code>target_bps</code> are skipped (verified only). On exit the host UART is left at <code>target_bps</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">target_bps</td><td>Final baud rate everyone should use. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">devices</td><td>Output of <code><a class="el" href="#a4400773ddc1c5ede15d453b1d926120c" title="Sweep multiple baud rates, returning every BASIS-2 found on the bus along with the baud rate it answe...">DiscoverAcrossBauds()</a></code>. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">device_count</td><td>Length of <code>devices</code>. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">set_host_baud</td><td>Callback that retunes the host UART. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">failed_addresses</td><td>Optional buffer for slaves that could not be normalised; use a 32-byte bitmap. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">verify_timeout_ms</td><td>Per-device verify timeout (ms). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of devices that successfully end up at <code>target_bps</code> (verified by identity read), or transport / parameter error. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAlicatBasis2Handler_acd0909cb398b2b50a90f161bd3b805d0_cgraph.svg" width="416" height="295"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>

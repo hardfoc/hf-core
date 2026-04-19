@@ -1,5 +1,11 @@
 var namespaces_dup =
 [
+    [ "anonymous_namespace{AlicatBasis2Handler.cpp}", "namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html", [
+      [ "BaudFromBps", "namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#a50d9ea9c8b3553537fef28c9ee07cb30", null ],
+      [ "IsSupportedBaudBps", "namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#aeb2770bf09308f306ebf0b62df9fab6d", null ],
+      [ "SetBitmap", "namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#ac74ab57c3bd5279c52f56c677d73730d", null ],
+      [ "kAllBaudsBps", "namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#a964fadd70111271f4fac6a475ae1b340", null ]
+    ] ],
     [ "anonymous_namespace{Logger.cpp}", "namespaceanonymous__namespace_02Logger_8cpp_03.html", [
       [ "ToBaseLevel", "namespaceanonymous__namespace_02Logger_8cpp_03.html#a9d2b496fa1b4f4e28667d14e4b8cb190", null ]
     ] ],
