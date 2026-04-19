@@ -1,5 +1,9 @@
 var NAVTREEINDEX1 =
 {
+"classAds7952Handler.html#a13ed8f1aaf11c19d5670f9c32ac89cf2":[13,0,1,1],
+"classAds7952Handler.html#a163bcf0a7f0b0a9c62d3d716ba34e8ba":[13,0,1,27],
+"classAds7952Handler.html#a1cda2d2ebe4ce49e2c600cae260cb9ea":[13,0,1,20],
+"classAds7952Handler.html#a1e504e9bea722ce507b7fcdc6f258a5c":[13,0,1,35],
 "classAds7952Handler.html#a1f4a7527384227733fcd55932d1f1838":[13,0,1,3],
 "classAds7952Handler.html#a1ff4d6d7cc4a98462add32fa5f0c9cd0":[13,0,1,17],
 "classAds7952Handler.html#a22605a5709c4b52434d13325edc726de":[13,0,1,36],
@@ -245,9 +249,5 @@ var NAVTREEINDEX1 =
 "classHalUartTmc5160Comm.html#abeca3028fb6b1007c2457b08d3dfe113":[11,11,2,8],
 "classHalUartTmc9660Comm.html":[11,13,2],
 "classHalUartTmc9660Comm.html#a03e458d1dca85da1149a9040d8458c06":[11,13,2,3],
-"classHalUartTmc9660Comm.html#a044f4af1242b3fb2a9412523e575447a":[11,13,2,8],
-"classHalUartTmc9660Comm.html#a0df8ee2b226b44eb2e21728e4b7c44d7":[11,13,2,6],
-"classHalUartTmc9660Comm.html#a144c7a0f50237dff1fa25c235084c3e1":[11,13,2,0],
-"classHalUartTmc9660Comm.html#a1a992dfbd1c60452f19f38dff2754403":[11,13,2,1],
-"classHalUartTmc9660Comm.html#a213dfdf5041d1d98372413b9cd3a9b53":[11,13,2,7]
+"classHalUartTmc9660Comm.html#a044f4af1242b3fb2a9412523e575447a":[11,13,2,8]
 };

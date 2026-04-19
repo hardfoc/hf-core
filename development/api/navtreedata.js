@@ -77,13 +77,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Ads7952Handler_8cpp.html",
-"classAds7952Handler.html#a1f4a7527384227733fcd55932d1f1838",
-"classHalUartTmc9660Comm.html#a7d842bccb7b871b4fa3367935b3c4024",
-"classPca9685Handler.html#a8fbc5e520828ef7e52dea2fd8497b20c",
-"classTmc9660AdcWrapper.html#a7f754c5432b29313fb09f3cc353a4e6f",
-"functions_func.html",
-"ntc__handler__comprehensive__test_8cpp.html#abeeb81d2d6260428003e7a0bc0ad7181",
-"structTle92466edHandler_1_1is__driver__result_3_01tle92466ed_1_1DriverResult_3_01T_01_4_01_4.html"
+"classAds7952Handler.html#a13ed8f1aaf11c19d5670f9c32ac89cf2",
+"classHalUartTmc9660Comm.html#a0df8ee2b226b44eb2e21728e4b7c44d7",
+"classPca9685GpioPin.html#ae807550a0353d368df72b46e2e30fa88",
+"classTmc5160Handler.html#aa8d3ce7658218be523c82e0abcf83161",
+"esp32__test__config_8hpp.html#afe53210edc20c3ac9d8f2c19a2639750",
+"ntc__handler__comprehensive__test_8cpp.html",
+"structLogConfig.html#a855f3f5df85dce55ceb7b591f19d5b92"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -24,6 +24,7 @@ var hierarchy =
       [ "Pca9685PwmAdapter", "classPca9685PwmAdapter.html", null ]
     ] ],
     [ "BaseTemperature", null, [
+      [ "Mcp9700TemperatureHandler", "classMcp9700TemperatureHandler.html", null ],
       [ "NtcTemperatureHandler", "classNtcTemperatureHandler.html", null ],
       [ "Tmc9660Handler::Temperature", "classTmc9660Handler_1_1Temperature.html", null ]
     ] ],
@@ -59,6 +60,7 @@ var hierarchy =
     [ "LogConfig", "structLogConfig.html", null ],
     [ "Logger", "classLogger.html", null ],
     [ "Max22200Handler", "classMax22200Handler.html", null ],
+    [ "Mcp9700AdcAdapter", "classMcp9700AdcAdapter.html", null ],
     [ "ntc_temp_handler_config_t", "structntc__temp__handler__config__t.html", null ],
     [ "Pca9685Handler", "classPca9685Handler.html", null ],
     [ "Pcal95555Handler", "classPcal95555Handler.html", null ],
