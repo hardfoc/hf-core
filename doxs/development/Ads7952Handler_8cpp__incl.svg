@@ -12,8 +12,8 @@
 <g id="Node000001" class="node">
 <title>Node1</title>
 <g id="a_Node000001"><a xlink:title="Implementation of the ADS7952 12&#45;channel SAR ADC handler.">
-<polygon fill="#999999" stroke="#666666" points="334,-151 218,-151 218,-132 334,-132 334,-151"/>
-<text text-anchor="middle" x="276" y="-139" font-family="Helvetica,sans-Serif" font-size="10.00">Ads7952Handler.cpp</text>
+<polygon fill="#999999" stroke="#666666" points="482,-151 366,-151 366,-132 482,-132 482,-151"/>
+<text text-anchor="middle" x="424" y="-139" font-family="Helvetica,sans-Serif" font-size="10.00">Ads7952Handler.cpp</text>
 </a>
 </g>
 </g>
@@ -30,8 +30,8 @@
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M299.78,-131.98C324.23,-123.23 362.53,-109.51 390.15,-99.62"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="391.55,-102.84 399.79,-96.17 389.19,-96.25 391.55,-102.84"/>
+<path fill="none" stroke="#63b8ff" d="M424,-131.75C424,-124.8 424,-114.85 424,-106.13"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="427.5,-106.09 424,-96.09 420.5,-106.09 427.5,-106.09"/>
 </a>
 </g>
 </g>
@@ -48,8 +48,8 @@
 <g id="edge10_Node000001_Node000011" class="edge">
 <title>Node1&#45;&gt;Node11</title>
 <g id="a_edge10_Node000001_Node000011"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M217.77,-136.45C178.39,-131.49 126.56,-120.47 87,-96 64.15,-81.87 45.69,-56.38 35.02,-39.21"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="37.79,-37.01 29.68,-30.2 31.77,-40.58 37.79,-37.01"/>
+<path fill="none" stroke="#63b8ff" d="M365.87,-137.9C282.46,-133.33 133.7,-121.76 87,-96 63.13,-82.84 44.64,-56.5 34.28,-38.93"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="37.33,-37.22 29.38,-30.22 31.23,-40.65 37.33,-37.22"/>
 </a>
 </g>
 </g>
@@ -66,8 +66,8 @@
 <g id="edge11_Node000001_Node000012" class="edge">
 <title>Node1&#45;&gt;Node12</title>
 <g id="a_edge11_Node000001_Node000012"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M316.33,-131.98C362.55,-122.23 437.95,-106.3 484.9,-96.39"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="485.69,-99.8 494.75,-94.31 484.24,-92.95 485.69,-99.8"/>
+<path fill="none" stroke="#63b8ff" d="M440.55,-131.98C456.89,-123.57 482.13,-110.59 501.13,-100.81"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="502.86,-103.86 510.15,-96.17 499.66,-97.63 502.86,-103.86"/>
 </a>
 </g>
 </g>
@@ -84,8 +84,26 @@
 <g id="edge12_Node000001_Node000013" class="edge">
 <title>Node1&#45;&gt;Node13</title>
 <g id="a_edge12_Node000001_Node000013"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M258.17,-131.98C240.39,-123.5 212.85,-110.35 192.32,-100.54"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="193.69,-97.32 183.16,-96.17 190.67,-103.64 193.69,-97.32"/>
+<path fill="none" stroke="#63b8ff" d="M382.39,-131.98C337.4,-122.78 265.61,-108.09 216.95,-98.13"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="217.44,-94.66 206.94,-96.08 216.03,-101.52 217.44,-94.66"/>
+</a>
+</g>
+</g>
+<!-- Node16 -->
+<g id="Node000016" class="node">
+<title>Node16</title>
+<g id="a_Node000016"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="640.5,-96 577.5,-96 577.5,-77 640.5,-77 640.5,-96"/>
+<text text-anchor="middle" x="609" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">esp_log.h</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node16 -->
+<g id="edge17_Node000001_Node000016" class="edge">
+<title>Node1&#45;&gt;Node16</title>
+<g id="a_edge17_Node000001_Node000016"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M453.72,-131.98C485.05,-123.01 534.57,-108.82 569.24,-98.89"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="570.39,-102.2 579.04,-96.08 568.47,-95.47 570.39,-102.2"/>
 </a>
 </g>
 </g>

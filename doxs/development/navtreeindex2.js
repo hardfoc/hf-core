@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classHalUartTmc9660Comm.html#a7d842bccb7b871b4fa3367935b3c4024":[11,13,2,9],
 "classHalUartTmc9660Comm.html#a85aa3e262d86857902e11e818e2e818e":[11,13,2,5],
 "classHalUartTmc9660Comm.html#ac4e3272567e3486a74e62d53ccd814d9":[11,13,2,2],
 "classHalUartTmc9660Comm.html#ad5eebb3f68eb20fe923a9370d6120ece":[11,13,2,10],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "classPca9685Handler.html#a7fe3fe37643cadff2b344cd4fbc8ec13":[11,5,0,35],
 "classPca9685Handler.html#a81164b84390312d4971a435eeb464930":[11,5,0,6],
 "classPca9685Handler.html#a849d184def0cac7aa1fa9179659318ea":[11,5,0,5],
-"classPca9685Handler.html#a8d6e386b561fb3ac96b9afb5386ad239":[11,5,0,33],
-"classPca9685Handler.html#a8fbc5e520828ef7e52dea2fd8497b20c":[11,5,0,8]
+"classPca9685Handler.html#a8d6e386b561fb3ac96b9afb5386ad239":[11,5,0,33]
 };

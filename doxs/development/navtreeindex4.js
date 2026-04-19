@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"classTmc9660AdcWrapper.html#a7f754c5432b29313fb09f3cc353a4e6f":[13,0,48,6],
 "classTmc9660AdcWrapper.html#a81242df0d4a815840ddd924040a1b499":[13,0,48,7],
 "classTmc9660AdcWrapper.html#a9d61893186aaa1d768cf61038ab285cb":[13,0,48,4],
 "classTmc9660AdcWrapper.html#aa882341eb3bbf4bc62f53dea344f3297":[13,0,48,2],
@@ -241,13 +242,12 @@ var NAVTREEINDEX4 =
 "full__system__integration__test_8cpp.html#aaff89257c54366921eebb8ec1348b1fd":[14,0,0,0,0,1,0,13],
 "full__system__integration__test_8cpp.html#ab02326456d9f2a9466cae859c06f9f1a":[14,0,0,0,0,1,0,3],
 "full__system__integration__test_8cpp.html#ada81d900b56a67770ac7e61fc64ac706":[14,0,0,0,0,1,0,7],
-"functions.html":[13,3,0],
 "functions.html":[13,3,0,0],
+"functions.html":[13,3,0],
 "functions_b.html":[13,3,0,1],
 "functions_c.html":[13,3,0,2],
 "functions_d.html":[13,3,0,3],
 "functions_e.html":[13,3,0,4],
 "functions_f.html":[13,3,0,5],
-"functions_func.html":[13,3,1,0],
-"functions_func.html":[13,3,1]
+"functions_func.html":[13,3,1,0]
 };
