@@ -17,7 +17,7 @@ metadata:
   default_app: "general_utils_test"
   default_build_type: "Debug"
   target: "esp32s3"
-  idf_versions: ["release/v5.5", "release/v5.4"]
+  idf_versions: ["release/v5.5"]
   build_types: [["Debug", "Release"], ["Debug"]]
 
 
@@ -205,7 +205,7 @@ apps:
     source_file: "utils_tests/general_utils_comprehensive_test.cpp"
     category: "utils_testing"
     hardware_required: false
-    idf_versions: ["release/v5.5", "release/v5.4"]
+    idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]
     ci_enabled: true
     featured: true
@@ -221,7 +221,7 @@ apps:
     source_file: "utils_tests/rtos_wrap_comprehensive_test.cpp"
     category: "utils_testing"
     hardware_required: false
-    idf_versions: ["release/v5.5", "release/v5.4"]
+    idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]
     ci_enabled: true
     featured: true
