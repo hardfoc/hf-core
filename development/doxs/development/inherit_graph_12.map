@@ -1,9 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,55,141,80"/>
-<area shape="rect" id="Node000001" href="$classMcp9700TemperatureHandler.html" title="BaseTemperature implementation for an MCP9700 on a multiplexed ADC channel." alt="" coords="193,5,408,31"/>
-<area shape="poly" id="edge10_Node000000_Node000001" title=" " alt="" coords="145,49,189,39,241,28,242,33,190,45,146,54"/>
-<area shape="rect" id="Node000002" href="$classNtcTemperatureHandler.html" title="NTC temperature sensor handler implementing BaseTemperature interface." alt="" coords="212,55,389,80"/>
-<area shape="poly" id="edge11_Node000000_Node000002" title=" " alt="" coords="155,65,212,65,212,70,155,70"/>
-<area shape="rect" id="Node000003" href="$classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor." alt="" coords="189,104,412,129"/>
-<area shape="poly" id="edge12_Node000000_Node000003" title=" " alt="" coords="146,80,242,101,241,107,145,86"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,55,84,80"/>
+<area shape="rect" id="Node000001" href="$classAds7952Handler.html" title="Unified handler for ADS7952 12&#45;channel SAR ADC with BaseAdc integration." alt="" coords="150,5,279,31"/>
+<area shape="poly" id="edge4_Node000000_Node000001" title=" " alt="" coords="97,50,169,28,171,33,98,55"/>
+<area shape="rect" id="Node000002" href="$classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership." alt="" coords="134,55,295,80"/>
+<area shape="poly" id="edge5_Node000000_Node000002" title=" " alt="" coords="98,65,134,65,134,70,98,70"/>
+<area shape="rect" id="Node000003" href="$classTmc9660Handler_1_1Adc.html" title="BaseAdc adapter for all TMC9660 ADC channels." alt="" coords="132,104,297,129"/>
+<area shape="poly" id="edge6_Node000000_Node000003" title=" " alt="" coords="98,80,171,101,169,106,97,85"/>
 </map>

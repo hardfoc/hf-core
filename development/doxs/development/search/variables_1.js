@@ -8,5 +8,6 @@ var searchData=
   ['border_5fchar_5',['border_char',['../structLogConfig.html#a8d3c4c711a7e1bf65115b878b1959d83',1,'LogConfig::border_char'],['../structAsciiArtFormat.html#adf9e00bc2854bfa8598a058d388510b1',1,'AsciiArtFormat::border_char']]],
   ['border_5fpadding_6',['border_padding',['../structLogConfig.html#a3d2ecc60bd064b16857e25eff432d9bc',1,'LogConfig::border_padding'],['../structAsciiArtFormat.html#a37ed73c07ea928261da4900d0766ad9a',1,'AsciiArtFormat::border_padding']]],
   ['brightness_7',['brightness',['../structWs2812Handler_1_1Config.html#a34b3e52bebb8a93793f35f0cd5b551c1',1,'Ws2812Handler::Config']]],
-  ['bus_5ftag_8',['BUS_TAG',['../esp32__bus__setup_8hpp.html#a73a911be261c628a3ee57cedbafb89a1',1,'esp32_bus_setup.hpp']]]
+  ['bus_5fmutex_5f_8',['bus_mutex_',['../classAlicatBasis2Handler.html#a028a9a4a19a368c9b48813410aa44255',1,'AlicatBasis2Handler']]],
+  ['bus_5ftag_9',['BUS_TAG',['../esp32__bus__setup_8hpp.html#a73a911be261c628a3ee57cedbafb89a1',1,'esp32_bus_setup.hpp']]]
 ];

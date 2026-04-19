@@ -8,7 +8,8 @@ var searchData=
   ['halspitle92466edcomm_5',['HalSpiTle92466edComm',['../classHalSpiTle92466edComm.html',1,'']]],
   ['halspitmc5160comm_6',['HalSpiTmc5160Comm',['../classHalSpiTmc5160Comm.html',1,'']]],
   ['halspitmc9660comm_7',['HalSpiTmc9660Comm',['../classHalSpiTmc9660Comm.html',1,'']]],
-  ['haluarttmc5160comm_8',['HalUartTmc5160Comm',['../classHalUartTmc5160Comm.html',1,'']]],
-  ['haluarttmc9660comm_9',['HalUartTmc9660Comm',['../classHalUartTmc9660Comm.html',1,'']]],
-  ['handlertaskargs_10',['HandlerTaskArgs',['../structHandlerTaskArgs.html',1,'']]]
+  ['haluartalicatbasis2comm_8',['HalUartAlicatBasis2Comm',['../classHalUartAlicatBasis2Comm.html',1,'']]],
+  ['haluarttmc5160comm_9',['HalUartTmc5160Comm',['../classHalUartTmc5160Comm.html',1,'']]],
+  ['haluarttmc9660comm_10',['HalUartTmc9660Comm',['../classHalUartTmc9660Comm.html',1,'']]],
+  ['handlertaskargs_11',['HandlerTaskArgs',['../structHandlerTaskArgs.html',1,'']]]
 ];

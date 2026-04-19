@@ -20,10 +20,11 @@ var searchData=
   ['threshold_5fmonitoring_5fenabled_5f_17',['threshold_monitoring_enabled_',['../classNtcTemperatureHandler.html#aa4b3ca60a65dc5da71b7a3d4b9405f09',1,'NtcTemperatureHandler']]],
   ['threshold_5fuser_5fdata_18',['threshold_user_data',['../structntc__temp__handler__config__t.html#abc3fc2c8c2afd4dc8ee6c5e2343d0f20',1,'ntc_temp_handler_config_t']]],
   ['threshold_5fuser_5fdata_5f_19',['threshold_user_data_',['../classNtcTemperatureHandler.html#aee4337b29ad1d9b34b3a1c8266bb102e',1,'NtcTemperatureHandler']]],
-  ['timestamp_5fus_20',['timestamp_us',['../structBno08xVector3.html#a163c181287c91298c912e15cd0ea5f80',1,'Bno08xVector3::timestamp_us'],['../structBno08xQuaternion.html#aa7e26a46c3faff01aa13e1ebe2e0ec3c',1,'Bno08xQuaternion::timestamp_us'],['../structBno08xEulerAngles.html#ad70e7cd8eff9a25f037edc0b33280a2e',1,'Bno08xEulerAngles::timestamp_us'],['../structBno08xImuData.html#a6195cdab3f19277e84307ab33e1558d8',1,'Bno08xImuData::timestamp_us'],['../structBno08xActivityData.html#ab3246a8a87f53e5392b8db45f3f8d62e',1,'Bno08xActivityData::timestamp_us']]],
-  ['total_5fexecution_5ftime_5fus_21',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
-  ['total_5fmeasurements_22',['total_measurements',['../structAs5047uDiagnostics.html#a15245dd4b501df7cc4d5c1d10a297771',1,'As5047uDiagnostics']]],
-  ['total_5freads_23',['total_reads',['../structAds7952Diagnostics.html#ae63b7d77f408be06c65dd7e2d7207bef',1,'Ads7952Diagnostics']]],
-  ['total_5freads_5f_24',['total_reads_',['../classAds7952Handler.html#a22605a5709c4b52434d13325edc726de',1,'Ads7952Handler']]],
-  ['total_5ftests_25',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]]
+  ['timeout_5fms_20',['timeout_ms',['../structAlicatBasis2HandlerConfig.html#a25fbef9f46be0b67fdb49be60ecbebc7',1,'AlicatBasis2HandlerConfig']]],
+  ['timestamp_5fus_21',['timestamp_us',['../structBno08xVector3.html#a163c181287c91298c912e15cd0ea5f80',1,'Bno08xVector3::timestamp_us'],['../structBno08xQuaternion.html#aa7e26a46c3faff01aa13e1ebe2e0ec3c',1,'Bno08xQuaternion::timestamp_us'],['../structBno08xEulerAngles.html#ad70e7cd8eff9a25f037edc0b33280a2e',1,'Bno08xEulerAngles::timestamp_us'],['../structBno08xImuData.html#a6195cdab3f19277e84307ab33e1558d8',1,'Bno08xImuData::timestamp_us'],['../structBno08xActivityData.html#ab3246a8a87f53e5392b8db45f3f8d62e',1,'Bno08xActivityData::timestamp_us']]],
+  ['total_5fexecution_5ftime_5fus_22',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
+  ['total_5fmeasurements_23',['total_measurements',['../structAs5047uDiagnostics.html#a15245dd4b501df7cc4d5c1d10a297771',1,'As5047uDiagnostics']]],
+  ['total_5freads_24',['total_reads',['../structAds7952Diagnostics.html#ae63b7d77f408be06c65dd7e2d7207bef',1,'Ads7952Diagnostics']]],
+  ['total_5freads_5f_25',['total_reads_',['../classAds7952Handler.html#a22605a5709c4b52434d13325edc726de',1,'Ads7952Handler']]],
+  ['total_5ftests_26',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]]
 ];

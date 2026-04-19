@@ -77,13 +77,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Ads7952Handler_8cpp.html",
-"classAds7952Handler.html#a0fd2e299b6d37bd1e7e0ac4842877650",
-"classHalUartTmc9660Comm.html#a044f4af1242b3fb2a9412523e575447a",
-"classPca9685GpioPin.html#ae3ee349427e82d8069ac2935ae7cde00",
-"classTmc5160Handler.html#aa4ba39d1f580c80119eb34943dd6e7ed",
-"esp32__test__config_8hpp.html#afdf5870bb1b9d7d2bbd243dc9a11c107",
-"namespacemembers.html",
-"structLogConfig.html#a66996cfd3e1bae906e081d7f14f24e02"
+"canopen__utils__comprehensive__test_8cpp.html#aaff89257c54366921eebb8ec1348b1fd",
+"classHalSpiTle92466edComm.html#a74ccbe3aa8f726c7b9ca9096636dcf14",
+"classNtcTemperatureHandler.html#a9c7c1fa912406565388527569f87cc98",
+"classTle92466edHandler.html#a460b8f8c43510396ad34f8928e3f72f9",
+"dir_d7be47e4bfeb2e6d7b7afbb9011a1517.html",
+"logger__comprehensive__test_8cpp.html#aaff89257c54366921eebb8ec1348b1fd",
+"structBno08xConfig.html#a1cd7b744e9d407cd6e0af992f5fe3d05",
+"tmc9660__handler__comprehensive__test_8cpp.html#ac092626386f689be5f5dcad0c96f6a87"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
