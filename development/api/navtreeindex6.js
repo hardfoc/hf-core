@@ -1,5 +1,8 @@
 var NAVTREEINDEX6 =
 {
+"namespacemembers.html":[12,1,0],
+"namespacemembers_func.html":[12,1,1],
+"namespaces.html":[12,0],
 "ntc__handler__comprehensive__test_8cpp.html":[14,0,0,0,0,0,3],
 "ntc__handler__comprehensive__test_8cpp.html#a020b75bfe677ae1c19539bc79534fcf1":[14,0,0,0,0,0,3,11],
 "ntc__handler__comprehensive__test_8cpp.html#a1224add7f718c77de85a482e3196102f":[14,0,0,0,0,0,3,14],
@@ -246,8 +249,5 @@ var NAVTREEINDEX6 =
 "structLogConfig.html":[13,0,31],
 "structLogConfig.html#a1b6aafe5e326ebeeb603560b0e6a8a6b":[13,0,31,11],
 "structLogConfig.html#a3d2ecc60bd064b16857e25eff432d9bc":[13,0,31,3],
-"structLogConfig.html#a514266f193b4fc2d8a8c4c2601e8ac1a":[13,0,31,10],
-"structLogConfig.html#a66996cfd3e1bae906e081d7f14f24e02":[13,0,31,7],
-"structLogConfig.html#a71a3b458ea8826514bec6d8bcb9eec6c":[13,0,31,1],
-"structLogConfig.html#a78b904caf7c610787ef1c3d9c7fbb16c":[13,0,31,6]
+"structLogConfig.html#a514266f193b4fc2d8a8c4c2601e8ac1a":[13,0,31,10]
 };

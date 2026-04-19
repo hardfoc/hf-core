@@ -1,5 +1,8 @@
 var NAVTREEINDEX7 =
 {
+"structLogConfig.html#a66996cfd3e1bae906e081d7f14f24e02":[13,0,31,7],
+"structLogConfig.html#a71a3b458ea8826514bec6d8bcb9eec6c":[13,0,31,1],
+"structLogConfig.html#a78b904caf7c610787ef1c3d9c7fbb16c":[13,0,31,6],
 "structLogConfig.html#a855f3f5df85dce55ceb7b591f19d5b92":[13,0,31,5],
 "structLogConfig.html#a8d3c4c711a7e1bf65115b878b1959d83":[13,0,31,2],
 "structLogConfig.html#ab2bec83242fdfe9d6bd2cfc05ade0824":[13,0,31,9],

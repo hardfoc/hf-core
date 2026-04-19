@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classAds7952Handler.html#a0fd2e299b6d37bd1e7e0ac4842877650":[13,0,1,34],
 "classAds7952Handler.html#a13ed8f1aaf11c19d5670f9c32ac89cf2":[13,0,1,1],
 "classAds7952Handler.html#a163bcf0a7f0b0a9c62d3d716ba34e8ba":[13,0,1,27],
 "classAds7952Handler.html#a1cda2d2ebe4ce49e2c600cae260cb9ea":[13,0,1,20],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classHalUartTmc5160Comm.html#aa814d4f11e76e735658a00e84d9b8895":[11,11,2,10],
 "classHalUartTmc5160Comm.html#abeca3028fb6b1007c2457b08d3dfe113":[11,11,2,8],
 "classHalUartTmc9660Comm.html":[11,13,2],
-"classHalUartTmc9660Comm.html#a03e458d1dca85da1149a9040d8458c06":[11,13,2,3],
-"classHalUartTmc9660Comm.html#a044f4af1242b3fb2a9412523e575447a":[11,13,2,8]
+"classHalUartTmc9660Comm.html#a03e458d1dca85da1149a9040d8458c06":[11,13,2,3]
 };

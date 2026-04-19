@@ -1,5 +1,8 @@
 var namespaces_dup =
 [
+    [ "anonymous_namespace{Logger.cpp}", "namespaceanonymous__namespace_02Logger_8cpp_03.html", [
+      [ "ToBaseLevel", "namespaceanonymous__namespace_02Logger_8cpp_03.html#a9d2b496fa1b4f4e28667d14e4b8cb190", null ]
+    ] ],
     [ "anonymous_namespace{Tmc9660Handler.cpp}", "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html", [
       [ "readGpioToSignal", "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#aee82d92e54869f56afcdfa5bf23dbf2f", null ],
       [ "setGpioFromSignal", "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a91f1b4322a75b8ac25a8890110ec9af6", null ]

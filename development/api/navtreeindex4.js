@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"classTmc5160Handler.html#aa4ba39d1f580c80119eb34943dd6e7ed":[11,12,0,8],
 "classTmc5160Handler.html#aa8d3ce7658218be523c82e0abcf83161":[11,12,0,35],
 "classTmc5160Handler.html#ab348f2967109fd94a2d80bc6ac907e17":[11,12,0,36],
 "classTmc5160Handler.html#ab4bf5aabef968f6f8ee66d08cf05913a":[11,12,0,14],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "esp32__test__config_8hpp.html#adb8875b25bd7832beaed776de438b640":[14,0,0,0,0,4,25],
 "esp32__test__config_8hpp.html#ae1efef7f5775f2273ec71672bbfcab1b":[14,0,0,0,0,4,1],
 "esp32__test__config_8hpp.html#afd02ed4557b678c3d05edc812c08caef":[14,0,0,0,0,4,6],
-"esp32__test__config_8hpp.html#afd84f048502b749115c9e05262ed6753":[14,0,0,0,0,4,13],
-"esp32__test__config_8hpp.html#afdf5870bb1b9d7d2bbd243dc9a11c107":[14,0,0,0,0,4,21]
+"esp32__test__config_8hpp.html#afd84f048502b749115c9e05262ed6753":[14,0,0,0,0,4,13]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"esp32__test__config_8hpp.html#afdf5870bb1b9d7d2bbd243dc9a11c107":[14,0,0,0,0,4,21],
 "esp32__test__config_8hpp.html#afe53210edc20c3ac9d8f2c19a2639750":[14,0,0,0,0,4,18],
 "esp32__test__config_8hpp_source.html":[14,0,0,0,0,4],
 "files.html":[14,0],
@@ -25,8 +26,8 @@ var NAVTREEINDEX5 =
 "functions_d.html":[13,3,0,3],
 "functions_e.html":[13,3,0,4],
 "functions_f.html":[13,3,0,5],
-"functions_func.html":[13,3,1],
 "functions_func.html":[13,3,1,0],
+"functions_func.html":[13,3,1],
 "functions_func_b.html":[13,3,1,1],
 "functions_func_c.html":[13,3,1,2],
 "functions_func_d.html":[13,3,1,3],
@@ -240,14 +241,13 @@ var NAVTREEINDEX5 =
 "max22200__handler__comprehensive__test_8cpp.html#ae9aa597545f9f6529d499cc52fd62832":[14,0,0,0,0,0,2,8],
 "max22200__handler__comprehensive__test_8cpp.html#afa13c761b08b8c746e506677ee356613":[14,0,0,0,0,0,2,21],
 "max22200__handler__comprehensive__test_8cpp.html#afee7768b8b35ea709bb0a2dd90c24287":[14,0,0,0,0,0,2,9],
-"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html":[12,0,0],
-"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a91f1b4322a75b8ac25a8890110ec9af6":[12,0,0,1],
-"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#aee82d92e54869f56afcdfa5bf23dbf2f":[12,0,0,0],
-"namespacehandler__utils.html":[12,0,1],
-"namespacehandler__utils.html#a71864e1d5801bea0d6d830326b6b183a":[12,0,1,2],
-"namespacehandler__utils.html#ac2999c5753a6d86504463b742c23dcfe":[12,0,1,1],
-"namespacehandler__utils.html#afc7fd91265677d0865cbc2a413754ed8":[12,0,1,0],
-"namespacemembers.html":[12,1,0],
-"namespacemembers_func.html":[12,1,1],
-"namespaces.html":[12,0]
+"namespaceanonymous__namespace_02Logger_8cpp_03.html":[12,0,0],
+"namespaceanonymous__namespace_02Logger_8cpp_03.html#a9d2b496fa1b4f4e28667d14e4b8cb190":[12,0,0,0],
+"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html":[12,0,1],
+"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a91f1b4322a75b8ac25a8890110ec9af6":[12,0,1,1],
+"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#aee82d92e54869f56afcdfa5bf23dbf2f":[12,0,1,0],
+"namespacehandler__utils.html":[12,0,2],
+"namespacehandler__utils.html#a71864e1d5801bea0d6d830326b6b183a":[12,0,2,2],
+"namespacehandler__utils.html#ac2999c5753a6d86504463b742c23dcfe":[12,0,2,1],
+"namespacehandler__utils.html#afc7fd91265677d0865cbc2a413754ed8":[12,0,2,0]
 };
