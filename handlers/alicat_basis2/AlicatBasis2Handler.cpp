@@ -127,12 +127,24 @@ al::DriverResult<void> AlicatBasis2Handler::SetCommWatchdogMs(std::uint16_t ms) 
     BASIS2_FORWARD_VOID(SetCommWatchdogMs, ms);
 }
 
+al::DriverResult<void> AlicatBasis2Handler::SetMaxSetpointRamp(std::uint32_t pct_per_ms_x_10e7) noexcept {
+    BASIS2_FORWARD_VOID(SetMaxSetpointRamp, pct_per_ms_x_10e7);
+}
+
+al::DriverResult<void> AlicatBasis2Handler::SetAutotareEnabled(bool enabled) noexcept {
+    BASIS2_FORWARD_VOID(SetAutotareEnabled, enabled);
+}
+
 al::DriverResult<void> AlicatBasis2Handler::ResetTotalizer() noexcept {
     BASIS2_FORWARD_VOID(ResetTotalizer);
 }
 
 al::DriverResult<void> AlicatBasis2Handler::SetTotalizerLimitMode(al::TotalizerLimitMode m) noexcept {
     BASIS2_FORWARD_VOID(SetTotalizerLimitMode, m);
+}
+
+al::DriverResult<void> AlicatBasis2Handler::SetTotalizerBatch(std::uint32_t value_scaled) noexcept {
+    BASIS2_FORWARD_VOID(SetTotalizerBatch, value_scaled);
 }
 
 al::DriverResult<void> AlicatBasis2Handler::SetFlowAveragingMs(std::uint16_t ms) noexcept {

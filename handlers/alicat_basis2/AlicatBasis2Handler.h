@@ -152,8 +152,11 @@ public:
     alicat_basis2::DriverResult<void> SetSetpoint(float user_units) noexcept;
     alicat_basis2::DriverResult<void> SetSetpointSource(alicat_basis2::SetpointSource s) noexcept;
     alicat_basis2::DriverResult<void> SetCommWatchdogMs(std::uint16_t ms) noexcept;
+    alicat_basis2::DriverResult<void> SetMaxSetpointRamp(std::uint32_t pct_per_ms_x_10e7) noexcept;
+    alicat_basis2::DriverResult<void> SetAutotareEnabled(bool enabled) noexcept;
     alicat_basis2::DriverResult<void> ResetTotalizer() noexcept;
     alicat_basis2::DriverResult<void> SetTotalizerLimitMode(alicat_basis2::TotalizerLimitMode m) noexcept;
+    alicat_basis2::DriverResult<void> SetTotalizerBatch(std::uint32_t value_scaled) noexcept;
     alicat_basis2::DriverResult<void> SetFlowAveragingMs(std::uint16_t ms) noexcept;
     alicat_basis2::DriverResult<void> SetReferenceTemperatureC(float c) noexcept;
     alicat_basis2::DriverResult<void> ConfigureMeasurementTrigger(std::uint16_t bits) noexcept;
