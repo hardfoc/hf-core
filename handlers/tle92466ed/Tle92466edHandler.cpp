@@ -8,8 +8,6 @@
 #include "Logger.h"
 #include "HandlerCommon.h"
 
-#include <atomic>
-
 static constexpr const char* TAG = "TLE92466ED";
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -91,6 +89,9 @@ tle92466ed::CommResult<uint32_t> HalSpiTle92466edComm::Transfer32(uint32_t tx_da
 
     auto err = spi_.Transfer(tx_buf, rx_buf, hf_u16_t{4}, hf_u32_t{0});
     if (err != hf_spi_err_t::SPI_SUCCESS) {
+        Logger::GetInstance().Error(TAG,
+            "Transfer32: SPI Transfer failed (err=%d) tx=%02X %02X %02X %02X",
+            static_cast<int>(err), tx_buf[0], tx_buf[1], tx_buf[2], tx_buf[3]);
         last_error_ = tle92466ed::CommError::TransferError;
         return tle::unexpected(last_error_);
     }
@@ -99,21 +100,6 @@ tle92466ed::CommResult<uint32_t> HalSpiTle92466edComm::Transfer32(uint32_t tx_da
                        (static_cast<uint32_t>(rx_buf[1]) << 16) |
                        (static_cast<uint32_t>(rx_buf[2]) <<  8) |
                        (static_cast<uint32_t>(rx_buf[3]) <<  0);
-
-    // First few transfers are logged at INFO so a fresh bring-up shows
-    // both the SPI command bytes and (importantly) what the slave returns.
-    // 0xFF on every received byte is the canonical "MISO floats high
-    // because nothing is driving it" — typically VBAT/VS missing from the
-    // device or chip not present on the bus.
-    {
-        static std::atomic<int> log_count{0};
-        if (log_count.fetch_add(1, std::memory_order_relaxed) < 4) {
-            Logger::GetInstance().Info(TAG,
-                "Transfer32 OK: tx=%02X %02X %02X %02X  rx=%02X %02X %02X %02X",
-                tx_buf[0], tx_buf[1], tx_buf[2], tx_buf[3],
-                rx_buf[0], rx_buf[1], rx_buf[2], rx_buf[3]);
-        }
-    }
     last_error_ = tle92466ed::CommError::None;
     return rx_data;
 }
