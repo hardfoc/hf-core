@@ -34,6 +34,8 @@ var annotated_dup =
     [ "LogConfig", "structLogConfig.html", "structLogConfig" ],
     [ "Logger", "classLogger.html", "classLogger" ],
     [ "Max22200Handler", "classMax22200Handler.html", "classMax22200Handler" ],
+    [ "Mcp9700AdcAdapter", "classMcp9700AdcAdapter.html", "classMcp9700AdcAdapter" ],
+    [ "Mcp9700TemperatureHandler", "classMcp9700TemperatureHandler.html", "classMcp9700TemperatureHandler" ],
     [ "ntc_temp_handler_config_t", "structntc__temp__handler__config__t.html", "structntc__temp__handler__config__t" ],
     [ "NtcAdcAdapter", "classNtcAdcAdapter.html", "classNtcAdcAdapter" ],
     [ "NtcTemperatureHandler", "classNtcTemperatureHandler.html", "classNtcTemperatureHandler" ],
