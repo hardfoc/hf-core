@@ -83,7 +83,13 @@ bool Logger::Initialize(const LogConfig& config) noexcept {
     // Initialize base logger with the fields that hf_logger_config_t actually has
     hf_logger_config_t base_config{};
     base_config.default_level = static_cast<hf_log_level_t>(config.level);
+    base_config.output_destination = hf_log_output_t::LOG_OUTPUT_UART;
+    base_config.format_options = hf_log_format_t::LOG_FORMAT_DEFAULT;
+    base_config.max_message_length = 512;   // Reasonable default
+    base_config.buffer_size = 1024;         // Reasonable default
+    base_config.flush_interval_ms = 100;    // 100ms flush interval
     base_config.enable_thread_safety = true;
+    base_config.enable_performance_monitoring = false;
     
     if (base_logger_->Initialize(base_config) != hf_logger_err_t::LOGGER_SUCCESS) {
         return false;
