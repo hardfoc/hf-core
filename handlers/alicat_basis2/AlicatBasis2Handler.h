@@ -24,7 +24,9 @@
 #define COMPONENT_HANDLER_ALICAT_BASIS2_HANDLER_H_
 
 #include <atomic>
+#include <cstddef>
 #include <cstdint>
+#include <functional>
 #include <memory>
 
 #include "RtosMutex.h"
@@ -168,16 +170,128 @@ public:
     alicat_basis2::DriverResult<void> FactoryRestore() noexcept;
 
     /**
-     * @brief Bus-wide discovery sweep.
-     * @param[out] present_bitmap  31-byte bitmap; bit N = address N is alive.
+     * @brief Bus-wide discovery sweep at the **current host baud only**.
+     * @param[out] present_bitmap  ≥32-byte bitmap; bit N = address N is alive.
+     * @param      bitmap_bytes    Size of `present_bitmap` (must be ≥32).
      * @param      probe_timeout_ms Per-address probe timeout (ms).
      * @return  Number of present devices, or DriverError on bus failure.
      *
      * @note Disables the per-handler address temporarily; restored on exit.
+     *       This finds devices that match the host UART's current baud
+     *       only — use `DiscoverAcrossBauds()` to also find devices at
+     *       other baud rates.
      */
     alicat_basis2::DriverResult<std::uint8_t>
     Discover(std::uint8_t* present_bitmap, std::size_t bitmap_bytes,
              std::uint16_t probe_timeout_ms = 30) noexcept;
+
+    //--------------------------------------------------------------------------
+    // Multi-baud discovery + bus normalisation
+    //--------------------------------------------------------------------------
+
+    /**
+     * @brief One discovered instrument and the baud rate it was found at.
+     */
+    struct DiscoveredDevice {
+        std::uint8_t  address{0};        ///< Modbus slave address (1..247).
+        std::uint32_t baud_bps{0};       ///< Baud rate the device responded at.
+    };
+
+    /**
+     * @brief Callback used by `DiscoverAcrossBauds` / `NormalizeBusBaud` to
+     *        retune the **host UART** when probing a new baud rate.
+     *
+     * @return `true` if the host UART successfully switched to `bps`,
+     *         `false` to skip that baud entry.
+     *
+     * @note This is intentionally injected from the application — the
+     *       handler only knows about a `BaseUart&` (which has no
+     *       runtime baud setter), so the caller wires in whichever
+     *       MCU-specific call applies (e.g.
+     *       `EspUart::SetBaudRate(bps)`).
+     */
+    using HostBaudSetter = std::function<bool(std::uint32_t bps)>;
+
+    /**
+     * @brief Sweep multiple baud rates, returning every BASIS-2 found
+     *        on the bus along with the baud rate it answered at.
+     *
+     * @details For each baud in `baud_list` the handler:
+     *            1. Calls `set_host_baud(baud)` to retune the host UART.
+     *            2. Sleeps `settle_ms` so any stale RX bytes drain.
+     *            3. Runs `DiscoverPresentAddresses()` at that baud.
+     *            4. Records `{addr, baud}` for every responder that
+     *               isn't already in `out` (first-seen-baud wins).
+     *
+     *          When `baud_list` is `nullptr` the handler iterates over
+     *          every value in `alicat_basis2::BaudRate`
+     *          (4800/9600/19200/38400/57600/115200).
+     *
+     *          On exit the host UART is restored to whatever baud was
+     *          active **last** — typically you should follow the call
+     *          with `NormalizeBusBaud()` (which retunes again) or an
+     *          explicit `set_host_baud(target)`.
+     *
+     * @param[out] out               Destination buffer (caller-allocated).
+     * @param      max_devices       Capacity of `out` in elements.
+     * @param      set_host_baud     Callback that retunes the host UART.
+     * @param      probe_timeout_ms  Per-address timeout passed to the sweep.
+     * @param      settle_ms         Delay after each baud change to let
+     *                               UART glitches subside (default 25 ms).
+     * @param      baud_list_bps     Optional explicit baud-rate list in
+     *                               bits-per-second. `nullptr` = all six
+     *                               supported rates.
+     * @param      baud_list_count   Number of entries in `baud_list_bps`.
+     * @return     Number of devices populated into `out` on success;
+     *             `BufferTooSmall` if `out` overflows; transport error
+     *             if `set_host_baud` rejects every requested rate.
+     */
+    alicat_basis2::DriverResult<std::size_t>
+    DiscoverAcrossBauds(DiscoveredDevice*       out,
+                        std::size_t             max_devices,
+                        const HostBaudSetter&   set_host_baud,
+                        std::uint16_t           probe_timeout_ms = 30,
+                        std::uint32_t           settle_ms        = 25,
+                        const std::uint32_t*    baud_list_bps    = nullptr,
+                        std::size_t             baud_list_count  = 0) noexcept;
+
+    /**
+     * @brief Normalise every device on the bus to the same baud rate.
+     *
+     * @details For every `{addr, baud}` in `devices` whose `baud != target_bps`:
+     *            1. Retune the host UART to the device's current baud.
+     *            2. Address that slave and issue `SetBaudRate(target)`.
+     *               The device switches immediately — the response may
+     *               be lost or garbled (datasheet calls this out
+     *               explicitly), so the operation is logged but never
+     *               aborts on a single failure.
+     *            3. Retune the host UART to `target_bps`.
+     *            4. Verify with a short identity read; on failure the
+     *               device is left in `failed_addresses` (if provided).
+     *
+     *          Devices already at `target_bps` are skipped (verified
+     *          only). On exit the host UART is left at `target_bps`.
+     *
+     * @param      target_bps        Final baud rate everyone should use.
+     * @param      devices           Output of `DiscoverAcrossBauds()`.
+     * @param      device_count      Length of `devices`.
+     * @param      set_host_baud     Callback that retunes the host UART.
+     * @param[out] failed_addresses  Optional buffer for slaves that
+     *                               could not be normalised; use a
+     *                               32-byte bitmap.
+     * @param      verify_timeout_ms Per-device verify timeout (ms).
+     * @return     Number of devices that successfully end up at
+     *             `target_bps` (verified by identity read), or
+     *             transport / parameter error.
+     */
+    alicat_basis2::DriverResult<std::size_t>
+    NormalizeBusBaud(std::uint32_t           target_bps,
+                     const DiscoveredDevice* devices,
+                     std::size_t             device_count,
+                     const HostBaudSetter&   set_host_baud,
+                     std::uint8_t*           failed_addresses_bitmap = nullptr,
+                     std::size_t             failed_bitmap_bytes     = 0,
+                     std::uint16_t           verify_timeout_ms       = 100) noexcept;
 
     /// Direct access to the underlying driver (for advanced use; mutex must be held).
     DriverType* GetDriver() noexcept { return driver_.get(); }
