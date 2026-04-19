@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.jUDUJ3
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.jUDUJ3' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.ebqOPl
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.ebqOPl' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -1160,19 +1160,18 @@ Running dot for graph 4/7
 Running dot for graph 5/7
 Running dot for graph 6/7
 Running dot for graph 7/7
-Patching output file 1/13
-Patching output file 2/13
-Patching output file 3/13
-Patching output file 4/13
-Patching output file 5/13
-Patching output file 6/13
-Patching output file 7/13
-Patching output file 8/13
-Patching output file 9/13
-Patching output file 10/13
-Patching output file 11/13
-Patching output file 12/13
-Patching output file 13/13
-type lookup cache used 5633/65536 hits=29331 misses=6000
-symbol lookup cache used 7387/65536 hits=35055 misses=7387
+Patching output file 1/12
+Patching output file 2/12
+Patching output file 3/12
+Patching output file 4/12
+Patching output file 5/12
+Patching output file 6/12
+Patching output file 7/12
+Patching output file 8/12
+Patching output file 9/12
+Patching output file 10/12
+Patching output file 11/12
+Patching output file 12/12
+type lookup cache used 5629/65536 hits=29327 misses=5996
+symbol lookup cache used 7385/65536 hits=35051 misses=7385
 finished...
