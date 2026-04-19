@@ -77,13 +77,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Ads7952Handler_8cpp.html",
-"classAds7952Handler.html#a1ff4d6d7cc4a98462add32fa5f0c9cd0",
-"classHalUartTmc9660Comm.html#a85aa3e262d86857902e11e818e2e818e",
-"classPca9685Handler.html#a91f6e14b606d4007797234ec9599a134",
-"classTmc9660AdcWrapper.html#a81242df0d4a815840ddd924040a1b499",
-"functions_func_b.html",
-"ntc__handler__comprehensive__test_8cpp.html#ac314755c1abd2475ff52f823949f3122",
-"structTmc5160CtrlPins.html"
+"classAds7952Handler.html#a1f4a7527384227733fcd55932d1f1838",
+"classHalUartTmc9660Comm.html#a7d842bccb7b871b4fa3367935b3c4024",
+"classPca9685Handler.html#a8fbc5e520828ef7e52dea2fd8497b20c",
+"classTmc9660AdcWrapper.html#a7f754c5432b29313fb09f3cc353a4e6f",
+"functions_func.html",
+"ntc__handler__comprehensive__test_8cpp.html#abeeb81d2d6260428003e7a0bc0ad7181",
+"structTle92466edHandler_1_1is__driver__result_3_01tle92466ed_1_1DriverResult_3_01T_01_4_01_4.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"classPca9685Handler.html#a8fbc5e520828ef7e52dea2fd8497b20c":[11,5,0,8],
 "classPca9685Handler.html#a91f6e14b606d4007797234ec9599a134":[11,5,0,14],
 "classPca9685Handler.html#a989c4b1a8260c7af0bf210103d13cc7b":[11,5,0,32],
 "classPca9685Handler.html#a98f3e67474173eeb234d4cc3e4b4d03b":[11,5,0,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "classTmc9660AdcWrapper.html#a40c0a3bfa343ae9664bd71c683b18185":[13,0,48,5],
 "classTmc9660AdcWrapper.html#a42eebe0e3090b205a166cf3186bd121e":[13,0,48,12],
 "classTmc9660AdcWrapper.html#a64101f711603386a40be623166b90bc9":[13,0,48,13],
-"classTmc9660AdcWrapper.html#a6e6b964a668298a31492d8020770bce8":[13,0,48,1],
-"classTmc9660AdcWrapper.html#a7f754c5432b29313fb09f3cc353a4e6f":[13,0,48,6]
+"classTmc9660AdcWrapper.html#a6e6b964a668298a31492d8020770bce8":[13,0,48,1]
 };
