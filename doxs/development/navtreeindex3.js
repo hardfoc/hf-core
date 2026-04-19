@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"classPca9685GpioPin.html#ae3ee349427e82d8069ac2935ae7cde00":[11,4,0,14],
 "classPca9685GpioPin.html#ae807550a0353d368df72b46e2e30fa88":[11,4,0,5],
 "classPca9685GpioPin.html#ae989f1d52889ef958acf9c5b565d3b99":[11,4,0,12],
 "classPca9685GpioPin.html#afbbc12ce4cfbaba86fbc39a7274f3905":[11,4,0,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "classTmc5160Handler.html#a93e7a35d8a8b4dc3ec97bb1a9d26c3a1":[11,12,0,2],
 "classTmc5160Handler.html#a9611596b31235838079bb847dbeb0ac6":[11,12,0,32],
 "classTmc5160Handler.html#a9622a527174fdc5f37e55044652f75b8":[11,12,0,25],
-"classTmc5160Handler.html#aa47c7b0c69a35aa3f9e9c6fc8d2bd95c":[11,12,0,10],
-"classTmc5160Handler.html#aa4ba39d1f580c80119eb34943dd6e7ed":[11,12,0,8]
+"classTmc5160Handler.html#aa47c7b0c69a35aa3f9e9c6fc8d2bd95c":[11,12,0,10]
 };
