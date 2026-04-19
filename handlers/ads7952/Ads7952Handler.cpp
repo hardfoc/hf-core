@@ -16,16 +16,21 @@
 #include <cstring>
 #include <algorithm>
 #include "handlers/logger/Logger.h"
+#include "esp_log.h"
 
 //======================================================//
 // ADS7952 SPI ADAPTER IMPLEMENTATION
 //======================================================//
+
+static constexpr const char* TAG_SPI = "Ads7952Spi";
 
 Ads7952SpiAdapter::Ads7952SpiAdapter(BaseSpi& spi_interface) noexcept
     : spi_interface_(spi_interface) {}
 
 void Ads7952SpiAdapter::transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept {
     if (len == 0) return;
+
+    ESP_LOGD(TAG_SPI, "SPI transfer: len=%u", static_cast<unsigned>(len));
 
     // Bridge BaseSpi::Transfer ↔ ads7952::SpiInterface<>::transfer
     // BaseSpi handles CS assertion/deassertion per transaction
@@ -34,6 +39,8 @@ void Ads7952SpiAdapter::transfer(const uint8_t* tx, uint8_t* rx, std::size_t len
         static_cast<uint16_t>(len),
         1000  // 1 second timeout
     );
+
+    ESP_LOGD(TAG_SPI, "SPI transfer done: result=%d", static_cast<int>(result));
 
     // ADS7952 driver detects errors through frame validation
     (void)result;
@@ -79,9 +86,9 @@ bool Ads7952Handler::Initialize() noexcept {
         return false;
     }
 
-    // 2. Create ADS7952 driver instance with Vref and VA
+    // 2. Create ADS7952 driver instance with Vref, VA, and initial range
     adc_driver_ = std::make_unique<ads7952::ADS7952<Ads7952SpiAdapter>>(
-        *spi_adapter_, config_.vref, config_.va);
+        *spi_adapter_, config_.vref, config_.va, config_.range);
     if (!adc_driver_) {
         Logger::GetInstance().Error(TAG, "[Dev%u] Failed to allocate ADS7952 driver", config_.device_index);
         spi_adapter_.reset();

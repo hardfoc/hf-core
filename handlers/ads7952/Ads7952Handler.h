@@ -88,13 +88,13 @@ struct Ads7952HandlerConfig {
 
 /**
  * @brief Get the default ADS7952 handler config for the Flux V1 board.
- * @return Default Ads7952HandlerConfig (2.5V Vref, 5.0V VA, Vref range, all 12 channels)
+ * @return Default Ads7952HandlerConfig (2.5V Vref, 5.0V VA, 2xVref range, all 12 channels)
  */
 inline Ads7952HandlerConfig GetDefaultAds7952Config() noexcept {
     return Ads7952HandlerConfig{
         .vref                = 2.5f,
         .va                  = 5.0f,
-        .range               = ads7952::Range::Vref,
+        .range               = ads7952::Range::TwoVref,
         .initial_mode        = ads7952::Mode::Manual,
         .auto1_channel_mask  = ads7952::kAllChannels,
         .auto2_last_channel  = 11,
