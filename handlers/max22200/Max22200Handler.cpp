@@ -20,31 +20,51 @@ HalSpiMax22200Comm::HalSpiMax22200Comm(
     : spi_(spi), enable_(enable), cmd_(cmd), fault_(fault) {}
 
 bool HalSpiMax22200Comm::Initialize() noexcept {
+    auto& log = Logger::GetInstance();
+
     if (!spi_.EnsureInitialized()) {
+        log.Error(TAG, "comm.Init: SPI EnsureInitialized failed");
         initialized_ = false;
         return false;
     }
 
-    if (enable_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT) !=
-        hf_gpio_err_t::GPIO_SUCCESS) {
+    auto err = enable_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT);
+    if (err != hf_gpio_err_t::GPIO_SUCCESS) {
+        log.Error(TAG, "comm.Init: ENABLE.SetDirection failed (%d)", static_cast<int>(err));
         initialized_ = false;
         return false;
     }
     enable_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH);
-    if (!enable_.EnsureInitialized() ||
-        enable_.SetInactive() != hf_gpio_err_t::GPIO_SUCCESS) {
+    if (!enable_.EnsureInitialized()) {
+        log.Error(TAG, "comm.Init: ENABLE.EnsureInitialized failed");
+        initialized_ = false;
+        return false;
+    }
+    err = enable_.SetInactive();
+    if (err != hf_gpio_err_t::GPIO_SUCCESS) {
+        log.Error(TAG, "comm.Init: ENABLE.SetInactive failed (%d)", static_cast<int>(err));
         initialized_ = false;
         return false;
     }
 
-    if (cmd_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT) !=
-        hf_gpio_err_t::GPIO_SUCCESS) {
+    err = cmd_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT);
+    if (err != hf_gpio_err_t::GPIO_SUCCESS) {
+        log.Error(TAG, "comm.Init: CMD.SetDirection failed (%d)", static_cast<int>(err));
         initialized_ = false;
         return false;
     }
     cmd_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH);
-    if (!cmd_.EnsureInitialized() ||
-        cmd_.SetInactive() != hf_gpio_err_t::GPIO_SUCCESS) {
+    if (!cmd_.EnsureInitialized()) {
+        log.Error(TAG, "comm.Init: CMD.EnsureInitialized failed");
+        initialized_ = false;
+        return false;
+    }
+    // Drive CMD HIGH so the MAX22200 is parked in command-write phase (the
+    // driver toggles CMD per-transaction; matches the proven driver test
+    // bus which configures CMD initial level = 1).
+    err = cmd_.SetActive();
+    if (err != hf_gpio_err_t::GPIO_SUCCESS) {
+        log.Error(TAG, "comm.Init: CMD.SetActive failed (%d)", static_cast<int>(err));
         initialized_ = false;
         return false;
     }
@@ -52,16 +72,19 @@ bool HalSpiMax22200Comm::Initialize() noexcept {
     if (fault_) {
         if (fault_->SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_INPUT) !=
             hf_gpio_err_t::GPIO_SUCCESS) {
+            log.Error(TAG, "comm.Init: FAULT.SetDirection failed");
             initialized_ = false;
             return false;
         }
         fault_->SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
         if (!fault_->EnsureInitialized()) {
+            log.Error(TAG, "comm.Init: FAULT.EnsureInitialized failed");
             initialized_ = false;
             return false;
         }
     }
 
+    log.Info(TAG, "comm.Init: OK (EN=LOW, CMD=HIGH, FAULT=input)");
     initialized_ = true;
     return true;
 }
