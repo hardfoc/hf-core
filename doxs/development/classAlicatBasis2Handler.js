@@ -1,12 +1,15 @@
 var classAlicatBasis2Handler =
 [
+    [ "DiscoveredDevice", "structAlicatBasis2Handler_1_1DiscoveredDevice.html", "structAlicatBasis2Handler_1_1DiscoveredDevice" ],
     [ "DriverType", "classAlicatBasis2Handler.html#a9d598dbc4dee826db750abd1d6735d4c", null ],
+    [ "HostBaudSetter", "classAlicatBasis2Handler.html#ad5e74b2aaf285a5292b5e7fe2a46aae3", null ],
     [ "AlicatBasis2Handler", "classAlicatBasis2Handler.html#a0da54c2220e86de2922c77bcd28b852a", null ],
     [ "AlicatBasis2Handler", "classAlicatBasis2Handler.html#ad5bc3de022e93f0ae548054bafcabb79", null ],
     [ "Address", "classAlicatBasis2Handler.html#a543989ebb5cd06901dcdf8f008cdef6d", null ],
     [ "ConfigureMeasurementTrigger", "classAlicatBasis2Handler.html#a725295638daba95f3c577367af4d0a95", null ],
     [ "DeviceIndex", "classAlicatBasis2Handler.html#a41bc72d284a6de1b84f8b37484655987", null ],
     [ "Discover", "classAlicatBasis2Handler.html#a9bdba31a2f80ef97a6b2c98dc83d90a0", null ],
+    [ "DiscoverAcrossBauds", "classAlicatBasis2Handler.html#a4400773ddc1c5ede15d453b1d926120c", null ],
     [ "EnsureInitialized", "classAlicatBasis2Handler.html#aded4fa6cc765ede4a6a3c04247a6f32d", null ],
     [ "EnsureInitializedLocked", "classAlicatBasis2Handler.html#a2f319111cee27d138e90a7c5b6e3b46b", null ],
     [ "FactoryRestore", "classAlicatBasis2Handler.html#a898466d43a57b153814e922dbc428727", null ],
@@ -14,6 +17,7 @@ var classAlicatBasis2Handler =
     [ "GetDriver", "classAlicatBasis2Handler.html#add62849756ef0690f6ce7eca4109d356", null ],
     [ "Identity", "classAlicatBasis2Handler.html#a50fd0dc280bd18d3039a85e82902ca9f", null ],
     [ "IsInitialized", "classAlicatBasis2Handler.html#a04e625d6bac3ae8926566637c1c13caf", null ],
+    [ "NormalizeBusBaud", "classAlicatBasis2Handler.html#acd0909cb398b2b50a90f161bd3b805d0", null ],
     [ "operator=", "classAlicatBasis2Handler.html#a3a5eeba10bc6d23a3ae84dd7353be1c3", null ],
     [ "ReadInstantaneous", "classAlicatBasis2Handler.html#a130e3b961f990b0223cd54aad6c75e12", null ],
     [ "ReadMeasurement", "classAlicatBasis2Handler.html#a484df6ff00c4ef3c24fe4c9c76e9d8bd", null ],

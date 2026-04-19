@@ -15,13 +15,14 @@ var searchData=
   ['adc_5finterface_5f_12',['adc_interface_',['../classMcp9700TemperatureHandler.html#a18909b46c2493dc0523c3631ab9b61bc',1,'Mcp9700TemperatureHandler::adc_interface_'],['../classNtcTemperatureHandler.html#a69d2acbb9fad640b19febc3db8f76773',1,'NtcTemperatureHandler::adc_interface_']]],
   ['adcwrapper_5f_13',['adcWrapper_',['../classTmc9660Handler.html#aaf719a53b5dd88722f3f62c9ac16ffe3',1,'Tmc9660Handler']]],
   ['add_5fborder_14',['add_border',['../structLogConfig.html#ac55e8067844a376dd7016a092ce19f73',1,'LogConfig::add_border'],['../structAsciiArtFormat.html#a03474ec42a1baad458fc1d6b7b5e2a9b',1,'AsciiArtFormat::add_border']]],
-  ['address_5f_15',['address_',['../classTmc5160Handler.html#a43ccc6febdbf53eb85fcec87cc9a8c99',1,'Tmc5160Handler']]],
-  ['agc_5fvalue_16',['agc_value',['../structAs5047uMeasurement.html#ac4ca209ff2462bcbbee2d2c14ab40f11',1,'As5047uMeasurement']]],
-  ['agc_5fwarning_17',['agc_warning',['../structAs5047uDiagnostics.html#a8b59af0c7aebe5939e36098a0b7a7fd8',1,'As5047uDiagnostics']]],
-  ['angle_5fcompensated_18',['angle_compensated',['../structAs5047uMeasurement.html#ab1abcdd7a68fbaa6560058774e94122a',1,'As5047uMeasurement']]],
-  ['angle_5fraw_19',['angle_raw',['../structAs5047uMeasurement.html#a90d827bdb1b61fe2defee715c92be2f6',1,'As5047uMeasurement']]],
-  ['animator_5f_20',['animator_',['../classWs2812Handler.html#aba9a27e605659de49f6b8c745cebf050',1,'Ws2812Handler']]],
-  ['as5047u_5fsensor_5f_21',['as5047u_sensor_',['../classAs5047uHandler.html#adf87c4d40df713678dfae26dc4585ad2',1,'As5047uHandler']]],
-  ['auto1_5fchannel_5fmask_22',['auto1_channel_mask',['../structAds7952HandlerConfig.html#a434e6731b486eb967ceca6014c046160',1,'Ads7952HandlerConfig']]],
-  ['auto2_5flast_5fchannel_23',['auto2_last_channel',['../structAds7952HandlerConfig.html#acea2eba3f86da993afa473f3f2ddf351',1,'Ads7952HandlerConfig']]]
+  ['address_15',['address',['../structAlicatBasis2Handler_1_1DiscoveredDevice.html#a642f39531c659a5ba56bd33ca93947fd',1,'AlicatBasis2Handler::DiscoveredDevice']]],
+  ['address_5f_16',['address_',['../classTmc5160Handler.html#a43ccc6febdbf53eb85fcec87cc9a8c99',1,'Tmc5160Handler']]],
+  ['agc_5fvalue_17',['agc_value',['../structAs5047uMeasurement.html#ac4ca209ff2462bcbbee2d2c14ab40f11',1,'As5047uMeasurement']]],
+  ['agc_5fwarning_18',['agc_warning',['../structAs5047uDiagnostics.html#a8b59af0c7aebe5939e36098a0b7a7fd8',1,'As5047uDiagnostics']]],
+  ['angle_5fcompensated_19',['angle_compensated',['../structAs5047uMeasurement.html#ab1abcdd7a68fbaa6560058774e94122a',1,'As5047uMeasurement']]],
+  ['angle_5fraw_20',['angle_raw',['../structAs5047uMeasurement.html#a90d827bdb1b61fe2defee715c92be2f6',1,'As5047uMeasurement']]],
+  ['animator_5f_21',['animator_',['../classWs2812Handler.html#aba9a27e605659de49f6b8c745cebf050',1,'Ws2812Handler']]],
+  ['as5047u_5fsensor_5f_22',['as5047u_sensor_',['../classAs5047uHandler.html#adf87c4d40df713678dfae26dc4585ad2',1,'As5047uHandler']]],
+  ['auto1_5fchannel_5fmask_23',['auto1_channel_mask',['../structAds7952HandlerConfig.html#a434e6731b486eb967ceca6014c046160',1,'Ads7952HandlerConfig']]],
+  ['auto2_5flast_5fchannel_24',['auto2_last_channel',['../structAds7952HandlerConfig.html#acea2eba3f86da993afa473f3f2ddf351',1,'Ads7952HandlerConfig']]]
 ];

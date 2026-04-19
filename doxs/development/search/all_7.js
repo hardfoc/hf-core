@@ -34,5 +34,6 @@ var searchData=
   ['hf_20core_20platform_31',['HF-Core Platform',['../index.html',1,'']]],
   ['high_5ftemperature_5fmode_32',['high_temperature_mode',['../structAs5047uConfig.html#ac67cfd3cfd1942ee97e5a5aacfcaf24b',1,'As5047uConfig']]],
   ['high_5fthreshold_5fcelsius_33',['high_threshold_celsius',['../structntc__temp__handler__config__t.html#a6d47bea340cdf6e4f10630984298f016',1,'ntc_temp_handler_config_t']]],
-  ['high_5fthreshold_5fcelsius_5f_34',['high_threshold_celsius_',['../classNtcTemperatureHandler.html#a1ad76c89cb99d1752b1e8a37e996ef90',1,'NtcTemperatureHandler']]]
+  ['high_5fthreshold_5fcelsius_5f_34',['high_threshold_celsius_',['../classNtcTemperatureHandler.html#a1ad76c89cb99d1752b1e8a37e996ef90',1,'NtcTemperatureHandler']]],
+  ['hostbaudsetter_35',['HostBaudSetter',['../classAlicatBasis2Handler.html#ad5e74b2aaf285a5292b5e7fe2a46aae3',1,'AlicatBasis2Handler']]]
 ];

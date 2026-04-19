@@ -45,7 +45,8 @@ var NAVTREE =
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ]
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Variables", "namespacemembers_vars.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -77,14 +78,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Ads7952Handler_8cpp.html",
-"canopen__utils__comprehensive__test_8cpp.html#aaff89257c54366921eebb8ec1348b1fd",
-"classHalSpiTle92466edComm.html#a50b2039ea26470371f6e75af11ff7b17",
-"classNtcTemperatureHandler.html#a8eb11d54de41d7ce2a1a67c4b2af1188",
-"classTle92466edHandler.html#a2f01dd08b168f009db41d658db3484eb",
-"dir_c17f5d286b0e9d3d728751e1cce38b21.html",
-"logger__comprehensive__test_8cpp.html#a9b574642318732afa08d5a9bde7097b4",
-"structBno08xCalibrationStatus.html#ad8fbed7b8273a998f3ce83c4f61e65bc",
-"tmc9660__handler__comprehensive__test_8cpp.html#ab1eea92e5b15a7f4cf1f02166c6851c9"
+"canopen__utils__comprehensive__test_8cpp.html#a7c1e2aa52b7a25cadbff224d8acc79bd",
+"classHalSpiTle92466edComm.html#a082f6fda7c85de00474f24f2bae90691",
+"classNtcTemperatureHandler.html#a7445e75a00f245e9a74ee1d846d3248e",
+"classTle92466edHandler.html#a098cb780362ae98a49c13a23fcd80418",
+"dir_74be4f6a8c360206df72b1bb4057fb39.html",
+"logger__comprehensive__test_8cpp.html#a37c454ffbe978dc87a61bb2638fa4f5f",
+"structBno08xActivityData.html#a20ff948551c4991bfafdf5057360c734",
+"tmc9660__handler__comprehensive__test_8cpp.html#a67ae550a9bdc50865266b9277403d095"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

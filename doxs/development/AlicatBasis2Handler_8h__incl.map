@@ -1,17 +1,21 @@
 <map id="AlicatBasis2Handler.h" name="AlicatBasis2Handler.h">
-<area shape="rect" id="Node000001" title="HAL&#45;level handler for the Alicat BASIS&#45;2 mass&#45;flow instrument." alt="" coords="258,5,422,31"/>
+<area shape="rect" id="Node000001" title="HAL&#45;level handler for the Alicat BASIS&#45;2 mass&#45;flow instrument." alt="" coords="351,5,515,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,101,72,126"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,32,173,50,128,64,85,81,63,95,60,90,83,76,126,59,171,45,257,27"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="96,101,163,126"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="299,33,240,53,176,81,155,94,152,90,173,76,238,48,297,28"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="187,101,264,126"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="328,33,252,94,248,90,324,29"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="288,101,392,126"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="343,31,343,87,337,87,337,31"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="417,101,546,126"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="359,28,454,91,451,95,356,33"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="571,86,776,141"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="384,28,559,76,571,80,570,85,558,81,382,33"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="800,79,984,148"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="422,23,587,41,686,56,787,76,786,81,685,62,586,47,422,28"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="352,25,291,31,223,41,153,58,85,81,63,94,60,90,83,76,151,53,222,36,291,26,351,20"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="97,101,167,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="352,33,268,51,181,81,158,95,155,90,179,76,266,46,350,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="192,101,259,126"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="393,33,335,53,272,81,251,94,248,90,269,76,333,48,392,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="283,101,370,126"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="422,33,352,94,348,90,419,29"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="395,101,472,126"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="436,31,436,87,431,87,431,31"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="496,101,600,126"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="449,29,525,90,522,94,446,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="625,101,754,126"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="471,28,613,76,653,93,651,98,611,81,470,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="779,86,984,141"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="511,28,632,48,767,76,783,80,782,85,766,81,631,54,510,33"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="1008,79,1192,148"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="516,20,729,37,861,53,995,76,994,81,860,58,729,42,515,25"/>
 </map>

@@ -92,7 +92,10 @@ $(function(){initNavTree('AlicatBasis2Handler_8cpp.html',''); initResizable(); }
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">AlicatBasis2Handler.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -100,20 +103,40 @@ $(function(){initNavTree('AlicatBasis2Handler_8cpp.html',''); initResizable(); }
 <p>Implementation of <a class="el" href="classAlicatBasis2Handler.html" title="Thread-safe access layer to one BASIS-2 instrument on a shared bus.">AlicatBasis2Handler</a>.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="AlicatBasis2Handler_8h_source.html">AlicatBasis2Handler.h</a>&quot;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
 <code>#include &quot;freertos/FreeRTOS.h&quot;</code><br />
 <code>#include &quot;freertos/task.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for AlicatBasis2Handler.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="AlicatBasis2Handler_8cpp__incl.svg" width="990" height="227"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="AlicatBasis2Handler_8cpp__incl.svg" width="1198" height="227"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03" id="r_namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html">anonymous_namespace{AlicatBasis2Handler.cpp}</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a7b42b5406b54e3f42b59c2445cd7af03" id="r_a7b42b5406b54e3f42b59c2445cd7af03"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b42b5406b54e3f42b59c2445cd7af03">BASIS2_FORWARD_VOID</a>(method, ...)</td></tr>
 <tr class="separator:a7b42b5406b54e3f42b59c2445cd7af03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd10a16d6e5acbfd6b5acff40fb0dee8" id="r_acd10a16d6e5acbfd6b5acff40fb0dee8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd10a16d6e5acbfd6b5acff40fb0dee8">BASIS2_FORWARD_T</a>(T,  method, ...)</td></tr>
 <tr class="separator:acd10a16d6e5acbfd6b5acff40fb0dee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a50d9ea9c8b3553537fef28c9ee07cb30" id="r_a50d9ea9c8b3553537fef28c9ee07cb30"><td class="memItemLeft" align="right" valign="top">al::BaudRate&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#a50d9ea9c8b3553537fef28c9ee07cb30">anonymous_namespace{AlicatBasis2Handler.cpp}::BaudFromBps</a> (std::uint32_t bps) noexcept</td></tr>
+<tr class="separator:a50d9ea9c8b3553537fef28c9ee07cb30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb2770bf09308f306ebf0b62df9fab6d" id="r_aeb2770bf09308f306ebf0b62df9fab6d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#aeb2770bf09308f306ebf0b62df9fab6d">anonymous_namespace{AlicatBasis2Handler.cpp}::IsSupportedBaudBps</a> (std::uint32_t bps) noexcept</td></tr>
+<tr class="separator:aeb2770bf09308f306ebf0b62df9fab6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac74ab57c3bd5279c52f56c677d73730d" id="r_ac74ab57c3bd5279c52f56c677d73730d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#ac74ab57c3bd5279c52f56c677d73730d">anonymous_namespace{AlicatBasis2Handler.cpp}::SetBitmap</a> (std::uint8_t *bm, std::size_t bytes, std::uint8_t addr) noexcept</td></tr>
+<tr class="separator:ac74ab57c3bd5279c52f56c677d73730d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a964fadd70111271f4fac6a475ae1b340" id="r_a964fadd70111271f4fac6a475ae1b340"><td class="memItemLeft" align="right" valign="top">constexpr std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#a964fadd70111271f4fac6a475ae1b340">anonymous_namespace{AlicatBasis2Handler.cpp}::kAllBaudsBps</a> [] = { 4800, 9600, 19200, 38400, 57600, 115200 }</td></tr>
+<tr class="separator:a964fadd70111271f4fac6a475ae1b340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of <a class="el" href="classAlicatBasis2Handler.html" title="Thread-safe access layer to one BASIS-2 instrument on a shared bus.">AlicatBasis2Handler</a>. </p>
