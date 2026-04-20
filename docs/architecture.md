@@ -10,6 +10,8 @@ nav_order: 2
 
 The HardFOC platform follows a strict layered architecture:
 
+![hf-core architecture](assets/hf-core-architecture.svg)
+
 ```
 ┌──────────────────────────────────────────────────────┐
 │                  Application / API                    │
@@ -50,6 +52,8 @@ Each handler follows a consistent pattern:
 
 ## Ownership Model
 
+![Ownership model](assets/hf-core-ownership.svg)
+
 ```
 Manager (owns) → Handler (owns) → CRTP Driver Instance
                       │
@@ -76,6 +80,8 @@ deadlock-free operation even on early returns.
 ## Communication Adapters (TMC9660 Example)
 
 The TMC9660 is the most complex handler due to its multi-subsystem architecture:
+
+![TMC9660 handler anatomy](assets/tmc9660-handler-anatomy.svg)
 
 ```
 Tmc9660Handler

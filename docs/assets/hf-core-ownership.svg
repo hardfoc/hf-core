@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 880 360" width="880" height="360"
+     role="img" aria-labelledby="ownership-title ownership-desc">
+  <title id="ownership-title">hf-core Ownership Model</title>
+  <desc id="ownership-desc">Diagram showing the ownership hierarchy: Manager owns Handler owns CRTP Driver, Handler references Base interfaces, Platform creates Base interfaces.</desc>
+
+  <defs>
+    <marker id="arrow-own" viewBox="0 0 10 7" refX="10" refY="3.5"
+            markerWidth="10" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2c5282"/>
+    </marker>
+    <marker id="arrow-ref" viewBox="0 0 10 7" refX="10" refY="3.5"
+            markerWidth="10" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#276749"/>
+    </marker>
+    <marker id="arrow-create" viewBox="0 0 10 7" refX="10" refY="3.5"
+            markerWidth="10" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#c53030"/>
+    </marker>
+  </defs>
+
+  <style>
+    .panel    { fill: #ffffff; }
+    .owns     { fill: #ebf4ff; stroke: #2c5282; stroke-width: 2; }
+    .refs     { fill: #f0fff4; stroke: #276749; stroke-width: 1.6; }
+    .platform { fill: #fff5f5; stroke: #c53030; stroke-width: 1.6; }
+    .wire-own { stroke: #2c5282; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+    .wire-ref { stroke: #276749; stroke-width: 2; fill: none; stroke-linecap: round; stroke-dasharray: 5 3; }
+    .wire-create{stroke: #c53030; stroke-width: 2; fill: none; stroke-linecap: round; stroke-dasharray: 4 2; }
+    .head     { font-family: system-ui, sans-serif; font-size: 16px; font-weight: 600; fill: #1a365d; text-anchor: middle; }
+    .title    { font-family: system-ui, sans-serif; font-size: 13px; font-weight: 600; fill: #1a365d; text-anchor: middle; }
+    .small    { font-family: system-ui, sans-serif; font-size: 11px; fill: #4a5568; text-anchor: middle; }
+    .smallL   { font-family: system-ui, sans-serif; font-size: 11px; fill: #4a5568; text-anchor: start; }
+    .legend   { font-family: system-ui, sans-serif; font-size: 11px; fill: #4a5568; }
+  </style>
+
+  <!-- Background -->
+  <rect class="panel" x="0" y="0" width="880" height="360" rx="6"/>
+
+  <!-- Title -->
+  <text class="head" x="440" y="30">Ownership Model</text>
+
+  <!-- Row 1: Manager -> Handler -> CRTP Driver -->
+  <rect class="owns" x="60" y="55" width="160" height="50" rx="8"/>
+  <text class="title" x="140" y="77">Manager</text>
+  <text class="small" x="140" y="93">(application layer)</text>
+
+  <rect class="owns" x="360" y="55" width="160" height="50" rx="8"/>
+  <text class="title" x="440" y="77">Handler</text>
+  <text class="small" x="440" y="93">(hf-core)</text>
+
+  <rect class="owns" x="660" y="55" width="170" height="50" rx="8"/>
+  <text class="title" x="745" y="77">CRTP Driver</text>
+  <text class="small" x="745" y="93">(external library)</text>
+
+  <!-- Ownership arrows: Manager -> Handler -> CRTP Driver -->
+  <line class="wire-own" x1="220" y1="80" x2="355" y2="80" marker-end="url(#arrow-own)"/>
+  <text class="small" x="288" y="72">owns</text>
+
+  <line class="wire-own" x1="520" y1="80" x2="655" y2="80" marker-end="url(#arrow-own)"/>
+  <text class="small" x="588" y="72">owns</text>
+
+  <!-- Row 2: Base interfaces -->
+  <rect class="refs" x="180" y="170" width="140" height="46" rx="8"/>
+  <text class="title" x="250" y="193">BaseI2c</text>
+
+  <rect class="refs" x="370" y="170" width="140" height="46" rx="8"/>
+  <text class="title" x="440" y="193">BaseSpi</text>
+
+  <rect class="refs" x="560" y="170" width="140" height="46" rx="8"/>
+  <text class="title" x="630" y="193">BaseGpio</text>
+
+  <!-- Dashed green arrows: Handler -> Base* -->
+  <line class="wire-ref" x1="400" y1="105" x2="260" y2="165" marker-end="url(#arrow-ref)"/>
+  <line class="wire-ref" x1="440" y1="105" x2="440" y2="165" marker-end="url(#arrow-ref)"/>
+  <line class="wire-ref" x1="480" y1="105" x2="620" y2="165" marker-end="url(#arrow-ref)"/>
+
+  <text class="small" x="440" y="140">references (not owned)</text>
+
+  <!-- Row 3: Platform implementations -->
+  <rect class="platform" x="180" y="270" width="140" height="46" rx="8"/>
+  <text class="title" x="250" y="293">EspI2c</text>
+
+  <rect class="platform" x="370" y="270" width="140" height="46" rx="8"/>
+  <text class="title" x="440" y="293">EspSpi</text>
+
+  <rect class="platform" x="560" y="270" width="140" height="46" rx="8"/>
+  <text class="title" x="630" y="293">EspGpio</text>
+
+  <!-- Dashed red arrows: Platform -> Base* -->
+  <line class="wire-create" x1="250" y1="270" x2="250" y2="221" marker-end="url(#arrow-create)"/>
+  <line class="wire-create" x1="440" y1="270" x2="440" y2="221" marker-end="url(#arrow-create)"/>
+  <line class="wire-create" x1="630" y1="270" x2="630" y2="221" marker-end="url(#arrow-create)"/>
+
+  <text class="small" x="440" y="252">created by (platform layer)</text>
+
+  <!-- Legend -->
+  <line class="wire-own" x1="60" y1="335" x2="90" y2="335" marker-end="url(#arrow-own)"/>
+  <text class="legend" x="95" y="339">Owns</text>
+
+  <line class="wire-ref" x1="160" y1="335" x2="190" y2="335" marker-end="url(#arrow-ref)"/>
+  <text class="legend" x="195" y="339">References (not owned)</text>
+
+  <line class="wire-create" x1="360" y1="335" x2="390" y2="335" marker-end="url(#arrow-create)"/>
+  <text class="legend" x="395" y="339">Created by</text>
+
+  <!-- Key rule note -->
+  <text class="smallL" x="530" y="339">&#8212; Handlers do NOT own their communication interfaces. Platform layer must ensure interfaces outlive the handler.</text>
+
+</svg>

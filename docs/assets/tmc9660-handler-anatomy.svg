@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 880 440" width="880" height="440"
+     role="img" aria-labelledby="anatomy-title anatomy-desc">
+  <title id="anatomy-title">TMC9660 Handler Anatomy</title>
+  <desc id="anatomy-desc">Internal composition of the TMC9660 handler showing adapters, driver, GPIO wrappers, and the base interfaces it consumes.</desc>
+
+  <defs>
+    <marker id="arr-solid" viewBox="0 0 10 7" refX="10" refY="3.5"
+            markerWidth="10" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2c5282"/>
+    </marker>
+    <marker id="arr-ref" viewBox="0 0 10 7" refX="10" refY="3.5"
+            markerWidth="10" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#276749"/>
+    </marker>
+  </defs>
+
+  <style>
+    .panel    { fill: #ffffff; }
+    .handler  { fill: #fff5f5; stroke: #c53030; stroke-width: 2; }
+    .adapter  { fill: #ebf4ff; stroke: #2c5282; stroke-width: 1.6; }
+    .driver   { fill: #fef5e7; stroke: #c05621; stroke-width: 1.6; }
+    .wrapper  { fill: #f0fff4; stroke: #276749; stroke-width: 1.6; }
+    .base     { fill: #f4f6f8; stroke: #1a365d; stroke-width: 1.4; }
+    .wire     { stroke: #2c5282; stroke-width: 2; fill: none; stroke-linecap: round; }
+    .wire-ref { stroke: #276749; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-dasharray: 4 2; }
+    .head     { font-family: system-ui, sans-serif; font-size: 16px; font-weight: 600; fill: #1a365d; text-anchor: middle; }
+    .title    { font-family: system-ui, sans-serif; font-size: 12px; font-weight: 600; fill: #1a365d; text-anchor: middle; }
+    .titleL   { font-family: system-ui, sans-serif; font-size: 12px; font-weight: 600; fill: #1a365d; text-anchor: start; }
+    .small    { font-family: system-ui, sans-serif; font-size: 10px; fill: #4a5568; text-anchor: middle; }
+    .smallL   { font-family: system-ui, sans-serif; font-size: 10px; fill: #4a5568; text-anchor: start; }
+    .legend   { font-family: system-ui, sans-serif; font-size: 11px; fill: #4a5568; }
+  </style>
+
+  <!-- Background -->
+  <rect class="panel" x="0" y="0" width="880" height="440" rx="6"/>
+
+  <!-- Title -->
+  <text class="head" x="440" y="28">TMC9660 Handler &#8212; Internal Anatomy</text>
+
+  <!-- Handler outer box -->
+  <rect class="handler" x="30" y="42" width="820" height="240" rx="10"/>
+  <text class="titleL" x="44" y="62">Tmc9660Handler</text>
+
+  <!-- 1. HalSpiTmc9660Comm (adapter, blue) -->
+  <rect class="adapter" x="50" y="78" width="240" height="52" rx="6"/>
+  <text class="title" x="170" y="100">HalSpiTmc9660Comm</text>
+  <text class="smallL" x="60" y="120">CRTP adapter: BaseSpi &#8594; SpiCommInterface</text>
+
+  <!-- 2. Tmc9660CtrlPins (adapter, blue) -->
+  <rect class="adapter" x="310" y="78" width="240" height="52" rx="6"/>
+  <text class="title" x="430" y="100">Tmc9660CtrlPins</text>
+  <text class="smallL" x="320" y="120">RST, DRV_EN, FAULTN, WAKE</text>
+
+  <!-- 3. SpiDriver (driver, orange) -->
+  <rect class="driver" x="570" y="78" width="260" height="52" rx="6"/>
+  <text class="title" x="700" y="100">SpiDriver</text>
+  <text class="smallL" x="580" y="120">tmc9660::TMC9660&#60;HalSpiComm&#62;</text>
+
+  <!-- Internal wires: adapter -> driver -->
+  <line class="wire" x1="290" y1="104" x2="305" y2="104" marker-end="url(#arr-solid)"/>
+  <line class="wire" x1="550" y1="104" x2="565" y2="104" marker-end="url(#arr-solid)"/>
+
+  <!-- 4. GPIO wrappers (wrapper, green) -->
+  <rect class="wrapper" x="50" y="150" width="240" height="48" rx="6"/>
+  <text class="title" x="170" y="172">GPIO wrappers</text>
+  <text class="smallL" x="60" y="188">GPIO17, GPIO18 &#8594; BaseGpio</text>
+
+  <!-- 5. Adc wrapper (wrapper, green) -->
+  <rect class="wrapper" x="310" y="150" width="240" height="48" rx="6"/>
+  <text class="title" x="430" y="172">Adc wrapper</text>
+  <text class="smallL" x="320" y="188">multi-channel &#8594; BaseAdc</text>
+
+  <!-- 6. Temperature wrapper (wrapper, green) -->
+  <rect class="wrapper" x="570" y="150" width="260" height="48" rx="6"/>
+  <text class="title" x="700" y="172">Temperature wrapper</text>
+  <text class="smallL" x="580" y="188">chip temp &#8594; BaseTemperature</text>
+
+  <!-- Vertical spacer label inside handler -->
+  <text class="smallL" x="44" y="230">Consumes base interfaces (references, not owned) &#8595;</text>
+
+  <!-- Row of Base* interface boxes below handler -->
+  <rect class="base" x="50" y="310" width="150" height="42" rx="6"/>
+  <text class="title" x="125" y="335">BaseSpi</text>
+
+  <rect class="base" x="230" y="310" width="150" height="42" rx="6"/>
+  <text class="title" x="305" y="335">BaseGpio</text>
+
+  <rect class="base" x="410" y="310" width="150" height="42" rx="6"/>
+  <text class="title" x="485" y="335">BaseAdc</text>
+
+  <rect class="base" x="590" y="310" width="190" height="42" rx="6"/>
+  <text class="title" x="685" y="335">BaseTemperature</text>
+
+  <!-- Dashed green reference arrows from handler components down to Base* boxes -->
+  <!-- HalSpiTmc9660Comm -> BaseSpi -->
+  <line class="wire-ref" x1="170" y1="282" x2="125" y2="305" marker-end="url(#arr-ref)"/>
+
+  <!-- GPIO wrappers -> BaseGpio -->
+  <line class="wire-ref" x1="170" y1="282" x2="305" y2="305" marker-end="url(#arr-ref)"/>
+
+  <!-- Adc wrapper -> BaseAdc -->
+  <line class="wire-ref" x1="430" y1="282" x2="485" y2="305" marker-end="url(#arr-ref)"/>
+
+  <!-- Temperature wrapper -> BaseTemperature -->
+  <line class="wire-ref" x1="700" y1="282" x2="685" y2="305" marker-end="url(#arr-ref)"/>
+
+  <!-- "references" label on the arrows -->
+  <text class="small" x="440" y="296">references</text>
+
+  <!-- Legend -->
+  <rect class="adapter" x="50" y="375" width="14" height="14" rx="3"/>
+  <text class="legend" x="70" y="387">Adapter (CRTP)</text>
+
+  <rect class="driver" x="190" y="375" width="14" height="14" rx="3"/>
+  <text class="legend" x="210" y="387">Driver</text>
+
+  <rect class="wrapper" x="280" y="375" width="14" height="14" rx="3"/>
+  <text class="legend" x="300" y="387">Wrapper</text>
+
+  <rect class="base" x="380" y="375" width="14" height="14" rx="3"/>
+  <text class="legend" x="400" y="387">Base interface</text>
+
+  <line class="wire-ref" x1="510" y1="382" x2="540" y2="382" marker-end="url(#arr-ref)"/>
+  <text class="legend" x="546" y="387">References (not owned)</text>
+
+  <line class="wire" x1="710" y1="382" x2="740" y2="382" marker-end="url(#arr-solid)"/>
+  <text class="legend" x="746" y="387">Internal wiring</text>
+
+</svg>
