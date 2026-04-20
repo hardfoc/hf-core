@@ -405,6 +405,30 @@ tle92466ed::DriverResult<void> Tle92466edHandler::EnterMissionMode() noexcept {
     });
 }
 
+tle92466ed::DriverResult<void> Tle92466edHandler::EnableOutputStage() noexcept {
+    return withDriver([](auto& drv) -> tle92466ed::DriverResult<void> {
+        return drv.Enable();
+    });
+}
+
+tle92466ed::DriverResult<void> Tle92466edHandler::DisableOutputStage() noexcept {
+    return withDriver([](auto& drv) -> tle92466ed::DriverResult<void> {
+        return drv.Disable();
+    });
+}
+
+tle92466ed::DriverResult<void> Tle92466edHandler::EnableFeedbackUpdates() noexcept {
+    return withDriver([](auto& drv) -> tle92466ed::DriverResult<void> {
+        // FB_FRZ register lives at central register offset 0x0007. Bit n of
+        // the lower byte freezes channel n's feedback when set, unfreezes
+        // when cleared. Writing 0x0000 unfreezes every channel. The driver's
+        // public API doesn't expose an FB_FRZ helper, so go through the
+        // generic WriteRegister.
+        constexpr uint16_t kFbFrzAddr = tle92466ed::CentralReg::FB_FRZ;
+        return drv.WriteRegister(kFbFrzAddr, 0x0000);
+    });
+}
+
 tle92466ed::DriverResult<void> Tle92466edHandler::EnterConfigMode() noexcept {
     return withDriver([](auto& drv) -> tle92466ed::DriverResult<void> {
         return drv.EnterConfigMode();

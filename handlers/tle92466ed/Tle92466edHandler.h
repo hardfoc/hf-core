@@ -219,6 +219,47 @@ public:
     [[nodiscard]] bool IsMissionMode() noexcept;
 
     //=========================================================================
+    // Hardware Output Stage (EN pin)
+    //=========================================================================
+
+    /**
+     * @brief Drive the chip's hardware EN pin HIGH so the output stage can
+     *        deliver current to the load.
+     *
+     * @details The TLE92466ED's EN input gates the entire output stage. While
+     *          EN is LOW (the state the driver puts it in during reset), no
+     *          current is delivered regardless of the per-channel
+     *          `EnableChannel` bits or `SetChannelCurrent` setpoints. This
+     *          method just calls `Driver::Enable()` which writes
+     *          `GpioSignal::ACTIVE` to the configured EN GPIO.
+     *
+     * @return Empty result on success or the underlying driver error.
+     */
+    tle92466ed::DriverResult<void> EnableOutputStage() noexcept;
+
+    /**
+     * @brief Drive the chip's EN pin LOW to gate off the output stage. SPI
+     *        access remains functional; only the high-side power outputs are
+     *        disabled. Useful as an emergency stop.
+     */
+    tle92466ed::DriverResult<void> DisableOutputStage() noexcept;
+
+    /**
+     * @brief Clear the FB_FRZ register so the chip updates FB_DC / FB_I_AVG /
+     *        FB_VBAT on every channel.
+     *
+     * @details Per the TLE92466ED datasheet §4.10 and the FB_FRZ register
+     *          description (offset 0x0007): "Setting the <CH> bit in FB_FRZ
+     *          to 0 enables the update of the feedback values; setting it to
+     *          1 freezes the values." The chip's POR default leaves all six
+     *          channel bits set (frozen), which is why `FB_DC` / `FB_I_AVG`
+     *          read back as 0 even when the chip is actively driving a coil.
+     *          Writing 0x0000 unfreezes every channel. Safe to call multiple
+     *          times; idempotent.
+     */
+    tle92466ed::DriverResult<void> EnableFeedbackUpdates() noexcept;
+
+    //=========================================================================
     // Status & Diagnostics
     //=========================================================================
 
