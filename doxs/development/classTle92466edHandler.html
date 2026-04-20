@@ -187,6 +187,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6bcbd117208f3e44f2216d45541eb4fa" id="r_a6bcbd117208f3e44f2216d45541eb4fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bcbd117208f3e44f2216d45541eb4fa">IsMissionMode</a> () noexcept</td></tr>
 <tr class="memdesc:a6bcbd117208f3e44f2216d45541eb4fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if in mission mode.  <br /></td></tr>
 <tr class="separator:a6bcbd117208f3e44f2216d45541eb4fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec30fe1266505d13b73f02c7f92e1618" id="r_aec30fe1266505d13b73f02c7f92e1618"><td class="memItemLeft" align="right" valign="top">tle92466ed::DriverResult&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec30fe1266505d13b73f02c7f92e1618">EnableOutputStage</a> () noexcept</td></tr>
+<tr class="memdesc:aec30fe1266505d13b73f02c7f92e1618"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive the chip's hardware EN pin HIGH so the output stage can deliver current to the load.  <br /></td></tr>
+<tr class="separator:aec30fe1266505d13b73f02c7f92e1618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7785b8d56d0bd25001e5bdf9b8d557a2" id="r_a7785b8d56d0bd25001e5bdf9b8d557a2"><td class="memItemLeft" align="right" valign="top">tle92466ed::DriverResult&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7785b8d56d0bd25001e5bdf9b8d557a2">DisableOutputStage</a> () noexcept</td></tr>
+<tr class="memdesc:a7785b8d56d0bd25001e5bdf9b8d557a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive the chip's EN pin LOW to gate off the output stage. SPI access remains functional; only the high-side power outputs are disabled. Useful as an emergency stop.  <br /></td></tr>
+<tr class="separator:a7785b8d56d0bd25001e5bdf9b8d557a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9d8117d83234cdd7947aeeb40281b36" id="r_ad9d8117d83234cdd7947aeeb40281b36"><td class="memItemLeft" align="right" valign="top">tle92466ed::DriverResult&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9d8117d83234cdd7947aeeb40281b36">EnableFeedbackUpdates</a> () noexcept</td></tr>
+<tr class="memdesc:ad9d8117d83234cdd7947aeeb40281b36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the FB_FRZ register so the chip updates FB_DC / FB_I_AVG / FB_VBAT on every channel.  <br /></td></tr>
+<tr class="separator:ad9d8117d83234cdd7947aeeb40281b36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0851407035d56168309937254b642491" id="r_a0851407035d56168309937254b642491"><td class="memItemLeft" align="right" valign="top">tle92466ed::DriverResult&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0851407035d56168309937254b642491">GetStatus</a> (tle92466ed::DeviceStatus &amp;status) noexcept</td></tr>
 <tr class="memdesc:a0851407035d56168309937254b642491"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device status.  <br /></td></tr>
 <tr class="separator:a0851407035d56168309937254b642491"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -640,6 +649,38 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a7785b8d56d0bd25001e5bdf9b8d557a2" name="a7785b8d56d0bd25001e5bdf9b8d557a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7785b8d56d0bd25001e5bdf9b8d557a2">&#9670;&#160;</a></span>DisableOutputStage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">tle92466ed::DriverResult&lt; void &gt; Tle92466edHandler::DisableOutputStage </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Drive the chip's EN pin LOW to gate off the output stage. SPI access remains functional; only the high-side power outputs are disabled. Useful as an emergency stop. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTle92466edHandler_a7785b8d56d0bd25001e5bdf9b8d557a2_cgraph.svg" width="1472" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="afcec01ba90f6596dcde99387ef41b6e4" name="afcec01ba90f6596dcde99387ef41b6e4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afcec01ba90f6596dcde99387ef41b6e4">&#9670;&#160;</a></span>DumpDiagnostics()</h2>
 
@@ -736,6 +777,75 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="ad9d8117d83234cdd7947aeeb40281b36" name="ad9d8117d83234cdd7947aeeb40281b36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9d8117d83234cdd7947aeeb40281b36">&#9670;&#160;</a></span>EnableFeedbackUpdates()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">tle92466ed::DriverResult&lt; void &gt; Tle92466edHandler::EnableFeedbackUpdates </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clear the FB_FRZ register so the chip updates FB_DC / FB_I_AVG / FB_VBAT on every channel. </p>
+<p>Per the TLE92466ED datasheet §4.10 and the FB_FRZ register description (offset 0x0007): "Setting the &lt;CH&gt; bit in FB_FRZ
+         to 0 enables the update of the feedback values; setting it to
+         1 freezes the values." The chip's POR default leaves all six channel bits set (frozen), which is why <code>FB_DC</code> / <code>FB_I_AVG</code> read back as 0 even when the chip is actively driving a coil. Writing 0x0000 unfreezes every channel. Safe to call multiple times; idempotent. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTle92466edHandler_ad9d8117d83234cdd7947aeeb40281b36_cgraph.svg" width="1498" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="aec30fe1266505d13b73f02c7f92e1618" name="aec30fe1266505d13b73f02c7f92e1618"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec30fe1266505d13b73f02c7f92e1618">&#9670;&#160;</a></span>EnableOutputStage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">tle92466ed::DriverResult&lt; void &gt; Tle92466edHandler::EnableOutputStage </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Drive the chip's hardware EN pin HIGH so the output stage can deliver current to the load. </p>
+<p>The TLE92466ED's EN input gates the entire output stage. While EN is LOW (the state the driver puts it in during reset), no current is delivered regardless of the per-channel <code>EnableChannel</code> bits or <code>SetChannelCurrent</code> setpoints. This method just calls <code>Driver::Enable()</code> which writes <code>GpioSignal::ACTIVE</code> to the configured EN GPIO.</p>
+<dl class="section return"><dt>Returns</dt><dd>Empty result on success or the underlying driver error. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTle92466edHandler_aec30fe1266505d13b73f02c7f92e1618_cgraph.svg" width="1472" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="a1a976346516812f7125cdeb2f3aeb327" name="a1a976346516812f7125cdeb2f3aeb327"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1a976346516812f7125cdeb2f3aeb327">&#9670;&#160;</a></span>EnsureInitialized()</h2>
 
@@ -799,7 +909,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTle92466edHandler_a59ce7fd71a61c78bba4dc4a43c99e280_icgraph.svg" width="596" height="643"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTle92466edHandler_a59ce7fd71a61c78bba4dc4a43c99e280_icgraph.svg" width="622" height="819"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1174,7 +1284,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTle92466edHandler_ac607f9cf2453e8d1849b40d2dd8e8474_icgraph.svg" width="802" height="643"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTle92466edHandler_ac607f9cf2453e8d1849b40d2dd8e8474_icgraph.svg" width="827" height="819"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1438,7 +1548,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTle92466edHandler_aef42f3c7c1b1ef51b27eb8d178aca6bc_icgraph.svg" width="374" height="563"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTle92466edHandler_aef42f3c7c1b1ef51b27eb8d178aca6bc_icgraph.svg" width="399" height="755"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
