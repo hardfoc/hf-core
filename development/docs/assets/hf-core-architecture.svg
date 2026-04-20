@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 740" width="980" height="740" role="img" aria-labelledby="t-hfcore d-hfcore">
+  <title id="t-hfcore">hf-core &#8212; handler bridge architecture</title>
+  <desc id="d-hfcore">hf-core is the handler bridge layer. Each handler defines a CRTP comm adapter that bridges a chip driver&#39;s zero-virtual interface to the platform&#39;s Base* contracts, wrapping everything in a mutex-protected, lazily-initialised facade.</desc>
+  <defs>
+    <style type="text/css"><![CDATA[
+      .panel       { fill: #ffffff; }
+      .consumer    { fill: #f4f6f8; stroke: #718096; stroke-width: 1.6; stroke-dasharray: 6 3; }
+      .layer-hand  { fill: #fef5e7; stroke: #c05621; stroke-width: 2; }
+      .layer-base  { fill: #fff5f5; stroke: #c53030; stroke-width: 2; }
+      .layer-drv   { fill: #faf5ff; stroke: #6b46c1; stroke-width: 2; }
+      .layer-plat  { fill: #ebf4ff; stroke: #2c5282; stroke-width: 2; }
+      .future      { fill: #f4f6f8; stroke: #4a5568; stroke-width: 1.6; stroke-dasharray: 4 3; }
+      .item        { fill: #ffffff; stroke: #4a5568; stroke-width: 1.4; }
+      .anatomy     { fill: #fffaf0; stroke: #c05621; stroke-width: 1.6; }
+      .adapter     { fill: #faf5ff; stroke: #805ad5; stroke-width: 1.4; }
+      .driver-box  { fill: #ebf4ff; stroke: #2c5282; stroke-width: 1.4; }
+      .mutex-box   { fill: #f0fff4; stroke: #276749; stroke-width: 1.4; }
+      .arrow       { stroke: #2c5282; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+      .arrow-ref   { stroke: #c53030; stroke-width: 2; fill: none; stroke-linecap: round; }
+      .arrow-own   { stroke: #c05621; stroke-width: 2; fill: none; stroke-linecap: round; }
+      .arrow-impl  { stroke: #6b46c1; stroke-width: 2; fill: none; stroke-linecap: round; stroke-dasharray: 5 3; }
+      .head        { font-family: system-ui, sans-serif; font-size: 16px; font-weight: 600; fill: #1a365d; text-anchor: middle; }
+      .layer-title { font-family: system-ui, sans-serif; font-size: 14px; font-weight: 700; text-anchor: start; }
+      .title       { font-family: system-ui, sans-serif; font-size: 12.5px; font-weight: 600; fill: #1a365d; text-anchor: middle; }
+      .titleL      { font-family: system-ui, sans-serif; font-size: 12.5px; font-weight: 600; fill: #1a365d; text-anchor: start; }
+      .small       { font-family: system-ui, sans-serif; font-size: 11px; fill: #4a5568; text-anchor: middle; }
+      .smallL      { font-family: system-ui, sans-serif; font-size: 11px; fill: #4a5568; text-anchor: start; }
+      .smallR      { font-family: system-ui, sans-serif; font-size: 11px; fill: #4a5568; text-anchor: end; }
+      .pin         { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: 10.5px; fill: #1a202c; text-anchor: start; }
+      .pinC        { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: 10.5px; fill: #1a202c; text-anchor: middle; }
+      .legend      { font-family: system-ui, sans-serif; font-size: 11px; fill: #4a5568; }
+      .badge       { font-family: system-ui, sans-serif; font-size: 10.5px; font-weight: 600; fill: #ffffff; text-anchor: middle; }
+    ]]></style>
+    <marker id="ar-d" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#2c5282"/>
+    </marker>
+    <marker id="ar-ref" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#c53030"/>
+    </marker>
+    <marker id="ar-own" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#c05621"/>
+    </marker>
+    <marker id="ar-impl" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#6b46c1"/>
+    </marker>
+  </defs>
+  <rect class="panel" width="980" height="740"/>
+
+  <text class="head" x="490" y="24">hf-core &#8212; handler bridge architecture</text>
+  <text class="small" x="490" y="42">Each handler bridges a CRTP chip driver to Base* contracts with mutex protection, lazy init, and dependency-injected interfaces.</text>
+
+  <!-- ============ ROW 0: Abstract consumer (above this repo) ============ -->
+  <rect class="consumer" x="40" y="60" width="900" height="42" rx="6"/>
+  <text class="titleL" x="56" y="78" fill="#718096">Board HAL / application code  (above this repo)</text>
+  <text class="smallL" x="56" y="94">Constructs handlers, injects Base* references, manages lifetime. See each HAL repo for manager/API details.</text>
+
+  <line class="arrow" x1="250" y1="102" x2="250" y2="124" marker-end="url(#ar-d)"/>
+  <text class="smallL" x="258" y="118" fill="#2c5282">constructs + injects Base* refs</text>
+  <line class="arrow" x1="700" y1="102" x2="700" y2="124" marker-end="url(#ar-d)"/>
+
+  <!-- ============ ROW 1: HANDLERS &#8212; the core of this repo ============ -->
+  <rect class="layer-hand" x="40" y="124" width="900" height="260" rx="6"/>
+  <text class="layer-title" x="56" y="146" fill="#c05621">Handlers  (hf-core &#8212; this repo)</text>
+  <text class="smallL" x="56" y="162">Thread-safe per-chip facade: CRTP adapter bridge + RtosMutex + lazy initialisation + error mapping.</text>
+  <rect fill="#c05621" x="820" y="132" width="110" height="18" rx="9"/>
+  <text class="badge" x="875" y="145">hf-core</text>
+
+  <!-- LEFT: Expanded handler anatomy (Tle92466edHandler example) -->
+  <rect class="anatomy" x="56" y="174" width="430" height="196" rx="5"/>
+  <text class="titleL" x="68" y="192" fill="#c05621">Handler anatomy  (Tle92466edHandler example)</text>
+
+  <!-- Comm adapter sub-box -->
+  <rect class="adapter" x="68" y="200" width="200" height="100" rx="4"/>
+  <text class="titleL" x="80" y="216" fill="#6b46c1">CRTP comm adapter</text>
+  <text class="pin" x="80" y="232">HalSpiTle92466edComm</text>
+  <text class="pin" x="80" y="246">: tle92466ed::</text>
+  <text class="pin" x="80" y="260">  SpiInterface&#60;Self&#62;</text>
+  <line x1="80" y1="268" x2="256" y2="268" stroke="#805ad5" stroke-width="0.8"/>
+  <text class="smallL" x="80" y="282">holds: BaseSpi&#38;</text>
+  <text class="smallL" x="80" y="296">       BaseGpio&#38; (resn, en)</text>
+
+  <!-- Arrow: adapter -> driver -->
+  <line class="arrow-own" x1="268" y1="250" x2="286" y2="250" marker-end="url(#ar-own)"/>
+
+  <!-- Driver instance sub-box -->
+  <rect class="driver-box" x="290" y="200" width="184" height="60" rx="4"/>
+  <text class="titleL" x="302" y="218" fill="#2c5282">Driver instance</text>
+  <text class="pin" x="302" y="234">Driver&#60;HalSpiComm&#62;</text>
+  <text class="smallL" x="302" y="252">zero-virtual dispatch (CRTP)</text>
+
+  <!-- Mutex + lazy init sub-box -->
+  <rect class="mutex-box" x="290" y="270" width="184" height="94" rx="4"/>
+  <text class="titleL" x="302" y="288" fill="#276749">Thread safety</text>
+  <text class="pin" x="302" y="304">RtosMutex mutex_;</text>
+  <text class="pin" x="302" y="320">MutexLockGuard lock;</text>
+  <line x1="302" y1="328" x2="462" y2="328" stroke="#276749" stroke-width="0.8"/>
+  <text class="smallL" x="302" y="342">Lazy: EnsureInitialized()</text>
+  <text class="smallL" x="302" y="356">API: withDriver(fn) / visitDriver(fn)</text>
+
+  <!-- RIGHT: Handler roster grid -->
+  <g>
+    <text class="titleL" x="504" y="192" fill="#c05621">All 13 handlers + utilities</text>
+    <!-- Row 1 -->
+    <rect class="item" x="504" y="200" width="90" height="24" rx="3"/><text class="title" x="549" y="216">As5047u</text>
+    <rect class="item" x="600" y="200" width="90" height="24" rx="3"/><text class="title" x="645" y="216">Ads7952</text>
+    <rect class="item" x="696" y="200" width="90" height="24" rx="3"/><text class="title" x="741" y="216">Bno08x</text>
+    <rect class="item" x="792" y="200" width="136" height="24" rx="3"/><text class="title" x="860" y="216">AlicatBasis2</text>
+    <!-- Row 2 -->
+    <rect class="item" x="504" y="230" width="90" height="24" rx="3"/><text class="title" x="549" y="246">Max22200</text>
+    <rect class="item" x="600" y="230" width="90" height="24" rx="3"/><text class="title" x="645" y="246">Ntc</text>
+    <rect class="item" x="696" y="230" width="90" height="24" rx="3"/><text class="title" x="741" y="246">Mcp9700</text>
+    <rect class="item" x="792" y="230" width="136" height="24" rx="3"/><text class="title" x="860" y="246">Pca9685</text>
+    <!-- Row 3 -->
+    <rect class="item" x="504" y="260" width="90" height="24" rx="3"/><text class="title" x="549" y="276">Pcal95555</text>
+    <rect class="item" x="600" y="260" width="90" height="24" rx="3"/><text class="title" x="645" y="276">Tle92466ed</text>
+    <rect class="item" x="696" y="260" width="90" height="24" rx="3"/><text class="title" x="741" y="276">Tmc5160</text>
+    <rect class="item" x="792" y="260" width="136" height="24" rx="3"/><text class="title" x="860" y="276">Tmc9660</text>
+    <!-- Row 4 -->
+    <rect class="item" x="504" y="290" width="90" height="24" rx="3"/><text class="title" x="549" y="306">Ws2812</text>
+    <rect class="item" x="600" y="290" width="182" height="24" rx="3"/><text class="title" x="691" y="306">Logger (singleton)</text>
+    <rect class="item" x="792" y="290" width="136" height="24" rx="3"/><text class="title" x="860" y="306">HandlerCommon</text>
+
+    <!-- Secondary adapter callout -->
+    <rect class="item" x="504" y="324" width="424" height="40" rx="3"/>
+    <text class="titleL" x="516" y="342" fill="#4a5568">Secondary Base* adapters (optional)</text>
+    <text class="smallL" x="516" y="358">e.g. Tmc9660Handler::Adc re-exports chip ADC channels as BaseAdc</text>
+  </g>
+
+  <!-- ============ Arrows from handler layer downward ============ -->
+  <!-- Left arrow: holds Base* refs (not owned) -->
+  <line class="arrow-ref" x1="168" y1="384" x2="168" y2="404" marker-end="url(#ar-ref)"/>
+  <text class="smallL" x="176" y="400" fill="#c53030">holds Base* refs (not owned)</text>
+
+  <!-- Right arrow: owns CRTP Driver<Comm> -->
+  <line class="arrow-own" x1="600" y1="384" x2="600" y2="404" marker-end="url(#ar-own)"/>
+  <text class="smallL" x="608" y="400" fill="#c05621">owns Driver&#60;Comm&#62; instance</text>
+
+  <!-- ============ ROW 2: Base interfaces ============ -->
+  <rect class="layer-base" x="40" y="406" width="440" height="96" rx="6"/>
+  <text class="layer-title" x="56" y="426" fill="#c53030">Base interfaces  (pure-virtual contracts)</text>
+  <rect fill="#c53030" x="290" y="414" width="180" height="16" rx="8"/>
+  <text class="badge" x="380" y="426">hf-internal-interface-wrap</text>
+  <text class="smallL" x="56" y="442">Hardware-agnostic. Same handler code on any MCU.</text>
+  <g>
+    <rect class="item" x="56"  y="452" width="80" height="22" rx="3"/><text class="title" x="96"  y="467">BaseI2c</text>
+    <rect class="item" x="140" y="452" width="80" height="22" rx="3"/><text class="title" x="180" y="467">BaseSpi</text>
+    <rect class="item" x="224" y="452" width="80" height="22" rx="3"/><text class="title" x="264" y="467">BaseGpio</text>
+    <rect class="item" x="308" y="452" width="80" height="22" rx="3"/><text class="title" x="348" y="467">BaseAdc</text>
+    <rect class="item" x="392" y="452" width="80" height="22" rx="3"/><text class="title" x="432" y="467">BaseUart</text>
+    <rect class="item" x="56"  y="478" width="106" height="22" rx="3"/><text class="title" x="109" y="493">BaseTemperature</text>
+    <rect class="item" x="166" y="478" width="80" height="22" rx="3"/><text class="title" x="206" y="493">BasePwm</text>
+    <rect class="item" x="250" y="478" width="220" height="22" rx="3"/><text class="title" x="360" y="493">+ BaseCan, BaseLogger, ...</text>
+  </g>
+
+  <!-- ============ ROW 2b: CRTP device drivers ============ -->
+  <rect class="layer-drv" x="500" y="406" width="440" height="96" rx="6"/>
+  <text class="layer-title" x="516" y="426" fill="#6b46c1">CRTP device drivers  (external)</text>
+  <rect fill="#6b46c1" x="750" y="414" width="180" height="16" rx="8"/>
+  <text class="badge" x="840" y="426">hf-core-drivers/external</text>
+  <text class="smallL" x="516" y="442">Header-only, zero-virtual, templated on comm adapter.</text>
+  <g>
+    <rect class="item" x="516" y="452" width="78" height="22" rx="3"/><text class="title" x="555" y="467">tle92466ed</text>
+    <rect class="item" x="598" y="452" width="78" height="22" rx="3"/><text class="title" x="637" y="467">max22200</text>
+    <rect class="item" x="680" y="452" width="78" height="22" rx="3"/><text class="title" x="719" y="467">tmc9660</text>
+    <rect class="item" x="762" y="452" width="78" height="22" rx="3"/><text class="title" x="801" y="467">tmc5160</text>
+    <rect class="item" x="844" y="452" width="88" height="22" rx="3"/><text class="title" x="888" y="467">as5047u</text>
+    <rect class="item" x="516" y="478" width="78" height="22" rx="3"/><text class="title" x="555" y="493">bno08x</text>
+    <rect class="item" x="598" y="478" width="78" height="22" rx="3"/><text class="title" x="637" y="493">pca9685</text>
+    <rect class="item" x="680" y="478" width="78" height="22" rx="3"/><text class="title" x="719" y="493">pcal95555</text>
+    <rect class="item" x="762" y="478" width="170" height="22" rx="3"/><text class="title" x="847" y="493">+ ws2812, ntc, ads7952, ...</text>
+  </g>
+
+  <!-- ============ Arrow: Base -> Platform (implements) ============ -->
+  <line class="arrow-impl" x1="240" y1="502" x2="240" y2="528" marker-end="url(#ar-impl)"/>
+  <text class="smallL" x="248" y="522" fill="#6b46c1">implements</text>
+
+  <!-- ============ ROW 3: Platform implementations ============ -->
+  <rect class="layer-plat" x="40" y="530" width="560" height="96" rx="6"/>
+  <text class="layer-title" x="56" y="550" fill="#2c5282">Platform implementations  (ESP-IDF today)</text>
+  <rect fill="#2c5282" x="380" y="538" width="210" height="16" rx="8"/>
+  <text class="badge" x="485" y="550">hf-internal-interface-wrap / mcu</text>
+  <text class="smallL" x="56" y="566">Vendor SDK concrete classes passed to handlers via dependency injection.</text>
+  <g>
+    <rect class="item" x="56"  y="576" width="110" height="22" rx="3"/><text class="title" x="111" y="591">EspI2cBus/Dev</text>
+    <rect class="item" x="172" y="576" width="110" height="22" rx="3"/><text class="title" x="227" y="591">EspSpiBus/Dev</text>
+    <rect class="item" x="288" y="576" width="80" height="22" rx="3"/><text class="title" x="328" y="591">EspGpio</text>
+    <rect class="item" x="372" y="576" width="80" height="22" rx="3"/><text class="title" x="412" y="591">EspAdc</text>
+    <rect class="item" x="456" y="576" width="80" height="22" rx="3"/><text class="title" x="496" y="591">EspUart</text>
+    <rect class="item" x="56"  y="602" width="80" height="22" rx="3"/><text class="title" x="96"  y="617">EspPwm</text>
+    <rect class="item" x="140" y="602" width="80" height="22" rx="3"/><text class="title" x="180" y="617">EspCan</text>
+    <rect class="item" x="224" y="602" width="120" height="22" rx="3"/><text class="title" x="284" y="617">EspTemperature</text>
+  </g>
+
+  <!-- Future MCU placeholder -->
+  <rect class="future" x="620" y="530" width="320" height="96" rx="6"/>
+  <text class="layer-title" x="636" y="550" fill="#4a5568">Future MCUs</text>
+  <text class="smallL" x="636" y="566">Same Base* contracts; new vendor SDK implementations.</text>
+  <g>
+    <rect class="future" x="636" y="576" width="130" height="22" rx="3"/><text class="title" x="701" y="591" fill="#4a5568">Stm32* (HAL/LL)</text>
+    <rect class="future" x="772" y="576" width="130" height="22" rx="3"/><text class="title" x="837" y="591" fill="#4a5568">Linux* (ioctl)</text>
+    <rect class="future" x="636" y="602" width="266" height="22" rx="3"/><text class="title" x="769" y="617" fill="#4a5568">Mock* (unit test, host build)</text>
+  </g>
+
+  <!-- ============ CRTP pattern callout ============ -->
+  <rect fill="#faf5ff" stroke="#6b46c1" stroke-width="1.2" x="40" y="644" width="900" height="38" rx="5"/>
+  <text class="titleL" x="56" y="662" fill="#6b46c1">CRTP adapter bridge pattern (the core architectural idea)</text>
+  <text class="pin" x="56" y="676">Handler defines class HalComm : public driver::SpiInterface&#60;HalComm&#62; { BaseSpi&#38; spi_; ... }; then owns Driver&#60;HalComm&#62;</text>
+
+  <!-- ============ Bottom legend ============ -->
+  <g transform="translate(40, 700)">
+    <text class="layer-title" x="0" y="0" fill="#1a365d">Legend</text>
+    <rect class="consumer" x="70" y="-12" width="14" height="14"/>
+    <text class="legend" x="90" y="-1">consumer (above)</text>
+    <rect class="layer-hand" x="200" y="-12" width="14" height="14"/>
+    <text class="legend" x="220" y="-1">handlers (this repo)</text>
+    <rect class="layer-base" x="350" y="-12" width="14" height="14"/>
+    <text class="legend" x="370" y="-1">Base* interfaces</text>
+    <rect class="layer-drv" x="470" y="-12" width="14" height="14"/>
+    <text class="legend" x="490" y="-1">CRTP drivers</text>
+    <rect class="layer-plat" x="580" y="-12" width="14" height="14"/>
+    <text class="legend" x="600" y="-1">platform impl</text>
+  </g>
+  <g transform="translate(40, 720)">
+    <line class="arrow-ref" x1="0" y1="-5" x2="24" y2="-5" marker-end="url(#ar-ref)"/>
+    <text class="legend" x="30" y="-1">holds ref (not owned)</text>
+    <line class="arrow-own" x1="180" y1="-5" x2="204" y2="-5" marker-end="url(#ar-own)"/>
+    <text class="legend" x="210" y="-1">owns</text>
+    <line class="arrow-impl" x1="280" y1="-5" x2="304" y2="-5" marker-end="url(#ar-impl)"/>
+    <text class="legend" x="310" y="-1">implements</text>
+    <line class="arrow" x1="400" y1="-5" x2="424" y2="-5" marker-end="url(#ar-d)"/>
+    <text class="legend" x="430" y="-1">constructs / depends on</text>
+    <text class="smallL" x="600" y="-1">Ownership: consumer owns handler owns driver. Handler refs (not owns) Base*.</text>
+  </g>
+</svg>
