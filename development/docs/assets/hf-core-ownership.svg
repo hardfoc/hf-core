@@ -105,6 +105,7 @@
   <text class="legend" x="395" y="339">Created by</text>
 
   <!-- Key rule note -->
-  <text class="smallL" x="530" y="339">&#8212; Handlers do NOT own their communication interfaces. Platform layer must ensure interfaces outlive the handler.</text>
+  <text class="smallL" x="530" y="332">&#8212; Handlers do NOT own their comm interfaces.</text>
+  <text class="smallL" x="542" y="346">Platform must ensure interfaces outlive the handler.</text>
 
 </svg>
