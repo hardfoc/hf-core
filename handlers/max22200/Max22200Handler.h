@@ -271,6 +271,24 @@ private:
     bool EnsureInitializedLocked() noexcept;
 
     /**
+     * @brief Bring the chip from POR through to a verified ACTIVE=1, UVM=0
+     *        state, then drain POR-latched fault bits.
+     *
+     * Must be called with `mutex_` held and `driver_` constructed.
+     *
+     * The driver's `Initialize()` returns OK as soon as its STATUS write
+     * transaction completes, but the chip's t_WU = 2.5 ms (per datasheet)
+     * and the V18 LDO can take dozens of ms to settle on real boards.
+     * Polls STATUS while re-issuing a bare ACTIVE=1 write each iteration
+     * until ACTIVE actually reads back as 1, then read-clears FAULT so
+     * nFAULT releases.
+     *
+     * @return true on success (chip is ACTIVE=1 and faults drained),
+     *         false if the chip never reached ACTIVE within the timeout.
+     */
+    bool WaitForActiveAndDrainFaults() noexcept;
+
+    /**
      * @brief Execute a lambda with a locked, initialized driver.
      *
      * Acquires the mutex, ensures initialization, and invokes @p fn(*driver_).

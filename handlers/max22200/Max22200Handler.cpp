@@ -8,6 +8,9 @@
 #include "Logger.h"
 #include "HandlerCommon.h"
 
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+
 static constexpr const char* TAG = "MAX22200";
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -206,6 +209,11 @@ max22200::DriverStatus Max22200Handler::Initialize() noexcept {
         return status;
     }
 
+    if (!WaitForActiveAndDrainFaults()) {
+        driver_.reset();
+        return max22200::DriverStatus::INITIALIZATION_ERROR;
+    }
+
     initialized_ = true;
     Logger::GetInstance().Info(TAG, "MAX22200 initialized successfully");
     return max22200::DriverStatus::OK;
@@ -241,6 +249,11 @@ max22200::DriverStatus Max22200Handler::Initialize(const max22200::BoardConfig& 
         return status;
     }
 
+    if (!WaitForActiveAndDrainFaults()) {
+        driver_.reset();
+        return max22200::DriverStatus::INITIALIZATION_ERROR;
+    }
+
     initialized_ = true;
     Logger::GetInstance().Info(TAG, "MAX22200 initialized with board config");
     return max22200::DriverStatus::OK;
@@ -255,6 +268,65 @@ bool Max22200Handler::EnsureInitializedLocked() noexcept {
         return false;
     }
     return Initialize() == max22200::DriverStatus::OK;
+}
+
+bool Max22200Handler::WaitForActiveAndDrainFaults() noexcept {
+    // The driver's `Initialize()` returns OK as soon as its STATUS write
+    // transaction completes, but per datasheet (Electrical Characteristics)
+    // the chip's t_WU = 2.5 ms from the ACTIVE=1 write to "OUT_ active".
+    // On boards where the V18 LDO bypass cap gives a slow rail ramp,
+    // ACTIVE may take dozens of ms to physically latch.
+    //
+    // Poll STATUS, re-issuing a bare ACTIVE=1 write each iteration, until
+    // ACTIVE actually reads back as 1. Then drain any POR-latched fault
+    // bits in FAULT (read-to-clear per datasheet) so nFAULT releases.
+    //
+    // Bench-validated against a Parker C21 24V solenoid on the Flux V1
+    // dev rig — see hf-max22200-driver/docs/troubleshooting.md
+    // ("ACTIVE bit reads back as 0 even though Initialize returned OK").
+    constexpr uint32_t kPostInitWaitMs = 50;
+    constexpr uint32_t kPollIntervalMs = 25;
+    constexpr uint32_t kPollTimeoutMs  = 2000;
+
+    auto& log = Logger::GetInstance();
+
+    vTaskDelay(pdMS_TO_TICKS(kPostInitWaitMs));
+
+    max22200::StatusConfig st{};
+    uint32_t waited_ms = 0;
+    while (waited_ms < kPollTimeoutMs) {
+        (void)driver_->WriteRegister32(max22200::RegBank::STATUS, 0x00000001U);
+        (void)driver_->ReadStatus(st);
+        if (st.active && !st.undervoltage) {
+            log.Info(TAG,
+                     "Chip awake after %u ms — ACTIVE=1, UVM=0",
+                     static_cast<unsigned>(kPostInitWaitMs + waited_ms));
+            break;
+        }
+        vTaskDelay(pdMS_TO_TICKS(kPollIntervalMs));
+        waited_ms += kPollIntervalMs;
+    }
+
+    if (!st.active) {
+        log.Error(TAG,
+                  "Chip never reached ACTIVE=1 after %u ms (last STATUS: "
+                  "ACTIVE=%d UVM=%d). See hf-max22200-driver troubleshooting "
+                  "guide.",
+                  static_cast<unsigned>(kPostInitWaitMs + waited_ms),
+                  st.active, st.undervoltage);
+        return false;
+    }
+
+    max22200::FaultStatus drain{};
+    (void)driver_->ReadFaultRegister(drain);
+    log.Debug(TAG,
+              "Drained POR fault bits: OCP=0x%02X OLF=0x%02X HHF=0x%02X DPM=0x%02X",
+              drain.overcurrent_channel_mask,
+              drain.open_load_fault_channel_mask,
+              drain.hit_not_reached_channel_mask,
+              drain.plunger_movement_fault_channel_mask);
+
+    return true;
 }
 
 max22200::DriverStatus Max22200Handler::Deinitialize() noexcept {
