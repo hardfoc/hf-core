@@ -134,7 +134,7 @@
   },"19": {
     "doc": "Architecture",
     "title": "Ownership Model",
-    "content": "| 1 2 3 4 5 . | Manager (owns) → Handler (owns) → CRTP Driver Instance │ └── References (not owned) → BaseI2c/BaseSpi/BaseGpio │ └── Platform creates → EspI2c/EspSpi/EspGpio . | . Key rule: Handlers do NOT own their communication interfaces. The platform layer (or test setup) must ensure interfaces outlive the handler. ",
+    "content": ". | 1 2 3 4 5 . | Manager (owns) → Handler (owns) → CRTP Driver Instance │ └── References (not owned) → BaseI2c/BaseSpi/BaseGpio │ └── Platform creates → EspI2c/EspSpi/EspGpio . | . Key rule: Handlers do NOT own their communication interfaces. The platform layer (or test setup) must ensure interfaces outlive the handler. ",
     "url": "/hf-core/development/docs/architecture.html#ownership-model",
     
     "relUrl": "/docs/architecture.html#ownership-model"
