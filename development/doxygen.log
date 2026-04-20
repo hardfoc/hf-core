@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.PxdmIh
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.PxdmIh' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.NlwTU2
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.NlwTU2' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -887,9 +887,9 @@ Generating call graph for function Tle92466edHandler::Deinitialize
 Generating caller graph for function Tle92466edHandler::Deinitialize
 Generating call graph for function Tle92466edHandler::DisableAllChannels
 Generating call graph for function Tle92466edHandler::DisableChannel
+Generating call graph for function Tle92466edHandler::DisableOutputStage
 Generating call graph for function Tle92466edHandler::DumpDiagnostics
-Generating call graph for function Tle92466edHandler::EnableAllChannels
-Generating call graph for function Tle92466edHa/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
+Generating call graph for function Tle92466edH/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
@@ -925,7 +925,10 @@ Generating call graph for function Tle92466edHa/home/runner/work/hf-core/hf-core
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:135: warning: @copydetails or @copydoc target 'BaseAdc::ResetDiagnostics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:132: warning: @copydetails or @copydoc target 'BaseAdc::ResetStatistics' not found
-ndler::EnableChannel
+andler::EnableAllChannels
+Generating call graph for function Tle92466edHandler::EnableChannel
+Generating call graph for function Tle92466edHandler::EnableFeedbackUpdates
+Generating call graph for function Tle92466edHandler::EnableOutputStage
 Generating call graph for function Tle92466edHandler::EnsureInitialized
 Generating call graph for function Tle92466edHandler::EnsureInitializedLocked
 Generating caller graph for function Tle92466edHandler::EnsureInitializedLocked
@@ -1105,11 +1108,7 @@ Generating dependency graph for directory examples
 Generating dependency graph for directory handler_tests
 Generating dependency graph for directory handlers
 Generating dependency graph for directory integration_tests
-Generating dependency graph for directory logger
-Generating dependency graph for directory main
-Generating dependency graph for directory max22200
-Generating dependency graph for directory mcp9700
-Generating dependency gra/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
+G/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:20: warning: unable to resolve reference to '-features' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:21: warning: unable to resolve reference to '-architecture' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:22: warning: unable to resolve reference to '-quick-start' for \ref command
@@ -1125,7 +1124,11 @@ Generating dependency gra/home/runner/work/hf-core/hf-core/README.md:19: warning
 /home/runner/work/hf-core/hf-core/README.md:184: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:185: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:186: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
-ph for directory ntc
+enerating dependency graph for directory logger
+Generating dependency graph for directory main
+Generating dependency graph for directory max22200
+Generating dependency graph for directory mcp9700
+Generating dependency graph for directory ntc
 Generating dependency graph for directory pca9685
 Generating dependency graph for directory pcal95555
 Generating dependency graph for directory tle92466ed
@@ -1154,7 +1157,35 @@ finalizing index lists...
 writing tag file...
 Running plantuml with JAVA...
 Running dot...
-Patching output file 1/1
-type lookup cache used 5632/65536 hits=29356 misses=5999
-symbol lookup cache used 7391/65536 hits=35138 misses=7391
+Generating dot graphs using 5 parallel threads...
+Running dot for graph 1/12
+Running dot for graph 2/12
+Running dot for graph 3/12
+Running dot for graph 4/12
+Running dot for graph 5/12
+Running dot for graph 6/12
+Running dot for graph 7/12
+Running dot for graph 8/12
+Running dot for graph 9/12
+Running dot for graph 10/12
+Running dot for graph 11/12
+Running dot for graph 12/12
+Patching output file 1/16
+Patching output file 2/16
+Patching output file 3/16
+Patching output file 4/16
+Patching output file 5/16
+Patching output file 6/16
+Patching output file 7/16
+Patching output file 8/16
+Patching output file 9/16
+Patching output file 10/16
+Patching output file 11/16
+Patching output file 12/16
+Patching output file 13/16
+Patching output file 14/16
+Patching output file 15/16
+Patching output file 16/16
+type lookup cache used 5643/65536 hits=29425 misses=6010
+symbol lookup cache used 7406/65536 hits=35232 misses=7406
 finished...
