@@ -135,7 +135,8 @@ var searchData=
   ['error_5fflags_132',['error_flags',['../structAs5047uMeasurement.html#a51e4df549e1fdae289d49bb9f9db7cd3',1,'As5047uMeasurement']]],
   ['esp32_5fbus_5fsetup_2ehpp_133',['esp32_bus_setup.hpp',['../esp32__bus__setup_8hpp.html',1,'']]],
   ['esp32_5ftest_5fconfig_2ehpp_134',['esp32_test_config.hpp',['../esp32__test__config_8hpp.html',1,'']]],
-  ['euler_135',['euler',['../structBno08xImuData.html#ae8c416d04df52796b7fcc9843d81cb49',1,'Bno08xImuData']]],
-  ['example_136',['Example',['../Tmc5160Handler_8h.html#autotoc_md17',1,'Usage Example'],['../classTmc9660Handler.html#autotoc_md27',1,'Usage Example'],['../Ws2812Handler_8h.html#autotoc_md28',1,'Usage Example']]],
-  ['exitsleepmode_137',['ExitSleepMode',['../classNtcTemperatureHandler.html#a3bc0497cbb414d6cb346a2a519e8b0b7',1,'NtcTemperatureHandler']]]
+  ['esploggerfactory_2ecpp_135',['EspLoggerFactory.cpp',['../EspLoggerFactory_8cpp.html',1,'']]],
+  ['euler_136',['euler',['../structBno08xImuData.html#ae8c416d04df52796b7fcc9843d81cb49',1,'Bno08xImuData']]],
+  ['example_137',['Example',['../Tmc5160Handler_8h.html#autotoc_md17',1,'Usage Example'],['../classTmc9660Handler.html#autotoc_md27',1,'Usage Example'],['../Ws2812Handler_8h.html#autotoc_md28',1,'Usage Example']]],
+  ['exitsleepmode_138',['ExitSleepMode',['../classNtcTemperatureHandler.html#a3bc0497cbb414d6cb346a2a519e8b0b7',1,'NtcTemperatureHandler']]]
 ];

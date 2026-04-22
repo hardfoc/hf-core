@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Initialize the logger.">
+<g id="a_Node000001"><a xlink:title="Initialize the logger using the platform&#45;default BaseLogger backend (resolved via the MCU&#45;specific lo...">
 <polygon fill="#999999" stroke="#666666" points="199,-19 101,-19 101,0 199,0 199,-19"/>
 <text text-anchor="middle" x="150" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">Logger::Initialize</text>
 </a>

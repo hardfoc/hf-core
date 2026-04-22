@@ -122,8 +122,11 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adcdc1901fd35d1e06b5c8cd47005daad" id="r_adcdc1901fd35d1e06b5c8cd47005daad"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcdc1901fd35d1e06b5c8cd47005daad">Initialize</a> (const <a class="el" href="structLogConfig.html">LogConfig</a> &amp;config=<a class="el" href="structLogConfig.html">LogConfig</a>{}) noexcept</td></tr>
-<tr class="memdesc:adcdc1901fd35d1e06b5c8cd47005daad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the logger.  <br /></td></tr>
+<tr class="memdesc:adcdc1901fd35d1e06b5c8cd47005daad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the logger using the platform-default <code>BaseLogger</code> backend (resolved via the MCU-specific logger factory).  <br /></td></tr>
 <tr class="separator:adcdc1901fd35d1e06b5c8cd47005daad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92b1c55e7bcac05a7a518717e220216e" id="r_a92b1c55e7bcac05a7a518717e220216e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92b1c55e7bcac05a7a518717e220216e">Initialize</a> (const <a class="el" href="structLogConfig.html">LogConfig</a> &amp;config, std::unique_ptr&lt; BaseLogger &gt; backend) noexcept</td></tr>
+<tr class="memdesc:a92b1c55e7bcac05a7a518717e220216e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the logger with a caller-supplied <code>BaseLogger</code>.  <br /></td></tr>
+<tr class="separator:a92b1c55e7bcac05a7a518717e220216e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6730678df56c64dbb626c1b739f64b72" id="r_a6730678df56c64dbb626c1b739f64b72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6730678df56c64dbb626c1b739f64b72">Deinitialize</a> () noexcept</td></tr>
 <tr class="memdesc:a6730678df56c64dbb626c1b739f64b72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deinitialize the logger.  <br /></td></tr>
 <tr class="separator:a6730678df56c64dbb626c1b739f64b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -235,9 +238,6 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:af9e84e0ff6bd538e4f9ed8dcebc3e2f0" id="r_af9e84e0ff6bd538e4f9ed8dcebc3e2f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9e84e0ff6bd538e4f9ed8dcebc3e2f0">IsLevelEnabled</a> (<a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level, const char *tag) const noexcept</td></tr>
 <tr class="memdesc:af9e84e0ff6bd538e4f9ed8dcebc3e2f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if log level is enabled for tag.  <br /></td></tr>
 <tr class="separator:af9e84e0ff6bd538e4f9ed8dcebc3e2f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20608fe100327f13af94b601faa699eb" id="r_a20608fe100327f13af94b601faa699eb"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; BaseLogger &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20608fe100327f13af94b601faa699eb">CreateBaseLogger</a> () noexcept</td></tr>
-<tr class="memdesc:a20608fe100327f13af94b601faa699eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create base logger instance.  <br /></td></tr>
-<tr class="separator:a20608fe100327f13af94b601faa699eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade1c385c9e613ee1cc72865048858b22" id="r_ade1c385c9e613ee1cc72865048858b22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade1c385c9e613ee1cc72865048858b22">DumpStatistics</a> () const noexcept</td></tr>
 <tr class="memdesc:ade1c385c9e613ee1cc72865048858b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump comprehensive logger statistics to log as INFO level. Logs internal logger statistics, configuration, and performance metrics.  <br /></td></tr>
 <tr class="separator:ade1c385c9e613ee1cc72865048858b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -247,6 +247,9 @@ Static Private Member Functions</h2></td></tr>
 <tr class="memitem:a7cac3fc4eb37a54b9e8af19d0450b935" id="r_a7cac3fc4eb37a54b9e8af19d0450b935"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cac3fc4eb37a54b9e8af19d0450b935">WriteResetSequence</a> (char *buf, size_t buf_size) noexcept</td></tr>
 <tr class="memdesc:a7cac3fc4eb37a54b9e8af19d0450b935"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write ANSI reset sequence into a buffer.  <br /></td></tr>
 <tr class="separator:a7cac3fc4eb37a54b9e8af19d0450b935"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1523d9809debb29550c21c8c8f3dee8b" id="r_a1523d9809debb29550c21c8c8f3dee8b"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; BaseLogger &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1523d9809debb29550c21c8c8f3dee8b">CreateDefaultBaseLogger</a> () noexcept</td></tr>
+<tr class="memdesc:a1523d9809debb29550c21c8c8f3dee8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolve the platform-default <code>BaseLogger</code>.  <br /></td></tr>
+<tr class="separator:a1523d9809debb29550c21c8c8f3dee8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -293,9 +296,9 @@ Static Private Attributes</h2></td></tr>
 <div class="ttc" id="aLogger_8h_html_abeb0b5a8d3424ad4a83592f8580b8a2eaa2d9547b5d3dd9f05984475f7c926da0"><div class="ttname"><a href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2eaa2d9547b5d3dd9f05984475f7c926da0">LogColor::RED</a></div><div class="ttdeci">@ RED</div><div class="ttdoc">Red.</div></div>
 <div class="ttc" id="aLogger_8h_html_aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19"><div class="ttname"><a href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19">LogStyle::BOLD</a></div><div class="ttdeci">@ BOLD</div><div class="ttdoc">Bold text.</div></div>
 <div class="ttc" id="aclassLogger_html"><div class="ttname"><a href="classLogger.html">Logger</a></div><div class="ttdoc">Advanced logging system with formatting capabilities.</div><div class="ttdef"><b>Definition</b> Logger.h:158</div></div>
-<div class="ttc" id="aclassLogger_html_a4681229c521795685fc14f6b55c82300"><div class="ttname"><a href="#a4681229c521795685fc14f6b55c82300">Logger::Info</a></div><div class="ttdeci">void Info(const char *tag, const char *format,...) noexcept</div><div class="ttdoc">Log info message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:238</div></div>
-<div class="ttc" id="aclassLogger_html_a5789d11f8f1356e2192c0023a089cbc4"><div class="ttname"><a href="#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a></div><div class="ttdeci">static Logger &amp; GetInstance() noexcept</div><div class="ttdoc">Get singleton instance.</div><div class="ttdef"><b>Definition</b> Logger.cpp:83</div></div>
-<div class="ttc" id="aclassLogger_html_a95d97b7713dad6000fbf87a95b266af9"><div class="ttname"><a href="#a95d97b7713dad6000fbf87a95b266af9">Logger::LogAsciiArt</a></div><div class="ttdeci">void LogAsciiArt(const char *tag, const char *ascii_art, const AsciiArtFormat &amp;format=AsciiArtFormat{}) noexcept</div><div class="ttdoc">Log ASCII art.</div><div class="ttdef"><b>Definition</b> Logger.cpp:334</div></div>
+<div class="ttc" id="aclassLogger_html_a4681229c521795685fc14f6b55c82300"><div class="ttname"><a href="#a4681229c521795685fc14f6b55c82300">Logger::Info</a></div><div class="ttdeci">void Info(const char *tag, const char *format,...) noexcept</div><div class="ttdoc">Log info message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:244</div></div>
+<div class="ttc" id="aclassLogger_html_a5789d11f8f1356e2192c0023a089cbc4"><div class="ttname"><a href="#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a></div><div class="ttdeci">static Logger &amp; GetInstance() noexcept</div><div class="ttdoc">Get singleton instance.</div><div class="ttdef"><b>Definition</b> Logger.cpp:91</div></div>
+<div class="ttc" id="aclassLogger_html_a95d97b7713dad6000fbf87a95b266af9"><div class="ttname"><a href="#a95d97b7713dad6000fbf87a95b266af9">Logger::LogAsciiArt</a></div><div class="ttdeci">void LogAsciiArt(const char *tag, const char *ascii_art, const AsciiArtFormat &amp;format=AsciiArtFormat{}) noexcept</div><div class="ttdoc">Log ASCII art.</div><div class="ttdef"><b>Definition</b> Logger.cpp:340</div></div>
 <div class="ttc" id="astructAsciiArtFormat_html"><div class="ttname"><a href="structAsciiArtFormat.html">AsciiArtFormat</a></div><div class="ttdoc">ASCII art formatting options.</div><div class="ttdef"><b>Definition</b> Logger.h:115</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af4376d745e05cf7af3db5921e6d6adeb" name="af4376d745e05cf7af3db5921e6d6adeb"></a>
@@ -412,8 +415,8 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a20608fe100327f13af94b601faa699eb" name="a20608fe100327f13af94b601faa699eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20608fe100327f13af94b601faa699eb">&#9670;&#160;</a></span>CreateBaseLogger()</h2>
+<a id="a1523d9809debb29550c21c8c8f3dee8b" name="a1523d9809debb29550c21c8c8f3dee8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1523d9809debb29550c21c8c8f3dee8b">&#9670;&#160;</a></span>CreateDefaultBaseLogger()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -422,7 +425,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unique_ptr&lt; BaseLogger &gt; Logger::CreateBaseLogger </td>
+          <td class="memname">std::unique_ptr&lt; BaseLogger &gt; Logger::CreateDefaultBaseLogger </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -430,13 +433,14 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Create base logger instance. </p>
-<dl class="section return"><dt>Returns</dt><dd>Base logger instance </dd></dl>
+<p>Resolve the platform-default <code>BaseLogger</code>. </p>
+<p>Implemented in a per-MCU factory translation unit (<code><a class="el" href="EspLoggerFactory_8cpp.html" title="ESP32-family implementation of Logger::CreateDefaultBaseLogger().">logger/factory/EspLoggerFactory.cpp</a></code> on ESP32). Defined as a free function so <code><a class="el" href="Logger_8cpp.html" title="Implementation of the advanced logging system.">Logger.cpp</a></code> itself never <code>#include</code>s <code>EspLogger.h</code> / <code>esp_log.h</code> — keeping the handler MCU-agnostic.</p>
+<dl class="section return"><dt>Returns</dt><dd>Owned backend, or nullptr if no factory was linked. </dd></dl>
 
 </div>
 </div>
@@ -1120,8 +1124,53 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a92b1c55e7bcac05a7a518717e220216e" name="a92b1c55e7bcac05a7a518717e220216e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92b1c55e7bcac05a7a518717e220216e">&#9670;&#160;</a></span>Initialize() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Logger::Initialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structLogConfig.html">LogConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; BaseLogger &gt;</td>          <td class="paramname"><span class="paramname"><em>backend</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize the logger with a caller-supplied <code>BaseLogger</code>. </p>
+<p>This is the layering-clean entry point: the HAL (or a unit test) picks the backend and hands it to the logger. <code><a class="el" href="classLogger.html" title="Advanced logging system with formatting capabilities.">Logger</a></code> takes ownership; <code>Initialize</code> calls <code>BaseLogger::Initialize(...)</code> on it with the matching <code>hf_logger_config_t</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">config</td><td>Configuration options. </td></tr>
+    <tr><td class="paramname">backend</td><td>Concrete backend (e.g. <code>std::make_unique&lt;EspLogger&gt;()</code> from the HAL, or a test double). Must be non-null. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true on success; false if <code>backend</code> is null or its <code>Initialize</code> reports failure. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a92b1c55e7bcac05a7a518717e220216e_cgraph.svg" width="392" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="adcdc1901fd35d1e06b5c8cd47005daad" name="adcdc1901fd35d1e06b5c8cd47005daad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adcdc1901fd35d1e06b5c8cd47005daad">&#9670;&#160;</a></span>Initialize()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#adcdc1901fd35d1e06b5c8cd47005daad">&#9670;&#160;</a></span>Initialize() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1143,19 +1192,15 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Initialize the logger. </p>
+<p>Initialize the logger using the platform-default <code>BaseLogger</code> backend (resolved via the MCU-specific logger factory). </p>
+<p>On ESP32 the default factory hands back an <code>EspLogger</code>; on other platforms it returns whatever was linked into <code>logger/factory/&lt;mcu&gt;LoggerFactory.cpp</code>. If you need to drive the logger output through a different transport (e.g. the built-in USB Serial/JTAG controller via <code>EspUsbSerialJtag</code>), use the injection overload below instead — <code><a class="el" href="Logger_8cpp.html" title="Implementation of the advanced logging system.">Logger.cpp</a></code> itself is MCU-clean and never names a concrete <code>BaseLogger</code> subclass.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">config</td><td>Configuration options </td></tr>
+    <tr><td class="paramname">config</td><td>Configuration options. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if successful, false otherwise </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_adcdc1901fd35d1e06b5c8cd47005daad_cgraph.svg" width="392" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<dl class="section return"><dt>Returns</dt><dd>true on success. </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1617,6 +1662,11 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_aff32d6ea1ead65ddf069aa8c609570c9_cgraph.svg" width="414" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -2078,6 +2128,7 @@ Here is the call graph for this function:</div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="Logger_8h_source.html">Logger.h</a></li>
+<li><a class="el" href="EspLoggerFactory_8cpp.html">EspLoggerFactory.cpp</a></li>
 <li><a class="el" href="Logger_8cpp.html">Logger.cpp</a></li>
 </ul>
 </div><!-- contents -->
