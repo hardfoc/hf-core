@@ -13,12 +13,20 @@
 
 #include "Logger.h"
 
-// Include the base logger from the internal interface wrapper
+// Logger.cpp is intentionally MCU-agnostic — it only knows about the
+// `BaseLogger` abstract interface. The concrete backend (`EspLogger`,
+// future `StmLogger`, etc.) is handed to it either by:
+//   - `Logger::Initialize(config, std::unique_ptr<BaseLogger>)` — explicit
+//     injection from the HAL, or
+//   - `Logger::CreateDefaultBaseLogger()` — a per-MCU factory translation
+//     unit (e.g. `logger/factory/EspLoggerFactory.cpp` on ESP32) that
+//     `#include`s the MCU header in isolation.
+//
+// As a result this file MUST NOT include `EspLogger.h`, `esp_log.h`,
+// or any other MCU-specific header. Per-tag level filtering is forwarded
+// through `BaseLogger::SetLogLevel`, which the ESP32 backend implements
+// via `esp_log_level_set` internally.
 #include "../../hf-core-drivers/internal/hf-internal-interface-wrap/inc/base/BaseLogger.h"
-#ifdef HF_MCU_FAMILY_ESP32
-#include "../../hf-core-drivers/internal/hf-internal-interface-wrap/inc/mcu/esp32/EspLogger.h"
-#include "esp_log.h"
-#endif
 
 #include <cstdarg>
 #include <cstring>
@@ -90,17 +98,21 @@ Logger& Logger::GetInstance() noexcept {
 //==============================================================================
 
 bool Logger::Initialize(const LogConfig& config) noexcept {
+    return Initialize(config, CreateDefaultBaseLogger());
+}
+
+bool Logger::Initialize(const LogConfig& config,
+                        std::unique_ptr<BaseLogger> backend) noexcept {
     if (initialized_.load()) {
-        return true; // Already initialized
+        return true; // Already initialized — keep the previously-injected backend.
+    }
+
+    if (!backend) {
+        return false;
     }
 
     config_ = config;
-    
-    // Create base logger
-    base_logger_ = CreateBaseLogger();
-    if (!base_logger_) {
-        return false;
-    }
+    base_logger_ = std::move(backend);
 
     // Initialize base logger with the fields that hf_logger_config_t actually has
     hf_logger_config_t base_config{};
@@ -112,8 +124,9 @@ bool Logger::Initialize(const LogConfig& config) noexcept {
     base_config.flush_interval_ms = 100;    // 100ms flush interval
     base_config.enable_thread_safety = true;
     base_config.enable_performance_monitoring = false;
-    
+
     if (base_logger_->Initialize(base_config) != hf_logger_err_t::LOGGER_SUCCESS) {
+        base_logger_.reset();
         return false;
     }
 
@@ -197,20 +210,13 @@ LogLevel Logger::GetLogLevel(const char* tag) const noexcept {
 
 void Logger::SetTagLevel(const char* tag, LogLevel level) noexcept {
     if (tag == nullptr || tag[0] == '\0') return;
-#ifdef HF_MCU_FAMILY_ESP32
-    esp_log_level_t esp_level = ESP_LOG_INFO;
-    switch (level) {
-        case LogLevel::ERROR:   esp_level = ESP_LOG_ERROR;   break;
-        case LogLevel::WARN:    esp_level = ESP_LOG_WARN;    break;
-        case LogLevel::INFO:    esp_level = ESP_LOG_INFO;    break;
-        case LogLevel::DEBUG:   esp_level = ESP_LOG_DEBUG;   break;
-        case LogLevel::VERBOSE: esp_level = ESP_LOG_VERBOSE; break;
+    // Delegate to the backend; on ESP32 `EspLogger::SetLogLevel` calls
+    // `esp_log_level_set(tag, ...)` internally. Backends that don't
+    // support per-tag filtering will simply return an error code which
+    // we deliberately ignore — `Logger::SetTagLevel` is best-effort.
+    if (base_logger_) {
+        (void)base_logger_->SetLogLevel(tag, ToBaseLevel(level));
     }
-    esp_log_level_set(tag, esp_level);
-#else
-    (void)tag;
-    (void)level;
-#endif
 }
 
 void Logger::Error(const char* tag, const char* format, ...) noexcept {
@@ -629,14 +635,13 @@ bool Logger::IsLevelEnabled(LogLevel level, const char* tag) const noexcept {
     return static_cast<uint8_t>(level) <= static_cast<uint8_t>(tag_level);
 }
 
-std::unique_ptr<BaseLogger> Logger::CreateBaseLogger() noexcept {
-    // Create an EspLogger directly
-#ifdef HF_MCU_FAMILY_ESP32
-    return std::make_unique<EspLogger>();
-#else
-    return nullptr; // Fallback for other platforms
-#endif
-}
+// `CreateDefaultBaseLogger` is intentionally **not** defined here — its
+// MCU-specific definition lives in `logger/factory/<mcu>LoggerFactory.cpp`
+// (e.g. `EspLoggerFactory.cpp`). That keeps every concrete backend header
+// out of this translation unit. If no factory is linked, link will fail
+// with an undefined-symbol error pointing at the missing factory file —
+// which is the right failure mode (better than silently defaulting to
+// nullptr at runtime).
 
 void Logger::DumpStatistics() const noexcept {
     static constexpr const char* TAG = "Logger";
@@ -708,15 +713,12 @@ void Logger::DumpStatistics() const noexcept {
     printf("[%s] INFO:   Tag Levels Array: %d bytes\n", TAG, static_cast<int>(tag_levels_memory));
     printf("[%s] INFO:   Total Estimated: %d bytes\n", TAG, static_cast<int>(total_memory));
     
-    // Platform Information
+    // Platform Information — the Logger handler is MCU-agnostic, so we
+    // can't name the backend type here. Backends that want to identify
+    // themselves can implement `BaseLogger::PrintStatus(...)` (already
+    // in the interface) and we just delegate.
     printf("[%s] INFO: Platform Information:\n", TAG);
-#ifdef HF_MCU_FAMILY_ESP32
-    printf("[%s] INFO:   Platform: ESP32\n", TAG);
-    printf("[%s] INFO:   Base Logger Type: EspLogger\n", TAG);
-#else
-    printf("[%s] INFO:   Platform: Other\n", TAG);
-    printf("[%s] INFO:   Base Logger Type: Generic\n", TAG);
-#endif
+    printf("[%s] INFO:   Base Logger Type: (see BaseLogger::PrintStatus)\n", TAG);
     
     // Feature Support
     printf("[%s] INFO: Feature Support:\n", TAG);

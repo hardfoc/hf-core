@@ -164,11 +164,38 @@ public:
     static Logger& GetInstance() noexcept;
 
     /**
-     * @brief Initialize the logger
-     * @param config Configuration options
-     * @return true if successful, false otherwise
+     * @brief Initialize the logger using the platform-default `BaseLogger`
+     *        backend (resolved via the MCU-specific logger factory).
+     *
+     * On ESP32 the default factory hands back an `EspLogger`; on other
+     * platforms it returns whatever was linked into
+     * `logger/factory/<mcu>LoggerFactory.cpp`. If you need to drive the
+     * logger output through a different transport (e.g. the built-in USB
+     * Serial/JTAG controller via `EspUsbSerialJtag`), use the injection
+     * overload below instead — `Logger.cpp` itself is MCU-clean and never
+     * names a concrete `BaseLogger` subclass.
+     *
+     * @param config Configuration options.
+     * @return true on success.
      */
     bool Initialize(const LogConfig& config = LogConfig{}) noexcept;
+
+    /**
+     * @brief Initialize the logger with a caller-supplied `BaseLogger`.
+     *
+     * This is the layering-clean entry point: the HAL (or a unit test)
+     * picks the backend and hands it to the logger. `Logger` takes
+     * ownership; `Initialize` calls `BaseLogger::Initialize(...)` on it
+     * with the matching `hf_logger_config_t`.
+     *
+     * @param config Configuration options.
+     * @param backend Concrete backend (e.g. `std::make_unique<EspLogger>()`
+     *                from the HAL, or a test double). Must be non-null.
+     * @return true on success; false if `backend` is null or its
+     *         `Initialize` reports failure.
+     */
+    bool Initialize(const LogConfig& config,
+                    std::unique_ptr<BaseLogger> backend) noexcept;
 
     /**
      * @brief Deinitialize the logger
@@ -484,10 +511,16 @@ private:
     bool IsLevelEnabled(LogLevel level, const char* tag) const noexcept;
 
     /**
-     * @brief Create base logger instance
-     * @return Base logger instance
+     * @brief Resolve the platform-default `BaseLogger`.
+     *
+     * Implemented in a per-MCU factory translation unit
+     * (`logger/factory/EspLoggerFactory.cpp` on ESP32). Defined as a
+     * free function so `Logger.cpp` itself never `#include`s
+     * `EspLogger.h` / `esp_log.h` — keeping the handler MCU-agnostic.
+     *
+     * @return Owned backend, or nullptr if no factory was linked.
      */
-    std::unique_ptr<BaseLogger> CreateBaseLogger() noexcept;
+    static std::unique_ptr<BaseLogger> CreateDefaultBaseLogger() noexcept;
     
     /**
      * @brief Dump comprehensive logger statistics to log as INFO level.

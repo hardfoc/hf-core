@@ -112,6 +112,13 @@ endif()
 if(NOT DEFINED HF_CORE_ENABLE_UART)
     set(HF_CORE_ENABLE_UART OFF)
 endif()
+# Built-in USB Serial/JTAG controller (ESP32-S3/-C3/-C6/-H2/-P4 family).
+# Enables EspUsbSerialJtag and pulls in the IDF `esp_driver_usb_serial_jtag`
+# component when building for a supported target. Safe to leave OFF on
+# targets that don't have the controller.
+if(NOT DEFINED HF_CORE_ENABLE_USB_SERIAL_JTAG)
+    set(HF_CORE_ENABLE_USB_SERIAL_JTAG OFF)
+endif()
 if(NOT DEFINED HF_CORE_ENABLE_CAN)
     set(HF_CORE_ENABLE_CAN OFF)
 endif()
@@ -266,6 +273,9 @@ if(HF_CORE_MCU STREQUAL "ESP32")
     # Optional interfaces (ESP32)
     if(HF_CORE_ENABLE_UART)
         list(APPEND HF_CORE_INTERFACE_SOURCES "${_HF_MCU_SRC}/EspUart.cpp")
+    endif()
+    if(HF_CORE_ENABLE_USB_SERIAL_JTAG)
+        list(APPEND HF_CORE_INTERFACE_SOURCES "${_HF_MCU_SRC}/EspUsbSerialJtag.cpp")
     endif()
     if(HF_CORE_ENABLE_CAN)
         list(APPEND HF_CORE_INTERFACE_SOURCES "${_HF_MCU_SRC}/EspCan.cpp")
@@ -538,10 +548,21 @@ if(HF_CORE_ENABLE_WS2812)
     list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_WS2812_RMT_SOURCE_FILES})
 endif()
 
-# ── Logger Handler (hardware-agnostic via ConsolePort abstraction) ────────
+# ── Logger Handler (MCU-agnostic core + per-MCU backend factory) ──────────
+# `Logger.cpp` only depends on `BaseLogger`; the concrete `EspLogger` /
+# `StmLogger` instantiation lives in a tiny per-MCU factory file so that
+# `EspLogger.h` / `esp_log.h` / etc. never leak into the shared handler.
 if(HF_CORE_ENABLE_LOGGER)
     list(APPEND HF_CORE_HANDLER_SOURCES
         "${HF_CORE_HANDLER_ROOT}/logger/Logger.cpp")
+    if(HF_CORE_MCU STREQUAL "ESP32")
+        list(APPEND HF_CORE_HANDLER_SOURCES
+            "${HF_CORE_HANDLER_ROOT}/logger/factory/EspLoggerFactory.cpp")
+    elseif(HF_CORE_MCU STREQUAL "STM32")
+        # When StmLogger lands, drop StmLoggerFactory.cpp here.
+        message(WARNING "[hf-core] No Logger factory for STM32 yet; "
+                        "Logger::CreateDefaultBaseLogger() will fail to link.")
+    endif()
 endif()
 
 # ===========================================================================
@@ -663,6 +684,18 @@ if(HF_CORE_MCU STREQUAL "ESP32")
     if(HF_CORE_ENABLE_UART)
         list(APPEND HF_CORE_IDF_REQUIRES esp_driver_uart)
     endif()
+    if(HF_CORE_ENABLE_USB_SERIAL_JTAG)
+        # The IDF component name is the same on every target that has the
+        # controller (S3/C3/C6/H2/P4...). On legacy ESP32 (no USJ), enabling
+        # this flag is a configuration error and CMake will fail to find it.
+        if(EXISTS "$ENV{IDF_PATH}/components/esp_driver_usb_serial_jtag")
+            list(APPEND HF_CORE_IDF_REQUIRES esp_driver_usb_serial_jtag)
+        else()
+            message(WARNING
+                "HF_CORE_ENABLE_USB_SERIAL_JTAG=ON but esp_driver_usb_serial_jtag "
+                "is not present in this IDF. Disable the flag for this target.")
+        endif()
+    endif()
     if(HF_CORE_ENABLE_CAN)
         # esp_driver_twai was split from 'driver' in IDF >= 5.5.
         # For older IDF versions, TWAI is part of 'driver' (already required above).
@@ -768,6 +801,9 @@ endif()
 if(HF_CORE_ENABLE_LOGGER)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_LOGGER=1)
 endif()
+if(HF_CORE_ENABLE_USB_SERIAL_JTAG)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_USB_SERIAL_JTAG_SUPPORT=1)
+endif()
 if(HF_CORE_ENABLE_UTILS_CANOPEN)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_CANOPEN_UTILS=1)
 endif()
@@ -853,6 +889,9 @@ endif()
 set(_hf_enabled_ifaces "")
 if(HF_CORE_ENABLE_UART)
     string(APPEND _hf_enabled_ifaces " UART")
+endif()
+if(HF_CORE_ENABLE_USB_SERIAL_JTAG)
+    string(APPEND _hf_enabled_ifaces " USB_SERIAL_JTAG")
 endif()
 if(HF_CORE_ENABLE_CAN)
     string(APPEND _hf_enabled_ifaces " CAN")
