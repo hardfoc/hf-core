@@ -1,5 +1,7 @@
 var NAVTREEINDEX3 =
 {
+"classNtcTemperatureHandler.html#a13433ca31eb877b27d39f398ee5b0d6a":[13,0,44,84],
+"classNtcTemperatureHandler.html#a164f6bbba3aa697788ee410c49582937":[13,0,44,21],
 "classNtcTemperatureHandler.html#a1ad76c89cb99d1752b1e8a37e996ef90":[13,0,44,77],
 "classNtcTemperatureHandler.html#a1c8980812318a321753cd5ba821f35a5":[13,0,44,72],
 "classNtcTemperatureHandler.html#a20cfb11a0f83dda45e22ee4815b2c6d7":[13,0,44,45],
@@ -247,7 +249,5 @@ var NAVTREEINDEX3 =
 "classPcal95555Handler.html#a72ce8f8a0f79654cfeb2a4ce7e7559d8":[11,8,0,49],
 "classPcal95555Handler.html#a73f16fa7e56fd17c87093c825d7b7531":[11,8,0,62],
 "classPcal95555Handler.html#a79a4140f8340810bea7bed218a78df6c":[11,8,0,0],
-"classPcal95555Handler.html#a7b9a82a463f57e0394b55a4f3ecead39":[11,8,0,36],
-"classPcal95555Handler.html#a7d8ed72bf4fc9dfcb0be4877deec99b3":[11,8,0,14],
-"classPcal95555Handler.html#a7fcf65a91f94a68330ee6738f8297b83":[11,8,0,10]
+"classPcal95555Handler.html#a7b9a82a463f57e0394b55a4f3ecead39":[11,8,0,36]
 };

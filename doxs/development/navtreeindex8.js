@@ -1,5 +1,8 @@
 var NAVTREEINDEX8 =
 {
+"tmc5160__handler__comprehensive__test_8cpp.html#a41c7713ad13517741b17ec422ca5b273":[14,0,0,0,0,0,7,40],
+"tmc5160__handler__comprehensive__test_8cpp.html#a425dddf639ccb19b44f7657fe7045389":[14,0,0,0,0,0,7,41],
+"tmc5160__handler__comprehensive__test_8cpp.html#a466595c8cf306fa57c8eef0535b1ed02":[14,0,0,0,0,0,7,16],
 "tmc5160__handler__comprehensive__test_8cpp.html#a474bb530f591331a31711724a2e45a54":[14,0,0,0,0,0,7,4],
 "tmc5160__handler__comprehensive__test_8cpp.html#a53847f8bdcd172280ac39830f3fb6c44":[14,0,0,0,0,0,7,37],
 "tmc5160__handler__comprehensive__test_8cpp.html#a5a85b9c772bbeb480b209a3e6ea92b4c":[14,0,0,0,0,0,7,43],

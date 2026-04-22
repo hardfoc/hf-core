@@ -1,5 +1,8 @@
 var NAVTREEINDEX6 =
 {
+"globals_t.html":[14,1,0,14],
+"globals_type.html":[14,1,3],
+"globals_vars.html":[14,1,2],
 "globals_w.html":[14,1,0,15],
 "group__MAX22200__HAL__CommAdapter.html":[11,0],
 "group__MAX22200__Handler.html":[11,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX6 =
 "structAlicatBasis2Handler_1_1DiscoveredDevice.html":[13,0,4,0],
 "structAlicatBasis2Handler_1_1DiscoveredDevice.html#a642f39531c659a5ba56bd33ca93947fd":[13,0,4,0,0],
 "structAlicatBasis2Handler_1_1DiscoveredDevice.html#a7f7b5b675e207b5d3f2604b73ad5c49a":[13,0,4,0,1],
-"structAs5047uConfig.html":[13,0,6],
-"structAs5047uConfig.html#a078c980d2b3827e7686a5b39baea4162":[13,0,6,0],
-"structAs5047uConfig.html#a100ebc08f150771ad11c9b624551818c":[13,0,6,5],
-"structAs5047uConfig.html#a40b03f2b1943a55386666bbc048a5612":[13,0,6,10]
+"structAs5047uConfig.html":[13,0,6]
 };
