@@ -144,6 +144,9 @@ endif()
 if(NOT DEFINED HF_CORE_ENABLE_ALICAT_BASIS2)
     set(HF_CORE_ENABLE_ALICAT_BASIS2 OFF)
 endif()
+if(NOT DEFINED HF_CORE_ENABLE_FDO2)
+    set(HF_CORE_ENABLE_FDO2 OFF)
+endif()
 if(NOT DEFINED HF_CORE_ENABLE_PCA9685)
     set(HF_CORE_ENABLE_PCA9685 OFF)
 endif()
@@ -173,7 +176,7 @@ endif()
 # ===========================================================================
 
 # Drivers that use UART need the UART interface implementation
-if(HF_CORE_ENABLE_TMC5160 OR HF_CORE_ENABLE_TMC9660 OR HF_CORE_ENABLE_ALICAT_BASIS2)
+if(HF_CORE_ENABLE_TMC5160 OR HF_CORE_ENABLE_TMC9660 OR HF_CORE_ENABLE_ALICAT_BASIS2 OR HF_CORE_ENABLE_FDO2)
     set(HF_CORE_ENABLE_UART ON)
 endif()
 
@@ -460,6 +463,15 @@ if(HF_CORE_ENABLE_ALICAT_BASIS2)
         "${HF_CORE_HANDLER_ROOT}/alicat_basis2/AlicatBasis2Handler.cpp")
     list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_ALICAT_BASIS2_PUBLIC_INCLUDE_DIRS})
     list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_ALICAT_BASIS2_SOURCE_FILES})
+endif()
+
+# ── PyroScience FDO2-G2 oxygen probe (UART, PSUP ASCII) ────────────────────
+# Header-only driver: no sources to compile, just include directories.
+# Apps consume `fdo2::Driver<UartT>` directly, plugged into a CRTP
+# adapter that wraps a HAL `BaseUart&` (see Fdo2Client in the app).
+if(HF_CORE_ENABLE_FDO2)
+    include("${HF_CORE_DRIVER_EXT}/hf-fdo2-driver/cmake/hf_fdo2_build_settings.cmake")
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_FDO2_PUBLIC_INCLUDE_DIRS})
 endif()
 
 # ── PCA9685 (I2C PWM driver — PORTABLE, header-only with .ipp, Style A) ──
