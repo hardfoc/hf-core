@@ -200,6 +200,20 @@ public:
     //==============================================================================
 
     /**
+     * @brief Set the minimum visible log level for messages emitted with
+     *        a specific tag (e.g. throttle a noisy HAL handler during a
+     *        boot self-test).
+     *
+     * MCU-agnostic wrapper: on ESP32 this maps to `esp_log_level_set`;
+     * on platforms without per-tag filtering it is a no-op (messages
+     * still pass through, the global level governs).
+     *
+     * @param tag    Tag string passed to `Info` / `Warn` / `Error` etc.
+     * @param level  Minimum severity that should still print for `tag`.
+     */
+    void SetTagLevel(const char* tag, LogLevel level) noexcept;
+
+    /**
      * @brief Log error message
      * @param tag Log tag
      * @param format Format string

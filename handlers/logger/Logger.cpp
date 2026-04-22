@@ -17,6 +17,7 @@
 #include "../../hf-core-drivers/internal/hf-internal-interface-wrap/inc/base/BaseLogger.h"
 #ifdef HF_MCU_FAMILY_ESP32
 #include "../../hf-core-drivers/internal/hf-internal-interface-wrap/inc/mcu/esp32/EspLogger.h"
+#include "esp_log.h"
 #endif
 
 #include <cstdarg>
@@ -193,6 +194,24 @@ LogLevel Logger::GetLogLevel(const char* tag) const noexcept {
 //==============================================================================
 // BASIC LOGGING METHODS
 //==============================================================================
+
+void Logger::SetTagLevel(const char* tag, LogLevel level) noexcept {
+    if (tag == nullptr || tag[0] == '\0') return;
+#ifdef HF_MCU_FAMILY_ESP32
+    esp_log_level_t esp_level = ESP_LOG_INFO;
+    switch (level) {
+        case LogLevel::ERROR:   esp_level = ESP_LOG_ERROR;   break;
+        case LogLevel::WARN:    esp_level = ESP_LOG_WARN;    break;
+        case LogLevel::INFO:    esp_level = ESP_LOG_INFO;    break;
+        case LogLevel::DEBUG:   esp_level = ESP_LOG_DEBUG;   break;
+        case LogLevel::VERBOSE: esp_level = ESP_LOG_VERBOSE; break;
+    }
+    esp_log_level_set(tag, esp_level);
+#else
+    (void)tag;
+    (void)level;
+#endif
+}
 
 void Logger::Error(const char* tag, const char* format, ...) noexcept {
     if (!IsLevelEnabled(LogLevel::ERROR, tag)) {
