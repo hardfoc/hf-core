@@ -1,0 +1,5 @@
+<map id="HalUartFdo2Comm" name="HalUartFdo2Comm">
+<area shape="rect" id="Node000001" title="CRTP adapter that turns a BaseUart&amp; into a transport the templated fdo2::Driver&lt;UartT&gt; can drive." alt="" coords="21,93,167,119"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,183,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,59,97,93,91,93,91,59"/>
+</map>

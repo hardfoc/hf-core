@@ -11,7 +11,7 @@ var searchData=
   ['withdriver_8',['withDriver',['../classMax22200Handler.html#abcdd9746a0df9c28bb36508d52d80ef5',1,'Max22200Handler::withDriver()'],['../classTle92466edHandler.html#aef42f3c7c1b1ef51b27eb8d178aca6bc',1,'Tle92466edHandler::withDriver()']]],
   ['wrapper_9',['Wrapper',['../group__PCA9685__HAL__GpioPin.html',1,'Per-Pin GPIO Wrapper'],['../group__PCAL95555__HAL__GpioPin.html',1,'Per-Pin GPIO Wrapper']]],
   ['write_10',['Write',['../classHalI2cBno08xComm.html#af54938cbc82a718aeb463cad9183cbd3',1,'HalI2cBno08xComm::Write()'],['../classHalSpiBno08xComm.html#aade85e3da1785bf3c5f1835702903f51',1,'HalSpiBno08xComm::Write()'],['../classHalI2cPca9685Comm.html#a9ed8d1fd0839a7e5620a7ebee0f62140',1,'HalI2cPca9685Comm::Write()'],['../classHalI2cPcal95555Comm.html#a4f6987588b44889b656c627cdb6f9523',1,'HalI2cPcal95555Comm::Write()']]],
-  ['write_11',['write',['../classHalUartAlicatBasis2Comm.html#aee601a75f437a026d19fb9213287ab83',1,'HalUartAlicatBasis2Comm']]],
+  ['write_11',['write',['../classHalUartAlicatBasis2Comm.html#aee601a75f437a026d19fb9213287ab83',1,'HalUartAlicatBasis2Comm::write()'],['../classHalUartFdo2Comm.html#acb8749482c7ef94e99d33bafdb0d981b',1,'HalUartFdo2Comm::write()']]],
   ['writecolorprefix_12',['WriteColorPrefix',['../classLogger.html#a51cd2efad577caf4ef6472bc2479dc2e',1,'Logger']]],
   ['writeresetsequence_13',['WriteResetSequence',['../classLogger.html#a7cac3fc4eb37a54b9e8af19d0450b935',1,'Logger']]],
   ['ws2812_20led_20strip_20handler_14',['WS2812 LED Strip Handler',['../group__WS2812__Handler.html',1,'']]],
