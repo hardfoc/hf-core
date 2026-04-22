@@ -50,6 +50,8 @@ var hierarchy =
     [ "std::false_type", null, [
       [ "Tle92466edHandler::is_driver_result< T >", "structTle92466edHandler_1_1is__driver__result.html", null ]
     ] ],
+    [ "Fdo2Handler", "classFdo2Handler.html", null ],
+    [ "Fdo2HandlerConfig", "structFdo2HandlerConfig.html", null ],
     [ "HandlerTaskArgs", "structHandlerTaskArgs.html", null ],
     [ "pca9685::I2cInterface", null, [
       [ "HalI2cPca9685Comm", "classHalI2cPca9685Comm.html", null ]
@@ -104,6 +106,9 @@ var hierarchy =
     ] ],
     [ "alicat_basis2::UartInterface", null, [
       [ "HalUartAlicatBasis2Comm", "classHalUartAlicatBasis2Comm.html", null ]
+    ] ],
+    [ "fdo2::UartInterface", null, [
+      [ "HalUartFdo2Comm", "classHalUartFdo2Comm.html", null ]
     ] ],
     [ "Ws2812Handler", "classWs2812Handler.html", null ]
 ];

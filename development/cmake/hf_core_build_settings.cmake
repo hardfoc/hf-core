@@ -466,11 +466,15 @@ if(HF_CORE_ENABLE_ALICAT_BASIS2)
 endif()
 
 # ── PyroScience FDO2-G2 oxygen probe (UART, PSUP ASCII) ────────────────────
-# Header-only driver: no sources to compile, just include directories.
-# Apps consume `fdo2::Driver<UartT>` directly, plugged into a CRTP
-# adapter that wraps a HAL `BaseUart&` (see Fdo2Client in the app).
+# Header-only driver. The HAL handler (`Fdo2Handler`) bridges the
+# templated `fdo2::Driver<UartT>` to a `BaseUart&` via an internal
+# CRTP adapter — apps construct `Fdo2Handler(uart, cfg)` and consume
+# its narrow API; the adapter never leaks above the HAL boundary
+# (mirrors the AlicatBasis2Handler pattern).
 if(HF_CORE_ENABLE_FDO2)
     include("${HF_CORE_DRIVER_EXT}/hf-fdo2-driver/cmake/hf_fdo2_build_settings.cmake")
+    list(APPEND HF_CORE_HANDLER_SOURCES
+        "${HF_CORE_HANDLER_ROOT}/fdo2/Fdo2Handler.cpp")
     list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_FDO2_PUBLIC_INCLUDE_DIRS})
 endif()
 

@@ -1,7 +1,7 @@
 var searchData=
 [
   ['i2c_5fhandler_5ftask_0',['i2c_handler_task',['../full__system__integration__test_8cpp.html#a0ffcd10e1f0034357e4d75e4e19504be',1,'full_system_integration_test.cpp']]],
-  ['identity_1',['Identity',['../classAlicatBasis2Handler.html#a50fd0dc280bd18d3039a85e82902ca9f',1,'AlicatBasis2Handler']]],
+  ['identity_1',['Identity',['../classAlicatBasis2Handler.html#a50fd0dc280bd18d3039a85e82902ca9f',1,'AlicatBasis2Handler::Identity()'],['../classFdo2Handler.html#a7098532a55876168243f0b7c9872e031',1,'Fdo2Handler::Identity()']]],
   ['info_2',['Info',['../classLogger.html#a4681229c521795685fc14f6b55c82300',1,'Logger::Info(const char *tag, const char *format,...) noexcept'],['../classLogger.html#a8c8e9fac8521c28b5b1346d1a4d1ab8a',1,'Logger::Info(const char *tag, LogColor color, LogStyle style, const char *format,...) noexcept']]],
   ['init_3',['Init',['../classHalSpiTle92466edComm.html#a2f62649da77db8dcc44340f1bcf31973',1,'HalSpiTle92466edComm']]],
   ['init_5ftest_5fprogress_5findicator_4',['init_test_progress_indicator',['../TestFramework_8h.html#a3967179ac699a5b02ef9787b549409fe',1,'TestFramework.h']]],
@@ -18,9 +18,10 @@ var searchData=
   ['ismonitoringactive_15',['IsMonitoringActive',['../classNtcTemperatureHandler.html#aa66c83e9176cca65468c7b8483e0b5ee',1,'NtcTemperatureHandler']]],
   ['ispinavailable_16',['IsPinAvailable',['../classPca9685GpioPin.html#a5048dc8c0666a6dec81a9730010a3253',1,'Pca9685GpioPin::IsPinAvailable()'],['../classPcal95555GpioPin.html#a35e544950f4da17316cb606689b0267c',1,'Pcal95555GpioPin::IsPinAvailable()'],['../classTmc9660Handler_1_1Gpio.html#a1bad24b764946fc93876d36fcc9b64dc',1,'Tmc9660Handler::Gpio::IsPinAvailable()']]],
   ['ispincreated_17',['IsPinCreated',['../classPca9685Handler.html#aa6b5dea8e955f60443f8972c478c6018',1,'Pca9685Handler::IsPinCreated()'],['../classPcal95555Handler.html#a2c3999b62728839cd55ab4f03a54bba1',1,'Pcal95555Handler::IsPinCreated()']]],
-  ['isready_18',['IsReady',['../classHalSpiMax22200Comm.html#a6217c4c3006d026b9bdbe2155fcb16b2',1,'HalSpiMax22200Comm::IsReady()'],['../classHalSpiTle92466edComm.html#a74ccbe3aa8f726c7b9ca9096636dcf14',1,'HalSpiTle92466edComm::IsReady()']]],
-  ['issensorready_19',['IsSensorReady',['../classAs5047uHandler.html#abe61e6ac904d2cb3ab8b6d679aacfb97',1,'As5047uHandler']]],
-  ['issleeping_20',['IsSleeping',['../classNtcTemperatureHandler.html#a4c4dba5256ded055f5b3461f8d435286',1,'NtcTemperatureHandler']]],
-  ['isspi_21',['IsSpi',['../classTmc5160Handler.html#a7167cbb3ba74139d12e37e72d778d6b1',1,'Tmc5160Handler']]],
-  ['issupportedbaudbps_22',['IsSupportedBaudBps',['../namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#aeb2770bf09308f306ebf0b62df9fab6d',1,'anonymous_namespace{AlicatBasis2Handler.cpp}']]]
+  ['ispresent_18',['IsPresent',['../classFdo2Handler.html#af7e63db9b8d3336349865b7feb26db91',1,'Fdo2Handler']]],
+  ['isready_19',['IsReady',['../classHalSpiMax22200Comm.html#a6217c4c3006d026b9bdbe2155fcb16b2',1,'HalSpiMax22200Comm::IsReady()'],['../classHalSpiTle92466edComm.html#a74ccbe3aa8f726c7b9ca9096636dcf14',1,'HalSpiTle92466edComm::IsReady()']]],
+  ['issensorready_20',['IsSensorReady',['../classAs5047uHandler.html#abe61e6ac904d2cb3ab8b6d679aacfb97',1,'As5047uHandler']]],
+  ['issleeping_21',['IsSleeping',['../classNtcTemperatureHandler.html#a4c4dba5256ded055f5b3461f8d435286',1,'NtcTemperatureHandler']]],
+  ['isspi_22',['IsSpi',['../classTmc5160Handler.html#a7167cbb3ba74139d12e37e72d778d6b1',1,'Tmc5160Handler']]],
+  ['issupportedbaudbps_23',['IsSupportedBaudBps',['../namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#aeb2770bf09308f306ebf0b62df9fab6d',1,'anonymous_namespace{AlicatBasis2Handler.cpp}']]]
 ];

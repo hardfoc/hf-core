@@ -1,0 +1,21 @@
+<map id="Fdo2Handler.cpp" name="Fdo2Handler.cpp">
+<area shape="rect" id="Node000001" title="Implementation of Fdo2Handler and its BaseUart adapter." alt="" coords="333,5,464,31"/>
+<area shape="rect" id="Node000002" href="$Fdo2Handler_8h.html" title="HAL&#45;level handler for the PyroScience FDO2&#45;G2 oxygen probe." alt="" coords="263,93,379,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="390,33,343,85,339,81,386,29"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="404,79,548,133"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="411,29,445,67,441,70,407,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,196,72,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="275,121,186,147,85,184,70,191,67,187,83,179,184,142,274,116"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="97,196,167,221"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="300,121,181,184,166,192,164,187,179,179,298,116"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="192,196,259,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="312,121,247,188,244,184,308,117"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="283,196,360,221"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="324,119,324,182,319,182,319,119"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="384,196,488,221"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="336,117,414,185,411,189,333,121"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="513,196,642,221"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="352,116,536,188,534,193,350,121"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="667,181,840,236"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="350,116,393,131,464,147,521,157,579,165,654,179,653,184,578,170,520,162,462,153,391,136,348,121"/>
+</map>

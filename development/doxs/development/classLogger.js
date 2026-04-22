@@ -33,6 +33,7 @@ var classLogger =
     [ "operator=", "classLogger.html#aea05eaeaa020b687d8ec39ec6e72b0c9", null ],
     [ "SetConfig", "classLogger.html#ac78253f1f745833880231e9f3dc0ad00", null ],
     [ "SetLogLevel", "classLogger.html#a0e83e1b37ca2c702f8828f38d662cc23", null ],
+    [ "SetTagLevel", "classLogger.html#aff32d6ea1ead65ddf069aa8c609570c9", null ],
     [ "Verbose", "classLogger.html#acde0013df4b5a021affaee1b35e487bc", null ],
     [ "Verbose", "classLogger.html#a0469274fd372e5a6c4b786dd8729b246", null ],
     [ "Warn", "classLogger.html#aaa95ffa14d07a965d4a85bdec82cba26", null ],

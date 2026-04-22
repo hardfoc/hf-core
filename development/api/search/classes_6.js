@@ -1,6 +1,16 @@
 var searchData=
 [
-  ['ibno08xdriverops_0',['IBno08xDriverOps',['../classIBno08xDriverOps.html',1,'']]],
-  ['is_5fdriver_5fresult_1',['is_driver_result',['../structTle92466edHandler_1_1is__driver__result.html',1,'Tle92466edHandler']]],
-  ['is_5fdriver_5fresult_3c_20tle92466ed_3a_3adriverresult_3c_20t_20_3e_20_3e_2',['is_driver_result&lt; tle92466ed::DriverResult&lt; T &gt; &gt;',['../structTle92466edHandler_1_1is__driver__result_3_01tle92466ed_1_1DriverResult_3_01T_01_4_01_4.html',1,'Tle92466edHandler']]]
+  ['hali2cbno08xcomm_0',['HalI2cBno08xComm',['../classHalI2cBno08xComm.html',1,'']]],
+  ['hali2cpca9685comm_1',['HalI2cPca9685Comm',['../classHalI2cPca9685Comm.html',1,'']]],
+  ['hali2cpcal95555comm_2',['HalI2cPcal95555Comm',['../classHalI2cPcal95555Comm.html',1,'']]],
+  ['halspibno08xcomm_3',['HalSpiBno08xComm',['../classHalSpiBno08xComm.html',1,'']]],
+  ['halspimax22200comm_4',['HalSpiMax22200Comm',['../classHalSpiMax22200Comm.html',1,'']]],
+  ['halspitle92466edcomm_5',['HalSpiTle92466edComm',['../classHalSpiTle92466edComm.html',1,'']]],
+  ['halspitmc5160comm_6',['HalSpiTmc5160Comm',['../classHalSpiTmc5160Comm.html',1,'']]],
+  ['halspitmc9660comm_7',['HalSpiTmc9660Comm',['../classHalSpiTmc9660Comm.html',1,'']]],
+  ['haluartalicatbasis2comm_8',['HalUartAlicatBasis2Comm',['../classHalUartAlicatBasis2Comm.html',1,'']]],
+  ['haluartfdo2comm_9',['HalUartFdo2Comm',['../classHalUartFdo2Comm.html',1,'']]],
+  ['haluarttmc5160comm_10',['HalUartTmc5160Comm',['../classHalUartTmc5160Comm.html',1,'']]],
+  ['haluarttmc9660comm_11',['HalUartTmc9660Comm',['../classHalUartTmc9660Comm.html',1,'']]],
+  ['handlertaskargs_12',['HandlerTaskArgs',['../structHandlerTaskArgs.html',1,'']]]
 ];

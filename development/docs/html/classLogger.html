@@ -136,6 +136,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae436878411ce3f0a080ffdf5140cd58e" id="r_ae436878411ce3f0a080ffdf5140cd58e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae436878411ce3f0a080ffdf5140cd58e">GetLogLevel</a> (const char *tag) const noexcept</td></tr>
 <tr class="memdesc:ae436878411ce3f0a080ffdf5140cd58e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get log level for a tag.  <br /></td></tr>
 <tr class="separator:ae436878411ce3f0a080ffdf5140cd58e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff32d6ea1ead65ddf069aa8c609570c9" id="r_aff32d6ea1ead65ddf069aa8c609570c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff32d6ea1ead65ddf069aa8c609570c9">SetTagLevel</a> (const char *tag, <a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level) noexcept</td></tr>
+<tr class="memdesc:aff32d6ea1ead65ddf069aa8c609570c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the minimum visible log level for messages emitted with a specific tag (e.g. throttle a noisy HAL handler during a boot self-test).  <br /></td></tr>
+<tr class="separator:aff32d6ea1ead65ddf069aa8c609570c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adce17848a5844e053bfd314863dc1404" id="r_adce17848a5844e053bfd314863dc1404"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adce17848a5844e053bfd314863dc1404">Error</a> (const char *tag, const char *format,...) noexcept</td></tr>
 <tr class="memdesc:adce17848a5844e053bfd314863dc1404"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log error message.  <br /></td></tr>
 <tr class="separator:adce17848a5844e053bfd314863dc1404"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -290,9 +293,9 @@ Static Private Attributes</h2></td></tr>
 <div class="ttc" id="aLogger_8h_html_abeb0b5a8d3424ad4a83592f8580b8a2eaa2d9547b5d3dd9f05984475f7c926da0"><div class="ttname"><a href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2eaa2d9547b5d3dd9f05984475f7c926da0">LogColor::RED</a></div><div class="ttdeci">@ RED</div><div class="ttdoc">Red.</div></div>
 <div class="ttc" id="aLogger_8h_html_aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19"><div class="ttname"><a href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19">LogStyle::BOLD</a></div><div class="ttdeci">@ BOLD</div><div class="ttdoc">Bold text.</div></div>
 <div class="ttc" id="aclassLogger_html"><div class="ttname"><a href="classLogger.html">Logger</a></div><div class="ttdoc">Advanced logging system with formatting capabilities.</div><div class="ttdef"><b>Definition</b> Logger.h:158</div></div>
-<div class="ttc" id="aclassLogger_html_a4681229c521795685fc14f6b55c82300"><div class="ttname"><a href="#a4681229c521795685fc14f6b55c82300">Logger::Info</a></div><div class="ttdeci">void Info(const char *tag, const char *format,...) noexcept</div><div class="ttdoc">Log info message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:219</div></div>
-<div class="ttc" id="aclassLogger_html_a5789d11f8f1356e2192c0023a089cbc4"><div class="ttname"><a href="#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a></div><div class="ttdeci">static Logger &amp; GetInstance() noexcept</div><div class="ttdoc">Get singleton instance.</div><div class="ttdef"><b>Definition</b> Logger.cpp:82</div></div>
-<div class="ttc" id="aclassLogger_html_a95d97b7713dad6000fbf87a95b266af9"><div class="ttname"><a href="#a95d97b7713dad6000fbf87a95b266af9">Logger::LogAsciiArt</a></div><div class="ttdeci">void LogAsciiArt(const char *tag, const char *ascii_art, const AsciiArtFormat &amp;format=AsciiArtFormat{}) noexcept</div><div class="ttdoc">Log ASCII art.</div><div class="ttdef"><b>Definition</b> Logger.cpp:315</div></div>
+<div class="ttc" id="aclassLogger_html_a4681229c521795685fc14f6b55c82300"><div class="ttname"><a href="#a4681229c521795685fc14f6b55c82300">Logger::Info</a></div><div class="ttdeci">void Info(const char *tag, const char *format,...) noexcept</div><div class="ttdoc">Log info message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:238</div></div>
+<div class="ttc" id="aclassLogger_html_a5789d11f8f1356e2192c0023a089cbc4"><div class="ttname"><a href="#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a></div><div class="ttdeci">static Logger &amp; GetInstance() noexcept</div><div class="ttdoc">Get singleton instance.</div><div class="ttdef"><b>Definition</b> Logger.cpp:83</div></div>
+<div class="ttc" id="aclassLogger_html_a95d97b7713dad6000fbf87a95b266af9"><div class="ttname"><a href="#a95d97b7713dad6000fbf87a95b266af9">Logger::LogAsciiArt</a></div><div class="ttdeci">void LogAsciiArt(const char *tag, const char *ascii_art, const AsciiArtFormat &amp;format=AsciiArtFormat{}) noexcept</div><div class="ttdoc">Log ASCII art.</div><div class="ttdef"><b>Definition</b> Logger.cpp:334</div></div>
 <div class="ttc" id="astructAsciiArtFormat_html"><div class="ttname"><a href="structAsciiArtFormat.html">AsciiArtFormat</a></div><div class="ttdoc">ASCII art formatting options.</div><div class="ttdef"><b>Definition</b> Logger.h:115</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af4376d745e05cf7af3db5921e6d6adeb" name="af4376d745e05cf7af3db5921e6d6adeb"></a>
@@ -1575,6 +1578,45 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a0e83e1b37ca2c702f8828f38d662cc23_cgraph.svg" width="415" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+
+</div>
+</div>
+<a id="aff32d6ea1ead65ddf069aa8c609570c9" name="aff32d6ea1ead65ddf069aa8c609570c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff32d6ea1ead65ddf069aa8c609570c9">&#9670;&#160;</a></span>SetTagLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Logger::SetTagLevel </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a></td>          <td class="paramname"><span class="paramname"><em>level</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the minimum visible log level for messages emitted with a specific tag (e.g. throttle a noisy HAL handler during a boot self-test). </p>
+<p>MCU-agnostic wrapper: on ESP32 this maps to <code>esp_log_level_set</code>; on platforms without per-tag filtering it is a no-op (messages still pass through, the global level governs).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tag</td><td>Tag string passed to <code>Info</code> / <code>Warn</code> / <code>Error</code> etc. </td></tr>
+    <tr><td class="paramname">level</td><td>Minimum severity that should still print for <code>tag</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.Ax6yMT
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.Ax6yMT' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.roHMcX
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.roHMcX' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -11,24 +11,25 @@ Searching for dia files...
 Searching for files to exclude
 Searching INPUT for files to process...
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/pca9685
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/bno08x
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tle92466ed
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ws2812
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tmc9660
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ntc
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tmc5160
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/alicat_basis2
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/max22200
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/mcp9700
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/logger
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/common
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ads7952
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tle92466ed
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tmc5160
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/as5047u
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tmc9660
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/mcp9700
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/bno08x
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ws2812
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ntc
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/pca9685
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/fdo2
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/pcal95555
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/alicat_basis2
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/logger
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/max22200
 Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main
-Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/integration_tests
 Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests
+Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/integration_tests
 Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests
 Reading and parsing tag files
 Parsing files
@@ -52,6 +53,10 @@ Preprocessing /home/runner/work/hf-core/hf-core/handlers/common/HandlerCommon.h.
 Parsing file /home/runner/work/hf-core/hf-core/handlers/common/HandlerCommon.h...
 Preprocessing /home/runner/work/hf-core/hf-core/handlers/common/PlatformMutexBackend.h...
 Parsing file /home/runner/work/hf-core/hf-core/handlers/common/PlatformMutexBackend.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h...
 Preprocessing /home/runner/work/hf-core/hf-core/handlers/logger/Logger.cpp...
 Parsing file /home/runner/work/hf-core/hf-core/handlers/logger/Logger.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/handlers/logger/Logger.h...
@@ -101,8 +106,7 @@ Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/esp32_bus_set
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/esp32_test_config.hpp...
 Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/esp32_test_config.hpp...
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/as5047u_handler_comprehensive_test.cpp...
-Parsing file /home/runner/work/hf-/home/runner/work/hf-core/hf-core/handlers/common/PlatformMutexBackend.h:2: warning: Found non-existing group 'core' for the command '@ingroup', ignoring command
-core/hf-core/examples/esp32/main/handler_tests/as5047u_handler_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/as5047u_handler_comprehensive_test.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/bno08x_handler_comprehensive_test.cpp...
 Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/bno08x_handler_comprehensive_test.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/max22200_handler_comprehensive_test.cpp...
@@ -133,7 +137,20 @@ Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/
 Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/logger_comprehensive_test.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/rtos_wrap_comprehensive_test.cpp...
 Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/rtos_wrap_comprehensive_test.cpp...
-Reading /home/runner/work/hf-core/hf-core/README.md...
+Reading /home/runner/work/hf-core/h/home/runner/work/hf-core/hf-core/handlers/common/PlatformMutexBackend.h:2: warning: Found non-existing group 'core' for the command '@ingroup', ignoring command
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:116: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannel' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:128: warning: @copybrief or @copydoc target 'BaseAdc::GetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:134: warning: @copybrief or @copydoc target 'BaseAdc::ResetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:106: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelV' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:111: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelCount' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:121: warning: @copybrief or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:125: warning: @copybrief or @copydoc target 'BaseAdc::GetStatistics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
+f-core/README.md...
 Building macro definition list...
 Building group list...
 Building directory list...
@@ -146,19 +163,7 @@ Associating documentation with classes...
 Associating documentation with concepts...
 Associating documentation with modules...
 Building example list...
-Sea/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:116: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannel' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:128: warning: @copybrief or @copydoc target 'BaseAdc::GetDiagnostics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:134: warning: @copybrief or @copydoc target 'BaseAdc::ResetDiagnostics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:106: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelV' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:111: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelCount' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:121: warning: @copybrief or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:125: warning: @copybrief or @copydoc target 'BaseAdc::GetStatistics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
-rching for enumerations...
+Searching for enumerations...
 Searching for documented typedefs...
 Searching for members imported via using declarations...
 Searching for included using directives...
@@ -234,6 +239,8 @@ Parsing code for file Bno08xHandler.cpp...
 Generating code for file Bno08xHandler.h...
 Generating code for file HandlerCommon.h...
 Generating code for file PlatformMutexBackend.h...
+Parsing code for file Fdo2Handler.cpp...
+Generating code for file Fdo2Handler.h...
 Parsing code for file Logger.cpp...
 Generating code for file Logger.h...
 Parsing code for file Max22200Handler.cpp...
@@ -462,16 +469,7 @@ Generating call graph for function app_main
 Generating caller graph for function create_handler
 Generating caller graph for function test_brightness_range
 Generating caller graph for function test_clear
-Generating caller graph for function test_color_sequence
-Generating caller graph for function test_construction
-Generating caller graph for function test_deinitialize
-Generating caller graph for function test_dump_diagnostics
-Generating caller graph for function test_get_animator
-Generating caller graph for function test_get_num_leds
-Generating caller graph for function test_get_strip
-Generating caller graph for function test_initialize
-Generating caller graph for function test_is_initialized
-Generating caller graph for/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:412: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
+Generating caller graph for function test_c/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:412: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
 /home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:386: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
@@ -480,7 +478,16 @@ Generating caller graph for/home/runner/work/hf-core/hf-core/examples/esp32/main
   parameter 'tag'
 /home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:350: warning: The following parameter of print_test_summary(const TestResults &test_results, const char *test_suite_name, const char *tag) is not documented:
   parameter 'tag'
- function test_operations_before_init
+olor_sequence
+Generating caller graph for function test_construction
+Generating caller graph for function test_deinitialize
+Generating caller graph for function test_dump_diagnostics
+Generating caller graph for function test_get_animator
+Generating caller graph for function test_get_num_leds
+Generating caller graph for function test_get_strip
+Generating caller graph for function test_initialize
+Generating caller graph for function test_is_initialized
+Generating caller graph for function test_operations_before_init
 Generating caller graph for function test_pixel_out_of_range
 Generating caller graph for function test_set_all_pixels
 Generating caller graph for function test_set_brightness
@@ -551,11 +558,7 @@ Generating caller graph for function test_singleton_access
 Generating docs for file rtos_wrap_comprehensive_test.cpp...
 Generating call graph for function app_main
 Generating call graph for function test_base_thread
-Generating caller graph for function te/home/runner/work/hf-core/hf-core/handlers/alicat_basis2/AlicatBasis2Handler.h:261: warning: argument 'failed_addresses' of command @param is not found in the argument list of AlicatBasis2Handler::NormalizeBusBaud(std::uint32_t target_bps, const DiscoveredDevice *devices, std::size_t device_count, const HostBaudSetter &set_host_baud, std::uint8_t *failed_addresses_bitmap=nullptr, std::size_t failed_bitmap_bytes=0, std::uint16_t verify_timeout_ms=100)
-/home/runner/work/hf-core/hf-core/handlers/alicat_basis2/AlicatBasis2Handler.h:261: warning: The following parameters of AlicatBasis2Handler::NormalizeBusBaud(std::uint32_t target_bps, const DiscoveredDevice *devices, std::size_t device_count, const HostBaudSetter &set_host_baud, std::uint8_t *failed_addresses_bitmap=nullptr, std::size_t failed_bitmap_bytes=0, std::uint16_t verify_timeout_ms=100) are not documented:
-  parameter 'failed_addresses_bitmap'
-  parameter 'failed_bitmap_bytes'
-st_base_thread
+Generating caller graph for function test_base_thread
 Generating caller graph for function test_event_flags
 Generating caller graph for function test_lock_guard_scoped
 Generating caller graph for function test_mutex_contention
@@ -579,6 +582,8 @@ Generating docs for file Bno08xHandler.h...
 Generating caller graph for function Bno08xErrorToString
 Generating docs for file HandlerCommon.h...
 Generating docs for file PlatformMutexBackend.h...
+Generating docs for file Fdo2Handler.cpp...
+Generating docs for file Fdo2Handler.h...
 Generating docs for file Logger.cpp...
 Generating docs for file Logger.h...
 Generating docs for file Max22200Handler.cpp...
@@ -623,7 +628,11 @@ Generating docs for compound Ads7952HandlerConfig...
 Generating docs for compound Ads7952SpiAdapter...
 Generating docs for compound AlicatBasis2Handler...
 Generating call graph for function AlicatBasis2Handler::DiscoverAcrossBauds
-Generating call graph for function AlicatBasis2Handler::EnsureInitialized
+Generating call graph for funct/home/runner/work/hf-core/hf-core/handlers/alicat_basis2/AlicatBasis2Handler.h:261: warning: argument 'failed_addresses' of command @param is not found in the argument list of AlicatBasis2Handler::NormalizeBusBaud(std::uint32_t target_bps, const DiscoveredDevice *devices, std::size_t device_count, const HostBaudSetter &set_host_baud, std::uint8_t *failed_addresses_bitmap=nullptr, std::size_t failed_bitmap_bytes=0, std::uint16_t verify_timeout_ms=100)
+/home/runner/work/hf-core/hf-core/handlers/alicat_basis2/AlicatBasis2Handler.h:261: warning: The following parameters of AlicatBasis2Handler::NormalizeBusBaud(std::uint32_t target_bps, const DiscoveredDevice *devices, std::size_t device_count, const HostBaudSetter &set_host_baud, std::uint8_t *failed_addresses_bitmap=nullptr, std::size_t failed_bitmap_bytes=0, std::uint16_t verify_timeout_ms=100) are not documented:
+  parameter 'failed_addresses_bitmap'
+  parameter 'failed_bitmap_bytes'
+ion AlicatBasis2Handler::EnsureInitialized
 Generating caller graph for function AlicatBasis2Handler::EnsureInitializedLocked
 Generating call graph for function AlicatBasis2Handler::FactoryRestore
 Generating caller graph for function AlicatBasis2Handler::FactoryRestore
@@ -687,6 +696,19 @@ Generating call graph for function Bno08xHandler::Update
 Generating docs for compound Bno08xImuData...
 Generating docs for compound Bno08xQuaternion...
 Generating docs for compound Bno08xVector3...
+Generating docs for compound Fdo2Handler...
+Generating call graph for function/home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h:94: warning: explicit link request to 'MOXY' could not be resolved
+/home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h:94: warning: explicit link request to 'MRAW' could not be resolved
+/home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h:96: warning: explicit link request to 'MOXY' could not be resolved
+/home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h:96: warning: explicit link request to 'MRAW' could not be resolved
+warning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (64), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
+ Fdo2Handler::EnsureInitialized
+Generating call graph for function Fdo2Handler::EnsureInitializedLocked
+Generating caller graph for function Fdo2Handler::EnsureInitializedLocked
+Generating call graph for function Fdo2Handler::MeasureMoxy
+Generating call graph for function Fdo2Handler::MeasureMraw
+Generating call graph for function Fdo2Handler::ReadUniqueId
+Generating docs for compound Fdo2HandlerConfig...
 Generating docs for compound HalI2cBno08xComm...
 Generating docs for compound HalI2cPca9685Comm...
 Generating docs for compound HalI2cPcal95555Comm...
@@ -698,8 +720,7 @@ Generating call graph for function HalSpiMax22200Comm::Initialize
 Generating docs for compound HalSpiTle92466edComm...
 Generating call graph for function HalSpiTle92466edComm::Delay
 Generating call graph for function HalSpiTle92466edComm::Log
-Generating call graph for warning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (64), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
-function HalSpiTle92466edComm::Transfer32
+Generating call graph for function HalSpiTle92466edComm::Transfer32
 Generating docs for compound HalSpiTmc5160Comm...
 Generating call graph for function HalSpiTmc5160Comm::DebugLog
 Generating call graph for function HalSpiTmc5160Comm::DelayMs
@@ -711,6 +732,9 @@ Generating call graph for function HalSpiTmc9660Comm::delayUs
 Generating call graph for function HalSpiTmc9660Comm::gpioRead
 Generating call graph for function HalSpiTmc9660Comm::gpioSet
 Generating docs for compound HalUartAlicatBasis2Comm...
+Generating docs for compound HalUartFdo2Comm...
+Generating caller graph for function HalUartFdo2Comm::delay_ms_impl
+Generating caller graph for function HalUartFdo2Comm::flush_rx
 Generating docs for compound HalUartTmc5160Comm...
 Generating call graph for function HalUartTmc5160Comm::DebugLog
 Generating call graph for function HalUartTmc5160Comm::DelayMs
@@ -889,43 +913,7 @@ Generating call graph for function Tle92466edHandler::DisableAllChannels
 Generating call graph for function Tle92466edHandler::DisableChannel
 Generating call graph for function Tle92466edHandler::DisableOutputStage
 Generating call graph for function Tle92466edHandler::DumpDiagnostics
-Generating call graph for function Tle92466edH/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:106: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelV' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:111: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelCount' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:116: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannel' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:121: warning: @copybrief or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:125: warning: @copybrief or @copydoc target 'BaseAdc::GetStatistics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:128: warning: @copybrief or @copydoc target 'BaseAdc::GetDiagnostics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:134: warning: @copybrief or @copydoc target 'BaseAdc::ResetDiagnostics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:98: warning: @copydetails or @copydoc target 'BaseAdc::Deinitialize' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:128: warning: @copybrief or @copydoc target 'BaseAdc::GetDiagnostics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:129: warning: @copydetails or @copydoc target 'BaseAdc::GetDiagnostics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:101: warning: @copydetails or @copydoc target 'BaseAdc::GetMaxChannels' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:125: warning: @copybrief or @copydoc target 'BaseAdc::GetStatistics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:126: warning: @copydetails or @copydoc target 'BaseAdc::GetStatistics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:95: warning: @copydetails or @copydoc target 'BaseAdc::Initialize' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:104: warning: @copydetails or @copydoc target 'BaseAdc::IsChannelAvailable' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:116: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannel' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:117: warning: @copydetails or @copydoc target 'BaseAdc::ReadChannel' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:111: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelCount' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:112: warning: @copydetails or @copydoc target 'BaseAdc::ReadChannelCount' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:106: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelV' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:107: warning: @copydetails or @copydoc target 'BaseAdc::ReadChannelV' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:121: warning: @copybrief or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:122: warning: @copydetails or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:134: warning: @copybrief or @copydoc target 'BaseAdc::ResetDiagnostics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:135: warning: @copydetails or @copydoc target 'BaseAdc::ResetDiagnostics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
-/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:132: warning: @copydetails or @copydoc target 'BaseAdc::ResetStatistics' not found
-andler::EnableAllChannels
+Generating call graph for function Tle92466edHandler::EnableAllChannels
 Generating call graph for function Tle92466edHandler::EnableChannel
 Generating call graph for function Tle92466edHandler::EnableFeedbackUpdates
 Generating call graph for function Tle92466edHandler::EnableOutputStage
@@ -967,7 +955,43 @@ Generating call graph for function Tmc5160Handler::DumpDiagnostics
 Generating call graph for function Tmc5160Handler::EnsureInitialized
 Generating caller graph for function Tmc5160Handler::EnsureInitialized
 Generating call graph for function Tmc5160Handler::EnsureInitializedLocked
-Generating caller graph for function Tmc5160Handler::EnsureInitializedLocked
+Generating caller graph for function/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:106: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelV' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:111: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelCount' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:116: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannel' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:121: warning: @copybrief or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:125: warning: @copybrief or @copydoc target 'BaseAdc::GetStatistics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:128: warning: @copybrief or @copydoc target 'BaseAdc::GetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:134: warning: @copybrief or @copydoc target 'BaseAdc::ResetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:98: warning: @copydetails or @copydoc target 'BaseAdc::Deinitialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:128: warning: @copybrief or @copydoc target 'BaseAdc::GetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:129: warning: @copydetails or @copydoc target 'BaseAdc::GetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:101: warning: @copydetails or @copydoc target 'BaseAdc::GetMaxChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:125: warning: @copybrief or @copydoc target 'BaseAdc::GetStatistics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:126: warning: @copydetails or @copydoc target 'BaseAdc::GetStatistics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:95: warning: @copydetails or @copydoc target 'BaseAdc::Initialize' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:104: warning: @copydetails or @copydoc target 'BaseAdc::IsChannelAvailable' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:116: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannel' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:117: warning: @copydetails or @copydoc target 'BaseAdc::ReadChannel' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:111: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelCount' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:112: warning: @copydetails or @copydoc target 'BaseAdc::ReadChannelCount' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:106: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannelV' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:107: warning: @copydetails or @copydoc target 'BaseAdc::ReadChannelV' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:121: warning: @copybrief or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:122: warning: @copydetails or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:134: warning: @copybrief or @copydoc target 'BaseAdc::ResetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:135: warning: @copydetails or @copydoc target 'BaseAdc::ResetDiagnostics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
+/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:132: warning: @copydetails or @copydoc target 'BaseAdc::ResetStatistics' not found
+ Tmc5160Handler::EnsureInitializedLocked
 Generating call graph for function Tmc5160Handler::GetDriver
 Generating call graph for function Tmc5160Handler::GetDriver
 Generating call graph for function Tmc5160Handler::Initialize
@@ -1086,7 +1110,23 @@ Generating call graph for function anonymous_namespace{AlicatBasis2Handler.cpp}:
 Generating caller graph for function anonymous_namespace{AlicatBasis2Handler.cpp}::IsSupportedBaudBps
 Generating call graph for function anonymous_namespace{AlicatBasis2Handler.cpp}::SetBitmap
 Generating caller graph for function anonymous_namespace{AlicatBasis2Handler.cpp}::SetBitmap
-Generating docs for namespace anonymous_namespace{Logger.cpp}
+Generating docs for namespace anonymous_namespace{Logger.cpp/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:20: warning: unable to resolve reference to '-features' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:21: warning: unable to resolve reference to '-architecture' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:22: warning: unable to resolve reference to '-quick-start' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:23: warning: unable to resolve reference to '-handlers' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:24: warning: unable to resolve reference to '-utilities' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:25: warning: unable to resolve reference to '-repository-structure' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:26: warning: unable to resolve reference to '-documentation' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:27: warning: unable to resolve reference to '-contributing' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:28: warning: unable to resolve reference to '-license' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:181: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/architecture.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:182: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/folder_structure.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:183: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/handlers/index.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:184: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:185: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:186: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
+}
 Generating caller graph for function anonymous_namespace{Logger.cpp}::ToBaseLevel
 Generating docs for namespace anonymous_namespace{Tmc9660Handler.cpp}
 Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::readGpioToSignal
@@ -1105,26 +1145,11 @@ Generating dependency graph for directory bno08x
 Generating dependency graph for directory common
 Generating dependency graph for directory esp32
 Generating dependency graph for directory examples
+Generating dependency graph for directory fdo2
 Generating dependency graph for directory handler_tests
 Generating dependency graph for directory handlers
 Generating dependency graph for directory integration_tests
-G/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:20: warning: unable to resolve reference to '-features' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:21: warning: unable to resolve reference to '-architecture' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:22: warning: unable to resolve reference to '-quick-start' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:23: warning: unable to resolve reference to '-handlers' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:24: warning: unable to resolve reference to '-utilities' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:25: warning: unable to resolve reference to '-repository-structure' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:26: warning: unable to resolve reference to '-documentation' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:27: warning: unable to resolve reference to '-contributing' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:28: warning: unable to resolve reference to '-license' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:181: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/architecture.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:182: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/folder_structure.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:183: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/handlers/index.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:184: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:185: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:186: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
-enerating dependency graph for directory logger
+Generating dependency graph for directory logger
 Generating dependency graph for directory main
 Generating dependency graph for directory max22200
 Generating dependency graph for directory mcp9700
@@ -1157,7 +1182,167 @@ finalizing index lists...
 writing tag file...
 Running plantuml with JAVA...
 Running dot...
-Patching output file 1/1
-type lookup cache used 5643/65536 hits=29425 misses=6010
-symbol lookup cache used 7406/65536 hits=35232 misses=7406
+Generating dot graphs using 5 parallel threads...
+Running dot for graph 1/67
+Running dot for graph 2/67
+Running dot for graph 3/67
+Running dot for graph 4/67
+Running dot for graph 5/67
+Running dot for graph 6/67
+Running dot for graph 7/67
+Running dot for graph 8/67
+Running dot for graph 9/67
+Running dot for graph 10/67
+Running dot for graph 11/67
+Running dot for graph 12/67
+Running dot for graph 13/67
+Running dot for graph 14/67
+Running dot for graph 15/67
+Running dot for graph 16/67
+Running dot for graph 17/67
+Running dot for graph 18/67
+Running dot for graph 19/67
+Running dot for graph 20/67
+Running dot for graph 21/67
+Running dot for graph 22/67
+Running dot for graph 23/67
+Running dot for graph 24/67
+Running dot for graph 25/67
+Running dot for graph 26/67
+Running dot for graph 27/67
+Running dot for graph 28/67
+Running dot for graph 29/67
+Running dot for graph 30/67
+Running dot for graph 31/67
+Running dot for graph 32/67
+Running dot for graph 33/67
+Running dot for graph 34/67
+Running dot for graph 35/67
+Running dot for graph 36/67
+Running dot for graph 37/67
+Running dot for graph 38/67
+Running dot for graph 39/67
+Running dot for graph 40/67
+Running dot for graph 41/67
+Running dot for graph 42/67
+Running dot for graph 43/67
+Running dot for graph 44/67
+Running dot for graph 45/67
+Running dot for graph 46/67
+Running dot for graph 47/67
+Running dot for graph 48/67
+Running dot for graph 49/67
+Running dot for graph 50/67
+Running dot for graph 51/67
+Running dot for graph 52/67
+Running dot for graph 53/67
+Running dot for graph 54/67
+Running dot for graph 55/67
+Running dot for graph 56/67
+Running dot for graph 57/67
+Running dot for graph 58/67
+Running dot for graph 59/67
+Running dot for graph 60/67
+Running dot for graph 61/67
+Running dot for graph 62/67
+Running dot for graph 63/67
+Running dot for graph 64/67
+Running dot for graph 65/67
+Running dot for graph 66/67
+Running dot for graph 67/67
+Patching output file 1/93
+Patching output file 2/93
+Patching output file 3/93
+Patching output file 4/93
+Patching output file 5/93
+Patching output file 6/93
+Patching output file 7/93
+Patching output file 8/93
+Patching output file 9/93
+Patching output file 10/93
+Patching output file 11/93
+Patching output file 12/93
+Patching output file 13/93
+Patching output file 14/93
+Patching output file 15/93
+Patching output file 16/93
+Patching output file 17/93
+Patching output file 18/93
+Patching output file 19/93
+Patching output file 20/93
+Patching output file 21/93
+Patching output file 22/93
+Patching output file 23/93
+Patching output file 24/93
+Patching output file 25/93
+Patching output file 26/93
+Patching output file 27/93
+Patching output file 28/93
+Patching output file 29/93
+Patching output file 30/93
+Patching output file 31/93
+Patching output file 32/93
+Patching output file 33/93
+Patching output file 34/93
+Patching output file 35/93
+Patching output file 36/93
+Patching output file 37/93
+Patching output file 38/93
+Patching output file 39/93
+Patching output file 40/93
+Patching output file 41/93
+Patching output file 42/93
+Patching output file 43/93
+Patching output file 44/93
+Patching output file 45/93
+Patching output file 46/93
+Patching output file 47/93
+Patching output file 48/93
+Patching output file 49/93
+Patching output file 50/93
+Patching output file 51/93
+Patching output file 52/93
+Patching output file 53/93
+Patching output file 54/93
+Patching output file 55/93
+Patching output file 56/93
+Patching output file 57/93
+Patching output file 58/93
+Patching output file 59/93
+Patching output file 60/93
+Patching output file 61/93
+Patching output file 62/93
+Patching output file 63/93
+Patching output file 64/93
+Patching output file 65/93
+Patching output file 66/93
+Patching output file 67/93
+Patching output file 68/93
+Patching output file 69/93
+Patching output file 70/93
+Patching output file 71/93
+Patching output file 72/93
+Patching output file 73/93
+Patching output file 74/93
+Patching output file 75/93
+Patching output file 76/93
+Patching output file 77/93
+Patching output file 78/93
+Patching output file 79/93
+Patching output file 80/93
+Patching output file 81/93
+Patching output file 82/93
+Patching output file 83/93
+Patching output file 84/93
+Patching output file 85/93
+Patching output file 86/93
+Patching output file 87/93
+Patching output file 88/93
+Patching output file 89/93
+Patching output file 90/93
+Patching output file 91/93
+Patching output file 92/93
+Patching output file 93/93
+type lookup cache used 5746/65536 hits=29725 misses=6119
+symbol lookup cache used 7540/65536 hits=35757 misses=7540
 finished...

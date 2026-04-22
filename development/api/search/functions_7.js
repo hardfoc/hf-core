@@ -9,13 +9,14 @@ var searchData=
   ['halspitmc5160comm_6',['HalSpiTmc5160Comm',['../classHalSpiTmc5160Comm.html#a460b9fe3ce0b0001cfed4cb1f818d49f',1,'HalSpiTmc5160Comm']]],
   ['halspitmc9660comm_7',['HalSpiTmc9660Comm',['../classHalSpiTmc9660Comm.html#af1a0f32616c37bc82b428e3ebd141f54',1,'HalSpiTmc9660Comm']]],
   ['haluartalicatbasis2comm_8',['HalUartAlicatBasis2Comm',['../classHalUartAlicatBasis2Comm.html#af6e931410893120b6bec6c8311141cc2',1,'HalUartAlicatBasis2Comm']]],
-  ['haluarttmc5160comm_9',['HalUartTmc5160Comm',['../classHalUartTmc5160Comm.html#a439031723f57353182a54d6a2e6b2c48',1,'HalUartTmc5160Comm']]],
-  ['haluarttmc9660comm_10',['HalUartTmc9660Comm',['../classHalUartTmc9660Comm.html#a144c7a0f50237dff1fa25c235084c3e1',1,'HalUartTmc9660Comm']]],
-  ['handlesensorerrors_11',['HandleSensorErrors',['../classAs5047uHandler.html#a6b29b6418f7b2d19cbdcc65aa6eb9756',1,'As5047uHandler']]],
-  ['hardwareinterruptcallback_12',['HardwareInterruptCallback',['../classPcal95555Handler.html#a87e8b50faf5d3d815227068ff26b1a6b',1,'Pcal95555Handler']]],
-  ['hardwarereset_13',['HardwareReset',['../classIBno08xDriverOps.html#a66418ccb85cd8eb8eea327fa979a2b6a',1,'IBno08xDriverOps::HardwareReset()'],['../classBno08xDriverImpl.html#a438c41d8c26b4e4dccf60079d8861043',1,'Bno08xDriverImpl::HardwareReset()']]],
-  ['hasagileio_14',['HasAgileIO',['../classPcal95555Handler.html#a997583346dffe6c95e5f8fcfc127c37b',1,'Pcal95555Handler']]],
-  ['hasfault_15',['HasFault',['../classMax22200Handler.html#ac5b60b117fec404c55597929134fa1a1',1,'Max22200Handler::HasFault()'],['../classTle92466edHandler.html#ab86e6d3eb2dca25154a8fa7c42ddb945',1,'Tle92466edHandler::HasFault()']]],
-  ['hasinterruptsupport_16',['HasInterruptSupport',['../classPcal95555Handler.html#a582a8375e50b2df78dfd91aa132955af',1,'Pcal95555Handler']]],
-  ['hasnewdata_17',['HasNewData',['../classIBno08xDriverOps.html#a1529def7c6fc77eed5dbc39aa16f3cc9',1,'IBno08xDriverOps::HasNewData()'],['../classBno08xDriverImpl.html#a3a097f73569d05c185c2d1d76bc7039b',1,'Bno08xDriverImpl::HasNewData()']]]
+  ['haluartfdo2comm_9',['HalUartFdo2Comm',['../classHalUartFdo2Comm.html#a1b843d32bc23259cb9574c40a4dfddcd',1,'HalUartFdo2Comm']]],
+  ['haluarttmc5160comm_10',['HalUartTmc5160Comm',['../classHalUartTmc5160Comm.html#a439031723f57353182a54d6a2e6b2c48',1,'HalUartTmc5160Comm']]],
+  ['haluarttmc9660comm_11',['HalUartTmc9660Comm',['../classHalUartTmc9660Comm.html#a144c7a0f50237dff1fa25c235084c3e1',1,'HalUartTmc9660Comm']]],
+  ['handlesensorerrors_12',['HandleSensorErrors',['../classAs5047uHandler.html#a6b29b6418f7b2d19cbdcc65aa6eb9756',1,'As5047uHandler']]],
+  ['hardwareinterruptcallback_13',['HardwareInterruptCallback',['../classPcal95555Handler.html#a87e8b50faf5d3d815227068ff26b1a6b',1,'Pcal95555Handler']]],
+  ['hardwarereset_14',['HardwareReset',['../classIBno08xDriverOps.html#a66418ccb85cd8eb8eea327fa979a2b6a',1,'IBno08xDriverOps::HardwareReset()'],['../classBno08xDriverImpl.html#a438c41d8c26b4e4dccf60079d8861043',1,'Bno08xDriverImpl::HardwareReset()']]],
+  ['hasagileio_15',['HasAgileIO',['../classPcal95555Handler.html#a997583346dffe6c95e5f8fcfc127c37b',1,'Pcal95555Handler']]],
+  ['hasfault_16',['HasFault',['../classMax22200Handler.html#ac5b60b117fec404c55597929134fa1a1',1,'Max22200Handler::HasFault()'],['../classTle92466edHandler.html#ab86e6d3eb2dca25154a8fa7c42ddb945',1,'Tle92466edHandler::HasFault()']]],
+  ['hasinterruptsupport_17',['HasInterruptSupport',['../classPcal95555Handler.html#a582a8375e50b2df78dfd91aa132955af',1,'Pcal95555Handler']]],
+  ['hasnewdata_18',['HasNewData',['../classIBno08xDriverOps.html#a1529def7c6fc77eed5dbc39aa16f3cc9',1,'IBno08xDriverOps::HasNewData()'],['../classBno08xDriverImpl.html#a3a097f73569d05c185c2d1d76bc7039b',1,'Bno08xDriverImpl::HasNewData()']]]
 ];
