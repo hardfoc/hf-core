@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.bxArPY
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.bxArPY' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.cm9R92
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.cm9R92' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -11,26 +11,26 @@ Searching for dia files...
 Searching for files to exclude
 Searching INPUT for files to process...
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/common
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ads7952
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tle92466ed
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tmc5160
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/as5047u
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tmc9660
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/mcp9700
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/bno08x
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ws2812
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ntc
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/pca9685
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/fdo2
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/pcal95555
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/pca9685
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/bno08x
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tle92466ed
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ws2812
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tmc9660
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ntc
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tmc5160
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/alicat_basis2
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/max22200
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/mcp9700
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/logger
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/logger/factory
-Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/max22200
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/common
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/ads7952
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/as5047u
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/pcal95555
 Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main
-Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests
 Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/integration_tests
+Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests
 Searching for files in directory /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests
 Reading and parsing tag files
 Parsing files
@@ -1122,6 +1122,7 @@ Generating cal/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to
 /home/runner/work/hf-core/hf-core/README.md:26: warning: unable to resolve reference to '-documentation' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:27: warning: unable to resolve reference to '-contributing' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:28: warning: unable to resolve reference to '-license' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:133: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/handlers/logger/README.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:181: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/architecture.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:182: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/folder_structure.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:183: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/handlers/index.md' for \ref command
@@ -1189,90 +1190,7 @@ finalizing index lists...
 writing tag file...
 Running plantuml with JAVA...
 Running dot...
-Generating dot graphs using 5 parallel threads...
-Running dot for graph 1/28
-Running dot for graph 2/28
-Running dot for graph 3/28
-Running dot for graph 4/28
-Running dot for graph 5/28
-Running dot for graph 6/28
-Running dot for graph 7/28
-Running dot for graph 8/28
-Running dot for graph 9/28
-Running dot for graph 10/28
-Running dot for graph 11/28
-Running dot for graph 12/28
-Running dot for graph 13/28
-Running dot for graph 14/28
-Running dot for graph 15/28
-Running dot for graph 16/28
-Running dot for graph 17/28
-Running dot for graph 18/28
-Running dot for graph 19/28
-Running dot for graph 20/28
-Running dot for graph 21/28
-Running dot for graph 22/28
-Running dot for graph 23/28
-Running dot for graph 24/28
-Running dot for graph 25/28
-Running dot for graph 26/28
-Running dot for graph 27/28
-Running dot for graph 28/28
-Patching output file 1/55
-Patching output file 2/55
-Patching output file 3/55
-Patching output file 4/55
-Patching output file 5/55
-Patching output file 6/55
-Patching output file 7/55
-Patching output file 8/55
-Patching output file 9/55
-Patching output file 10/55
-Patching output file 11/55
-Patching output file 12/55
-Patching output file 13/55
-Patching output file 14/55
-Patching output file 15/55
-Patching output file 16/55
-Patching output file 17/55
-Patching output file 18/55
-Patching output file 19/55
-Patching output file 20/55
-Patching output file 21/55
-Patching output file 22/55
-Patching output file 23/55
-Patching output file 24/55
-Patching output file 25/55
-Patching output file 26/55
-Patching output file 27/55
-Patching output file 28/55
-Patching output file 29/55
-Patching output file 30/55
-Patching output file 31/55
-Patching output file 32/55
-Patching output file 33/55
-Patching output file 34/55
-Patching output file 35/55
-Patching output file 36/55
-Patching output file 37/55
-Patching output file 38/55
-Patching output file 39/55
-Patching output file 40/55
-Patching output file 41/55
-Patching output file 42/55
-Patching output file 43/55
-Patching output file 44/55
-Patching output file 45/55
-Patching output file 46/55
-Patching output file 47/55
-Patching output file 48/55
-Patching output file 49/55
-Patching output file 50/55
-Patching output file 51/55
-Patching output file 52/55
-Patching output file 53/55
-Patching output file 54/55
-Patching output file 55/55
+Patching output file 1/1
 type lookup cache used 5751/65536 hits=29779 misses=6124
-symbol lookup cache used 7564/65536 hits=35794 misses=7564
+symbol lookup cache used 7565/65536 hits=35794 misses=7565
 finished...
