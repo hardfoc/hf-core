@@ -136,7 +136,7 @@ Use the CI pipeline or iterate over `app_config.yml` entries:
 | `Tle92466edHandler` | TLE92466ED | SPI | 6-ch solenoid driver, PWM, diagnostics, watchdog |
 | `Max22200Handler` | MAX22200 | SPI | 8-ch solenoid/motor, CDR/VDR, HIT/HOLD, DPM |
 | `Ws2812Handler` | WS2812 | RMT | Addressable LED strip, pixel control, animations |
-| `Logger` | — | — | Singleton, log levels, per-tag filter, formatted output |
+| `Logger` | — | — | Singleton, log levels, per-tag filter, formatted output, MCU-agnostic via injectable `BaseLogger` backend ([details](handlers/logger/README.md)) |
 
 ## 🔧 Utilities
 
