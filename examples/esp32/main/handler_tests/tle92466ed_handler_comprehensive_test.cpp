@@ -42,6 +42,7 @@ static constexpr bool ENABLE_INITIALIZATION_TESTS  = true;
 static constexpr bool ENABLE_CHANNEL_CONTROL_TESTS = true;
 static constexpr bool ENABLE_STATUS_TESTS          = true;
 static constexpr bool ENABLE_WATCHDOG_TESTS        = true;
+static constexpr bool ENABLE_FEEDBACK_PATH_TESTS   = true;
 static constexpr bool ENABLE_DEVICE_INFO_TESTS     = true;
 static constexpr bool ENABLE_DIAGNOSTICS_TESTS     = true;
 static constexpr bool ENABLE_ERROR_HANDLING_TESTS  = true;
@@ -237,6 +238,50 @@ static bool test_enter_mission_mode() noexcept {
     return ok;
 }
 
+// ─────────────────────── Feedback + dither (driver-aligned path) ───────────────────────
+
+static bool test_enable_output_stage() noexcept {
+    if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
+    const bool ok = g_handler->EnableOutputStage().has_value();
+    ESP_LOGI(TAG, "EnableOutputStage: %s", ok ? "OK" : "FAILED");
+    return ok;
+}
+
+static bool test_enable_feedback_updates() noexcept {
+    if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
+    const bool ok = g_handler->EnableFeedbackUpdates().has_value();
+    ESP_LOGI(TAG, "EnableFeedbackUpdates: %s", ok ? "OK" : "FAILED");
+    return ok;
+}
+
+static bool test_configure_dither_via_driver() noexcept {
+    if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
+    auto* drv = g_handler->GetDriver();
+    if (drv == nullptr) {
+        ESP_LOGE(TAG, "GetDriver null");
+        return false;
+    }
+    // Small amplitude / moderate frequency — programs STEPS/FLAT + DITHER_CLK_DIV per driver.
+    const auto e = drv->ConfigureDither(tle92466ed::Channel::CH0, 40.0F, 1500.0F, false);
+    const bool ok = e.has_value();
+    ESP_LOGI(TAG, "ConfigureDither(CH0): %s", ok ? "OK" : "FAILED");
+    return ok;
+}
+
+static bool test_get_average_current_after_dither() noexcept {
+    if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
+    auto* drv = g_handler->GetDriver();
+    if (drv == nullptr) {
+        return false;
+    }
+    vTaskDelay(pdMS_TO_TICKS(80));
+    const auto iavg = drv->GetAverageCurrent(tle92466ed::Channel::CH0, false);
+    const bool ok = iavg.has_value();
+    ESP_LOGI(TAG, "GetAverageCurrent(CH0): %s mA=%u", ok ? "OK" : "FAIL",
+             ok ? static_cast<unsigned>(*iavg) : 0U);
+    return ok;
+}
+
 // ─────────────────────── Device Info ───────────────────────
 
 static bool test_get_chip_id() noexcept {
@@ -325,6 +370,12 @@ extern "C" void app_main(void) {
     RUN_TEST_SECTION_IF_ENABLED(ENABLE_WATCHDOG_TESTS, "WATCHDOG",
         RUN_TEST_IN_TASK("kick_wdt", test_kick_watchdog, 8192, 5); flip_test_progress_indicator();
         RUN_TEST_IN_TASK("mission", test_enter_mission_mode, 8192, 5); flip_test_progress_indicator();
+    );
+    RUN_TEST_SECTION_IF_ENABLED(ENABLE_FEEDBACK_PATH_TESTS, "FEEDBACK_AND_DITHER",
+        RUN_TEST_IN_TASK("out_stage", test_enable_output_stage, 8192, 5); flip_test_progress_indicator();
+        RUN_TEST_IN_TASK("fb_unfrz", test_enable_feedback_updates, 8192, 5); flip_test_progress_indicator();
+        RUN_TEST_IN_TASK("dither", test_configure_dither_via_driver, 8192, 5); flip_test_progress_indicator();
+        RUN_TEST_IN_TASK("iavg", test_get_average_current_after_dither, 16384, 10); flip_test_progress_indicator();
     );
     RUN_TEST_SECTION_IF_ENABLED(ENABLE_DEVICE_INFO_TESTS, "DEVICE INFO",
         RUN_TEST_IN_TASK("chip_id", test_get_chip_id, 8192, 5); flip_test_progress_indicator();

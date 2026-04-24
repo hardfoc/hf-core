@@ -4,14 +4,21 @@
  *
  * @details
  * Provides HAL-level integration for the TLE92466ED gate driver using BaseSpi and BaseGpio.
+ * Tracks **hf-tle92466ed-driver** `tle92466ed::Driver<>` (PWM period clamp to datasheet range,
+ * dither + `DITHER_CLK_DIV` configuration, FB_DC / FB_I_AVG decode, corrected `SetReset` polarity).
  * Features:
- * - CRTP SPI adapter bridging BaseSpi to the TLE92466ED driver
+ * - CRTP SPI adapter bridging BaseSpi to the TLE92466ED driver (`SpiInterface` CRTP)
  * - 6-channel solenoid/valve control with current regulation
  * - Comprehensive fault monitoring and diagnostic reporting
  * - SPI watchdog management
  * - Thread-safe operations with RtosMutex
  * - Lazy initialization pattern
- * - Full driver access through GetDriver() for advanced operations
+ * - `GetDriver()` for **advanced** APIs (`ConfigurePwmPeriod`, `ConfigureDither`,
+ *   `GetAverageCurrent`, rail reads, …) — see `docs/handlers/tle92466ed_handler.md`
+ *
+ * @note **RESN / EN semantics:** the driver maps logical `GpioSignal::ACTIVE` on `RESN` to
+ *       *not in reset* (pin released). Configure each `BaseGpio` active state so that
+ *       `SetActive()` / `SetInactive()` match your schematic (typical RESN = active-low).
  *
  * @author HardFOC Team
  * @date 2025
