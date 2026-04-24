@@ -138,15 +138,16 @@ Classes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Unified handler for TLE92466ED six-channel low-side solenoid driver IC. </p>
-<p>Provides HAL-level integration for the TLE92466ED gate driver using BaseSpi and BaseGpio. Features:</p><ul>
-<li>CRTP SPI adapter bridging BaseSpi to the TLE92466ED driver</li>
+<p>Provides HAL-level integration for the TLE92466ED gate driver using BaseSpi and BaseGpio. Tracks <b>hf-tle92466ed-driver</b> <code>tle92466ed::Driver&lt;&gt;</code> (PWM period clamp to datasheet range, dither + <code>DITHER_CLK_DIV</code> configuration, FB_DC / FB_I_AVG decode, corrected <code>SetReset</code> polarity). Features:</p><ul>
+<li>CRTP SPI adapter bridging BaseSpi to the TLE92466ED driver (<code>SpiInterface</code> CRTP)</li>
 <li>6-channel solenoid/valve control with current regulation</li>
 <li>Comprehensive fault monitoring and diagnostic reporting</li>
 <li>SPI watchdog management</li>
 <li>Thread-safe operations with RtosMutex</li>
 <li>Lazy initialization pattern</li>
-<li>Full driver access through GetDriver() for advanced operations</li>
+<li><code>GetDriver()</code> for <b>advanced</b> APIs (<code>ConfigurePwmPeriod</code>, <code>ConfigureDither</code>, <code>GetAverageCurrent</code>, rail reads, …) — see <code>docs/handlers/tle92466ed_handler.md</code></li>
 </ul>
+<dl class="section note"><dt>Note</dt><dd><b>RESN / EN semantics:</b> the driver maps logical <code>GpioSignal::ACTIVE</code> on <code>RESN</code> to <em>not in reset</em> (pin released). Configure each <code>BaseGpio</code> active state so that <code>SetActive()</code> / <code>SetInactive()</code> match your schematic (typical RESN = active-low).</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>HardFOC Team </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>HardFOC </dd></dl>

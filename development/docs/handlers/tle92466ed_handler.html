@@ -247,7 +247,14 @@
 </h1>
     
 
-<p>Six-channel solenoid driver handler for the Infineon TLE92466ED.</p>
+<p>Six-channel solenoid gate-driver handler for the <strong>Infineon TLE92466ED</strong>, bridging <strong><code class="language-plaintext highlighter-rouge">BaseSpi</code></strong>
+and <strong><code class="language-plaintext highlighter-rouge">BaseGpio</code></strong> to the header-only <strong><code class="language-plaintext highlighter-rouge">tle92466ed::Driver&lt;&gt;</code></strong> stack in
+<a href="https://github.com/N3b3x/hf-tle92466ed-driver"><code class="language-plaintext highlighter-rouge">hf-tle92466ed-driver</code></a>.</p>
+
+<p>Low-level SPI framing, register maps, and Doxygen for <code class="language-plaintext highlighter-rouge">tle92466ed::Driver</code> live in that
+repository (including <strong>wiring / SPI frame SVGs</strong> and the <strong><code class="language-plaintext highlighter-rouge">lm_pro_cycle_test</code></strong> hardware
+exercise). This page is the <strong>hf-core integration</strong> contract: construction, threading, which
+driver entry points are wrapped here, and which ones you reach through <strong><code class="language-plaintext highlighter-rouge">GetDriver()</code></strong>.</p><hr />
 <h2 id="construction">
   
   
@@ -262,10 +269,73 @@
 </pre></td><td class="rouge-code"><pre><span class="n">Tle92466edHandler</span><span class="p">(</span><span class="n">BaseSpi</span><span class="o">&amp;</span> <span class="n">spi</span><span class="p">,</span> <span class="n">BaseGpio</span><span class="o">&amp;</span> <span class="n">resn</span><span class="p">,</span> <span class="n">BaseGpio</span><span class="o">&amp;</span> <span class="n">en</span><span class="p">,</span>
                   <span class="n">BaseGpio</span><span class="o">*</span> <span class="n">faultn</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
-<h2 id="key-methods">
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Pin</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>SPI</strong></td>
+      <td>Pre-created <code class="language-plaintext highlighter-rouge">BaseSpi</code> device (mode <strong>1</strong>, ≤ <strong>10 MHz</strong> per datasheet).</td>
+    </tr>
+    <tr>
+      <td><strong>RESN</strong></td>
+      <td>Reset, <strong>active-low</strong> at the silicon; logical driver state uses <code class="language-plaintext highlighter-rouge">GpioSignal</code> (see below).</td>
+    </tr>
+    <tr>
+      <td><strong>EN</strong></td>
+      <td>Output-stage enable; <strong>active-high</strong> typical.</td>
+    </tr>
+    <tr>
+      <td><strong>FAULTN</strong></td>
+      <td>Optional fault input, <strong>active-low</strong>; may be <code class="language-plaintext highlighter-rouge">nullptr</code>.</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="resn--en-and-basegpio-polarity">
   
   
-    <a href="#key-methods" class="anchor-heading" aria-labelledby="key-methods"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Key Methods
+    <a href="#resn--en-and-basegpio-polarity" class="anchor-heading" aria-labelledby="resn--en-and-basegpio-polarity"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> RESN / EN and <code class="language-plaintext highlighter-rouge">BaseGpio</code> polarity
+  
+  
+</h3>
+    
+
+<p>The driver’s <code class="language-plaintext highlighter-rouge">SpiInterface</code> documents logical <strong><code class="language-plaintext highlighter-rouge">GpioSignal::ACTIVE</code></strong> for <strong>RESN</strong> as
+<em>not in reset</em> (device operational). <code class="language-plaintext highlighter-rouge">HalSpiTle92466edComm::GpioSet</code> maps that to
+<code class="language-plaintext highlighter-rouge">BaseGpio::SetActive()</code> / <code class="language-plaintext highlighter-rouge">SetInactive()</code>.</p>
+
+<p>Configure each <code class="language-plaintext highlighter-rouge">BaseGpio</code> with the <strong><code class="language-plaintext highlighter-rouge">hf_gpio_active_state_t</code></strong> that matches your PCB so that:</p>
+
+<ul>
+  <li>Released reset (part running) ⇒ driver drives <strong>RESN logical ACTIVE</strong> ⇒ the correct <strong>physical</strong> level on the pin.</li>
+  <li>Asserted reset ⇒ <strong>RESN logical INACTIVE</strong>.</li>
+</ul>
+
+<p>The standalone ESP32 examples in the driver repo use <code class="language-plaintext highlighter-rouge">EspGpio</code> with explicit active states;
+mirror that pattern when wiring the handler on a new board.</p><hr />
+<h2 id="thread-safety">
+  
+  
+    <a href="#thread-safety" class="anchor-heading" aria-labelledby="thread-safety"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Thread safety
+  
+  
+</h2>
+    
+
+<p>All public handler methods run under an internal <strong><code class="language-plaintext highlighter-rouge">RtosMutex</code></strong>. <strong><code class="language-plaintext highlighter-rouge">GetDriver()</code></strong> also locks
+the mutex and <strong>requires</strong> the device to already be initialized (it returns <code class="language-plaintext highlighter-rouge">nullptr</code>
+otherwise). For production code, prefer <strong><code class="language-plaintext highlighter-rouge">EnsureInitialized()</code></strong> / <strong><code class="language-plaintext highlighter-rouge">Initialize()</code></strong> before
+calling <strong><code class="language-plaintext highlighter-rouge">GetDriver()</code></strong>, and do <strong>not</strong> hold other locks that the driver callbacks might
+invert.</p><hr />
+<h2 id="handler-api-vs-tle92466eddriver">
+  
+  
+    <a href="#handler-api-vs-tle92466eddriver" class="anchor-heading" aria-labelledby="handler-api-vs-tle92466eddriver"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Handler API vs <code class="language-plaintext highlighter-rouge">tle92466ed::Driver</code>
   
   
 </h2>
@@ -274,102 +344,140 @@
 <div class="table-wrapper"><table>
   <thead>
     <tr>
-      <th style="text-align: left">Method</th>
-      <th style="text-align: left">Description</th>
+      <th>Area</th>
+      <th>On the handler</th>
+      <th>On <code class="language-plaintext highlighter-rouge">GetDriver()</code> (advanced)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Initialize()</code></td>
-      <td style="text-align: left">Hardware reset + SPI init + enter config mode</td>
+      <td>Init / deinit</td>
+      <td><code class="language-plaintext highlighter-rouge">Initialize()</code>, <code class="language-plaintext highlighter-rouge">Initialize(GlobalConfig)</code>, <code class="language-plaintext highlighter-rouge">EnsureInitialized()</code>, <code class="language-plaintext highlighter-rouge">Deinitialize()</code></td>
+      <td>—</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Initialize(config)</code></td>
-      <td style="text-align: left">Initialize with <code class="language-plaintext highlighter-rouge">GlobalConfig</code></td>
+      <td>Channels</td>
+      <td><code class="language-plaintext highlighter-rouge">ConfigureChannel</code>, <code class="language-plaintext highlighter-rouge">EnableChannel</code>, <code class="language-plaintext highlighter-rouge">DisableChannel</code>, <code class="language-plaintext highlighter-rouge">EnableAllChannels</code> / <code class="language-plaintext highlighter-rouge">DisableAllChannels</code>, <code class="language-plaintext highlighter-rouge">SetChannelCurrent</code></td>
+      <td><code class="language-plaintext highlighter-rouge">SetCurrentSetpoint</code>, <code class="language-plaintext highlighter-rouge">GetCurrentSetpoint</code>, …</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">EnsureInitialized()</code></td>
-      <td style="text-align: left">Lazy init entrypoint</td>
+      <td>PWM</td>
+      <td><strong><code class="language-plaintext highlighter-rouge">ConfigurePwmRaw</code></strong> → driver <code class="language-plaintext highlighter-rouge">ConfigurePwmPeriodRaw</code></td>
+      <td><strong><code class="language-plaintext highlighter-rouge">ConfigurePwmPeriod(period_us)</code></strong> (datasheet clamp + range selection)</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Deinitialize()</code></td>
-      <td style="text-align: left">Disable channels and shut down</td>
+      <td>Dither</td>
+      <td>—</td>
+      <td><strong><code class="language-plaintext highlighter-rouge">ConfigureDither</code></strong>, <strong><code class="language-plaintext highlighter-rouge">ConfigureDitherRaw</code></strong>, <strong><code class="language-plaintext highlighter-rouge">ConfigureDitherClock</code></strong> (programs <code class="language-plaintext highlighter-rouge">DITHER_CLK_DIV</code>; required for FB updates)</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ConfigureChannel(ch, config)</code></td>
-      <td style="text-align: left">Configure a channel (0–5)</td>
+      <td>Output stage</td>
+      <td><strong><code class="language-plaintext highlighter-rouge">EnableOutputStage</code></strong> / <strong><code class="language-plaintext highlighter-rouge">DisableOutputStage</code></strong> → <code class="language-plaintext highlighter-rouge">Enable()</code> / <code class="language-plaintext highlighter-rouge">Disable()</code></td>
+      <td>Same</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">EnableChannel(ch)</code> / <code class="language-plaintext highlighter-rouge">DisableChannel(ch)</code></td>
-      <td style="text-align: left">Per-channel control</td>
+      <td>Feedback</td>
+      <td><strong><code class="language-plaintext highlighter-rouge">EnableFeedbackUpdates()</code></strong> (clears <code class="language-plaintext highlighter-rouge">FB_FRZ</code> so FB registers run)</td>
+      <td><strong><code class="language-plaintext highlighter-rouge">GetAverageCurrent</code></strong>, <strong><code class="language-plaintext highlighter-rouge">GetDutyCycle</code></strong>, rail helpers (<code class="language-plaintext highlighter-rouge">GetVbatVoltage</code>, …)</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">EnableAllChannels()</code> / <code class="language-plaintext highlighter-rouge">DisableAllChannels()</code></td>
-      <td style="text-align: left">Batch control</td>
+      <td>Mode / faults</td>
+      <td><code class="language-plaintext highlighter-rouge">EnterMissionMode</code>, <code class="language-plaintext highlighter-rouge">EnterConfigMode</code>, <code class="language-plaintext highlighter-rouge">IsMissionMode</code>, <code class="language-plaintext highlighter-rouge">GetStatus</code>, <code class="language-plaintext highlighter-rouge">GetChannelDiagnostics</code>, <code class="language-plaintext highlighter-rouge">GetFaultReport</code>, <code class="language-plaintext highlighter-rouge">ClearFaults</code>, <code class="language-plaintext highlighter-rouge">HasFault</code></td>
+      <td>Richer variants returning <code class="language-plaintext highlighter-rouge">DriverResult</code> (<code class="language-plaintext highlighter-rouge">GetDeviceStatus</code>, <code class="language-plaintext highlighter-rouge">GetAllFaults</code>, <code class="language-plaintext highlighter-rouge">HasAnyFault</code>, …)</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SetChannelCurrent(ch, mA)</code></td>
-      <td style="text-align: left">Set current setpoint in milliamps</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ConfigurePwmRaw(ch, mantissa, exp, low_freq)</code></td>
-      <td style="text-align: left">Raw PWM period config</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">EnterMissionMode()</code> / <code class="language-plaintext highlighter-rouge">EnterConfigMode()</code></td>
-      <td style="text-align: left">Device mode switching</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetStatus(status)</code></td>
-      <td style="text-align: left">Read device status</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetChannelDiagnostics(ch, diag)</code></td>
-      <td style="text-align: left">Per-channel diagnostics</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetFaultReport(report)</code></td>
-      <td style="text-align: left">Comprehensive fault report</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">ClearFaults()</code> / <code class="language-plaintext highlighter-rouge">HasFault()</code></td>
-      <td style="text-align: left">Fault management</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">KickWatchdog(reload)</code></td>
-      <td style="text-align: left">Reload SPI watchdog</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GetChipId()</code> / <code class="language-plaintext highlighter-rouge">GetIcVersion()</code></td>
-      <td style="text-align: left">Device identification</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">DumpDiagnostics()</code></td>
-      <td style="text-align: left">Print diagnostic info to Logger</td>
+      <td>Watchdog / ID</td>
+      <td><code class="language-plaintext highlighter-rouge">KickWatchdog</code>, <code class="language-plaintext highlighter-rouge">GetChipId</code>, <code class="language-plaintext highlighter-rouge">GetIcVersion</code>, <code class="language-plaintext highlighter-rouge">DumpDiagnostics</code></td>
+      <td>Underlying equivalents</td>
     </tr>
   </tbody>
 </table></div>
-<h2 id="thread-safety">
+
+<p><strong>Product pattern (Flux):</strong> <code class="language-plaintext highlighter-rouge">ValveManager</code> calls <strong><code class="language-plaintext highlighter-rouge">EnableOutputStage()</code></strong>, <strong><code class="language-plaintext highlighter-rouge">EnableFeedbackUpdates()</code></strong>, then uses <strong><code class="language-plaintext highlighter-rouge">GetDriver()-&gt;ConfigurePwmPeriod</code></strong> and <strong><code class="language-plaintext highlighter-rouge">GetDriver()-&gt;ConfigureDither</code></strong> for proportional valves — the same ordering you need whenever FB readback or dither must be live.</p><hr />
+<h2 id="pwm-and-dither-recent-driver-behaviour">
   
   
-    <a href="#thread-safety" class="anchor-heading" aria-labelledby="thread-safety"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Thread Safety
+    <a href="#pwm-and-dither-recent-driver-behaviour" class="anchor-heading" aria-labelledby="pwm-and-dither-recent-driver-behaviour"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> PWM and dither (recent driver behaviour)
   
   
 </h2>
     
 
-<p>All methods are protected by an internal <code class="language-plaintext highlighter-rouge">RtosMutex</code>. The <code class="language-plaintext highlighter-rouge">withDriver()</code> pattern
-acquires the lock, ensures initialization, and invokes the callable atomically.</p>
-<h2 id="test-coverage">
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">ConfigurePwmPeriod(float period_us)</code></strong> enforces the datasheet <strong>110 Hz–4 kHz</strong> usable band
+(with optional low-frequency range). Values outside the combined spec window return
+<strong><code class="language-plaintext highlighter-rouge">InvalidParameter</code></strong>; near-gap frequencies may log a warning — see driver Doxygen.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">ConfigureDither</code></strong> computes step / flat parameters and programs <strong><code class="language-plaintext highlighter-rouge">DITHER_CLK_DIV</code></strong> so
+the averager and dither timers run (<strong>POR <code class="language-plaintext highlighter-rouge">0x0000</code> freezes FB</strong> until configured).</li>
+  <li>Raw APIs <strong><code class="language-plaintext highlighter-rouge">ConfigurePwmPeriodRaw</code></strong> / <strong><code class="language-plaintext highlighter-rouge">ConfigureDitherRaw</code></strong> remain available for
+bring-up; the handler exposes <strong><code class="language-plaintext highlighter-rouge">ConfigurePwmRaw</code></strong> as a thin wrapper around
+<strong><code class="language-plaintext highlighter-rouge">ConfigurePwmPeriodRaw</code></strong>.</li>
+</ul>
+
+<p>If <strong><code class="language-plaintext highlighter-rouge">GetAverageCurrent</code></strong> or <strong><code class="language-plaintext highlighter-rouge">GetDutyCycle</code></strong> read <strong>zero</strong> while the coil is active, verify
+you called <strong><code class="language-plaintext highlighter-rouge">EnableFeedbackUpdates()</code></strong> and allowed at least one measurement interval after
+configuring dither / PWM.</p><hr />
+<h2 id="reference-material-in-hf-tle92466ed-driver">
   
   
-    <a href="#test-coverage" class="anchor-heading" aria-labelledby="test-coverage"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Test Coverage
+    <a href="#reference-material-in-hf-tle92466ed-driver" class="anchor-heading" aria-labelledby="reference-material-in-hf-tle92466ed-driver"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Reference material in hf-tle92466ed-driver
   
   
 </h2>
     
 
-<p>See <code class="language-plaintext highlighter-rouge">examples/esp32/main/handler_tests/tle92466ed_handler_comprehensive_test.cpp</code>.</p>
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Asset</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">examples/esp32/app_config.yml</code></td>
+      <td>CI matrix for minimal/smoke/LM-Pro and lifecycle-style demos</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">examples/esp32/main/lm_pro_cycle_test.cpp</code></td>
+      <td>CH5 tracking / characterization on real hardware</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_config/</code> + <code class="language-plaintext highlighter-rouge">docs/</code> + <code class="language-plaintext highlighter-rouge">*.svg</code></td>
+      <td>Topology, frame format, bring-up</td>
+    </tr>
+  </tbody>
+</table></div><hr />
+<h2 id="test-coverage-hf-core">
+  
+  
+    <a href="#test-coverage-hf-core" class="anchor-heading" aria-labelledby="test-coverage-hf-core"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Test coverage (hf-core)
+  
+  
+</h2>
+    
+
+<p>Handler integration test:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>./scripts/build_app.sh tle92466ed_handler_test Debug
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>Source: <code class="language-plaintext highlighter-rouge">examples/esp32/main/handler_tests/tle92466ed_handler_comprehensive_test.cpp</code> — includes
+optional <strong>feedback + dither</strong> checks when hardware is present (mission mode, output stage,
+<code class="language-plaintext highlighter-rouge">EnableFeedbackUpdates</code>, <code class="language-plaintext highlighter-rouge">ConfigureDither</code>, <code class="language-plaintext highlighter-rouge">GetAverageCurrent</code>).</p><hr />
+<h2 id="cmake">
+  
+  
+    <a href="#cmake" class="anchor-heading" aria-labelledby="cmake"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> CMake
+  
+  
+</h2>
+    
+
+<p>Set <strong><code class="language-plaintext highlighter-rouge">HF_CORE_ENABLE_TLE92466ED ON</code></strong> before including <strong><code class="language-plaintext highlighter-rouge">cmake/hf_core_build_settings.cmake</code></strong>
+in builds that should compile the handler. Board HALs should keep it <strong>OFF</strong> unless the BOM
+includes a TLE92466ED.</p>
 
           
 
