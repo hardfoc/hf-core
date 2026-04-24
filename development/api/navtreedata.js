@@ -66,7 +66,7 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", "globals_dup" ],
         [ "Functions", "globals_func.html", "globals_func" ],
-        [ "Variables", "globals_vars.html", null ],
+        [ "Variables", "globals_vars.html", "globals_vars" ],
         [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
         [ "Macros", "globals_defs.html", null ]
@@ -78,14 +78,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Ads7952Handler_8cpp.html",
-"canopen__utils__comprehensive__test_8cpp.html#a2c98085b98b167dadb5b05090c3a32f0",
-"classHalSpiBno08xComm.html#a880384796f34e09d390176735ffe6650",
-"classNtcTemperatureHandler.html#a13433ca31eb877b27d39f398ee5b0d6a",
-"classPcal95555Handler.html#a7d8ed72bf4fc9dfcb0be4877deec99b3",
-"classWs2812Handler.html#a0bc6bf24df5f102cf5c04e1e70eb63a3",
-"globals_t.html",
-"structAs5047uConfig.html#a078c980d2b3827e7686a5b39baea4162",
-"tmc5160__handler__comprehensive__test_8cpp.html#a41c7713ad13517741b17ec422ca5b273"
+"bno08x__handler__comprehensive__test_8cpp.html#ac83f97b7754666b5e7733941b37c5630",
+"classHalI2cSe050Comm.html#a6709bf21c025c3520a0b975d96f8e3db",
+"classNtcAdcAdapter.html#a77d0264a70af77ffdde42459fb8812bf",
+"classPcal95555Handler.html#a5ff0ad1ac3c4dcaf45dc4c0d27827da7",
+"classTmc9660Handler_1_1Gpio.html#a1bad24b764946fc93876d36fcc9b64dc",
+"general__utils__comprehensive__test_8cpp.html#a777c850679c895b2649737d6218a93c9",
+"rtos__wrap__comprehensive__test_8cpp.html#a5a44b6d9ee7c71c014674e5bbec0b8e3",
+"structntc__temp__handler__config__t.html#aa83a38e6f657a9eefe13a27dc9ae5728"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -9,6 +9,10 @@ var namespaces_dup =
     [ "anonymous_namespace{Logger.cpp}", "namespaceanonymous__namespace_02Logger_8cpp_03.html", [
       [ "ToBaseLevel", "namespaceanonymous__namespace_02Logger_8cpp_03.html#a9d2b496fa1b4f4e28667d14e4b8cb190", null ]
     ] ],
+    [ "anonymous_namespace{Se050Handler.cpp}", "namespaceanonymous__namespace_02Se050Handler_8cpp_03.html", [
+      [ "ClampU16", "namespaceanonymous__namespace_02Se050Handler_8cpp_03.html#ac712ade1fe8a1302fb5ee3187909b09e", null ],
+      [ "MapI2c", "namespaceanonymous__namespace_02Se050Handler_8cpp_03.html#a2a6831a1ec2b7c917f283d1788590978", null ]
+    ] ],
     [ "anonymous_namespace{Tmc9660Handler.cpp}", "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html", [
       [ "readGpioToSignal", "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#aee82d92e54869f56afcdfa5bf23dbf2f", null ],
       [ "setGpioFromSignal", "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a91f1b4322a75b8ac25a8890110ec9af6", null ]

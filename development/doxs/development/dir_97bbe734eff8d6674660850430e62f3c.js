@@ -12,6 +12,7 @@ var dir_97bbe734eff8d6674660850430e62f3c =
     [ "ntc", "dir_578b1697af9bfc63cf33b892db3f6e33.html", "dir_578b1697af9bfc63cf33b892db3f6e33" ],
     [ "pca9685", "dir_c17f5d286b0e9d3d728751e1cce38b21.html", "dir_c17f5d286b0e9d3d728751e1cce38b21" ],
     [ "pcal95555", "dir_8fcaa0ad75fc40edc1b6b745802439f3.html", "dir_8fcaa0ad75fc40edc1b6b745802439f3" ],
+    [ "se050", "dir_8662ea360e04ff68fe4239a8450fc02e.html", "dir_8662ea360e04ff68fe4239a8450fc02e" ],
     [ "tle92466ed", "dir_e60338d1c39b73a12b907c00fb4619bf.html", "dir_e60338d1c39b73a12b907c00fb4619bf" ],
     [ "tmc5160", "dir_771da01106de958134343da02e29ab81.html", "dir_771da01106de958134343da02e29ab81" ],
     [ "tmc9660", "dir_57a9b4ae0972c7aba1e3c2e0355f42ff.html", "dir_57a9b4ae0972c7aba1e3c2e0355f42ff" ],

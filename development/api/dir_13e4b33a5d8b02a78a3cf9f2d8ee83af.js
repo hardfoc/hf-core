@@ -6,6 +6,7 @@ var dir_13e4b33a5d8b02a78a3cf9f2d8ee83af =
     [ "ntc_handler_comprehensive_test.cpp", "ntc__handler__comprehensive__test_8cpp.html", "ntc__handler__comprehensive__test_8cpp" ],
     [ "pca9685_handler_comprehensive_test.cpp", "pca9685__handler__comprehensive__test_8cpp.html", "pca9685__handler__comprehensive__test_8cpp" ],
     [ "pcal95555_handler_comprehensive_test.cpp", "pcal95555__handler__comprehensive__test_8cpp.html", "pcal95555__handler__comprehensive__test_8cpp" ],
+    [ "se050_handler_comprehensive_test.cpp", "se050__handler__comprehensive__test_8cpp.html", "se050__handler__comprehensive__test_8cpp" ],
     [ "tle92466ed_handler_comprehensive_test.cpp", "tle92466ed__handler__comprehensive__test_8cpp.html", "tle92466ed__handler__comprehensive__test_8cpp" ],
     [ "tmc5160_handler_comprehensive_test.cpp", "tmc5160__handler__comprehensive__test_8cpp.html", "tmc5160__handler__comprehensive__test_8cpp" ],
     [ "tmc9660_handler_comprehensive_test.cpp", "tmc9660__handler__comprehensive__test_8cpp.html", "tmc9660__handler__comprehensive__test_8cpp" ],

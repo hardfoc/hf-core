@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.uG5yhb
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.uG5yhb' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.rHFbMY
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.rHFbMY' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -22,6 +22,7 @@ Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/tmc5
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/alicat_basis2
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/max22200
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/mcp9700
+Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/se050
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/logger
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/logger/factory
 Searching for files in directory /home/runner/work/hf-core/hf-core/handlers/common
@@ -84,6 +85,10 @@ Preprocessing /home/runner/work/hf-core/hf-core/handlers/pcal95555/Pcal95555Hand
 Parsing file /home/runner/work/hf-core/hf-core/handlers/pcal95555/Pcal95555Handler.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/handlers/pcal95555/Pcal95555Handler.h...
 Parsing file /home/runner/work/hf-core/hf-core/handlers/pcal95555/Pcal95555Handler.h...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/se050/Se050Handler.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/se050/Se050Handler.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/handlers/se050/Se050Handler.h...
+Parsing file /home/runner/work/hf-core/hf-core/handlers/se050/Se050Handler.h...
 Preprocessing /home/runner/work/hf-core/hf-core/handlers/tle92466ed/Tle92466edHandler.cpp...
 Parsing file /home/runner/work/hf-core/hf-core/handlers/tle92466ed/Tle92466edHandler.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/handlers/tle92466ed/Tle92466edHandler.h...
@@ -120,6 +125,8 @@ Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_test
 Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/pca9685_handler_comprehensive_test.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/pcal95555_handler_comprehensive_test.cpp...
 Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/pcal95555_handler_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/se050_handler_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/se050_handler_comprehensive_test.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tle92466ed_handler_comprehensive_test.cpp...
 Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tle92466ed_handler_comprehensive_test.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/handler_tests/tmc5160_handler_comprehensive_test.cpp...
@@ -132,12 +139,7 @@ Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/integration_
 Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/integration_tests/full_system_integration_test.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h...
 Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h...
-Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/canopen_utils_comprehensive_test.cpp...
-Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/canopen_utils_comprehensive_test.cpp...
-Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/general_utils_comprehensive_test.cpp...
-Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/general_utils_comprehensive_test.cpp...
-Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/logger_comprehensive_test.cpp...
-Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/logger_comprehens/home/runner/work/hf-core/hf-core/handlers/common/PlatformMutexBackend.h:2: warning: Found non-existing group 'core' for the command '@ingroup', ignoring command
+Preprocessing /home/runner/work/hf-c/home/runner/work/hf-core/hf-core/handlers/common/PlatformMutexBackend.h:2: warning: Found non-existing group 'core' for the command '@ingroup', ignoring command
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:116: warning: @copybrief or @copydoc target 'BaseAdc::ReadChannel' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:134: warning: @copybrief or @copydoc target 'BaseAdc::ResetDiagnostics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
@@ -150,7 +152,12 @@ Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/l
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:121: warning: @copybrief or @copydoc target 'BaseAdc::ReadMultipleChannels' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:125: warning: @copybrief or @copydoc target 'BaseAdc::GetStatistics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
-ive_test.cpp...
+ore/hf-core/examples/esp32/main/utils_tests/canopen_utils_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/canopen_utils_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/general_utils_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/general_utils_comprehensive_test.cpp...
+Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/logger_comprehensive_test.cpp...
+Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/logger_comprehensive_test.cpp...
 Preprocessing /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/rtos_wrap_comprehensive_test.cpp...
 Parsing file /home/runner/work/hf-core/hf-core/examples/esp32/main/utils_tests/rtos_wrap_comprehensive_test.cpp...
 Reading /home/runner/work/hf-core/hf-core/README.md...
@@ -222,6 +229,7 @@ Parsing code for file max22200_handler_comprehensive_test.cpp...
 Parsing code for file ntc_handler_comprehensive_test.cpp...
 Parsing code for file pca9685_handler_comprehensive_test.cpp...
 Parsing code for file pcal95555_handler_comprehensive_test.cpp...
+Parsing code for file se050_handler_comprehensive_test.cpp...
 Parsing code for file tle92466ed_handler_comprehensive_test.cpp...
 Parsing code for file tmc5160_handler_comprehensive_test.cpp...
 Parsing code for file tmc9660_handler_comprehensive_test.cpp...
@@ -257,6 +265,8 @@ Parsing code for file Pca9685Handler.cpp...
 Generating code for file Pca9685Handler.h...
 Parsing code for file Pcal95555Handler.cpp...
 Generating code for file Pcal95555Handler.h...
+Parsing code for file Se050Handler.cpp...
+Generating code for file Se050Handler.h...
 Parsing code for file Tle92466edHandler.cpp...
 Generating code for file Tle92466edHandler.h...
 Parsing code for file Tmc5160Handler.cpp...
@@ -389,6 +399,13 @@ Generating caller graph for function test_pin_direction
 Generating caller graph for function test_pin_write_read
 Generating caller graph for function test_supports_interrupts
 Generating caller graph for function test_toggle_pin
+Generating docs for file se050_handler_comprehensive_test.cpp...
+Generating call graph for function app_main
+Generating call graph for function create_handler
+Generating caller graph for function create_handler
+Generating caller graph for function test_get_random
+Generating caller graph for function test_get_version
+Generating caller graph for function test_initialize
 Generating docs for file tle92466ed_handler_comprehensive_test.cpp...
 Generating call graph for function app_main
 Generating call graph for function create_handler
@@ -447,7 +464,16 @@ Generating caller graph for function test_visit_driver_motor_control
 Generating caller graph for function test_visit_driver_ramp_control
 Generating docs for file tmc9660_handler_comprehensive_test.cpp...
 Generating call graph for function app_main
-Generating call graph for function create_handler
+Generating c/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:412: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
+  parameter 'tag'
+/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:386: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:
+  parameter 'tag'
+/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:370: warning: argument 'test_results' of command @param is not found in the argument list of print_test_section_status(const char *tag, const char *test_suite_name)
+/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:370: warning: The following parameter of print_test_section_status(const char *tag, const char *test_suite_name) is not documented:
+  parameter 'tag'
+/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:350: warning: The following parameter of print_test_summary(const TestResults &test_results, const char *test_suite_name, const char *tag) is not documented:
+  parameter 'tag'
+all graph for function create_handler
 Generating caller graph for function create_handler
 Generating caller graph for function test_adc_wrapper
 Generating caller graph for function test_adc_wrapper_delegation
@@ -467,16 +493,7 @@ Generating caller graph for function test_set_target_velocity
 Generating caller graph for function test_status_flags
 Generating caller graph for function test_supply_voltage
 Generating caller graph for function test_temperature_wrapper
-Generating caller graph for function test_/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:412: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
-  parameter 'tag'
-/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:386: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:
-  parameter 'tag'
-/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:370: warning: argument 'test_results' of command @param is not found in the argument list of print_test_section_status(const char *tag, const char *test_suite_name)
-/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:370: warning: The following parameter of print_test_section_status(const char *tag, const char *test_suite_name) is not documented:
-  parameter 'tag'
-/home/runner/work/hf-core/hf-core/examples/esp32/main/TestFramework.h:350: warning: The following parameter of print_test_summary(const TestResults &test_results, const char *test_suite_name, const char *tag) is not documented:
-  parameter 'tag'
-write_parameter
+Generating caller graph for function test_write_parameter
 Generating docs for file ws2812_handler_comprehensive_test.cpp...
 Generating call graph for function app_main
 Generating caller graph for function create_handler
@@ -601,9 +618,15 @@ Generating docs for file Pca9685Handler.cpp...
 Generating docs for file Pca9685Handler.h...
 Generating docs for file Pcal95555Handler.cpp...
 Generating docs for file Pcal95555Handler.h...
+Generating docs for file Se050Handler.cpp...
+Generating docs for file Se050Handler.h...
 Generating docs for file Tle92466edHandler.cpp...
 Generating caller graph for function toChannel
-Generating docs for file Tle92466edHandler.h...
+Generating doc/home/runner/work/hf-core/hf-core/handlers/alicat_basis2/AlicatBasis2Handler.h:261: warning: argument 'failed_addresses' of command @param is not found in the argument list of AlicatBasis2Handler::NormalizeBusBaud(std::uint32_t target_bps, const DiscoveredDevice *devices, std::size_t device_count, const HostBaudSetter &set_host_baud, std::uint8_t *failed_addresses_bitmap=nullptr, std::size_t failed_bitmap_bytes=0, std::uint16_t verify_timeout_ms=100)
+/home/runner/work/hf-core/hf-core/handlers/alicat_basis2/AlicatBasis2Handler.h:261: warning: The following parameters of AlicatBasis2Handler::NormalizeBusBaud(std::uint32_t target_bps, const DiscoveredDevice *devices, std::size_t device_count, const HostBaudSetter &set_host_baud, std::uint8_t *failed_addresses_bitmap=nullptr, std::size_t failed_bitmap_bytes=0, std::uint16_t verify_timeout_ms=100) are not documented:
+  parameter 'failed_addresses_bitmap'
+  parameter 'failed_bitmap_bytes'
+s for file Tle92466edHandler.h...
 Generating docs for file Tmc5160Handler.cpp...
 Generating docs for file Tmc5160Handler.h...
 Generating docs for file Tmc9660AdcWrapper.cpp...
@@ -627,11 +650,7 @@ Generating call graph for function Ads7952Handler::GetDriver
 Generating call graph for function Ads7952Handler::GetDriver
 Generating caller graph for function Ads7952Handler::GetDriver
 Generating call graph for function Ads7952Handler::Initialize
-Generating c/home/runner/work/hf-core/hf-core/handlers/alicat_basis2/AlicatBasis2Handler.h:261: warning: argument 'failed_addresses' of command @param is not found in the argument list of AlicatBasis2Handler::NormalizeBusBaud(std::uint32_t target_bps, const DiscoveredDevice *devices, std::size_t device_count, const HostBaudSetter &set_host_baud, std::uint8_t *failed_addresses_bitmap=nullptr, std::size_t failed_bitmap_bytes=0, std::uint16_t verify_timeout_ms=100)
-/home/runner/work/hf-core/hf-core/handlers/alicat_basis2/AlicatBasis2Handler.h:261: warning: The following parameters of AlicatBasis2Handler::NormalizeBusBaud(std::uint32_t target_bps, const DiscoveredDevice *devices, std::size_t device_count, const HostBaudSetter &set_host_baud, std::uint8_t *failed_addresses_bitmap=nullptr, std::size_t failed_bitmap_bytes=0, std::uint16_t verify_timeout_ms=100) are not documented:
-  parameter 'failed_addresses_bitmap'
-  parameter 'failed_bitmap_bytes'
-aller graph for function Ads7952Handler::Initialize
+Generating caller graph for function Ads7952Handler::Initialize
 Generating call graph for function Ads7952Handler::visitDriver
 Generating docs for compound Ads7952HandlerConfig...
 Generating docs for compound Ads7952SpiAdapter...
@@ -675,7 +694,11 @@ Generating call graph for function As5047uHandler::visitDriver
 Generating docs for compound As5047uMeasurement...
 Generating docs for compound As5047uSpiAdapter...
 Generating docs for compound AsciiArtFormat...
-Generating docs for compound Bno08xActivityData...
+Ge/home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h:94: warning: explicit link request to 'MOXY' could not be resolved
+/home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h:94: warning: explicit link request to 'MRAW' could not be resolved
+/home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h:96: warning: explicit link request to 'MOXY' could not be resolved
+/home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h:96: warning: explicit link request to 'MRAW' could not be resolved
+nerating docs for compound Bno08xActivityData...
 Generating docs for compound Bno08xCalibrationStatus...
 Generating docs for compound Bno08xConfig...
 Generating docs for compound Bno08xDriverImpl...
@@ -695,12 +718,7 @@ Generating call graph for function Bno08xHandler::GetSensor
 Generating caller graph for function Bno08xHandler::GetSensor
 Generating call graph for function Bno08xHandler::Initialize
 Generating caller graph for function Bno08xHandler::Initialize
-Generating caller graph for func/home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h:94: warning: explicit link request to 'MOXY' could not be resolved
-/home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h:94: warning: explicit link request to 'MRAW' could not be resolved
-/home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h:96: warning: explicit link request to 'MOXY' could not be resolved
-/home/runner/work/hf-core/hf-core/handlers/fdo2/Fdo2Handler.h:96: warning: explicit link request to 'MRAW' could not be resolved
-warning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (64), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
-tion Bno08xHandler::IsInitialized
+Generating caller graph for function Bno08xHandler::IsInitialized
 Generating caller graph for function Bno08xHandler::mapDriverError
 Generating call graph for function Bno08xHandler::Update
 Generating docs for compound Bno08xImuData...
@@ -717,6 +735,13 @@ Generating docs for compound Fdo2HandlerConfig...
 Generating docs for compound HalI2cBno08xComm...
 Generating docs for compound HalI2cPca9685Comm...
 Generating docs for compound HalI2cPcal95555Comm...
+Generating docs for compound HalI2cSe050Comm...
+Generating caller graph for function HalI2cSe050Comm::delay_ms_impl
+Generating caller graph for function HalI2cSe050Comm::EnsureInitialized
+Generating call graph for function HalI2cSe050Comm::HardwareReset
+Generating call graph for function HalI2cSe050Comm::I2cRead
+Generating call graph for function HalI2cSe050Comm::I2cWrite
+Generating call graph for function HalI2cSe050Comm::Transceive
 Generating docs for compound HalSpiBno08xComm...
 Generating docs for compound HalSpiMax22200Comm...
 Generating call graph for function HalSpiMax22200Comm::DelayUs
@@ -741,7 +766,8 @@ Generating docs for compound HalUartFdo2Comm...
 Generating caller graph for function HalUartFdo2Comm::delay_ms_impl
 Generating caller graph for function HalUartFdo2Comm::flush_rx
 Generating docs for compound HalUartTmc5160Comm...
-Generating call graph for function HalUartTmc5160Comm::DebugLog
+Generating call graph for function HalUartwarning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (64), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
+Tmc5160Comm::DebugLog
 Generating call graph for function HalUartTmc5160Comm::DelayMs
 Generating call graph for function HalUartTmc5160Comm::DelayUs
 Generating docs for compound HalUartTmc9660Comm...
@@ -902,6 +928,10 @@ Generating caller graph for function Pcal95555Handler::RegisterPinInterrupt
 Generating call graph for function Pcal95555Handler::ResetToDefault
 Generating caller graph for function Pcal95555Handler::SetDirection
 Generating caller graph for function Pcal95555Handler::SetPullMode
+Generating docs for compound Se050Handler...
+Generating call graph for function Se050Handler::EnsureInitialized
+Generating caller graph for function Se050Handler::EnsureInitializedLocked
+Generating docs for compound Se050HandlerConfig...
 Generating docs for compound TestResults...
 Generating caller graph for function TestResults::add_result
 Generating docs for compound TestTaskContext...
@@ -926,36 +956,7 @@ Generating call graph for function Tle92466edHandler::EnableOutputStage
 Generating call graph for function Tle92466edHandler::EnsureInitialized
 Generating call graph for function Tle92466edHandler::EnsureInitializedLocked
 Generating caller graph for function Tle92466edHandler::EnsureInitializedLocked
-Generating call graph for function Tle92466edHandler::EnterConfigMode
-Generating call graph for function Tle92466edHandler::EnterMissionMode
-Generating call graph for function Tle92466edHandler::GetChannelDiagnostics
-Generating call graph for function Tle92466edHandler::GetChipId
-Generating call graph for function Tle92466edHandler::GetDriver
-Generating call graph for function Tle92466edHandler::GetDriver
-Generating caller graph for function Tle92466edHandler::GetDriver
-Generating call graph for function Tle92466edHandler::GetIcVersion
-Generating call graph for function Tle92466edHandler::HasFault
-Generating call graph for function Tle92466edHandler::Initialize
-Generating caller graph for function Tle92466edHandler::Initialize
-Generating call graph for function Tle92466edHandler::Initialize
-Generating call graph for function Tle92466edHandler::IsMissionMode
-Generating call graph for function Tle92466edHandler::SetChannelCurrent
-Generating call graph for function Tle92466edHandler::withDriver
-Generating caller graph for function Tle92466edHandler::withDriver
-Generating docs for nested compound Tle92466edHandler::is_driver_result...
-Generating docs for nested compound Tle92466edHandler::is_driver_result< tle92466ed::DriverResult< T > >...
-Generating docs for compound Tmc5160CtrlPins...
-Generating docs for compound Tmc5160Handler...
-Generating call graph for function Tmc5160Handler::Tmc5160Handler
-Generating call graph for function Tmc5160Handler::Tmc5160Handler
-Generating call graph for function Tmc5160Handler::~Tmc5160Handler
-Generating call graph for function Tmc5160Handler::Deinitialize
-Generating caller graph for function Tmc5160Handler::Deinitialize
-Generating call graph for function Tmc5160Handler::driverViaSpi
-Generating call graph for function Tmc5160Handler::driverViaSpi
-Generating caller graph for function Tmc5160Handler::driverViaSpi
-Generating call graph for function Tmc5160Handler::driverViaUart
-Generating call gr/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
+Generating call graph for/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
@@ -991,7 +992,36 @@ Generating call gr/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcW
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:135: warning: @copydetails or @copydoc target 'BaseAdc::ResetDiagnostics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:132: warning: @copydetails or @copydoc target 'BaseAdc::ResetStatistics' not found
-aph for function Tmc5160Handler::driverViaUart
+ function Tle92466edHandler::EnterConfigMode
+Generating call graph for function Tle92466edHandler::EnterMissionMode
+Generating call graph for function Tle92466edHandler::GetChannelDiagnostics
+Generating call graph for function Tle92466edHandler::GetChipId
+Generating call graph for function Tle92466edHandler::GetDriver
+Generating call graph for function Tle92466edHandler::GetDriver
+Generating caller graph for function Tle92466edHandler::GetDriver
+Generating call graph for function Tle92466edHandler::GetIcVersion
+Generating call graph for function Tle92466edHandler::HasFault
+Generating call graph for function Tle92466edHandler::Initialize
+Generating caller graph for function Tle92466edHandler::Initialize
+Generating call graph for function Tle92466edHandler::Initialize
+Generating call graph for function Tle92466edHandler::IsMissionMode
+Generating call graph for function Tle92466edHandler::SetChannelCurrent
+Generating call graph for function Tle92466edHandler::withDriver
+Generating caller graph for function Tle92466edHandler::withDriver
+Generating docs for nested compound Tle92466edHandler::is_driver_result...
+Generating docs for nested compound Tle92466edHandler::is_driver_result< tle92466ed::DriverResult< T > >...
+Generating docs for compound Tmc5160CtrlPins...
+Generating docs for compound Tmc5160Handler...
+Generating call graph for function Tmc5160Handler::Tmc5160Handler
+Generating call graph for function Tmc5160Handler::Tmc5160Handler
+Generating call graph for function Tmc5160Handler::~Tmc5160Handler
+Generating call graph for function Tmc5160Handler::Deinitialize
+Generating caller graph for function Tmc5160Handler::Deinitialize
+Generating call graph for function Tmc5160Handler::driverViaSpi
+Generating call graph for function Tmc5160Handler::driverViaSpi
+Generating caller graph for function Tmc5160Handler::driverViaSpi
+Generating call graph for function Tmc5160Handler::driverViaUart
+Generating call graph for function Tmc5160Handler::driverViaUart
 Generating caller graph for function Tmc5160Handler::driverViaUart
 Generating call graph for function Tmc5160Handler::DumpDiagnostics
 Generating call graph for function Tmc5160Handler::EnsureInitialized
@@ -1112,29 +1142,15 @@ Generating namespace documentation...
 Generating docs for namespace anonymous_namespace{AlicatBasis2Handler.cpp}
 Generating call graph for function anonymous_namespace{AlicatBasis2Handler.cpp}::BaudFromBps
 Generating caller graph for function anonymous_namespace{AlicatBasis2Handler.cpp}::BaudFromBps
-Generating cal/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:20: warning: unable to resolve reference to '-features' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:21: warning: unable to resolve reference to '-architecture' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:22: warning: unable to resolve reference to '-quick-start' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:23: warning: unable to resolve reference to '-handlers' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:24: warning: unable to resolve reference to '-utilities' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:25: warning: unable to resolve reference to '-repository-structure' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:26: warning: unable to resolve reference to '-documentation' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:27: warning: unable to resolve reference to '-contributing' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:28: warning: unable to resolve reference to '-license' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:133: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/handlers/logger/README.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:181: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/architecture.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:182: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/folder_structure.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:183: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/handlers/index.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:184: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:185: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
-/home/runner/work/hf-core/hf-core/README.md:186: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
-l graph for function anonymous_namespace{AlicatBasis2Handler.cpp}::IsSupportedBaudBps
+Generating call graph for function anonymous_namespace{AlicatBasis2Handler.cpp}::IsSupportedBaudBps
 Generating caller graph for function anonymous_namespace{AlicatBasis2Handler.cpp}::IsSupportedBaudBps
 Generating call graph for function anonymous_namespace{AlicatBasis2Handler.cpp}::SetBitmap
 Generating caller graph for function anonymous_namespace{AlicatBasis2Handler.cpp}::SetBitmap
 Generating docs for namespace anonymous_namespace{Logger.cpp}
 Generating caller graph for function anonymous_namespace{Logger.cpp}::ToBaseLevel
+Generating docs for namespace anonymous_namespace{Se050Handler.cpp}
+Generating caller graph for function anonymous_namespace{Se050Handler.cpp}::ClampU16
+Generating caller graph for function anonymous_namespace{Se050Handler.cpp}::MapI2c
 Generating docs for namespace anonymous_namespace{Tmc9660Handler.cpp}
 Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::readGpioToSignal
 Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::setGpioFromSignal
@@ -1160,10 +1176,29 @@ Generating dependency graph for directory integration_tests
 Generating dependency graph for directory logger
 Generating dependency graph for directory main
 Generating dependency graph for directory max22200
-Generating dependency graph for directory mcp9700
+Generating depende/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:20: warning: unable to resolve reference to '-features' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:21: warning: unable to resolve reference to '-architecture' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:22: warning: unable to resolve reference to '-quick-start' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:23: warning: unable to resolve reference to '-handlers' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:24: warning: unable to resolve reference to '-utilities' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:25: warning: unable to resolve reference to '-repository-structure' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:26: warning: unable to resolve reference to '-documentation' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:27: warning: unable to resolve reference to '-contributing' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:28: warning: unable to resolve reference to '-license' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:133: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/handlers/se050_handler.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:134: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/handlers/logger/README.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:183: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/architecture.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:184: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/folder_structure.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:185: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/handlers/index.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:186: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:187: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
+/home/runner/work/hf-core/hf-core/README.md:188: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
+ncy graph for directory mcp9700
 Generating dependency graph for directory ntc
 Generating dependency graph for directory pca9685
 Generating dependency graph for directory pcal95555
+Generating dependency graph for directory se050
 Generating dependency graph for directory tle92466ed
 Generating dependency graph for directory tmc5160
 Generating dependency graph for directory tmc9660
@@ -1190,7 +1225,145 @@ finalizing index lists...
 writing tag file...
 Running plantuml with JAVA...
 Running dot...
-Patching output file 1/1
-type lookup cache used 5751/65536 hits=29779 misses=6124
-symbol lookup cache used 7565/65536 hits=35794 misses=7565
+Generating dot graphs using 5 parallel threads...
+Running dot for graph 1/58
+Running dot for graph 2/58
+Running dot for graph 3/58
+Running dot for graph 4/58
+Running dot for graph 5/58
+Running dot for graph 6/58
+Running dot for graph 7/58
+Running dot for graph 8/58
+Running dot for graph 9/58
+Running dot for graph 10/58
+Running dot for graph 11/58
+Running dot for graph 12/58
+Running dot for graph 13/58
+Running dot for graph 14/58
+Running dot for graph 15/58
+Running dot for graph 16/58
+Running dot for graph 17/58
+Running dot for graph 18/58
+Running dot for graph 19/58
+Running dot for graph 20/58
+Running dot for graph 21/58
+Running dot for graph 22/58
+Running dot for graph 23/58
+Running dot for graph 24/58
+Running dot for graph 25/58
+Running dot for graph 26/58
+Running dot for graph 27/58
+Running dot for graph 28/58
+Running dot for graph 29/58
+Running dot for graph 30/58
+Running dot for graph 31/58
+Running dot for graph 32/58
+Running dot for graph 33/58
+Running dot for graph 34/58
+Running dot for graph 35/58
+Running dot for graph 36/58
+Running dot for graph 37/58
+Running dot for graph 38/58
+Running dot for graph 39/58
+Running dot for graph 40/58
+Running dot for graph 41/58
+Running dot for graph 42/58
+Running dot for graph 43/58
+Running dot for graph 44/58
+Running dot for graph 45/58
+Running dot for graph 46/58
+Running dot for graph 47/58
+Running dot for graph 48/58
+Running dot for graph 49/58
+Running dot for graph 50/58
+Running dot for graph 51/58
+Running dot for graph 52/58
+Running dot for graph 53/58
+Running dot for graph 54/58
+Running dot for graph 55/58
+Running dot for graph 56/58
+Running dot for graph 57/58
+Running dot for graph 58/58
+Patching output file 1/80
+Patching output file 2/80
+Patching output file 3/80
+Patching output file 4/80
+Patching output file 5/80
+Patching output file 6/80
+Patching output file 7/80
+Patching output file 8/80
+Patching output file 9/80
+Patching output file 10/80
+Patching output file 11/80
+Patching output file 12/80
+Patching output file 13/80
+Patching output file 14/80
+Patching output file 15/80
+Patching output file 16/80
+Patching output file 17/80
+Patching output file 18/80
+Patching output file 19/80
+Patching output file 20/80
+Patching output file 21/80
+Patching output file 22/80
+Patching output file 23/80
+Patching output file 24/80
+Patching output file 25/80
+Patching output file 26/80
+Patching output file 27/80
+Patching output file 28/80
+Patching output file 29/80
+Patching output file 30/80
+Patching output file 31/80
+Patching output file 32/80
+Patching output file 33/80
+Patching output file 34/80
+Patching output file 35/80
+Patching output file 36/80
+Patching output file 37/80
+Patching output file 38/80
+Patching output file 39/80
+Patching output file 40/80
+Patching output file 41/80
+Patching output file 42/80
+Patching output file 43/80
+Patching output file 44/80
+Patching output file 45/80
+Patching output file 46/80
+Patching output file 47/80
+Patching output file 48/80
+Patching output file 49/80
+Patching output file 50/80
+Patching output file 51/80
+Patching output file 52/80
+Patching output file 53/80
+Patching output file 54/80
+Patching output file 55/80
+Patching output file 56/80
+Patching output file 57/80
+Patching output file 58/80
+Patching output file 59/80
+Patching output file 60/80
+Patching output file 61/80
+Patching output file 62/80
+Patching output file 63/80
+Patching output file 64/80
+Patching output file 65/80
+Patching output file 66/80
+Patching output file 67/80
+Patching output file 68/80
+Patching output file 69/80
+Patching output file 70/80
+Patching output file 71/80
+Patching output file 72/80
+Patching output file 73/80
+Patching output file 74/80
+Patching output file 75/80
+Patching output file 76/80
+Patching output file 77/80
+Patching output file 78/80
+Patching output file 79/80
+Patching output file 80/80
+type lookup cache used 5928/65536 hits=30471 misses=6305
+symbol lookup cache used 7808/65536 hits=36663 misses=7808
 finished...

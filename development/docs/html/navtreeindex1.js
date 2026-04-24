@@ -1,5 +1,10 @@
 var NAVTREEINDEX1 =
 {
+"bno08x__handler__comprehensive__test_8cpp.html#ac83f97b7754666b5e7733941b37c5630":[14,0,0,0,0,0,1,10],
+"bno08x__handler__comprehensive__test_8cpp.html#ac9e8563a88a220775c0ee6f8b5569168":[14,0,0,0,0,0,1,12],
+"bno08x__handler__comprehensive__test_8cpp.html#ad3eea42c9079264e7fba3ecb98d3ec61":[14,0,0,0,0,0,1,15],
+"bno08x__handler__comprehensive__test_8cpp.html#ad7178bfd7bed244bfbb8045f77e478bb":[14,0,0,0,0,0,1,1],
+"canopen__utils__comprehensive__test_8cpp.html":[14,0,0,0,0,2,0],
 "canopen__utils__comprehensive__test_8cpp.html#a2c98085b98b167dadb5b05090c3a32f0":[14,0,0,0,0,2,0,2],
 "canopen__utils__comprehensive__test_8cpp.html#a5a85b9c772bbeb480b209a3e6ea92b4c":[14,0,0,0,0,2,0,9],
 "canopen__utils__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70":[14,0,0,0,0,2,0,0],
@@ -244,10 +249,5 @@ var NAVTREEINDEX1 =
 "classHalI2cPcal95555Comm.html#aaab0f2ead8fb5c16cd047a24bc8139f5":[11,6,0,6],
 "classHalI2cPcal95555Comm.html#ab5f4b653944ba3a9470c1e684662dc1f":[11,6,0,1],
 "classHalI2cPcal95555Comm.html#aff0221cc91b57b20ba76435d0d99d170":[11,6,0,2],
-"classHalSpiBno08xComm.html":[13,0,26],
-"classHalSpiBno08xComm.html#a216981250a3ea8a94b4df383610353b8":[13,0,26,12],
-"classHalSpiBno08xComm.html#a34555f644ea717a68e1d6a7e7fa2bd1a":[13,0,26,10],
-"classHalSpiBno08xComm.html#a4248142269520b3bd7fdc77867ff6cab":[13,0,26,5],
-"classHalSpiBno08xComm.html#a66125153a6719f71942be7b1fd925f3a":[13,0,26,3],
-"classHalSpiBno08xComm.html#a676f2c503ebc07e6ac6ba0a3f44f099f":[13,0,26,13]
+"classHalI2cSe050Comm.html":[13,0,26]
 };

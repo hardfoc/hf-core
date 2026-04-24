@@ -22,7 +22,8 @@ var searchData=
   ['angle_5fcompensated_19',['angle_compensated',['../structAs5047uMeasurement.html#ab1abcdd7a68fbaa6560058774e94122a',1,'As5047uMeasurement']]],
   ['angle_5fraw_20',['angle_raw',['../structAs5047uMeasurement.html#a90d827bdb1b61fe2defee715c92be2f6',1,'As5047uMeasurement']]],
   ['animator_5f_21',['animator_',['../classWs2812Handler.html#aba9a27e605659de49f6b8c745cebf050',1,'Ws2812Handler']]],
-  ['as5047u_5fsensor_5f_22',['as5047u_sensor_',['../classAs5047uHandler.html#adf87c4d40df713678dfae26dc4585ad2',1,'As5047uHandler']]],
-  ['auto1_5fchannel_5fmask_23',['auto1_channel_mask',['../structAds7952HandlerConfig.html#a434e6731b486eb967ceca6014c046160',1,'Ads7952HandlerConfig']]],
-  ['auto2_5flast_5fchannel_24',['auto2_last_channel',['../structAds7952HandlerConfig.html#acea2eba3f86da993afa473f3f2ddf351',1,'Ads7952HandlerConfig']]]
+  ['apdu_5ftimeout_5fms_22',['apdu_timeout_ms',['../structSe050HandlerConfig.html#a191005e7be5a525719f0cdf4f54f9bf5',1,'Se050HandlerConfig']]],
+  ['as5047u_5fsensor_5f_23',['as5047u_sensor_',['../classAs5047uHandler.html#adf87c4d40df713678dfae26dc4585ad2',1,'As5047uHandler']]],
+  ['auto1_5fchannel_5fmask_24',['auto1_channel_mask',['../structAds7952HandlerConfig.html#a434e6731b486eb967ceca6014c046160',1,'Ads7952HandlerConfig']]],
+  ['auto2_5flast_5fchannel_25',['auto2_last_channel',['../structAds7952HandlerConfig.html#acea2eba3f86da993afa473f3f2ddf351',1,'Ads7952HandlerConfig']]]
 ];

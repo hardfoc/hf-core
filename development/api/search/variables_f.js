@@ -3,7 +3,7 @@ var searchData=
   ['range_0',['range',['../structAds7952HandlerConfig.html#a412f1a1bd62d08b4ce5139ac34e9a469',1,'Ads7952HandlerConfig']]],
   ['reference_5fvoltage_1',['reference_voltage',['../structntc__temp__handler__config__t.html#a72a484bd74a9566e5ed9f2f725720840',1,'ntc_temp_handler_config_t']]],
   ['reference_5fvoltage_5f_2',['reference_voltage_',['../classNtcAdcAdapter.html#a5fda436c5e70119b24fe172a4f0f9b90',1,'NtcAdcAdapter']]],
-  ['reset_5fgpio_5f_3',['reset_gpio_',['../classHalI2cBno08xComm.html#a47e4d758c94792c03f2b062f152180a2',1,'HalI2cBno08xComm::reset_gpio_'],['../classHalSpiBno08xComm.html#ad01c70218c8d062eb9ebd6d638e28ac9',1,'HalSpiBno08xComm::reset_gpio_']]],
+  ['reset_5fgpio_5f_3',['reset_gpio_',['../classHalI2cBno08xComm.html#a47e4d758c94792c03f2b062f152180a2',1,'HalI2cBno08xComm::reset_gpio_'],['../classHalSpiBno08xComm.html#ad01c70218c8d062eb9ebd6d638e28ac9',1,'HalSpiBno08xComm::reset_gpio_'],['../classHalI2cSe050Comm.html#ad295dc332511e15e87f488fab44ce56a',1,'HalI2cSe050Comm::reset_gpio_']]],
   ['resn_5f_4',['resn_',['../classHalSpiTle92466edComm.html#a1866f3c39835beae58426fdfd47d7435',1,'HalSpiTle92466edComm']]],
   ['resolution_5fbits_5f_5',['resolution_bits_',['../classNtcAdcAdapter.html#af962ac38399e0efcb0d68c41e6316b57',1,'NtcAdcAdapter']]],
   ['results_6',['results',['../structTestTaskContext.html#a1c97680bd267a35637278ea10a3fae0e',1,'TestTaskContext']]],

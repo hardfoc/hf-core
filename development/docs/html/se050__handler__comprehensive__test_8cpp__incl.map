@@ -1,0 +1,58 @@
+<map id="se050_handler_comprehensive_test.cpp" name="se050_handler_comprehensive_test.cpp">
+<area shape="rect" id="Node000001" title="Exercises Se050Handler on ESP32 (same usage pattern as hf&#45;se050&#45;driver examples)." alt="" coords="1987,5,2211,45"/>
+<area shape="rect" id="Node000002" href="$TestFramework_8h.html" title="Shared testing framework for ESP32&#45;C6 comprehensive test suites." alt="" coords="2412,93,2545,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2190,43,2411,88,2409,93,2189,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="2097,189,2181,214"/>
+<area shape="poly" id="edge29_Node000001_Node000003" title=" " alt="" coords="2106,45,2136,175,2130,176,2100,46"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="2771,189,2922,214"/>
+<area shape="poly" id="edge30_Node000001_Node000006" title=" " alt="" coords="2211,34,2376,55,2468,71,2558,91,2616,107,2660,124,2760,164,2805,181,2803,186,2758,169,2658,129,2614,112,2557,96,2467,76,2375,60,2211,39"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="2947,189,3064,214"/>
+<area shape="poly" id="edge31_Node000001_Node000009" title=" " alt="" coords="2211,31,2358,45,2541,70,2740,108,2839,134,2936,164,2973,180,2971,185,2934,169,2838,139,2739,114,2540,75,2357,50,2211,36"/>
+<area shape="rect" id="Node000010" href="$esp32__bus__setup_8hpp.html" title="Shared ESP32 bus initialization for hf&#45;core handler tests." alt="" coords="1716,93,1879,119"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="2027,48,1855,92,1854,87,2026,43"/>
+<area shape="rect" id="Node000011" href="$esp32__test__config_8hpp.html" title="Centralized hardware pin and address configuration for hf&#45;core tests." alt="" coords="1085,189,1251,214"/>
+<area shape="poly" id="edge18_Node000001_Node000011" title=" " alt="" coords="1987,42,1841,61,1660,88,1461,124,1263,169,1210,186,1208,181,1262,164,1460,119,1659,83,1841,55,1986,37"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="1995,189,2072,214"/>
+<area shape="poly" id="edge28_Node000001_Node000017" title=" " alt="" coords="2094,46,2045,177,2040,175,2089,45"/>
+<area shape="rect" id="Node000018" href="$Se050Handler_8h.html" title="HAL&#45;level handler for the NXP SE050 / SE050A secure element (I²C, T=1oI2C)." alt="" coords="639,93,865,119"/>
+<area shape="poly" id="edge19_Node000001_Node000018" title=" " alt="" coords="1986,36,879,100,879,95,1986,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="2412,117,2307,135,2249,150,2193,169,2166,183,2164,179,2191,164,2248,145,2306,130,2411,112"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="2367,189,2465,214"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="2473,120,2434,178,2429,176,2469,117"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="2489,189,2593,214"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="2489,117,2528,176,2524,178,2484,120"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="2546,116,2647,136,2759,164,2808,181,2806,186,2758,169,2646,141,2545,121"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="2618,189,2747,214"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="2505,116,2646,180,2644,185,2503,121"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="2205,189,2342,214"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="2455,121,2312,185,2310,180,2452,116"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="2546,107,2626,112,2724,122,2830,139,2935,164,2975,180,2973,185,2934,169,2829,144,2723,128,2625,117,2546,112"/>
+<area shape="poly" id="edge17_Node000010_Node000003" title=" " alt="" coords="1880,114,1979,132,2033,146,2085,164,2113,179,2110,183,2083,169,2031,152,1978,138,1879,119"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1716,113,1509,130,1386,146,1263,169,1209,186,1207,181,1262,164,1385,141,1509,125,1716,108"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1627,189,1783,214"/>
+<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="1788,121,1728,180,1725,177,1784,117"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="1808,189,1971,214"/>
+<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="1811,117,1870,177,1866,180,1807,121"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="1275,189,1426,214"/>
+<area shape="poly" id="edge14_Node000010_Node000015" title=" " alt="" coords="1716,119,1585,138,1439,169,1390,186,1389,181,1438,164,1584,133,1715,113"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="1451,189,1603,214"/>
+<area shape="poly" id="edge15_Node000010_Node000016" title=" " alt="" coords="1761,121,1616,169,1570,186,1568,181,1614,164,1760,116"/>
+<area shape="poly" id="edge16_Node000010_Node000017" title=" " alt="" coords="1846,116,1912,136,1984,164,2009,179,2006,183,1982,169,1910,141,1844,121"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="1073,284,1140,309"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="1163,216,1124,274,1120,271,1158,213"/>
+<area shape="poly" id="edge22_Node000018_Node000012" title=" " alt="" coords="866,111,946,128,986,144,1023,165,1055,207,1095,271,1090,274,1051,210,1020,169,984,149,945,133,865,116"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="719,189,785,214"/>
+<area shape="poly" id="edge20_Node000018_Node000019" title=" " alt="" coords="755,119,755,175,749,175,749,119"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="810,189,881,214"/>
+<area shape="poly" id="edge21_Node000018_Node000020" title=" " alt="" coords="765,117,826,177,822,181,762,121"/>
+<area shape="rect" id="Node000021" title=" " alt="" coords="905,189,1009,214"/>
+<area shape="poly" id="edge23_Node000018_Node000021" title=" " alt="" coords="782,116,893,164,925,180,922,185,891,169,780,121"/>
+<area shape="rect" id="Node000022" title=" " alt="" coords="5,189,136,214"/>
+<area shape="poly" id="edge24_Node000018_Node000022" title=" " alt="" coords="638,111,534,115,410,125,278,142,149,169,106,185,104,180,147,164,277,137,409,120,533,110,638,105"/>
+<area shape="rect" id="Node000023" title=" " alt="" coords="160,189,280,214"/>
+<area shape="poly" id="edge25_Node000018_Node000023" title=" " alt="" coords="639,115,473,132,382,148,293,169,253,185,251,180,291,164,381,142,473,127,638,110"/>
+<area shape="rect" id="Node000024" title=" " alt="" coords="305,174,487,229"/>
+<area shape="poly" id="edge26_Node000018_Node000024" title=" " alt="" coords="698,121,499,169,488,172,487,167,498,164,697,116"/>
+<area shape="rect" id="Node000025" title=" " alt="" coords="511,167,694,236"/>
+<area shape="poly" id="edge27_Node000018_Node000025" title=" " alt="" coords="735,121,670,162,667,157,732,116"/>
+</map>

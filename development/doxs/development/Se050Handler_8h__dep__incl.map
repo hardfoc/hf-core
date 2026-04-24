@@ -1,0 +1,7 @@
+<map id="Se050Handler.h" name="Se050Handler.h">
+<area shape="rect" id="Node000001" title="HAL&#45;level handler for the NXP SE050 / SE050A secure element (I²C, T=1oI2C)." alt="" coords="115,5,239,31"/>
+<area shape="rect" id="Node000002" href="$Se050Handler_8cpp.html" title="Se050Handler and HalI2cSe050Comm implementations." alt="" coords="5,86,144,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,41,91,88,88,84,149,37"/>
+<area shape="rect" id="Node000003" href="$se050__handler__comprehensive__test_8cpp.html" title="Exercises Se050Handler on ESP32 (same usage pattern as hf&#45;se050&#45;driver examples)." alt="" coords="168,79,392,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="205,37,257,76,254,81,202,41"/>
+</map>

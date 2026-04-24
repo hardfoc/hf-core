@@ -59,6 +59,9 @@ var hierarchy =
     [ "pcal95555::I2cInterface", null, [
       [ "HalI2cPcal95555Comm", "classHalI2cPcal95555Comm.html", null ]
     ] ],
+    [ "se050::I2cTransceiveInterface", null, [
+      [ "HalI2cSe050Comm", "classHalI2cSe050Comm.html", null ]
+    ] ],
     [ "IBno08xDriverOps", "classIBno08xDriverOps.html", [
       [ "Bno08xDriverImpl< CommType >", "classBno08xDriverImpl.html", null ]
     ] ],
@@ -69,6 +72,8 @@ var hierarchy =
     [ "ntc_temp_handler_config_t", "structntc__temp__handler__config__t.html", null ],
     [ "Pca9685Handler", "classPca9685Handler.html", null ],
     [ "Pcal95555Handler", "classPcal95555Handler.html", null ],
+    [ "Se050Handler", "classSe050Handler.html", null ],
+    [ "Se050HandlerConfig", "structSe050HandlerConfig.html", null ],
     [ "tmc51x0::SpiCommInterface", null, [
       [ "HalSpiTmc5160Comm", "classHalSpiTmc5160Comm.html", null ]
     ] ],

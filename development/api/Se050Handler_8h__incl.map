@@ -1,0 +1,19 @@
+<map id="Se050Handler.h" name="Se050Handler.h">
+<area shape="rect" id="Node000001" title="HAL&#45;level handler for the NXP SE050 / SE050A secure element (I²C, T=1oI2C)." alt="" coords="343,5,467,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,101,72,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="343,25,287,31,221,41,152,58,85,81,63,94,60,90,83,76,150,53,220,36,286,26,343,20"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="97,101,167,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="344,32,265,51,181,81,158,95,156,90,179,76,263,46,342,27"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="192,101,259,126"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="375,33,326,54,272,81,251,95,248,90,269,76,324,49,373,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="283,101,387,126"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="399,32,354,91,350,88,395,29"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="411,101,541,126"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="416,29,461,88,457,91,412,32"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="565,101,685,126"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="436,28,554,76,590,92,588,97,552,81,434,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="710,86,893,141"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="468,27,576,48,698,76,711,80,709,85,697,81,575,53,467,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="917,79,1099,148"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="468,20,659,37,780,53,904,76,903,81,779,59,659,43,467,25"/>
+</map>

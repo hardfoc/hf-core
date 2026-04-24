@@ -36,6 +36,7 @@ var esp32__test__config_8hpp =
     [ "PIN_TMC9660_RST", "esp32__test__config_8hpp.html#a38c2ebd294686ddb6528d664da7ba1e1", null ],
     [ "PIN_TMC9660_WAKE", "esp32__test__config_8hpp.html#a28704089a036b8d3619f1e1d2a9117ea", null ],
     [ "PIN_WS2812_DATA", "esp32__test__config_8hpp.html#a6e70c494b43ea9b014d2acdcf3fe4701", null ],
+    [ "SE050_I2C_ADDR", "esp32__test__config_8hpp.html#a81f760ab76bbe8522f0d54d977085321", null ],
     [ "SPI_HOST_ID", "esp32__test__config_8hpp.html#a906fc067289d6f5d4bd4ba065f5076f4", null ],
     [ "TLE92466ED_SPI_CLOCK_HZ", "esp32__test__config_8hpp.html#a9ef94505e68c6bd244f5c04361e9392b", null ],
     [ "TMC5160_SPI_CLOCK_HZ", "esp32__test__config_8hpp.html#a0c15add35db378329f6c3e27c03a876d", null ],
