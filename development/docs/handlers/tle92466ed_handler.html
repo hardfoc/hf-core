@@ -436,18 +436,34 @@ configuring dither / PWM.</p><hr />
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">examples/esp32/app_config.yml</code></td>
-      <td>CI matrix for minimal/smoke/LM-Pro and lifecycle-style demos</td>
+      <td>Matrix: <code class="language-plaintext highlighter-rouge">driver_integration_test</code>, <code class="language-plaintext highlighter-rouge">lm_pro_cycle_test</code>, <code class="language-plaintext highlighter-rouge">solenoid_control_test</code>, <strong><code class="language-plaintext highlighter-rouge">resistive_load_bench</code></strong>, <strong><code class="language-plaintext highlighter-rouge">diagnostics_and_bist</code></strong>, …</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">examples/esp32/main/lm_pro_cycle_test.cpp</code></td>
-      <td>CH5 tracking / characterization on real hardware</td>
+      <td>CH5 LM-Pro ramp + telemetry (real hardware)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">examples/esp32/main/resistive_load_bench.cpp</code></td>
+      <td>300 Ω bench + <strong>atomic feedback</strong> path (<code class="language-plaintext highlighter-rouge">ReadChannelFeedback</code> / FB_FRZ)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">examples/esp32/main/diagnostics_and_bist.cpp</code></td>
+      <td>SFF BIST, PIN_STAT, supply self-test, fault mask</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">docs/troubleshooting.md</code>, <code class="language-plaintext highlighter-rouge">docs/examples.md</code>, <code class="language-plaintext highlighter-rouge">docs/api_reference.md</code></td>
+      <td>Operator + integrator notes for new ICC / diagnostics APIs</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">_config/</code> + <code class="language-plaintext highlighter-rouge">docs/</code> + <code class="language-plaintext highlighter-rouge">*.svg</code></td>
-      <td>Topology, frame format, bring-up</td>
+      <td>Topology, SPI frame format, wiring</td>
     </tr>
   </tbody>
-</table></div><hr />
+</table></div>
+
+<p>New driver phases add <strong>ICC integrator</strong>, expanded <strong>ChannelDiagnostics</strong> / <strong>FaultReport</strong> fields,
+and <strong>atomic feedback</strong> helpers — use <strong><code class="language-plaintext highlighter-rouge">GetDriver()</code></strong> for anything not yet mirrored on
+<code class="language-plaintext highlighter-rouge">Tle92466edHandler</code>; extend the handler only when a stable HAL-facing API is agreed.</p><hr />
 <h2 id="test-coverage-hf-core">
   
   
