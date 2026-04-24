@@ -549,13 +549,19 @@ void Tle92466edHandler::DumpDiagnostics() noexcept {
         auto diag_result = driver_->GetChannelDiagnostics(toChannel(ch));
         if (diag_result) {
             auto& d = *diag_result;
-            log.Info(TAG, "  CH%u: OC=%s SG=%s OL=%s OT=%s AvgI=%u",
+            log.Info(TAG,
+                     "  CH%u: OC=%s SG=%s OL=%s OTE=%s AvgI=%u DC=%u Imin=%d Imax=%d OTW=%s I_REG=%s",
                      ch,
                      d.overcurrent ? "Y" : "n",
                      d.short_to_ground ? "Y" : "n",
                      d.open_load ? "Y" : "n",
                      d.over_temperature ? "Y" : "n",
-                     d.average_current);
+                     static_cast<unsigned>(d.average_current),
+                     static_cast<unsigned>(d.duty_cycle),
+                     static_cast<int>(d.min_current_mA),
+                     static_cast<int>(d.max_current_mA),
+                     d.ot_warning ? "Y" : "n",
+                     d.current_regulation_warning ? "Y" : "n");
         }
     }
 

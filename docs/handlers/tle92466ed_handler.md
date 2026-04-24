@@ -96,9 +96,16 @@ configuring dither / PWM.
 
 | Asset | Purpose |
 |-------|---------|
-| `examples/esp32/app_config.yml` | CI matrix for minimal/smoke/LM-Pro and lifecycle-style demos |
-| `examples/esp32/main/lm_pro_cycle_test.cpp` | CH5 tracking / characterization on real hardware |
-| `_config/` + `docs/` + `*.svg` | Topology, frame format, bring-up |
+| `examples/esp32/app_config.yml` | Matrix: `driver_integration_test`, `lm_pro_cycle_test`, `solenoid_control_test`, **`resistive_load_bench`**, **`diagnostics_and_bist`**, … |
+| `examples/esp32/main/lm_pro_cycle_test.cpp` | CH5 LM-Pro ramp + telemetry (real hardware) |
+| `examples/esp32/main/resistive_load_bench.cpp` | 300 Ω bench + **atomic feedback** path (`ReadChannelFeedback` / FB_FRZ) |
+| `examples/esp32/main/diagnostics_and_bist.cpp` | SFF BIST, PIN_STAT, supply self-test, fault mask |
+| `docs/troubleshooting.md`, `docs/examples.md`, `docs/api_reference.md` | Operator + integrator notes for new ICC / diagnostics APIs |
+| `_config/` + `docs/` + `*.svg` | Topology, SPI frame format, wiring |
+
+New driver phases add **ICC integrator**, expanded **ChannelDiagnostics** / **FaultReport** fields,
+and **atomic feedback** helpers — use **`GetDriver()`** for anything not yet mirrored on
+`Tle92466edHandler`; extend the handler only when a stable HAL-facing API is agreed.
 
 ---
 
