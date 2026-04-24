@@ -149,9 +149,9 @@ var menudata={children:[
 {text:"t",url:"globals_func_t.html#index_t"}]},
 {text:"Variables",url:"globals_vars.html",children:[
 {text:"b",url:"globals_vars.html#index_b"},
-{text:"e",url:"globals_vars.html#index_e"},
-{text:"g",url:"globals_vars.html#index_g"},
-{text:"t",url:"globals_vars.html#index_t"}]},
+{text:"e",url:"globals_vars_e.html#index_e"},
+{text:"g",url:"globals_vars_g.html#index_g"},
+{text:"t",url:"globals_vars_t.html#index_t"}]},
 {text:"Typedefs",url:"globals_type.html"},
 {text:"Enumerations",url:"globals_enum.html"},
 {text:"Macros",url:"globals_defs.html",children:[

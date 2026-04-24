@@ -42,6 +42,6 @@ var searchData=
   ['brightness_39',['brightness',['../structWs2812Handler_1_1Config.html#a34b3e52bebb8a93793f35f0cd5b551c1',1,'Ws2812Handler::Config']]],
   ['build_20all_20ci_20enabled_20tests_40',['Build All CI-Enabled Tests',['../index.html#autotoc_md37',1,'']]],
   ['build_20and_20flash_20a_20test_41',['Build and Flash a Test',['../index.html#autotoc_md36',1,'']]],
-  ['bus_5fmutex_5f_42',['bus_mutex_',['../classAlicatBasis2Handler.html#a028a9a4a19a368c9b48813410aa44255',1,'AlicatBasis2Handler::bus_mutex_'],['../classFdo2Handler.html#a2dfe74675ad87436a6c4a8ee96a70697',1,'Fdo2Handler::bus_mutex_']]],
+  ['bus_5fmutex_5f_42',['bus_mutex_',['../classAlicatBasis2Handler.html#a028a9a4a19a368c9b48813410aa44255',1,'AlicatBasis2Handler::bus_mutex_'],['../classFdo2Handler.html#a2dfe74675ad87436a6c4a8ee96a70697',1,'Fdo2Handler::bus_mutex_'],['../classSe050Handler.html#a3147d01f1592d9cef5f14f8a6f3761ac',1,'Se050Handler::bus_mutex_']]],
   ['bus_5ftag_43',['BUS_TAG',['../esp32__bus__setup_8hpp.html#a73a911be261c628a3ee57cedbafb89a1',1,'esp32_bus_setup.hpp']]]
 ];

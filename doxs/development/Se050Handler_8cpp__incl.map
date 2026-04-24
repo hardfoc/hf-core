@@ -1,0 +1,25 @@
+<map id="Se050Handler.cpp" name="Se050Handler.cpp">
+<area shape="rect" id="Node000001" title="Se050Handler and HalI2cSe050Comm implementations." alt="" coords="495,5,633,31"/>
+<area shape="rect" id="Node000002" href="$Se050Handler_8h.html" title="HAL&#45;level handler for the NXP SE050 / SE050A secure element (I²C, T=1oI2C)." alt="" coords="343,93,467,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="544,33,440,89,438,84,541,28"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="492,79,636,133"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="567,31,567,65,561,65,561,31"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="661,93,795,119"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="587,28,695,84,692,89,585,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,203,72,229"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="344,117,221,139,152,158,85,184,63,197,60,193,83,179,150,153,220,134,343,111"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="97,203,167,229"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,121,274,146,181,184,158,197,156,193,179,179,272,141,357,116"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="192,203,259,229"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="384,121,272,184,252,197,249,193,269,179,381,116"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="283,203,387,229"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="400,120,352,193,348,190,396,117"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="411,203,541,229"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="415,117,463,190,459,193,411,120"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="565,203,685,229"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="430,116,591,195,588,200,428,121"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="710,189,893,243"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="436,116,481,131,541,146,589,155,698,179,710,182,709,187,697,184,588,160,540,151,479,136,435,121"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="917,181,1099,251"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="434,116,481,131,543,143,597,150,690,156,784,161,904,179,903,184,784,166,690,161,596,155,542,148,479,136,432,121"/>
+</map>
