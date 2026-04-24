@@ -328,8 +328,73 @@ pattern.</li>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 
 <p>All methods on <code class="language-plaintext highlighter-rouge">se050::Device</code> match the <strong>ESP32 reference examples</strong> in
-<code class="language-plaintext highlighter-rouge">hf-se050-driver/examples/esp32/main/</code> (<code class="language-plaintext highlighter-rouge">se050_smoke_example.cpp</code>, object lifecycle,
-cloud onboarding, etc.).</p>
+<code class="language-plaintext highlighter-rouge">hf-se050-driver/examples/esp32/main/</code>. The handler’s <code class="language-plaintext highlighter-rouge">GetDevice()</code> is the same object type
+those examples use; only the <strong>I²C transport</strong> differs (<code class="language-plaintext highlighter-rouge">HalI2cSe050Comm</code> from <code class="language-plaintext highlighter-rouge">BaseI2c</code>
+instead of the driver’s <code class="language-plaintext highlighter-rouge">HfSe050EspIdfI2c</code> helper).</p>
+<h3 id="on-device-example-matrix">
+  
+  
+    <a href="#on-device-example-matrix" class="anchor-heading" aria-labelledby="on-device-example-matrix"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> On-device example matrix
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>What it demonstrates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">se050_minimal_example.cpp</code></td>
+      <td>Reset, T=1 warm reset, ATR, default applet <code class="language-plaintext highlighter-rouge">SELECT</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">se050_smoke_example.cpp</code></td>
+      <td><code class="language-plaintext highlighter-rouge">GetVersion</code>, <code class="language-plaintext highlighter-rouge">GetRandom</code>, <code class="language-plaintext highlighter-rouge">GetFreeMemory</code>, typed management APDUs</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">se050_object_lifecycle_example.cpp</code></td>
+      <td>Secure object create / read / delete</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">se050_cloud_onboarding_example.cpp</code></td>
+      <td>EC P-256 keygen + challenge sign / verify</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">se050_cloud_registration_packet_example.cpp</code></td>
+      <td>Idempotent enrollment + pubkey read + registration proof</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">se050_secure_board_comms_example.cpp</code></td>
+      <td>Payload hash + SE050 ECDSA between two boards</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">se050_aws_iot_lifecycle/</code></td>
+      <td>End-to-end: provision → network → TLS via SE050 → MQTT → OTA verify</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p>Matrix entries and CI flags live in
+<a href="https://github.com/N3b3x/hf-se050-driver/blob/main/examples/esp32/app_config.yml"><code class="language-plaintext highlighter-rouge">hf-se050-driver/examples/esp32/app_config.yml</code></a>.</p>
+<h3 id="host-side-companion-tooling-driver-repo">
+  
+  
+    <a href="#host-side-companion-tooling-driver-repo" class="anchor-heading" aria-labelledby="host-side-companion-tooling-driver-repo"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Host-side companion tooling (driver repo)
+  
+  
+</h3>
+    
+
+<p>The <strong>AWS IoT lifecycle</strong> example ships Python utilities (factory provisioning, telemetry
+verification, SBOM helpers, reprovision tokens, pytest) under
+<code class="language-plaintext highlighter-rouge">examples/esp32/main/se050_aws_iot_lifecycle/tools/</code> in <strong>hf-se050-driver</strong>. Those scripts
+complement firmware; they are not built into hf-core. Start from the driver’s
+<a href="https://github.com/N3b3x/hf-se050-driver/blob/main/examples/esp32/main/se050_aws_iot_lifecycle/tools/README.md"><code class="language-plaintext highlighter-rouge">tools/README.md</code></a>.</p>
 <h2 id="hardware-and-pins">
   
   
@@ -367,7 +432,9 @@ fixed delays) before T=1 warm reset; polarity must match <code class="language-p
 <p>When <code class="language-plaintext highlighter-rouge">app_config.yml</code> lists multiple ESP-IDF versions, pass the third argument explicitly, for
 example <code class="language-plaintext highlighter-rouge">release/v5.5</code>, so <code class="language-plaintext highlighter-rouge">config_loader.sh</code> can validate the matrix entry.</p>
 
-<p>Source: <code class="language-plaintext highlighter-rouge">examples/esp32/main/handler_tests/se050_handler_comprehensive_test.cpp</code>.</p>
+<p>Source: <code class="language-plaintext highlighter-rouge">examples/esp32/main/handler_tests/se050_handler_comprehensive_test.cpp</code> (init,
+<code class="language-plaintext highlighter-rouge">GetVersion</code>, <code class="language-plaintext highlighter-rouge">GetRandom</code>). For full applet and lifecycle flows, run the <strong>driver</strong>
+examples above on the same hardware; they exercise identical <code class="language-plaintext highlighter-rouge">se050::Device</code> APIs.</p>
 <h2 id="cmake">
   
   

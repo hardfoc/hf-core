@@ -1156,445 +1156,459 @@
   },"165": {
     "doc": "SE050 Handler",
     "title": "Using the driver API",
-    "content": "| 1 2 . | se050::cmd::VersionInfo v{}; se050::Error e = handler.GetDevice().GetVersion(&amp;v, handler.Config().apdu_timeout_ms); . | . All methods on se050::Device match the ESP32 reference examples in hf-se050-driver/examples/esp32/main/ (se050_smoke_example.cpp, object lifecycle, cloud onboarding, etc.). ",
+    "content": "| 1 2 . | se050::cmd::VersionInfo v{}; se050::Error e = handler.GetDevice().GetVersion(&amp;v, handler.Config().apdu_timeout_ms); . | . All methods on se050::Device match the ESP32 reference examples in hf-se050-driver/examples/esp32/main/. The handler’s GetDevice() is the same object type those examples use; only the I²C transport differs (HalI2cSe050Comm from BaseI2c instead of the driver’s HfSe050EspIdfI2c helper). ",
     "url": "/hf-core/development/docs/handlers/se050_handler.html#using-the-driver-api",
     
     "relUrl": "/docs/handlers/se050_handler.html#using-the-driver-api"
   },"166": {
+    "doc": "SE050 Handler",
+    "title": "On-device example matrix",
+    "content": "| Example | What it demonstrates | . | se050_minimal_example.cpp | Reset, T=1 warm reset, ATR, default applet SELECT | . | se050_smoke_example.cpp | GetVersion, GetRandom, GetFreeMemory, typed management APDUs | . | se050_object_lifecycle_example.cpp | Secure object create / read / delete | . | se050_cloud_onboarding_example.cpp | EC P-256 keygen + challenge sign / verify | . | se050_cloud_registration_packet_example.cpp | Idempotent enrollment + pubkey read + registration proof | . | se050_secure_board_comms_example.cpp | Payload hash + SE050 ECDSA between two boards | . | se050_aws_iot_lifecycle/ | End-to-end: provision → network → TLS via SE050 → MQTT → OTA verify | . Matrix entries and CI flags live in hf-se050-driver/examples/esp32/app_config.yml. ",
+    "url": "/hf-core/development/docs/handlers/se050_handler.html#on-device-example-matrix",
+    
+    "relUrl": "/docs/handlers/se050_handler.html#on-device-example-matrix"
+  },"167": {
+    "doc": "SE050 Handler",
+    "title": "Host-side companion tooling (driver repo)",
+    "content": "The AWS IoT lifecycle example ships Python utilities (factory provisioning, telemetry verification, SBOM helpers, reprovision tokens, pytest) under examples/esp32/main/se050_aws_iot_lifecycle/tools/ in hf-se050-driver. Those scripts complement firmware; they are not built into hf-core. Start from the driver’s tools/README.md. ",
+    "url": "/hf-core/development/docs/handlers/se050_handler.html#host-side-companion-tooling-driver-repo",
+    
+    "relUrl": "/docs/handlers/se050_handler.html#host-side-companion-tooling-driver-repo"
+  },"168": {
     "doc": "SE050 Handler",
     "title": "Hardware and pins",
     "content": ". | Default 7-bit I²C address is 0x48 unless the board straps a different address; tests use SE050_I2C_ADDR in examples/esp32/main/esp32_test_config.hpp (override with -D at compile time if needed). | Reset: optional BaseGpio in the constructor; when non-null, EnsureInitialized() calls HardwareReset() (assert with SetInactive(), release with SetActive(), with fixed delays) before T=1 warm reset; polarity must match SE_RESET wiring — see Se050Handler.h. | Bus sharing: pass a shared RtosMutex when the same BaseI2c bus serves multiple devices. | . ",
     "url": "/hf-core/development/docs/handlers/se050_handler.html#hardware-and-pins",
     
     "relUrl": "/docs/handlers/se050_handler.html#hardware-and-pins"
-  },"167": {
+  },"169": {
     "doc": "SE050 Handler",
     "title": "Test coverage",
-    "content": "Build the core ESP32 test app from examples/esp32/scripts: . | 1 . | ./scripts/build_app.sh se050_handler_test Debug . | . When app_config.yml lists multiple ESP-IDF versions, pass the third argument explicitly, for example release/v5.5, so config_loader.sh can validate the matrix entry. Source: examples/esp32/main/handler_tests/se050_handler_comprehensive_test.cpp. ",
+    "content": "Build the core ESP32 test app from examples/esp32/scripts: . | 1 . | ./scripts/build_app.sh se050_handler_test Debug . | . When app_config.yml lists multiple ESP-IDF versions, pass the third argument explicitly, for example release/v5.5, so config_loader.sh can validate the matrix entry. Source: examples/esp32/main/handler_tests/se050_handler_comprehensive_test.cpp (init, GetVersion, GetRandom). For full applet and lifecycle flows, run the driver examples above on the same hardware; they exercise identical se050::Device APIs. ",
     "url": "/hf-core/development/docs/handlers/se050_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/se050_handler.html#test-coverage"
-  },"168": {
+  },"170": {
     "doc": "SE050 Handler",
     "title": "CMake",
     "content": "Set HF_CORE_ENABLE_SE050 ON before including cmake/hf_core_build_settings.cmake in the build that should compile the handler (the hf_core ESP-IDF component does this for the example project). The HAL product CMake should keep the flag OFF unless the board includes an SE050. ",
     "url": "/hf-core/development/docs/handlers/se050_handler.html#cmake",
     
     "relUrl": "/docs/handlers/se050_handler.html#cmake"
-  },"169": {
+  },"171": {
     "doc": "SE050 Handler",
     "title": "Driver API (Doxygen)",
     "content": "The hf-se050-driver headers (se050::Device, T=1, APDU, …) are documented with Doxygen in that repo (./scripts/build_doxygen.sh, _config/Doxyfile). Published HTML follows the same _config/Doxyfile as CI (.github/workflows/ci-docs-publish.yml). ",
     "url": "/hf-core/development/docs/handlers/se050_handler.html#driver-api-doxygen",
     
     "relUrl": "/docs/handlers/se050_handler.html#driver-api-doxygen"
-  },"170": {
+  },"172": {
     "doc": "SE050 Handler",
     "title": "SE050 Handler",
     "content": " ",
     "url": "/hf-core/development/docs/handlers/se050_handler.html",
     
     "relUrl": "/docs/handlers/se050_handler.html"
-  },"171": {
+  },"173": {
     "doc": "Testing Guide",
     "title": "Testing Guide",
     "content": " ",
     "url": "/hf-core/development/docs/testing/testing_guide.html",
     
     "relUrl": "/docs/testing/testing_guide.html"
-  },"172": {
+  },"174": {
     "doc": "Testing Guide",
     "title": "Overview",
     "content": "hf-core uses an ESP32-based testing infrastructure that mirrors the pattern used by all external HardFOC drivers. Each test is a standalone ESP-IDF application selected at build time via the APP_TYPE mechanism. ",
     "url": "/hf-core/development/docs/testing/testing_guide.html#overview",
     
     "relUrl": "/docs/testing/testing_guide.html#overview"
-  },"173": {
+  },"175": {
     "doc": "Testing Guide",
     "title": "Test Applications",
     "content": " ",
     "url": "/hf-core/development/docs/testing/testing_guide.html#test-applications",
     
     "relUrl": "/docs/testing/testing_guide.html#test-applications"
-  },"174": {
+  },"176": {
     "doc": "Testing Guide",
     "title": "Handler Tests",
     "content": "| APP_TYPE | Source File | Hardware Required | . | as5047u_handler_test | handler_tests/as5047u_handler_comprehensive_test.cpp | AS5047U + SPI | . | bno08x_handler_test | handler_tests/bno08x_handler_comprehensive_test.cpp | BNO08x + I2C | . | pca9685_handler_test | handler_tests/pca9685_handler_comprehensive_test.cpp | PCA9685 + I2C | . | pcal95555_handler_test | handler_tests/pcal95555_handler_comprehensive_test.cpp | PCAL95555 + I2C | . | ntc_handler_test | handler_tests/ntc_handler_comprehensive_test.cpp | NTC + ADC | . | tmc9660_handler_test | handler_tests/tmc9660_handler_comprehensive_test.cpp | TMC9660 + SPI | . | tmc5160_handler_test | handler_tests/tmc5160_handler_comprehensive_test.cpp | TMC5160 + SPI | . | tle92466ed_handler_test | handler_tests/tle92466ed_handler_comprehensive_test.cpp | TLE92466ED + SPI | . | max22200_handler_test | handler_tests/max22200_handler_comprehensive_test.cpp | MAX22200 + SPI | . | ws2812_handler_test | handler_tests/ws2812_handler_comprehensive_test.cpp | WS2812 + RMT | . | se050_handler_test | handler_tests/se050_handler_comprehensive_test.cpp | SE050 + I²C (optional reset GPIO) | . ",
     "url": "/hf-core/development/docs/testing/testing_guide.html#handler-tests",
     
     "relUrl": "/docs/testing/testing_guide.html#handler-tests"
-  },"175": {
+  },"177": {
     "doc": "Testing Guide",
     "title": "Utility Tests",
     "content": "| APP_TYPE | Source File | Hardware Required | . | general_utils_test | utils_tests/general_utils_comprehensive_test.cpp | None | . | rtos_wrap_test | utils_tests/rtos_wrap_comprehensive_test.cpp | None (FreeRTOS only) | . | logger_test | utils_tests/logger_comprehensive_test.cpp | None | . | canopen_utils_test | utils_tests/canopen_utils_comprehensive_test.cpp | CAN transceiver + TWAI | . ",
     "url": "/hf-core/development/docs/testing/testing_guide.html#utility-tests",
     
     "relUrl": "/docs/testing/testing_guide.html#utility-tests"
-  },"176": {
+  },"178": {
     "doc": "Testing Guide",
     "title": "Integration Tests",
     "content": "| APP_TYPE | Source File | Hardware Required | . | full_integration_test | integration_tests/full_system_integration_test.cpp | All peripherals | . ",
     "url": "/hf-core/development/docs/testing/testing_guide.html#integration-tests",
     
     "relUrl": "/docs/testing/testing_guide.html#integration-tests"
-  },"177": {
+  },"179": {
     "doc": "Testing Guide",
     "title": "Building a Test",
     "content": " ",
     "url": "/hf-core/development/docs/testing/testing_guide.html#building-a-test",
     
     "relUrl": "/docs/testing/testing_guide.html#building-a-test"
-  },"178": {
+  },"180": {
     "doc": "Testing Guide",
     "title": "Using build_app.sh",
     "content": "| 1 2 . | cd examples/esp32/scripts ./build_app.sh as5047u_handler_test Debug . | . ",
     "url": "/hf-core/development/docs/testing/testing_guide.html#using-build_appsh",
     
     "relUrl": "/docs/testing/testing_guide.html#using-build_appsh"
-  },"179": {
+  },"181": {
     "doc": "Testing Guide",
     "title": "Using idf.py directly",
     "content": "| 1 2 3 4 . | cd examples/esp32 export APP_TYPE=general_utils_test export BUILD_TYPE=debug idf.py build . | . ",
     "url": "/hf-core/development/docs/testing/testing_guide.html#using-idfpy-directly",
     
     "relUrl": "/docs/testing/testing_guide.html#using-idfpy-directly"
-  },"180": {
+  },"182": {
     "doc": "Testing Guide",
     "title": "Using VS Code ESP-IDF Extension",
     "content": ". | Set APP_TYPE environment variable in your workspace settings | Use the ESP-IDF build command | . ",
     "url": "/hf-core/development/docs/testing/testing_guide.html#using-vs-code-esp-idf-extension",
     
     "relUrl": "/docs/testing/testing_guide.html#using-vs-code-esp-idf-extension"
-  },"181": {
+  },"183": {
     "doc": "Testing Guide",
     "title": "Flashing and Monitoring",
     "content": "| 1 . | idf.py -p /dev/ttyUSB0 flash monitor . | . ",
     "url": "/hf-core/development/docs/testing/testing_guide.html#flashing-and-monitoring",
     
     "relUrl": "/docs/testing/testing_guide.html#flashing-and-monitoring"
-  },"182": {
+  },"184": {
     "doc": "Testing Guide",
     "title": "Pin Configuration",
     "content": "Pin assignments are defined in esp32_test_config.hpp and can be overridden with compile-time -D flags. See the file for the complete pin map. ",
     "url": "/hf-core/development/docs/testing/testing_guide.html#pin-configuration",
     
     "relUrl": "/docs/testing/testing_guide.html#pin-configuration"
-  },"183": {
+  },"185": {
     "doc": "Testing Guide",
     "title": "Test Framework",
     "content": "All tests use TestFramework.h — a shared header providing: . | RUN_TEST(name, fn) — Run a test function, track pass/fail | RUN_TEST_IN_TASK(name, fn, stack, timeout) — Run in a FreeRTOS task with timeout | RUN_TEST_SECTION_IF_ENABLED(flag, name, ...) — Conditionally run test groups | flip_test_progress_indicator() — Toggle GPIO14 for visual progress | print_test_summary(results, name, tag) — Print final pass/fail report | . ",
     "url": "/hf-core/development/docs/testing/testing_guide.html#test-framework",
     
     "relUrl": "/docs/testing/testing_guide.html#test-framework"
-  },"184": {
+  },"186": {
     "doc": "Testing Guide",
     "title": "Writing New Tests",
     "content": "Follow the existing pattern: . | 1 2 3 4 5 6 7 8 9 10 11 12 13 . | #include \"TestFramework.h\" static TestResults g_test_results; static bool test_my_feature() noexcept { // ... test logic ... return success; } extern \"C\" void app_main(void) { RUN_TEST(\"my_feature\", test_my_feature); print_test_summary(g_test_results, \"MY TEST SUITE\", \"MyTag\"); while (true) { vTaskDelay(pdMS_TO_TICKS(10000)); } } . | . Then add the app to app_config.yml and update main/CMakeLists.txt. ",
     "url": "/hf-core/development/docs/testing/testing_guide.html#writing-new-tests",
     
     "relUrl": "/docs/testing/testing_guide.html#writing-new-tests"
-  },"185": {
+  },"187": {
     "doc": "TLE92466ED Handler",
     "title": "Tle92466edHandler",
     "content": "Six-channel solenoid driver handler for the Infineon TLE92466ED. ",
     "url": "/hf-core/development/docs/handlers/tle92466ed_handler.html#tle92466edhandler",
     
     "relUrl": "/docs/handlers/tle92466ed_handler.html#tle92466edhandler"
-  },"186": {
+  },"188": {
     "doc": "TLE92466ED Handler",
     "title": "Construction",
     "content": "| 1 2 . | Tle92466edHandler(BaseSpi&amp; spi, BaseGpio&amp; resn, BaseGpio&amp; en, BaseGpio* faultn = nullptr); . | . ",
     "url": "/hf-core/development/docs/handlers/tle92466ed_handler.html#construction",
     
     "relUrl": "/docs/handlers/tle92466ed_handler.html#construction"
-  },"187": {
+  },"189": {
     "doc": "TLE92466ED Handler",
     "title": "Key Methods",
     "content": "| Method | Description | . | Initialize() | Hardware reset + SPI init + enter config mode | . | Initialize(config) | Initialize with GlobalConfig | . | EnsureInitialized() | Lazy init entrypoint | . | Deinitialize() | Disable channels and shut down | . | ConfigureChannel(ch, config) | Configure a channel (0–5) | . | EnableChannel(ch) / DisableChannel(ch) | Per-channel control | . | EnableAllChannels() / DisableAllChannels() | Batch control | . | SetChannelCurrent(ch, mA) | Set current setpoint in milliamps | . | ConfigurePwmRaw(ch, mantissa, exp, low_freq) | Raw PWM period config | . | EnterMissionMode() / EnterConfigMode() | Device mode switching | . | GetStatus(status) | Read device status | . | GetChannelDiagnostics(ch, diag) | Per-channel diagnostics | . | GetFaultReport(report) | Comprehensive fault report | . | ClearFaults() / HasFault() | Fault management | . | KickWatchdog(reload) | Reload SPI watchdog | . | GetChipId() / GetIcVersion() | Device identification | . | DumpDiagnostics() | Print diagnostic info to Logger | . ",
     "url": "/hf-core/development/docs/handlers/tle92466ed_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/tle92466ed_handler.html#key-methods"
-  },"188": {
+  },"190": {
     "doc": "TLE92466ED Handler",
     "title": "Thread Safety",
     "content": "All methods are protected by an internal RtosMutex. The withDriver() pattern acquires the lock, ensures initialization, and invokes the callable atomically. ",
     "url": "/hf-core/development/docs/handlers/tle92466ed_handler.html#thread-safety",
     
     "relUrl": "/docs/handlers/tle92466ed_handler.html#thread-safety"
-  },"189": {
+  },"191": {
     "doc": "TLE92466ED Handler",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/handler_tests/tle92466ed_handler_comprehensive_test.cpp. ",
     "url": "/hf-core/development/docs/handlers/tle92466ed_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/tle92466ed_handler.html#test-coverage"
-  },"190": {
+  },"192": {
     "doc": "TLE92466ED Handler",
     "title": "TLE92466ED Handler",
     "content": " ",
     "url": "/hf-core/development/docs/handlers/tle92466ed_handler.html",
     
     "relUrl": "/docs/handlers/tle92466ed_handler.html"
-  },"191": {
+  },"193": {
     "doc": "TMC5160 Handler",
     "title": "Tmc5160Handler",
     "content": "Stepper motor driver handler for TMC5160/TMC5130 with SPI/UART support. All motor control, ramp, chopper, and StallGuard operations are accessed through the typed driver pointers or visitDriver() — the handler itself provides only lifecycle management and driver routing. ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html#tmc5160handler",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html#tmc5160handler"
-  },"192": {
+  },"194": {
     "doc": "TMC5160 Handler",
     "title": "Construction",
     "content": "| 1 2 3 4 5 6 7 8 9 10 11 . | // SPI mode Tmc5160Handler(BaseSpi&amp; spi, BaseGpio&amp; enable, BaseGpio* diag0 = nullptr, BaseGpio* diag1 = nullptr, uint8_t daisy_chain_position = 0, const tmc51x0::PinActiveLevels&amp; active_levels = {}); // UART mode Tmc5160Handler(BaseUart&amp; uart, BaseGpio&amp; enable, BaseGpio* diag0 = nullptr, BaseGpio* diag1 = nullptr, uint8_t uart_node_address = 0, const tmc51x0::PinActiveLevels&amp; active_levels = {}); . | . ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html#construction",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html#construction"
-  },"193": {
+  },"195": {
     "doc": "TMC5160 Handler",
     "title": "Key Methods",
     "content": " ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html#key-methods"
-  },"194": {
+  },"196": {
     "doc": "TMC5160 Handler",
     "title": "Lifecycle",
     "content": "| Method | Description | . | Initialize(config, verbose) | Full driver initialization with DriverConfig. Returns bool. | . | EnsureInitialized() | Lazy init entrypoint | . | Deinitialize() | Disable motor and release resources | . | IsInitialized() | Check initialization state | . | IsSpi() | Check if SPI mode is active | . | GetDriverConfig() | Get the DriverConfig snapshot used at init | . ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html#lifecycle",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html#lifecycle"
-  },"195": {
+  },"197": {
     "doc": "TMC5160 Handler",
     "title": "Driver Access",
     "content": "| Method | Description | . | driverViaSpi() | Typed SpiDriver* (nullptr if UART or not init) | . | driverViaUart() | Typed UartDriver* (nullptr if SPI or not init) | . | GetDriver() | std::variant&lt;monostate, SpiDriver*, UartDriver*&gt; | . | visitDriver(fn) | Execute callable on active driver under mutex | . ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html#driver-access",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html#driver-access"
-  },"196": {
+  },"198": {
     "doc": "TMC5160 Handler",
     "title": "Diagnostics",
     "content": "| Method | Description | . | DumpDiagnostics() | Log status, registers, and driver info | . ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html#diagnostics",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html#diagnostics"
-  },"197": {
+  },"199": {
     "doc": "TMC5160 Handler",
     "title": "Driver Subsystem Access",
     "content": "The TMC5160 driver exposes 15 subsystems. You access them through the typed driver pointer or visitDriver() — not through handler-level convenience wrappers: . | Subsystem | Purpose | . | rampControl | Motion profile: position, velocity, acceleration | . | motorControl | Enable/disable, current setting, chopper config | . | stallGuard | StallGuard2 load detection | . | encoder | ABN encoder interface | . | homing | Sensorless/switch/encoder homing routines | . | thresholds | Velocity threshold configuration | . | switches | Reference switch control | . | tuning | Auto-tuning routines | . | status | Status register and diagnostics | . | powerStage | Over-current / short protection | . | communication | Raw register read/write | . | io | Pin / mode helpers | . | events | XCompare / ramp events | . | printer | Debug printing | . | uartConfig | UART node addressing | . ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html#driver-subsystem-access",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html#driver-subsystem-access"
-  },"198": {
+  },"200": {
     "doc": "TMC5160 Handler",
     "title": "Typed Pointer Access (recommended)",
     "content": "When you know the comm mode (you always do — you chose it at construction): . | 1 2 3 4 5 6 7 8 . | // SPI mode — direct subsystem access auto* drv = handler.driverViaSpi(); drv-&gt;motorControl.Enable(); drv-&gt;rampControl.SetTargetPosition(51200); // UART mode equivalent auto* drv = handler.driverViaUart(); drv-&gt;rampControl.SetMaxSpeed(50000); . | . ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html#typed-pointer-access-recommended",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html#typed-pointer-access-recommended"
-  },"199": {
+  },"201": {
     "doc": "TMC5160 Handler",
     "title": "Generic Access via visitDriver()",
     "content": "For code that must work with either comm mode: . | 1 2 3 4 5 6 7 8 9 . | handler.visitDriver([](auto&amp; drv) { drv.motorControl.Enable(); drv.rampControl.SetTargetPosition(51200); }); auto pos = handler.visitDriver([](auto&amp; drv) -&gt; int32_t { auto result = drv.rampControl.GetCurrentPosition(); return result ? result.Value() : 0; }); . | . ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html#generic-access-via-visitdriver",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html#generic-access-via-visitdriver"
-  },"200": {
+  },"202": {
     "doc": "TMC5160 Handler",
     "title": "Variant Access via GetDriver()",
     "content": "| 1 2 . | auto active = handler.GetDriver(); // std::variant&lt;std::monostate, SpiDriver*, UartDriver*&gt; . | . ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html#variant-access-via-getdriver",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html#variant-access-via-getdriver"
-  },"201": {
+  },"203": {
     "doc": "TMC5160 Handler",
     "title": "Thread Safety",
     "content": "All public methods are protected by an internal RtosMutex. visitDriver() holds the mutex for the duration of the callable. ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html#thread-safety",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html#thread-safety"
-  },"202": {
+  },"204": {
     "doc": "TMC5160 Handler",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/handler_tests/tmc5160_handler_comprehensive_test.cpp. ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html#test-coverage"
-  },"203": {
+  },"205": {
     "doc": "TMC5160 Handler",
     "title": "TMC5160 Handler",
     "content": " ",
     "url": "/hf-core/development/docs/handlers/tmc5160_handler.html",
     
     "relUrl": "/docs/handlers/tmc5160_handler.html"
-  },"204": {
+  },"206": {
     "doc": "TMC9660 Handler",
     "title": "Tmc9660Handler",
     "content": "Unified handler for the TMC9660 3-phase BLDC motor controller with SPI/UART communication and GPIO, ADC, and temperature peripheral wrappers. All motor control, telemetry, and feedback operations are accessed through the typed driver pointers or visitDriver(). The handler provides lifecycle management, peripheral wrapping (GPIO/ADC/Temperature via inner classes), and driver routing. ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#tmc9660handler",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#tmc9660handler"
-  },"205": {
+  },"207": {
     "doc": "TMC9660 Handler",
     "title": "Construction",
     "content": "| 1 2 3 4 5 6 7 8 9 10 11 . | // SPI mode Tmc9660Handler(BaseSpi&amp; spi, BaseGpio&amp; rst, BaseGpio&amp; drv_en, BaseGpio&amp; faultn, BaseGpio&amp; wake, uint8_t address = 0, const tmc9660::BootloaderConfig* bootCfg = &amp;kDefaultBootConfig); // UART mode Tmc9660Handler(BaseUart&amp; uart, BaseGpio&amp; rst, BaseGpio&amp; drv_en, BaseGpio&amp; faultn, BaseGpio&amp; wake, uint8_t address = 0, const tmc9660::BootloaderConfig* bootCfg = &amp;kDefaultBootConfig); . | . ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#construction",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#construction"
-  },"206": {
+  },"208": {
     "doc": "TMC9660 Handler",
     "title": "Key Methods",
     "content": " ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#key-methods"
-  },"207": {
+  },"209": {
     "doc": "TMC9660 Handler",
     "title": "Lifecycle",
     "content": "| Method | Description | . | Initialize(reset, bootInfo, failOnVerify) | Reset → bootloader config → parameter mode. Returns bool. | . | EnsureInitialized() | Lazy init helper | . | IsDriverReady() | Check if driver instance exists and is initialized | . ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#lifecycle",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#lifecycle"
-  },"208": {
+  },"210": {
     "doc": "TMC9660 Handler",
     "title": "Communication Info",
     "content": "| Method | Description | . | GetCommMode() | tmc9660::CommMode::SPI or ::UART | . | bootConfig() | Const reference to the active BootloaderConfig | . ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#communication-info",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#communication-info"
-  },"209": {
+  },"211": {
     "doc": "TMC9660 Handler",
     "title": "Driver Access",
     "content": "| Method | Description | . | driverViaSpi() | Typed SpiDriver* (nullptr if UART or not init) | . | driverViaUart() | Typed UartDriver* (nullptr if SPI or not init) | . | GetDriver() | std::variant&lt;monostate, SpiDriver*, UartDriver*&gt; | . | visitDriver(fn) | Execute callable on active driver (non-mutex) | . ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#driver-access",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#driver-access"
-  },"210": {
+  },"212": {
     "doc": "TMC9660 Handler",
     "title": "Peripheral Wrappers",
     "content": "The handler owns three inner-class adapters that implement HardFOC base interfaces, enabling manager-level integration: . | 1 2 3 . | handler.gpio(17).SetPinLevel(HF_GPIO_LEVEL_HIGH); // TMC9660 GPIO17 handler.adc().ReadChannelV(20, voltage); // Supply voltage ADC handler.temperature().ReadTemperatureCelsius(&amp;temp); // Chip temperature . | . | Accessor | Type | Description | . | gpio(uint8_t) | Gpio&amp; (BaseGpio) | TMC9660 internal GPIO (17, 18) | . | adc() | Adc&amp; (BaseAdc) | Multi-channel: AIN, current, voltage, temp, motor | . | temperature() | Temperature&amp; (BaseTemperature) | Chip temperature sensor | . ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#peripheral-wrappers",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#peripheral-wrappers"
-  },"211": {
+  },"213": {
     "doc": "TMC9660 Handler",
     "title": "Diagnostics",
     "content": "| Method | Description | . | DumpDiagnostics() | Log comm mode, voltage, temperature, flags, GPIO/ADC status | . ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#diagnostics",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#diagnostics"
-  },"212": {
+  },"214": {
     "doc": "TMC9660 Handler",
     "title": "Motor Control &amp; Telemetry via Driver Subsystems",
     "content": "Motor control and telemetry are accessed through the driver’s subsystems, not through handler-level wrapper methods: . ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#motor-control--telemetry-via-driver-subsystems",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#motor-control--telemetry-via-driver-subsystems"
-  },"213": {
+  },"215": {
     "doc": "TMC9660 Handler",
     "title": "Typed Pointer Access (recommended)",
     "content": "| 1 2 3 4 5 6 7 8 9 10 . | // SPI mode — direct subsystem access auto* drv = handler.driverViaSpi(); drv-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7); drv-&gt;commutation.setMode(tmcl::CommutationMode::FOC); drv-&gt;motorControl.enable(); drv-&gt;velocityControl.setTargetVelocity(1000); // Telemetry float supply_v = drv-&gt;telemetry.getSupplyVoltage(); float chip_t = drv-&gt;telemetry.getChipTemperature(); . | . ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#typed-pointer-access-recommended",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#typed-pointer-access-recommended"
-  },"214": {
+  },"216": {
     "doc": "TMC9660 Handler",
     "title": "Generic Access via visitDriver()",
     "content": "| 1 2 3 4 . | handler.visitDriver([](auto&amp; driver) { driver.feedbackSense.configureHallSensor(1, 2, 3); driver.protection.setOvertemperatureLimit(120.0f); }); . | . ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#generic-access-via-visitdriver",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#generic-access-via-visitdriver"
-  },"215": {
+  },"217": {
     "doc": "TMC9660 Handler",
     "title": "Variant Access via GetDriver()",
     "content": "| 1 2 . | auto active = handler.GetDriver(); // std::variant&lt;std::monostate, SpiDriver*, UartDriver*&gt; . | . ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#variant-access-via-getdriver",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#variant-access-via-getdriver"
-  },"216": {
+  },"218": {
     "doc": "TMC9660 Handler",
     "title": "Thread Safety",
     "content": "Individual handler methods are NOT thread-safe by themselves. If multiple threads access the same handler, external synchronization is required. The Adc and Temperature inner classes use their own RtosMutex for internal statistics tracking. ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#thread-safety",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#thread-safety"
-  },"217": {
+  },"219": {
     "doc": "TMC9660 Handler",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/handler_tests/tmc9660_handler_comprehensive_test.cpp — 10 test sections covering construction state, initialization, parameters, motor control, telemetry, GPIO/ADC/Temperature wrappers, driver enable, and error handling. ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#test-coverage"
-  },"218": {
+  },"220": {
     "doc": "TMC9660 Handler",
     "title": "TMC9660 Handler",
     "content": " ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html"
-  },"219": {
+  },"221": {
     "doc": "WS2812 Handler",
     "title": "Ws2812Handler",
     "content": "Addressable LED strip handler for WS2812/NeoPixel LEDs using the ESP32 RMT peripheral. ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#ws2812handler",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#ws2812handler"
-  },"220": {
+  },"222": {
     "doc": "WS2812 Handler",
     "title": "Construction",
     "content": "| 1 . | Ws2812Handler(const Config&amp; config); . | . ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#construction",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#construction"
-  },"221": {
+  },"223": {
     "doc": "WS2812 Handler",
     "title": "Config Structure",
     "content": "| 1 2 3 4 5 6 7 8 9 10 11 . | struct Config { gpio_num_t gpio_pin{}; // GPIO pin connected to LED data line uint32_t num_leds{1}; // Number of LEDs in the strip LedType led_type{LedType::RGB}; uint8_t brightness{255}; // Global brightness (0–255) int rmt_channel{0}; // RMT channel number uint16_t t0h{400}; // T0H timing (ns) uint16_t t1h{800}; // T1H timing (ns) uint16_t t0l{850}; // T0L timing (ns) uint16_t t1l{450}; // T1L timing (ns) }; . | . ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#config-structure",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#config-structure"
-  },"222": {
+  },"224": {
     "doc": "WS2812 Handler",
     "title": "Key Methods",
     "content": " ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#key-methods"
-  },"223": {
+  },"225": {
     "doc": "WS2812 Handler",
     "title": "Lifecycle",
     "content": "| Method | Description | . | Initialize() | Initialize RMT channel and LED strip. Returns esp_err_t. | . | EnsureInitialized() | Lazy init entrypoint | . | Deinitialize() | Release RMT resources | . | IsInitialized() | Check initialization state | . ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#lifecycle",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#lifecycle"
-  },"224": {
+  },"226": {
     "doc": "WS2812 Handler",
     "title": "Driver Access",
     "content": "| Method | Description | . | GetNumLeds() | Get the number of LEDs | . | GetDriver() / GetStrip() | Get underlying WS2812Strip* | . | GetAnimator() | Get underlying WS2812Animator* | . | visitDriver(fn) | Execute callable with WS2812Strip&amp; under mutex | . | visitAnimator(fn) | Execute callable with WS2812Animator&amp; under mutex | . ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#driver-access",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#driver-access"
-  },"225": {
+  },"227": {
     "doc": "WS2812 Handler",
     "title": "Diagnostics",
     "content": "| Method | Description | . | DumpDiagnostics() | Log LED count, config, init state | . All pixel operations and animation effects are intentionally delegated to the underlying driver objects (WS2812Strip, WS2812Animator) exposed by the handler. ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#diagnostics",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#diagnostics"
-  },"226": {
+  },"228": {
     "doc": "WS2812 Handler",
     "title": "Thread Safety",
     "content": "All methods are protected by an internal RtosMutex. ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#thread-safety",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#thread-safety"
-  },"227": {
+  },"229": {
     "doc": "WS2812 Handler",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/handler_tests/ws2812_handler_comprehensive_test.cpp. ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#test-coverage"
-  },"228": {
+  },"230": {
     "doc": "WS2812 Handler",
     "title": "WS2812 Handler",
     "content": " ",
