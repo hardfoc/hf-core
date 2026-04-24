@@ -50,12 +50,12 @@ depend on this repo and add managers, API, and pin mapping.
 
 ## ✨ Features
 
-- ✅ **11 Device Handlers** — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, TMC5160, TLE92466ED, MAX22200, WS2812, Logger
+- ✅ **12 Device Handlers** — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, TMC5160, TLE92466ED, MAX22200, WS2812, SE050, Logger
 - ✅ **30+ General Utilities** — Buffers, filters, timers, CRC, interpolation, linked
   lists, flag sets, physical units
 - ✅ **Full RTOS Abstraction** — Mutex, semaphore, queue, event flags, threads, timers
 - ✅ **CANopen Utilities** — CAN frame, SDO protocol, NMT commands
-- ✅ **ESP32 Test Suite** — 15 test applications covering every handler, utility, and
+- ✅ **ESP32 Test Suite** — 16 test applications covering every handler, utility, and
   integration scenario
 - ✅ **8 CI Pipelines** — Build, lint, analysis, documentation, release
 - ✅ **Thread-Safe** — All handlers use `RtosMutex` for safe concurrent access
@@ -77,7 +77,7 @@ depend on this repo and add managers, API, and pin mapping.
 │  ┌────▼──────────────────────────────────────┐  │
 │  │         hf-core-drivers (submodule)       │  │
 │  │  BaseI2c, BaseSpi, BaseGpio, BaseAdc      │  │
-│  │  AS5047U, BNO08x, PCA9685, TMC9660 ...   │  │
+│  │  AS5047U, BNO08x, PCA9685, SE050, TMC9660 ... │  │
 │  └───────────────────────────────────────────┘  │
 ├─────────────────────────────────────────────────┤
 │          MCU Platform (ESP32, etc.)             │
@@ -136,6 +136,7 @@ Use the CI pipeline or iterate over `app_config.yml` entries:
 | `Tle92466edHandler` | TLE92466ED | SPI | 6-ch solenoid driver, PWM, diagnostics, watchdog |
 | `Max22200Handler` | MAX22200 | SPI | 8-ch solenoid/motor, CDR/VDR, HIT/HOLD, DPM |
 | `Ws2812Handler` | WS2812 | RMT | Addressable LED strip, pixel control, animations |
+| `Se050Handler` | SE050 / SE050A | I2C | Secure element, T=1 over I²C, `GetDevice()` for `se050::Device` ([details](docs/handlers/se050_handler.md)) |
 | `Logger` | — | — | Singleton, log levels, per-tag filter, formatted output, MCU-agnostic via injectable `BaseLogger` backend ([details](handlers/logger/README.md)) |
 
 ## 🔧 Utilities
@@ -159,6 +160,7 @@ hf-core/
 │   ├── ntc/            #   NTC thermistor (ADC)
 │   ├── pca9685/        #   16-ch PWM controller (I2C)
 │   ├── pcal95555/      #   16-bit GPIO expander (I2C)
+│   ├── se050/          #   NXP SE050 secure element (I2C)
 │   ├── tle92466ed/     #   6-ch solenoid driver (SPI)
 │   ├── tmc5160/        #   Stepper motor driver (SPI/UART)
 │   ├── tmc9660/        #   Motor controller (SPI/UART)
@@ -167,9 +169,9 @@ hf-core/
 ├── hf-core-utils/      # [submodule] General, RTOS, CANopen utilities
 ├── examples/
 │   └── esp32/          # ESP-IDF test applications
-│       ├── app_config.yml      # Test app registry (15 apps)
+│       ├── app_config.yml      # Test app registry (16 apps)
 │       ├── main/
-│       │   ├── handler_tests/  # 10 handler test apps
+│       │   ├── handler_tests/  # 11 handler test apps
 │       │   ├── utils_tests/    # 4 utility test apps
 │       │   └── integration_tests/  # 1 integration test
 │       └── components/

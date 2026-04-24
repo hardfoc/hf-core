@@ -46,6 +46,7 @@ lib/core/
 │   │   ├── tle92466ed_handler.md
 │   │   ├── max22200_handler.md
 │   │   ├── ws2812_handler.md
+│   │   ├── se050_handler.md
 │   │   └── logger.md
 │   ├── utils/                          #   Utility library documentation
 │   │   ├── index.md
@@ -70,7 +71,7 @@ lib/core/
 │       │   ├── TestFramework.h         #     Shared test macros
 │       │   ├── esp32_bus_setup.hpp     #     Shared bus factories
 │       │   ├── esp32_test_config.hpp   #     Pin/address constants
-│       │   ├── handler_tests/          #     Handler test apps (10 files)
+│       │   ├── handler_tests/          #     Handler test apps (11 files)
 │       │   ├── utils_tests/            #     Utility test apps (4 files)
 │       │   └── integration_tests/      #     System integration test
 │       └── scripts/                    #     Build tools (git submodule)
@@ -110,9 +111,12 @@ lib/core/
 │   │   ├── Tmc9660AdcWrapper.h
 │   │   ├── Tmc9660Handler.cpp
 │   │   └── Tmc9660Handler.h
-│   └── ws2812/
-│       ├── Ws2812Handler.cpp
-│       └── Ws2812Handler.h
+│   ├── ws2812/
+│   │   ├── Ws2812Handler.cpp
+│   │   └── Ws2812Handler.h
+│   └── se050/
+│       ├── Se050Handler.cpp
+│       └── Se050Handler.h
 │
 ├── hf-core-drivers/                    # Driver libraries (git submodule)
 │   ├── external/                       #   CRTP device drivers
@@ -125,7 +129,8 @@ lib/core/
 │   │   ├── hf-tle92466ed-driver/
 │   │   ├── hf-tmc5160-driver/
 │   │   ├── hf-tmc9660-driver/
-│   │   └── hf-ws2812-rmt-driver/
+│   │   ├── hf-ws2812-rmt-driver/
+│   │   └── hf-se050-driver/
 │   └── internal/                       #   Platform abstractions
 │       ├── hf-internal-interface-wrap/  #     Base interfaces + ESP32 impls
 │       └── hf-pincfg/                  #     Pin configuration

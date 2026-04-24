@@ -29,6 +29,7 @@ at build time via the `APP_TYPE` mechanism.
 | `tle92466ed_handler_test` | `handler_tests/tle92466ed_handler_comprehensive_test.cpp` | TLE92466ED + SPI |
 | `max22200_handler_test` | `handler_tests/max22200_handler_comprehensive_test.cpp` | MAX22200 + SPI |
 | `ws2812_handler_test` | `handler_tests/ws2812_handler_comprehensive_test.cpp` | WS2812 + RMT |
+| `se050_handler_test` | `handler_tests/se050_handler_comprehensive_test.cpp` | SE050 + I²C (optional reset GPIO) |
 
 ### Utility Tests
 
@@ -37,7 +38,7 @@ at build time via the `APP_TYPE` mechanism.
 | `general_utils_test` | `utils_tests/general_utils_comprehensive_test.cpp` | None |
 | `rtos_wrap_test` | `utils_tests/rtos_wrap_comprehensive_test.cpp` | None (FreeRTOS only) |
 | `logger_test` | `utils_tests/logger_comprehensive_test.cpp` | None |
-| `canopen_utils_test` | `utils_tests/canopen_utils_comprehensive_test.cpp` | None |
+| `canopen_utils_test` | `utils_tests/canopen_utils_comprehensive_test.cpp` | CAN transceiver + TWAI |
 
 ### Integration Tests
 

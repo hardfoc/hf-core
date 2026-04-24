@@ -189,6 +189,21 @@ apps:
     ci_enabled: true
     featured: true
 
+  # ── NXP SE050 Secure Element Handler ───────────────────────────────────
+  se050_handler_test:
+    description: >
+      Exercises Se050Handler: BaseI2c→se050 CRTP adapter, EnsureInitialized
+      (GPIO reset, T=1 warm reset, SELECT applet, GetVersion), and live
+      GetRandom via se050::Device (same stack as hf-se050-driver ESP32 examples).
+    source_file: "handler_tests/se050_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "SE050 on I2C (default 0x48); optional SE_RESET GPIO in handler ctor"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
   # ===========================================================================
   # UTILS TESTS — Exercise platform utilities on real FreeRTOS
   # ===========================================================================
