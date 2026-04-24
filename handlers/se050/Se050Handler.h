@@ -13,8 +13,10 @@
  *              default; optional shared mutex when several devices share one I²C bus).
  *
  *          After `EnsureInitialized()` succeeds, use `GetDevice()` for applet commands
- *          (`GetVersion`, `GetRandom`, key lifecycle, etc.) exactly like the standalone
- *          ESP32 examples under `hf-se050-driver/examples/esp32/main/`.
+ *          (`GetVersion`, `GetRandom`, key lifecycle, secure objects, cloud onboarding, …)
+ *          exactly like the standalone ESP32 examples under
+ *          `hf-se050-driver/examples/esp32/main/` (see `app_config.yml` for the full matrix,
+ *          including `se050_aws_iot_lifecycle` and host-side `tools/` for factory flows).
  *
  * @copyright Copyright (c) 2026 HardFOC. All rights reserved.
  */

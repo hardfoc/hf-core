@@ -56,8 +56,32 @@ se050::Error e = handler.GetDevice().GetVersion(&v, handler.Config().apdu_timeou
 ```
 
 All methods on `se050::Device` match the **ESP32 reference examples** in
-`hf-se050-driver/examples/esp32/main/` (`se050_smoke_example.cpp`, object lifecycle,
-cloud onboarding, etc.).
+`hf-se050-driver/examples/esp32/main/`. The handler’s `GetDevice()` is the same object type
+those examples use; only the **I²C transport** differs (`HalI2cSe050Comm` from `BaseI2c`
+instead of the driver’s `HfSe050EspIdfI2c` helper).
+
+### On-device example matrix
+
+| Example | What it demonstrates |
+|---------|----------------------|
+| `se050_minimal_example.cpp` | Reset, T=1 warm reset, ATR, default applet `SELECT` |
+| `se050_smoke_example.cpp` | `GetVersion`, `GetRandom`, `GetFreeMemory`, typed management APDUs |
+| `se050_object_lifecycle_example.cpp` | Secure object create / read / delete |
+| `se050_cloud_onboarding_example.cpp` | EC P-256 keygen + challenge sign / verify |
+| `se050_cloud_registration_packet_example.cpp` | Idempotent enrollment + pubkey read + registration proof |
+| `se050_secure_board_comms_example.cpp` | Payload hash + SE050 ECDSA between two boards |
+| `se050_aws_iot_lifecycle/` | End-to-end: provision → network → TLS via SE050 → MQTT → OTA verify |
+
+Matrix entries and CI flags live in
+[`hf-se050-driver/examples/esp32/app_config.yml`](https://github.com/N3b3x/hf-se050-driver/blob/main/examples/esp32/app_config.yml).
+
+### Host-side companion tooling (driver repo)
+
+The **AWS IoT lifecycle** example ships Python utilities (factory provisioning, telemetry
+verification, SBOM helpers, reprovision tokens, pytest) under
+`examples/esp32/main/se050_aws_iot_lifecycle/tools/` in **hf-se050-driver**. Those scripts
+complement firmware; they are not built into hf-core. Start from the driver’s
+[`tools/README.md`](https://github.com/N3b3x/hf-se050-driver/blob/main/examples/esp32/main/se050_aws_iot_lifecycle/tools/README.md).
 
 ## Hardware and pins
 
@@ -81,7 +105,9 @@ Build the core ESP32 test app from `examples/esp32/scripts`:
 When `app_config.yml` lists multiple ESP-IDF versions, pass the third argument explicitly, for
 example `release/v5.5`, so `config_loader.sh` can validate the matrix entry.
 
-Source: `examples/esp32/main/handler_tests/se050_handler_comprehensive_test.cpp`.
+Source: `examples/esp32/main/handler_tests/se050_handler_comprehensive_test.cpp` (init,
+`GetVersion`, `GetRandom`). For full applet and lifecycle flows, run the **driver**
+examples above on the same hardware; they exercise identical `se050::Device` APIs.
 
 ## CMake
 
