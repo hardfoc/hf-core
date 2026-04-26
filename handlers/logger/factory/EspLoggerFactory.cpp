@@ -43,3 +43,28 @@
 std::unique_ptr<BaseLogger> Logger::CreateDefaultBaseLogger() noexcept {
     return std::make_unique<EspLogger>();
 }
+
+namespace {
+
+// Tags emitted by the ESP-IDF MCU drivers and their HAL wrappers.
+// Centralising them here lets middleware mute the bring-up chatter via
+// `Logger::SetMcuDriverTagsLevel(...)` without ever naming an `Esp*`
+// identifier itself. Order is significant only insofar as the platform
+// logger tag (`EspLogger`) goes first, so subsequent `esp_log_level_set`
+// calls do not each emit a confirmation line at INFO level.
+constexpr const char* kEspMcuDriverTags[] = {
+    "EspLogger",
+    "EspSpi",
+    "EspGpio",
+    "EspNvs",
+    "EspUart",
+    "EspTemperature",
+    "temperature_sensor",
+};
+
+} // namespace
+
+const char* const* Logger::GetMcuDriverTagList(size_t& out_count) noexcept {
+    out_count = sizeof(kEspMcuDriverTags) / sizeof(kEspMcuDriverTags[0]);
+    return kEspMcuDriverTags;
+}
