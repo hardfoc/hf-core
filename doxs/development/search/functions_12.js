@@ -1,8 +1,8 @@
 var searchData=
 [
   ['tare_0',['Tare',['../classAlicatBasis2Handler.html#ad1beb9c75aaec1b7620fb02b6ecf590e',1,'AlicatBasis2Handler']]],
-  ['temperature_1',['Temperature',['../classTmc9660Handler_1_1Temperature.html#a39c2778d7ba493b3c5a620b26289218d',1,'Tmc9660Handler::Temperature']]],
-  ['temperature_2',['temperature',['../classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a',1,'Tmc9660Handler']]],
+  ['temperature_1',['temperature',['../classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a',1,'Tmc9660Handler']]],
+  ['temperature_2',['Temperature',['../classTmc9660Handler_1_1Temperature.html#a39c2778d7ba493b3c5a620b26289218d',1,'Tmc9660Handler::Temperature']]],
   ['test_5faction_5ftimer_3',['test_action_timer',['../general__utils__comprehensive__test_8cpp.html#a32d55bb08563856f410c7c653a262e24',1,'general_utils_comprehensive_test.cpp']]],
   ['test_5fadc_5fwrapper_4',['test_adc_wrapper',['../tmc9660__handler__comprehensive__test_8cpp.html#a6a50fad2edc142e731565b05193140b3',1,'tmc9660_handler_comprehensive_test.cpp']]],
   ['test_5fadc_5fwrapper_5fdelegation_5',['test_adc_wrapper_delegation',['../tmc9660__handler__comprehensive__test_8cpp.html#a5ea41d64190cf4629b350e006b1d4446',1,'tmc9660_handler_comprehensive_test.cpp']]],
