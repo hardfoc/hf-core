@@ -142,18 +142,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aff32d6ea1ead65ddf069aa8c609570c9" id="r_aff32d6ea1ead65ddf069aa8c609570c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff32d6ea1ead65ddf069aa8c609570c9">SetTagLevel</a> (const char *tag, <a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level) noexcept</td></tr>
 <tr class="memdesc:aff32d6ea1ead65ddf069aa8c609570c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the minimum visible log level for messages emitted with a specific tag (e.g. throttle a noisy HAL handler during a boot self-test).  <br /></td></tr>
 <tr class="separator:aff32d6ea1ead65ddf069aa8c609570c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebe0183ad0afc85976971af5d3f66e04" id="r_aebe0183ad0afc85976971af5d3f66e04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebe0183ad0afc85976971af5d3f66e04">SetMcuDriverTagsLevel</a> (<a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level) noexcept</td></tr>
-<tr class="memdesc:aebe0183ad0afc85976971af5d3f66e04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply <code>level</code> to every MCU/peripheral-driver tag emitted by the platform port (e.g. <code>EspLogger</code>, <code>EspGpio</code>, <code>EspSpi</code>, <code>EspUart</code>, <code>EspNvs</code>, <code>EspTemperature</code>, … on ESP32; the equivalent <code>Stm*</code> set on STM32). The list lives in the per-MCU logger factory translation unit so middleware never names a platform-specific tag.  <br /></td></tr>
-<tr class="separator:aebe0183ad0afc85976971af5d3f66e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae95192b7b00222ecf22aa60de4dda14d" id="r_ae95192b7b00222ecf22aa60de4dda14d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae95192b7b00222ecf22aa60de4dda14d">SetHalFacadeTagsLevel</a> (<a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level) noexcept</td></tr>
-<tr class="memdesc:ae95192b7b00222ecf22aa60de4dda14d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply <code>level</code> to the HAL facade tags (<code>Flux</code>, <code>FluxGpio</code>, <code>FluxComm</code>, <code>FluxValve</code>, <code>FluxNvs</code>, <code>FluxTemp</code>). MCU-agnostic.  <br /></td></tr>
-<tr class="separator:ae95192b7b00222ecf22aa60de4dda14d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addb945fcb058f8162df7da66e52e8453" id="r_addb945fcb058f8162df7da66e52e8453"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addb945fcb058f8162df7da66e52e8453">SetChipDriverTagsLevel</a> (<a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level) noexcept</td></tr>
-<tr class="memdesc:addb945fcb058f8162df7da66e52e8453"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply <code>level</code> to chip-handler tags (e.g. <code>MAX22200</code>, <code>TLE92466ED</code>, <code>NtcTempHandler</code>). MCU-agnostic.  <br /></td></tr>
-<tr class="separator:addb945fcb058f8162df7da66e52e8453"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45661e27168892b5ffa026baa0826c83" id="r_a45661e27168892b5ffa026baa0826c83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45661e27168892b5ffa026baa0826c83">QuietBringUpDefaults</a> (<a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a> level=<a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86a32bd8a1db2275458673903bdb84cb277">LogLevel::WARN</a>) noexcept</td></tr>
-<tr class="memdesc:a45661e27168892b5ffa026baa0826c83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience: quiet every bring-up category in the right order (MCU drivers first so the <code>EspLogger</code>/<code>StmLogger</code> tag echo on subsequent <code>esp_log_level_set</code> calls is suppressed). Equivalent to calling <code>SetMcuDriverTagsLevel</code>, <code>SetChipDriverTagsLevel</code>, and <code>SetHalFacadeTagsLevel</code>.  <br /></td></tr>
-<tr class="separator:a45661e27168892b5ffa026baa0826c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adce17848a5844e053bfd314863dc1404" id="r_adce17848a5844e053bfd314863dc1404"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adce17848a5844e053bfd314863dc1404">Error</a> (const char *tag, const char *format,...) noexcept</td></tr>
 <tr class="memdesc:adce17848a5844e053bfd314863dc1404"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log error message.  <br /></td></tr>
 <tr class="separator:adce17848a5844e053bfd314863dc1404"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -262,9 +250,6 @@ Static Private Member Functions</h2></td></tr>
 <tr class="memitem:a1523d9809debb29550c21c8c8f3dee8b" id="r_a1523d9809debb29550c21c8c8f3dee8b"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; BaseLogger &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1523d9809debb29550c21c8c8f3dee8b">CreateDefaultBaseLogger</a> () noexcept</td></tr>
 <tr class="memdesc:a1523d9809debb29550c21c8c8f3dee8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolve the platform-default <code>BaseLogger</code>.  <br /></td></tr>
 <tr class="separator:a1523d9809debb29550c21c8c8f3dee8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac73858d798987403ff185eda6c753399" id="r_ac73858d798987403ff185eda6c753399"><td class="memItemLeft" align="right" valign="top">static const char *const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac73858d798987403ff185eda6c753399">GetMcuDriverTagList</a> (size_t &amp;out_count) noexcept</td></tr>
-<tr class="memdesc:ac73858d798987403ff185eda6c753399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolve the per-MCU list of platform-driver log tags.  <br /></td></tr>
-<tr class="separator:ac73858d798987403ff185eda6c753399"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -311,9 +296,9 @@ Static Private Attributes</h2></td></tr>
 <div class="ttc" id="aLogger_8h_html_abeb0b5a8d3424ad4a83592f8580b8a2eaa2d9547b5d3dd9f05984475f7c926da0"><div class="ttname"><a href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2eaa2d9547b5d3dd9f05984475f7c926da0">LogColor::RED</a></div><div class="ttdeci">@ RED</div><div class="ttdoc">Red.</div></div>
 <div class="ttc" id="aLogger_8h_html_aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19"><div class="ttname"><a href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19">LogStyle::BOLD</a></div><div class="ttdeci">@ BOLD</div><div class="ttdoc">Bold text.</div></div>
 <div class="ttc" id="aclassLogger_html"><div class="ttname"><a href="classLogger.html">Logger</a></div><div class="ttdoc">Advanced logging system with formatting capabilities.</div><div class="ttdef"><b>Definition</b> Logger.h:158</div></div>
-<div class="ttc" id="aclassLogger_html_a4681229c521795685fc14f6b55c82300"><div class="ttname"><a href="#a4681229c521795685fc14f6b55c82300">Logger::Info</a></div><div class="ttdeci">void Info(const char *tag, const char *format,...) noexcept</div><div class="ttdoc">Log info message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:301</div></div>
+<div class="ttc" id="aclassLogger_html_a4681229c521795685fc14f6b55c82300"><div class="ttname"><a href="#a4681229c521795685fc14f6b55c82300">Logger::Info</a></div><div class="ttdeci">void Info(const char *tag, const char *format,...) noexcept</div><div class="ttdoc">Log info message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:244</div></div>
 <div class="ttc" id="aclassLogger_html_a5789d11f8f1356e2192c0023a089cbc4"><div class="ttname"><a href="#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a></div><div class="ttdeci">static Logger &amp; GetInstance() noexcept</div><div class="ttdoc">Get singleton instance.</div><div class="ttdef"><b>Definition</b> Logger.cpp:91</div></div>
-<div class="ttc" id="aclassLogger_html_a95d97b7713dad6000fbf87a95b266af9"><div class="ttname"><a href="#a95d97b7713dad6000fbf87a95b266af9">Logger::LogAsciiArt</a></div><div class="ttdeci">void LogAsciiArt(const char *tag, const char *ascii_art, const AsciiArtFormat &amp;format=AsciiArtFormat{}) noexcept</div><div class="ttdoc">Log ASCII art.</div><div class="ttdef"><b>Definition</b> Logger.cpp:397</div></div>
+<div class="ttc" id="aclassLogger_html_a95d97b7713dad6000fbf87a95b266af9"><div class="ttname"><a href="#a95d97b7713dad6000fbf87a95b266af9">Logger::LogAsciiArt</a></div><div class="ttdeci">void LogAsciiArt(const char *tag, const char *ascii_art, const AsciiArtFormat &amp;format=AsciiArtFormat{}) noexcept</div><div class="ttdoc">Log ASCII art.</div><div class="ttdef"><b>Definition</b> Logger.cpp:340</div></div>
 <div class="ttc" id="astructAsciiArtFormat_html"><div class="ttname"><a href="structAsciiArtFormat.html">AsciiArtFormat</a></div><div class="ttdoc">ASCII art formatting options.</div><div class="ttdef"><b>Definition</b> Logger.h:115</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af4376d745e05cf7af3db5921e6d6adeb" name="af4376d745e05cf7af3db5921e6d6adeb"></a>
@@ -1024,41 +1009,6 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ac73858d798987403ff185eda6c753399" name="ac73858d798987403ff185eda6c753399"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac73858d798987403ff185eda6c753399">&#9670;&#160;</a></span>GetMcuDriverTagList()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char *const  * Logger::GetMcuDriverTagList </td>
-          <td>(</td>
-          <td class="paramtype">size_t &amp;</td>          <td class="paramname"><span class="paramname"><em>out_count</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Resolve the per-MCU list of platform-driver log tags. </p>
-<p>Implemented in the same per-MCU factory translation unit as <code>CreateDefaultBaseLogger</code> (e.g. <code><a class="el" href="EspLoggerFactory_8cpp.html" title="ESP32-family implementation of Logger::CreateDefaultBaseLogger().">EspLoggerFactory.cpp</a></code>). Returning the list as a free function keeps <code><a class="el" href="Logger_8cpp.html" title="Implementation of the advanced logging system.">Logger.cpp</a></code> MCU-clean — only the factory knows about <code>Esp*</code> / <code>Stm*</code> tag identifiers.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">out_count</td><td>Number of tag entries returned. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to a static array of C-string tag names. Never null: returns an empty list (count 0) if the port has no driver tags worth grouping. </dd></dl>
-
-</div>
-</div>
 <a id="a4681229c521795685fc14f6b55c82300" name="a4681229c521795685fc14f6b55c82300"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4681229c521795685fc14f6b55c82300">&#9670;&#160;</a></span>Info() <span class="overload">[1/2]</span></h2>
 
@@ -1595,66 +1545,6 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a45661e27168892b5ffa026baa0826c83" name="a45661e27168892b5ffa026baa0826c83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45661e27168892b5ffa026baa0826c83">&#9670;&#160;</a></span>QuietBringUpDefaults()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Logger::QuietBringUpDefaults </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a></td>          <td class="paramname"><span class="paramname"><em>level</em><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86a32bd8a1db2275458673903bdb84cb277">LogLevel::WARN</a></span></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Convenience: quiet every bring-up category in the right order (MCU drivers first so the <code>EspLogger</code>/<code>StmLogger</code> tag echo on subsequent <code>esp_log_level_set</code> calls is suppressed). Equivalent to calling <code>SetMcuDriverTagsLevel</code>, <code>SetChipDriverTagsLevel</code>, and <code>SetHalFacadeTagsLevel</code>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">level</td><td>Severity threshold to apply to every grouped tag. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="addb945fcb058f8162df7da66e52e8453" name="addb945fcb058f8162df7da66e52e8453"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#addb945fcb058f8162df7da66e52e8453">&#9670;&#160;</a></span>SetChipDriverTagsLevel()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Logger::SetChipDriverTagsLevel </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a></td>          <td class="paramname"><span class="paramname"><em>level</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Apply <code>level</code> to chip-handler tags (e.g. <code>MAX22200</code>, <code>TLE92466ED</code>, <code>NtcTempHandler</code>). MCU-agnostic. </p>
-
-</div>
-</div>
 <a id="ac78253f1f745833880231e9f3dc0ad00" name="ac78253f1f745833880231e9f3dc0ad00"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac78253f1f745833880231e9f3dc0ad00">&#9670;&#160;</a></span>SetConfig()</h2>
 
@@ -1690,33 +1580,6 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_ac78253f1f745833880231e9f3dc0ad00_cgraph.svg" width="398" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-
-</div>
-</div>
-<a id="ae95192b7b00222ecf22aa60de4dda14d" name="ae95192b7b00222ecf22aa60de4dda14d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae95192b7b00222ecf22aa60de4dda14d">&#9670;&#160;</a></span>SetHalFacadeTagsLevel()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Logger::SetHalFacadeTagsLevel </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a></td>          <td class="paramname"><span class="paramname"><em>level</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Apply <code>level</code> to the HAL facade tags (<code>Flux</code>, <code>FluxGpio</code>, <code>FluxComm</code>, <code>FluxValve</code>, <code>FluxNvs</code>, <code>FluxTemp</code>). MCU-agnostic. </p>
 
 </div>
 </div>
@@ -1760,34 +1623,6 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classLogger_a0e83e1b37ca2c702f8828f38d662cc23_cgraph.svg" width="415" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-
-</div>
-</div>
-<a id="aebe0183ad0afc85976971af5d3f66e04" name="aebe0183ad0afc85976971af5d3f66e04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebe0183ad0afc85976971af5d3f66e04">&#9670;&#160;</a></span>SetMcuDriverTagsLevel()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Logger::SetMcuDriverTagsLevel </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="Logger_8h.html#a3d8d85bddc47594db84f7f2f84022e86">LogLevel</a></td>          <td class="paramname"><span class="paramname"><em>level</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Apply <code>level</code> to every MCU/peripheral-driver tag emitted by the platform port (e.g. <code>EspLogger</code>, <code>EspGpio</code>, <code>EspSpi</code>, <code>EspUart</code>, <code>EspNvs</code>, <code>EspTemperature</code>, … on ESP32; the equivalent <code>Stm*</code> set on STM32). The list lives in the per-MCU logger factory translation unit so middleware never names a platform-specific tag. </p>
-<p>Use this from middleware after the HAL has finished its bring-up enumeration to silence the steady-state per-call driver chatter without losing real fault messages. </p>
 
 </div>
 </div>

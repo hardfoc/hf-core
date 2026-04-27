@@ -91,9 +91,6 @@ $(function(){initNavTree('EspLoggerFactory_8cpp.html',''); initResizable(); });
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">EspLoggerFactory.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -109,18 +106,7 @@ Include dependency graph for EspLoggerFactory.cpp:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="EspLoggerFactory_8cpp__incl.svg" width="831" height="212"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespaceanonymous__namespace_02EspLoggerFactory_8cpp_03" id="r_namespaceanonymous__namespace_02EspLoggerFactory_8cpp_03"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02EspLoggerFactory_8cpp_03.html">anonymous_namespace{EspLoggerFactory.cpp}</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ad3bf1459aa8f6eef359e716f558822ae" id="r_ad3bf1459aa8f6eef359e716f558822ae"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02EspLoggerFactory_8cpp_03.html#ad3bf1459aa8f6eef359e716f558822ae">anonymous_namespace{EspLoggerFactory.cpp}::kEspMcuDriverTags</a> []</td></tr>
-<tr class="separator:ad3bf1459aa8f6eef359e716f558822ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+</div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>ESP32-family implementation of <code><a class="el" href="classLogger.html#a1523d9809debb29550c21c8c8f3dee8b" title="Resolve the platform-default BaseLogger.">Logger::CreateDefaultBaseLogger()</a></code>. </p>
 <p>The <code><a class="el" href="classLogger.html" title="Advanced logging system with formatting capabilities.">Logger</a></code> handler (<code><a class="el" href="Logger_8cpp.html" title="Implementation of the advanced logging system.">handlers/logger/Logger.cpp</a></code>) is intentionally MCU-agnostic — it only knows about the abstract <code>BaseLogger</code> interface. Each platform contributes a small factory translation unit that knows which concrete backend to instantiate. This keeps <code>EspLogger.h</code> / <code>esp_log.h</code> (and any future MCU-specific backend headers) out of the shared handler implementation.</p>
 <p>Linking is handled by <code>cmake/hf_core_build_settings.cmake</code>: when <code>HF_CORE_ENABLE_LOGGER=ON</code> and the target MCU family is ESP32, this file is added to <code>HF_CORE_HANDLER_SOURCES</code>. Other MCU families ship their own <code>&lt;Mcu&gt;LoggerFactory.cpp</code> (e.g. <code>StmLoggerFactory.cpp</code> for STM32 — STM32 backend is currently a stub).</p>
