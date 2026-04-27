@@ -1,13 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"classNtcAdcAdapter.html":[13,0,44],
-"classNtcAdcAdapter.html#a2304c9e4022fdf6031d4155ea06dc342":[13,0,44,1],
-"classNtcAdcAdapter.html#a2711b318c0702e8d89969dc60d2ad222":[13,0,44,3],
-"classNtcAdcAdapter.html#a2950ee775d52e680818aa016ec27ca88":[13,0,44,4],
-"classNtcAdcAdapter.html#a29f8858c1a9c49beb34f408e397e6ccf":[13,0,44,2],
-"classNtcAdcAdapter.html#a57cbe8c6f89c0a8544d72144eaff0b07":[13,0,44,5],
-"classNtcAdcAdapter.html#a5fda436c5e70119b24fe172a4f0f9b90":[13,0,44,9],
-"classNtcAdcAdapter.html#a6d3ec827ad427fc3cf214cb7dd441fed":[13,0,44,6],
 "classNtcAdcAdapter.html#a77d0264a70af77ffdde42459fb8812bf":[13,0,44,8],
 "classNtcAdcAdapter.html#a967dc70fa9d0da926422801a8b8f8047":[13,0,44,0],
 "classNtcAdcAdapter.html#af23fadc3050a19a877f0f3effb89f8a3":[13,0,44,7],
@@ -249,5 +241,13 @@ var NAVTREEINDEX3 =
 "classPcal95555Handler.html#a3d89af46dc9c4927390e92834ce47242":[11,8,0,56],
 "classPcal95555Handler.html#a3ddb306f8da6122a74f20f234dda0470":[11,8,0,58],
 "classPcal95555Handler.html#a41f16f23becbbc45984e1adfed1320b0":[11,8,0,63],
-"classPcal95555Handler.html#a43bd4812929f7c68e6f63d60911f76dd":[11,8,0,2]
+"classPcal95555Handler.html#a43bd4812929f7c68e6f63d60911f76dd":[11,8,0,2],
+"classPcal95555Handler.html#a441e27219b0d01cc054cff4ca1314a02":[11,8,0,33],
+"classPcal95555Handler.html#a4591e7da481679beac69c20bbd554db1":[11,8,0,44],
+"classPcal95555Handler.html#a45a4692f11ec58be6ec754779d4b55d3":[11,8,0,11],
+"classPcal95555Handler.html#a49e5b18fcbd6762701009b564b90d481":[11,8,0,51],
+"classPcal95555Handler.html#a56cc0f2c707f3e8913fe5eb734dff3df":[11,8,0,21],
+"classPcal95555Handler.html#a582a8375e50b2df78dfd91aa132955af":[11,8,0,28],
+"classPcal95555Handler.html#a59b2dcc6d426c19a487175e8a83ed999":[11,8,0,38],
+"classPcal95555Handler.html#a5c2e68d6c9e39e373d40e94f5e951558":[11,8,0,29]
 };

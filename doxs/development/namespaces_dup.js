@@ -6,13 +6,8 @@ var namespaces_dup =
       [ "SetBitmap", "namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#ac74ab57c3bd5279c52f56c677d73730d", null ],
       [ "kAllBaudsBps", "namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#a964fadd70111271f4fac6a475ae1b340", null ]
     ] ],
-    [ "anonymous_namespace{EspLoggerFactory.cpp}", "namespaceanonymous__namespace_02EspLoggerFactory_8cpp_03.html", [
-      [ "kEspMcuDriverTags", "namespaceanonymous__namespace_02EspLoggerFactory_8cpp_03.html#ad3bf1459aa8f6eef359e716f558822ae", null ]
-    ] ],
     [ "anonymous_namespace{Logger.cpp}", "namespaceanonymous__namespace_02Logger_8cpp_03.html", [
-      [ "ToBaseLevel", "namespaceanonymous__namespace_02Logger_8cpp_03.html#a9d2b496fa1b4f4e28667d14e4b8cb190", null ],
-      [ "kChipDriverTags", "namespaceanonymous__namespace_02Logger_8cpp_03.html#a16d40f3b14cf833d1cb344eb461e2bae", null ],
-      [ "kHalFacadeTags", "namespaceanonymous__namespace_02Logger_8cpp_03.html#a1084d60526bb882bf349a4fe4a4a205b", null ]
+      [ "ToBaseLevel", "namespaceanonymous__namespace_02Logger_8cpp_03.html#a9d2b496fa1b4f4e28667d14e4b8cb190", null ]
     ] ],
     [ "anonymous_namespace{Se050Handler.cpp}", "namespaceanonymous__namespace_02Se050Handler_8cpp_03.html", [
       [ "ClampU16", "namespaceanonymous__namespace_02Se050Handler_8cpp_03.html#ac712ade1fe8a1302fb5ee3187909b09e", null ],
