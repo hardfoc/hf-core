@@ -241,43 +241,6 @@ public:
     void SetTagLevel(const char* tag, LogLevel level) noexcept;
 
     /**
-     * @brief Apply @p level to every MCU/peripheral-driver tag emitted by
-     *        the platform port (e.g. `EspLogger`, `EspGpio`, `EspSpi`,
-     *        `EspUart`, `EspNvs`, `EspTemperature`, … on ESP32; the
-     *        equivalent `Stm*` set on STM32). The list lives in the
-     *        per-MCU logger factory translation unit so middleware never
-     *        names a platform-specific tag.
-     *
-     * Use this from middleware after the HAL has finished its bring-up
-     * enumeration to silence the steady-state per-call driver chatter
-     * without losing real fault messages.
-     */
-    void SetMcuDriverTagsLevel(LogLevel level) noexcept;
-
-    /**
-     * @brief Apply @p level to the HAL facade tags (`Flux`, `FluxGpio`,
-     *        `FluxComm`, `FluxValve`, `FluxNvs`, `FluxTemp`). MCU-agnostic.
-     */
-    void SetHalFacadeTagsLevel(LogLevel level) noexcept;
-
-    /**
-     * @brief Apply @p level to chip-handler tags (e.g. `MAX22200`,
-     *        `TLE92466ED`, `NtcTempHandler`). MCU-agnostic.
-     */
-    void SetChipDriverTagsLevel(LogLevel level) noexcept;
-
-    /**
-     * @brief Convenience: quiet every bring-up category in the right
-     *        order (MCU drivers first so the `EspLogger`/`StmLogger` tag
-     *        echo on subsequent `esp_log_level_set` calls is suppressed).
-     *        Equivalent to calling `SetMcuDriverTagsLevel`,
-     *        `SetChipDriverTagsLevel`, and `SetHalFacadeTagsLevel`.
-     *
-     * @param level Severity threshold to apply to every grouped tag.
-     */
-    void QuietBringUpDefaults(LogLevel level = LogLevel::WARN) noexcept;
-
-    /**
      * @brief Log error message
      * @param tag Log tag
      * @param format Format string
@@ -558,21 +521,6 @@ private:
      * @return Owned backend, or nullptr if no factory was linked.
      */
     static std::unique_ptr<BaseLogger> CreateDefaultBaseLogger() noexcept;
-
-    /**
-     * @brief Resolve the per-MCU list of platform-driver log tags.
-     *
-     * Implemented in the same per-MCU factory translation unit as
-     * `CreateDefaultBaseLogger` (e.g. `EspLoggerFactory.cpp`). Returning
-     * the list as a free function keeps `Logger.cpp` MCU-clean — only
-     * the factory knows about `Esp*` / `Stm*` tag identifiers.
-     *
-     * @param[out] out_count Number of tag entries returned.
-     * @return Pointer to a static array of C-string tag names. Never
-     *         null: returns an empty list (count 0) if the port has no
-     *         driver tags worth grouping.
-     */
-    static const char* const* GetMcuDriverTagList(size_t& out_count) noexcept;
     
     /**
      * @brief Dump comprehensive logger statistics to log as INFO level.

@@ -219,63 +219,6 @@ void Logger::SetTagLevel(const char* tag, LogLevel level) noexcept {
     }
 }
 
-namespace {
-
-// HAL facade tag set — emitted by the platform-agnostic wrappers in
-// `hal/hf-hal-flux-v1/api` and the family-shared handler layer. Kept in
-// this translation unit (not in the MCU factory) because the names do
-// not depend on the target MCU.
-constexpr const char* kHalFacadeTags[] = {
-    "Flux",
-    "FluxGpio",
-    "FluxComm",
-    "FluxValve",
-    "FluxNvs",
-    "FluxTemp",
-};
-
-// Chip-handler tag set — emitted by device drivers for off-MCU silicon.
-// Add new chip handlers here as they are introduced; middleware should
-// not need to know any of these names.
-constexpr const char* kChipDriverTags[] = {
-    "MAX22200",
-    "TLE92466ED",
-    "NtcTempHandler",
-};
-
-} // namespace
-
-void Logger::SetMcuDriverTagsLevel(LogLevel level) noexcept {
-    size_t count = 0;
-    const char* const* tags = GetMcuDriverTagList(count);
-    if (tags == nullptr) return;
-    for (size_t i = 0; i < count; ++i) {
-        SetTagLevel(tags[i], level);
-    }
-}
-
-void Logger::SetHalFacadeTagsLevel(LogLevel level) noexcept {
-    for (const char* tag : kHalFacadeTags) {
-        SetTagLevel(tag, level);
-    }
-}
-
-void Logger::SetChipDriverTagsLevel(LogLevel level) noexcept {
-    for (const char* tag : kChipDriverTags) {
-        SetTagLevel(tag, level);
-    }
-}
-
-void Logger::QuietBringUpDefaults(LogLevel level) noexcept {
-    // MCU-driver group goes first so the platform logger's own tag
-    // (e.g. `EspLogger`) is muted before subsequent `SetTagLevel` calls
-    // can echo a per-tag confirmation line. The ordering of the other
-    // two groups is irrelevant.
-    SetMcuDriverTagsLevel(level);
-    SetChipDriverTagsLevel(level);
-    SetHalFacadeTagsLevel(level);
-}
-
 void Logger::Error(const char* tag, const char* format, ...) noexcept {
     if (!IsLevelEnabled(LogLevel::ERROR, tag)) {
         return;
@@ -692,14 +635,13 @@ bool Logger::IsLevelEnabled(LogLevel level, const char* tag) const noexcept {
     return static_cast<uint8_t>(level) <= static_cast<uint8_t>(tag_level);
 }
 
-// `CreateDefaultBaseLogger` and `GetMcuDriverTagList` are intentionally
-// **not** defined here — their MCU-specific definitions live in
-// `logger/factory/<mcu>LoggerFactory.cpp` (e.g. `EspLoggerFactory.cpp`).
-// That keeps every concrete backend header — and every platform-named
-// driver tag string — out of this translation unit. If no factory is
-// linked, link will fail with an undefined-symbol error pointing at the
-// missing factory file — which is the right failure mode (better than
-// silently defaulting to nullptr at runtime).
+// `CreateDefaultBaseLogger` is intentionally **not** defined here — its
+// MCU-specific definition lives in `logger/factory/<mcu>LoggerFactory.cpp`
+// (e.g. `EspLoggerFactory.cpp`). That keeps every concrete backend header
+// out of this translation unit. If no factory is linked, link will fail
+// with an undefined-symbol error pointing at the missing factory file —
+// which is the right failure mode (better than silently defaulting to
+// nullptr at runtime).
 
 void Logger::DumpStatistics() const noexcept {
     static constexpr const char* TAG = "Logger";
