@@ -1,0 +1,7 @@
+<map id="CanOpenBaseCanLink::Read" name="CanOpenBaseCanLink::Read">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,171,45"/>
+<area shape="rect" id="Node000002" href="$classHfUtilsCanOpenTransport.html#aa7ca3b9e5bda184de10956e775976de4" title=" " alt="" coords="219,5,405,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,23,205,23,205,28,171,28"/>
+<area shape="rect" id="Node000003" href="$HfUtilsCanOpenBridge_8hpp.html#a3c53d9214a389deca928775a8509b5bd" title=" " alt="" coords="453,13,659,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="406,23,440,23,440,28,406,28"/>
+</map>

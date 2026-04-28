@@ -1,0 +1,11 @@
+<map id="HfUtilsCanOpenBridge.hpp" name="HfUtilsCanOpenBridge.hpp">
+<area shape="rect" id="Node000001" title="Convert CanOpen::CanFrame ↔ hf_can_message_t for BaseCan I/O." alt="" coords="160,5,356,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,105,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="226,33,102,77,100,72,225,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="129,79,256,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="249,33,214,70,211,67,245,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="281,79,366,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="271,29,305,67,302,70,267,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="390,79,457,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="286,28,385,71,383,76,284,33"/>
+</map>

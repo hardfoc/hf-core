@@ -1,0 +1,5 @@
+<map id="HfUtilsCanOpenTransport.hpp" name="HfUtilsCanOpenTransport.hpp">
+<area shape="rect" id="Node000001" title="Send/receive CanOpen::CanFrame on a BaseCan instance." alt="" coords="5,5,220,31"/>
+<area shape="rect" id="Node000002" href="$CanOpenBaseCanLink_8hpp.html" title="Facade: CanOpen::CanFrame I/O on HAL BaseCan via HfUtilsCanOpenTransport." alt="" coords="16,79,209,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,44,115,79,110,79,110,44"/>
+</map>

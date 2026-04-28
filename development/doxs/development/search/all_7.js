@@ -34,8 +34,13 @@ var searchData=
   ['hasinterruptsupport_31',['HasInterruptSupport',['../classPcal95555Handler.html#a582a8375e50b2df78dfd91aa132955af',1,'Pcal95555Handler']]],
   ['hasnewdata_32',['HasNewData',['../classIBno08xDriverOps.html#a1529def7c6fc77eed5dbc39aa16f3cc9',1,'IBno08xDriverOps::HasNewData()'],['../classBno08xDriverImpl.html#a3a097f73569d05c185c2d1d76bc7039b',1,'Bno08xDriverImpl::HasNewData()']]],
   ['hf_20core_20platform_33',['HF-Core Platform',['../index.html',1,'']]],
-  ['high_5ftemperature_5fmode_34',['high_temperature_mode',['../structAs5047uConfig.html#ac67cfd3cfd1942ee97e5a5aacfcaf24b',1,'As5047uConfig']]],
-  ['high_5fthreshold_5fcelsius_35',['high_threshold_celsius',['../structntc__temp__handler__config__t.html#a6d47bea340cdf6e4f10630984298f016',1,'ntc_temp_handler_config_t']]],
-  ['high_5fthreshold_5fcelsius_5f_36',['high_threshold_celsius_',['../classNtcTemperatureHandler.html#a1ad76c89cb99d1752b1e8a37e996ef90',1,'NtcTemperatureHandler']]],
-  ['hostbaudsetter_37',['HostBaudSetter',['../classAlicatBasis2Handler.html#ad5e74b2aaf285a5292b5e7fe2a46aae3',1,'AlicatBasis2Handler']]]
+  ['hfutilscanframetomessage_34',['HfUtilsCanFrameToMessage',['../HfUtilsCanOpenBridge_8hpp.html#a10b9ba06573aa03ca1e8b5f722ba0d37',1,'HfUtilsCanOpenBridge.hpp']]],
+  ['hfutilscanopenbridge_2ehpp_35',['HfUtilsCanOpenBridge.hpp',['../HfUtilsCanOpenBridge_8hpp.html',1,'']]],
+  ['hfutilscanopentransport_36',['HfUtilsCanOpenTransport',['../classHfUtilsCanOpenTransport.html',1,'HfUtilsCanOpenTransport'],['../classHfUtilsCanOpenTransport.html#a693bf70cdece51659cb0b4c2e5625762',1,'HfUtilsCanOpenTransport::HfUtilsCanOpenTransport()']]],
+  ['hfutilscanopentransport_2ehpp_37',['HfUtilsCanOpenTransport.hpp',['../HfUtilsCanOpenTransport_8hpp.html',1,'']]],
+  ['hfutilsmessagetocanframe_38',['HfUtilsMessageToCanFrame',['../HfUtilsCanOpenBridge_8hpp.html#a3c53d9214a389deca928775a8509b5bd',1,'HfUtilsCanOpenBridge.hpp']]],
+  ['high_5ftemperature_5fmode_39',['high_temperature_mode',['../structAs5047uConfig.html#ac67cfd3cfd1942ee97e5a5aacfcaf24b',1,'As5047uConfig']]],
+  ['high_5fthreshold_5fcelsius_40',['high_threshold_celsius',['../structntc__temp__handler__config__t.html#a6d47bea340cdf6e4f10630984298f016',1,'ntc_temp_handler_config_t']]],
+  ['high_5fthreshold_5fcelsius_5f_41',['high_threshold_celsius_',['../classNtcTemperatureHandler.html#a1ad76c89cb99d1752b1e8a37e996ef90',1,'NtcTemperatureHandler']]],
+  ['hostbaudsetter_42',['HostBaudSetter',['../classAlicatBasis2Handler.html#ad5e74b2aaf285a5292b5e7fe2a46aae3',1,'AlicatBasis2Handler']]]
 ];

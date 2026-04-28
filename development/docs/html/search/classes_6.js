@@ -13,5 +13,6 @@ var searchData=
   ['haluartfdo2comm_10',['HalUartFdo2Comm',['../classHalUartFdo2Comm.html',1,'']]],
   ['haluarttmc5160comm_11',['HalUartTmc5160Comm',['../classHalUartTmc5160Comm.html',1,'']]],
   ['haluarttmc9660comm_12',['HalUartTmc9660Comm',['../classHalUartTmc9660Comm.html',1,'']]],
-  ['handlertaskargs_13',['HandlerTaskArgs',['../structHandlerTaskArgs.html',1,'']]]
+  ['handlertaskargs_13',['HandlerTaskArgs',['../structHandlerTaskArgs.html',1,'']]],
+  ['hfutilscanopentransport_14',['HfUtilsCanOpenTransport',['../classHfUtilsCanOpenTransport.html',1,'']]]
 ];

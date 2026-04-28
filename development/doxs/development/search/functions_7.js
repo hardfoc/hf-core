@@ -19,5 +19,8 @@ var searchData=
   ['hasagileio_16',['HasAgileIO',['../classPcal95555Handler.html#a997583346dffe6c95e5f8fcfc127c37b',1,'Pcal95555Handler']]],
   ['hasfault_17',['HasFault',['../classMax22200Handler.html#ac5b60b117fec404c55597929134fa1a1',1,'Max22200Handler::HasFault()'],['../classTle92466edHandler.html#ab86e6d3eb2dca25154a8fa7c42ddb945',1,'Tle92466edHandler::HasFault()']]],
   ['hasinterruptsupport_18',['HasInterruptSupport',['../classPcal95555Handler.html#a582a8375e50b2df78dfd91aa132955af',1,'Pcal95555Handler']]],
-  ['hasnewdata_19',['HasNewData',['../classIBno08xDriverOps.html#a1529def7c6fc77eed5dbc39aa16f3cc9',1,'IBno08xDriverOps::HasNewData()'],['../classBno08xDriverImpl.html#a3a097f73569d05c185c2d1d76bc7039b',1,'Bno08xDriverImpl::HasNewData()']]]
+  ['hasnewdata_19',['HasNewData',['../classIBno08xDriverOps.html#a1529def7c6fc77eed5dbc39aa16f3cc9',1,'IBno08xDriverOps::HasNewData()'],['../classBno08xDriverImpl.html#a3a097f73569d05c185c2d1d76bc7039b',1,'Bno08xDriverImpl::HasNewData()']]],
+  ['hfutilscanframetomessage_20',['HfUtilsCanFrameToMessage',['../HfUtilsCanOpenBridge_8hpp.html#a10b9ba06573aa03ca1e8b5f722ba0d37',1,'HfUtilsCanOpenBridge.hpp']]],
+  ['hfutilscanopentransport_21',['HfUtilsCanOpenTransport',['../classHfUtilsCanOpenTransport.html#a693bf70cdece51659cb0b4c2e5625762',1,'HfUtilsCanOpenTransport']]],
+  ['hfutilsmessagetocanframe_22',['HfUtilsMessageToCanFrame',['../HfUtilsCanOpenBridge_8hpp.html#a3c53d9214a389deca928775a8509b5bd',1,'HfUtilsCanOpenBridge.hpp']]]
 ];

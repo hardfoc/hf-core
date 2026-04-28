@@ -45,6 +45,15 @@ set(HF_CORE_DRIVER_EXT    "${HF_CORE_ROOT}/hf-core-drivers/external")
 set(HF_CORE_DRIVER_INT    "${HF_CORE_ROOT}/hf-core-drivers/internal")
 set(HF_CORE_UTILS_ROOT    "${HF_CORE_ROOT}/hf-core-utils")
 
+# Vendor CANopenNode (CiA 301) — checkout lives next to this hf-core tree (HAL `third_party/`), not inside the hf-core git submodule.
+if(NOT DEFINED HF_CORE_CANOPENNODE_ROOT)
+    if(DEFINED HF_HAL_ROOT)
+        set(HF_CORE_CANOPENNODE_ROOT "${HF_HAL_ROOT}/third_party/CANopenNode")
+    else()
+        set(HF_CORE_CANOPENNODE_ROOT "")
+    endif()
+endif()
+
 # ===========================================================================
 # ██  PLATFORM SELECTION — MCU Family + RTOS
 # ===========================================================================
@@ -105,6 +114,9 @@ endif()
 # ── Optional Utility Groups ───────────────────────────────────────────────
 if(NOT DEFINED HF_CORE_ENABLE_UTILS_CANOPEN)
     set(HF_CORE_ENABLE_UTILS_CANOPEN OFF)
+endif()
+if(NOT DEFINED HF_CORE_ENABLE_CANOPENNODE)
+    set(HF_CORE_ENABLE_CANOPENNODE OFF)
 endif()
 
 # ── Optional Interface Implementations ────────────────────────────────────
@@ -174,6 +186,9 @@ if(NOT DEFINED HF_CORE_ENABLE_TMC9660)
 endif()
 if(NOT DEFINED HF_CORE_ENABLE_WS2812)
     set(HF_CORE_ENABLE_WS2812 OFF)
+endif()
+if(NOT DEFINED HF_CORE_ENABLE_VORTEX_DRIVER)
+    set(HF_CORE_ENABLE_VORTEX_DRIVER OFF)
 endif()
 
 # ── Logger (almost always needed) ─────────────────────────────────────────
@@ -394,6 +409,42 @@ if(HF_CORE_ENABLE_UTILS_CANOPEN)
     )
 endif()
 
+# ── CANopenNode upstream (optional; blank CO driver + example OD) ─────────
+set(HF_CORE_CANOPENNODE_SOURCES "")
+if(HF_CORE_ENABLE_CANOPENNODE)
+    if(NOT HF_CORE_ENABLE_UTILS_CANOPEN)
+        message(FATAL_ERROR
+            "[hf-core] HF_CORE_ENABLE_CANOPENNODE=ON requires HF_CORE_ENABLE_UTILS_CANOPEN=ON.")
+    endif()
+    if("${HF_CORE_CANOPENNODE_ROOT}" STREQUAL "" OR NOT EXISTS "${HF_CORE_CANOPENNODE_ROOT}/CANopen.c")
+        message(FATAL_ERROR
+            "[hf-core] HF_CORE_ENABLE_CANOPENNODE=ON but upstream CANopenNode was not found.\n"
+            "  Expected file: ${HF_CORE_CANOPENNODE_ROOT}/CANopen.c\n"
+            "  From the HAL repository root (e.g. hal/hf-hal-vortex-v1), run:\n"
+            "    git submodule update --init --recursive third_party/CANopenNode")
+    endif()
+
+    set(_hf_co_root "${HF_CORE_CANOPENNODE_ROOT}")
+    set(_hf_co_ex "${_hf_co_root}/example")
+    set(HF_CORE_CANOPENNODE_SOURCES
+        "${_hf_co_ex}/CO_driver_blank.c"
+        "${_hf_co_ex}/CO_storageBlank.c"
+        "${_hf_co_root}/301/CO_ODinterface.c"
+        "${_hf_co_root}/301/CO_NMT_Heartbeat.c"
+        "${_hf_co_root}/301/CO_HBconsumer.c"
+        "${_hf_co_root}/301/CO_Emergency.c"
+        "${_hf_co_root}/301/CO_SDOserver.c"
+        "${_hf_co_root}/301/CO_TIME.c"
+        "${_hf_co_root}/301/CO_SYNC.c"
+        "${_hf_co_root}/301/CO_PDO.c"
+        "${_hf_co_root}/303/CO_LEDs.c"
+        "${_hf_co_root}/305/CO_LSSslave.c"
+        "${_hf_co_root}/storage/CO_storage.c"
+        "${_hf_co_root}/CANopen.c"
+        "${_hf_co_ex}/OD.c"
+    )
+endif()
+
 # ===========================================================================
 # External Driver Sources + Handler Sources (opt-in per feature)
 # ===========================================================================
@@ -549,6 +600,19 @@ if(HF_CORE_ENABLE_TMC9660)
     list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_TMC9660_SOURCE_FILES})
 endif()
 
+# ── hf-vortex-driver (Vortex CAN protocol — portable C++20, BaseCan via app transport) ─
+if(HF_CORE_ENABLE_VORTEX_DRIVER)
+    if(NOT EXISTS "${HF_CORE_DRIVER_EXT}/hf-vortex-driver/CMakeLists.txt")
+        message(FATAL_ERROR
+            "[hf-core] HF_CORE_ENABLE_VORTEX_DRIVER=ON but hf-vortex-driver is missing at "
+            "'${HF_CORE_DRIVER_EXT}/hf-vortex-driver'. Initialize the git submodule under "
+            "hf-core-drivers (external/hf-vortex-driver).")
+    endif()
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS "${HF_CORE_DRIVER_EXT}/hf-vortex-driver/inc")
+    list(APPEND HF_CORE_EXT_DRIVER_SOURCES
+        "${HF_CORE_DRIVER_EXT}/hf-vortex-driver/src/VortexHostSession.cpp")
+endif()
+
 # ── WS2812 (RMT LED — MCU-GATED:ESP32, mixed C/C++) ───────────────────
 # Requires ESP32 RMT peripheral. Gated by MCU compatibility check above.
 if(HF_CORE_ENABLE_WS2812)
@@ -617,6 +681,17 @@ list(APPEND HF_CORE_INCLUDE_DIRS
 if(HF_CORE_ENABLE_UTILS_CANOPEN)
     list(APPEND HF_CORE_INCLUDE_DIRS
         "${HF_CORE_UTILS_ROOT}/hf-utils-canopen/include")
+endif()
+
+# ── BaseCan ↔ CanOpen frame adapter (header-only; hf-core, not hf-utils-canopen) ──
+if(HF_CORE_ENABLE_UTILS_CANOPEN AND HF_CORE_ENABLE_CAN)
+    list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/common/canopen")
+endif()
+
+if(HF_CORE_ENABLE_CANOPENNODE)
+    list(APPEND HF_CORE_INCLUDE_DIRS
+        "${HF_CORE_CANOPENNODE_ROOT}"
+        "${HF_CORE_CANOPENNODE_ROOT}/example")
 endif()
 
 # ── Per-Handler Include Dirs (add handler dir for direct includes) ────────
@@ -812,6 +887,9 @@ endif()
 if(HF_CORE_ENABLE_TMC9660)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_TMC9660_SUPPORT=1)
 endif()
+if(HF_CORE_ENABLE_VORTEX_DRIVER)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_VORTEX_DRIVER=1)
+endif()
 if(HF_CORE_ENABLE_WS2812)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_WS2812_SUPPORT=1)
 endif()
@@ -823,6 +901,9 @@ if(HF_CORE_ENABLE_USB_SERIAL_JTAG)
 endif()
 if(HF_CORE_ENABLE_UTILS_CANOPEN)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_CANOPEN_UTILS=1)
+endif()
+if(HF_CORE_ENABLE_CANOPENNODE)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_CANOPENNODE_SLAVE=1)
 endif()
 list(APPEND HF_CORE_COMPILE_DEFINITIONS
     HARDFOC_RTOS_WRAP=1
@@ -839,6 +920,7 @@ set(HF_CORE_SOURCES
     ${HF_CORE_RTOS_SOURCES}
     ${HF_CORE_GENERAL_UTILS_SOURCES}
     ${HF_CORE_CANOPEN_SOURCES}
+    ${HF_CORE_CANOPENNODE_SOURCES}
     ${HF_CORE_HANDLER_SOURCES}
     ${HF_CORE_EXT_DRIVER_SOURCES}
 )
@@ -890,6 +972,9 @@ endif()
 if(HF_CORE_ENABLE_TMC9660)
     string(APPEND _hf_enabled_features " TMC9660")
 endif()
+if(HF_CORE_ENABLE_VORTEX_DRIVER)
+    string(APPEND _hf_enabled_features " VortexDriver")
+endif()
 if(HF_CORE_ENABLE_WS2812)
     string(APPEND _hf_enabled_features " WS2812")
 endif()
@@ -898,6 +983,9 @@ if(HF_CORE_ENABLE_LOGGER)
 endif()
 if(HF_CORE_ENABLE_UTILS_CANOPEN)
     string(APPEND _hf_enabled_features " CANopen")
+endif()
+if(HF_CORE_ENABLE_CANOPENNODE)
+    string(APPEND _hf_enabled_features " CANopenNode")
 endif()
 if(NOT _hf_enabled_features)
     set(_hf_enabled_features " (foundation only)")

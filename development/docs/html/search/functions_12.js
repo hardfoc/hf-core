@@ -1,8 +1,8 @@
 var searchData=
 [
   ['tare_0',['Tare',['../classAlicatBasis2Handler.html#ad1beb9c75aaec1b7620fb02b6ecf590e',1,'AlicatBasis2Handler']]],
-  ['temperature_1',['Temperature',['../classTmc9660Handler_1_1Temperature.html#a39c2778d7ba493b3c5a620b26289218d',1,'Tmc9660Handler::Temperature']]],
-  ['temperature_2',['temperature',['../classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a',1,'Tmc9660Handler']]],
+  ['temperature_1',['temperature',['../classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a',1,'Tmc9660Handler']]],
+  ['temperature_2',['Temperature',['../classTmc9660Handler_1_1Temperature.html#a39c2778d7ba493b3c5a620b26289218d',1,'Tmc9660Handler::Temperature']]],
   ['test_5faction_5ftimer_3',['test_action_timer',['../general__utils__comprehensive__test_8cpp.html#a32d55bb08563856f410c7c653a262e24',1,'general_utils_comprehensive_test.cpp']]],
   ['test_5fadc_5fwrapper_4',['test_adc_wrapper',['../tmc9660__handler__comprehensive__test_8cpp.html#a6a50fad2edc142e731565b05193140b3',1,'tmc9660_handler_comprehensive_test.cpp']]],
   ['test_5fadc_5fwrapper_5fdelegation_5',['test_adc_wrapper_delegation',['../tmc9660__handler__comprehensive__test_8cpp.html#a5ea41d64190cf4629b350e006b1d4446',1,'tmc9660_handler_comprehensive_test.cpp']]],
@@ -177,8 +177,8 @@ var searchData=
   ['tochannel_174',['toChannel',['../Tle92466edHandler_8cpp.html#a5c86099f760a9845d5fa0e65f8b57fb5',1,'Tle92466edHandler.cpp']]],
   ['toggle_175',['Toggle',['../classPcal95555Handler.html#adb6abd365588fa5386e4bf78ac913f05',1,'Pcal95555Handler']]],
   ['transceive_176',['Transceive',['../classHalI2cSe050Comm.html#a6709bf21c025c3520a0b975d96f8e3db',1,'HalI2cSe050Comm']]],
-  ['transfer_177',['Transfer',['../classHalSpiMax22200Comm.html#ab69a5625afd94e62e4f973eea89979a2',1,'HalSpiMax22200Comm']]],
-  ['transfer_178',['transfer',['../classAds7952SpiAdapter.html#a58116a4703d7b30c2c215ca1539317c5',1,'Ads7952SpiAdapter::transfer()'],['../classAs5047uSpiAdapter.html#a5c90fccf33a360042821dcd5f94aa941',1,'As5047uSpiAdapter::transfer()']]],
+  ['transfer_177',['transfer',['../classAds7952SpiAdapter.html#a58116a4703d7b30c2c215ca1539317c5',1,'Ads7952SpiAdapter::transfer()'],['../classAs5047uSpiAdapter.html#a5c90fccf33a360042821dcd5f94aa941',1,'As5047uSpiAdapter::transfer()']]],
+  ['transfer_178',['Transfer',['../classHalSpiMax22200Comm.html#ab69a5625afd94e62e4f973eea89979a2',1,'HalSpiMax22200Comm']]],
   ['transfer32_179',['Transfer32',['../classHalSpiTle92466edComm.html#a63f84b0db1a338f4c02e76e8d01c8b65',1,'HalSpiTle92466edComm']]],
   ['transfermulti_180',['TransferMulti',['../classHalSpiTle92466edComm.html#a058b8f150542b2e746f08a1f3b84208b',1,'HalSpiTle92466edComm']]]
 ];
