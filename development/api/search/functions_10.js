@@ -33,5 +33,6 @@ var searchData=
   ['resettotalizer_30',['ResetTotalizer',['../classAlicatBasis2Handler.html#ae0ba62eb3d3e0e966836f51bb068a8da',1,'AlicatBasis2Handler']]],
   ['resetvariables_31',['ResetVariables',['../classTestThread.html#abaf68689b014106872445278fdfcd1fa',1,'TestThread']]],
   ['resolvemonitoringcontext_32',['ResolveMonitoringContext',['../classNtcTemperatureHandler.html#a2a459d108af3fc0c29d518c62cb791fe',1,'NtcTemperatureHandler']]],
-  ['routelogtologger_33',['RouteLogToLogger',['../namespacehandler__utils.html#a71864e1d5801bea0d6d830326b6b183a',1,'handler_utils']]]
+  ['routelogtologger_33',['RouteLogToLogger',['../namespacehandler__utils.html#a71864e1d5801bea0d6d830326b6b183a',1,'handler_utils']]],
+  ['rule_34',['Rule',['../namespacelogger__decor.html#ac5bed90d6e56255709791c8796eb02bf',1,'logger_decor']]]
 ];

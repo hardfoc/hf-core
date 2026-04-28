@@ -1,0 +1,13 @@
+<map id="logger_decor::Section" name="logger_decor::Section">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,168,56"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="216,5,368,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,31,202,26,203,32,168,36"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a4681229c521795685fc14f6b55c82300" title="Log info message." alt="" coords="243,55,341,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="168,50,229,57,229,63,168,55"/>
+<area shape="rect" id="Node000004" href="$classLogger.html#af9e84e0ff6bd538e4f9ed8dcebc3e2f0" title="Check if log level is enabled for tag." alt="" coords="416,29,588,55"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="341,59,402,51,402,57,342,64"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#a6adb205db597526fb91ad20067400394" title="Internal logging method." alt="" coords="429,79,575,104"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="342,70,415,79,415,84,341,76"/>
+<area shape="rect" id="Node000006" href="$namespaceanonymous__namespace_02Logger_8cpp_03.html#a9d2b496fa1b4f4e28667d14e4b8cb190" title=" " alt="" coords="636,71,839,111"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="576,89,623,89,623,94,576,94"/>
+</map>

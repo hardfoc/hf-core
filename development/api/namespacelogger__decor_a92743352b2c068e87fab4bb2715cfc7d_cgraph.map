@@ -1,0 +1,7 @@
+<map id="logger_decor::Banner" name="logger_decor::Banner">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,165,31"/>
+<area shape="rect" id="Node000002" href="$namespacelogger__decor.html#a242f5384a18a9eee59577d39a6bc6d21" title=" " alt="" coords="213,5,424,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,15,200,15,200,21,165,21"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="472,5,624,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="424,15,458,15,458,21,424,21"/>
+</map>

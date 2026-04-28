@@ -78,15 +78,15 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Ads7952Handler_8cpp.html",
-"as5047u__handler__comprehensive__test_8cpp.html#a1cb3b24c961b118f52be141f4f6c8e3b",
-"classCanOpenBaseCanLink.html#a38a339f8db663e7aaa7a93a065298eef",
-"classMax22200Handler.html#a07c395b7496c7da567fb6a8d58d9d992",
-"classPca9685PwmAdapter.html#aca699f9fffd3ddf238ca3e833e85b919",
-"classTmc9660Handler.html#a45d218c71e268fd627dcdd1f20e37313",
-"functions_func_r.html",
-"ntc__handler__comprehensive__test_8cpp.html#a96017c98b6b0882c0580e85c97769f80",
-"structCO__CANmodule__t.html#aad1c18f6d47621e5a611333dc57cb349",
-"ws2812__handler__comprehensive__test_8cpp.html#a1cb3b24c961b118f52be141f4f6c8e3b"
+"Ws2812Handler_8h.html",
+"classBno08xHandler.html#acf9772bf644ddfeff83371740dd6216b",
+"classLogger.html#aea05eaeaa020b687d8ec39ec6e72b0c9",
+"classPca9685PwmAdapter.html#a99fbcd37f8ec3a7147f09895b6c8d0ce",
+"classTmc9660Handler.html#a1aea362e219afe55d37c69b637d48dc2",
+"functions_func_l.html",
+"ntc__handler__comprehensive__test_8cpp.html#a5a85b9c772bbeb480b209a3e6ea92b4c",
+"structBno08xVector3.html#aea9641493afa37905bf389ce60b510ad",
+"tmc9660__handler__comprehensive__test_8cpp.html#ac488b91750859680faf2cf1783c851ea"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
