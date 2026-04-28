@@ -1,20 +1,17 @@
 <map id="Tmc9660Handler::GetDriver" name="Tmc9660Handler::GetDriver">
-<area shape="rect" id="Node000001" title="Get the active driver pointer without requiring visitor usage." alt="" coords="5,139,209,164"/>
-<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a85be9cd2e065b83c7abb36cb70fa6c67" title="Get the TMC9660 driver instance connected via SPI (nullptr if using UART)." alt="" coords="261,139,481,164"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,149,247,149,247,154,210,154"/>
-<area shape="rect" id="Node000013" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="844,164,1067,189"/>
-<area shape="poly" id="edge19_Node000001_Node000013" title=" " alt="" coords="174,161,258,173,412,181,567,184,830,180,830,185,567,189,412,187,257,178,173,167"/>
-<area shape="rect" id="Node000014" href="$classTmc9660Handler.html#ac4f303f9e7be9cb737a667dd5d85dd3a" title="Get the TMC9660 driver instance connected via UART (nullptr if using SPI)." alt="" coords="257,89,485,115"/>
-<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="175,136,288,115,289,120,176,141"/>
-<area shape="rect" id="Node000003" href="$classTmc9660Handler.html#a5a279ae9d4b5a8e0d71cb24577ad88ea" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="533,139,783,164"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="482,149,520,149,520,154,482,154"/>
-<area shape="rect" id="Node000004" href="$classTmc9660Handler.html#a7c1d8073576d678b09dac24c9eb12845" title="Ensure initialized while handler_mutex_ is already held." alt="" coords="831,75,1080,115"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="726,136,835,115,836,121,727,141"/>
-<area shape="poly" id="edge14_Node000003_Node000013" title=" " alt="" coords="721,161,831,172,830,178,720,167"/>
+<area shape="rect" id="Node000001" title="Get the active driver pointer without requiring visitor usage." alt="" coords="5,84,209,109"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a85be9cd2e065b83c7abb36cb70fa6c67" title="Get the TMC9660 driver instance connected via SPI (nullptr if using UART)." alt="" coords="261,59,481,84"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,84,247,81,248,86,210,90"/>
+<area shape="rect" id="Node000013" href="$classTmc9660Handler.html#ac4f303f9e7be9cb737a667dd5d85dd3a" title="Get the TMC9660 driver instance connected via UART (nullptr if using SPI)." alt="" coords="257,108,485,133"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="210,103,244,106,243,112,209,109"/>
+<area shape="rect" id="Node000003" href="$classTmc9660Handler.html#a5a279ae9d4b5a8e0d71cb24577ad88ea" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="533,84,783,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="482,78,520,82,520,87,481,84"/>
+<area shape="rect" id="Node000004" href="$classTmc9660Handler.html#a7c1d8073576d678b09dac24c9eb12845" title="Ensure initialized while handler_mutex_ is already held." alt="" coords="831,77,1080,117"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="783,94,817,94,817,99,783,99"/>
 <area shape="rect" id="Node000005" href="$classTmc9660Handler.html#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device." alt="" coords="1128,55,1325,80"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1080,80,1114,76,1114,82,1081,85"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1080,81,1114,77,1114,82,1081,86"/>
 <area shape="rect" id="Node000012" href="$classTmc9660Handler.html#a13db97d201a287d8aa60384e04070b9f" title="Check if the TMC9660 driver has been initialized and is ready." alt="" coords="1131,105,1323,145"/>
-<area shape="poly" id="edge13_Node000004_Node000012" title=" " alt="" coords="1081,106,1117,110,1117,115,1080,111"/>
+<area shape="poly" id="edge13_Node000004_Node000012" title=" " alt="" coords="1081,107,1117,111,1117,116,1080,112"/>
 <area shape="rect" id="Node000006" href="$classLogger.html#adce17848a5844e053bfd314863dc1404" title="Log error message." alt="" coords="1397,55,1502,80"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1326,65,1382,65,1382,70,1326,70"/>
 <area shape="rect" id="Node000010" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="1373,104,1525,129"/>
@@ -29,7 +26,5 @@
 <area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1733,65,1780,65,1780,70,1733,70"/>
 <area shape="poly" id="edge11_Node000011_Node000007" title=" " alt="" coords="1499,15,1559,15,1559,21,1499,21"/>
 <area shape="poly" id="edge12_Node000011_Node000008" title=" " alt="" coords="1499,27,1592,49,1591,54,1498,32"/>
-<area shape="poly" id="edge15_Node000013_Node000003" title=" " alt="" coords="893,167,796,157,797,151,893,161"/>
-<area shape="poly" id="edge16_Node000013_Node000013" title=" " alt="" coords="912,166,902,156,907,146,925,139,955,137,994,141,1004,146,1008,152,1004,155,1001,150,992,147,955,143,926,145,911,150,908,155,916,162"/>
-<area shape="poly" id="edge18_Node000014_Node000003" title=" " alt="" coords="446,112,571,134,570,139,445,117"/>
+<area shape="poly" id="edge15_Node000013_Node000003" title=" " alt="" coords="486,108,520,106,520,111,486,114"/>
 </map>

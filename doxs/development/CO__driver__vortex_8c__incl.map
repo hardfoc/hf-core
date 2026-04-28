@@ -1,0 +1,15 @@
+<map id="CO_driver_vortex.c" name="CO_driver_vortex.c">
+<area shape="rect" id="Node000001" title="CANopenNode hardware driver for HardFOC Vortex: TWAI via registered TX/RX hooks." alt="" coords="295,5,441,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,131,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="320,33,130,78,129,73,319,28"/>
+<area shape="rect" id="Node000003" href="$hf__co__driver__iface_8h.html" title="C linkage between CANopenNode CO_driver_vortex.c and the Vortex app (BaseCan)." alt="" coords="155,79,309,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="347,33,267,75,265,70,345,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="333,79,403,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="371,31,371,65,365,65,365,31"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="427,79,578,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="391,28,470,70,467,74,388,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="602,79,758,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="419,28,617,73,616,78,418,33"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="197,152,267,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="235,104,235,138,229,138,229,104"/>
+</map>

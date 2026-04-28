@@ -13,5 +13,7 @@ var searchData=
   ['rotation_5faccuracy_10',['rotation_accuracy',['../structBno08xCalibrationStatus.html#a377e8ca2f2ce5d05dc035906ace9be47',1,'Bno08xCalibrationStatus']]],
   ['rotation_5finterval_5fms_11',['rotation_interval_ms',['../structBno08xConfig.html#aa4a54d0b30c6b17e16d9a0e455a3cd13',1,'Bno08xConfig']]],
   ['rst_12',['rst',['../structTmc9660CtrlPins.html#ace66f983fb92571fe12361a803cad705',1,'Tmc9660CtrlPins']]],
-  ['run_5fcount_5f_13',['run_count_',['../classTestThread.html#a4ecde2fcf972d844206e09b7ae9a48fd',1,'TestThread']]]
+  ['run_5fcount_5f_13',['run_count_',['../classTestThread.html#a4ecde2fcf972d844206e09b7ae9a48fd',1,'TestThread']]],
+  ['rxarray_14',['rxArray',['../structCO__CANmodule__t.html#a747e694e15cca5a5579c2c4397a6da39',1,'CO_CANmodule_t']]],
+  ['rxsize_15',['rxSize',['../structCO__CANmodule__t.html#a88edfd32c2bff5b9f29a2bccd1ac96f3',1,'CO_CANmodule_t']]]
 ];

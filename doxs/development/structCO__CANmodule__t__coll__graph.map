@@ -1,0 +1,7 @@
+<map id="CO_CANmodule_t" name="CO_CANmodule_t">
+<area shape="rect" id="Node000001" title=" " alt="" coords="50,93,187,119"/>
+<area shape="rect" id="Node000002" href="$structCO__CANrx__t.html" title=" " alt="" coords="5,5,107,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,40,112,91,108,94,70,43"/>
+<area shape="rect" id="Node000003" href="$structCO__CANtx__t.html" title=" " alt="" coords="131,5,232,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="171,44,153,71,133,94,128,91,149,68,166,41"/>
+</map>
