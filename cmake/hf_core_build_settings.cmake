@@ -427,7 +427,7 @@ if(HF_CORE_ENABLE_CANOPENNODE)
     set(_hf_co_root "${HF_CORE_CANOPENNODE_ROOT}")
     set(_hf_co_ex "${_hf_co_root}/example")
     set(HF_CORE_CANOPENNODE_SOURCES
-        "${_hf_co_ex}/CO_driver_blank.c"
+        "${HF_CORE_HANDLER_ROOT}/common/canopen/CO_driver_vortex.c"
         "${_hf_co_ex}/CO_storageBlank.c"
         "${_hf_co_root}/301/CO_ODinterface.c"
         "${_hf_co_root}/301/CO_NMT_Heartbeat.c"
@@ -690,6 +690,7 @@ endif()
 
 if(HF_CORE_ENABLE_CANOPENNODE)
     list(APPEND HF_CORE_INCLUDE_DIRS
+        "${HF_CORE_HANDLER_ROOT}/common/canopen"
         "${HF_CORE_CANOPENNODE_ROOT}"
         "${HF_CORE_CANOPENNODE_ROOT}/example")
 endif()
