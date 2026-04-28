@@ -41,6 +41,7 @@ var hierarchy =
     [ "Bno08xImuData", "structBno08xImuData.html", null ],
     [ "Bno08xQuaternion", "structBno08xQuaternion.html", null ],
     [ "Bno08xVector3", "structBno08xVector3.html", null ],
+    [ "CanOpenBaseCanLink", "classCanOpenBaseCanLink.html", null ],
     [ "bno08x::CommInterface", null, [
       [ "HalI2cBno08xComm", "classHalI2cBno08xComm.html", null ],
       [ "HalSpiBno08xComm", "classHalSpiBno08xComm.html", null ]
@@ -53,6 +54,7 @@ var hierarchy =
     [ "Fdo2Handler", "classFdo2Handler.html", null ],
     [ "Fdo2HandlerConfig", "structFdo2HandlerConfig.html", null ],
     [ "HandlerTaskArgs", "structHandlerTaskArgs.html", null ],
+    [ "HfUtilsCanOpenTransport", "classHfUtilsCanOpenTransport.html", null ],
     [ "pca9685::I2cInterface", null, [
       [ "HalI2cPca9685Comm", "classHalI2cPca9685Comm.html", null ]
     ] ],
