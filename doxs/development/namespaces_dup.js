@@ -21,5 +21,11 @@ var namespaces_dup =
       [ "DelayMs", "namespacehandler__utils.html#afc7fd91265677d0865cbc2a413754ed8", null ],
       [ "DelayUs", "namespacehandler__utils.html#ac2999c5753a6d86504463b742c23dcfe", null ],
       [ "RouteLogToLogger", "namespacehandler__utils.html#a71864e1d5801bea0d6d830326b6b183a", null ]
+    ] ],
+    [ "logger_decor", "namespacelogger__decor.html", [
+      [ "Banner", "namespacelogger__decor.html#a92743352b2c068e87fab4bb2715cfc7d", null ],
+      [ "BannerColored", "namespacelogger__decor.html#a242f5384a18a9eee59577d39a6bc6d21", null ],
+      [ "Rule", "namespacelogger__decor.html#ac5bed90d6e56255709791c8796eb02bf", null ],
+      [ "Section", "namespacelogger__decor.html#ad336dcc7bd41082a5176af0e1c631f8f", null ]
     ] ]
 ];
