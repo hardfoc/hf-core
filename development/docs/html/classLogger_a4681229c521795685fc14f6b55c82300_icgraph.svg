@@ -441,300 +441,300 @@
 </a>
 </g>
 </g>
-<!-- Node128 -->
-<g id="Node000128" class="node">
-<title>Node128</title>
-<g id="a_Node000128"><a xlink:href="classMax22200Handler.html#aca940fd8213ecb633bafb7c3e143a361" target="_top" xlink:title="Initialize with board configuration.">
+<!-- Node89 -->
+<g id="Node000089" class="node">
+<title>Node89</title>
+<g id="a_Node000089"><a xlink:href="classMax22200Handler.html#aca940fd8213ecb633bafb7c3e143a361" target="_top" xlink:title="Initialize with board configuration.">
 <polygon fill="white" stroke="#666666" points="632.5,-677 478.5,-677 478.5,-658 632.5,-658 632.5,-677"/>
 <text text-anchor="middle" x="555.5" y="-665" font-family="Helvetica,sans-Serif" font-size="10.00">Max22200Handler::Initialize</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node128 -->
-<g id="edge35_Node000001_Node000128" class="edge">
-<title>Node1&#45;&gt;Node128</title>
-<g id="a_edge35_Node000001_Node000128"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node89 -->
+<g id="edge35_Node000001_Node000089" class="edge">
+<title>Node1&#45;&gt;Node89</title>
+<g id="a_edge35_Node000001_Node000089"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M722.56,-819.48C715.76,-786.29 697.3,-720.22 654,-686.5 647.61,-681.52 640.27,-677.73 632.56,-674.86"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="719.21,-820.56 724.51,-829.73 726.08,-819.26 719.21,-820.56"/>
 </a>
 </g>
 </g>
-<!-- Node129 -->
-<g id="Node000129" class="node">
-<title>Node129</title>
-<g id="a_Node000129"><a xlink:href="classTle92466edHandler.html#a2f01dd08b168f009db41d658db3484eb" target="_top" xlink:title="Initialize with global configuration.">
+<!-- Node90 -->
+<g id="Node000090" class="node">
+<title>Node90</title>
+<g id="a_Node000090"><a xlink:href="classTle92466edHandler.html#a2f01dd08b168f009db41d658db3484eb" target="_top" xlink:title="Initialize with global configuration.">
 <polygon fill="white" stroke="#666666" points="614.5,-639.5 496.5,-639.5 496.5,-609.5 614.5,-609.5 614.5,-639.5"/>
 <text text-anchor="start" x="504.5" y="-627.5" font-family="Helvetica,sans-Serif" font-size="10.00">Tle92466edHandler::</text>
 <text text-anchor="middle" x="555.5" y="-616.5" font-family="Helvetica,sans-Serif" font-size="10.00">Initialize</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node129 -->
-<g id="edge36_Node000001_Node000129" class="edge">
-<title>Node1&#45;&gt;Node129</title>
-<g id="a_edge36_Node000001_Node000129"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node90 -->
+<g id="edge36_Node000001_Node000090" class="edge">
+<title>Node1&#45;&gt;Node90</title>
+<g id="a_edge36_Node000001_Node000090"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M724.35,-819.46C720.04,-780.66 704.99,-695.11 654,-649.5 643.06,-639.71 628.8,-633.66 614.58,-629.94"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="720.91,-820.29 725.37,-829.9 727.88,-819.61 720.91,-820.29"/>
 </a>
 </g>
 </g>
-<!-- Node130 -->
-<g id="Node000130" class="node">
-<title>Node130</title>
-<g id="a_Node000130"><a xlink:href="classTmc5160Handler.html#a44ab36857e4e43062f81f7d6f10eab09" target="_top" xlink:title="Initialize the TMC5160 driver with full configuration.">
+<!-- Node91 -->
+<g id="Node000091" class="node">
+<title>Node91</title>
+<g id="a_Node000091"><a xlink:href="classTmc5160Handler.html#a44ab36857e4e43062f81f7d6f10eab09" target="_top" xlink:title="Initialize the TMC5160 driver with full configuration.">
 <polygon fill="white" stroke="#666666" points="629.5,-179 481.5,-179 481.5,-160 629.5,-160 629.5,-179"/>
 <text text-anchor="middle" x="555.5" y="-167" font-family="Helvetica,sans-Serif" font-size="10.00">Tmc5160Handler::Initialize</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node130 -->
-<g id="edge37_Node000001_Node000130" class="edge">
-<title>Node1&#45;&gt;Node130</title>
-<g id="a_edge37_Node000001_Node000130"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node91 -->
+<g id="edge37_Node000001_Node000091" class="edge">
+<title>Node1&#45;&gt;Node91</title>
+<g id="a_edge37_Node000001_Node000091"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M725.18,-819.49C720.71,-715.12 697.9,-236.17 654,-188.5 647.34,-181.27 638.81,-176.32 629.58,-172.99"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="721.69,-819.76 725.6,-829.6 728.68,-819.47 721.69,-819.76"/>
 </a>
 </g>
 </g>
-<!-- Node141 -->
-<g id="Node000141" class="node">
-<title>Node141</title>
-<g id="a_Node000141"><a xlink:href="classMax22200Handler.html#a980ab91fe8af480657541343c4f1eb90" target="_top" xlink:title="Construct MAX22200 handler.">
+<!-- Node102 -->
+<g id="Node000102" class="node">
+<title>Node102</title>
+<g id="a_Node000102"><a xlink:href="classMax22200Handler.html#a980ab91fe8af480657541343c4f1eb90" target="_top" xlink:title="Construct MAX22200 handler.">
 <polygon fill="white" stroke="#666666" points="637,-553.5 474,-553.5 474,-523.5 637,-523.5 637,-553.5"/>
 <text text-anchor="start" x="482" y="-541.5" font-family="Helvetica,sans-Serif" font-size="10.00">Max22200Handler::Max22200</text>
 <text text-anchor="middle" x="555.5" y="-530.5" font-family="Helvetica,sans-Serif" font-size="10.00">Handler</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node141 -->
-<g id="edge39_Node000001_Node000141" class="edge">
-<title>Node1&#45;&gt;Node141</title>
-<g id="a_edge39_Node000001_Node000141"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node102 -->
+<g id="edge39_Node000001_Node000102" class="edge">
+<title>Node1&#45;&gt;Node102</title>
+<g id="a_edge39_Node000001_Node000102"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M723.43,-819.55C715.7,-762.46 690.85,-600.2 654,-563.5 649.05,-558.57 643.26,-554.57 637.02,-551.33"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="720.01,-820.32 724.79,-829.77 726.94,-819.4 720.01,-820.32"/>
 </a>
 </g>
 </g>
-<!-- Node142 -->
-<g id="Node000142" class="node">
-<title>Node142</title>
-<g id="a_Node000142"><a xlink:href="classNtcTemperatureHandler.html#afbd49ab0a549ce22cada91fcd498b6d7" target="_top" xlink:title=" ">
+<!-- Node103 -->
+<g id="Node000103" class="node">
+<title>Node103</title>
+<g id="a_Node000103"><a xlink:href="classNtcTemperatureHandler.html#afbd49ab0a549ce22cada91fcd498b6d7" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="622,-505.5 489,-505.5 489,-475.5 622,-475.5 622,-505.5"/>
 <text text-anchor="start" x="497" y="-493.5" font-family="Helvetica,sans-Serif" font-size="10.00">NtcTemperatureHandler</text>
 <text text-anchor="middle" x="555.5" y="-482.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ResetCalibration</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node142 -->
-<g id="edge40_Node000001_Node000142" class="edge">
-<title>Node1&#45;&gt;Node142</title>
-<g id="a_edge40_Node000001_Node000142"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node103 -->
+<g id="edge40_Node000001_Node000103" class="edge">
+<title>Node1&#45;&gt;Node103</title>
+<g id="a_edge40_Node000001_Node000103"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M724.29,-819.43C718.43,-755.57 697.15,-558.67 654,-514.5 645.35,-505.65 634,-499.86 622.11,-496.12"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="720.83,-820.09 725.2,-829.74 727.8,-819.47 720.83,-820.09"/>
 </a>
 </g>
 </g>
-<!-- Node143 -->
-<g id="Node000143" class="node">
-<title>Node143</title>
-<g id="a_Node000143"><a xlink:href="classNtcTemperatureHandler.html#adb609ac3f90e26a005a28c0d0056f638" target="_top" xlink:title=" ">
+<!-- Node104 -->
+<g id="Node000104" class="node">
+<title>Node104</title>
+<g id="a_Node000104"><a xlink:href="classNtcTemperatureHandler.html#adb609ac3f90e26a005a28c0d0056f638" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="622,-457.5 489,-457.5 489,-427.5 622,-427.5 622,-457.5"/>
 <text text-anchor="start" x="497" y="-445.5" font-family="Helvetica,sans-Serif" font-size="10.00">NtcTemperatureHandler</text>
 <text text-anchor="middle" x="555.5" y="-434.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ResetDiagnostics</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node143 -->
-<g id="edge41_Node000001_Node000143" class="edge">
-<title>Node1&#45;&gt;Node143</title>
-<g id="a_edge41_Node000001_Node000143"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node104 -->
+<g id="edge41_Node000001_Node000104" class="edge">
+<title>Node1&#45;&gt;Node104</title>
+<g id="a_edge41_Node000001_Node000104"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M724.92,-819.71C720.74,-750.15 703.28,-518.35 654,-466.5 645.41,-457.47 634.02,-451.61 622.05,-447.85"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="721.43,-819.97 725.5,-829.75 728.42,-819.57 721.43,-819.97"/>
 </a>
 </g>
 </g>
-<!-- Node144 -->
-<g id="Node000144" class="node">
-<title>Node144</title>
-<g id="a_Node000144"><a xlink:href="classNtcTemperatureHandler.html#a20cfb11a0f83dda45e22ee4815b2c6d7" target="_top" xlink:title=" ">
+<!-- Node105 -->
+<g id="Node000105" class="node">
+<title>Node105</title>
+<g id="a_Node000105"><a xlink:href="classNtcTemperatureHandler.html#a20cfb11a0f83dda45e22ee4815b2c6d7" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="622,-409.5 489,-409.5 489,-379.5 622,-379.5 622,-409.5"/>
 <text text-anchor="start" x="497" y="-397.5" font-family="Helvetica,sans-Serif" font-size="10.00">NtcTemperatureHandler</text>
 <text text-anchor="middle" x="555.5" y="-386.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ResetStatistics</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node144 -->
-<g id="edge42_Node000001_Node000144" class="edge">
-<title>Node1&#45;&gt;Node144</title>
-<g id="a_edge42_Node000001_Node000144"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node105 -->
+<g id="edge42_Node000001_Node000105" class="edge">
+<title>Node1&#45;&gt;Node105</title>
+<g id="a_edge42_Node000001_Node000105"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M725.4,-819.64C722.71,-744.38 709.37,-478.01 654,-418.5 645.51,-409.38 634.16,-403.48 622.2,-399.71"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="721.9,-819.79 725.73,-829.66 728.9,-819.55 721.9,-819.79"/>
 </a>
 </g>
 </g>
-<!-- Node145 -->
-<g id="Node000145" class="node">
-<title>Node145</title>
-<g id="a_Node000145"><a xlink:href="classNtcTemperatureHandler.html#adb887f49bc1fc44e23482aef76a707b7" target="_top" xlink:title=" ">
+<!-- Node106 -->
+<g id="Node000106" class="node">
+<title>Node106</title>
+<g id="a_Node000106"><a xlink:href="classNtcTemperatureHandler.html#adb887f49bc1fc44e23482aef76a707b7" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="622,-361.5 489,-361.5 489,-331.5 622,-331.5 622,-361.5"/>
 <text text-anchor="start" x="497" y="-349.5" font-family="Helvetica,sans-Serif" font-size="10.00">NtcTemperatureHandler</text>
 <text text-anchor="middle" x="555.5" y="-338.5" font-family="Helvetica,sans-Serif" font-size="10.00">::SelfTest</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node145 -->
-<g id="edge43_Node000001_Node000145" class="edge">
-<title>Node1&#45;&gt;Node145</title>
-<g id="a_edge43_Node000001_Node000145"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node106 -->
+<g id="edge43_Node000001_Node000106" class="edge">
+<title>Node1&#45;&gt;Node106</title>
+<g id="a_edge43_Node000001_Node000106"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M725.78,-819.5C724.47,-738.73 715.47,-437.7 654,-370.5 645.53,-361.24 634.11,-355.29 622.07,-351.52"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="722.28,-819.82 725.92,-829.77 729.28,-819.72 722.28,-819.82"/>
 </a>
 </g>
 </g>
-<!-- Node146 -->
-<g id="Node000146" class="node">
-<title>Node146</title>
-<g id="a_Node000146"><a xlink:href="classNtcTemperatureHandler.html#af69b8450dddaf1ffeece5c586f318875" target="_top" xlink:title=" ">
+<!-- Node107 -->
+<g id="Node000107" class="node">
+<title>Node107</title>
+<g id="a_Node000107"><a xlink:href="classNtcTemperatureHandler.html#af69b8450dddaf1ffeece5c586f318875" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="622,-313.5 489,-313.5 489,-283.5 622,-283.5 622,-313.5"/>
 <text text-anchor="start" x="497" y="-301.5" font-family="Helvetica,sans-Serif" font-size="10.00">NtcTemperatureHandler</text>
 <text text-anchor="middle" x="555.5" y="-290.5" font-family="Helvetica,sans-Serif" font-size="10.00">::SetCalibrationOffset</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node146 -->
-<g id="edge44_Node000001_Node000146" class="edge">
-<title>Node1&#45;&gt;Node146</title>
-<g id="a_edge44_Node000001_Node000146"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node107 -->
+<g id="edge44_Node000001_Node000107" class="edge">
+<title>Node1&#45;&gt;Node107</title>
+<g id="a_edge44_Node000001_Node000107"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M726.09,-819.41C726.07,-733.42 721.6,-397.45 654,-322.5 645.59,-313.18 634.2,-307.2 622.17,-303.43"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="722.59,-819.62 726.07,-829.63 729.59,-819.64 722.59,-819.62"/>
 </a>
 </g>
 </g>
-<!-- Node147 -->
-<g id="Node000147" class="node">
-<title>Node147</title>
-<g id="a_Node000147"><a xlink:href="classNtcTemperatureHandler.html#a275ae5ee2756034dcaa99f3877d8e1f0" target="_top" xlink:title=" ">
+<!-- Node108 -->
+<g id="Node000108" class="node">
+<title>Node108</title>
+<g id="a_Node000108"><a xlink:href="classNtcTemperatureHandler.html#a275ae5ee2756034dcaa99f3877d8e1f0" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="622,-1127.5 489,-1127.5 489,-1097.5 622,-1097.5 622,-1127.5"/>
 <text text-anchor="start" x="497" y="-1115.5" font-family="Helvetica,sans-Serif" font-size="10.00">NtcTemperatureHandler</text>
 <text text-anchor="middle" x="555.5" y="-1104.5" font-family="Helvetica,sans-Serif" font-size="10.00">::SetThresholds</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node147 -->
-<g id="edge45_Node000001_Node000147" class="edge">
-<title>Node1&#45;&gt;Node147</title>
-<g id="a_edge45_Node000001_Node000147"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node108 -->
+<g id="edge45_Node000001_Node000108" class="edge">
+<title>Node1&#45;&gt;Node108</title>
+<g id="a_edge45_Node000001_Node000108"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M726.49,-859.11C726.54,-905.98 719.81,-1025.28 654,-1088.5 645.2,-1096.95 633.92,-1102.58 622.18,-1106.29"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="729.99,-859.03 726.37,-849.07 722.99,-859.11 729.99,-859.03"/>
 </a>
 </g>
 </g>
-<!-- Node148 -->
-<g id="Node000148" class="node">
-<title>Node148</title>
-<g id="a_Node000148"><a xlink:href="classNtcTemperatureHandler.html#aeabac754a1b923c79969657d69b97a72" target="_top" xlink:title=" ">
+<!-- Node109 -->
+<g id="Node000109" class="node">
+<title>Node109</title>
+<g id="a_Node000109"><a xlink:href="classNtcTemperatureHandler.html#aeabac754a1b923c79969657d69b97a72" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="632,-227.5 479,-227.5 479,-197.5 632,-197.5 632,-227.5"/>
 <text text-anchor="start" x="487" y="-215.5" font-family="Helvetica,sans-Serif" font-size="10.00">NtcTemperatureHandler</text>
 <text text-anchor="middle" x="555.5" y="-204.5" font-family="Helvetica,sans-Serif" font-size="10.00">::StartContinuousMonitoring</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node148 -->
-<g id="edge47_Node000001_Node000148" class="edge">
-<title>Node1&#45;&gt;Node148</title>
-<g id="a_edge47_Node000001_Node000148"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node109 -->
+<g id="edge47_Node000001_Node000109" class="edge">
+<title>Node1&#45;&gt;Node109</title>
+<g id="a_edge47_Node000001_Node000109"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M726.42,-819.72C727.98,-726.48 729.98,-331.56 654,-241.5 648.08,-234.48 640.54,-229.12 632.29,-225.02"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="722.91,-819.92 726.23,-829.98 729.91,-820.05 722.91,-819.92"/>
 </a>
 </g>
 </g>
-<!-- Node149 -->
-<g id="Node000149" class="node">
-<title>Node149</title>
-<g id="a_Node000149"><a xlink:href="classNtcTemperatureHandler.html#a7cd3aa59989bec0514d6717d345d8466" target="_top" xlink:title=" ">
+<!-- Node110 -->
+<g id="Node000110" class="node">
+<title>Node110</title>
+<g id="a_Node000110"><a xlink:href="classNtcTemperatureHandler.html#a7cd3aa59989bec0514d6717d345d8466" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="631.5,-725.5 479.5,-725.5 479.5,-695.5 631.5,-695.5 631.5,-725.5"/>
 <text text-anchor="start" x="487.5" y="-713.5" font-family="Helvetica,sans-Serif" font-size="10.00">NtcTemperatureHandler</text>
 <text text-anchor="middle" x="555.5" y="-702.5" font-family="Helvetica,sans-Serif" font-size="10.00">::StopContinuousMonitoring</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node149 -->
-<g id="edge48_Node000001_Node000149" class="edge">
-<title>Node1&#45;&gt;Node149</title>
-<g id="a_edge48_Node000001_Node000149"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node110 -->
+<g id="edge48_Node000001_Node000110" class="edge">
+<title>Node1&#45;&gt;Node110</title>
+<g id="a_edge48_Node000001_Node000110"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M718.18,-820.55C707.36,-796.73 685.5,-756.31 654,-734.5 647.26,-729.84 639.71,-726.08 631.88,-723.04"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="715.06,-822.15 722.26,-829.93 721.48,-819.36 715.06,-822.15"/>
 </a>
 </g>
 </g>
-<!-- Node151 -->
-<g id="Node000151" class="node">
-<title>Node151</title>
-<g id="a_Node000151"><a xlink:href="classTle92466edHandler.html#aa06da4aafab991668a54478a602c029c" target="_top" xlink:title="Construct TLE92466ED handler.">
+<!-- Node112 -->
+<g id="Node000112" class="node">
+<title>Node112</title>
+<g id="a_Node000112"><a xlink:href="classTle92466edHandler.html#aa06da4aafab991668a54478a602c029c" target="_top" xlink:title="Construct TLE92466ED handler.">
 <polygon fill="white" stroke="#666666" points="614.5,-141.5 496.5,-141.5 496.5,-111.5 614.5,-111.5 614.5,-141.5"/>
 <text text-anchor="start" x="504.5" y="-129.5" font-family="Helvetica,sans-Serif" font-size="10.00">Tle92466edHandler::</text>
 <text text-anchor="middle" x="555.5" y="-118.5" font-family="Helvetica,sans-Serif" font-size="10.00">Tle92466edHandler</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node151 -->
-<g id="edge50_Node000001_Node000151" class="edge">
-<title>Node1&#45;&gt;Node151</title>
-<g id="a_edge50_Node000001_Node000151"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node112 -->
+<g id="edge50_Node000001_Node000112" class="edge">
+<title>Node1&#45;&gt;Node112</title>
+<g id="a_edge50_Node000001_Node000112"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M725.27,-819.73C721.14,-712.37 699.22,-202.39 654,-150.5 643.98,-139 629.42,-132.56 614.59,-129.06"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="721.78,-819.96 725.65,-829.82 728.77,-819.69 721.78,-819.96"/>
 </a>
 </g>
 </g>
-<!-- Node152 -->
-<g id="Node000152" class="node">
-<title>Node152</title>
-<g id="a_Node000152"><a xlink:href="classTmc5160Handler.html#a3734595897a34600986242dbbefd9ed3" target="_top" xlink:title="Construct a TMC5160 handler with SPI communication.">
+<!-- Node113 -->
+<g id="Node000113" class="node">
+<title>Node113</title>
+<g id="a_Node000113"><a xlink:href="classTmc5160Handler.html#a3734595897a34600986242dbbefd9ed3" target="_top" xlink:title="Construct a TMC5160 handler with SPI communication.">
 <polygon fill="white" stroke="#666666" points="650,-93 461,-93 461,-74 650,-74 650,-93"/>
 <text text-anchor="middle" x="555.5" y="-81" font-family="Helvetica,sans-Serif" font-size="10.00">Tmc5160Handler::Tmc5160Handler</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node152 -->
-<g id="edge51_Node000001_Node000152" class="edge">
-<title>Node1&#45;&gt;Node152</title>
-<g id="a_edge51_Node000001_Node000152"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node113 -->
+<g id="edge51_Node000001_Node000113" class="edge">
+<title>Node1&#45;&gt;Node113</title>
+<g id="a_edge51_Node000001_Node000113"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M725.46,-819.73C722.2,-707.86 703.7,-157.16 654,-102.5 650.64,-98.8 646.78,-95.69 642.59,-93.1"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="721.96,-820.02 725.75,-829.92 728.96,-819.83 721.96,-820.02"/>
 </a>
 </g>
 </g>
-<!-- Node153 -->
-<g id="Node000153" class="node">
-<title>Node153</title>
-<g id="a_Node000153"><a xlink:href="classTmc5160Handler.html#a2601e350781600541622f65460a24691" target="_top" xlink:title="Construct a TMC5160 handler with UART communication.">
+<!-- Node114 -->
+<g id="Node000114" class="node">
+<title>Node114</title>
+<g id="a_Node000114"><a xlink:href="classTmc5160Handler.html#a2601e350781600541622f65460a24691" target="_top" xlink:title="Construct a TMC5160 handler with UART communication.">
 <polygon fill="white" stroke="#666666" points="650,-56 461,-56 461,-37 650,-37 650,-56"/>
 <text text-anchor="middle" x="555.5" y="-44" font-family="Helvetica,sans-Serif" font-size="10.00">Tmc5160Handler::Tmc5160Handler</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node153 -->
-<g id="edge52_Node000001_Node000153" class="edge">
-<title>Node1&#45;&gt;Node153</title>
-<g id="a_edge52_Node000001_Node000153"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node114 -->
+<g id="edge52_Node000001_Node000114" class="edge">
+<title>Node1&#45;&gt;Node114</title>
+<g id="a_edge52_Node000001_Node000114"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M725.57,-819.8C722.85,-704.66 706.55,-122 654,-64.5 651.1,-61.32 647.83,-58.6 644.3,-56.26"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="722.07,-820.05 725.8,-829.96 729.07,-819.89 722.07,-820.05"/>
 </a>
 </g>
 </g>
-<!-- Node154 -->
-<g id="Node000154" class="node">
-<title>Node154</title>
-<g id="a_Node000154"><a xlink:href="classWs2812Handler.html#adffc9bfd3774c28bdd2d9fe72f2e40ad" target="_top" xlink:title="Construct WS2812 handler with configuration.">
+<!-- Node115 -->
+<g id="Node000115" class="node">
+<title>Node115</title>
+<g id="a_Node000115"><a xlink:href="classWs2812Handler.html#adffc9bfd3774c28bdd2d9fe72f2e40ad" target="_top" xlink:title="Construct WS2812 handler with configuration.">
 <polygon fill="white" stroke="#666666" points="644,-19 467,-19 467,0 644,0 644,-19"/>
 <text text-anchor="middle" x="555.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">Ws2812Handler::Ws2812Handler</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node154 -->
-<g id="edge53_Node000001_Node000154" class="edge">
-<title>Node1&#45;&gt;Node154</title>
-<g id="a_edge53_Node000001_Node000154"><a xlink:title=" ">
+<!-- Node1&#45;&gt;Node115 -->
+<g id="edge53_Node000001_Node000115" class="edge">
+<title>Node1&#45;&gt;Node115</title>
+<g id="a_edge53_Node000001_Node000115"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M725.65,-819.6C723.38,-700.75 709.02,-87.96 654,-27.5 651.1,-24.32 647.84,-21.58 644.32,-19.24"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="722.15,-819.85 725.84,-829.79 729.15,-819.72 722.15,-819.85"/>
 </a>
@@ -928,38 +928,38 @@
 </a>
 </g>
 </g>
-<!-- Node131 -->
-<g id="Node000131" class="node">
-<title>Node131</title>
-<g id="a_Node000131"><a xlink:href="classTmc5160Handler.html#a6d4fce2433e03bb11b05a4278ef66fd0" target="_top" xlink:title=" ">
+<!-- Node92 -->
+<g id="Node000092" class="node">
+<title>Node92</title>
+<g id="a_Node000092"><a xlink:href="classTmc5160Handler.html#a6d4fce2433e03bb11b05a4278ef66fd0" target="_top" xlink:title=" ">
 <polygon fill="#fff0f0" stroke="red" points="418,-184.5 231,-184.5 231,-154.5 418,-154.5 418,-184.5"/>
 <text text-anchor="start" x="239" y="-172.5" font-family="Helvetica,sans-Serif" font-size="10.00">Tmc5160Handler::EnsureInitialized</text>
 <text text-anchor="middle" x="324.5" y="-161.5" font-family="Helvetica,sans-Serif" font-size="10.00">Locked</text>
 </a>
 </g>
 </g>
-<!-- Node130&#45;&gt;Node131 -->
-<g id="edge38_Node000130_Node000131" class="edge">
-<title>Node130&#45;&gt;Node131</title>
-<g id="a_edge38_Node000130_Node000131"><a xlink:title=" ">
+<!-- Node91&#45;&gt;Node92 -->
+<g id="edge38_Node000091_Node000092" class="edge">
+<title>Node91&#45;&gt;Node92</title>
+<g id="a_edge38_Node000091_Node000092"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M471.35,-169.5C454.02,-169.5 435.66,-169.5 418.02,-169.5"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="471.41,-173 481.41,-169.5 471.41,-166 471.41,-173"/>
 </a>
 </g>
 </g>
-<!-- Node147&#45;&gt;Node20 -->
-<g id="edge46_Node000147_Node000020" class="edge">
-<title>Node147&#45;&gt;Node20</title>
-<g id="a_edge46_Node000147_Node000020"><a xlink:title=" ">
+<!-- Node108&#45;&gt;Node20 -->
+<g id="edge46_Node000108_Node000020" class="edge">
+<title>Node108&#45;&gt;Node20</title>
+<g id="a_edge46_Node000108_Node000020"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M478.63,-1112.5C450.32,-1112.5 418.44,-1112.5 391.13,-1112.5"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="478.88,-1116 488.88,-1112.5 478.88,-1109 478.88,-1116"/>
 </a>
 </g>
 </g>
-<!-- Node149&#45;&gt;Node12 -->
-<g id="edge49_Node000149_Node000012" class="edge">
-<title>Node149&#45;&gt;Node12</title>
-<g id="a_edge49_Node000149_Node000012"><a xlink:title=" ">
+<!-- Node110&#45;&gt;Node12 -->
+<g id="edge49_Node000110_Node000012" class="edge">
+<title>Node110&#45;&gt;Node12</title>
+<g id="a_edge49_Node000110_Node000012"><a xlink:title=" ">
 <path fill="none" stroke="#63b8ff" d="M469.07,-724.68C443.32,-728.95 415.48,-733.57 391.22,-737.59"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="469.91,-728.09 479.2,-723 468.76,-721.18 469.91,-728.09"/>
 </a>

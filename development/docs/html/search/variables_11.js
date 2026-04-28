@@ -28,5 +28,7 @@ var searchData=
   ['total_5freads_25',['total_reads',['../structAds7952Diagnostics.html#ae63b7d77f408be06c65dd7e2d7207bef',1,'Ads7952Diagnostics']]],
   ['total_5freads_5f_26',['total_reads_',['../classAds7952Handler.html#a22605a5709c4b52434d13325edc726de',1,'Ads7952Handler']]],
   ['total_5ftests_27',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
-  ['transport_5f_28',['transport_',['../classCanOpenBaseCanLink.html#af2aea9c52f9c8ac9fb65b184aacb2fa4',1,'CanOpenBaseCanLink']]]
+  ['transport_5f_28',['transport_',['../classCanOpenBaseCanLink.html#af2aea9c52f9c8ac9fb65b184aacb2fa4',1,'CanOpenBaseCanLink']]],
+  ['txarray_29',['txArray',['../structCO__CANmodule__t.html#af623f2a045716af77e906b28deee3d3c',1,'CO_CANmodule_t']]],
+  ['txsize_30',['txSize',['../structCO__CANmodule__t.html#a6a53d3d12efbe30d1ee08e821d1b4139',1,'CO_CANmodule_t']]]
 ];

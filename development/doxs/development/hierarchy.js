@@ -42,6 +42,11 @@ var hierarchy =
     [ "Bno08xQuaternion", "structBno08xQuaternion.html", null ],
     [ "Bno08xVector3", "structBno08xVector3.html", null ],
     [ "CanOpenBaseCanLink", "classCanOpenBaseCanLink.html", null ],
+    [ "CO_CANmodule_t", "structCO__CANmodule__t.html", null ],
+    [ "CO_CANrx_t", "structCO__CANrx__t.html", null ],
+    [ "CO_CANrxMsg_t", "structCO__CANrxMsg__t.html", null ],
+    [ "CO_CANtx_t", "structCO__CANtx__t.html", null ],
+    [ "CO_storage_entry_t", "structCO__storage__entry__t.html", null ],
     [ "bno08x::CommInterface", null, [
       [ "HalI2cBno08xComm", "classHalI2cBno08xComm.html", null ],
       [ "HalSpiBno08xComm", "classHalSpiBno08xComm.html", null ]

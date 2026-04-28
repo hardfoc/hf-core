@@ -1,111 +1,33 @@
 <map id="Tmc9660Handler::EnsureInitialized" name="Tmc9660Handler::EnsureInitialized">
-<area shape="rect" id="Node000001" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="803,131,1052,156"/>
-<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a7fe382c4dbf6bf84ed31586e52ec2e6e" title="Get a reference to the ADC wrapper." alt="" coords="269,104,433,129"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="789,140,433,123,433,118,789,134"/>
-<area shape="rect" id="Node000008" href="$classTmc9660Handler.html#a85be9cd2e065b83c7abb36cb70fa6c67" title="Get the TMC9660 driver instance connected via SPI (nullptr if using UART)." alt="" coords="531,55,751,80"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="865,130,689,83,690,78,866,125"/>
-<area shape="rect" id="Node000011" href="$classTmc9660Handler.html#ac4f303f9e7be9cb737a667dd5d85dd3a" title="Get the TMC9660 driver instance connected via UART (nullptr if using SPI)." alt="" coords="527,5,755,31"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="896,125,833,84,754,44,717,33,719,28,756,40,835,79,899,120"/>
-<area shape="rect" id="Node000012" href="$classTmc9660Handler.html#acf7d1583239c9f767f82b42fc03b56cf" title="Get a reference to the GPIO wrapper for a TMC9660 internal GPIO pin." alt="" coords="266,153,435,179"/>
-<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="789,151,436,165,435,160,789,146"/>
-<area shape="rect" id="Node000013" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="529,1107,752,1132"/>
-<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="922,170,649,1107,644,1106,917,168"/>
-<area shape="rect" id="Node000003" href="$classTmc9660AdcWrapper.html#a9d61893186aaa1d768cf61038ab285cb" title=" " alt="" coords="5,33,175,73"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="266,104,222,94,154,75,156,70,223,89,267,99"/>
-<area shape="rect" id="Node000004" href="$classTmc9660AdcWrapper.html#a7f754c5432b29313fb09f3cc353a4e6f" title=" " alt="" coords="5,97,175,137"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="255,119,175,119,175,114,255,114"/>
-<area shape="rect" id="Node000005" href="$classTmc9660AdcWrapper.html#aebe0e2cd94c5db2d70ef05c5cffd1913" title=" " alt="" coords="5,161,175,201"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="263,135,223,143,153,163,152,158,222,138,261,129"/>
-<area shape="rect" id="Node000006" href="$classTmc9660AdcWrapper.html#a3a7e9bf27e3cf27497ecbed63209fbdf" title=" " alt="" coords="5,615,175,655"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="257,124,239,132,224,143,206,164,194,185,188,205,186,226,185,274,177,331,100,616,94,614,172,329,180,273,181,226,183,204,189,183,201,161,221,139,237,127,255,119"/>
-<area shape="rect" id="Node000007" href="$classTmc9660AdcWrapper.html#abccc374da45807cc0d2cf7ddedfd88bc" title=" " alt="" coords="5,278,175,318"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="257,128,224,143,207,158,198,175,190,193,177,214,115,280,111,276,173,211,186,191,193,172,203,155,221,138,254,123"/>
-<area shape="rect" id="Node000009" href="$classTmc9660Handler.html#ae1d6f6676180aff28d02dcb954917b79" title="Const overload of GetDriver()." alt="" coords="249,5,453,31"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="552,55,426,33,427,28,552,50"/>
-<area shape="rect" id="Node000010" href="$classTmc9660Handler.html#ac29a3cfd55b2186f357c8b2f56d16bce" title="Get the active driver pointer without requiring visitor usage." alt="" coords="249,55,453,80"/>
-<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="516,70,453,70,453,65,516,65"/>
-<area shape="poly" id="edge11_Node000011_Node000009" title=" " alt="" coords="513,21,453,21,453,15,513,15"/>
-<area shape="poly" id="edge12_Node000011_Node000010" title=" " alt="" coords="552,36,427,57,426,52,552,30"/>
-<area shape="poly" id="edge19_Node000013_Node000001" title=" " alt="" coords="646,1093,919,155,924,157,651,1094"/>
-<area shape="poly" id="edge15_Node000013_Node000002" title=" " alt="" coords="636,1093,629,904,621,766,607,616,586,467,559,329,542,269,522,217,501,174,477,143,456,128,432,120,434,115,459,123,481,139,505,172,527,215,547,268,564,328,592,466,612,616,626,766,635,903,642,1093"/>
-<area shape="poly" id="edge26_Node000013_Node000009" title=" " alt="" coords="637,1093,633,887,625,736,613,570,593,404,565,252,547,185,526,127,503,79,477,44,451,27,454,22,481,40,508,77,531,125,552,183,570,251,598,403,618,570,631,735,638,887,642,1093"/>
-<area shape="poly" id="edge27_Node000013_Node000010" title=" " alt="" coords="636,1093,631,895,623,751,610,593,590,435,562,291,544,227,524,172,502,127,477,93,451,76,454,72,481,89,506,124,529,170,549,226,567,289,595,434,615,593,628,750,636,895,642,1093"/>
-<area shape="poly" id="edge32_Node000013_Node000012" title=" " alt="" coords="636,1093,628,913,618,782,603,641,583,499,555,370,539,313,520,264,500,223,477,193,458,179,435,171,436,166,460,175,481,189,504,221,525,262,544,311,560,368,588,498,608,640,623,782,633,912,641,1093"/>
-<area shape="poly" id="edge54_Node000013_Node000013" title=" " alt="" coords="692,1098,689,1093,681,1089,641,1085,610,1087,593,1092,590,1098,599,1105,595,1109,585,1098,590,1088,609,1082,641,1080,682,1084,693,1089,697,1096"/>
-<area shape="rect" id="Node000014" href="$classTmc9660Handler.html#ad8946c2dd3a3d5e26620c514988fa2df" title="Const version of driverViaSpi()." alt="" coords="241,1008,461,1033"/>
-<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="603,1102,545,1074,478,1047,435,1036,436,1031,479,1042,548,1069,606,1098"/>
-<area shape="rect" id="Node000015" href="$classTmc9660Handler.html#a4eb74918e10999d77de25728b19542cf" title="Const version of driverViaUart()." alt="" coords="237,1057,465,1083"/>
-<area shape="poly" id="edge17_Node000013_Node000015" title=" " alt="" coords="552,1107,426,1085,427,1080,552,1102"/>
-<area shape="rect" id="Node000016" href="$classTmc9660Handler.html#adee8a764564554f060b879752048bf74" title="Dump comprehensive diagnostics to the system log." alt="" coords="223,1107,479,1132"/>
-<area shape="poly" id="edge18_Node000013_Node000016" title=" " alt="" coords="515,1122,479,1122,479,1117,515,1117"/>
-<area shape="rect" id="Node000017" href="$classTmc9660Handler_1_1Temperature.html#a5aaa7a97dba72b8d7ffe3db213ab69b6" title="Get sensor capabilities flags." alt="" coords="239,1157,462,1197"/>
-<area shape="poly" id="edge20_Node000013_Node000017" title=" " alt="" coords="563,1137,453,1159,452,1154,562,1132"/>
-<area shape="rect" id="Node000018" href="$classTmc9660Handler_1_1Adc.html#a65034322c01356bb594c24214577bc03" title="Get a human&#45;readable string for a channel type (for logging)." alt="" coords="263,1221,438,1261"/>
-<area shape="poly" id="edge21_Node000013_Node000018" title=" " alt="" coords="610,1142,551,1177,480,1211,439,1225,437,1220,478,1206,549,1172,608,1137"/>
-<area shape="rect" id="Node000019" href="$classTmc9660Handler_1_1Adc.html#aa0cecbf9aacc9b985945c73343c324e8" title="Get current time in microseconds from RTOS tick counter." alt="" coords="268,1285,433,1325"/>
-<area shape="poly" id="edge22_Node000013_Node000019" title=" " alt="" coords="623,1145,564,1210,524,1245,480,1275,434,1293,432,1288,477,1270,521,1241,561,1206,619,1141"/>
-<area shape="rect" id="Node000020" href="$classTmc9660Handler_1_1Temperature.html#a41a767273451c49bc03ab16243cfd7e0" title="Get current time in microseconds." alt="" coords="239,1349,462,1389"/>
-<area shape="poly" id="edge23_Node000013_Node000020" title=" " alt="" coords="630,1146,608,1188,575,1240,532,1294,507,1318,480,1339,458,1351,456,1346,477,1334,504,1314,528,1290,571,1237,604,1185,626,1143"/>
-<area shape="rect" id="Node000021" href="$classTmc9660Handler_1_1Adc.html#ab4b818f999a30d044ad2ef780d3bcae4" title="Get ADC health diagnostics (error counts, health status)." alt="" coords="268,1413,433,1453"/>
-<area shape="poly" id="edge24_Node000013_Node000021" title=" " alt="" coords="635,1146,616,1200,585,1270,540,1342,512,1374,480,1403,458,1416,434,1425,432,1420,456,1411,477,1399,508,1371,536,1339,580,1268,611,1199,630,1145"/>
-<area shape="rect" id="Node000022" href="$classTmc9660Handler_1_1Gpio.html#aaf312c1bbf7a2d2475909a8bde80a22c" title="Returns the current configured direction (INPUT or OUTPUT)." alt="" coords="265,1477,436,1517"/>
-<area shape="poly" id="edge25_Node000013_Node000022" title=" " alt="" coords="638,1146,623,1211,594,1298,573,1344,548,1389,517,1431,480,1467,460,1480,437,1489,435,1484,457,1475,477,1463,513,1427,543,1386,568,1342,589,1296,618,1210,632,1145"/>
-<area shape="rect" id="Node000023" href="$classTmc9660Handler_1_1Gpio.html#ab1a51599cf36c0f5680550d5afbcd785" title="Returns PUSH_PULL." alt="" coords="265,1541,436,1581"/>
-<area shape="poly" id="edge28_Node000013_Node000023" title=" " alt="" coords="640,1146,629,1222,602,1326,582,1382,555,1436,521,1487,480,1531,460,1544,438,1554,436,1549,458,1540,477,1527,517,1483,550,1433,577,1380,597,1324,623,1221,634,1145"/>
-<area shape="rect" id="Node000024" href="$classTmc9660Handler_1_1Gpio.html#a70c6aaec5983e4096c27e7d4e8767ef2" title="Read the current level of the TMC9660 GPIO pin via the driver." alt="" coords="265,1605,436,1645"/>
-<area shape="poly" id="edge29_Node000013_Node000024" title=" " alt="" coords="641,1146,634,1232,625,1290,611,1353,590,1418,563,1483,526,1543,480,1595,460,1609,437,1618,435,1613,458,1604,477,1591,522,1539,558,1480,585,1417,605,1352,620,1289,629,1231,636,1145"/>
-<area shape="rect" id="Node000025" href="$classTmc9660Handler_1_1Temperature.html#a70513525aa4ce3695b66efe61790b9d9" title="Get sensor information (type, range, resolution, accuracy)." alt="" coords="239,1669,462,1709"/>
-<area shape="poly" id="edge30_Node000013_Node000025" title=" " alt="" coords="643,1146,639,1242,632,1308,619,1380,599,1455,570,1529,531,1598,507,1630,480,1659,464,1671,461,1667,477,1655,503,1626,527,1595,565,1527,594,1453,613,1379,626,1307,633,1241,637,1145"/>
-<area shape="rect" id="Node000026" href="$classTmc9660Handler_1_1Adc.html#a72495dbc11ec0797172f3da4798d3b80" title="Get accumulated ADC statistics (conversion counts, timing)." alt="" coords="268,1733,433,1773"/>
-<area shape="poly" id="edge31_Node000013_Node000026" title=" " alt="" coords="638,1146,620,1269,586,1442,564,1530,540,1611,512,1677,496,1703,480,1723,459,1738,435,1748,433,1743,456,1733,477,1719,492,1700,507,1675,535,1609,559,1529,581,1441,615,1268,633,1145"/>
-<area shape="rect" id="Node000027" href="$classTmc9660Handler_1_1Gpio.html#a94de04e5fdade00c7f131b8b910bca80" title="Initialize the GPIO pin (configures as output by default on the TMC9660)." alt="" coords="265,1797,436,1837"/>
-<area shape="poly" id="edge33_Node000013_Node000027" title=" " alt="" coords="639,1146,622,1280,591,1472,569,1571,543,1662,514,1736,498,1765,481,1787,460,1802,437,1811,435,1806,458,1797,477,1783,493,1762,509,1734,538,1660,564,1570,585,1471,617,1279,634,1145"/>
-<area shape="rect" id="Node000028" href="$classTmc9660Handler_1_1Adc.html#acce9d9a737359a4a483fea8c03d3993e" title="Check if a channel ID is valid per the TMC9660 channel scheme." alt="" coords="268,1861,433,1901"/>
-<area shape="poly" id="edge34_Node000013_Node000028" title=" " alt="" coords="640,1146,625,1291,595,1503,573,1612,547,1712,517,1794,499,1826,481,1851,459,1867,434,1876,432,1872,456,1862,477,1847,495,1823,512,1792,542,1711,568,1611,589,1502,620,1290,635,1145"/>
-<area shape="rect" id="Node000029" href="$classTmc9660Handler_1_1Adc.html#a7b53c42cd28f39699d34fc180a3df8f6" title="Read an external analog input (AIN) channel." alt="" coords="268,1925,433,1965"/>
-<area shape="poly" id="edge35_Node000013_Node000029" title=" " alt="" coords="640,1146,627,1302,599,1533,577,1653,551,1763,519,1853,501,1888,481,1915,459,1931,435,1941,433,1936,457,1926,477,1911,496,1885,514,1851,546,1761,572,1652,593,1532,622,1301,635,1145"/>
-<area shape="rect" id="Node000030" href="$classTmc9660Handler_1_1Adc.html#a1abd9e2f3575e82c6679befeeba32b89" title="Read a channel and return both raw count and voltage." alt="" coords="268,1989,433,2029"/>
-<area shape="poly" id="edge36_Node000013_Node000030" title=" " alt="" coords="641,1146,630,1313,618,1433,603,1564,582,1694,555,1813,521,1911,502,1950,481,1979,459,1995,435,2005,433,2000,457,1990,477,1975,497,1947,517,1909,550,1812,576,1693,597,1563,613,1433,624,1313,635,1146"/>
-<area shape="rect" id="Node000031" href="$classTmc9660Handler_1_1Adc.html#a11c9f89f749cb7e1fb9af7043d1accf9" title="Read a channel and return the raw count." alt="" coords="268,2053,433,2093"/>
-<area shape="poly" id="edge37_Node000013_Node000031" title=" " alt="" coords="641,1146,632,1324,622,1453,607,1594,586,1734,559,1863,542,1920,524,1970,503,2011,481,2043,459,2059,435,2069,433,2064,457,2054,477,2039,499,2008,519,1968,537,1919,553,1862,581,1733,601,1593,616,1453,626,1324,636,1145"/>
-<area shape="rect" id="Node000032" href="$classTmc9660Handler_1_1Adc.html#a1ff51dc674661709a946c9622da98751" title="Internal channel read that returns both raw count and correct voltage." alt="" coords="268,2117,433,2157"/>
-<area shape="poly" id="edge38_Node000013_Node000032" title=" " alt="" coords="641,1146,634,1336,625,1474,610,1624,590,1775,562,1914,545,1975,526,2028,505,2073,481,2107,459,2123,435,2133,433,2128,457,2118,477,2103,500,2070,521,2026,540,1973,557,1913,585,1774,605,1624,619,1473,629,1335,636,1146"/>
-<area shape="rect" id="Node000033" href="$classTmc9660Handler_1_1Adc.html#a4252bc585fc61b87dd2fbd3ba3e5bbe1" title="Read a channel and return the voltage." alt="" coords="268,2181,433,2221"/>
-<area shape="poly" id="edge39_Node000013_Node000033" title=" " alt="" coords="642,1146,636,1345,628,1493,614,1654,594,1815,566,1964,549,2029,529,2087,506,2134,481,2171,460,2187,435,2197,433,2192,457,2182,477,2167,502,2132,524,2085,544,2028,561,1963,589,1814,609,1653,622,1492,631,1345,636,1145"/>
-<area shape="rect" id="Node000034" href="$classTmc9660Handler_1_1Adc.html#a9ea843420c0b1d68314d9699d38a4c10" title="Read a phase current sense channel." alt="" coords="249,2245,452,2285"/>
-<area shape="poly" id="edge40_Node000013_Node000034" title=" " alt="" coords="642,1146,638,1356,631,1513,618,1684,598,1856,570,2014,552,2084,531,2145,508,2196,481,2235,454,2254,451,2249,477,2231,503,2193,526,2143,547,2083,565,2013,593,1855,613,1683,625,1512,633,1356,637,1146"/>
-<area shape="rect" id="Node000035" href="$classTmc9660Handler_1_1Adc.html#aa940fa772a9c668c698d95a47a23d67a" title="Read a motor data channel." alt="" coords="258,2309,443,2349"/>
-<area shape="poly" id="edge41_Node000013_Node000035" title=" " alt="" coords="642,1146,640,1367,634,1532,622,1714,602,1896,574,2065,555,2139,534,2204,509,2258,481,2298,464,2312,445,2322,443,2317,461,2308,477,2295,504,2255,529,2202,550,2137,568,2063,597,1896,616,1713,628,1532,634,1367,637,1146"/>
-<area shape="rect" id="Node000036" href="$classTmc9660Handler_1_1Adc.html#a9428171625483d715d95c4d2bf04e87c" title="Read multiple channels in a batch." alt="" coords="263,2373,439,2413"/>
-<area shape="poly" id="edge42_Node000013_Node000036" title=" " alt="" coords="642,1146,642,1377,637,1552,625,1743,606,1936,577,2115,558,2193,536,2262,510,2319,481,2362,462,2378,440,2388,438,2383,459,2373,477,2359,506,2316,531,2260,553,2192,572,2114,601,1936,620,1743,631,1551,636,1377,637,1146"/>
-<area shape="rect" id="Node000037" href="$classTmc9660Handler_1_1Temperature.html#a5ebc77b2122ba4473b74a4a0fc78ff09" title="Read the chip temperature in degrees Celsius." alt="" coords="239,2437,462,2477"/>
-<area shape="poly" id="edge43_Node000013_Node000037" title=" " alt="" coords="640,1146,624,1407,590,1815,568,2023,542,2208,513,2349,497,2397,481,2426,464,2441,460,2437,477,2423,492,2395,508,2348,537,2207,562,2023,585,1814,618,1407,635,1146"/>
-<area shape="rect" id="Node000038" href="$classTmc9660Handler_1_1Adc.html#a44c5d06aa9c79fc2a38fdc53ffd69069" title="Read a temperature channel." alt="" coords="251,203,450,243"/>
-<area shape="poly" id="edge44_Node000013_Node000038" title=" " alt="" coords="635,1093,624,924,613,803,598,672,577,541,550,422,517,323,498,285,477,257,449,238,452,234,481,253,502,283,522,321,555,420,582,540,603,671,619,803,630,924,641,1092"/>
-<area shape="rect" id="Node000039" href="$classTmc9660Handler_1_1Adc.html#ade0515c993fff08763b61988923df9cb" title="Read a voltage monitoring channel." alt="" coords="268,267,433,307"/>
-<area shape="poly" id="edge45_Node000013_Node000039" title=" " alt="" coords="635,1093,622,936,594,703,573,583,546,472,514,382,496,347,477,321,457,306,433,296,435,291,459,301,481,317,501,344,519,380,551,471,578,582,599,702,628,935,640,1093"/>
-<area shape="rect" id="Node000040" href="$classTmc9660Handler_1_1Adc.html#a4ac45d019ddc392ca9e04194e81cc3ae" title="Reset diagnostics counters and health flags." alt="" coords="268,943,433,983"/>
-<area shape="poly" id="edge46_Node000013_Node000040" title=" " alt="" coords="615,1099,556,1048,518,1021,478,998,433,981,434,976,480,993,521,1016,559,1044,619,1095"/>
-<area shape="rect" id="Node000041" href="$classTmc9660Handler_1_1Adc.html#aeb392d8c266f3183dbce1f31f7bff568" title="Reset all accumulated statistics to zero." alt="" coords="268,331,433,371"/>
-<area shape="poly" id="edge48_Node000013_Node000041" title=" " alt="" coords="635,1093,620,947,590,733,568,623,543,523,512,440,495,409,477,385,456,370,432,360,434,356,459,365,481,381,499,406,517,438,548,521,574,622,595,733,625,946,640,1093"/>
-<area shape="rect" id="Node000042" href="$classTmc9660Handler_1_1Gpio.html#abb373809db45c7971b18cf0881b29976" title="Set pin direction (INPUT or OUTPUT supported)." alt="" coords="265,395,436,435"/>
-<area shape="poly" id="edge50_Node000013_Node000042" title=" " alt="" coords="634,1093,617,959,586,764,564,664,539,573,510,499,494,471,477,449,458,435,435,426,438,421,460,430,481,445,498,468,514,497,544,572,569,663,591,763,623,958,639,1093"/>
-<area shape="rect" id="Node000043" href="$classTmc9660Handler_1_1Gpio.html#a4b370365fb2aa8c2cb8d4bdb2ff07caf" title="Set output mode. Only PUSH_PULL is supported." alt="" coords="265,459,436,499"/>
-<area shape="poly" id="edge51_Node000013_Node000043" title=" " alt="" coords="633,1094,615,970,582,795,560,706,535,624,507,558,492,532,477,513,458,499,435,490,437,485,460,495,481,509,497,529,512,555,540,622,565,704,587,794,620,969,639,1093"/>
-<area shape="rect" id="Node000044" href="$classTmc9660Handler_1_1Gpio.html#a3484e3f2b1591d88d58f1e1a008bfbbc" title="Write HIGH or LOW to the TMC9660 GPIO pin via the driver." alt="" coords="265,523,436,563"/>
-<area shape="poly" id="edge52_Node000013_Node000044" title=" " alt="" coords="637,1093,634,996,627,929,614,857,594,781,566,707,527,637,504,606,477,577,458,564,436,554,438,549,460,559,480,573,508,603,532,635,571,704,599,779,619,855,632,929,639,995,643,1093"/>
-<area shape="rect" id="Node000045" href="$classTmc9660Handler_1_1Gpio.html#a9ce2b675e2bfacb82b957f4f2ec39e4a" title="Set pull mode. Only FLOATING is supported." alt="" coords="265,587,436,627"/>
-<area shape="poly" id="edge53_Node000013_Node000045" title=" " alt="" coords="636,1093,629,1007,620,948,606,884,586,818,559,754,523,694,477,641,458,628,435,619,437,614,460,623,480,637,527,690,563,751,591,817,612,883,626,947,634,1006,642,1093"/>
-<area shape="rect" id="Node000046" href="$classTmc9660Handler_1_1Temperature.html#a39c2778d7ba493b3c5a620b26289218d" title="Construct the temperature wrapper." alt="" coords="239,651,462,691"/>
-<area shape="poly" id="edge55_Node000013_Node000046" title=" " alt="" coords="635,1093,624,1017,598,911,578,855,551,800,518,749,477,705,460,694,463,689,480,701,522,746,556,798,583,853,603,910,629,1016,640,1093"/>
-<area shape="rect" id="Node000047" href="$classTmc9660Handler.html#a33c5f6adfbd116fd717ac96c3e00fb0b" title="Construct a handler for a TMC9660 connected via SPI." alt="" coords="225,716,477,741"/>
-<area shape="poly" id="edge56_Node000013_Node000047" title=" " alt="" coords="634,1093,621,1024,593,932,573,883,547,835,515,792,477,755,459,744,462,739,480,751,519,788,551,832,578,880,598,930,626,1023,639,1092"/>
-<area shape="rect" id="Node000048" href="$classTmc9660Handler.html#aed1c579c5456e85070601f22b3f39a01" title="Construct a handler for a TMC9660 connected via UART." alt="" coords="225,765,477,791"/>
-<area shape="poly" id="edge57_Node000013_Node000048" title=" " alt="" coords="632,1094,616,1034,586,955,566,913,541,873,511,837,477,805,456,793,458,789,480,801,515,833,545,870,570,911,591,953,621,1032,637,1093"/>
-<area shape="rect" id="Node000049" href="$classTmc9660Handler_1_1Adc.html#a95192f5ef76ba77cc2abce2581f44801" title="Update error diagnostics (consecutive error tracking, health flag)." alt="" coords="268,815,433,855"/>
-<area shape="poly" id="edge58_Node000013_Node000049" title=" " alt="" coords="628,1095,608,1046,576,985,532,922,506,894,477,870,456,857,433,849,435,844,458,853,480,865,510,890,536,919,581,982,613,1044,633,1093"/>
-<area shape="rect" id="Node000050" href="$classTmc9660Handler_1_1Temperature.html#a824232f839a3c46684de17dabaca8b79" title="Update error diagnostics." alt="" coords="239,879,462,919"/>
-<area shape="poly" id="edge59_Node000013_Node000050" title=" " alt="" coords="623,1096,600,1060,566,1015,525,971,477,934,454,922,456,917,480,929,529,967,570,1012,604,1057,628,1093"/>
-<area shape="poly" id="edge47_Node000040_Node000006" title=" " alt="" coords="254,952,221,933,190,902,164,866,143,826,126,786,103,711,92,656,97,655,108,710,131,784,148,824,169,863,194,898,224,929,256,948"/>
-<area shape="poly" id="edge49_Node000041_Node000007" title=" " alt="" coords="254,334,175,318,176,313,255,329"/>
+<area shape="rect" id="Node000001" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="557,425,807,450"/>
+<area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a7fe382c4dbf6bf84ed31586e52ec2e6e" title="Get a reference to the ADC wrapper." alt="" coords="313,173,477,198"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="654,418,409,200,413,196,658,414"/>
+<area shape="rect" id="Node000008" href="$classTmc9660Handler.html#a85be9cd2e065b83c7abb36cb70fa6c67" title="Get the TMC9660 driver instance connected via SPI (nullptr if using UART)." alt="" coords="285,375,505,401"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="594,425,470,403,471,398,595,420"/>
+<area shape="rect" id="Node000012" href="$classTmc9660Handler.html#ac4f303f9e7be9cb737a667dd5d85dd3a" title="Get the TMC9660 driver instance connected via UART (nullptr if using SPI)." alt="" coords="281,425,509,450"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="543,440,510,440,510,435,543,435"/>
+<area shape="rect" id="Node000014" href="$classTmc9660Handler.html#acf7d1583239c9f767f82b42fc03b56cf" title="Get a reference to the GPIO wrapper for a TMC9660 internal GPIO pin." alt="" coords="311,474,480,499"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="595,455,471,477,470,471,594,450"/>
+<area shape="rect" id="Node000015" href="$classTmc9660Handler.html#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper." alt="" coords="284,523,507,549"/>
+<area shape="poly" id="edge16_Node000001_Node000015" title=" " alt="" coords="645,459,583,487,510,515,468,526,466,521,509,509,581,482,642,454"/>
+<area shape="rect" id="Node000003" href="$classTmc9660AdcWrapper.html#a9d61893186aaa1d768cf61038ab285cb" title=" " alt="" coords="35,133,204,173"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="299,177,204,166,205,160,300,172"/>
+<area shape="rect" id="Node000004" href="$classTmc9660AdcWrapper.html#a7f754c5432b29313fb09f3cc353a4e6f" title=" " alt="" coords="35,197,204,237"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="300,199,205,210,204,205,299,194"/>
+<area shape="rect" id="Node000005" href="$classTmc9660AdcWrapper.html#aebe0e2cd94c5db2d70ef05c5cffd1913" title=" " alt="" coords="35,261,204,301"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="353,206,234,252,196,264,195,259,232,247,351,201"/>
+<area shape="rect" id="Node000006" href="$classTmc9660AdcWrapper.html#a3a7e9bf27e3cf27497ecbed63209fbdf" title=" " alt="" coords="35,5,204,45"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="370,165,311,112,273,84,232,60,204,48,206,43,235,55,276,80,314,108,374,161"/>
+<area shape="rect" id="Node000007" href="$classTmc9660AdcWrapper.html#abccc374da45807cc0d2cf7ddedfd88bc" title=" " alt="" coords="35,69,204,109"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="351,170,232,124,195,112,196,107,234,119,353,165"/>
+<area shape="rect" id="Node000009" href="$classTmc9660Handler.html#ad8946c2dd3a3d5e26620c514988fa2df" title="Const version of driverViaSpi()." alt="" coords="9,326,229,351"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="310,376,191,354,192,349,311,370"/>
+<area shape="rect" id="Node000010" href="$classTmc9660Handler.html#ae1d6f6676180aff28d02dcb954917b79" title="Const overload of GetDriver()." alt="" coords="17,425,221,450"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="311,406,192,427,191,422,310,400"/>
+<area shape="rect" id="Node000011" href="$classTmc9660Handler.html#ac29a3cfd55b2186f357c8b2f56d16bce" title="Get the active driver pointer without requiring visitor usage." alt="" coords="17,375,221,401"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="272,391,222,391,222,385,272,385"/>
+<area shape="poly" id="edge13_Node000012_Node000010" title=" " alt="" coords="268,440,221,440,221,435,268,435"/>
+<area shape="poly" id="edge14_Node000012_Node000011" title=" " alt="" coords="310,425,191,403,192,398,311,420"/>
+<area shape="rect" id="Node000013" href="$classTmc9660Handler.html#a4eb74918e10999d77de25728b19542cf" title="Const version of driverViaUart()." alt="" coords="5,474,233,499"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="311,455,192,477,191,471,310,450"/>
 </map>

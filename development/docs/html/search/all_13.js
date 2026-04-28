@@ -20,7 +20,8 @@ var searchData=
   ['updatestatistics_17',['UpdateStatistics',['../classNtcTemperatureHandler.html#a2c8404fac12fa3e3d3655cd4430d2049',1,'NtcTemperatureHandler::UpdateStatistics()'],['../classTmc9660Handler_1_1Adc.html#a8f7aa9ea8e16d94e1a4166af1e3821d0',1,'Tmc9660Handler::Adc::UpdateStatistics()'],['../classTmc9660Handler_1_1Temperature.html#a909be22915a36d0ef677558f3c00c8c4',1,'Tmc9660Handler::Temperature::UpdateStatistics()']]],
   ['usage_20example_18',['Usage Example',['../Tmc5160Handler_8h.html#autotoc_md17',1,'Usage Example'],['../classTmc9660Handler.html#autotoc_md27',1,'Usage Example'],['../Ws2812Handler_8h.html#autotoc_md28',1,'Usage Example']]],
   ['use_5fspi_5f_19',['use_spi_',['../classTmc9660Handler.html#a01828de5ad5685ee4baac83943be3440',1,'Tmc9660Handler']]],
-  ['user_5fcallback_5f_20',['user_callback_',['../classBno08xHandler.html#ab4be91e6bd9492c1824aa747db733c0f',1,'Bno08xHandler']]],
-  ['utilities_21',['🔧 Utilities',['../index.html#autotoc_md39',1,'']]],
-  ['uvw_5fpole_5fpairs_22',['uvw_pole_pairs',['../structAs5047uConfig.html#a5938deaf6c6b4684bd829bfa47792357',1,'As5047uConfig']]]
+  ['usecanrxfilters_20',['useCANrxFilters',['../structCO__CANmodule__t.html#a9b28f7a6f02d398b3a0ea6cf70fa64f0',1,'CO_CANmodule_t']]],
+  ['user_5fcallback_5f_21',['user_callback_',['../classBno08xHandler.html#ab4be91e6bd9492c1824aa747db733c0f',1,'Bno08xHandler']]],
+  ['utilities_22',['🔧 Utilities',['../index.html#autotoc_md39',1,'']]],
+  ['uvw_5fpole_5fpairs_23',['uvw_pole_pairs',['../structAs5047uConfig.html#a5938deaf6c6b4684bd829bfa47792357',1,'As5047uConfig']]]
 ];

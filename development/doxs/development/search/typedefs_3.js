@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['hostbaudsetter_0',['HostBaudSetter',['../classAlicatBasis2Handler.html#ad5e74b2aaf285a5292b5e7fe2a46aae3',1,'AlicatBasis2Handler']]]
+  ['float32_5ft_0',['float32_t',['../CO__driver__target_8h.html#a4611b605e45ab401f02cab15c5e38715',1,'CO_driver_target.h']]],
+  ['float64_5ft_1',['float64_t',['../CO__driver__target_8h.html#ac55f3ae81b5bc9053760baacf57e47f4',1,'CO_driver_target.h']]]
 ];

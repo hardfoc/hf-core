@@ -1,9 +1,7 @@
 <map id="Tmc9660Handler::temperature" name="Tmc9660Handler::temperature">
 <area shape="rect" id="Node000001" title="Get a reference to the Temperature wrapper." alt="" coords="5,84,228,109"/>
-<area shape="poly" id="edge14_Node000001_Node000001" title=" " alt="" coords="71,86,61,76,66,66,85,59,117,57,158,62,169,67,172,73,167,75,165,71,156,67,117,63,86,65,70,70,67,75,75,82"/>
 <area shape="rect" id="Node000002" href="$classTmc9660Handler.html#a5a279ae9d4b5a8e0d71cb24577ad88ea" title="Ensure driver is initialized (lazy init entrypoint)." alt="" coords="276,84,525,109"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,103,262,103,262,108,228,108"/>
-<area shape="poly" id="edge13_Node000002_Node000001" title=" " alt="" coords="276,90,242,90,242,85,276,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,94,262,94,262,99,228,99"/>
 <area shape="rect" id="Node000003" href="$classTmc9660Handler.html#a7c1d8073576d678b09dac24c9eb12845" title="Ensure initialized while handler_mutex_ is already held." alt="" coords="573,77,823,117"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="526,94,560,94,560,99,526,99"/>
 <area shape="rect" id="Node000004" href="$classTmc9660Handler.html#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device." alt="" coords="871,55,1068,80"/>

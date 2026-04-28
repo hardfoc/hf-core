@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['adc_0',['adc',['../classTmc9660Handler.html#a7fe382c4dbf6bf84ed31586e52ec2e6e',1,'Tmc9660Handler']]],
-  ['adc_1',['Adc',['../classTmc9660Handler_1_1Adc.html#a6f5e9eb8f504a04682523c5097ae713e',1,'Tmc9660Handler::Adc']]],
+  ['adc_0',['Adc',['../classTmc9660Handler_1_1Adc.html#a6f5e9eb8f504a04682523c5097ae713e',1,'Tmc9660Handler::Adc']]],
+  ['adc_1',['adc',['../classTmc9660Handler.html#a7fe382c4dbf6bf84ed31586e52ec2e6e',1,'Tmc9660Handler']]],
   ['add_5fresult_2',['add_result',['../structTestResults.html#a257eba3a9005a5c19c68ae27774948f7',1,'TestResults']]],
   ['address_3',['Address',['../classAlicatBasis2Handler.html#a543989ebb5cd06901dcdf8f008cdef6d',1,'AlicatBasis2Handler']]],
   ['ads7952handler_4',['Ads7952Handler',['../classAds7952Handler.html#a33dc51f5cf79be9730b4ad89010160a8',1,'Ads7952Handler::Ads7952Handler(BaseSpi &amp;spi_interface, const Ads7952HandlerConfig &amp;config=GetDefaultAds7952Config()) noexcept'],['../classAds7952Handler.html#a88d8ac328ed230d828148eecc9552cc4',1,'Ads7952Handler::Ads7952Handler(const Ads7952Handler &amp;)=delete'],['../classAds7952Handler.html#a1f4a7527384227733fcd55932d1f1838',1,'Ads7952Handler::Ads7952Handler(Ads7952Handler &amp;&amp;)=delete']]],

@@ -125,57 +125,57 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Type Aliases</div></td></tr>
-<tr class="memitem:a65d00ffe3eba7aef1cb05ccef5feb619" id="r_a65d00ffe3eba7aef1cb05ccef5feb619"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> = tmc9660::TMC9660&lt;<a class="el" href="classHalSpiTmc9660Comm.html">HalSpiTmc9660Comm</a>&gt;</td></tr>
+<tr class="memitem:a65d00ffe3eba7aef1cb05ccef5feb619" id="r_a65d00ffe3eba7aef1cb05ccef5feb619"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> = tmc9660::TMC9660&lt;<a class="el" href="classHalSpiTmc9660Comm.html">HalSpiTmc9660Comm</a>&gt;</td></tr>
 <tr class="memdesc:a65d00ffe3eba7aef1cb05ccef5feb619"><td class="mdescLeft">&#160;</td><td class="mdescRight">TMC9660 driver instantiated with SPI communication.  <br /></td></tr>
 <tr class="separator:a65d00ffe3eba7aef1cb05ccef5feb619"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68a5549c74095516db249e2c2d4afed7" id="r_a68a5549c74095516db249e2c2d4afed7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> = tmc9660::TMC9660&lt;<a class="el" href="classHalUartTmc9660Comm.html">HalUartTmc9660Comm</a>&gt;</td></tr>
+<tr class="memitem:a68a5549c74095516db249e2c2d4afed7" id="r_a68a5549c74095516db249e2c2d4afed7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> = tmc9660::TMC9660&lt;<a class="el" href="classHalUartTmc9660Comm.html">HalUartTmc9660Comm</a>&gt;</td></tr>
 <tr class="memdesc:a68a5549c74095516db249e2c2d4afed7"><td class="mdescLeft">&#160;</td><td class="mdescRight">TMC9660 driver instantiated with UART communication.  <br /></td></tr>
 <tr class="separator:a68a5549c74095516db249e2c2d4afed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04c51be889ee4365d2eee7ee367180dc" id="r_a04c51be889ee4365d2eee7ee367180dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04c51be889ee4365d2eee7ee367180dc">DriverVariant</a> = std::variant&lt;std::monostate, <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a>*, <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a>*&gt;</td></tr>
+<tr class="memitem:a04c51be889ee4365d2eee7ee367180dc" id="r_a04c51be889ee4365d2eee7ee367180dc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04c51be889ee4365d2eee7ee367180dc">DriverVariant</a> = std::variant&lt;std::monostate, <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a>*, <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a>*&gt;</td></tr>
 <tr class="memdesc:a04c51be889ee4365d2eee7ee367180dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-owning variant holding either driver type or empty (monostate).  <br /></td></tr>
 <tr class="separator:a04c51be889ee4365d2eee7ee367180dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a110c823022b879cd6d2c47cdc4468321" id="r_a110c823022b879cd6d2c47cdc4468321"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a110c823022b879cd6d2c47cdc4468321">ConstDriverVariant</a> = std::variant&lt;std::monostate, <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a>*, <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a>*&gt;</td></tr>
+<tr class="memitem:a110c823022b879cd6d2c47cdc4468321" id="r_a110c823022b879cd6d2c47cdc4468321"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a110c823022b879cd6d2c47cdc4468321">ConstDriverVariant</a> = std::variant&lt;std::monostate, const <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a>*, const <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a>*&gt;</td></tr>
 <tr class="memdesc:a110c823022b879cd6d2c47cdc4468321"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const version of DriverVariant.  <br /></td></tr>
 <tr class="separator:a110c823022b879cd6d2c47cdc4468321"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Construction and Destruction</div></td></tr>
-<tr class="memitem:a33c5f6adfbd116fd717ac96c3e00fb0b" id="r_a33c5f6adfbd116fd717ac96c3e00fb0b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33c5f6adfbd116fd717ac96c3e00fb0b">Tmc9660Handler</a> (<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">BaseSpi</a> &amp;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">spi</a>, BaseGpio &amp;rst, BaseGpio &amp;drv_en, BaseGpio &amp;faultn, BaseGpio &amp;wake, <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">uint8_t</a> address=0, <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> tmc9660::BootloaderConfig *<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bootCfg</a>=&amp;<a class="el" href="#a4de763121aff441af52e492f3cff6f1c">kDefaultBootConfig</a>)</td></tr>
+<tr class="memitem:a33c5f6adfbd116fd717ac96c3e00fb0b" id="r_a33c5f6adfbd116fd717ac96c3e00fb0b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33c5f6adfbd116fd717ac96c3e00fb0b">Tmc9660Handler</a> (BaseSpi &amp;spi, BaseGpio &amp;rst, BaseGpio &amp;drv_en, BaseGpio &amp;faultn, BaseGpio &amp;wake, uint8_t address=0, const tmc9660::BootloaderConfig *bootCfg=&amp;<a class="el" href="#a4de763121aff441af52e492f3cff6f1c">kDefaultBootConfig</a>)</td></tr>
 <tr class="memdesc:a33c5f6adfbd116fd717ac96c3e00fb0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a handler for a TMC9660 connected via SPI.  <br /></td></tr>
 <tr class="separator:a33c5f6adfbd116fd717ac96c3e00fb0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed1c579c5456e85070601f22b3f39a01" id="r_aed1c579c5456e85070601f22b3f39a01"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed1c579c5456e85070601f22b3f39a01">Tmc9660Handler</a> (<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">BaseUart</a> &amp;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">uart</a>, BaseGpio &amp;rst, BaseGpio &amp;drv_en, BaseGpio &amp;faultn, BaseGpio &amp;wake, <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">uint8_t</a> address=0, <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> tmc9660::BootloaderConfig *<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bootCfg</a>=&amp;<a class="el" href="#a4de763121aff441af52e492f3cff6f1c">kDefaultBootConfig</a>)</td></tr>
+<tr class="memitem:aed1c579c5456e85070601f22b3f39a01" id="r_aed1c579c5456e85070601f22b3f39a01"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed1c579c5456e85070601f22b3f39a01">Tmc9660Handler</a> (BaseUart &amp;uart, BaseGpio &amp;rst, BaseGpio &amp;drv_en, BaseGpio &amp;faultn, BaseGpio &amp;wake, uint8_t address=0, const tmc9660::BootloaderConfig *bootCfg=&amp;<a class="el" href="#a4de763121aff441af52e492f3cff6f1c">kDefaultBootConfig</a>)</td></tr>
 <tr class="memdesc:aed1c579c5456e85070601f22b3f39a01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a handler for a TMC9660 connected via UART.  <br /></td></tr>
 <tr class="separator:aed1c579c5456e85070601f22b3f39a01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb01f56d0292ce5e7fcad4df46421fdc" id="r_acb01f56d0292ce5e7fcad4df46421fdc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb01f56d0292ce5e7fcad4df46421fdc">~Tmc9660Handler</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:acb01f56d0292ce5e7fcad4df46421fdc" id="r_acb01f56d0292ce5e7fcad4df46421fdc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb01f56d0292ce5e7fcad4df46421fdc">~Tmc9660Handler</a> () noexcept</td></tr>
 <tr class="memdesc:acb01f56d0292ce5e7fcad4df46421fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. Releases the driver, communication adapter, and all wrappers.  <br /></td></tr>
 <tr class="separator:acb01f56d0292ce5e7fcad4df46421fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcae1e86438604b16a5e92312e7eb8e5" id="r_abcae1e86438604b16a5e92312e7eb8e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abcae1e86438604b16a5e92312e7eb8e5">Tmc9660Handler</a> (<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;)=<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">delete</a></td></tr>
+<tr class="memitem:abcae1e86438604b16a5e92312e7eb8e5" id="r_abcae1e86438604b16a5e92312e7eb8e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abcae1e86438604b16a5e92312e7eb8e5">Tmc9660Handler</a> (const <a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;)=delete</td></tr>
 <tr class="memdesc:abcae1e86438604b16a5e92312e7eb8e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-copyable.  <br /></td></tr>
 <tr class="separator:abcae1e86438604b16a5e92312e7eb8e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15630492c4e23ca9b54e502b5c75ba08" id="r_a15630492c4e23ca9b54e502b5c75ba08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15630492c4e23ca9b54e502b5c75ba08">operator=</a> (<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;)=<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">delete</a></td></tr>
+<tr class="memitem:a15630492c4e23ca9b54e502b5c75ba08" id="r_a15630492c4e23ca9b54e502b5c75ba08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15630492c4e23ca9b54e502b5c75ba08">operator=</a> (const <a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;)=delete</td></tr>
 <tr class="memdesc:a15630492c4e23ca9b54e502b5c75ba08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-copyable.  <br /></td></tr>
 <tr class="separator:a15630492c4e23ca9b54e502b5c75ba08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab69c4d42a99fb746ea79a0c861efd314" id="r_ab69c4d42a99fb746ea79a0c861efd314"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab69c4d42a99fb746ea79a0c861efd314">Tmc9660Handler</a> (<a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;&amp;)=<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">delete</a></td></tr>
+<tr class="memitem:ab69c4d42a99fb746ea79a0c861efd314" id="r_ab69c4d42a99fb746ea79a0c861efd314"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab69c4d42a99fb746ea79a0c861efd314">Tmc9660Handler</a> (<a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;&amp;)=delete</td></tr>
 <tr class="memdesc:ab69c4d42a99fb746ea79a0c861efd314"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-movable.  <br /></td></tr>
 <tr class="separator:ab69c4d42a99fb746ea79a0c861efd314"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2e2baaba84789c9a5c89a07d965b415" id="r_af2e2baaba84789c9a5c89a07d965b415"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2e2baaba84789c9a5c89a07d965b415">operator=</a> (<a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;&amp;)=<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">delete</a></td></tr>
+<tr class="memitem:af2e2baaba84789c9a5c89a07d965b415" id="r_af2e2baaba84789c9a5c89a07d965b415"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2e2baaba84789c9a5c89a07d965b415">operator=</a> (<a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;&amp;)=delete</td></tr>
 <tr class="memdesc:af2e2baaba84789c9a5c89a07d965b415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-movable.  <br /></td></tr>
 <tr class="separator:af2e2baaba84789c9a5c89a07d965b415"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Initialization</div></td></tr>
-<tr class="memitem:adc564847f8ae26c47412aaee0758991c" id="r_adc564847f8ae26c47412aaee0758991c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc564847f8ae26c47412aaee0758991c">Initialize</a> (<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">performReset</a>=<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">true</a>, <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">retrieveBootloaderInfo</a>=<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">true</a>, <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">failOnVerifyError</a>=<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">false</a>)</td></tr>
+<tr class="memitem:adc564847f8ae26c47412aaee0758991c" id="r_adc564847f8ae26c47412aaee0758991c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc564847f8ae26c47412aaee0758991c">Initialize</a> (bool performReset=true, bool retrieveBootloaderInfo=true, bool failOnVerifyError=false)</td></tr>
 <tr class="memdesc:adc564847f8ae26c47412aaee0758991c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the TMC9660 device.  <br /></td></tr>
 <tr class="separator:adc564847f8ae26c47412aaee0758991c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a279ae9d4b5a8e0d71cb24577ad88ea" id="r_a5a279ae9d4b5a8e0d71cb24577ad88ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a279ae9d4b5a8e0d71cb24577ad88ea">EnsureInitialized</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:a5a279ae9d4b5a8e0d71cb24577ad88ea" id="r_a5a279ae9d4b5a8e0d71cb24577ad88ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a279ae9d4b5a8e0d71cb24577ad88ea">EnsureInitialized</a> () noexcept</td></tr>
 <tr class="memdesc:a5a279ae9d4b5a8e0d71cb24577ad88ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure driver is initialized (lazy init entrypoint).  <br /></td></tr>
 <tr class="separator:a5a279ae9d4b5a8e0d71cb24577ad88ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13db97d201a287d8aa60384e04070b9f" id="r_a13db97d201a287d8aa60384e04070b9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13db97d201a287d8aa60384e04070b9f">IsDriverReady</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:a13db97d201a287d8aa60384e04070b9f" id="r_a13db97d201a287d8aa60384e04070b9f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13db97d201a287d8aa60384e04070b9f">IsDriverReady</a> () const noexcept</td></tr>
 <tr class="memdesc:a13db97d201a287d8aa60384e04070b9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the TMC9660 driver has been initialized and is ready.  <br /></td></tr>
 <tr class="separator:a13db97d201a287d8aa60384e04070b9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Peripheral Accessors</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Retrieve references to the handler's internal peripheral wrappers. </p>
 </div></td></tr>
-<tr class="memitem:acf7d1583239c9f767f82b42fc03b56cf" id="r_acf7d1583239c9f767f82b42fc03b56cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTmc9660Handler_1_1Gpio.html">Gpio</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf7d1583239c9f767f82b42fc03b56cf">gpio</a> (<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">uint8_t</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">gpioNumber</a>)</td></tr>
+<tr class="memitem:acf7d1583239c9f767f82b42fc03b56cf" id="r_acf7d1583239c9f767f82b42fc03b56cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTmc9660Handler_1_1Gpio.html">Gpio</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf7d1583239c9f767f82b42fc03b56cf">gpio</a> (uint8_t gpioNumber)</td></tr>
 <tr class="memdesc:acf7d1583239c9f767f82b42fc03b56cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a reference to the GPIO wrapper for a TMC9660 internal GPIO pin.  <br /></td></tr>
 <tr class="separator:acf7d1583239c9f767f82b42fc03b56cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fe382c4dbf6bf84ed31586e52ec2e6e" id="r_a7fe382c4dbf6bf84ed31586e52ec2e6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTmc9660Handler_1_1Adc.html">Adc</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fe382c4dbf6bf84ed31586e52ec2e6e">adc</a> ()</td></tr>
@@ -185,75 +185,75 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a393382194d0602e7aa02da6a8fd7a20a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a reference to the <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a> wrapper.  <br /></td></tr>
 <tr class="separator:a393382194d0602e7aa02da6a8fd7a20a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Communication Info</div></td></tr>
-<tr class="memitem:ac7592c35471c995115e68cc94056b4fb" id="r_ac7592c35471c995115e68cc94056b4fb"><td class="memItemLeft" align="right" valign="top">tmc9660::CommMode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7592c35471c995115e68cc94056b4fb">GetCommMode</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:ac7592c35471c995115e68cc94056b4fb" id="r_ac7592c35471c995115e68cc94056b4fb"><td class="memItemLeft" align="right" valign="top">tmc9660::CommMode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7592c35471c995115e68cc94056b4fb">GetCommMode</a> () const noexcept</td></tr>
 <tr class="memdesc:ac7592c35471c995115e68cc94056b4fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the communication mode in use (SPI or UART).  <br /></td></tr>
 <tr class="separator:ac7592c35471c995115e68cc94056b4fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2381670960d25634731a697f895c19ab" id="r_a2381670960d25634731a697f895c19ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> tmc9660::BootloaderConfig &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2381670960d25634731a697f895c19ab">bootConfig</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:a2381670960d25634731a697f895c19ab" id="r_a2381670960d25634731a697f895c19ab"><td class="memItemLeft" align="right" valign="top">const tmc9660::BootloaderConfig &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2381670960d25634731a697f895c19ab">bootConfig</a> () const noexcept</td></tr>
 <tr class="memdesc:a2381670960d25634731a697f895c19ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the bootloader configuration in use.  <br /></td></tr>
 <tr class="separator:a2381670960d25634731a697f895c19ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Diagnostics</div></td></tr>
-<tr class="memitem:adee8a764564554f060b879752048bf74" id="r_adee8a764564554f060b879752048bf74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adee8a764564554f060b879752048bf74">DumpDiagnostics</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:adee8a764564554f060b879752048bf74" id="r_adee8a764564554f060b879752048bf74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adee8a764564554f060b879752048bf74">DumpDiagnostics</a> () noexcept</td></tr>
 <tr class="memdesc:adee8a764564554f060b879752048bf74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump comprehensive diagnostics to the system log.  <br /></td></tr>
 <tr class="separator:adee8a764564554f060b879752048bf74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0196eb3a096c7250014a4f1b65cb25a" id="r_ab0196eb3a096c7250014a4f1b65cb25a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0196eb3a096c7250014a4f1b65cb25a">GetDescription</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:ab0196eb3a096c7250014a4f1b65cb25a" id="r_ab0196eb3a096c7250014a4f1b65cb25a"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0196eb3a096c7250014a4f1b65cb25a">GetDescription</a> () const noexcept</td></tr>
 <tr class="memdesc:ab0196eb3a096c7250014a4f1b65cb25a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a human-readable description of the handler.  <br /></td></tr>
 <tr class="separator:ab0196eb3a096c7250014a4f1b65cb25a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Typed Driver Access</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Direct access to the underlying typed TMC9660 driver instance. </p>
 </div></td></tr>
-<tr class="memitem:a85be9cd2e065b83c7abb36cb70fa6c67" id="r_a85be9cd2e065b83c7abb36cb70fa6c67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85be9cd2e065b83c7abb36cb70fa6c67">driverViaSpi</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:a85be9cd2e065b83c7abb36cb70fa6c67" id="r_a85be9cd2e065b83c7abb36cb70fa6c67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85be9cd2e065b83c7abb36cb70fa6c67">driverViaSpi</a> () noexcept</td></tr>
 <tr class="memdesc:a85be9cd2e065b83c7abb36cb70fa6c67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the TMC9660 driver instance connected via SPI (nullptr if using UART).  <br /></td></tr>
 <tr class="separator:a85be9cd2e065b83c7abb36cb70fa6c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8946c2dd3a3d5e26620c514988fa2df" id="r_ad8946c2dd3a3d5e26620c514988fa2df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8946c2dd3a3d5e26620c514988fa2df">driverViaSpi</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:ad8946c2dd3a3d5e26620c514988fa2df" id="r_ad8946c2dd3a3d5e26620c514988fa2df"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8946c2dd3a3d5e26620c514988fa2df">driverViaSpi</a> () const noexcept</td></tr>
 <tr class="memdesc:ad8946c2dd3a3d5e26620c514988fa2df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const version of <a class="el" href="#a85be9cd2e065b83c7abb36cb70fa6c67" title="Get the TMC9660 driver instance connected via SPI (nullptr if using UART).">driverViaSpi()</a>.  <br /></td></tr>
 <tr class="separator:ad8946c2dd3a3d5e26620c514988fa2df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4f303f9e7be9cb737a667dd5d85dd3a" id="r_ac4f303f9e7be9cb737a667dd5d85dd3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4f303f9e7be9cb737a667dd5d85dd3a">driverViaUart</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:ac4f303f9e7be9cb737a667dd5d85dd3a" id="r_ac4f303f9e7be9cb737a667dd5d85dd3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4f303f9e7be9cb737a667dd5d85dd3a">driverViaUart</a> () noexcept</td></tr>
 <tr class="memdesc:ac4f303f9e7be9cb737a667dd5d85dd3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the TMC9660 driver instance connected via UART (nullptr if using SPI).  <br /></td></tr>
 <tr class="separator:ac4f303f9e7be9cb737a667dd5d85dd3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4eb74918e10999d77de25728b19542cf" id="r_a4eb74918e10999d77de25728b19542cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4eb74918e10999d77de25728b19542cf">driverViaUart</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:a4eb74918e10999d77de25728b19542cf" id="r_a4eb74918e10999d77de25728b19542cf"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4eb74918e10999d77de25728b19542cf">driverViaUart</a> () const noexcept</td></tr>
 <tr class="memdesc:a4eb74918e10999d77de25728b19542cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const version of <a class="el" href="#ac4f303f9e7be9cb737a667dd5d85dd3a" title="Get the TMC9660 driver instance connected via UART (nullptr if using SPI).">driverViaUart()</a>.  <br /></td></tr>
 <tr class="separator:a4eb74918e10999d77de25728b19542cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac29a3cfd55b2186f357c8b2f56d16bce" id="r_ac29a3cfd55b2186f357c8b2f56d16bce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a04c51be889ee4365d2eee7ee367180dc">DriverVariant</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac29a3cfd55b2186f357c8b2f56d16bce">GetDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:ac29a3cfd55b2186f357c8b2f56d16bce" id="r_ac29a3cfd55b2186f357c8b2f56d16bce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a04c51be889ee4365d2eee7ee367180dc">DriverVariant</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac29a3cfd55b2186f357c8b2f56d16bce">GetDriver</a> () noexcept</td></tr>
 <tr class="memdesc:ac29a3cfd55b2186f357c8b2f56d16bce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the active driver pointer without requiring visitor usage.  <br /></td></tr>
 <tr class="separator:ac29a3cfd55b2186f357c8b2f56d16bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1d6f6676180aff28d02dcb954917b79" id="r_ae1d6f6676180aff28d02dcb954917b79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a110c823022b879cd6d2c47cdc4468321">ConstDriverVariant</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1d6f6676180aff28d02dcb954917b79">GetDriver</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:ae1d6f6676180aff28d02dcb954917b79" id="r_ae1d6f6676180aff28d02dcb954917b79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a110c823022b879cd6d2c47cdc4468321">ConstDriverVariant</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1d6f6676180aff28d02dcb954917b79">GetDriver</a> () const noexcept</td></tr>
 <tr class="memdesc:ae1d6f6676180aff28d02dcb954917b79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const overload of <a class="el" href="#ac29a3cfd55b2186f357c8b2f56d16bce" title="Get the active driver pointer without requiring visitor usage.">GetDriver()</a>.  <br /></td></tr>
 <tr class="separator:ae1d6f6676180aff28d02dcb954917b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Driver Visitor Pattern</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Generic access when comm mode is not known at the call site. </p>
 </div></td></tr>
-<tr class="memitem:a4e219285c12b2ca50075edfaf73b4e2f" id="r_a4e219285c12b2ca50075edfaf73b4e2f"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Func</a> &gt; </td></tr>
-<tr class="memitem:a4e219285c12b2ca50075edfaf73b4e2f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a4e219285c12b2ca50075edfaf73b4e2f">visitDriver</a> (<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Func</a> &amp;&amp;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">func</a>) <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:a4e219285c12b2ca50075edfaf73b4e2f" id="r_a4e219285c12b2ca50075edfaf73b4e2f"><td class="memTemplParams" colspan="2">template&lt;typename Func &gt; </td></tr>
+<tr class="memitem:a4e219285c12b2ca50075edfaf73b4e2f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a4e219285c12b2ca50075edfaf73b4e2f">visitDriver</a> (Func &amp;&amp;func) noexcept</td></tr>
 <tr class="memdesc:a4e219285c12b2ca50075edfaf73b4e2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute a function on the underlying typed TMC9660 driver.  <br /></td></tr>
 <tr class="separator:a4e219285c12b2ca50075edfaf73b4e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a641de6a945a44e7f32cb1491eb5991" id="r_a9a641de6a945a44e7f32cb1491eb5991"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Func</a> &gt; </td></tr>
-<tr class="memitem:a9a641de6a945a44e7f32cb1491eb5991"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a9a641de6a945a44e7f32cb1491eb5991">visitDriver</a> (<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Func</a> &amp;&amp;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">func</a>) <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:a9a641de6a945a44e7f32cb1491eb5991" id="r_a9a641de6a945a44e7f32cb1491eb5991"><td class="memTemplParams" colspan="2">template&lt;typename Func &gt; </td></tr>
+<tr class="memitem:a9a641de6a945a44e7f32cb1491eb5991"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a9a641de6a945a44e7f32cb1491eb5991">visitDriver</a> (Func &amp;&amp;func) const noexcept</td></tr>
 <tr class="memdesc:a9a641de6a945a44e7f32cb1491eb5991"><td class="mdescLeft">&#160;</td><td class="mdescRight">Const overload of <a class="el" href="#a4e219285c12b2ca50075edfaf73b4e2f" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a>.  <br /></td></tr>
 <tr class="separator:a9a641de6a945a44e7f32cb1491eb5991"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Default Configuration</div></td></tr>
-<tr class="memitem:a4de763121aff441af52e492f3cff6f1c" id="r_a4de763121aff441af52e492f3cff6f1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">static</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> tmc9660::BootloaderConfig&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4de763121aff441af52e492f3cff6f1c">kDefaultBootConfig</a></td></tr>
+<tr class="memitem:a4de763121aff441af52e492f3cff6f1c" id="r_a4de763121aff441af52e492f3cff6f1c"><td class="memItemLeft" align="right" valign="top">static const tmc9660::BootloaderConfig&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4de763121aff441af52e492f3cff6f1c">kDefaultBootConfig</a></td></tr>
 <tr class="memdesc:a4de763121aff441af52e492f3cff6f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default bootloader configuration based on TMC9660-3PH-EVAL board settings.  <br /></td></tr>
 <tr class="separator:a4de763121aff441af52e492f3cff6f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a7c1d8073576d678b09dac24c9eb12845" id="r_a7c1d8073576d678b09dac24c9eb12845"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c1d8073576d678b09dac24c9eb12845">EnsureInitializedLocked</a> () <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:a7c1d8073576d678b09dac24c9eb12845" id="r_a7c1d8073576d678b09dac24c9eb12845"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c1d8073576d678b09dac24c9eb12845">EnsureInitializedLocked</a> () noexcept</td></tr>
 <tr class="memdesc:a7c1d8073576d678b09dac24c9eb12845"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure initialized while handler_mutex_ is already held.  <br /></td></tr>
 <tr class="separator:a7c1d8073576d678b09dac24c9eb12845"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07fd9e33de7e1f90137626b730bb5d27" id="r_a07fd9e33de7e1f90137626b730bb5d27"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Func</a> &gt; </td></tr>
-<tr class="memitem:a07fd9e33de7e1f90137626b730bb5d27"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a07fd9e33de7e1f90137626b730bb5d27">visitDriverInternal</a> (<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Func</a> &amp;&amp;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">func</a>) <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">noexcept</a></td></tr>
+<tr class="memitem:a07fd9e33de7e1f90137626b730bb5d27" id="r_a07fd9e33de7e1f90137626b730bb5d27"><td class="memTemplParams" colspan="2">template&lt;typename Func &gt; </td></tr>
+<tr class="memitem:a07fd9e33de7e1f90137626b730bb5d27"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a07fd9e33de7e1f90137626b730bb5d27">visitDriverInternal</a> (Func &amp;&amp;func) noexcept</td></tr>
 <tr class="memdesc:a07fd9e33de7e1f90137626b730bb5d27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal no-lock visitDriver for use from already-locked contexts.  <br /></td></tr>
 <tr class="separator:a07fd9e33de7e1f90137626b730bb5d27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a01828de5ad5685ee4baac83943be3440" id="r_a01828de5ad5685ee4baac83943be3440"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01828de5ad5685ee4baac83943be3440">use_spi_</a></td></tr>
+<tr class="memitem:a01828de5ad5685ee4baac83943be3440" id="r_a01828de5ad5685ee4baac83943be3440"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01828de5ad5685ee4baac83943be3440">use_spi_</a></td></tr>
 <tr class="memdesc:a01828de5ad5685ee4baac83943be3440"><td class="mdescLeft">&#160;</td><td class="mdescRight">true = SPI communication active, false = UART.  <br /></td></tr>
 <tr class="separator:a01828de5ad5685ee4baac83943be3440"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acdf20446a664a0c84b2b2b7cb21f3d36" id="r_acdf20446a664a0c84b2b2b7cb21f3d36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">char</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdf20446a664a0c84b2b2b7cb21f3d36">description_</a> [64] {}</td></tr>
+<tr class="memitem:acdf20446a664a0c84b2b2b7cb21f3d36" id="r_acdf20446a664a0c84b2b2b7cb21f3d36"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdf20446a664a0c84b2b2b7cb21f3d36">description_</a> [64] {}</td></tr>
 <tr class="memdesc:acdf20446a664a0c84b2b2b7cb21f3d36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Human-readable handler description.  <br /></td></tr>
 <tr class="separator:acdf20446a664a0c84b2b2b7cb21f3d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Communication Adapters</div></td></tr>
@@ -287,14 +287,14 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a68cefac6f96e3f434036901633872ce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chip temperature wrapper.  <br /></td></tr>
 <tr class="separator:a68cefac6f96e3f434036901633872ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Configuration</div></td></tr>
-<tr class="memitem:a1b5307e03e07d57585e7bcdcb0e7ef2b" id="r_a1b5307e03e07d57585e7bcdcb0e7ef2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> tmc9660::BootloaderConfig *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b5307e03e07d57585e7bcdcb0e7ef2b">bootCfg_</a></td></tr>
+<tr class="memitem:a1b5307e03e07d57585e7bcdcb0e7ef2b" id="r_a1b5307e03e07d57585e7bcdcb0e7ef2b"><td class="memItemLeft" align="right" valign="top">const tmc9660::BootloaderConfig *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b5307e03e07d57585e7bcdcb0e7ef2b">bootCfg_</a></td></tr>
 <tr class="memdesc:a1b5307e03e07d57585e7bcdcb0e7ef2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bootloader config (not owned; must outlive handler).  <br /></td></tr>
 <tr class="separator:a1b5307e03e07d57585e7bcdcb0e7ef2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1aea362e219afe55d37c69b637d48dc2" id="r_a1aea362e219afe55d37c69b637d48dc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1aea362e219afe55d37c69b637d48dc2">device_address_</a></td></tr>
+<tr class="memitem:a1aea362e219afe55d37c69b637d48dc2" id="r_a1aea362e219afe55d37c69b637d48dc2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1aea362e219afe55d37c69b637d48dc2">device_address_</a></td></tr>
 <tr class="memdesc:a1aea362e219afe55d37c69b637d48dc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">7-bit TMCL device address.  <br /></td></tr>
 <tr class="separator:a1aea362e219afe55d37c69b637d48dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Thread Safety</div></td></tr>
-<tr class="memitem:a9fe707c03f7c0ea26d83cbd0771780af" id="r_a9fe707c03f7c0ea26d83cbd0771780af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">RtosMutex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fe707c03f7c0ea26d83cbd0771780af">handler_mutex_</a></td></tr>
+<tr class="memitem:a9fe707c03f7c0ea26d83cbd0771780af" id="r_a9fe707c03f7c0ea26d83cbd0771780af"><td class="memItemLeft" align="right" valign="top">RtosMutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fe707c03f7c0ea26d83cbd0771780af">handler_mutex_</a></td></tr>
 <tr class="memdesc:a9fe707c03f7c0ea26d83cbd0771780af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursive mutex for thread-safe access.  <br /></td></tr>
 <tr class="separator:a9fe707c03f7c0ea26d83cbd0771780af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -312,49 +312,47 @@ Design Decisions</h2>
 <h2><a class="anchor" id="autotoc_md27"></a>
 Usage Example</h2>
 <div class="fragment"><div class="line"><span class="comment">// Construction (SPI mode, address 1, default boot config)</span></div>
-<div class="line"><a class="code hl_class" href="classTmc9660Handler.html">Tmc9660Handler</a> <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>(<a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">spi_bus</a>, <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">rst_pin</a>, <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv_en_pin</a>, <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">faultn_pin</a>, <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">wake_pin</a>, 0x01);</div>
+<div class="line"><a class="code hl_class" href="classTmc9660Handler.html">Tmc9660Handler</a> handler(spi_bus, rst_pin, drv_en_pin, faultn_pin, wake_pin, 0x01);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Initialize (performs hardware reset and bootloader configuration)</span></div>
-<div class="line"><span class="keywordflow">if</span> (!<a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.<a class="code hl_function" href="classTmc9660Handler_1_1Temperature.html#a8019acd874c13ba0e175224a367bf370">Initialize</a>()) {</div>
+<div class="line"><span class="keywordflow">if</span> (!handler.Initialize()) {</div>
 <div class="line">    <a class="code hl_function" href="classLogger.html#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a>().<a class="code hl_function" href="classLogger.html#adce17848a5844e053bfd314863dc1404">Error</a>(<span class="stringliteral">&quot;App&quot;</span>, <span class="stringliteral">&quot;TMC9660 init failed!&quot;</span>);</div>
 <div class="line">    <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Motor control via typed driver pointer</span></div>
-<div class="line"><span class="keyword">auto</span>* <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.driverViaSpi();</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;commutation.setMode(tmcl::CommutationMode::FOC);</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;motorControl.enable();</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;velocityControl.setTargetVelocity(1000);</div>
+<div class="line"><span class="keyword">auto</span>* drv = handler.driverViaSpi();</div>
+<div class="line">drv-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);</div>
+<div class="line">drv-&gt;commutation.setMode(tmcl::CommutationMode::FOC);</div>
+<div class="line">drv-&gt;motorControl.enable();</div>
+<div class="line">drv-&gt;velocityControl.setTargetVelocity(1000);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Telemetry via driver</span></div>
-<div class="line"><span class="keywordtype">float</span> <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">supply_v</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;telemetry.getSupplyVoltage();</div>
-<div class="line"><span class="keywordtype">float</span> <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">chip_temp</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;telemetry.getChipTemperature();</div>
+<div class="line"><span class="keywordtype">float</span> supply_v = drv-&gt;telemetry.getSupplyVoltage();</div>
+<div class="line"><span class="keywordtype">float</span> chip_temp = drv-&gt;telemetry.getChipTemperature();</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// GPIO (TMC9660 internal GPIO17)</span></div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.gpio(17).SetPinLevel(hf_gpio_level_t::HF_GPIO_LEVEL_HIGH);</div>
+<div class="line">handler.gpio(17).SetPinLevel(hf_gpio_level_t::HF_GPIO_LEVEL_HIGH);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// ADC (read AIN channel 0)</span></div>
-<div class="line"><span class="keywordtype">float</span> <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">voltage</a>;</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.adc().ReadChannelV(0, <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">voltage</a>);</div>
+<div class="line"><span class="keywordtype">float</span> voltage;</div>
+<div class="line">handler.adc().ReadChannelV(0, voltage);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Generic driver access via visitor</span></div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>.visitDriver([](<span class="keyword">auto</span>&amp; <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">driver</a>) {</div>
-<div class="line">    <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">driver</a>.feedbackSense.configureHallSensor(1, 2, 3);</div>
-<div class="line">    <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">driver</a>.protection.setOvertemperatureLimit(120.0f);</div>
+<div class="line">handler.visitDriver([](<span class="keyword">auto</span>&amp; driver) {</div>
+<div class="line">    driver.feedbackSense.configureHallSensor(1, 2, 3);</div>
+<div class="line">    driver.protection.setOvertemperatureLimit(120.0f);</div>
 <div class="line">});</div>
 <div class="ttc" id="aclassLogger_html_a5789d11f8f1356e2192c0023a089cbc4"><div class="ttname"><a href="classLogger.html#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a></div><div class="ttdeci">static Logger &amp; GetInstance() noexcept</div><div class="ttdoc">Get singleton instance.</div><div class="ttdef"><b>Definition</b> Logger.cpp:91</div></div>
 <div class="ttc" id="aclassLogger_html_adce17848a5844e053bfd314863dc1404"><div class="ttname"><a href="classLogger.html#adce17848a5844e053bfd314863dc1404">Logger::Error</a></div><div class="ttdeci">void Error(const char *tag, const char *format,...) noexcept</div><div class="ttdoc">Log error message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:222</div></div>
-<div class="ttc" id="aclassTmc9660Handler_1_1Temperature_html_a8019acd874c13ba0e175224a367bf370"><div class="ttname"><a href="classTmc9660Handler_1_1Temperature.html#a8019acd874c13ba0e175224a367bf370">Tmc9660Handler::Temperature::Initialize</a></div><div class="ttdeci">bool Initialize() noexcept override</div><div class="ttdoc">Initialize (verifies parent driver is ready).</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.cpp:815</div></div>
 <div class="ttc" id="aclassTmc9660Handler_html"><div class="ttname"><a href="classTmc9660Handler.html">Tmc9660Handler</a></div><div class="ttdoc">Unified, non-templated handler for a single TMC9660 motor controller device.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:452</div></div>
-<div class="ttc" id="aclassTmc9660Handler_html_a393382194d0602e7aa02da6a8fd7a20a"><div class="ttname"><a href="#a393382194d0602e7aa02da6a8fd7a20a">Tmc9660Handler::temperature</a></div><div class="ttdeci">Temperature &amp; temperature()</div><div class="ttdoc">Get a reference to the Temperature wrapper.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.cpp:395</div></div>
-</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classHalSpiTmc9660Comm.html" title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">HalSpiTmc9660Comm</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">SPI</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">communication</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">adapter</a> </dd>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classHalSpiTmc9660Comm.html" title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">HalSpiTmc9660Comm</a> SPI communication adapter </dd>
 <dd>
-<a class="el" href="classHalUartTmc9660Comm.html" title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.">HalUartTmc9660Comm</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">UART</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">communication</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">adapter</a> </dd>
+<a class="el" href="classHalUartTmc9660Comm.html" title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.">HalUartTmc9660Comm</a> UART communication adapter </dd>
 <dd>
-<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">MotorController</a> Multi-device <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">manager</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">that</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">owns</a> <a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">instances</a> </dd>
+MotorController Multi-device manager that owns <a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a> instances </dd>
 <dd>
-<a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">Thin</a> BaseAdc <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">adapter</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">for</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">AdcManager</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">ownership</a> </dd></dl>
+<a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> Thin BaseAdc adapter for AdcManager ownership </dd></dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a110c823022b879cd6d2c47cdc4468321" name="a110c823022b879cd6d2c47cdc4468321"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a110c823022b879cd6d2c47cdc4468321">&#9670;&#160;</a></span>ConstDriverVariant</h2>
@@ -363,7 +361,7 @@ Usage Example</h2>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">using</a> <a class="el" href="#a110c823022b879cd6d2c47cdc4468321">Tmc9660Handler::ConstDriverVariant</a> = std::variant&lt;std::monostate, <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a>*, <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a>*&gt;</td>
+          <td class="memname">using <a class="el" href="#a110c823022b879cd6d2c47cdc4468321">Tmc9660Handler::ConstDriverVariant</a> = std::variant&lt;std::monostate, const <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a>*, const <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a>*&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -379,7 +377,7 @@ Usage Example</h2>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">using</a> <a class="el" href="#a04c51be889ee4365d2eee7ee367180dc">Tmc9660Handler::DriverVariant</a> = std::variant&lt;std::monostate, <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a>*, <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a>*&gt;</td>
+          <td class="memname">using <a class="el" href="#a04c51be889ee4365d2eee7ee367180dc">Tmc9660Handler::DriverVariant</a> = std::variant&lt;std::monostate, <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">SpiDriver</a>*, <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">UartDriver</a>*&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -395,7 +393,7 @@ Usage Example</h2>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">using</a> <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">Tmc9660Handler::SpiDriver</a> = tmc9660::TMC9660&lt;<a class="el" href="classHalSpiTmc9660Comm.html">HalSpiTmc9660Comm</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">Tmc9660Handler::SpiDriver</a> = tmc9660::TMC9660&lt;<a class="el" href="classHalSpiTmc9660Comm.html">HalSpiTmc9660Comm</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -411,7 +409,7 @@ Usage Example</h2>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">using</a> <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">Tmc9660Handler::UartDriver</a> = tmc9660::TMC9660&lt;<a class="el" href="classHalUartTmc9660Comm.html">HalUartTmc9660Comm</a>&gt;</td>
+          <td class="memname">using <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">Tmc9660Handler::UartDriver</a> = tmc9660::TMC9660&lt;<a class="el" href="classHalUartTmc9660Comm.html">HalUartTmc9660Comm</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -430,7 +428,7 @@ Usage Example</h2>
         <tr>
           <td class="memname">Tmc9660Handler::Tmc9660Handler </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">BaseSpi</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>spi</em>, </span></td>
+          <td class="paramtype">BaseSpi &amp;</td>          <td class="paramname"><span class="paramname"><em>spi</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -455,12 +453,12 @@ Usage Example</h2>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">uint8_t</a></td>          <td class="paramname"><span class="paramname"><em>address</em><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </span></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>address</em><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> tmc9660::BootloaderConfig *</td>          <td class="paramname"><span class="paramname"><em>bootCfg</em><span class="paramdefsep"> = </span><span class="paramdefval">&amp;<a class="el" href="#a4de763121aff441af52e492f3cff6f1c">kDefaultBootConfig</a></span></span>&#160;)</td>
+          <td class="paramtype">const tmc9660::BootloaderConfig *</td>          <td class="paramname"><span class="paramname"><em>bootCfg</em><span class="paramdefsep"> = </span><span class="paramdefval">&amp;<a class="el" href="#a4de763121aff441af52e492f3cff6f1c">kDefaultBootConfig</a></span></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -480,11 +478,6 @@ Usage Example</h2>
   </dd>
 </dl>
 <dl class="section warning"><dt>Warning</dt><dd>All GPIO and SPI references must outlive this handler. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a33c5f6adfbd116fd717ac96c3e00fb0b_cgraph.svg" width="2044" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -497,7 +490,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">Tmc9660Handler::Tmc9660Handler </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">BaseUart</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>uart</em>, </span></td>
+          <td class="paramtype">BaseUart &amp;</td>          <td class="paramname"><span class="paramname"><em>uart</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -522,12 +515,12 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">uint8_t</a></td>          <td class="paramname"><span class="paramname"><em>address</em><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </span></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>address</em><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> tmc9660::BootloaderConfig *</td>          <td class="paramname"><span class="paramname"><em>bootCfg</em><span class="paramdefsep"> = </span><span class="paramdefval">&amp;<a class="el" href="#a4de763121aff441af52e492f3cff6f1c">kDefaultBootConfig</a></span></span>&#160;)</td>
+          <td class="paramtype">const tmc9660::BootloaderConfig *</td>          <td class="paramname"><span class="paramname"><em>bootCfg</em><span class="paramdefsep"> = </span><span class="paramdefval">&amp;<a class="el" href="#a4de763121aff441af52e492f3cff6f1c">kDefaultBootConfig</a></span></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -546,11 +539,6 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section warning"><dt>Warning</dt><dd>All GPIO and UART references must outlive this handler. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_aed1c579c5456e85070601f22b3f39a01_cgraph.svg" width="2044" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -593,7 +581,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">Tmc9660Handler::Tmc9660Handler </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -657,7 +645,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a7fe382c4dbf6bf84ed31586e52ec2e6e_cgraph.svg" width="1686" height="195"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a7fe382c4dbf6bf84ed31586e52ec2e6e_cgraph.svg" width="1686" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -677,7 +665,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> tmc9660::BootloaderConfig &amp; Tmc9660Handler::bootConfig </td>
+          <td class="memname">const tmc9660::BootloaderConfig &amp; Tmc9660Handler::bootConfig </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -705,7 +693,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">Tmc9660Handler::SpiDriver</a> * Tmc9660Handler::driverViaSpi </td>
+          <td class="memname">const <a class="el" href="#a65d00ffe3eba7aef1cb05ccef5feb619">Tmc9660Handler::SpiDriver</a> * Tmc9660Handler::driverViaSpi </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -722,7 +710,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ad8946c2dd3a3d5e26620c514988fa2df_cgraph.svg" width="2012" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ad8946c2dd3a3d5e26620c514988fa2df_cgraph.svg" width="2010" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -755,21 +743,21 @@ Here is the call graph for this function:</div>
 <p>The user always knows which comm mode they chose at construction time, so they can safely call the matching accessor.</p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the TMC9660 driver (SPI comm), or nullptr if using UART mode or <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a> has not been called.</dd></dl>
 <div class="fragment"><div class="line"><span class="comment">// Direct subsystem access after Initialize()</span></div>
-<div class="line"><span class="keyword">auto</span>* <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>-&gt;driverViaSpi();</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;feedbackSense.configureHall();</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;velocityControl.setTargetVelocity(1000);</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;protection.configureVoltage(48000, 10000);</div>
+<div class="line"><span class="keyword">auto</span>* drv = handler-&gt;driverViaSpi();</div>
+<div class="line">drv-&gt;feedbackSense.configureHall();</div>
+<div class="line">drv-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);</div>
+<div class="line">drv-&gt;velocityControl.setTargetVelocity(1000);</div>
+<div class="line">drv-&gt;protection.configureVoltage(48000, 10000);</div>
 </div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Caller is responsible for external synchronization in multi-task environments. Prefer <a class="el" href="#a4e219285c12b2ca50075edfaf73b4e2f" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a> for thread-safe access. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a85be9cd2e065b83c7abb36cb70fa6c67_cgraph.svg" width="1742" height="196"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a85be9cd2e065b83c7abb36cb70fa6c67_cgraph.svg" width="1742" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a85be9cd2e065b83c7abb36cb70fa6c67_icgraph.svg" width="483" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a85be9cd2e065b83c7abb36cb70fa6c67_icgraph.svg" width="499" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -784,7 +772,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">Tmc9660Handler::UartDriver</a> * Tmc9660Handler::driverViaUart </td>
+          <td class="memname">const <a class="el" href="#a68a5549c74095516db249e2c2d4afed7">Tmc9660Handler::UartDriver</a> * Tmc9660Handler::driverViaUart </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -801,7 +789,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a4eb74918e10999d77de25728b19542cf_cgraph.svg" width="2020" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a4eb74918e10999d77de25728b19542cf_cgraph.svg" width="2026" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -831,18 +819,18 @@ Here is the call graph for this function:</div>
 
 <p>Get the TMC9660 driver instance connected via UART (nullptr if using SPI). </p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the TMC9660 driver (UART comm), or nullptr if using SPI mode or <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a> has not been called.</dd></dl>
-<div class="fragment"><div class="line"><span class="keyword">auto</span>* <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a> = <a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">handler</a>-&gt;driverViaUart();</div>
-<div class="line"><a class="code hl_function" href="#a393382194d0602e7aa02da6a8fd7a20a">drv</a>-&gt;feedbackSense.configureABNEncoder(1024);</div>
+<div class="fragment"><div class="line"><span class="keyword">auto</span>* drv = handler-&gt;driverViaUart();</div>
+<div class="line">drv-&gt;feedbackSense.configureABNEncoder(1024);</div>
 </div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Prefer <a class="el" href="#a4e219285c12b2ca50075edfaf73b4e2f" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a>. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac4f303f9e7be9cb737a667dd5d85dd3a_cgraph.svg" width="1750" height="196"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac4f303f9e7be9cb737a667dd5d85dd3a_cgraph.svg" width="1750" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac4f303f9e7be9cb737a667dd5d85dd3a_icgraph.svg" width="491" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac4f303f9e7be9cb737a667dd5d85dd3a_icgraph.svg" width="515" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -857,7 +845,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">void</a> Tmc9660Handler::DumpDiagnostics </td>
+          <td class="memname">void Tmc9660Handler::DumpDiagnostics </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -876,7 +864,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adee8a764564554f060b879752048bf74_cgraph.svg" width="2306" height="234"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adee8a764564554f060b879752048bf74_cgraph.svg" width="1480" height="243"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -891,7 +879,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a> Tmc9660Handler::EnsureInitialized </td>
+          <td class="memname">bool Tmc9660Handler::EnsureInitialized </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -909,12 +897,12 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a5a279ae9d4b5a8e0d71cb24577ad88ea_cgraph.svg" width="1474" height="196"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a5a279ae9d4b5a8e0d71cb24577ad88ea_cgraph.svg" width="1474" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a5a279ae9d4b5a8e0d71cb24577ad88ea_icgraph.svg" width="1058" height="2483"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a5a279ae9d4b5a8e0d71cb24577ad88ea_icgraph.svg" width="812" height="555"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -929,7 +917,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a> Tmc9660Handler::EnsureInitializedLocked </td>
+          <td class="memname">bool Tmc9660Handler::EnsureInitializedLocked </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -951,7 +939,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a7c1d8073576d678b09dac24c9eb12845_icgraph.svg" width="1355" height="2427"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a7c1d8073576d678b09dac24c9eb12845_icgraph.svg" width="1116" height="555"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -994,7 +982,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">char</a> * Tmc9660Handler::GetDescription </td>
+          <td class="memname">const char * Tmc9660Handler::GetDescription </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -1039,7 +1027,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ae1d6f6676180aff28d02dcb954917b79_cgraph.svg" width="2002" height="195"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ae1d6f6676180aff28d02dcb954917b79_cgraph.svg" width="2002" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1072,7 +1060,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac29a3cfd55b2186f357c8b2f56d16bce_cgraph.svg" width="2002" height="195"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac29a3cfd55b2186f357c8b2f56d16bce_cgraph.svg" width="2002" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1086,7 +1074,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname"><a class="el" href="classTmc9660Handler_1_1Gpio.html">Tmc9660Handler::Gpio</a> &amp; Tmc9660Handler::gpio </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">uint8_t</a></td>          <td class="paramname"><span class="paramname"><em>gpioNumber</em></span></td><td>)</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>gpioNumber</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1105,7 +1093,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_acf7d1583239c9f767f82b42fc03b56cf_cgraph.svg" width="1691" height="195"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_acf7d1583239c9f767f82b42fc03b56cf_cgraph.svg" width="1691" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1117,19 +1105,19 @@ Here is the call graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a> Tmc9660Handler::Initialize </td>
+          <td class="memname">bool Tmc9660Handler::Initialize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a></td>          <td class="paramname"><span class="paramname"><em>performReset</em><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">true</a></span>, </span></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>performReset</em><span class="paramdefsep"> = </span><span class="paramdefval">true</span>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a></td>          <td class="paramname"><span class="paramname"><em>retrieveBootloaderInfo</em><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">true</a></span>, </span></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>retrieveBootloaderInfo</em><span class="paramdefsep"> = </span><span class="paramdefval">true</span>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a></td>          <td class="paramname"><span class="paramname"><em>failOnVerifyError</em><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">false</a></span></span>&#160;)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>failOnVerifyError</em><span class="paramdefsep"> = </span><span class="paramdefval">false</span></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1137,7 +1125,7 @@ Here is the call graph for this function:</div>
 <p>Initialize the TMC9660 device. </p>
 <p>Performs the following sequence:</p><ol type="1">
 <li>Creates the typed TMC9660 driver instance (SpiDriver or UartDriver).</li>
-<li>Executes the bootloader initialization sequence via the driver's <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a" title="Get a reference to the Temperature wrapper.">bootloaderInit()</a> method, which:<ul>
+<li>Executes the bootloader initialization sequence via the driver's bootloaderInit() method, which:<ul>
 <li>Optionally performs a hardware reset via the RST pin</li>
 <li>Writes the bootloader configuration words</li>
 <li>Optionally verifies each configuration word readback</li>
@@ -1165,7 +1153,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adc564847f8ae26c47412aaee0758991c_icgraph.svg" width="1600" height="2378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adc564847f8ae26c47412aaee0758991c_icgraph.svg" width="1362" height="555"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1180,7 +1168,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a> Tmc9660Handler::IsDriverReady </td>
+          <td class="memname">bool Tmc9660Handler::IsDriverReady </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td> const</td>
@@ -1198,7 +1186,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a13db97d201a287d8aa60384e04070b9f_icgraph.svg" width="1595" height="2378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a13db97d201a287d8aa60384e04070b9f_icgraph.svg" width="1356" height="555"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1213,9 +1201,9 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp; <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Tmc9660Handler::operator</a>= </td>
+          <td class="memname"><a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp; Tmc9660Handler::operator= </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> <a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1240,7 +1228,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp; <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Tmc9660Handler::operator</a>= </td>
+          <td class="memname"><a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp; Tmc9660Handler::operator= </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classTmc9660Handler.html">Tmc9660Handler</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -1280,11 +1268,6 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a393382194d0602e7aa02da6a8fd7a20a_cgraph.svg" width="1744" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a393382194d0602e7aa02da6a8fd7a20a_icgraph.svg" width="1055" height="2900"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1294,15 +1277,15 @@ Here is the caller graph for this function:</div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Func</a> &gt; </div>
+template&lt;typename Func &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">auto</a> Tmc9660Handler::visitDriver </td>
+          <td class="memname">auto Tmc9660Handler::visitDriver </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Func</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>func</em></span></td><td>)</td>
+          <td class="paramtype">Func &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>func</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -1314,11 +1297,6 @@ template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a>
 </div><div class="memdoc">
 
 <p>Const overload of <a class="el" href="#a4e219285c12b2ca50075edfaf73b4e2f" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a>. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a9a641de6a945a44e7f32cb1491eb5991_cgraph.svg" width="2002" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1328,15 +1306,15 @@ Here is the call graph for this function:</div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Func</a> &gt; </div>
+template&lt;typename Func &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">auto</a> Tmc9660Handler::visitDriver </td>
+          <td class="memname">auto Tmc9660Handler::visitDriver </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Func</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>func</em></span></td><td>)</td>
+          <td class="paramtype">Func &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>func</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1365,7 +1343,7 @@ template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a4e219285c12b2ca50075edfaf73b4e2f_cgraph.svg" width="2002" height="152"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a4e219285c12b2ca50075edfaf73b4e2f_cgraph.svg" width="1434" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1376,15 +1354,15 @@ Here is the call graph for this function:</div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a> <a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Func</a> &gt; </div>
+template&lt;typename Func &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">auto</a> Tmc9660Handler::visitDriverInternal </td>
+          <td class="memname">auto Tmc9660Handler::visitDriverInternal </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">Func</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>func</em></span></td><td>)</td>
+          <td class="paramtype">Func &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>func</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1396,11 +1374,6 @@ template&lt;<a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">typename</a>
 </div><div class="memdoc">
 
 <p>Internal no-lock visitDriver for use from already-locked contexts. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a07fd9e33de7e1f90137626b730bb5d27_cgraph.svg" width="2002" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1444,7 +1417,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> tmc9660::BootloaderConfig* Tmc9660Handler::bootCfg_</td>
+          <td class="memname">const tmc9660::BootloaderConfig* Tmc9660Handler::bootCfg_</td>
         </tr>
       </table>
   </td>
@@ -1468,7 +1441,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">char</a> Tmc9660Handler::description_[64] {}</td>
+          <td class="memname">char Tmc9660Handler::description_[64] {}</td>
         </tr>
       </table>
   </td>
@@ -1492,7 +1465,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">uint8_t</a> Tmc9660Handler::device_address_</td>
+          <td class="memname">uint8_t Tmc9660Handler::device_address_</td>
         </tr>
       </table>
   </td>
@@ -1540,7 +1513,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">RtosMutex</a> Tmc9660Handler::handler_mutex_</td>
+          <td class="memname">RtosMutex Tmc9660Handler::handler_mutex_</td>
         </tr>
       </table>
   </td>
@@ -1564,7 +1537,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">const</a> tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig</td>
+          <td class="memname">const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig</td>
         </tr>
       </table>
   </td>
@@ -1728,7 +1701,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a393382194d0602e7aa02da6a8fd7a20a">bool</a> Tmc9660Handler::use_spi_</td>
+          <td class="memname">bool Tmc9660Handler::use_spi_</td>
         </tr>
       </table>
   </td>

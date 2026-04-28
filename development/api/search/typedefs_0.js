@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['constdrivervariant_0',['ConstDriverVariant',['../classTmc5160Handler.html#ae9ac81d930499aae3a3bb7a6dc632cda',1,'Tmc5160Handler::ConstDriverVariant'],['../classTmc9660Handler.html#a110c823022b879cd6d2c47cdc4468321',1,'Tmc9660Handler::ConstDriverVariant']]]
+  ['bool_5ft_0',['bool_t',['../CO__driver__target_8h.html#a490ee355f57f2815cb1aa4626cf525f7',1,'CO_driver_target.h']]]
 ];

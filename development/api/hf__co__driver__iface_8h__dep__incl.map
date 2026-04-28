@@ -1,0 +1,5 @@
+<map id="hf_co_driver_iface.h" name="hf_co_driver_iface.h">
+<area shape="rect" id="Node000001" title="C linkage between CANopenNode CO_driver_vortex.c and the Vortex app (BaseCan)." alt="" coords="5,5,159,31"/>
+<area shape="rect" id="Node000002" href="$CO__driver__vortex_8c.html" title="CANopenNode hardware driver for HardFOC Vortex: TWAI via registered TX/RX hooks." alt="" coords="9,79,155,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,44,85,79,79,79,79,44"/>
+</map>

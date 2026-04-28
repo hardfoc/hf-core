@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['uartdriver_0',['UartDriver',['../classTmc5160Handler.html#a31e66827548c966a076877961d3e852f',1,'Tmc5160Handler::UartDriver'],['../classTmc9660Handler.html#a68a5549c74095516db249e2c2d4afed7',1,'Tmc9660Handler::UartDriver']]]
+  ['pca9685driver_0',['Pca9685Driver',['../classPca9685Handler.html#a98f3e67474173eeb234d4cc3e4b4d03b',1,'Pca9685Handler']]],
+  ['pcal95555driver_1',['Pcal95555Driver',['../classPcal95555Handler.html#a79a4140f8340810bea7bed218a78df6c',1,'Pcal95555Handler']]]
 ];
