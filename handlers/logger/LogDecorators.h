@@ -9,11 +9,11 @@ inline void BannerColored(const char* tag, const char* line1,
     auto& logger = Logger::GetInstance();
     logger.Info(tag, "");
     logger.Info(tag, color, LogStyle::BOLD,
-                "╔══════════════════════════════════════════════════════════╗");
+                "+==========================================================+");
     logger.Info(tag, color, LogStyle::BOLD,
-                "║  %-54s  ║", line1);
+                "|  %-54s  |", line1);
     logger.Info(tag, color, LogStyle::BOLD,
-                "╚══════════════════════════════════════════════════════════╝");
+                "+==========================================================+");
     logger.Info(tag, "");
 }
 
@@ -23,7 +23,7 @@ inline void Banner(const char* tag, const char* line1) noexcept {
 
 inline void Section(const char* tag, const char* title) noexcept {
     Logger::GetInstance().Info(tag, LogColor::BRIGHT_BLUE, LogStyle::BOLD,
-                               "── %s ──", title);
+                               "-- %s --", title);
 }
 
 inline void Rule(const char* tag) noexcept {
