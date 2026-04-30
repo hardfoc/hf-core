@@ -112,11 +112,11 @@ $(function(){initNavTree('LogDecorators_8h_source.html',''); initResizable(); })
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keyword">auto</span>&amp; logger = <a class="code hl_function" href="classLogger.html#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a>();</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    logger.Info(tag, <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    logger.Info(tag, color, <a class="code hl_enumvalue" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19">LogStyle::BOLD</a>,</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>                <span class="stringliteral">&quot;╔══════════════════════════════════════════════════════════╗&quot;</span>);</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>                <span class="stringliteral">&quot;+==========================================================+&quot;</span>);</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    logger.Info(tag, color, <a class="code hl_enumvalue" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19">LogStyle::BOLD</a>,</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>                <span class="stringliteral">&quot;║  %-54s  ║&quot;</span>, line1);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>                <span class="stringliteral">&quot;|  %-54s  |&quot;</span>, line1);</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    logger.Info(tag, color, <a class="code hl_enumvalue" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19">LogStyle::BOLD</a>,</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                <span class="stringliteral">&quot;╚══════════════════════════════════════════════════════════╝&quot;</span>);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                <span class="stringliteral">&quot;+==========================================================+&quot;</span>);</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    logger.Info(tag, <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}</div>
 </div>
@@ -130,7 +130,7 @@ $(function(){initNavTree('LogDecorators_8h_source.html',''); initResizable(); })
 <div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="namespacelogger__decor.html#ad336dcc7bd41082a5176af0e1c631f8f">   24</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacelogger__decor.html#ad336dcc7bd41082a5176af0e1c631f8f">Section</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* tag, <span class="keyword">const</span> <span class="keywordtype">char</span>* title) <span class="keyword">noexcept</span> {</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_function" href="classLogger.html#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a>().<a class="code hl_function" href="classLogger.html#a4681229c521795685fc14f6b55c82300">Info</a>(tag, <a class="code hl_enumvalue" href="Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2ead187a715c27ec1e774325b6715f4da67">LogColor::BRIGHT_BLUE</a>, <a class="code hl_enumvalue" href="Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a2909dd0e0336f10b6da9735b859a3d19">LogStyle::BOLD</a>,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                               <span class="stringliteral">&quot;── %s ──&quot;</span>, title);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                               <span class="stringliteral">&quot;-- %s --&quot;</span>, title);</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
 </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
