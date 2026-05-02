@@ -46,7 +46,9 @@ var NAVTREE =
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
-        [ "Variables", "namespacemembers_vars.html", null ]
+        [ "Variables", "namespacemembers_vars.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -84,9 +86,9 @@ var NAVTREEINDEX =
 "classPca9685PwmAdapter.html#a99fbcd37f8ec3a7147f09895b6c8d0ce",
 "classTmc9660Handler.html#a1aea362e219afe55d37c69b637d48dc2",
 "functions_func_l.html",
-"ntc__handler__comprehensive__test_8cpp.html#a5a85b9c772bbeb480b209a3e6ea92b4c",
-"structBno08xVector3.html#aea9641493afa37905bf389ce60b510ad",
-"tmc9660__handler__comprehensive__test_8cpp.html#ac488b91750859680faf2cf1783c851ea"
+"namespacehandler__utils.html#afc7fd91265677d0865cbc2a413754ed8",
+"structBno08xEulerAngles.html#a8f2e2420f6aaed647d9107741e59fe7e",
+"tmc5160__handler__comprehensive__test_8cpp.html#a2e723b1283d9cf5fb62f391f378447d0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

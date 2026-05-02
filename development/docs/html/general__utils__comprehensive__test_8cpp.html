@@ -92,6 +92,10 @@ $(function(){initNavTree('general__utils__comprehensive__test_8cpp.html',''); in
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">general_utils_comprehensive_test.cpp File Reference</div></div>
@@ -107,6 +111,7 @@ $(function(){initNavTree('general__utils__comprehensive__test_8cpp.html',''); in
 <code>#include &quot;CrcCalculator.h&quot;</code><br />
 <code>#include &quot;ActionTimer.h&quot;</code><br />
 <code>#include &quot;SoftwareVersion.h&quot;</code><br />
+<code>#include &quot;StateMachine.h&quot;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;cstring&gt;</code><br />
 <code>#include &quot;esp_log.h&quot;</code><br />
@@ -115,9 +120,33 @@ $(function(){initNavTree('general__utils__comprehensive__test_8cpp.html',''); in
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for general_utils_comprehensive_test.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="general__utils__comprehensive__test_8cpp__incl.svg" width="1827" height="198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="general__utils__comprehensive__test_8cpp__incl.svg" width="1974" height="198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsm__test_1_1Owner.html">sm_test::Owner</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacesm__test" id="r_namespacesm__test"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesm__test.html">sm_test</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a42545b4c565ca63b9f237e3d7cee1216" id="r_a42545b4c565ca63b9f237e3d7cee1216"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesm__test.html#a42545b4c565ca63b9f237e3d7cee1216">sm_test::SM</a> = hf_utils::StateMachine&lt;<a class="el" href="structsm__test_1_1Owner.html">Owner</a>, <a class="el" href="namespacesm__test.html#a477b1d6911e837558e72fd69691eb1fc">S</a>, static_cast&lt;size_t&gt;(<a class="el" href="namespacesm__test.html#a477b1d6911e837558e72fd69691eb1fca4905ac9d6a22bdfc1ae096094ce6248d">S::COUNT</a>)&gt;</td></tr>
+<tr class="separator:a42545b4c565ca63b9f237e3d7cee1216"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a477b1d6911e837558e72fd69691eb1fc" id="r_a477b1d6911e837558e72fd69691eb1fc"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesm__test.html#a477b1d6911e837558e72fd69691eb1fc">sm_test::S</a> : uint8_t { <a class="el" href="namespacesm__test.html#a477b1d6911e837558e72fd69691eb1fca7fc56270e7a70fa81a5935b72eacbe29">sm_test::A</a> = 0
+, <a class="el" href="namespacesm__test.html#a477b1d6911e837558e72fd69691eb1fca9d5ed678fe57bcca610140957afab571">sm_test::B</a> = 1
+, <a class="el" href="namespacesm__test.html#a477b1d6911e837558e72fd69691eb1fca0d61f8370cad1d412f80b84d143e1257">sm_test::C</a> = 2
+, <a class="el" href="namespacesm__test.html#a477b1d6911e837558e72fd69691eb1fca4905ac9d6a22bdfc1ae096094ce6248d">sm_test::COUNT</a> = 3
+ }</td></tr>
+<tr class="separator:a477b1d6911e837558e72fd69691eb1fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aafcef82a0e68a723e26435341873f876" id="r_aafcef82a0e68a723e26435341873f876"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafcef82a0e68a723e26435341873f876">test_circular_buffer_basic</a> () noexcept</td></tr>
@@ -136,6 +165,24 @@ Functions</h2></td></tr>
 <tr class="separator:a32d55bb08563856f410c7c653a262e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0000f541150318542252cbea9b5080a2" id="r_a0000f541150318542252cbea9b5080a2"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0000f541150318542252cbea9b5080a2">test_software_version</a> () noexcept</td></tr>
 <tr class="separator:a0000f541150318542252cbea9b5080a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa64c8572ce750eeec442c2680079ddd8" id="r_aa64c8572ce750eeec442c2680079ddd8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesm__test.html#aa64c8572ce750eeec442c2680079ddd8">sm_test::register_all</a> (<a class="el" href="namespacesm__test.html#a42545b4c565ca63b9f237e3d7cee1216">SM</a> &amp;sm, <a class="el" href="structsm__test_1_1Owner.html">Owner</a> &amp;o)</td></tr>
+<tr class="separator:aa64c8572ce750eeec442c2680079ddd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19c7a79e3b4cbe763eda9bfff5d8b07f" id="r_a19c7a79e3b4cbe763eda9bfff5d8b07f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19c7a79e3b4cbe763eda9bfff5d8b07f">test_sm_finalize_requires_full_registration</a> () noexcept</td></tr>
+<tr class="separator:a19c7a79e3b4cbe763eda9bfff5d8b07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27fd3b03be28dd31ff379d9a8299b242" id="r_a27fd3b03be28dd31ff379d9a8299b242"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27fd3b03be28dd31ff379d9a8299b242">test_sm_entry_loop_runs_on_first_tick</a> () noexcept</td></tr>
+<tr class="separator:a27fd3b03be28dd31ff379d9a8299b242"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a034bf5258503be263649c2b35147e651" id="r_a034bf5258503be263649c2b35147e651"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a034bf5258503be263649c2b35147e651">test_sm_owner_request_transition_runs_exit_then_entry</a> () noexcept</td></tr>
+<tr class="separator:a034bf5258503be263649c2b35147e651"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75efa4d87abe9d2442589fc40ecfdd47" id="r_a75efa4d87abe9d2442589fc40ecfdd47"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75efa4d87abe9d2442589fc40ecfdd47">test_sm_illegal_transition_rejected</a> () noexcept</td></tr>
+<tr class="separator:a75efa4d87abe9d2442589fc40ecfdd47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41d00c3ec700a18d505dc86f04196bf5" id="r_a41d00c3ec700a18d505dc86f04196bf5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41d00c3ec700a18d505dc86f04196bf5">test_sm_external_intent_drained_on_update</a> () noexcept</td></tr>
+<tr class="separator:a41d00c3ec700a18d505dc86f04196bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5fff781f466e12c266bce721a434db3" id="r_ae5fff781f466e12c266bce721a434db3"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5fff781f466e12c266bce721a434db3">test_sm_entry_failure_retries_next_tick</a> () noexcept</td></tr>
+<tr class="separator:ae5fff781f466e12c266bce721a434db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af91b6159f73a8f937cf1f30d4ae7206c" id="r_af91b6159f73a8f937cf1f30d4ae7206c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af91b6159f73a8f937cf1f30d4ae7206c">test_sm_exit_failure_keeps_state_with_intent_pending</a> () noexcept</td></tr>
+<tr class="separator:af91b6159f73a8f937cf1f30d4ae7206c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab656d072395dc9629b54a3545addcca4" id="r_ab656d072395dc9629b54a3545addcca4"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab656d072395dc9629b54a3545addcca4">test_sm_max_dwell_watchdog_fires_once_per_state</a> () noexcept</td></tr>
+<tr class="separator:ab656d072395dc9629b54a3545addcca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a630544a7f0a2cc40d8a7fefab7e2fe70" id="r_a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a> (void)</td></tr>
 <tr class="separator:a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -157,6 +204,8 @@ Variables</h2></td></tr>
 <tr class="separator:a47fc2c0c2aa5a48d172bb6cf295f724d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a777c850679c895b2649737d6218a93c9" id="r_a777c850679c895b2649737d6218a93c9"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a777c850679c895b2649737d6218a93c9">ENABLE_VERSION_TESTS</a> = true</td></tr>
 <tr class="separator:a777c850679c895b2649737d6218a93c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a157244eae831ac5221412e68d474caf8" id="r_a157244eae831ac5221412e68d474caf8"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a157244eae831ac5221412e68d474caf8">ENABLE_STATE_MACHINE_TESTS</a> = true</td></tr>
+<tr class="separator:a157244eae831ac5221412e68d474caf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Comprehensive test suite for hf-utils-general utilities. </p>
@@ -398,6 +447,206 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="ae5fff781f466e12c266bce721a434db3" name="ae5fff781f466e12c266bce721a434db3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5fff781f466e12c266bce721a434db3">&#9670;&#160;</a></span>test_sm_entry_failure_retries_next_tick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool test_sm_entry_failure_retries_next_tick </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a27fd3b03be28dd31ff379d9a8299b242" name="a27fd3b03be28dd31ff379d9a8299b242"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27fd3b03be28dd31ff379d9a8299b242">&#9670;&#160;</a></span>test_sm_entry_loop_runs_on_first_tick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool test_sm_entry_loop_runs_on_first_tick </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af91b6159f73a8f937cf1f30d4ae7206c" name="af91b6159f73a8f937cf1f30d4ae7206c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af91b6159f73a8f937cf1f30d4ae7206c">&#9670;&#160;</a></span>test_sm_exit_failure_keeps_state_with_intent_pending()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool test_sm_exit_failure_keeps_state_with_intent_pending </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41d00c3ec700a18d505dc86f04196bf5" name="a41d00c3ec700a18d505dc86f04196bf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41d00c3ec700a18d505dc86f04196bf5">&#9670;&#160;</a></span>test_sm_external_intent_drained_on_update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool test_sm_external_intent_drained_on_update </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a19c7a79e3b4cbe763eda9bfff5d8b07f" name="a19c7a79e3b4cbe763eda9bfff5d8b07f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19c7a79e3b4cbe763eda9bfff5d8b07f">&#9670;&#160;</a></span>test_sm_finalize_requires_full_registration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool test_sm_finalize_requires_full_registration </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a75efa4d87abe9d2442589fc40ecfdd47" name="a75efa4d87abe9d2442589fc40ecfdd47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75efa4d87abe9d2442589fc40ecfdd47">&#9670;&#160;</a></span>test_sm_illegal_transition_rejected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool test_sm_illegal_transition_rejected </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab656d072395dc9629b54a3545addcca4" name="ab656d072395dc9629b54a3545addcca4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab656d072395dc9629b54a3545addcca4">&#9670;&#160;</a></span>test_sm_max_dwell_watchdog_fires_once_per_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool test_sm_max_dwell_watchdog_fires_once_per_state </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a034bf5258503be263649c2b35147e651" name="a034bf5258503be263649c2b35147e651"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a034bf5258503be263649c2b35147e651">&#9670;&#160;</a></span>test_sm_owner_request_transition_runs_exit_then_entry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool test_sm_owner_request_transition_runs_exit_then_entry </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a0000f541150318542252cbea9b5080a2" name="a0000f541150318542252cbea9b5080a2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0000f541150318542252cbea9b5080a2">&#9670;&#160;</a></span>test_software_version()</h2>
 
@@ -506,6 +755,28 @@ Here is the caller graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">constexpr bool ENABLE_RING_BUFFER_TESTS = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a157244eae831ac5221412e68d474caf8" name="a157244eae831ac5221412e68d474caf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a157244eae831ac5221412e68d474caf8">&#9670;&#160;</a></span>ENABLE_STATE_MACHINE_TESTS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool ENABLE_STATE_MACHINE_TESTS = true</td>
         </tr>
       </table>
   </td>

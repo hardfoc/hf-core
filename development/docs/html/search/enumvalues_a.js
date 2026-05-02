@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['red_0',['RED',['../Logger_8h.html#abeb0b5a8d3424ad4a83592f8580b8a2eaa2d9547b5d3dd9f05984475f7c926da0',1,'RED:&#160;Logger.h'],['../Logger_8h.html#a96718db9ec196b0ccd6f8d9517b45ea1aa2d9547b5d3dd9f05984475f7c926da0',1,'RED:&#160;Logger.h']]]
+  ['normal_0',['NORMAL',['../Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52a1e23852820b9154316c7c06e2b7ba051',1,'Logger.h']]],
+  ['not_5finitialized_1',['NOT_INITIALIZED',['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a02de9649e258d1dd94056e676061e969',1,'Bno08xHandler.h']]]
 ];

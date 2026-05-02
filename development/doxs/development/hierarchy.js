@@ -77,6 +77,7 @@ var hierarchy =
     [ "Max22200Handler", "classMax22200Handler.html", null ],
     [ "Mcp9700AdcAdapter", "classMcp9700AdcAdapter.html", null ],
     [ "ntc_temp_handler_config_t", "structntc__temp__handler__config__t.html", null ],
+    [ "sm_test::Owner", "structsm__test_1_1Owner.html", null ],
     [ "Pca9685Handler", "classPca9685Handler.html", null ],
     [ "Pcal95555Handler", "classPcal95555Handler.html", null ],
     [ "Se050Handler", "classSe050Handler.html", null ],

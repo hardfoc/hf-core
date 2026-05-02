@@ -189,8 +189,8 @@ static bool test_base_thread() noexcept {
 // ─────────────────────── OsQueue ───────────────────────
 
 static bool test_os_queue() noexcept {
-    OsQueue<int, 10> queue("test_q", 1);
-    if (!queue.EnsureInitialized()) return true;
+    OsQueue<int, 10> queue("test_q");
+    if (!queue.IsValid()) return true;
 
     queue.Send(42, 0);
     queue.Send(99, 0);
@@ -207,7 +207,7 @@ static bool test_os_queue() noexcept {
 }
 
 static bool test_os_queue_full() noexcept {
-    OsQueue<int, 2> queue("full_q", 1);
+    OsQueue<int, 2> queue("full_q");
     queue.Send(1, 0);
     queue.Send(2, 0);
     bool full_send = queue.Send(3, 0); // Should fail (queue full, 0 timeout)
@@ -218,15 +218,16 @@ static bool test_os_queue_full() noexcept {
 // ─────────────────────── OsEventFlags ───────────────────────
 
 static bool test_event_flags() noexcept {
-    OsEventFlags<1> events("test_events");
-    if (!events.EnsureInitialized()) return true;
+    OsEventFlags<> events("test_events");
+    if (!events.IsValid()) return true;
 
     bool set1 = events.Set(0x01);
     bool set2 = events.Set(0x04);
 
-    OS_Ulong flagsToGet = 0x05;
-    bool ok = events.Get(flagsToGet, OS_OR, 100);
-    ESP_LOGI(TAG, "OsEventFlags: set1=%d set2=%d get=%d", set1, set2, ok);
+    uint32_t actual = 0;
+    bool ok = events.Wait(0x05, WaitMode::Any, 100, actual);
+    ESP_LOGI(TAG, "OsEventFlags: set1=%d set2=%d wait=%d actual=0x%lx",
+             set1, set2, ok, static_cast<unsigned long>(actual));
     return set1 && set2 && ok;
 }
 
