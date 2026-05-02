@@ -213,6 +213,8 @@ apps:
     description: >
       Comprehensive test of hf-utils-general on ESP32/FreeRTOS: CircularBuffer,
       RingBuffer, AveragingFilter, SimpleStateMachine, SlightlyAdvancedStateMachine,
+      StateMachine (allocation-free FSM with Entry/Loop/Exit hooks, transition matrix,
+      visit/dwell counters, stuck-state watchdog),
       CrcCalculator, ActionTimer, ActionRunLimiter, DynamicArray, EnumArray,
       BoundedLinearCurve, PiecewiseLinearCurve, LineEstimator, MultiReadings,
       TimestampedVariable, VariableMonitor, VariableAnomalyMonitor, SoftwareVersion,

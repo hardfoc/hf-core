@@ -22,6 +22,7 @@
 #include "CrcCalculator.h"
 #include "ActionTimer.h"
 #include "SoftwareVersion.h"
+#include "StateMachine.h"
 
 #include <cmath>
 #include <cstring>
@@ -45,6 +46,7 @@ static constexpr bool ENABLE_AVERAGING_FILTER_TESTS = true;
 static constexpr bool ENABLE_CRC_TESTS              = true;
 static constexpr bool ENABLE_TIMER_TESTS            = true;
 static constexpr bool ENABLE_VERSION_TESTS          = true;
+static constexpr bool ENABLE_STATE_MACHINE_TESTS    = true;
 
 // ─────────────────────── CircularBuffer ───────────────────────
 
@@ -139,7 +141,214 @@ static bool test_software_version() noexcept {
              str, v.GetMajor(), v.GetMinor(), v.GetBuild());
     return major_ok && minor_ok && build_ok;
 }
+─────────────────────── StateMachine ───────────────────────
+//
+// Exercises the new allocation-free `hf_utils::StateMachine` template:
+// Entry/Loop/Exit ordering, dwell + visit counters, illegal-transition
+// rejection, single-slot external intent inbox, and stuck-state watchdog.
+//
+// All tests use a fake `Owner` whose hooks just record what was called.
 
+namespace sm_test {
+
+enum class S : uint8_t { A = 0, B = 1, C = 2, COUNT = 3 };
+
+struct Owner {
+    int entry_a{0}, loop_a{0}, exit_a{0};
+    int entry_b{0}, loop_b{0}, exit_b{0};
+    int entry_c{0}, loop_c{0}, exit_c{0};
+    bool entry_b_should_fail{false};
+    bool exit_a_should_fail{false};
+
+    bool EnterA() noexcept { ++entry_a; return true; }
+    uint32_t LoopA() noexcept { ++loop_a; return 50; }
+    bool ExitA()  noexcept { ++exit_a; return !exit_a_should_fail; }
+
+    bool EnterB() noexcept { ++entry_b; return !entry_b_should_fail; }
+    uint32_t LoopB() noexcept { ++loop_b; return 50; }
+    bool ExitB()  noexcept { ++exit_b; return true; }
+
+    bool EnterC() noexcept { ++entry_c; return true; }
+    uint32_t LoopC() noexcept { ++loop_c; return 50; }
+    RUN_TEST_SECTION_IF_ENABLED(ENABLE_STATE_MACHINE_TESTS, "STATE MACHINE",
+        RUN_TEST("finalize",          test_sm_finalize_requires_full_registration); flip_test_progress_indicator();
+        RUN_TEST("first_tick",        test_sm_entry_loop_runs_on_first_tick); flip_test_progress_indicator();
+        RUN_TEST("transition",        test_sm_owner_request_transition_runs_exit_then_entry); flip_test_progress_indicator();
+        RUN_TEST("illegal",           test_sm_illegal_transition_rejected); flip_test_progress_indicator();
+        RUN_TEST("external_intent",   test_sm_external_intent_drained_on_update); flip_test_progress_indicator();
+        RUN_TEST("entry_retry",       test_sm_entry_failure_retries_next_tick); flip_test_progress_indicator();
+        RUN_TEST("exit_retry",        test_sm_exit_failure_keeps_state_with_intent_pending); flip_test_progress_indicator();
+        RUN_TEST("watchdog",          test_sm_max_dwell_watchdog_fires_once_per_state); flip_test_progress_indicator();
+    );
+    bool ExitC()  noexcept { ++exit_c; return true; }
+};
+
+using SM = hf_utils::StateMachine<Owner, S, static_cast<size_t>(S::COUNT)>;
+
+static void register_all(SM& sm, Owner& o) {
+    sm.Register(S::A, {&Owner::EnterA, &Owner::LoopA, &Owner::ExitA});
+    sm.Register(S::B, {&Owner::EnterB, &Owner::LoopB, &Owner::ExitB});
+    sm.Register(S::C, {&Owner::EnterC, &Owner::LoopC, &Owner::ExitC});
+    (void)o;
+}
+
+} // namespace sm_test
+
+static bool test_sm_finalize_requires_full_registration() noexcept {
+    using namespace sm_test;
+    Owner o;
+    SM sm(o, S::A);
+    bool before = sm.IsFinalized();
+    sm.Register(S::A, {&Owner::EnterA, &Owner::LoopA, &Owner::ExitA});
+    bool finalized_partial = sm.Finalize();
+    register_all(sm, o);
+    bool finalized_full = sm.Finalize();
+    ESP_LOGI(TAG, "SM Finalize: before=%d partial=%d full=%d", before, finalized_partial, finalized_full);
+    return !before && !finalized_partial && finalized_full;
+}
+
+static bool test_sm_entry_loop_runs_on_first_tick() noexcept {
+    using namespace sm_test;
+    Owner o;
+    SM sm(o, S::A);
+    register_all(sm, o);
+    (void)sm.Finalize();
+    uint32_t delay = sm.Update(0);
+    bool entry_called = (o.entry_a == 1);
+    bool loop_called  = (o.loop_a  == 1);
+    bool delay_ok     = (delay == 50);
+    ESP_LOGI(TAG, "SM first tick: entry=%d loop=%d delay=%lu", o.entry_a, o.loop_a, (unsigned long)delay);
+    return entry_called && loop_called && delay_ok;
+}
+
+static bool test_sm_owner_request_transition_runs_exit_then_entry() noexcept {
+    using namespace sm_test;
+    Owner o;
+    SM sm(o, S::A);
+    register_all(sm, o);
+    (void)sm.Finalize();
+    sm.Update(0);                       // enter A, loop A
+    bool req = sm.RequestTransition(S::B);
+    sm.Update(100);                     // exit A, enter B, loop B
+    bool req_ok    = req;
+    bool exit_a_ok = (o.exit_a == 1);
+    bool enter_b_ok = (o.entry_b == 1);
+    bool loop_b_ok  = (o.loop_b  == 1);
+    bool dwell_a_ok = (sm.LastDwellMs(S::A) == 100);
+    bool visits_b_ok = (sm.VisitCount(S::B) == 1);
+    ESP_LOGI(TAG, "SM transition: req=%d exitA=%d enterB=%d loopB=%d dwell=%lu",
+             req_ok, exit_a_ok, enter_b_ok, loop_b_ok,
+             (unsigned long)sm.LastDwellMs(S::A));
+    return req_ok && exit_a_ok && enter_b_ok && loop_b_ok && dwell_a_ok && visits_b_ok;
+}
+
+static bool test_sm_illegal_transition_rejected() noexcept {
+    using namespace sm_test;
+    Owner o;
+    SM sm(o, S::A);
+    register_all(sm, o);
+    // Matrix: A -> {B}, B -> {A}, C -> {} (unreachable).
+    std::array<uint64_t, 3> mask{};
+    mask[0] = (uint64_t{1} << 1);
+    mask[1] = (uint64_t{1} << 0);
+    mask[2] = 0;
+    sm.SetTransitionMatrix(mask);
+    (void)sm.Finalize();
+    sm.Update(0);
+    bool illegal_req = sm.RequestTransition(S::C); // A -> C is illegal
+    sm.Update(100);
+    bool illegal_count_ok = (sm.IllegalTransitionCount() == 1);
+    bool no_exit_called   = (o.exit_a == 0);
+    bool stayed_in_a      = (sm.GetCurrentState() == S::A);
+    ESP_LOGI(TAG, "SM illegal: rejected=%d count=%lu state=%u",
+             !illegal_req, (unsigned long)sm.IllegalTransitionCount(),
+             (unsigned)sm.GetCurrentState());
+    return !illegal_req && illegal_count_ok && no_exit_called && stayed_in_a;
+}
+
+static bool test_sm_external_intent_drained_on_update() noexcept {
+    using namespace sm_test;
+    Owner o;
+    SM sm(o, S::A);
+    register_all(sm, o);
+    (void)sm.Finalize();
+    sm.Update(0);
+    sm.OnExternalIntent(S::B);
+    sm.OnExternalIntent(S::C); // last-writer-wins
+    sm.Update(50);
+    bool now_in_c = (sm.GetCurrentState() == S::C);
+    bool entered_c = (o.entry_c == 1);
+    bool not_entered_b = (o.entry_b == 0);
+    ESP_LOGI(TAG, "SM external: state=%u entryC=%d entryB=%d",
+             (unsigned)sm.GetCurrentState(), o.entry_c, o.entry_b);
+    return now_in_c && entered_c && not_entered_b;
+}
+
+static bool test_sm_entry_failure_retries_next_tick() noexcept {
+    using namespace sm_test;
+    Owner o;
+    SM sm(o, S::A);
+    register_all(sm, o);
+    (void)sm.Finalize();
+    sm.Update(0);
+    o.entry_b_should_fail = true;
+    sm.RequestTransition(S::B);
+    sm.Update(100);                                 // exit A, attempt enter B (fails)
+    bool entering = (sm.GetCurrentPhase() == hf_utils::StatePhase::Entering);
+    bool one_attempt = (o.entry_b == 1);
+    o.entry_b_should_fail = false;
+    sm.Update(110);                                 // re-attempt entry → succeeds
+    bool running_now = (sm.GetCurrentPhase() == hf_utils::StatePhase::Running);
+    bool two_attempts = (o.entry_b == 2);
+    ESP_LOGI(TAG, "SM entry-retry: enteringFirst=%d attempts=%d running=%d",
+             entering, o.entry_b, running_now);
+    return entering && one_attempt && running_now && two_attempts;
+}
+
+static bool test_sm_exit_failure_keeps_state_with_intent_pending() noexcept {
+    using namespace sm_test;
+    Owner o;
+    SM sm(o, S::A);
+    register_all(sm, o);
+    (void)sm.Finalize();
+    sm.Update(0);
+    o.exit_a_should_fail = true;
+    sm.RequestTransition(S::B);
+    sm.Update(100);                                 // exit A returns false → stay in A
+    bool still_a = (sm.GetCurrentState() == S::A);
+    bool exit_attempted = (o.exit_a == 1);
+    bool no_enter_b     = (o.entry_b == 0);
+    o.exit_a_should_fail = false;
+    sm.Update(110);                                 // retry exit → succeeds
+    bool now_b = (sm.GetCurrentState() == S::B);
+    ESP_LOGI(TAG, "SM exit-retry: stillA=%d exits=%d enters=%d nowB=%d",
+             still_a, o.exit_a, o.entry_b, now_b);
+    return still_a && exit_attempted && no_enter_b && now_b;
+}
+
+static bool test_sm_max_dwell_watchdog_fires_once_per_state() noexcept {
+    using namespace sm_test;
+    Owner o;
+    SM sm(o, S::A);
+    register_all(sm, o);
+    sm.SetMaxDwell(S::A, 100);
+    (void)sm.Finalize();
+    sm.Update(0);
+    sm.Update(50);                          // dwell 50; not breached
+    sm.Update(150);                         // dwell 150; breach
+    sm.Update(250);                         // dwell 250; latched, shouldn't double-count
+    bool count_one = (sm.MaxDwellBreachCount() == 1);
+    bool last_state_a = (sm.MaxDwellLastBreachState() == S::A);
+    sm.RequestTransition(S::B);
+    sm.Update(300);                         // transition → re-arm
+    sm.Update(500);                         // dwell 200 in B; B has no cap → still 1
+    bool still_one = (sm.MaxDwellBreachCount() == 1);
+    ESP_LOGI(TAG, "SM watchdog: count=%lu lastA=%d still=%d",
+             (unsigned long)sm.MaxDwellBreachCount(), last_state_a, still_one);
+    return count_one && last_state_a && still_one;
+}
+
+// 
 // ═══════════════════════ ENTRY POINT ═══════════════════════
 
 extern "C" void app_main(void) {
