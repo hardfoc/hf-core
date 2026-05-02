@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['timeout_0',['TIMEOUT',['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a070a0fb40f6c308ab544b227660aadff',1,'Bno08xHandler.h']]]
+  ['sensor_5fnot_5fenabled_0',['SENSOR_NOT_ENABLED',['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832adefa7c21c79061d81f201f471ac484b9',1,'Bno08xHandler.h']]],
+  ['sensor_5fnot_5fresponding_1',['SENSOR_NOT_RESPONDING',['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832aefa317621a7a5d359894d432ec948b31',1,'Bno08xHandler.h']]],
+  ['strikethrough_2',['STRIKETHROUGH',['../Logger_8h.html#aeeb2493a0c1386f85084889cc8bb7f52aad166989fa2b7da7d238b3e7105c64f8',1,'Logger.h']]],
+  ['success_3',['SUCCESS',['../Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832ad0749aaba8b833466dfcbb0428e4f89c',1,'Bno08xHandler.h']]]
 ];

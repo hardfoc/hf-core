@@ -27,5 +27,6 @@ var namespaces_dup =
       [ "BannerColored", "namespacelogger__decor.html#a242f5384a18a9eee59577d39a6bc6d21", null ],
       [ "Rule", "namespacelogger__decor.html#ac5bed90d6e56255709791c8796eb02bf", null ],
       [ "Section", "namespacelogger__decor.html#ad336dcc7bd41082a5176af0e1c631f8f", null ]
-    ] ]
+    ] ],
+    [ "sm_test", "namespacesm__test.html", "namespacesm__test" ]
 ];

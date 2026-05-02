@@ -1,5 +1,8 @@
 var annotated_dup =
 [
+    [ "sm_test", "namespacesm__test.html", [
+      [ "Owner", "structsm__test_1_1Owner.html", "structsm__test_1_1Owner" ]
+    ] ],
     [ "Ads7952Diagnostics", "structAds7952Diagnostics.html", "structAds7952Diagnostics" ],
     [ "Ads7952Handler", "classAds7952Handler.html", "classAds7952Handler" ],
     [ "Ads7952HandlerConfig", "structAds7952HandlerConfig.html", "structAds7952HandlerConfig" ],

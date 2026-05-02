@@ -1,0 +1,5 @@
+<map id="sm_test::Owner::LoopA" name="sm_test::Owner::LoopA">
+<area shape="rect" id="Node000001" title=" " alt="" coords="208,5,380,31"/>
+<area shape="rect" id="Node000002" href="$namespacesm__test.html#aa64c8572ce750eeec442c2680079ddd8" title=" " alt="" coords="5,5,160,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,21,160,21,160,15,194,15"/>
+</map>
