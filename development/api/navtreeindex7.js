@@ -1,5 +1,9 @@
 var NAVTREEINDEX7 =
 {
+"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#aee82d92e54869f56afcdfa5bf23dbf2f":[12,0,3,0],
+"namespacehandler__utils.html":[12,0,4],
+"namespacehandler__utils.html#a71864e1d5801bea0d6d830326b6b183a":[12,0,4,2],
+"namespacehandler__utils.html#ac2999c5753a6d86504463b742c23dcfe":[12,0,4,1],
 "namespacehandler__utils.html#afc7fd91265677d0865cbc2a413754ed8":[12,0,4,0],
 "namespacelogger__decor.html":[12,0,5],
 "namespacelogger__decor.html#a242f5384a18a9eee59577d39a6bc6d21":[12,0,5,1],
@@ -245,9 +249,5 @@ var NAVTREEINDEX7 =
 "structBno08xConfig.html#adf9ae4c85ad6ea0296023947c0611248":[13,0,15,0],
 "structBno08xConfig.html#af600304829cef3d3e2607651e06317af":[13,0,15,6],
 "structBno08xConfig.html#af7f0fc07e1c3159c3732dec4ac388169":[13,0,15,14],
-"structBno08xConfig.html#af8347445c58adc10a534ececc771e491":[13,0,15,12],
-"structBno08xEulerAngles.html":[13,0,17],
-"structBno08xEulerAngles.html#a1de95942c1e2a98e063d697dc558c774":[13,0,17,5],
-"structBno08xEulerAngles.html#a4152f00eb49e3dd98271efa1a52028a5":[13,0,17,0],
-"structBno08xEulerAngles.html#a8241a46cf562622226d491e1c1ac62bd":[13,0,17,4]
+"structBno08xConfig.html#af8347445c58adc10a534ececc771e491":[13,0,15,12]
 };

@@ -1563,8 +1563,9 @@ Here is the caller graph for this function:</div>
 <li>LDO: VEXT1=5.0V, VEXT2=3.3V with 3ms slope control</li>
 <li>Boot Mode: Parameter mode for TMCL parameter-based control</li>
 <li>UART: Auto16x baud rate detection, GPIO6/7 pins, device address 1</li>
-<li>External Clock: 16MHz crystal with PLL for stable 40MHz system clock</li>
-<li>SPI Flash: Enabled on SPI0 (GPIO11 SCK, GPIO12 CS) at 10MHz</li>
+<li>External Clock: 16MHz crystal with PLL for stable 40MHz system clock (RDIV=15 per EVKIT / bldc_comprehensive_test)</li>
+<li>SPI Flash: <b>Disabled</b> on Vortex V1 (no SPI NOR on the TMC9660 SPI0 bus; matches <code>create_test_driver(false, false)</code> in driver BLDC examples). Enable explicitly if your PCB adds flash.</li>
+<li>SPI0 SCK (on-chip mux): <b>GPIO6</b> default here; EVKIT BLDC example uses <b>GPIO11</b> — set to match which TMC9660 package pin your PCB routes to SPI0 SCK.</li>
 <li>GPIO: GPIO5 analog input, GPIO17/18 digital inputs with pull-down</li>
 <li>New sections (hall, abn1, abn2, ref, stepDir, spiEnc, mechBrake, brakeChopper, memStorage) use safe defaults (disabled) </li>
 </ul>

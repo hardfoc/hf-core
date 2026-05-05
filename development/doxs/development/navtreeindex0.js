@@ -196,6 +196,7 @@ var NAVTREEINDEX0 =
 "Pca9685Handler_8h.html":[14,0,1,10,1],
 "Pca9685Handler_8h_source.html":[14,0,1,10,1],
 "Pcal95555Handler_8cpp.html":[14,0,1,11,0],
+"Pcal95555Handler_8cpp.html#a865f9131b2d0847687c66a56fe2fc421":[14,0,1,11,0,0],
 "Pcal95555Handler_8h.html":[14,0,1,11,1],
 "Pcal95555Handler_8h_source.html":[14,0,1,11,1],
 "PlatformMutexBackend_8h.html":[14,0,1,4,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "Tmc9660Handler_8cpp.html#aee82d92e54869f56afcdfa5bf23dbf2f":[14,0,1,15,2,0],
 "Tmc9660Handler_8h.html":[14,0,1,15,3],
 "Tmc9660Handler_8h_source.html":[14,0,1,15,3],
-"Ws2812Handler_8cpp.html":[14,0,1,16,0],
-"Ws2812Handler_8cpp.html#ae7d9c64644585526560e9e6824fd84dc":[14,0,1,16,0,0]
+"Ws2812Handler_8cpp.html":[14,0,1,16,0]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classBno08xHandler.html#ac6c4372bc30b608206070bcf96723b2d":[13,0,18,26],
 "classBno08xHandler.html#acf9772bf644ddfeff83371740dd6216b":[13,0,18,4],
 "classBno08xHandler.html#ae17c70536ddb4a4ae8931807347c9001":[13,0,18,35],
 "classBno08xHandler.html#af43f44ede1cc408c5141588a4b965fea":[13,0,18,31],
@@ -56,12 +57,13 @@ var NAVTREEINDEX2 =
 "classHalI2cPca9685Comm.html#a9ed8d1fd0839a7e5620a7ebee0f62140":[11,2,0,3],
 "classHalI2cPcal95555Comm.html":[11,6,0],
 "classHalI2cPcal95555Comm.html#a4a772bc05d784a0ef807a4c3c099beb0":[11,6,0,3],
-"classHalI2cPcal95555Comm.html#a4f6987588b44889b656c627cdb6f9523":[11,6,0,5],
-"classHalI2cPcal95555Comm.html#a5f821ea69c3532d8cc758b444e1d83cd":[11,6,0,8],
+"classHalI2cPcal95555Comm.html#a4f6987588b44889b656c627cdb6f9523":[11,6,0,6],
+"classHalI2cPcal95555Comm.html#a5f821ea69c3532d8cc758b444e1d83cd":[11,6,0,9],
+"classHalI2cPcal95555Comm.html#a84c98390992bb1c3596a009d8d1b0d1a":[11,6,0,5],
 "classHalI2cPcal95555Comm.html#a8a5517910e3a771091471f2843ea26ed":[11,6,0,4],
-"classHalI2cPcal95555Comm.html#a8f693605b5546ee054ee647f1d681b17":[11,6,0,7],
+"classHalI2cPcal95555Comm.html#a8f693605b5546ee054ee647f1d681b17":[11,6,0,8],
 "classHalI2cPcal95555Comm.html#a954c492c422c732ff1da3a7a9715b4ed":[11,6,0,0],
-"classHalI2cPcal95555Comm.html#aaab0f2ead8fb5c16cd047a24bc8139f5":[11,6,0,6],
+"classHalI2cPcal95555Comm.html#aaab0f2ead8fb5c16cd047a24bc8139f5":[11,6,0,7],
 "classHalI2cPcal95555Comm.html#ab5f4b653944ba3a9470c1e684662dc1f":[11,6,0,1],
 "classHalI2cPcal95555Comm.html#aff0221cc91b57b20ba76435d0d99d170":[11,6,0,2],
 "classHalI2cSe050Comm.html":[13,0,33],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "classLogger.html#adcdc1901fd35d1e06b5c8cd47005daad":[13,0,47,23],
 "classLogger.html#adce17848a5844e053bfd314863dc1404":[13,0,47,13],
 "classLogger.html#add0f34d4c753c86af8074840a72366b3":[13,0,47,3],
-"classLogger.html#ade1c385c9e613ee1cc72865048858b22":[13,0,47,9],
-"classLogger.html#adf27e2ee35e622c18cf7eb92f47b134c":[13,0,47,14],
-"classLogger.html#ae436878411ce3f0a080ffdf5140cd58e":[13,0,47,19]
+"classLogger.html#ade1c385c9e613ee1cc72865048858b22":[13,0,47,9]
 };

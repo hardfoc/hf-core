@@ -1,5 +1,9 @@
 var NAVTREEINDEX9 =
 {
+"tmc5160__handler__comprehensive__test_8cpp.html#a16479e08a1abef7505428fcbdf49eaed":[14,0,0,0,0,0,8,34],
+"tmc5160__handler__comprehensive__test_8cpp.html#a1cb3b24c961b118f52be141f4f6c8e3b":[14,0,0,0,0,0,8,12],
+"tmc5160__handler__comprehensive__test_8cpp.html#a25eef147dc6ddb84f4695c9f227ff967":[14,0,0,0,0,0,8,38],
+"tmc5160__handler__comprehensive__test_8cpp.html#a29b579498d8acaa9576c4a02a83ec959":[14,0,0,0,0,0,8,23],
 "tmc5160__handler__comprehensive__test_8cpp.html#a2e723b1283d9cf5fb62f391f378447d0":[14,0,0,0,0,0,8,29],
 "tmc5160__handler__comprehensive__test_8cpp.html#a3c97d3cb990700b6fa475f6cc6ccef86":[14,0,0,0,0,0,8,10],
 "tmc5160__handler__comprehensive__test_8cpp.html#a406d9ba85477a1d171ed60ed2b2375fe":[14,0,0,0,0,0,8,36],
