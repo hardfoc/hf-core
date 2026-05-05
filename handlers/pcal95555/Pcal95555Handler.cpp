@@ -27,9 +27,18 @@
 // HalI2cPcal95555Comm Implementation
 // =====================================================================
 
+// PCAL95555 I²C: generous timeouts for first transaction after bus idle (ESP-IDF examples use 1000 ms).
+static constexpr uint32_t kHalPcalI2cTimeoutMs = 150;
+
 /// @brief Construct the CRTP I2C adapter.
 HalI2cPcal95555Comm::HalI2cPcal95555Comm(BaseI2c& i2c_device) noexcept
     : i2c_device_(i2c_device) {}
+
+bool HalI2cPcal95555Comm::SetAddressPins(bool /*a0*/, bool /*a1*/, bool /*a2*/) noexcept {
+    // Vortex: A0–A2 are hardwired to GND (7-bit 0x20). No host GPIO drives straps — matches
+    // hf-pcal95555-driver contract: return false so ChangeAddress() reflects “not software-set”.
+    return false;
+}
 
 bool HalI2cPcal95555Comm::Write(uint8_t addr, uint8_t reg,
                                 const uint8_t* data, size_t len) noexcept {
@@ -50,7 +59,7 @@ bool HalI2cPcal95555Comm::Write(uint8_t addr, uint8_t reg,
     uint8_t command[kMaxBuf];
     command[0] = reg;
     std::memcpy(&command[1], data, len);
-    return i2c_device_.Write(command, len + 1) == hf_i2c_err_t::I2C_SUCCESS;
+    return i2c_device_.Write(command, len + 1, kHalPcalI2cTimeoutMs) == hf_i2c_err_t::I2C_SUCCESS;
 }
 
 bool HalI2cPcal95555Comm::Read(uint8_t addr, uint8_t reg,
@@ -61,7 +70,8 @@ bool HalI2cPcal95555Comm::Read(uint8_t addr, uint8_t reg,
         return false;
     }
 
-    return i2c_device_.WriteRead(&reg, 1, data, len) == hf_i2c_err_t::I2C_SUCCESS;
+    return i2c_device_.WriteRead(&reg, 1, data, len, kHalPcalI2cTimeoutMs) ==
+           hf_i2c_err_t::I2C_SUCCESS;
 }
 
 bool HalI2cPcal95555Comm::EnsureInitialized() noexcept {
@@ -126,13 +136,13 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
         }
     }
 
-    // 2. Create the typed PCAL95555 driver (address-based constructor).
+    // 2. Create the typed PCAL95555 driver: A0=A1=A2=GND → 0x20 (matches Vortex strap).
     if (!pcal95555_driver_) {
-        pcal95555_driver_ = std::make_unique<Pcal95555Driver>(
-            i2c_adapter_.get(), i2c_device_.GetDeviceAddress());
+        pcal95555_driver_ = std::make_unique<Pcal95555Driver>(i2c_adapter_.get(), false, false, false);
         if (!pcal95555_driver_) {
             return hf_gpio_err_t::GPIO_ERR_OUT_OF_MEMORY;
         }
+        pcal95555_driver_->SetRetries(3);
     }
 
     // 3. Initialize the driver (lazy init, auto-detects chip variant).

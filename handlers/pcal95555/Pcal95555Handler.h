@@ -170,6 +170,13 @@ public:
     bool EnsureInitialized() noexcept;
 
     /**
+     * @brief Address strap pins A0–A2 are hardwired on Vortex (GND → 0x20); host does not drive them.
+     * @return false — per hf-pcal95555-driver I2cInterface: straps not under software control.
+     * @note initialize() ignores the return value; ChangeAddress() uses it with comm verification.
+     */
+    bool SetAddressPins(bool a0_level, bool a1_level, bool a2_level) noexcept;
+
+    /**
      * @brief Register an interrupt handler to be called when the INT pin fires.
      *
      * The PCAL95555 driver calls this to register its HandleInterrupt() method.

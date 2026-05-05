@@ -18,8 +18,11 @@
  * - LDO: VEXT1=5.0V, VEXT2=3.3V with 3ms slope control
  * - Boot Mode: Parameter mode for TMCL parameter-based control
  * - UART: Auto16x baud rate detection, GPIO6/7 pins, device address 1
- * - External Clock: 16MHz crystal with PLL for stable 40MHz system clock
- * - SPI Flash: Enabled on SPI0 (GPIO11 SCK, GPIO12 CS) at 10MHz
+ * - External Clock: 16MHz crystal with PLL for stable 40MHz system clock (RDIV=15 per EVKIT / bldc_comprehensive_test)
+ * - SPI Flash: **Disabled** on Vortex V1 (no SPI NOR on the TMC9660 SPI0 bus; matches
+ *   `create_test_driver(false, false)` in driver BLDC examples). Enable explicitly if your PCB adds flash.
+ * - SPI0 SCK (on-chip mux): **GPIO6** default here; EVKIT BLDC example uses **GPIO11** — set to match
+ *   which TMC9660 package pin your PCB routes to SPI0 SCK.
  * - GPIO: GPIO5 analog input, GPIO17/18 digital inputs with pull-down
  * - New sections (hall, abn1, abn2, ref, stepDir, spiEnc, mechBrake, brakeChopper,
  *   memStorage) use safe defaults (disabled)
@@ -64,13 +67,13 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         tmc9660::bootcfg::SPIInterface::SPI0,     // boot_spi_iface
         tmc9660::bootcfg::SPI0SckPin::GPIO6       // spi0_sck_pin
     },
-    // SPI Flash Configuration
+    // SPI Flash Configuration (off for Vortex — host uses SPI2 to TMC9660 only)
     {
-        true,                                      // enable_flash
+        false,                                     // enable_flash
         tmc9660::bootcfg::SPIInterface::SPI0,     // flash_spi_iface
         tmc9660::bootcfg::SPI0SckPin::GPIO11,     // spi0_sck_pin
-        12,                                        // cs_pin (GPIO12)
-        tmc9660::bootcfg::SPIFlashFreq::Div1      // freq_div (10MHz)
+        12,                                        // cs_pin (unused when flash disabled)
+        tmc9660::bootcfg::SPIFlashFreq::Div4      // freq_div (unused when flash disabled)
     },
     // I2C EEPROM Configuration (disabled)
     {
@@ -87,7 +90,7 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         tmc9660::bootcfg::XtalDrive::Freq16MHz,        // xtal_drive
         false,                                         // xtal_boost
         tmc9660::bootcfg::SysClkSource::PLL,           // pll_selection
-        14,                                            // rdiv
+        15,                                            // rdiv (16 MHz ext: EVKIT uses RDIV = MHz − 1)
         tmc9660::bootcfg::SysClkDiv::Div1              // sysclk_div
     },
     // GPIO Configuration (split masks: _0_15 uint16_t, _16_18 uint8_t)
@@ -348,6 +351,9 @@ bool Tmc9660Handler::Initialize(bool performReset, bool retrieveBootloaderInfo,
 
     if (!success) {
         Logger::GetInstance().Error(TAG, "Bootloader initialization failed");
+        // Drop driver so IsDriverReady() stays false and a later EnsureInitialized() can retry.
+        spi_driver_.reset();
+        uart_driver_.reset();
         return false;
     }
 
