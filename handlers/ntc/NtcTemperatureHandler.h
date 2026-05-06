@@ -463,6 +463,23 @@ private:
      * @param temperature_celsius Current temperature reading
      */
     void CheckThresholds(float temperature_celsius) noexcept;
+
+    /**
+     * @brief Internal threshold setter for init path (no EnsureInitialized checks).
+     * @param low_threshold_celsius Low threshold
+     * @param high_threshold_celsius High threshold
+     * @return Error code
+     */
+    hf_temp_err_t SetThresholdsUnlocked(float low_threshold_celsius,
+                                        float high_threshold_celsius) noexcept;
+
+    /**
+     * @brief Internal threshold monitoring state setter for init path.
+     * @param callback Threshold callback
+     * @param user_data Callback context
+     */
+    void SetThresholdMonitoringUnlocked(hf_temp_threshold_callback_t callback,
+                                        void* user_data) noexcept;
     
     /**
      * @brief Static callback for continuous monitoring timer

@@ -524,6 +524,13 @@ public:
     hf_gpio_err_t ReadInput(uint8_t pin, bool& active) noexcept;
 
     /**
+     * @brief Read INPUT_PORT_0 and INPUT_PORT_1 in one driver pass.
+     * @param[out] levels Bit N = logical level on expander pin N (0..15).
+     * @return GPIO_SUCCESS on success, GPIO_ERR_READ_FAILURE if I2C error flags set.
+     */
+    hf_gpio_err_t ReadAllInputsSnapshot(uint16_t& levels) noexcept;
+
+    /**
      * @brief Toggle the output state of a pin.
      * @param pin Pin number (0-15).
      * @return GPIO_SUCCESS or error code.

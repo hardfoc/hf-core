@@ -476,18 +476,12 @@ public:
     //==========================================================================
 
     /**
-     * @brief Default bootloader configuration based on TMC9660-3PH-EVAL board settings.
+     * @brief Default bootloader configuration aligned with TMC9660-3PH-EVKIT / driver BLDC example
+     *        (`use_flash == false`): parameter mode, SPI0 on GPIO11 SCK, UART on GPIO6/7, flash off.
      *
-     * @details Configures:
-     * - LDO: VEXT1=5.0V, VEXT2=3.3V, 3ms slope
-     * - Boot mode: Parameter mode with motor control start
-     * - UART: Auto16x baud rate, GPIO6/7, address 1
-     * - External clock: 16MHz crystal with PLL (40MHz system)
-     * - SPI Flash: Enabled on SPI0 (GPIO11/12) at 10MHz
-     * - GPIO: GPIO5 analog, GPIO17/18 digital pull-down
-     * - Hall, ABN encoders, step/dir, etc.: disabled (safe defaults)
-     *
-     * Override by passing a custom tmc9660::BootloaderConfig* to the constructor.
+     * @details hf-core remains agnostic of carrier routing (e.g. GPIO expanders); control and SPI
+     *          buses are injected via `BaseGpio` / `BaseSpi`. Override with a custom
+     *          `BootloaderConfig*` if your TMC9660 strapping or netlist differs from the EVKIT.
      */
     static const tmc9660::BootloaderConfig kDefaultBootConfig;
 

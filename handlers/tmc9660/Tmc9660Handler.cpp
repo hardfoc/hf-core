@@ -12,20 +12,15 @@
 //==============================================================================
 
 /**
- * @brief Default TMC9660 bootloader configuration based on TMC9660-3PH-EVAL board settings.
+ * @brief Default TMC9660 bootloader configuration aligned with TMC9660-3PH-EVKIT / driver examples.
  *
- * Configuration highlights:
- * - LDO: VEXT1=5.0V, VEXT2=3.3V with 3ms slope control
- * - Boot Mode: Parameter mode for TMCL parameter-based control
- * - UART: Auto16x baud rate detection, GPIO6/7 pins, device address 1
- * - External Clock: 16MHz crystal with PLL for stable 40MHz system clock (RDIV=15 per EVKIT / bldc_comprehensive_test)
- * - SPI Flash: **Disabled** on Vortex V1 (no SPI NOR on the TMC9660 SPI0 bus; matches
- *   `create_test_driver(false, false)` in driver BLDC examples). Enable explicitly if your PCB adds flash.
- * - SPI0 SCK (on-chip mux): **GPIO6** default here; EVKIT BLDC example uses **GPIO11** — set to match
- *   which TMC9660 package pin your PCB routes to SPI0 SCK.
- * - GPIO: GPIO5 analog input, GPIO17/18 digital inputs with pull-down
- * - New sections (hall, abn1, abn2, ref, stepDir, spiEnc, mechBrake, brakeChopper,
- *   memStorage) use safe defaults (disabled)
+ * hf-core and the embedded `hf-tmc9660-driver` stay board-agnostic: this struct only describes
+ * on-die TMC9660 bootloader options. How RST/DRV_EN/WAKE or SPI CS reach the chip (direct MCU pin,
+ * I2C GPIO expander, etc.) is wired by the application through `BaseGpio` / `BaseSpi` — not here.
+ *
+ * Matches `bldc_comprehensive_test.cpp` for `use_flash == false`: SPI0 bootloader SCK on GPIO11,
+ * UART enabled (GPIO6/7), external 16 MHz clock / PLL, SPI flash off. Pass a custom
+ * `BootloaderConfig*` to the handler if your TMC9660 netlist differs from the EVKIT reference.
  */
 const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
     // LDO Configuration
@@ -45,11 +40,11 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         false,                                    // bl_config_fault
         true                                      // start_motor_control
     },
-    // UART Configuration
+    // UART Configuration (EVKIT: TMCL-capable UART on GPIO6/7 alongside SPI0)
     {
         1,                                         // device_address
         255,                                       // host_address (broadcast)
-        false,                                     // disable_uart
+        false,                                     // disable_uart (EVKIT / bldc_comprehensive_test)
         tmc9660::bootcfg::UartRxPin::GPIO7,       // rx_pin
         tmc9660::bootcfg::UartTxPin::GPIO6,       // tx_pin
         tmc9660::bootcfg::BaudRate::Auto16x       // baud_rate
@@ -61,16 +56,16 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         0,                                         // txen_pre_delay
         0                                          // txen_post_delay
     },
-    // SPI Boot Configuration
+    // SPI Boot Configuration (EVKIT: SPI0 SCK on GPIO11 — same as bldc_comprehensive_test, no flash)
     {
         false,                                     // disable_spi
         tmc9660::bootcfg::SPIInterface::SPI0,     // boot_spi_iface
-        tmc9660::bootcfg::SPI0SckPin::GPIO6       // spi0_sck_pin
+        tmc9660::bootcfg::SPI0SckPin::GPIO11      // spi0_sck_pin
     },
-    // SPI Flash Configuration (off for Vortex — host uses SPI2 to TMC9660 only)
+    // SPI Flash Configuration (disabled; enable + iface separation per datasheet if populated)
     {
         false,                                     // enable_flash
-        tmc9660::bootcfg::SPIInterface::SPI0,     // flash_spi_iface
+        tmc9660::bootcfg::SPIInterface::SPI0,     // flash_spi_iface (unused when flash off)
         tmc9660::bootcfg::SPI0SckPin::GPIO11,     // spi0_sck_pin
         12,                                        // cs_pin (unused when flash disabled)
         tmc9660::bootcfg::SPIFlashFreq::Div4      // freq_div (unused when flash disabled)
@@ -330,6 +325,20 @@ bool Tmc9660Handler::Initialize(bool performReset, bool retrieveBootloaderInfo,
         if (!uart_driver_) {
             uart_driver_ = std::make_unique<UartDriver>(*uart_comm_, device_address_, bootCfg_);
         }
+    }
+
+    // DRV_EN / WAKE before bootloader traffic: hf-tmc9660-driver's bootloaderInit() toggles RST
+    // and polls FAULTN but does not assert DRV_EN or WAKE first. On Vortex those nets are
+    // PCAL95555 outputs; leaving them inactive can yield all-zero SPI/UART until the die is
+    // fully enabled / out of hibernate (same reason BLDC examples call GpioSetActive(DRV_EN)).
+    if (use_spi_ && spi_comm_) {
+        (void)spi_comm_->gpioSetActive(tmc9660::TMC9660CtrlPin::DRV_EN);
+        (void)spi_comm_->gpioSetActive(tmc9660::TMC9660CtrlPin::WAKE);
+        spi_comm_->delayMs(2);
+    } else if (!use_spi_ && uart_comm_) {
+        (void)uart_comm_->gpioSetActive(tmc9660::TMC9660CtrlPin::DRV_EN);
+        (void)uart_comm_->gpioSetActive(tmc9660::TMC9660CtrlPin::WAKE);
+        uart_comm_->delayMs(2);
     }
 
     // Run bootloader initialization.

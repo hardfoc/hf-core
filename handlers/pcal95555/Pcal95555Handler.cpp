@@ -258,6 +258,20 @@ hf_gpio_err_t Pcal95555Handler::ReadInput(uint8_t pin, bool& active) noexcept {
     return hf_gpio_err_t::GPIO_SUCCESS;
 }
 
+hf_gpio_err_t Pcal95555Handler::ReadAllInputsSnapshot(uint16_t& levels) noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    levels = 0;
+    if (!EnsureInitializedLocked()) {
+        return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    }
+    pcal95555_driver_->ClearErrorFlags();
+    levels = pcal95555_driver_->ReadAllInputs();
+    if (pcal95555_driver_->GetErrorFlags() != 0) {
+        return hf_gpio_err_t::GPIO_ERR_READ_FAILURE;
+    }
+    return hf_gpio_err_t::GPIO_SUCCESS;
+}
+
 hf_gpio_err_t Pcal95555Handler::Toggle(uint8_t pin) noexcept {
     if (!ValidatePin(pin)) return hf_gpio_err_t::GPIO_ERR_INVALID_PIN;
     MutexLockGuard lock(handler_mutex_);

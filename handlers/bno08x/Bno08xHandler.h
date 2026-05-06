@@ -151,6 +151,16 @@ constexpr const char* Bno08xErrorToString(Bno08xError error) noexcept {
  *
  * Bridges the HardFOC BaseI2c interface with the bno08x::CommInterface CRTP base.
  * The I2C device address is pre-configured on the BaseI2c instance.
+ *
+ * Control pins follow the BNO08x datasheet naming (_n = active low):
+ * - RSTN, BOOTN, INT: `BaseGpio` uses `HF_GPIO_ACTIVE_LOW` so ACTIVE = assert (drive low),
+ *   INACTIVE = release (high). INT is input with pull-up; data ready when line is low (ACTIVE).
+ *
+ * BOOTN vs reset: the hub samples the boot strap when RSTN is released (not while held in reset).
+ * For normal SH-2 operation, BOOTN must be released (INACTIVE / high) before that edge.
+ * When BOOT is host-driven (e.g. PCAL output), `Open()` configures it as a push-pull output and
+ * drives INACTIVE; do not rely on an unrelated MCU pin internal pull-up for that net. If `boot_gpio`
+ * is null, the PCB must define the default strap (pull-up / tie-off) until software can drive it.
  */
 class HalI2cBno08xComm : public bno08x::CommInterface<HalI2cBno08xComm> {
 public:
@@ -159,11 +169,13 @@ public:
      * @param i2c Reference to BaseI2c implementation (address pre-configured)
      * @param reset_gpio Optional GPIO for hardware reset (RSTN, active-low)
      * @param int_gpio Optional GPIO for interrupt monitoring (INT, active-low)
+     * @param boot_gpio Optional GPIO for BOOTN (active-low; INACTIVE = normal application boot)
      */
     explicit HalI2cBno08xComm(BaseI2c& i2c,
                               BaseGpio* reset_gpio = nullptr,
-                              BaseGpio* int_gpio = nullptr) noexcept
-        : i2c_(i2c), reset_gpio_(reset_gpio), int_gpio_(int_gpio) {}
+                              BaseGpio* int_gpio = nullptr,
+                              BaseGpio* boot_gpio = nullptr) noexcept
+        : i2c_(i2c), reset_gpio_(reset_gpio), int_gpio_(int_gpio), boot_gpio_(boot_gpio) {}
 
     // -- bno08x::CommInterface required methods --
 
@@ -192,6 +204,7 @@ private:
     BaseI2c& i2c_;
     BaseGpio* reset_gpio_;
     BaseGpio* int_gpio_;
+    BaseGpio* boot_gpio_;
 };
 
 /**
@@ -258,6 +271,13 @@ class IBno08xDriverOps {
 public:
     virtual ~IBno08xDriverOps() noexcept = default;
 
+    /**
+     * @brief Open the transport (bus + control GPIO setup) before reset or SH-2.
+     *
+     * Must run before `HardwareReset()` so RSTN/BOOTN directions and default levels are valid
+     * when the hub latches BOOTN at RST release. `Begin()` still calls `Open()` again via SH-2 HAL.
+     */
+    virtual bool OpenTransport() noexcept = 0;
     virtual bool Begin() noexcept = 0;
     virtual void Update() noexcept = 0;
     virtual bool EnableSensor(BNO085Sensor sensor, uint32_t interval_ms,
@@ -292,6 +312,7 @@ public:
     explicit Bno08xDriverImpl(CommType&& comm) noexcept
         : comm_(std::move(comm)), driver_(comm_) {}
 
+    bool OpenTransport() noexcept override { return comm_.Open(); }
     bool Begin() noexcept override { return driver_.Begin(); }
     void Update() noexcept override { driver_.Update(); }
 
@@ -491,13 +512,15 @@ public:
      * @brief Construct BNO08x handler with I2C interface.
      * @param i2c_device Reference to BaseI2c implementation (address pre-configured)
      * @param config Initial sensor configuration
-     * @param reset_gpio Optional GPIO for hardware reset
-     * @param int_gpio Optional GPIO for interrupt monitoring
+     * @param reset_gpio Optional GPIO for hardware reset (RSTN, active-low)
+     * @param int_gpio Optional GPIO for interrupt monitoring (INT, active-low)
+     * @param boot_gpio Optional GPIO for BOOTN (active-low; omit if strapped in hardware)
      */
     explicit Bno08xHandler(BaseI2c& i2c_device,
                            const Bno08xConfig& config = Bno08xConfig{},
                            BaseGpio* reset_gpio = nullptr,
-                           BaseGpio* int_gpio = nullptr) noexcept;
+                           BaseGpio* int_gpio = nullptr,
+                           BaseGpio* boot_gpio = nullptr) noexcept;
 
     /**
      * @brief Construct BNO08x handler with SPI interface.
@@ -724,14 +747,16 @@ private:
  * @param config Sensor configuration (default: Bno08xConfig{})
  * @param reset_gpio Optional RSTN GPIO (active-low)
  * @param int_gpio Optional INT GPIO (active-low, data ready)
+ * @param boot_gpio Optional BOOTN GPIO (active-low)
  * @return Unique pointer to Bno08xHandler
  */
 inline std::unique_ptr<Bno08xHandler> CreateBno08xHandlerI2c(
     BaseI2c& i2c_device,
     const Bno08xConfig& config = Bno08xConfig{},
     BaseGpio* reset_gpio = nullptr,
-    BaseGpio* int_gpio = nullptr) noexcept {
-    return std::make_unique<Bno08xHandler>(i2c_device, config, reset_gpio, int_gpio);
+    BaseGpio* int_gpio = nullptr,
+    BaseGpio* boot_gpio = nullptr) noexcept {
+    return std::make_unique<Bno08xHandler>(i2c_device, config, reset_gpio, int_gpio, boot_gpio);
 }
 
 /**
