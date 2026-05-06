@@ -9,6 +9,7 @@ var classBno08xDriverImpl =
     [ "GetLatest", "classBno08xDriverImpl.html#a7fd357181fef0ce4c845df160ae92f7a", null ],
     [ "HardwareReset", "classBno08xDriverImpl.html#a438c41d8c26b4e4dccf60079d8861043", null ],
     [ "HasNewData", "classBno08xDriverImpl.html#a3a097f73569d05c185c2d1d76bc7039b", null ],
+    [ "OpenTransport", "classBno08xDriverImpl.html#a9e1eeb34f01f37bd53137958feafde98", null ],
     [ "SelectInterface", "classBno08xDriverImpl.html#adc64b928a7b03b38602c755bfc03bd37", null ],
     [ "SetBootPin", "classBno08xDriverImpl.html#a6f6bedc4fd3fb4553ce90cf297ca1f6a", null ],
     [ "SetCallback", "classBno08xDriverImpl.html#a4385462cf9a4d719cb8fe2f03ab54255", null ],

@@ -38,6 +38,7 @@ var group__PCAL95555__HAL__Handler =
       [ "operator=", "classPcal95555Handler.html#aab51c31bafd93a83547c4aa80ca562ec", null ],
       [ "PinCount", "classPcal95555Handler.html#a8635d65049f9d416d201b47614a4b024", null ],
       [ "ProcessInterrupts", "classPcal95555Handler.html#a7b9a82a463f57e0394b55a4f3ecead39", null ],
+      [ "ReadAllInputsSnapshot", "classPcal95555Handler.html#a27856d23e6335ef3e0dc627f011ca450", null ],
       [ "ReadInput", "classPcal95555Handler.html#a32cb9ad0e9a4cf9e804e30420900edde", null ],
       [ "RegisterPinInterrupt", "classPcal95555Handler.html#a59b2dcc6d426c19a487175e8a83ed999", null ],
       [ "ResetToDefault", "classPcal95555Handler.html#ab614d32aa8d2c6bb775ebbbd148875b3", null ],

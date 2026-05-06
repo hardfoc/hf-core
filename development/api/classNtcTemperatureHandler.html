@@ -274,6 +274,12 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:acc84378578731f61a0a368b2913ea034" id="r_acc84378578731f61a0a368b2913ea034"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc84378578731f61a0a368b2913ea034">CheckThresholds</a> (float temperature_celsius) noexcept</td></tr>
 <tr class="memdesc:acc84378578731f61a0a368b2913ea034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check thresholds and trigger callback if needed.  <br /></td></tr>
 <tr class="separator:acc84378578731f61a0a368b2913ea034"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d29c15c294fd928a4da2d66cc3bd7d3" id="r_a8d29c15c294fd928a4da2d66cc3bd7d3"><td class="memItemLeft" align="right" valign="top">hf_temp_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d29c15c294fd928a4da2d66cc3bd7d3">SetThresholdsUnlocked</a> (float low_threshold_celsius, float high_threshold_celsius) noexcept</td></tr>
+<tr class="memdesc:a8d29c15c294fd928a4da2d66cc3bd7d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal threshold setter for init path (no EnsureInitialized checks).  <br /></td></tr>
+<tr class="separator:a8d29c15c294fd928a4da2d66cc3bd7d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8846b2a03daef65310b916c5d79a0b15" id="r_a8846b2a03daef65310b916c5d79a0b15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8846b2a03daef65310b916c5d79a0b15">SetThresholdMonitoringUnlocked</a> (hf_temp_threshold_callback_t callback, void *user_data) noexcept</td></tr>
+<tr class="memdesc:a8846b2a03daef65310b916c5d79a0b15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal threshold monitoring state setter for init path.  <br /></td></tr>
+<tr class="separator:a8846b2a03daef65310b916c5d79a0b15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addc61cbd9e69f84bb6014a92b1c63496" id="r_addc61cbd9e69f84bb6014a92b1c63496"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addc61cbd9e69f84bb6014a92b1c63496">UpdateBaseDiagnostics</a> (hf_temp_err_t error) noexcept</td></tr>
 <tr class="memdesc:addc61cbd9e69f84bb6014a92b1c63496"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update BaseTemperature diagnostics.  <br /></td></tr>
 <tr class="separator:addc61cbd9e69f84bb6014a92b1c63496"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -825,16 +831,6 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_ae3ed02cf4cd05dd73a3e9a42f9219f3e_cgraph.svg" width="890" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_ae3ed02cf4cd05dd73a3e9a42f9219f3e_icgraph.svg" width="444" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1516,7 +1512,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a97fa93b2ed6337e24e056b46fbe331c7_cgraph.svg" width="1115" height="339"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a97fa93b2ed6337e24e056b46fbe331c7_cgraph.svg" width="1152" height="363"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -2200,6 +2196,54 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a8846b2a03daef65310b916c5d79a0b15" name="a8846b2a03daef65310b916c5d79a0b15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8846b2a03daef65310b916c5d79a0b15">&#9670;&#160;</a></span>SetThresholdMonitoringUnlocked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NtcTemperatureHandler::SetThresholdMonitoringUnlocked </td>
+          <td>(</td>
+          <td class="paramtype">hf_temp_threshold_callback_t</td>          <td class="paramname"><span class="paramname"><em>callback</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>user_data</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Internal threshold monitoring state setter for init path. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">callback</td><td>Threshold callback </td></tr>
+    <tr><td class="paramname">user_data</td><td>Callback context </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a8846b2a03daef65310b916c5d79a0b15_cgraph.svg" width="927" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a8846b2a03daef65310b916c5d79a0b15_icgraph.svg" width="482" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="a275ae5ee2756034dcaa99f3877d8e1f0" name="a275ae5ee2756034dcaa99f3877d8e1f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a275ae5ee2756034dcaa99f3877d8e1f0">&#9670;&#160;</a></span>SetThresholds()</h2>
 
@@ -2226,15 +2270,54 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8d29c15c294fd928a4da2d66cc3bd7d3" name="a8d29c15c294fd928a4da2d66cc3bd7d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d29c15c294fd928a4da2d66cc3bd7d3">&#9670;&#160;</a></span>SetThresholdsUnlocked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">hf_temp_err_t NtcTemperatureHandler::SetThresholdsUnlocked </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>low_threshold_celsius</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>high_threshold_celsius</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Internal threshold setter for init path (no EnsureInitialized checks). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">low_threshold_celsius</td><td>Low threshold </td></tr>
+    <tr><td class="paramname">high_threshold_celsius</td><td>High threshold </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Error code </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a275ae5ee2756034dcaa99f3877d8e1f0_cgraph.svg" width="859" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a8d29c15c294fd928a4da2d66cc3bd7d3_cgraph.svg" width="864" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a275ae5ee2756034dcaa99f3877d8e1f0_icgraph.svg" width="414" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNtcTemperatureHandler_a8d29c15c294fd928a4da2d66cc3bd7d3_icgraph.svg" width="419" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

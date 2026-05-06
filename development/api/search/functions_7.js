@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['hali2cbno08xcomm_0',['HalI2cBno08xComm',['../classHalI2cBno08xComm.html#afde4e38c7ab3e98c0bffc236629bc67a',1,'HalI2cBno08xComm']]],
+  ['hali2cbno08xcomm_0',['HalI2cBno08xComm',['../classHalI2cBno08xComm.html#a1c9d6a1b1042a808a0d467c9ba142910',1,'HalI2cBno08xComm']]],
   ['hali2cpca9685comm_1',['HalI2cPca9685Comm',['../classHalI2cPca9685Comm.html#a919aa48efbc89683f066a23056b4eb78',1,'HalI2cPca9685Comm']]],
   ['hali2cpcal95555comm_2',['HalI2cPcal95555Comm',['../classHalI2cPcal95555Comm.html#a954c492c422c732ff1da3a7a9715b4ed',1,'HalI2cPcal95555Comm']]],
   ['hali2cse050comm_3',['HalI2cSe050Comm',['../classHalI2cSe050Comm.html#a79546790eb1ee4897c2cbace6bf95330',1,'HalI2cSe050Comm']]],

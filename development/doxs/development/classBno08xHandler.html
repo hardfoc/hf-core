@@ -114,9 +114,9 @@ Collaboration diagram for Bno08xHandler:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a23386de466024b4809f2bfe42fa76c67" id="r_a23386de466024b4809f2bfe42fa76c67"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23386de466024b4809f2bfe42fa76c67">Bno08xHandler</a> (BaseI2c &amp;i2c_device, const <a class="el" href="structBno08xConfig.html">Bno08xConfig</a> &amp;config=<a class="el" href="structBno08xConfig.html">Bno08xConfig</a>{}, BaseGpio *reset_gpio=nullptr, BaseGpio *int_gpio=nullptr) noexcept</td></tr>
-<tr class="memdesc:a23386de466024b4809f2bfe42fa76c67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct BNO08x handler with I2C interface.  <br /></td></tr>
-<tr class="separator:a23386de466024b4809f2bfe42fa76c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af28d334882ee5338c80c98dcd729dcb3" id="r_af28d334882ee5338c80c98dcd729dcb3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af28d334882ee5338c80c98dcd729dcb3">Bno08xHandler</a> (BaseI2c &amp;i2c_device, const <a class="el" href="structBno08xConfig.html">Bno08xConfig</a> &amp;config=<a class="el" href="structBno08xConfig.html">Bno08xConfig</a>{}, BaseGpio *reset_gpio=nullptr, BaseGpio *int_gpio=nullptr, BaseGpio *boot_gpio=nullptr) noexcept</td></tr>
+<tr class="memdesc:af28d334882ee5338c80c98dcd729dcb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct BNO08x handler with I2C interface.  <br /></td></tr>
+<tr class="separator:af28d334882ee5338c80c98dcd729dcb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a801b02378a8bccc4a20a9af3697e8222" id="r_a801b02378a8bccc4a20a9af3697e8222"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a801b02378a8bccc4a20a9af3697e8222">Bno08xHandler</a> (BaseSpi &amp;spi_device, const <a class="el" href="structBno08xConfig.html">Bno08xConfig</a> &amp;config=<a class="el" href="structBno08xConfig.html">Bno08xConfig</a>{}, BaseGpio *reset_gpio=nullptr, BaseGpio *int_gpio=nullptr, BaseGpio *wake_gpio=nullptr) noexcept</td></tr>
 <tr class="memdesc:a801b02378a8bccc4a20a9af3697e8222"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct BNO08x handler with SPI interface.  <br /></td></tr>
 <tr class="separator:a801b02378a8bccc4a20a9af3697e8222"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -246,8 +246,8 @@ Private Attributes</h2></td></tr>
 <li>Hardware control (reset, boot, wake, interface selection) </li>
 </ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a23386de466024b4809f2bfe42fa76c67" name="a23386de466024b4809f2bfe42fa76c67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23386de466024b4809f2bfe42fa76c67">&#9670;&#160;</a></span>Bno08xHandler() <span class="overload">[1/4]</span></h2>
+<a id="af28d334882ee5338c80c98dcd729dcb3" name="af28d334882ee5338c80c98dcd729dcb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af28d334882ee5338c80c98dcd729dcb3">&#9670;&#160;</a></span>Bno08xHandler() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -273,7 +273,12 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">BaseGpio *</td>          <td class="paramname"><span class="paramname"><em>int_gpio</em><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></span>&#160;)</td>
+          <td class="paramtype">BaseGpio *</td>          <td class="paramname"><span class="paramname"><em>int_gpio</em><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BaseGpio *</td>          <td class="paramname"><span class="paramname"><em>boot_gpio</em><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -288,8 +293,9 @@ Private Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">i2c_device</td><td>Reference to BaseI2c implementation (address pre-configured) </td></tr>
     <tr><td class="paramname">config</td><td>Initial sensor configuration </td></tr>
-    <tr><td class="paramname">reset_gpio</td><td>Optional GPIO for hardware reset </td></tr>
-    <tr><td class="paramname">int_gpio</td><td>Optional GPIO for interrupt monitoring </td></tr>
+    <tr><td class="paramname">reset_gpio</td><td>Optional GPIO for hardware reset (RSTN, active-low) </td></tr>
+    <tr><td class="paramname">int_gpio</td><td>Optional GPIO for interrupt monitoring (INT, active-low) </td></tr>
+    <tr><td class="paramname">boot_gpio</td><td>Optional GPIO for BOOTN (active-low; omit if strapped in hardware) </td></tr>
   </table>
   </dd>
 </dl>
@@ -585,7 +591,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_afab341345c8ed8fed1a218e0df18c4aa_cgraph.svg" width="1284" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_afab341345c8ed8fed1a218e0df18c4aa_cgraph.svg" width="1302" height="315"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -622,7 +628,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a0479abc034d5417ba7dc524468a5ce82_cgraph.svg" width="998" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a0479abc034d5417ba7dc524468a5ce82_cgraph.svg" width="1015" height="315"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -857,7 +863,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_abf3a81e646ebd6dd0a10890e5be21d6d_cgraph.svg" width="1775" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_abf3a81e646ebd6dd0a10890e5be21d6d_cgraph.svg" width="1792" height="315"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -892,7 +898,7 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a57e2952c0438e800c091cd0e3ebcdaf5_cgraph.svg" width="1530" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a57e2952c0438e800c091cd0e3ebcdaf5_cgraph.svg" width="1547" height="315"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -931,7 +937,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ac1a1ff0d56324dcc09d9b48ca2e132e6_cgraph.svg" width="711" height="216"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_ac1a1ff0d56324dcc09d9b48ca2e132e6_cgraph.svg" width="728" height="315"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1157,7 +1163,7 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a74cdf0328224c1a3fad944bbf1312e7e_cgraph.svg" width="1223" height="316"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBno08xHandler_a74cdf0328224c1a3fad944bbf1312e7e_cgraph.svg" width="1240" height="374"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

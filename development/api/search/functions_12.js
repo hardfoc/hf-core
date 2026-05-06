@@ -185,8 +185,8 @@ var searchData=
   ['tochannel_182',['toChannel',['../Tle92466edHandler_8cpp.html#a5c86099f760a9845d5fa0e65f8b57fb5',1,'Tle92466edHandler.cpp']]],
   ['toggle_183',['Toggle',['../classPcal95555Handler.html#adb6abd365588fa5386e4bf78ac913f05',1,'Pcal95555Handler']]],
   ['transceive_184',['Transceive',['../classHalI2cSe050Comm.html#a6709bf21c025c3520a0b975d96f8e3db',1,'HalI2cSe050Comm']]],
-  ['transfer_185',['Transfer',['../classHalSpiMax22200Comm.html#ab69a5625afd94e62e4f973eea89979a2',1,'HalSpiMax22200Comm']]],
-  ['transfer_186',['transfer',['../classAds7952SpiAdapter.html#a58116a4703d7b30c2c215ca1539317c5',1,'Ads7952SpiAdapter::transfer()'],['../classAs5047uSpiAdapter.html#a5c90fccf33a360042821dcd5f94aa941',1,'As5047uSpiAdapter::transfer()']]],
+  ['transfer_185',['transfer',['../classAds7952SpiAdapter.html#a58116a4703d7b30c2c215ca1539317c5',1,'Ads7952SpiAdapter::transfer()'],['../classAs5047uSpiAdapter.html#a5c90fccf33a360042821dcd5f94aa941',1,'As5047uSpiAdapter::transfer()']]],
+  ['transfer_186',['Transfer',['../classHalSpiMax22200Comm.html#ab69a5625afd94e62e4f973eea89979a2',1,'HalSpiMax22200Comm']]],
   ['transfer32_187',['Transfer32',['../classHalSpiTle92466edComm.html#a63f84b0db1a338f4c02e76e8d01c8b65',1,'HalSpiTle92466edComm']]],
   ['transfermulti_188',['TransferMulti',['../classHalSpiTle92466edComm.html#a058b8f150542b2e746f08a1f3b84208b',1,'HalSpiTle92466edComm']]]
 ];

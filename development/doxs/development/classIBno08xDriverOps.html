@@ -112,6 +112,9 @@ Inheritance diagram for IBno08xDriverOps:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af4304b60a6c224809a080144789ede9f" id="r_af4304b60a6c224809a080144789ede9f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4304b60a6c224809a080144789ede9f">~IBno08xDriverOps</a> () noexcept=default</td></tr>
 <tr class="separator:af4304b60a6c224809a080144789ede9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cfdc8fea4d31f36d9d8219b90beeae4" id="r_a1cfdc8fea4d31f36d9d8219b90beeae4"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cfdc8fea4d31f36d9d8219b90beeae4">OpenTransport</a> () noexcept=0</td></tr>
+<tr class="memdesc:a1cfdc8fea4d31f36d9d8219b90beeae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open the transport (bus + control GPIO setup) before reset or SH-2.  <br /></td></tr>
+<tr class="separator:a1cfdc8fea4d31f36d9d8219b90beeae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ca90c1a5664ab3eb83f691aff34faa0" id="r_a0ca90c1a5664ab3eb83f691aff34faa0"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ca90c1a5664ab3eb83f691aff34faa0">Begin</a> () noexcept=0</td></tr>
 <tr class="separator:a0ca90c1a5664ab3eb83f691aff34faa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf715744d1f45d38c44b6cbe6a2f56a4" id="r_acf715744d1f45d38c44b6cbe6a2f56a4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf715744d1f45d38c44b6cbe6a2f56a4">Update</a> () noexcept=0</td></tr>
@@ -419,6 +422,41 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a1cfdc8fea4d31f36d9d8219b90beeae4" name="a1cfdc8fea4d31f36d9d8219b90beeae4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cfdc8fea4d31f36d9d8219b90beeae4">&#9670;&#160;</a></span>OpenTransport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool IBno08xDriverOps::OpenTransport </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Open the transport (bus + control GPIO setup) before reset or SH-2. </p>
+<p>Must run before <code><a class="el" href="#a66418ccb85cd8eb8eea327fa979a2b6a">HardwareReset()</a></code> so RSTN/BOOTN directions and default levels are valid when the hub latches BOOTN at RST release. <code><a class="el" href="#a0ca90c1a5664ab3eb83f691aff34faa0">Begin()</a></code> still calls <code>Open()</code> again via SH-2 HAL. </p>
+
+<p>Implemented in <a class="el" href="classBno08xDriverImpl.html#a9e1eeb34f01f37bd53137958feafde98">Bno08xDriverImpl&lt; CommType &gt;</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classIBno08xDriverOps_a1cfdc8fea4d31f36d9d8219b90beeae4_icgraph.svg" width="1552" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="a70716b25e2722af65540942e5db8d4d1" name="a70716b25e2722af65540942e5db8d4d1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a70716b25e2722af65540942e5db8d4d1">&#9670;&#160;</a></span>SelectInterface()</h2>
 
@@ -470,6 +508,11 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Implemented in <a class="el" href="classBno08xDriverImpl.html#a6f6bedc4fd3fb4553ce90cf297ca1f6a">Bno08xDriverImpl&lt; CommType &gt;</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classIBno08xDriverOps_a35854a70ef94b79c9193d40459341864_icgraph.svg" width="1528" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
