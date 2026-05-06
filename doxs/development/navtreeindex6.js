@@ -1,5 +1,11 @@
 var NAVTREEINDEX6 =
 {
+"functions_func_c.html":[13,3,1,2],
+"functions_func_d.html":[13,3,1,3],
+"functions_func_e.html":[13,3,1,4],
+"functions_func_f.html":[13,3,1,5],
+"functions_func_g.html":[13,3,1,6],
+"functions_func_h.html":[13,3,1,7],
 "functions_func_i.html":[13,3,1,8],
 "functions_func_k.html":[13,3,1,9],
 "functions_func_l.html":[13,3,1,10],
@@ -243,11 +249,5 @@ var NAVTREEINDEX6 =
 "namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#a964fadd70111271f4fac6a475ae1b340":[12,0,0,3],
 "namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#ac74ab57c3bd5279c52f56c677d73730d":[12,0,0,2],
 "namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#aeb2770bf09308f306ebf0b62df9fab6d":[12,0,0,1],
-"namespaceanonymous__namespace_02Logger_8cpp_03.html":[12,0,1],
-"namespaceanonymous__namespace_02Logger_8cpp_03.html#a9d2b496fa1b4f4e28667d14e4b8cb190":[12,0,1,0],
-"namespaceanonymous__namespace_02Se050Handler_8cpp_03.html":[12,0,2],
-"namespaceanonymous__namespace_02Se050Handler_8cpp_03.html#a2a6831a1ec2b7c917f283d1788590978":[12,0,2,1],
-"namespaceanonymous__namespace_02Se050Handler_8cpp_03.html#ac712ade1fe8a1302fb5ee3187909b09e":[12,0,2,0],
-"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html":[12,0,3],
-"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a91f1b4322a75b8ac25a8890110ec9af6":[12,0,3,1]
+"namespaceanonymous__namespace_02Logger_8cpp_03.html":[12,0,1]
 };

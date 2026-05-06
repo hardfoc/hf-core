@@ -235,7 +235,7 @@ Public Member Functions</h2></td></tr>
 Static Public Attributes</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Default Configuration</div></td></tr>
 <tr class="memitem:a4de763121aff441af52e492f3cff6f1c" id="r_a4de763121aff441af52e492f3cff6f1c"><td class="memItemLeft" align="right" valign="top">static const tmc9660::BootloaderConfig&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4de763121aff441af52e492f3cff6f1c">kDefaultBootConfig</a></td></tr>
-<tr class="memdesc:a4de763121aff441af52e492f3cff6f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default bootloader configuration based on TMC9660-3PH-EVAL board settings.  <br /></td></tr>
+<tr class="memdesc:a4de763121aff441af52e492f3cff6f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default bootloader configuration aligned with TMC9660-3PH-EVKIT / driver BLDC example (<code>use_flash == false</code>): parameter mode, SPI0 on GPIO11 SCK, UART on GPIO6/7, flash off.  <br /></td></tr>
 <tr class="separator:a4de763121aff441af52e492f3cff6f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
@@ -1547,28 +1547,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Default bootloader configuration based on TMC9660-3PH-EVAL board settings. </p>
-<p>Default TMC9660 bootloader configuration based on TMC9660-3PH-EVAL board settings.</p>
-<p>Configures:</p><ul>
-<li>LDO: VEXT1=5.0V, VEXT2=3.3V, 3ms slope</li>
-<li>Boot mode: Parameter mode with motor control start</li>
-<li>UART: Auto16x baud rate, GPIO6/7, address 1</li>
-<li>External clock: 16MHz crystal with PLL (40MHz system)</li>
-<li>SPI Flash: Enabled on SPI0 (GPIO11/12) at 10MHz</li>
-<li>GPIO: GPIO5 analog, GPIO17/18 digital pull-down</li>
-<li>Hall, ABN encoders, step/dir, etc.: disabled (safe defaults)</li>
-</ul>
-<p>Override by passing a custom tmc9660::BootloaderConfig* to the constructor.</p>
-<p>Configuration highlights:</p><ul>
-<li>LDO: VEXT1=5.0V, VEXT2=3.3V with 3ms slope control</li>
-<li>Boot Mode: Parameter mode for TMCL parameter-based control</li>
-<li>UART: Auto16x baud rate detection, GPIO6/7 pins, device address 1</li>
-<li>External Clock: 16MHz crystal with PLL for stable 40MHz system clock (RDIV=15 per EVKIT / bldc_comprehensive_test)</li>
-<li>SPI Flash: <b>Disabled</b> on Vortex V1 (no SPI NOR on the TMC9660 SPI0 bus; matches <code>create_test_driver(false, false)</code> in driver BLDC examples). Enable explicitly if your PCB adds flash.</li>
-<li>SPI0 SCK (on-chip mux): <b>GPIO6</b> default here; EVKIT BLDC example uses <b>GPIO11</b> — set to match which TMC9660 package pin your PCB routes to SPI0 SCK.</li>
-<li>GPIO: GPIO5 analog input, GPIO17/18 digital inputs with pull-down</li>
-<li>New sections (hall, abn1, abn2, ref, stepDir, spiEnc, mechBrake, brakeChopper, memStorage) use safe defaults (disabled) </li>
-</ul>
+<p>Default bootloader configuration aligned with TMC9660-3PH-EVKIT / driver BLDC example (<code>use_flash == false</code>): parameter mode, SPI0 on GPIO11 SCK, UART on GPIO6/7, flash off. </p>
+<p>Default TMC9660 bootloader configuration aligned with TMC9660-3PH-EVKIT / driver examples.</p>
+<p>hf-core remains agnostic of carrier routing (e.g. GPIO expanders); control and SPI buses are injected via <code>BaseGpio</code> / <code>BaseSpi</code>. Override with a custom <code>BootloaderConfig*</code> if your TMC9660 strapping or netlist differs from the EVKIT.</p>
+<p>hf-core and the embedded <code>hf-tmc9660-driver</code> stay board-agnostic: this struct only describes on-die TMC9660 bootloader options. How RST/DRV_EN/WAKE or SPI CS reach the chip (direct MCU pin, I2C GPIO expander, etc.) is wired by the application through <code>BaseGpio</code> / <code>BaseSpi</code> — not here.</p>
+<p>Matches <code>bldc_comprehensive_test.cpp</code> for <code>use_flash == false</code>: SPI0 bootloader SCK on GPIO11, UART enabled (GPIO6/7), external 16 MHz clock / PLL, SPI flash off. Pass a custom <code>BootloaderConfig*</code> to the handler if your TMC9660 netlist differs from the EVKIT reference. </p>
 
 </div>
 </div>
