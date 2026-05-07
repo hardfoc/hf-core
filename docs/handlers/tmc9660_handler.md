@@ -120,6 +120,10 @@ auto active = handler.GetDriver();
 
 UART mode uses the same TMCL opcodes as SPI. The underlying `hf-tmc9660-driver` expects the platform `UartCommInterface` to deliver a **complete 9-byte** TMCL reply for every transaction. Partial reads or leftover RX bytes typically surface as checksum or TMCL status errors. See the driver’s [Platform Integration](https://github.com/N3b3x/hf-tmc9660-driver/blob/main/docs/platform_integration.md) guide (`uartReceiveTMCL` contract).
 
+## SPI TMCL pacing
+
+`HalSpiTmc9660Comm::spiTransferTMCL` inserts a deterministic ~150 µs delay after every SPI transfer. The TMC9660 SPI TMCL protocol is two-transaction (TX1 carries the command, TX2 = NO_OP drains the reply); back-to-back transfers at >=1 MHz starve the chip’s TMCL parser and surface as `SPI_STATUS=OK` / `TMCL_STATUS=REPLY_INVALID_CMD` on the second transaction. The host pacing applied here matches the natural inter-frame gap of a 9-byte UART TMCL frame at 115200 baud (~780 µs). Callers (e.g. `MotorController::visitDriver()`) do not need to add their own delays around `writeParameter` / `readParameter` calls.
+
 ## Thread safety
 
 `visitDriver()`, `EnsureInitialized()`, and accessors such as `gpio()` / `adc()` / `temperature()` take the handler’s recursive mutex (directly or via `EnsureInitialized()`). `Initialize()` does **not** take that mutex; avoid calling it concurrently with `visitDriver()` or wrapper methods from another thread until initialization is stable, or restrict init to a single thread.

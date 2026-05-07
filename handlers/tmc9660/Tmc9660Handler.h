@@ -220,6 +220,16 @@ public:
      * @param[in,out] tx 8-byte transmit buffer (TMCL command frame).
      * @param[out]    rx 8-byte receive buffer (TMCL reply frame).
      * @return true if BaseSpi::Transfer() succeeded.
+     *
+     * @note Inserts a deterministic ~150 µs post-transfer delay. The TMC9660
+     *       SPI TMCL protocol is two-transaction (TX1 = command, TX2 = NO_OP
+     *       drains the reply); back-to-back transfers at >=1 MHz starve the
+     *       chip's TMCL parser and surface as `SPI_STATUS=OK` /
+     *       `TMCL_STATUS=REPLY_INVALID_CMD` on the second transaction. The
+     *       delay matches the natural inter-frame pacing of a 9-byte UART
+     *       TMCL frame (~780 µs at 115200 baud), keeping host pacing
+     *       conservative across SPI clocks. UART transfers are paced by the
+     *       wire and do not need this hook.
      */
     bool spiTransferTMCL(std::array<uint8_t, 8>& tx, std::array<uint8_t, 8>& rx) noexcept;
 
