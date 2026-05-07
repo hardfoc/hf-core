@@ -52,10 +52,10 @@ Tmc9660Handler(BaseUart& uart, BaseGpio& rst, BaseGpio& drv_en,
 
 | Method | Description |
 |:-------|:------------|
-| `driverViaSpi()` | Typed `SpiDriver*` (nullptr if UART or not init) |
-| `driverViaUart()` | Typed `UartDriver*` (nullptr if SPI or not init) |
+| `driverViaSpi()` | Typed `SpiDriver*` (nullptr if UART or not init); raw pointer — not mutex-protected |
+| `driverViaUart()` | Typed `UartDriver*` (nullptr if SPI or not init); raw pointer — not mutex-protected |
 | `GetDriver()` | `std::variant<monostate, SpiDriver*, UartDriver*>` |
-| `visitDriver(fn)` | Execute callable on active driver (non-mutex) |
+| `visitDriver(fn)` | Execute callable on active driver (mutex held; see Thread safety) |
 
 ### Peripheral Wrappers
 
@@ -116,12 +116,17 @@ auto active = handler.GetDriver();
 // std::variant<std::monostate, SpiDriver*, UartDriver*>
 ```
 
-## Thread Safety
+## UART TMCL expectations
 
-Individual handler methods are NOT thread-safe by themselves. If multiple
-threads access the same handler, external synchronization is required.
-The `Adc` and `Temperature` inner classes use their own `RtosMutex` for
-internal statistics tracking.
+UART mode uses the same TMCL opcodes as SPI. The underlying `hf-tmc9660-driver` expects the platform `UartCommInterface` to deliver a **complete 9-byte** TMCL reply for every transaction. Partial reads or leftover RX bytes typically surface as checksum or TMCL status errors. See the driver’s [Platform Integration](https://github.com/N3b3x/hf-tmc9660-driver/blob/main/docs/platform_integration.md) guide (`uartReceiveTMCL` contract).
+
+## Thread safety
+
+`visitDriver()`, `EnsureInitialized()`, and accessors such as `gpio()` / `adc()` / `temperature()` take the handler’s recursive mutex (directly or via `EnsureInitialized()`). `Initialize()` does **not** take that mutex; avoid calling it concurrently with `visitDriver()` or wrapper methods from another thread until initialization is stable, or restrict init to a single thread.
+
+`driverViaSpi()` and `driverViaUart()` return raw pointers without locking — use them only when no other thread can race initialization or driver access, or prefer `visitDriver()`.
+
+The `Adc` and `Temperature` inner classes use an additional mutex for internal statistics.
 
 ## Test Coverage
 

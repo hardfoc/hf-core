@@ -84,10 +84,10 @@ The TMC9660 is the most complex handler due to its multi-subsystem architecture:
 ![TMC9660 handler anatomy](assets/tmc9660-handler-anatomy.svg)
 
 ```
-Tmc9660Handler
-├── HalSpiTmc9660Comm (CRTP adapter: BaseSpi → SpiCommInterface)
+Tmc9660Handler (SPI or UART at construction)
+├── HalSpiTmc9660Comm or HalUartTmc9660Comm (CRTP adapter → SpiCommInterface / UartCommInterface)
 │   └── Tmc9660CtrlPins (RST, DRV_EN, FAULTN, WAKE)
-├── SpiDriver (tmc9660::TMC9660<HalSpiTmc9660Comm>)
+├── SpiDriver or UartDriver (tmc9660::TMC9660<CommType>)
 ├── Gpio wrappers (GPIO17, GPIO18 → BaseGpio)
 ├── Adc wrapper (multi-channel → BaseAdc)
 └── Temperature wrapper (chip temp → BaseTemperature)

@@ -68,10 +68,14 @@
  *
  * ## Thread Safety
  *
- * The handler uses RtosMutex (recursive) for thread-safe access to all public
- * methods. visitDriver() acquires the lock automatically. Raw pointer methods
- * (driverViaSpi(), driverViaUart()) are NOT mutex-protected — the caller is
- * responsible for synchronization when using them from multiple tasks.
+ * `visitDriver()`, `EnsureInitialized()`, and peripheral accessors that call
+ * `EnsureInitialized()` acquire the handler's recursive mutex. `Initialize()` does
+ * not take that mutex; serialize it with other entry points across threads, or run
+ * init from a single task until the driver is ready.
+ *
+ * `driverViaSpi()` and `driverViaUart()` return raw pointers without locking — the
+ * caller must ensure no concurrent use with initialization or with other threads, or
+ * prefer `visitDriver()`.
  * The Adc and Temperature inner classes use additional RtosMutex instances
  * for their internal statistics tracking.
  *
