@@ -383,10 +383,10 @@ deadlock-free operation even on early returns.</p>
 5
 6
 7
-</pre></td><td class="rouge-code"><pre>Tmc9660Handler
-├── HalSpiTmc9660Comm (CRTP adapter: BaseSpi → SpiCommInterface)
+</pre></td><td class="rouge-code"><pre>Tmc9660Handler (SPI or UART at construction)
+├── HalSpiTmc9660Comm or HalUartTmc9660Comm (CRTP adapter → SpiCommInterface / UartCommInterface)
 │   └── Tmc9660CtrlPins (RST, DRV_EN, FAULTN, WAKE)
-├── SpiDriver (tmc9660::TMC9660&lt;HalSpiTmc9660Comm&gt;)
+├── SpiDriver or UartDriver (tmc9660::TMC9660&lt;CommType&gt;)
 ├── Gpio wrappers (GPIO17, GPIO18 → BaseGpio)
 ├── Adc wrapper (multi-channel → BaseAdc)
 └── Temperature wrapper (chip temp → BaseTemperature)
