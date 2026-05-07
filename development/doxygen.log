@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.yqvsaw
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.yqvsaw' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.GrQoTO
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.GrQoTO' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -819,6 +819,7 @@ Generating call graph for function HalSpiTmc9660Comm::delayMs
 Generating call graph for function HalSpiTmc9660Comm::delayUs
 Generating call graph for function HalSpiTmc9660Comm::gpioRead
 Generating call graph for function HalSpiTmc9660Comm::gpioSet
+Generating call graph for function HalSpiTmc9660Comm::spiTransferTMCL
 Generating docs for compound HalUartAlicatBasis2Comm...
 Generating docs for compound HalUartFdo2Comm...
 Generating caller graph for function HalUartFdo2Comm::delay_ms_impl
@@ -835,10 +836,10 @@ Generating call graph for function HalUartTmc9660Comm::gpioRead
 Generating call graph for function HalUartTmc9660Comm::gpioSet
 Generating call graph for function HalUartTmc9660Comm::uartReceiveTMCL
 Generating call graph for function HalUartTmc9660Comm::uartSendTMCL
-Generating call graph for function HalUartTmc9660Comm::uartTransferBootloader
+Generating call graph for function HalUartTmc9660Comm::uartTransferBootloawarning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (68), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
+der
 Generating docs for compound HandlerTaskArgs...
-Generating docs fowarning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (68), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
-r compound HfUtilsCanOpenTransport...
+Generating docs for compound HfUtilsCanOpenTransport...
 Generating caller graph for function HfUtilsCanOpenTransport::can
 Generating call graph for function HfUtilsCanOpenTransport::receive
 Generating caller graph for function HfUtilsCanOpenTransport::receive
@@ -1024,8 +1025,7 @@ Generating call graph for function Tle92466edHandler::EnableFeedbackUpdates
 Generating call graph for function Tle92466edHandler::EnableOutputStage
 Generating call graph for function Tle92466edHandler::EnsureInitialized
 Generating call graph for function Tle92466edHandler::EnsureInitializedLocked
-Generating caller graph for function Tle92466edHandler::EnsureInitializedLocked
-Generating call graph for function Tle92466edHandler::/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
+Generating caller graph for function Tle92466edHandler::EnsureIn/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:103: warning: @copybrief or @copydoc target 'BaseAdc::IsChannelAvailable' not found
@@ -1061,7 +1061,8 @@ Generating call graph for function Tle92466edHandler::/home/runner/work/hf-core/
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:135: warning: @copydetails or @copydoc target 'BaseAdc::ResetDiagnostics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:132: warning: @copydetails or @copydoc target 'BaseAdc::ResetStatistics' not found
-EnterConfigMode
+itializedLocked
+Generating call graph for function Tle92466edHandler::EnterConfigMode
 Generating call graph for function Tle92466edHandler::EnterMissionMode
 Generating call graph for function Tle92466edHandler::GetChannelDiagnostics
 Generating call graph for function Tle92466edHandler::GetChipId
@@ -1182,8 +1183,7 @@ Generating docs for namespace anonymous_namespace{Se050Handler.cpp}
 Generating caller graph for function anonymous_namespace{Se050Handler.cpp}::ClampU16
 Generating caller graph for function anonymous_namespace{Se050Handler.cpp}::MapI2c
 Generating docs for namespace anonymous_namespace{Tmc9660Handler.cpp}
-Generating call graph for function anonymous_namespace{Tmc9660Handler.cpp}::LogHexDump
-Generating caller graph for function anonymous_namespace/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
+Generating call graph for function anonymous_namespace{Tmc9660Handler.cpp/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:20: warning: unable to resolve reference to '-features' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:21: warning: unable to resolve reference to '-architecture' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:22: warning: unable to resolve reference to '-quick-start' for \ref command
@@ -1201,7 +1201,8 @@ Generating caller graph for function anonymous_namespace/home/runner/work/hf-cor
 /home/runner/work/hf-core/hf-core/README.md:186: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:187: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:188: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
-{Tmc9660Handler.cpp}::LogHexDump
+}::LogHexDump
+Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::LogHexDump
 Generating call graph for function anonymous_namespace{Tmc9660Handler.cpp}::ReadExactBytesUart
 Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::ReadExactBytesUart
 Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::readGpioToSignal
@@ -1279,7 +1280,14 @@ finalizing index lists...
 writing tag file...
 Running plantuml with JAVA...
 Running dot...
-Patching output file 1/1
-type lookup cache used 7858/65536 hits=48722 misses=8240
-symbol lookup cache used 10108/65536 hits=46727 misses=10108
+Generating dot graphs using 5 parallel threads...
+Running dot for graph 1/2
+Running dot for graph 2/2
+Patching output file 1/5
+Patching output file 2/5
+Patching output file 3/5
+Patching output file 4/5
+Patching output file 5/5
+type lookup cache used 7858/65536 hits=48723 misses=8240
+symbol lookup cache used 10108/65536 hits=46728 misses=10108
 finished...

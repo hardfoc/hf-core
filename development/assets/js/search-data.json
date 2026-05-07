@@ -1561,89 +1561,96 @@
     "relUrl": "/docs/handlers/tmc9660_handler.html#uart-tmcl-expectations"
   },"223": {
     "doc": "TMC9660 Handler",
+    "title": "SPI TMCL pacing",
+    "content": "HalSpiTmc9660Comm::spiTransferTMCL inserts a deterministic ~150 µs delay after every SPI transfer. The TMC9660 SPI TMCL protocol is two-transaction (TX1 carries the command, TX2 = NO_OP drains the reply); back-to-back transfers at &gt;=1 MHz starve the chip’s TMCL parser and surface as SPI_STATUS=OK / TMCL_STATUS=REPLY_INVALID_CMD on the second transaction. The host pacing applied here matches the natural inter-frame gap of a 9-byte UART TMCL frame at 115200 baud (~780 µs). Callers (e.g. MotorController::visitDriver()) do not need to add their own delays around writeParameter / readParameter calls. ",
+    "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#spi-tmcl-pacing",
+    
+    "relUrl": "/docs/handlers/tmc9660_handler.html#spi-tmcl-pacing"
+  },"224": {
+    "doc": "TMC9660 Handler",
     "title": "Thread safety",
     "content": "visitDriver(), EnsureInitialized(), and accessors such as gpio() / adc() / temperature() take the handler’s recursive mutex (directly or via EnsureInitialized()). Initialize() does not take that mutex; avoid calling it concurrently with visitDriver() or wrapper methods from another thread until initialization is stable, or restrict init to a single thread. driverViaSpi() and driverViaUart() return raw pointers without locking — use them only when no other thread can race initialization or driver access, or prefer visitDriver(). The Adc and Temperature inner classes use an additional mutex for internal statistics. ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#thread-safety",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#thread-safety"
-  },"224": {
+  },"225": {
     "doc": "TMC9660 Handler",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/handler_tests/tmc9660_handler_comprehensive_test.cpp — 10 test sections covering construction state, initialization, parameters, motor control, telemetry, GPIO/ADC/Temperature wrappers, driver enable, and error handling. ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#test-coverage"
-  },"225": {
+  },"226": {
     "doc": "TMC9660 Handler",
     "title": "TMC9660 Handler",
     "content": " ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html"
-  },"226": {
+  },"227": {
     "doc": "WS2812 Handler",
     "title": "Ws2812Handler",
     "content": "Addressable LED strip handler for WS2812/NeoPixel LEDs using the ESP32 RMT peripheral. ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#ws2812handler",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#ws2812handler"
-  },"227": {
+  },"228": {
     "doc": "WS2812 Handler",
     "title": "Construction",
     "content": "| 1 . | Ws2812Handler(const Config&amp; config); . | . ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#construction",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#construction"
-  },"228": {
+  },"229": {
     "doc": "WS2812 Handler",
     "title": "Config Structure",
     "content": "| 1 2 3 4 5 6 7 8 9 10 11 . | struct Config { gpio_num_t gpio_pin{}; // GPIO pin connected to LED data line uint32_t num_leds{1}; // Number of LEDs in the strip LedType led_type{LedType::RGB}; uint8_t brightness{255}; // Global brightness (0–255) int rmt_channel{0}; // RMT channel number uint16_t t0h{400}; // T0H timing (ns) uint16_t t1h{800}; // T1H timing (ns) uint16_t t0l{850}; // T0L timing (ns) uint16_t t1l{450}; // T1L timing (ns) }; . | . ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#config-structure",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#config-structure"
-  },"229": {
+  },"230": {
     "doc": "WS2812 Handler",
     "title": "Key Methods",
     "content": " ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#key-methods",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#key-methods"
-  },"230": {
+  },"231": {
     "doc": "WS2812 Handler",
     "title": "Lifecycle",
     "content": "| Method | Description | . | Initialize() | Initialize RMT channel and LED strip. Returns esp_err_t. | . | EnsureInitialized() | Lazy init entrypoint | . | Deinitialize() | Release RMT resources | . | IsInitialized() | Check initialization state | . ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#lifecycle",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#lifecycle"
-  },"231": {
+  },"232": {
     "doc": "WS2812 Handler",
     "title": "Driver Access",
     "content": "| Method | Description | . | GetNumLeds() | Get the number of LEDs | . | GetDriver() / GetStrip() | Get underlying WS2812Strip* | . | GetAnimator() | Get underlying WS2812Animator* | . | visitDriver(fn) | Execute callable with WS2812Strip&amp; under mutex | . | visitAnimator(fn) | Execute callable with WS2812Animator&amp; under mutex | . ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#driver-access",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#driver-access"
-  },"232": {
+  },"233": {
     "doc": "WS2812 Handler",
     "title": "Diagnostics",
     "content": "| Method | Description | . | DumpDiagnostics() | Log LED count, config, init state | . All pixel operations and animation effects are intentionally delegated to the underlying driver objects (WS2812Strip, WS2812Animator) exposed by the handler. ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#diagnostics",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#diagnostics"
-  },"233": {
+  },"234": {
     "doc": "WS2812 Handler",
     "title": "Thread Safety",
     "content": "All methods are protected by an internal RtosMutex. ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#thread-safety",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#thread-safety"
-  },"234": {
+  },"235": {
     "doc": "WS2812 Handler",
     "title": "Test Coverage",
     "content": "See examples/esp32/main/handler_tests/ws2812_handler_comprehensive_test.cpp. ",
     "url": "/hf-core/development/docs/handlers/ws2812_handler.html#test-coverage",
     
     "relUrl": "/docs/handlers/ws2812_handler.html#test-coverage"
-  },"235": {
+  },"236": {
     "doc": "WS2812 Handler",
     "title": "WS2812 Handler",
     "content": " ",

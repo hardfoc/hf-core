@@ -539,6 +539,16 @@ not through handler-level wrapper methods:</p>
     
 
 <p>UART mode uses the same TMCL opcodes as SPI. The underlying <code class="language-plaintext highlighter-rouge">hf-tmc9660-driver</code> expects the platform <code class="language-plaintext highlighter-rouge">UartCommInterface</code> to deliver a <strong>complete 9-byte</strong> TMCL reply for every transaction. Partial reads or leftover RX bytes typically surface as checksum or TMCL status errors. See the driver’s <a href="https://github.com/N3b3x/hf-tmc9660-driver/blob/main/docs/platform_integration.md">Platform Integration</a> guide (<code class="language-plaintext highlighter-rouge">uartReceiveTMCL</code> contract).</p>
+<h2 id="spi-tmcl-pacing">
+  
+  
+    <a href="#spi-tmcl-pacing" class="anchor-heading" aria-labelledby="spi-tmcl-pacing"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> SPI TMCL pacing
+  
+  
+</h2>
+    
+
+<p><code class="language-plaintext highlighter-rouge">HalSpiTmc9660Comm::spiTransferTMCL</code> inserts a deterministic ~150 µs delay after every SPI transfer. The TMC9660 SPI TMCL protocol is two-transaction (TX1 carries the command, TX2 = NO_OP drains the reply); back-to-back transfers at &gt;=1 MHz starve the chip’s TMCL parser and surface as <code class="language-plaintext highlighter-rouge">SPI_STATUS=OK</code> / <code class="language-plaintext highlighter-rouge">TMCL_STATUS=REPLY_INVALID_CMD</code> on the second transaction. The host pacing applied here matches the natural inter-frame gap of a 9-byte UART TMCL frame at 115200 baud (~780 µs). Callers (e.g. <code class="language-plaintext highlighter-rouge">MotorController::visitDriver()</code>) do not need to add their own delays around <code class="language-plaintext highlighter-rouge">writeParameter</code> / <code class="language-plaintext highlighter-rouge">readParameter</code> calls.</p>
 <h2 id="thread-safety">
   
   

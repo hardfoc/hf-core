@@ -196,7 +196,7 @@ Initialization Sequence</h2>
 <div class="line">handler.visitDriver([](<span class="keyword">auto</span>&amp; d) {</div>
 <div class="line">    d.motorControl.enable();</div>
 <div class="line">});</div>
-<div class="ttc" id="aclassTmc9660Handler_html"><div class="ttname"><a href="classTmc9660Handler.html">Tmc9660Handler</a></div><div class="ttdoc">Unified, non-templated handler for a single TMC9660 motor controller device.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:456</div></div>
+<div class="ttc" id="aclassTmc9660Handler_html"><div class="ttname"><a href="classTmc9660Handler.html">Tmc9660Handler</a></div><div class="ttdoc">Unified, non-templated handler for a single TMC9660 motor controller device.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:466</div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md24"></a>
 Thread Safety</h2>
 <p><code>visitDriver()</code>, <code>EnsureInitialized()</code>, and peripheral accessors that call <code>EnsureInitialized()</code> acquire the handler's recursive mutex. <code>Initialize()</code> does not take that mutex; serialize it with other entry points across threads, or run init from a single task until the driver is ready.</p>
