@@ -267,18 +267,13 @@ bool HalSpiTmc9660Comm::spiTransferTMCL(std::array<uint8_t, 8>& tx, std::array<u
     }
     hf_spi_err_t result = spi_.Transfer(tx.data(), rx.data(), hf_u16_t(8), hf_u32_t(0));
     // TMC9660 SPI TMCL pacing: the chip uses a two-transaction protocol where
-    // TX1 carries the new command and TX2 (NO_OP) drains its reply. Back-to-
-    // back transfers at typical SPI clocks (>=1 MHz) leave only ~80 µs between
-    // CS edges, which is shorter than the chip needs to load the parameter-
-    // mode command into the TMCL parser. The chip then returns SPI_STATUS=OK
-    // (0xFF) but TMCL_STATUS=REPLY_INVALID_CMD (0x02) on the *second* SPI
-    // transaction — an in-flight race that disappears when even one extra
-    // ESP_LOG between transfers introduces a few hundred µs of pacing.
-    // Adding a deterministic ~150 µs post-transfer delay gives the chip a
-    // stable inter-frame gap close to the natural pacing of a 9-byte UART
-    // frame at 115200 baud (~780 µs / frame). This single delay applies once
-    // per host-side TMCL frame and is invisible to upper layers.
-    handler_utils::DelayUs(150);
+    // TX1 carries the new command and TX2 (NO_OP) drains its reply. Fast SPI
+    // plus short CS gaps can return SPI_STATUS=OK but TMCL_STATUS=INVALID_CMD
+    // on the reply sampled by TX2. `SpiCommInterface::transferTMCL` adds an
+    // explicit pre-TX2 delay; this post-transfer delay keeps consecutive
+    // *different* TMCL commands (back-to-back driver calls) from colliding the
+    // same way. Keep in sync with the inter-phase delay in tmc9660_comm_interface.hpp.
+    handler_utils::DelayUs(350);
     return result == hf_spi_err_t::SPI_SUCCESS;
 }
 
