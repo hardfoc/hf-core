@@ -269,8 +269,8 @@ public:
     /**
      * @brief Delay execution for the specified number of microseconds.
      *
-     * On ESP32, uses esp_rom_delay_us() for accurate sub-millisecond timing.
-     * On other platforms, uses a busy-wait loop based on the processor cycle counter.
+     * Delegates to the comm adapter implementation (typically ROM microsecond delay where the
+     * platform provides it, otherwise a short busy-wait for sub-millisecond timing).
      *
      * @param us Microseconds to delay.
      */
@@ -476,12 +476,13 @@ public:
     //==========================================================================
 
     /**
-     * @brief Default bootloader configuration aligned with TMC9660-3PH-EVKIT / driver BLDC example
-     *        (`use_flash == false`): parameter mode, SPI0 on GPIO11 SCK, UART on GPIO6/7, flash off.
+     * @brief Default bootloader configuration matching the vendor TMC9660-3PH reference EV kit
+     *        and driver BLDC example (`use_flash == false`): parameter mode, SPI0 SCK/UART pin
+     *        codes as in that reference, flash off.
      *
-     * @details hf-core remains agnostic of carrier routing (e.g. GPIO expanders); control and SPI
-     *          buses are injected via `BaseGpio` / `BaseSpi`. Override with a custom
-     *          `BootloaderConfig*` if your TMC9660 strapping or netlist differs from the EVKIT.
+     * @details hf-core does not model carrier routing (e.g. GPIO expanders); host buses and
+     *          control pins are injected via `BaseGpio` / `BaseSpi` / `BaseUart`. Pass a custom
+     *          `BootloaderConfig*` when strapping or pin mux differs from this reference set.
      */
     static const tmc9660::BootloaderConfig kDefaultBootConfig;
 
