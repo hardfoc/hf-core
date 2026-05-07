@@ -7,5 +7,6 @@ var searchData=
   ['mcp9700adcadapter_4',['Mcp9700AdcAdapter',['../classMcp9700AdcAdapter.html#a41d01bd35afe352ceb3795bd2b222e1a',1,'Mcp9700AdcAdapter']]],
   ['mcp9700temperaturehandler_5',['Mcp9700TemperatureHandler',['../classMcp9700TemperatureHandler.html#ab1e1b3c4030c574bb3706bced614b9d7',1,'Mcp9700TemperatureHandler::Mcp9700TemperatureHandler(BaseAdc *adc_interface, uint8_t adc_channel, const char *sensor_name=&quot;MCP9700&quot;) noexcept'],['../classMcp9700TemperatureHandler.html#af85f241a3eb2bb63593721db57c72745',1,'Mcp9700TemperatureHandler::Mcp9700TemperatureHandler(const Mcp9700TemperatureHandler &amp;)=delete']]],
   ['measuremoxy_6',['MeasureMoxy',['../classFdo2Handler.html#a99bba6021370bbd0dcf7b86f8f4efb4e',1,'Fdo2Handler']]],
-  ['measuremraw_7',['MeasureMraw',['../classFdo2Handler.html#a8d1c48731fcc63071c675fae4e566985',1,'Fdo2Handler']]]
+  ['measuremraw_7',['MeasureMraw',['../classFdo2Handler.html#a8d1c48731fcc63071c675fae4e566985',1,'Fdo2Handler']]],
+  ['monotonictimeus_8',['MonotonicTimeUs',['../namespacehandler__utils.html#a75d4e97d12033f5c07ab4deab842ebe9',1,'handler_utils']]]
 ];

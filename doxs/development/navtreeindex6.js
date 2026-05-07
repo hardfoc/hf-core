@@ -1,5 +1,8 @@
 var NAVTREEINDEX6 =
 {
+"functions_func.html":[13,3,1],
+"functions_func.html":[13,3,1,0],
+"functions_func_b.html":[13,3,1,1],
 "functions_func_c.html":[13,3,1,2],
 "functions_func_d.html":[13,3,1,3],
 "functions_func_e.html":[13,3,1,4],
@@ -246,8 +249,5 @@ var NAVTREEINDEX6 =
 "max22200__handler__comprehensive__test_8cpp.html#afee7768b8b35ea709bb0a2dd90c24287":[14,0,0,0,0,0,2,9],
 "namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html":[12,0,0],
 "namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#a50d9ea9c8b3553537fef28c9ee07cb30":[12,0,0,0],
-"namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#a964fadd70111271f4fac6a475ae1b340":[12,0,0,3],
-"namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#ac74ab57c3bd5279c52f56c677d73730d":[12,0,0,2],
-"namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#aeb2770bf09308f306ebf0b62df9fab6d":[12,0,0,1],
-"namespaceanonymous__namespace_02Logger_8cpp_03.html":[12,0,1]
+"namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#a964fadd70111271f4fac6a475ae1b340":[12,0,0,3]
 };

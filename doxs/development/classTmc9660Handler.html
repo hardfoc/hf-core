@@ -235,7 +235,7 @@ Public Member Functions</h2></td></tr>
 Static Public Attributes</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Default Configuration</div></td></tr>
 <tr class="memitem:a4de763121aff441af52e492f3cff6f1c" id="r_a4de763121aff441af52e492f3cff6f1c"><td class="memItemLeft" align="right" valign="top">static const tmc9660::BootloaderConfig&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4de763121aff441af52e492f3cff6f1c">kDefaultBootConfig</a></td></tr>
-<tr class="memdesc:a4de763121aff441af52e492f3cff6f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default bootloader configuration aligned with TMC9660-3PH-EVKIT / driver BLDC example (<code>use_flash == false</code>): parameter mode, SPI0 on GPIO11 SCK, UART on GPIO6/7, flash off.  <br /></td></tr>
+<tr class="memdesc:a4de763121aff441af52e492f3cff6f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default bootloader configuration matching the vendor TMC9660-3PH reference EV kit and driver BLDC example (<code>use_flash == false</code>): parameter mode, SPI0 SCK/UART pin codes as in that reference, flash off.  <br /></td></tr>
 <tr class="separator:a4de763121aff441af52e492f3cff6f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
@@ -1547,11 +1547,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Default bootloader configuration aligned with TMC9660-3PH-EVKIT / driver BLDC example (<code>use_flash == false</code>): parameter mode, SPI0 on GPIO11 SCK, UART on GPIO6/7, flash off. </p>
-<p>Default TMC9660 bootloader configuration aligned with TMC9660-3PH-EVKIT / driver examples.</p>
-<p>hf-core remains agnostic of carrier routing (e.g. GPIO expanders); control and SPI buses are injected via <code>BaseGpio</code> / <code>BaseSpi</code>. Override with a custom <code>BootloaderConfig*</code> if your TMC9660 strapping or netlist differs from the EVKIT.</p>
-<p>hf-core and the embedded <code>hf-tmc9660-driver</code> stay board-agnostic: this struct only describes on-die TMC9660 bootloader options. How RST/DRV_EN/WAKE or SPI CS reach the chip (direct MCU pin, I2C GPIO expander, etc.) is wired by the application through <code>BaseGpio</code> / <code>BaseSpi</code> — not here.</p>
-<p>Matches <code>bldc_comprehensive_test.cpp</code> for <code>use_flash == false</code>: SPI0 bootloader SCK on GPIO11, UART enabled (GPIO6/7), external 16 MHz clock / PLL, SPI flash off. Pass a custom <code>BootloaderConfig*</code> to the handler if your TMC9660 netlist differs from the EVKIT reference. </p>
+<p>Default bootloader configuration matching the vendor TMC9660-3PH reference EV kit and driver BLDC example (<code>use_flash == false</code>): parameter mode, SPI0 SCK/UART pin codes as in that reference, flash off. </p>
+<p>Default TMC9660 bootloader configuration for the vendor three-phase reference evaluation kit.</p>
+<p>hf-core does not model carrier routing (e.g. GPIO expanders); host buses and control pins are injected via <code>BaseGpio</code> / <code>BaseSpi</code> / <code>BaseUart</code>. Pass a custom <code>BootloaderConfig*</code> when strapping or pin mux differs from this reference set.</p>
+<p>On-die options only; host RST/DRV_EN/WAKE/SPI CS wiring stays in the app (<code>BaseGpio</code> / <code>BaseSpi</code>).</p>
+<p>Matches <code>hf-tmc9660-driver</code> <code>bldc_comprehensive_test.cpp</code> when <code>use_flash == false</code>: same GPIO pull profile, Hall, ABN1/2, Y2 brake chopper / mechanical brake, comms, clock, and SPI flash off. Pass a custom <code>BootloaderConfig*</code> if your netlist differs. </p>
 
 </div>
 </div>
