@@ -548,7 +548,13 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if BaseSpi::Transfer() succeeded. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if BaseSpi::Transfer() succeeded.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Inserts a deterministic ~150 µs post-transfer delay. The TMC9660 SPI TMCL protocol is two-transaction (TX1 = command, TX2 = NO_OP drains the reply); back-to-back transfers at &gt;=1 MHz starve the chip's TMCL parser and surface as <code>SPI_STATUS=OK</code> / <code>TMCL_STATUS=REPLY_INVALID_CMD</code> on the second transaction. The delay matches the natural inter-frame pacing of a 9-byte UART TMCL frame (~780 µs at 115200 baud), keeping host pacing conservative across SPI clocks. UART transfers are paced by the wire and do not need this hook. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTmc9660Comm_a84b3ab081c7b9cab86432945ca9e3f6e_cgraph.svg" width="403" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
