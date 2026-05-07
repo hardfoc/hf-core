@@ -99,16 +99,121 @@ $(function(){initNavTree('namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a91f1b4322a75b8ac25a8890110ec9af6" id="r_a91f1b4322a75b8ac25a8890110ec9af6"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91f1b4322a75b8ac25a8890110ec9af6">setGpioFromSignal</a> (BaseGpio &amp;gpio_pin, tmc9660::GpioSignal signal, bool active_high) noexcept</td></tr>
-<tr class="memdesc:a91f1b4322a75b8ac25a8890110ec9af6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a BaseGpio pin level based on a TMC9660 signal and its active-level config.  <br /></td></tr>
-<tr class="separator:a91f1b4322a75b8ac25a8890110ec9af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee82d92e54869f56afcdfa5bf23dbf2f" id="r_aee82d92e54869f56afcdfa5bf23dbf2f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee82d92e54869f56afcdfa5bf23dbf2f">readGpioToSignal</a> (BaseGpio &amp;gpio_pin, tmc9660::GpioSignal &amp;signal, bool active_high) noexcept</td></tr>
-<tr class="memdesc:aee82d92e54869f56afcdfa5bf23dbf2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a BaseGpio pin and convert to TMC9660 signal based on active-level config.  <br /></td></tr>
-<tr class="separator:aee82d92e54869f56afcdfa5bf23dbf2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75bfafbdf838187780b833848b1e87eb" id="r_a75bfafbdf838187780b833848b1e87eb"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75bfafbdf838187780b833848b1e87eb">ReadExactBytesUart</a> (BaseUart &amp;uart, uint8_t *dst, size_t total, uint32_t total_timeout_ms) noexcept</td></tr>
+<tr class="separator:a75bfafbdf838187780b833848b1e87eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae63557e186ffd913155acb3129de7ac9" id="r_ae63557e186ffd913155acb3129de7ac9"><td class="memTemplParams" colspan="2">template&lt;size_t N&gt; </td></tr>
+<tr class="memitem:ae63557e186ffd913155acb3129de7ac9"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae63557e186ffd913155acb3129de7ac9">LogHexDump</a> (const char *tag, const char *prefix, const std::array&lt; uint8_t, N &gt; &amp;buf, bool is_tmcl) noexcept</td></tr>
+<tr class="separator:ae63557e186ffd913155acb3129de7ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a747df189a572cdfd86ec4d3f74160078" id="r_a747df189a572cdfd86ec4d3f74160078"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a747df189a572cdfd86ec4d3f74160078">setGpioFromSignal</a> (BaseGpio &amp;gpio_pin, tmc9660::GpioSignal signal, bool) noexcept</td></tr>
+<tr class="memdesc:a747df189a572cdfd86ec4d3f74160078"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a BaseGpio pin level based on a TMC9660 signal.  <br /></td></tr>
+<tr class="separator:a747df189a572cdfd86ec4d3f74160078"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dc9d5dcab6377d0a891fcfc400abe10" id="r_a9dc9d5dcab6377d0a891fcfc400abe10"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9dc9d5dcab6377d0a891fcfc400abe10">readGpioToSignal</a> (BaseGpio &amp;gpio_pin, tmc9660::GpioSignal &amp;signal, bool) noexcept</td></tr>
+<tr class="memdesc:a9dc9d5dcab6377d0a891fcfc400abe10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a BaseGpio pin and convert to TMC9660 signal.  <br /></td></tr>
+<tr class="separator:a9dc9d5dcab6377d0a891fcfc400abe10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aee82d92e54869f56afcdfa5bf23dbf2f" name="aee82d92e54869f56afcdfa5bf23dbf2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee82d92e54869f56afcdfa5bf23dbf2f">&#9670;&#160;</a></span>readGpioToSignal()</h2>
+<a id="ae63557e186ffd913155acb3129de7ac9" name="ae63557e186ffd913155acb3129de7ac9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae63557e186ffd913155acb3129de7ac9">&#9670;&#160;</a></span>LogHexDump()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void anonymous_namespace{Tmc9660Handler.cpp}::LogHexDump </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>prefix</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::array&lt; uint8_t, N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>buf</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_tmcl</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03_ae63557e186ffd913155acb3129de7ac9_cgraph.svg" width="391" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03_ae63557e186ffd913155acb3129de7ac9_icgraph.svg" width="418" height="179"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a75bfafbdf838187780b833848b1e87eb" name="a75bfafbdf838187780b833848b1e87eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75bfafbdf838187780b833848b1e87eb">&#9670;&#160;</a></span>ReadExactBytesUart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool anonymous_namespace{Tmc9660Handler.cpp}::ReadExactBytesUart </td>
+          <td>(</td>
+          <td class="paramtype">BaseUart &amp;</td>          <td class="paramname"><span class="paramname"><em>uart</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>dst</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>total</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>total_timeout_ms</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03_a75bfafbdf838187780b833848b1e87eb_cgraph.svg" width="422" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03_a75bfafbdf838187780b833848b1e87eb_icgraph.svg" width="418" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a9dc9d5dcab6377d0a891fcfc400abe10" name="a9dc9d5dcab6377d0a891fcfc400abe10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dc9d5dcab6377d0a891fcfc400abe10">&#9670;&#160;</a></span>readGpioToSignal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -129,7 +234,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>active_high</em></span>&#160;)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -139,17 +244,18 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Read a BaseGpio pin and convert to TMC9660 signal based on active-level config. </p>
+<p>Read a BaseGpio pin and convert to TMC9660 signal. </p>
+<p>Mirror of <code>setGpioFromSignal</code>: the BaseGpio's <code>IsActive()</code> already returns "is the IC signal asserted" (because its <code>active_state</code> is configured for the IC's natural polarity). Applying <code>active_high</code> again would invert FAULTN reads. Ignored on purpose. </p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03_aee82d92e54869f56afcdfa5bf23dbf2f_icgraph.svg" width="414" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03_a9dc9d5dcab6377d0a891fcfc400abe10_icgraph.svg" width="414" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a91f1b4322a75b8ac25a8890110ec9af6" name="a91f1b4322a75b8ac25a8890110ec9af6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91f1b4322a75b8ac25a8890110ec9af6">&#9670;&#160;</a></span>setGpioFromSignal()</h2>
+<a id="a747df189a572cdfd86ec4d3f74160078" name="a747df189a572cdfd86ec4d3f74160078"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a747df189a572cdfd86ec4d3f74160078">&#9670;&#160;</a></span>setGpioFromSignal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -170,7 +276,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>active_high</em></span>&#160;)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -180,11 +286,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Set a BaseGpio pin level based on a TMC9660 signal and its active-level config. </p>
+<p>Set a BaseGpio pin level based on a TMC9660 signal. </p>
+<p>The BaseGpio is already configured with the IC's natural polarity (<code>HF_GPIO_ACTIVE_LOW</code> for active-low signals like WAKE/FAULTN, normal for RST/DRV_EN). So <code>SetState(ACTIVE)</code> drives the physical line to whatever level <em>asserts</em> the signal at the IC. Applying <code>active_high</code> again here would double-invert and break WAKE: when the driver asks for <code>gpioSetActive(WAKE)</code>, the IC needs physical LOW, but a second inversion would call <code>SetState(INACTIVE)</code> → physical HIGH → chip stays in hibernate and never replies on UART. We deliberately ignore <code>active_high</code> here for that reason and let the BaseGpio handle it. </p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03_a91f1b4322a75b8ac25a8890110ec9af6_icgraph.svg" width="414" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03_a747df189a572cdfd86ec4d3f74160078_icgraph.svg" width="414" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

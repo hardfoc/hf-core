@@ -369,7 +369,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Delay execution for the specified number of microseconds. </p>
-<p>On ESP32, uses esp_rom_delay_us() for accurate sub-millisecond timing. On other platforms, uses a busy-wait loop based on the processor cycle counter.</p>
+<p>Delegates to the comm adapter implementation (typically ROM microsecond delay where the platform provides it, otherwise a short busy-wait for sub-millisecond timing).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">us</td><td>Microseconds to delay. </td></tr>

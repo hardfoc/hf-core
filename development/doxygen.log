@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.kblE8m
-warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.kblE8m' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 50, file /tmp/doxyfile.opq9ir
+warning: Tag 'DOT_TRANSPARENT' at line 63 of file '/tmp/doxyfile.opq9ir' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 Doxygen version used: 1.10.0 (ebc57c6dd303a980bd19dd74b8b61c8f3f5180ca)
 Searching for include files...
@@ -833,12 +833,15 @@ Generating call graph for function HalUartTmc9660Comm::delayMs
 Generating call graph for function HalUartTmc9660Comm::delayUs
 Generating call graph for function HalUartTmc9660Comm::gpioRead
 Generating call graph for function HalUartTmc9660Comm::gpioSet
+Generating call graph for function HalUartTmc9660Comm::uartReceiveTMCL
+Generating call graph for function HalUartTmc9660Comm::uartSendTMCL
+Generating call graph for function HalUartTmc9660Comm::uartTransferBootloader
 Generating docs for compound HandlerTaskArgs...
-Generating docs for compound HfUtilsCanOpenTransport...
+Generating docs fowarning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (68), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
+r compound HfUtilsCanOpenTransport...
 Generating caller graph for function HfUtilsCanOpenTransport::can
 Generating call graph for function HfUtilsCanOpenTransport::receive
-Generating caller graph for function HfUtilsCwarning: Caller graph for 'Logger::GetInstance' not generated, too many nodes (67), threshold is 50. Consider increasing DOT_GRAPH_MAX_NODES.
-anOpenTransport::receive
+Generating caller graph for function HfUtilsCanOpenTransport::receive
 Generating call graph for function HfUtilsCanOpenTransport::send
 Generating caller graph for function HfUtilsCanOpenTransport::send
 Generating docs for compound IBno08xDriverOps...
@@ -1022,9 +1025,6 @@ Generating call graph for function Tle92466edHandler::EnableOutputStage
 Generating call graph for function Tle92466edHandler::EnsureInitialized
 Generating call graph for function Tle92466edHandler::EnsureInitializedLocked
 Generating caller graph for function Tle92466edHandler::EnsureInitializedLocked
-Generating call graph for function Tle92466edHandler::EnterConfigMode
-Generating call graph for function Tle92466edHandler::EnterMissionMode
-Generating call graph for function Tle92466edHandler::GetChannelDiagnostics
 Generating call graph for function Tle92466edHandler::/home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:94: warning: @copybrief or @copydoc target 'BaseAdc::Initialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:97: warning: @copybrief or @copydoc target 'BaseAdc::Deinitialize' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:100: warning: @copybrief or @copydoc target 'BaseAdc::GetMaxChannels' not found
@@ -1061,7 +1061,10 @@ Generating call graph for function Tle92466edHandler::/home/runner/work/hf-core/
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:135: warning: @copydetails or @copydoc target 'BaseAdc::ResetDiagnostics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:131: warning: @copybrief or @copydoc target 'BaseAdc::ResetStatistics' not found
 /home/runner/work/hf-core/hf-core/handlers/tmc9660/Tmc9660AdcWrapper.h:132: warning: @copydetails or @copydoc target 'BaseAdc::ResetStatistics' not found
-GetChipId
+EnterConfigMode
+Generating call graph for function Tle92466edHandler::EnterMissionMode
+Generating call graph for function Tle92466edHandler::GetChannelDiagnostics
+Generating call graph for function Tle92466edHandler::GetChipId
 Generating call graph for function Tle92466edHandler::GetDriver
 Generating call graph for function Tle92466edHandler::GetDriver
 Generating caller graph for function Tle92466edHandler::GetDriver
@@ -1179,12 +1182,8 @@ Generating docs for namespace anonymous_namespace{Se050Handler.cpp}
 Generating caller graph for function anonymous_namespace{Se050Handler.cpp}::ClampU16
 Generating caller graph for function anonymous_namespace{Se050Handler.cpp}::MapI2c
 Generating docs for namespace anonymous_namespace{Tmc9660Handler.cpp}
-Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::readGpioToSignal
-Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::setGpioFromSignal
-Generating docs for namespace handler_utils
-Generating caller graph for function handler_utils::DelayMs
-Generating caller graph for function handler_utils::DelayUs
-Gener/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
+Generating call graph for function anonymous_namespace{Tmc9660Handler.cpp}::LogHexDump
+Generating caller graph for function anonymous_namespace/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve reference to '-overview' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:20: warning: unable to resolve reference to '-features' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:21: warning: unable to resolve reference to '-architecture' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:22: warning: unable to resolve reference to '-quick-start' for \ref command
@@ -1202,7 +1201,16 @@ Gener/home/runner/work/hf-core/hf-core/README.md:19: warning: unable to resolve 
 /home/runner/work/hf-core/hf-core/README.md:186: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/utils/index.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:187: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/testing_guide.md' for \ref command
 /home/runner/work/hf-core/hf-core/README.md:188: warning: unable to resolve reference to '/home/runner/work/hf-core/hf-core/docs/testing/ci_pipelines.md' for \ref command
-ating call graph for function handler_utils::RouteLogToLogger
+{Tmc9660Handler.cpp}::LogHexDump
+Generating call graph for function anonymous_namespace{Tmc9660Handler.cpp}::ReadExactBytesUart
+Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::ReadExactBytesUart
+Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::readGpioToSignal
+Generating caller graph for function anonymous_namespace{Tmc9660Handler.cpp}::setGpioFromSignal
+Generating docs for namespace handler_utils
+Generating caller graph for function handler_utils::DelayMs
+Generating caller graph for function handler_utils::DelayUs
+Generating caller graph for function handler_utils::MonotonicTimeUs
+Generating call graph for function handler_utils::RouteLogToLogger
 Generating caller graph for function handler_utils::RouteLogToLogger
 Generating docs for namespace logger_decor
 Generating call graph for function logger_decor::Banner
@@ -1272,46 +1280,44 @@ writing tag file...
 Running plantuml with JAVA...
 Running dot...
 Generating dot graphs using 5 parallel threads...
-Running dot for graph 1/17
-Running dot for graph 2/17
-Running dot for graph 3/17
-Running dot for graph 4/17
-Running dot for graph 5/17
-Running dot for graph 6/17
-Running dot for graph 7/17
-Running dot for graph 8/17
-Running dot for graph 9/17
-Running dot for graph 10/17
-Running dot for graph 11/17
-Running dot for graph 12/17
-Running dot for graph 13/17
-Running dot for graph 14/17
-Running dot for graph 15/17
-Running dot for graph 16/17
-Running dot for graph 17/17
-Patching output file 1/23
-Patching output file 2/23
-Patching output file 3/23
-Patching output file 4/23
-Patching output file 5/23
-Patching output file 6/23
-Patching output file 7/23
-Patching output file 8/23
-Patching output file 9/23
-Patching output file 10/23
-Patching output file 11/23
-Patching output file 12/23
-Patching output file 13/23
-Patching output file 14/23
-Patching output file 15/23
-Patching output file 16/23
-Patching output file 17/23
-Patching output file 18/23
-Patching output file 19/23
-Patching output file 20/23
-Patching output file 21/23
-Patching output file 22/23
-Patching output file 23/23
-type lookup cache used 7815/65536 hits=48564 misses=8197
-symbol lookup cache used 10050/65536 hits=46492 misses=10050
+Running dot for graph 1/16
+Running dot for graph 2/16
+Running dot for graph 3/16
+Running dot for graph 4/16
+Running dot for graph 5/16
+Running dot for graph 6/16
+Running dot for graph 7/16
+Running dot for graph 8/16
+Running dot for graph 9/16
+Running dot for graph 10/16
+Running dot for graph 11/16
+Running dot for graph 12/16
+Running dot for graph 13/16
+Running dot for graph 14/16
+Running dot for graph 15/16
+Running dot for graph 16/16
+Patching output file 1/22
+Patching output file 2/22
+Patching output file 3/22
+Patching output file 4/22
+Patching output file 5/22
+Patching output file 6/22
+Patching output file 7/22
+Patching output file 8/22
+Patching output file 9/22
+Patching output file 10/22
+Patching output file 11/22
+Patching output file 12/22
+Patching output file 13/22
+Patching output file 14/22
+Patching output file 15/22
+Patching output file 16/22
+Patching output file 17/22
+Patching output file 18/22
+Patching output file 19/22
+Patching output file 20/22
+Patching output file 21/22
+Patching output file 22/22
+type lookup cache used 7858/65536 hits=48722 misses=8240
+symbol lookup cache used 10106/65536 hits=46725 misses=10106
 finished...

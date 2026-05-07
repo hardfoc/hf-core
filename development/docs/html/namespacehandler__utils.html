@@ -108,6 +108,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac2999c5753a6d86504463b742c23dcfe" id="r_ac2999c5753a6d86504463b742c23dcfe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2999c5753a6d86504463b742c23dcfe">DelayUs</a> (uint32_t us) noexcept</td></tr>
 <tr class="memdesc:ac2999c5753a6d86504463b742c23dcfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Microsecond delay with automatic fallback to RTOS delay for large values.  <br /></td></tr>
 <tr class="separator:ac2999c5753a6d86504463b742c23dcfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75d4e97d12033f5c07ab4deab842ebe9" id="r_a75d4e97d12033f5c07ab4deab842ebe9"><td class="memItemLeft" align="right" valign="top">std::int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75d4e97d12033f5c07ab4deab842ebe9">MonotonicTimeUs</a> () noexcept</td></tr>
+<tr class="memdesc:a75d4e97d12033f5c07ab4deab842ebe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Monotonic time in microseconds for bounded I/O waits.  <br /></td></tr>
+<tr class="separator:a75d4e97d12033f5c07ab4deab842ebe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="afc7fd91265677d0865cbc2a413754ed8" name="afc7fd91265677d0865cbc2a413754ed8"></a>
@@ -144,7 +147,7 @@ Functions</h2></td></tr>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacehandler__utils_afc7fd91265677d0865cbc2a413754ed8_icgraph.svg" width="404" height="243"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacehandler__utils_afc7fd91265677d0865cbc2a413754ed8_icgraph.svg" width="636" height="347"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -184,6 +187,39 @@ Here is the caller graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacehandler__utils_ac2999c5753a6d86504463b742c23dcfe_icgraph.svg" width="411" height="371"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a75d4e97d12033f5c07ab4deab842ebe9" name="a75d4e97d12033f5c07ab4deab842ebe9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75d4e97d12033f5c07ab4deab842ebe9">&#9670;&#160;</a></span>MonotonicTimeUs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::int64_t handler_utils::MonotonicTimeUs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Monotonic time in microseconds for bounded I/O waits. </p>
+<p>On ESP-IDF this is <code>esp_timer_get_time()</code> (not tied to RTOS tick rate). On other platforms returns 0; use only where UART/SPI timing is validated for that target. </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacehandler__utils_a75d4e97d12033f5c07ab4deab842ebe9_icgraph.svg" width="648" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

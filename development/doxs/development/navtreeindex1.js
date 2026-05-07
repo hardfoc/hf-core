@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"Tmc9660Handler_8h.html":[14,0,1,15,3],
+"Tmc9660Handler_8h_source.html":[14,0,1,15,3],
+"Ws2812Handler_8cpp.html":[14,0,1,16,0],
 "Ws2812Handler_8cpp.html#ae7d9c64644585526560e9e6824fd84dc":[14,0,1,16,0,0],
 "Ws2812Handler_8h.html":[14,0,1,16,1],
 "Ws2812Handler_8h.html#afed64f3fd254b6fa1d77cfc0026d1b3f":[14,0,1,16,1,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "classBno08xHandler.html#ab8262b5c735887b095013d053acf7cc8":[13,0,18,24],
 "classBno08xHandler.html#abdc987c8440f4a2394ae861a40766e10":[13,0,18,21],
 "classBno08xHandler.html#abf3a81e646ebd6dd0a10890e5be21d6d":[13,0,18,18],
-"classBno08xHandler.html#abf7206fa6caf5e8cf5132b02cd7a62bc":[13,0,18,17],
-"classBno08xHandler.html#ac08bd345f853529de4448205be64cafb":[13,0,18,25],
-"classBno08xHandler.html#ac1692884d36e285a1f4e4cf2968f46bc":[13,0,18,28],
-"classBno08xHandler.html#ac1a1ff0d56324dcc09d9b48ca2e132e6":[13,0,18,20]
+"classBno08xHandler.html#abf7206fa6caf5e8cf5132b02cd7a62bc":[13,0,18,17]
 };

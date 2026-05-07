@@ -56,7 +56,7 @@ var searchData=
   ['setflowaveragingms_53',['SetFlowAveragingMs',['../classAlicatBasis2Handler.html#a0fddcc97075af74f60cbbf48869b228d',1,'AlicatBasis2Handler']]],
   ['setfrequency_54',['SetFrequency',['../classPca9685PwmAdapter.html#a849333230ae977939266c075d5830a38',1,'Pca9685PwmAdapter::SetFrequency()'],['../classPca9685Handler.html#adcdc86029bb4028ddcc8a3a099ffe635',1,'Pca9685Handler::SetFrequency()']]],
   ['setgas_55',['SetGas',['../classAlicatBasis2Handler.html#af8d01a125e5a78f2a47b92b8213482e1',1,'AlicatBasis2Handler']]],
-  ['setgpiofromsignal_56',['setGpioFromSignal',['../namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a91f1b4322a75b8ac25a8890110ec9af6',1,'anonymous_namespace{Tmc9660Handler.cpp}']]],
+  ['setgpiofromsignal_56',['setGpioFromSignal',['../namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a747df189a572cdfd86ec4d3f74160078',1,'anonymous_namespace{Tmc9660Handler.cpp}']]],
   ['setinterruptmask_57',['SetInterruptMask',['../classPcal95555GpioPin.html#aa5db6f60106badc53e4e0f73e4ab7cda',1,'Pcal95555GpioPin::SetInterruptMask()'],['../classPcal95555Handler.html#a693538e569689249d3e6ee19872a4972',1,'Pcal95555Handler::SetInterruptMask()']]],
   ['setlasterror_58',['SetLastError',['../classNtcTemperatureHandler.html#a5b148f36777ccff9fb633e3f4e99050f',1,'NtcTemperatureHandler']]],
   ['setloglevel_59',['SetLogLevel',['../classLogger.html#a0e83e1b37ca2c702f8828f38d662cc23',1,'Logger']]],

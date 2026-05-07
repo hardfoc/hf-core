@@ -1,14 +1,20 @@
 var NAVTREEINDEX7 =
 {
+"namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#ac74ab57c3bd5279c52f56c677d73730d":[12,0,0,2],
+"namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#aeb2770bf09308f306ebf0b62df9fab6d":[12,0,0,1],
+"namespaceanonymous__namespace_02Logger_8cpp_03.html":[12,0,1],
 "namespaceanonymous__namespace_02Logger_8cpp_03.html#a9d2b496fa1b4f4e28667d14e4b8cb190":[12,0,1,0],
 "namespaceanonymous__namespace_02Se050Handler_8cpp_03.html":[12,0,2],
 "namespaceanonymous__namespace_02Se050Handler_8cpp_03.html#a2a6831a1ec2b7c917f283d1788590978":[12,0,2,1],
 "namespaceanonymous__namespace_02Se050Handler_8cpp_03.html#ac712ade1fe8a1302fb5ee3187909b09e":[12,0,2,0],
 "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html":[12,0,3],
-"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a91f1b4322a75b8ac25a8890110ec9af6":[12,0,3,1],
-"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#aee82d92e54869f56afcdfa5bf23dbf2f":[12,0,3,0],
+"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a747df189a572cdfd86ec4d3f74160078":[12,0,3,3],
+"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a75bfafbdf838187780b833848b1e87eb":[12,0,3,1],
+"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a9dc9d5dcab6377d0a891fcfc400abe10":[12,0,3,2],
+"namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#ae63557e186ffd913155acb3129de7ac9":[12,0,3,0],
 "namespacehandler__utils.html":[12,0,4],
-"namespacehandler__utils.html#a71864e1d5801bea0d6d830326b6b183a":[12,0,4,2],
+"namespacehandler__utils.html#a71864e1d5801bea0d6d830326b6b183a":[12,0,4,3],
+"namespacehandler__utils.html#a75d4e97d12033f5c07ab4deab842ebe9":[12,0,4,2],
 "namespacehandler__utils.html#ac2999c5753a6d86504463b742c23dcfe":[12,0,4,1],
 "namespacehandler__utils.html#afc7fd91265677d0865cbc2a413754ed8":[12,0,4,0],
 "namespacelogger__decor.html":[12,0,5],
@@ -243,11 +249,5 @@ var NAVTREEINDEX7 =
 "structBno08xConfig.html#a39f6c40ee3eb9da203c955ed49a5029f":[13,0,15,3],
 "structBno08xConfig.html#a57bec720b6335b24433f012fbf1ee8cd":[13,0,15,5],
 "structBno08xConfig.html#a67da8bbff3cb8be3f80a7802cec1ad8b":[13,0,15,11],
-"structBno08xConfig.html#a83422ed8164bc618ec23072faf5ac31a":[13,0,15,16],
-"structBno08xConfig.html#a927d6555fa3e3c4418afae4f3b3df3cf":[13,0,15,17],
-"structBno08xConfig.html#aa4a54d0b30c6b17e16d9a0e455a3cd13":[13,0,15,20],
-"structBno08xConfig.html#aabfdb780ca1451ad524e393d3cb003a2":[13,0,15,2],
-"structBno08xConfig.html#aae96a9cf2ef13c48c81753610b740432":[13,0,15,9],
-"structBno08xConfig.html#abf99eb8ed74e78b66605a56d1be674b0":[13,0,15,18],
-"structBno08xConfig.html#ac70b68e23d71e1d57a0159a90b4cf025":[13,0,15,1]
+"structBno08xConfig.html#a83422ed8164bc618ec23072faf5ac31a":[13,0,15,16]
 };

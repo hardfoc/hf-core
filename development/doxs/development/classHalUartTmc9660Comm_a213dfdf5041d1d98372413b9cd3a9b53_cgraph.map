@@ -1,0 +1,7 @@
+<map id="HalUartTmc9660Comm::uartSendTMCL" name="HalUartTmc9660Comm::uartSendTMCL">
+<area shape="rect" id="Node000001" title="Send a 9&#45;byte TMCL datagram over UART." alt="" coords="5,13,180,53"/>
+<area shape="rect" id="Node000002" href="$namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#ae63557e186ffd913155acb3129de7ac9" title=" " alt="" coords="228,5,408,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,30,214,30,214,35,180,35"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="456,20,608,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="408,30,442,30,442,35,408,35"/>
+</map>

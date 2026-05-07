@@ -366,7 +366,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Delay execution for the specified number of microseconds.   </p>
-<p>On ESP32, uses esp_rom_delay_us() for accurate sub-millisecond timing. On other platforms, uses a busy-wait loop based on the processor cycle counter.</p>
+<p>Delegates to the comm adapter implementation (typically ROM microsecond delay where the platform provides it, otherwise a short busy-wait for sub-millisecond timing).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">us</td><td>Microseconds to delay.   </td></tr>
@@ -502,6 +502,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if BaseUart::Read() succeeded within timeout. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classHalUartTmc9660Comm_a0df8ee2b226b44eb2e21728e4b7c44d7_cgraph.svg" width="644" height="180"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -536,6 +541,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if BaseUart::Write() succeeded. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classHalUartTmc9660Comm_a213dfdf5041d1d98372413b9cd3a9b53_cgraph.svg" width="614" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -575,6 +585,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if both write and read succeeded. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classHalUartTmc9660Comm_a044f4af1242b3fb2a9412523e575447a_cgraph.svg" width="648" height="180"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>

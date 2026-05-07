@@ -1,0 +1,13 @@
+<map id="HalUartTmc9660Comm::uartTransferBootloader" name="HalUartTmc9660Comm::uartTransferBootloader">
+<area shape="rect" id="Node000001" title="Perform an 8&#45;byte UART bootloader transfer (send + receive)." alt="" coords="5,53,184,93"/>
+<area shape="rect" id="Node000002" href="$namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#ae63557e186ffd913155acb3129de7ac9" title=" " alt="" coords="232,5,412,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,54,218,48,219,54,185,60"/>
+<area shape="rect" id="Node000004" href="$namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a75bfafbdf838187780b833848b1e87eb" title=" " alt="" coords="232,84,412,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="185,85,219,91,218,96,184,90"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a5789d11f8f1356e2192c0023a089cbc4" title="Get singleton instance." alt="" coords="475,20,627,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="412,30,462,30,462,35,412,35"/>
+<area shape="rect" id="Node000005" href="$namespacehandler__utils.html#afc7fd91265677d0865cbc2a413754ed8" title="RTOS&#45;aware millisecond delay." alt="" coords="466,84,637,109"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="412,103,452,100,452,106,412,108"/>
+<area shape="rect" id="Node000006" href="$namespacehandler__utils.html#a75d4e97d12033f5c07ab4deab842ebe9" title="Monotonic time in microseconds for bounded I/O waits." alt="" coords="460,134,643,174"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="413,125,447,132,446,137,412,131"/>
+</map>

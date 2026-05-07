@@ -4,8 +4,9 @@ var searchData=
   ['logasciiart_1',['LogAsciiArt',['../classLogger.html#a95d97b7713dad6000fbf87a95b266af9',1,'Logger::LogAsciiArt(const char *tag, const char *ascii_art, const AsciiArtFormat &amp;format=AsciiArtFormat{}) noexcept'],['../classLogger.html#a4985924d10370f1f8dbf7af2ce930fce',1,'Logger::LogAsciiArt(LogLevel level, const char *tag, const char *ascii_art, const AsciiArtFormat &amp;format=AsciiArtFormat{}) noexcept']]],
   ['logbanner_2',['LogBanner',['../classLogger.html#a2403e1d9b67029c159e0f9f6e27419dd',1,'Logger']]],
   ['logger_3',['Logger',['../classLogger.html#af4376d745e05cf7af3db5921e6d6adeb',1,'Logger::Logger() noexcept'],['../classLogger.html#add0f34d4c753c86af8074840a72366b3',1,'Logger::Logger(const Logger &amp;)=delete'],['../classLogger.html#a92cabd934eeaf6a83a0ebf40236eb529',1,'Logger::Logger(Logger &amp;&amp;)=delete']]],
-  ['loginternal_4',['LogInternal',['../classLogger.html#a6adb205db597526fb91ad20067400394',1,'Logger']]],
-  ['loopa_5',['LoopA',['../structsm__test_1_1Owner.html#ad979b85defb29aa7c54e6677b1103d31',1,'sm_test::Owner']]],
-  ['loopb_6',['LoopB',['../structsm__test_1_1Owner.html#a9704ec4f1c2d9832877e2c601477895b',1,'sm_test::Owner']]],
-  ['loopc_7',['LoopC',['../structsm__test_1_1Owner.html#aaa94d40139da7c86e06da38ac60b95ac',1,'sm_test::Owner']]]
+  ['loghexdump_4',['LogHexDump',['../namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#ae63557e186ffd913155acb3129de7ac9',1,'anonymous_namespace{Tmc9660Handler.cpp}']]],
+  ['loginternal_5',['LogInternal',['../classLogger.html#a6adb205db597526fb91ad20067400394',1,'Logger']]],
+  ['loopa_6',['LoopA',['../structsm__test_1_1Owner.html#ad979b85defb29aa7c54e6677b1103d31',1,'sm_test::Owner']]],
+  ['loopb_7',['LoopB',['../structsm__test_1_1Owner.html#a9704ec4f1c2d9832877e2c601477895b',1,'sm_test::Owner']]],
+  ['loopc_8',['LoopC',['../structsm__test_1_1Owner.html#aaa94d40139da7c86e06da38ac60b95ac',1,'sm_test::Owner']]]
 ];
