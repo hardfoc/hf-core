@@ -325,7 +325,7 @@ Usage Example</h2>
 <div class="line">drv-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);</div>
 <div class="line">drv-&gt;commutation.setMode(tmcl::CommutationMode::FOC);</div>
 <div class="line">drv-&gt;motorControl.enable();</div>
-<div class="line">drv-&gt;velocityControl.setTargetVelocity(1000);</div>
+<div class="line">drv-&gt;velocityControl.setTargetVelocityRpm(1000.0, drv-&gt;getMotorContext());</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Telemetry via driver</span></div>
 <div class="line"><span class="keywordtype">float</span> supply_v = drv-&gt;telemetry.getSupplyVoltage();</div>
@@ -746,7 +746,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="keyword">auto</span>* drv = handler-&gt;driverViaSpi();</div>
 <div class="line">drv-&gt;feedbackSense.configureHall();</div>
 <div class="line">drv-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);</div>
-<div class="line">drv-&gt;velocityControl.setTargetVelocity(1000);</div>
+<div class="line">drv-&gt;velocityControl.setTargetVelocityRpm(1000.0, drv-&gt;getMotorContext());</div>
 <div class="line">drv-&gt;protection.configureVoltage(48000, 10000);</div>
 </div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Caller is responsible for external synchronization in multi-task environments. Prefer <a class="el" href="#a4e219285c12b2ca50075edfaf73b4e2f" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a> for thread-safe access. </dd></dl>
 <div class="dynheader">
