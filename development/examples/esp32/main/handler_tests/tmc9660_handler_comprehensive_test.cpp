@@ -164,7 +164,7 @@ static bool test_set_target_velocity() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     // Set velocity to 0 (safe)
     bool ok = g_handler->visitDriver([](auto& driver) -> bool {
-        return driver.velocityControl.setTargetVelocity(0);
+        return driver.velocityControl.setTargetVelocityRaw(0);
     });
     ESP_LOGI(TAG, "SetTargetVelocity(0): %s", ok ? "OK" : "FAILED");
     return ok;

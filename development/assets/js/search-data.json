@@ -1534,7 +1534,7 @@
   },"219": {
     "doc": "TMC9660 Handler",
     "title": "Typed Pointer Access (recommended)",
-    "content": "| 1 2 3 4 5 6 7 8 9 10 . | // SPI mode — direct subsystem access auto* drv = handler.driverViaSpi(); drv-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7); drv-&gt;commutation.setMode(tmcl::CommutationMode::FOC); drv-&gt;motorControl.enable(); drv-&gt;velocityControl.setTargetVelocity(1000); // Telemetry float supply_v = drv-&gt;telemetry.getSupplyVoltage(); float chip_t = drv-&gt;telemetry.getChipTemperature(); . | . ",
+    "content": "| 1 2 3 4 5 6 7 8 9 10 . | // SPI mode — direct subsystem access auto* drv = handler.driverViaSpi(); drv-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7); drv-&gt;commutation.setMode(tmcl::CommutationMode::FOC); drv-&gt;motorControl.enable(); drv-&gt;velocityControl.setTargetVelocityRpm(1000.0, drv-&gt;getMotorContext()); // Telemetry float supply_v = drv-&gt;telemetry.getSupplyVoltage(); float chip_t = drv-&gt;telemetry.getChipTemperature(); . | . ",
     "url": "/hf-core/development/docs/handlers/tmc9660_handler.html#typed-pointer-access-recommended",
     
     "relUrl": "/docs/handlers/tmc9660_handler.html#typed-pointer-access-recommended"

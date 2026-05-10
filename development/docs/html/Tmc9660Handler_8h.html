@@ -189,7 +189,7 @@ Initialization Sequence</h2>
 <div class="line"> </div>
 <div class="line"><span class="comment">// 4. Access motor control via typed driver pointer</span></div>
 <div class="line"><span class="keyword">auto</span>* drv = handler.driverViaSpi();</div>
-<div class="line">drv-&gt;velocityControl.setTargetVelocity(1000);</div>
+<div class="line">drv-&gt;velocityControl.setTargetVelocityRpm(1000.0, drv-&gt;getMotorContext());</div>
 <div class="line"><span class="keywordtype">float</span> voltage = drv-&gt;telemetry.getSupplyVoltage();</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// 5. Or via visitDriver for generic code</span></div>
