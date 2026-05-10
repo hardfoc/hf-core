@@ -57,7 +57,7 @@
  *
  * // 4. Access motor control via typed driver pointer
  * auto* drv = handler.driverViaSpi();
- * drv->velocityControl.setTargetVelocity(1000);
+ * drv->velocityControl.setTargetVelocityRpm(1000.0, drv->getMotorContext());
  * float voltage = drv->telemetry.getSupplyVoltage();
  *
  * // 5. Or via visitDriver for generic code
@@ -438,7 +438,7 @@ private:
  * drv->motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);
  * drv->commutation.setMode(tmcl::CommutationMode::FOC);
  * drv->motorControl.enable();
- * drv->velocityControl.setTargetVelocity(1000);
+ * drv->velocityControl.setTargetVelocityRpm(1000.0, drv->getMotorContext());
  *
  * // Telemetry via driver
  * float supply_v = drv->telemetry.getSupplyVoltage();
@@ -1107,7 +1107,7 @@ public:
      * auto* drv = handler->driverViaSpi();
      * drv->feedbackSense.configureHall();
      * drv->motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);
-     * drv->velocityControl.setTargetVelocity(1000);
+     * drv->velocityControl.setTargetVelocityRpm(1000.0, drv->getMotorContext());
      * drv->protection.configureVoltage(48000, 10000);
      * @endcode
      *

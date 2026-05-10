@@ -93,7 +93,7 @@ auto* drv = handler.driverViaSpi();
 drv->motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);
 drv->commutation.setMode(tmcl::CommutationMode::FOC);
 drv->motorControl.enable();
-drv->velocityControl.setTargetVelocity(1000);
+drv->velocityControl.setTargetVelocityRpm(1000.0, drv->getMotorContext());
 
 // Telemetry
 float supply_v = drv->telemetry.getSupplyVoltage();
