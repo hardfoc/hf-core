@@ -15,7 +15,7 @@
   
 
     
-    .site-nav > ul.nav-list:first-child > li:not(:nth-child(5)) > a,
+    .site-nav > ul.nav-list:first-child > li:not(:nth-child(8)) > a,
     .site-nav > ul.nav-list:first-child > li > ul > li a {
       background-image: none;
     }
@@ -25,12 +25,12 @@
       background-image: none;
     }
 
-    .site-nav > ul.nav-list:first-child > li:nth-child(5) > a {
+    .site-nav > ul.nav-list:first-child > li:nth-child(8) > a {
       font-weight: 600;
       text-decoration: none;
-    }.site-nav > ul.nav-list:first-child > li:nth-child(5) > button svg {
+    }.site-nav > ul.nav-list:first-child > li:nth-child(8) > button svg {
       transform: rotate(-90deg);
-    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(5) > ul.nav-list {
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(8) > ul.nav-list {
       display: block;
     }
   </style>
@@ -50,21 +50,21 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Handlers | HardFOC Core Platform (hf-core) - development</title>
+<title>STM32H7 / CubeMX porting notes for hf-core | HardFOC Core Platform (hf-core) - development</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Handlers" />
+<meta property="og:title" content="STM32H7 / CubeMX porting notes for hf-core" />
 <meta name="author" content="hardfoc" />
 <meta property="og:locale" content="en" />
 <meta name="description" content="Hardware-Agnostic Handler Layer, RTOS Utilities, and Driver Integration for the HardFOC Motor Control Platform — bridging base interfaces to CRTP drivers with thread-safe, platform-portable handlers." />
 <meta property="og:description" content="Hardware-Agnostic Handler Layer, RTOS Utilities, and Driver Integration for the HardFOC Motor Control Platform — bridging base interfaces to CRTP drivers with thread-safe, platform-portable handlers." />
-<link rel="canonical" href="https://hardfoc.github.io/hf-core/development/docs/handlers/" />
-<meta property="og:url" content="https://hardfoc.github.io/hf-core/development/docs/handlers/" />
+<link rel="canonical" href="https://hardfoc.github.io/hf-core/development/STM32H7_PORTING.html" />
+<meta property="og:url" content="https://hardfoc.github.io/hf-core/development/STM32H7_PORTING.html" />
 <meta property="og:site_name" content="HardFOC Core Platform (hf-core) - development" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Handlers" />
+<meta property="twitter:title" content="STM32H7 / CubeMX porting notes for hf-core" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"hardfoc","url":"https://github.com/hardfoc"},"description":"Hardware-Agnostic Handler Layer, RTOS Utilities, and Driver Integration for the HardFOC Motor Control Platform — bridging base interfaces to CRTP drivers with thread-safe, platform-portable handlers.","headline":"Handlers","url":"https://hardfoc.github.io/hf-core/development/docs/handlers/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"hardfoc","url":"https://github.com/hardfoc"},"description":"Hardware-Agnostic Handler Layer, RTOS Utilities, and Driver Integration for the HardFOC Motor Control Platform — bridging base interfaces to CRTP drivers with thread-safe, platform-portable handlers.","headline":"STM32H7 / CubeMX porting notes for hf-core","url":"https://hardfoc.github.io/hf-core/development/STM32H7_PORTING.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -228,30 +228,42 @@
       <div id="main-content" class="main-content">
         <main>
           
-            <h1 id="handler-reference">
+            <h1 id="stm32h7--cubemx-porting-notes-for-hf-core">
   
   
-    <a href="#handler-reference" class="anchor-heading" aria-labelledby="handler-reference"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Handler Reference
+    <a href="#stm32h7--cubemx-porting-notes-for-hf-core" class="anchor-heading" aria-labelledby="stm32h7--cubemx-porting-notes-for-hf-core"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> STM32H7 / CubeMX porting notes for hf-core
   
   
 </h1>
     
 
-<p>Handlers are the bridge layer between platform-agnostic base interfaces and
-CRTP-templated device drivers. Each handler:</p>
+<p>This document records local compatibility changes applied to the vendored
+<code class="language-plaintext highlighter-rouge">hf-core</code> tree under <code class="language-plaintext highlighter-rouge">hal/pw-hal-flux-v1/lib/core/</code>. The upstream repository is
+<code class="language-plaintext highlighter-rouge">https://github.com/hardfoc/hf-core.git</code> (see <code class="language-plaintext highlighter-rouge">hal/pw-hal-flux-v1/.gitmodules</code>).</p>
+<h2 id="submodule-status">
+  
+  
+    <a href="#submodule-status" class="anchor-heading" aria-labelledby="submodule-status"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Submodule status
+  
+  
+</h2>
+    
 
-<ul>
-  <li>Accepts <code class="language-plaintext highlighter-rouge">BaseXxx&amp;</code> references (I2C, SPI, UART, GPIO, ADC) at construction</li>
-  <li>Performs lazy initialization of the underlying driver</li>
-  <li>Provides a thread-safe public API (most handlers use <code class="language-plaintext highlighter-rouge">RtosMutex</code>)</li>
-  <li>Exposes <code class="language-plaintext highlighter-rouge">GetDriver()</code> / <code class="language-plaintext highlighter-rouge">GetSensor()</code> for direct driver access</li>
-  <li>Optionally provides <code class="language-plaintext highlighter-rouge">visitDriver(fn)</code> for mutex-protected callable dispatch</li>
-  <li>Reports errors via handler-specific return types or driver-native codes</li>
-</ul>
-<h2 id="handler-summary">
+<p>The product tree vendors <code class="language-plaintext highlighter-rouge">lib/core</code> without initialized submodule git metadata.
+To re-bind to upstream:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nb">cd </span>hal/pw-hal-flux-v1
+git submodule update <span class="nt">--init</span> <span class="nt">--recursive</span> lib/core
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>If submodule initialization is not possible in a given workspace, apply the
+patches below manually before building <code class="language-plaintext highlighter-rouge">pw-controller-sw</code> for STM32H747.</p>
+<h2 id="patch-inventory">
   
   
-    <a href="#handler-summary" class="anchor-heading" aria-labelledby="handler-summary"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Handler Summary
+    <a href="#patch-inventory" class="anchor-heading" aria-labelledby="patch-inventory"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Patch inventory
   
   
 </h2>
@@ -260,145 +272,129 @@ CRTP-templated device drivers. Each handler:</p>
 <div class="table-wrapper"><table>
   <thead>
     <tr>
-      <th style="text-align: left">Handler</th>
-      <th style="text-align: left">Driver</th>
-      <th style="text-align: left">Interface</th>
-      <th style="text-align: left">Key Features</th>
+      <th>Area</th>
+      <th>File</th>
+      <th>Change</th>
+      <th>Rationale</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left"><a href="/hf-core/development/docs/handlers/as5047u_handler.html">As5047uHandler</a></td>
-      <td style="text-align: left">hf-as5047u-driver</td>
-      <td style="text-align: left">BaseSpi</td>
-      <td style="text-align: left">14-bit angle, velocity, DAEC, GetDriver/visitDriver</td>
+      <td>HAL type guards</td>
+      <td><code class="language-plaintext highlighter-rouge">hf-core-drivers/internal/hf-internal-interface-wrap/inc/mcu/stm32/StmTypes.h</code></td>
+      <td>Per-module <code class="language-plaintext highlighter-rouge">#ifndef STM32H7xx_HAL_*_H</code> guards around HAL handle forward declarations</td>
+      <td>Prevents redefinition when CubeMX HAL headers are included alongside HardFOC wrappers</td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/hf-core/development/docs/handlers/bno08x_handler.html">Bno08xHandler</a></td>
-      <td style="text-align: left">hf-bno08x-driver</td>
-      <td style="text-align: left">BaseI2c / BaseSpi</td>
-      <td style="text-align: left">9-DOF IMU, type-erased IBno08xDriverOps, GetDriver/visitDriver</td>
+      <td>GPIO guard</td>
+      <td><code class="language-plaintext highlighter-rouge">hf-core-drivers/internal/hf-internal-interface-wrap/inc/mcu/stm32/StmGpio.h</code></td>
+      <td><code class="language-plaintext highlighter-rouge">#ifndef GPIOA</code> around <code class="language-plaintext highlighter-rouge">struct GPIO_TypeDef</code> forward declaration</td>
+      <td>Avoids conflict with CMSIS/HAL GPIO typedefs</td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/hf-core/development/docs/handlers/pca9685_handler.html">Pca9685Handler</a></td>
-      <td style="text-align: left">hf-pca9685-driver</td>
-      <td style="text-align: left">BaseI2c</td>
-      <td style="text-align: left">16-ch PWM, duty + phase, sleep/wake, PwmAdapter</td>
+      <td>Logger enums</td>
+      <td><code class="language-plaintext highlighter-rouge">hf-core-drivers/internal/hf-internal-interface-wrap/src/mcu/stm32/StmLogger.cpp</code></td>
+      <td>Use <code class="language-plaintext highlighter-rouge">hf_log_level_t::LOG_LEVEL_*</code> and <code class="language-plaintext highlighter-rouge">statistics_.write_errors</code></td>
+      <td>Aligns with hf-core enum/stat field names</td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/hf-core/development/docs/handlers/pcal95555_handler.html">Pcal95555Handler</a></td>
-      <td style="text-align: left">hf-pcal95555-driver</td>
-      <td style="text-align: left">BaseI2c</td>
-      <td style="text-align: left">16-pin GPIO expander, interrupts, Agile I/O, batch ops</td>
+      <td>Logger factory</td>
+      <td><code class="language-plaintext highlighter-rouge">hf_core_handlers/StmLoggerFactory.cpp</code></td>
+      <td><code class="language-plaintext highlighter-rouge">StmLogger::Backend::SWO_ITM</code></td>
+      <td>Matches StmLogger backend enum</td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/hf-core/development/docs/handlers/ntc_temperature_handler.html">NtcTemperatureHandler</a></td>
-      <td style="text-align: left">hf-ntc-thermistor-driver</td>
-      <td style="text-align: left">BaseAdc</td>
-      <td style="text-align: left">Temperature sensing, EMA filter, thresholds, monitoring</td>
+      <td>RTOS bring-up</td>
+      <td><code class="language-plaintext highlighter-rouge">hf-core-utils/CMakeLists.txt</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HF_RTOS_NONE=1</code> for host/STM32 pre-FreeRTOS builds</td>
+      <td>Allows handler/util compilation before CubeMX FreeRTOS is linked</td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/hf-core/development/docs/handlers/tmc9660_handler.html">Tmc9660Handler</a></td>
-      <td style="text-align: left">hf-tmc9660-driver</td>
-      <td style="text-align: left">BaseSpi / BaseUart</td>
-      <td style="text-align: left">BLDC motor, GPIO/ADC/Temp wrappers, GetDriver/visitDriver</td>
+      <td>RTOS abstraction</td>
+      <td><code class="language-plaintext highlighter-rouge">hf-core-utils/hf-utils-rtos-wrap/include/OsAbstraction.h</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HF_RTOS_NONE</code> stub path alongside <code class="language-plaintext highlighter-rouge">HF_RTOS_FREERTOS</code></td>
+      <td>Host and bare-metal builds without FreeRTOS headers</td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/hf-core/development/docs/handlers/tmc5160_handler.html">Tmc5160Handler</a></td>
-      <td style="text-align: left">hf-tmc5160-driver</td>
-      <td style="text-align: left">BaseSpi / BaseUart</td>
-      <td style="text-align: left">Stepper motor, 15 subsystems, GetDriver/visitDriver</td>
+      <td>RTOS mutex</td>
+      <td><code class="language-plaintext highlighter-rouge">hf-core-utils/hf-utils-rtos-wrap/include/RtosMutex.h</code></td>
+      <td>Stub mutex types when <code class="language-plaintext highlighter-rouge">HF_RTOS_NONE</code></td>
+      <td>Keeps headers parseable without FreeRTOS</td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/hf-core/development/docs/handlers/tle92466ed_handler.html">Tle92466edHandler</a></td>
-      <td style="text-align: left">hf-tle92466ed-driver</td>
-      <td style="text-align: left">BaseSpi</td>
-      <td style="text-align: left">6-ch solenoid driver, PWM, diagnostics, watchdog</td>
+      <td>Handler CMake</td>
+      <td><code class="language-plaintext highlighter-rouge">hf_core_handlers/CMakeLists.txt</code></td>
+      <td>STM32 interface subset + conditional FreeRTOS include paths</td>
+      <td>Smaller STM32 surface until CubeMX buses are wired</td>
     </tr>
     <tr>
-      <td style="text-align: left"><a href="/hf-core/development/docs/handlers/max22200_handler.html">Max22200Handler</a></td>
-      <td style="text-align: left">hf-max22200-driver</td>
-      <td style="text-align: left">BaseSpi</td>
-      <td style="text-align: left">8-ch solenoid/motor, CDR/VDR, HIT/HOLD, DPM</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="/hf-core/development/docs/handlers/ws2812_handler.html">Ws2812Handler</a></td>
-      <td style="text-align: left">hf-ws2812-rmt-driver</td>
-      <td style="text-align: left">RMT</td>
-      <td style="text-align: left">Addressable LED strip, GetDriver/visitDriver/visitAnimator</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="/hf-core/development/docs/handlers/logger.html">Logger</a></td>
-      <td style="text-align: left">—</td>
-      <td style="text-align: left">—</td>
-      <td style="text-align: left">Singleton, colors, ASCII art, per-tag filtering</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="/hf-core/development/docs/handlers/se050_handler.html">Se050Handler</a></td>
-      <td style="text-align: left">hf-se050-driver</td>
-      <td style="text-align: left">BaseI2c (+ opt. BaseGpio)</td>
-      <td style="text-align: left">T=1 SE050, <code class="language-plaintext highlighter-rouge">GetDevice()</code> = <code class="language-plaintext highlighter-rouge">se050::Device</code></td>
+      <td>Core features</td>
+      <td><code class="language-plaintext highlighter-rouge">hal/pw-hal-flux-v1/cmake/pw_hal_core_features.cmake</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HF_CORE_RTOS=NONE</code>, conditional TMC9660 gate</td>
+      <td>Progressive CubeMX integration</td>
     </tr>
   </tbody>
 </table></div>
+<h2 id="upstream-pull-request-checklist">
+  
+  
+    <a href="#upstream-pull-request-checklist" class="anchor-heading" aria-labelledby="upstream-pull-request-checklist"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Upstream pull-request checklist
+  
+  
+</h2>
+    
 
-          
+<p>When opening PRs against <code class="language-plaintext highlighter-rouge">hardfoc/hf-core</code> (and nested <code class="language-plaintext highlighter-rouge">hf-internal-interface-wrap</code>):</p>
 
-          
-            <hr>
-<h2 class="text-delta">Table of contents</h2>
+<ol>
+  <li><strong>StmTypes.h</strong> — Guard each HAL forward declaration with the matching
+<code class="language-plaintext highlighter-rouge">STM32H7xx_HAL_&lt;MODULE&gt;_H</code> symbol instead of a blanket <code class="language-plaintext highlighter-rouge">STM32H7xx_HAL_H</code> guard.</li>
+  <li><strong>StmGpio.h</strong> — Guard <code class="language-plaintext highlighter-rouge">GPIO_TypeDef</code> forward declaration with <code class="language-plaintext highlighter-rouge">#ifndef GPIOA</code>.</li>
+  <li><strong>OsAbstraction.h / RtosMutex.h</strong> — Add a documented <code class="language-plaintext highlighter-rouge">HF_RTOS_NONE</code> profile for
+host unit tests and pre-RTOS firmware bring-up (no FreeRTOS headers required).</li>
+  <li><strong>StmLogger.cpp</strong> — Verify enum member names against <code class="language-plaintext highlighter-rouge">hf_log_level_t</code> in the
+public API header; do not prefix with <code class="language-plaintext highlighter-rouge">HF_LOG_LEVEL_</code>.</li>
+  <li><strong>CMake</strong> — Expose <code class="language-plaintext highlighter-rouge">HF_CORE_RTOS</code> cache variable (<code class="language-plaintext highlighter-rouge">NONE</code> | <code class="language-plaintext highlighter-rouge">FREERTOS</code>) and
+exclude <code class="language-plaintext highlighter-rouge">BaseThreadHostStub.cpp</code> from embedded targets.</li>
+  <li><strong>Tests</strong> — Confirm host build compiles <code class="language-plaintext highlighter-rouge">hf-core-utils</code> and STM32 handler stubs
+with <code class="language-plaintext highlighter-rouge">HF_RTOS_NONE=1</code>.</li>
+</ol>
+<h2 id="verification-in-pw-controller-sw">
+  
+  
+    <a href="#verification-in-pw-controller-sw" class="anchor-heading" aria-labelledby="verification-in-pw-controller-sw"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Verification in pw-controller-sw
+  
+  
+</h2>
+    
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>cmake <span class="nt">--preset</span> host-debug <span class="o">&amp;&amp;</span> cmake <span class="nt">--build</span> build/host-debug <span class="o">&amp;&amp;</span> ctest <span class="nt">--preset</span> host-debug
+cmake <span class="nt">--preset</span> stm32-debug <span class="o">&amp;&amp;</span> cmake <span class="nt">--build</span> build/stm32-debug
+./scripts/lint_hal_boundary.sh
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h2 id="notes">
+  
+  
+    <a href="#notes" class="anchor-heading" aria-labelledby="notes"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Notes
+  
+  
+</h2>
+    
 
 <ul>
-  
-  <li>
-    <a href="/hf-core/development/docs/handlers/as5047u_handler.html">AS5047U Handler</a>
-  </li>
-  
-  <li>
-    <a href="/hf-core/development/docs/handlers/bno08x_handler.html">BNO08x Handler</a>
-  </li>
-  
-  <li>
-    <a href="/hf-core/development/docs/handlers/pca9685_handler.html">PCA9685 Handler</a>
-  </li>
-  
-  <li>
-    <a href="/hf-core/development/docs/handlers/pcal95555_handler.html">PCAL95555 Handler</a>
-  </li>
-  
-  <li>
-    <a href="/hf-core/development/docs/handlers/ntc_temperature_handler.html">NTC Temperature Handler</a>
-  </li>
-  
-  <li>
-    <a href="/hf-core/development/docs/handlers/tmc9660_handler.html">TMC9660 Handler</a>
-  </li>
-  
-  <li>
-    <a href="/hf-core/development/docs/handlers/logger.html">Logger</a>
-  </li>
-  
-  <li>
-    <a href="/hf-core/development/docs/handlers/tmc5160_handler.html">TMC5160 Handler</a>
-  </li>
-  
-  <li>
-    <a href="/hf-core/development/docs/handlers/tle92466ed_handler.html">TLE92466ED Handler</a>
-  </li>
-  
-  <li>
-    <a href="/hf-core/development/docs/handlers/max22200_handler.html">MAX22200 Handler</a>
-  </li>
-  
-  <li>
-    <a href="/hf-core/development/docs/handlers/ws2812_handler.html">WS2812 Handler</a>
-  </li>
-  
-  <li>
-    <a href="/hf-core/development/docs/handlers/se050_handler.html">SE050 Handler</a>
-  </li>
-  
+  <li>Do not copy EvKit/Vortex pin maps into product HAL; board bindings live in
+<code class="language-plaintext highlighter-rouge">pw_hal_comm_platform.cpp</code> and ADR-007 pin freeze.</li>
+  <li>Full FreeRTOS mode activates automatically when CubeMX generates the kernel
+(<code class="language-plaintext highlighter-rouge">PW_ENABLE_FREERTOS=1</code> via <code class="language-plaintext highlighter-rouge">cmake/pw_cubemx_detect.cmake</code>).</li>
 </ul>
+
+          
+
+          
+            
           
         </main>
         
