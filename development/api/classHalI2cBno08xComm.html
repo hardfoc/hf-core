@@ -116,9 +116,9 @@ Collaboration diagram for HalI2cBno08xComm:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1c9d6a1b1042a808a0d467c9ba142910" id="r_a1c9d6a1b1042a808a0d467c9ba142910"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c9d6a1b1042a808a0d467c9ba142910">HalI2cBno08xComm</a> (BaseI2c &amp;i2c, BaseGpio *reset_gpio=nullptr, BaseGpio *int_gpio=nullptr, BaseGpio *boot_gpio=nullptr) noexcept</td></tr>
-<tr class="memdesc:a1c9d6a1b1042a808a0d467c9ba142910"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct I2C adapter.  <br /></td></tr>
-<tr class="separator:a1c9d6a1b1042a808a0d467c9ba142910"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afde4e38c7ab3e98c0bffc236629bc67a" id="r_afde4e38c7ab3e98c0bffc236629bc67a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afde4e38c7ab3e98c0bffc236629bc67a">HalI2cBno08xComm</a> (BaseI2c &amp;i2c, BaseGpio *reset_gpio=nullptr, BaseGpio *int_gpio=nullptr) noexcept</td></tr>
+<tr class="memdesc:afde4e38c7ab3e98c0bffc236629bc67a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct I2C adapter.  <br /></td></tr>
+<tr class="separator:afde4e38c7ab3e98c0bffc236629bc67a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af286cccb3eb839e869f5dcb076e0ae07" id="r_af286cccb3eb839e869f5dcb076e0ae07"><td class="memItemLeft" align="right" valign="top">BNO085Interface&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af286cccb3eb839e869f5dcb076e0ae07">GetInterfaceType</a> () noexcept</td></tr>
 <tr class="separator:af286cccb3eb839e869f5dcb076e0ae07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acda12b075ae326ec9dcddcc6ec49b1d0" id="r_acda12b075ae326ec9dcddcc6ec49b1d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acda12b075ae326ec9dcddcc6ec49b1d0">Open</a> () noexcept</td></tr>
@@ -146,19 +146,13 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a47e4d758c94792c03f2b062f152180a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a9ae5ca94b8d5ce08d9dab1c04c6fc4" id="r_a2a9ae5ca94b8d5ce08d9dab1c04c6fc4"><td class="memItemLeft" align="right" valign="top">BaseGpio *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a9ae5ca94b8d5ce08d9dab1c04c6fc4">int_gpio_</a></td></tr>
 <tr class="separator:a2a9ae5ca94b8d5ce08d9dab1c04c6fc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d9585157c6e2bf1f602b34d024cda8b" id="r_a6d9585157c6e2bf1f602b34d024cda8b"><td class="memItemLeft" align="right" valign="top">BaseGpio *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d9585157c6e2bf1f602b34d024cda8b">boot_gpio_</a></td></tr>
-<tr class="separator:a6d9585157c6e2bf1f602b34d024cda8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>I2C CRTP communication adapter for BNO08x. </p>
-<p>Bridges the HardFOC BaseI2c interface with the bno08x::CommInterface CRTP base. The I2C device address is pre-configured on the BaseI2c instance.</p>
-<p>Control pins follow the BNO08x datasheet naming (_n = active low):</p><ul>
-<li>RSTN, BOOTN, INT: <code>BaseGpio</code> uses <code>HF_GPIO_ACTIVE_LOW</code> so ACTIVE = assert (drive low), INACTIVE = release (high). INT is input with pull-up; data ready when line is low (ACTIVE).</li>
-</ul>
-<p>BOOTN vs reset: the hub samples the boot strap when RSTN is released (not while held in reset). For normal SH-2 operation, BOOTN must be released (INACTIVE / high) before that edge. When BOOT is host-driven (e.g. PCAL output), <code><a class="el" href="#acda12b075ae326ec9dcddcc6ec49b1d0">Open()</a></code> configures it as a push-pull output and drives INACTIVE; do not rely on an unrelated MCU pin internal pull-up for that net. If <code>boot_gpio</code> is null, the PCB must define the default strap (pull-up / tie-off) until software can drive it. </p>
+<p>Bridges the HardFOC BaseI2c interface with the bno08x::CommInterface CRTP base. The I2C device address is pre-configured on the BaseI2c instance. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a1c9d6a1b1042a808a0d467c9ba142910" name="a1c9d6a1b1042a808a0d467c9ba142910"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c9d6a1b1042a808a0d467c9ba142910">&#9670;&#160;</a></span>HalI2cBno08xComm()</h2>
+<a id="afde4e38c7ab3e98c0bffc236629bc67a" name="afde4e38c7ab3e98c0bffc236629bc67a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afde4e38c7ab3e98c0bffc236629bc67a">&#9670;&#160;</a></span>HalI2cBno08xComm()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,12 +173,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">BaseGpio *</td>          <td class="paramname"><span class="paramname"><em>int_gpio</em><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">BaseGpio *</td>          <td class="paramname"><span class="paramname"><em>boot_gpio</em><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></span>&#160;)</td>
+          <td class="paramtype">BaseGpio *</td>          <td class="paramname"><span class="paramname"><em>int_gpio</em><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -200,7 +189,6 @@ Private Attributes</h2></td></tr>
     <tr><td class="paramname">i2c</td><td>Reference to BaseI2c implementation (address pre-configured) </td></tr>
     <tr><td class="paramname">reset_gpio</td><td>Optional GPIO for hardware reset (RSTN, active-low) </td></tr>
     <tr><td class="paramname">int_gpio</td><td>Optional GPIO for interrupt monitoring (INT, active-low) </td></tr>
-    <tr><td class="paramname">boot_gpio</td><td>Optional GPIO for BOOTN (active-low; INACTIVE = normal application boot) </td></tr>
   </table>
   </dd>
 </dl>
@@ -480,28 +468,6 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a6d9585157c6e2bf1f602b34d024cda8b" name="a6d9585157c6e2bf1f602b34d024cda8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d9585157c6e2bf1f602b34d024cda8b">&#9670;&#160;</a></span>boot_gpio_</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">BaseGpio* HalI2cBno08xComm::boot_gpio_</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a42c98cd92dd35ea1cb000c4f98324b24" name="a42c98cd92dd35ea1cb000c4f98324b24"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a42c98cd92dd35ea1cb000c4f98324b24">&#9670;&#160;</a></span>i2c_</h2>
 

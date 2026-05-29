@@ -119,9 +119,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9be86b521fabd5745ccd12f0eb69919a" id="r_a9be86b521fabd5745ccd12f0eb69919a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9be86b521fabd5745ccd12f0eb69919a">Bno08xDriverImpl</a> (CommType &amp;&amp;comm) noexcept</td></tr>
 <tr class="memdesc:a9be86b521fabd5745ccd12f0eb69919a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct with a pre-built comm adapter (moved in).  <br /></td></tr>
 <tr class="separator:a9be86b521fabd5745ccd12f0eb69919a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e1eeb34f01f37bd53137958feafde98" id="r_a9e1eeb34f01f37bd53137958feafde98"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e1eeb34f01f37bd53137958feafde98">OpenTransport</a> () noexcept override</td></tr>
-<tr class="memdesc:a9e1eeb34f01f37bd53137958feafde98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open the transport (bus + control GPIO setup) before reset or SH-2.  <br /></td></tr>
-<tr class="separator:a9e1eeb34f01f37bd53137958feafde98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac89c44db7975c4683f896b85f519ea62" id="r_ac89c44db7975c4683f896b85f519ea62"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac89c44db7975c4683f896b85f519ea62">Begin</a> () noexcept override</td></tr>
 <tr class="separator:ac89c44db7975c4683f896b85f519ea62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ad40347e415a1524b585498c87b4233" id="r_a6ad40347e415a1524b585498c87b4233"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ad40347e415a1524b585498c87b4233">Update</a> () noexcept override</td></tr>
@@ -440,38 +437,6 @@ template&lt;typename CommType &gt; </div>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classIBno08xDriverOps.html#a1529def7c6fc77eed5dbc39aa16f3cc9">IBno08xDriverOps</a>.</p>
-
-</div>
-</div>
-<a id="a9e1eeb34f01f37bd53137958feafde98" name="a9e1eeb34f01f37bd53137958feafde98"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e1eeb34f01f37bd53137958feafde98">&#9670;&#160;</a></span>OpenTransport()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename CommType &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="classBno08xDriverImpl.html">Bno08xDriverImpl</a>&lt; CommType &gt;::OpenTransport </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Open the transport (bus + control GPIO setup) before reset or SH-2. </p>
-<p>Must run before <code><a class="el" href="#a438c41d8c26b4e4dccf60079d8861043">HardwareReset()</a></code> so RSTN/BOOTN directions and default levels are valid when the hub latches BOOTN at RST release. <code><a class="el" href="#ac89c44db7975c4683f896b85f519ea62">Begin()</a></code> still calls <code>Open()</code> again via SH-2 HAL. </p>
-
-<p>Implements <a class="el" href="classIBno08xDriverOps.html#a1cfdc8fea4d31f36d9d8219b90beeae4">IBno08xDriverOps</a>.</p>
 
 </div>
 </div>

@@ -30,6 +30,6 @@ var Bno08xHandler_8h =
       [ "UNSUPPORTED_OPERATION", "Bno08xHandler_8h.html#a93eba6be08e06b6dcc1d9800dcc4a832a5a2ff7a2f2c3b40268e57995408f8e9d", null ]
     ] ],
     [ "Bno08xErrorToString", "Bno08xHandler_8h.html#a929bff75c00c4ce529177b0640cdf58c", null ],
-    [ "CreateBno08xHandlerI2c", "Bno08xHandler_8h.html#a4ae0d94cad1287ad071624f64cb60495", null ],
+    [ "CreateBno08xHandlerI2c", "Bno08xHandler_8h.html#a00118ff1c99ae958c092ed6d21b59135", null ],
     [ "CreateBno08xHandlerSpi", "Bno08xHandler_8h.html#a1bd813a8294732698f36232c4b9ed0af", null ]
 ];

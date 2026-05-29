@@ -160,9 +160,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a32cb9ad0e9a4cf9e804e30420900edde" id="r_a32cb9ad0e9a4cf9e804e30420900edde"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32cb9ad0e9a4cf9e804e30420900edde">ReadInput</a> (uint8_t pin, bool &amp;active) noexcept</td></tr>
 <tr class="memdesc:a32cb9ad0e9a4cf9e804e30420900edde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the logical level of an input pin.  <br /></td></tr>
 <tr class="separator:a32cb9ad0e9a4cf9e804e30420900edde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27856d23e6335ef3e0dc627f011ca450" id="r_a27856d23e6335ef3e0dc627f011ca450"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27856d23e6335ef3e0dc627f011ca450">ReadAllInputsSnapshot</a> (uint16_t &amp;levels) noexcept</td></tr>
-<tr class="memdesc:a27856d23e6335ef3e0dc627f011ca450"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read INPUT_PORT_0 and INPUT_PORT_1 in one driver pass.  <br /></td></tr>
-<tr class="separator:a27856d23e6335ef3e0dc627f011ca450"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb6abd365588fa5386e4bf78ac913f05" id="r_adb6abd365588fa5386e4bf78ac913f05"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb6abd365588fa5386e4bf78ac913f05">Toggle</a> (uint8_t pin) noexcept</td></tr>
 <tr class="memdesc:adb6abd365588fa5386e4bf78ac913f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle the output state of a pin.  <br /></td></tr>
 <tr class="separator:adb6abd365588fa5386e4bf78ac913f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1618,40 +1615,6 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a7b9a82a463f57e0394b55a4f3ecead39_icgraph.svg" width="492" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-
-</div>
-</div>
-<a id="a27856d23e6335ef3e0dc627f011ca450" name="a27856d23e6335ef3e0dc627f011ca450"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27856d23e6335ef3e0dc627f011ca450">&#9670;&#160;</a></span>ReadAllInputsSnapshot()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">hf_gpio_err_t Pcal95555Handler::ReadAllInputsSnapshot </td>
-          <td>(</td>
-          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>levels</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Read INPUT_PORT_0 and INPUT_PORT_1 in one driver pass. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">levels</td><td>Bit N = logical level on expander pin N (0..15). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>GPIO_SUCCESS on success, GPIO_ERR_READ_FAILURE if I2C error flags set. </dd></dl>
 
 </div>
 </div>

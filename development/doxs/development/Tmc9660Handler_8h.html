@@ -189,18 +189,17 @@ Initialization Sequence</h2>
 <div class="line"> </div>
 <div class="line"><span class="comment">// 4. Access motor control via typed driver pointer</span></div>
 <div class="line"><span class="keyword">auto</span>* drv = handler.driverViaSpi();</div>
-<div class="line">drv-&gt;velocityControl.setTargetVelocityRpm(1000.0, drv-&gt;getMotorContext());</div>
+<div class="line">drv-&gt;velocityControl.setTargetVelocity(1000);</div>
 <div class="line"><span class="keywordtype">float</span> voltage = drv-&gt;telemetry.getSupplyVoltage();</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// 5. Or via visitDriver for generic code</span></div>
 <div class="line">handler.visitDriver([](<span class="keyword">auto</span>&amp; d) {</div>
 <div class="line">    d.motorControl.enable();</div>
 <div class="line">});</div>
-<div class="ttc" id="aclassTmc9660Handler_html"><div class="ttname"><a href="classTmc9660Handler.html">Tmc9660Handler</a></div><div class="ttdoc">Unified, non-templated handler for a single TMC9660 motor controller device.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:466</div></div>
+<div class="ttc" id="aclassTmc9660Handler_html"><div class="ttname"><a href="classTmc9660Handler.html">Tmc9660Handler</a></div><div class="ttdoc">Unified, non-templated handler for a single TMC9660 motor controller device.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:452</div></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md24"></a>
 Thread Safety</h2>
-<p><code>visitDriver()</code>, <code>EnsureInitialized()</code>, and peripheral accessors that call <code>EnsureInitialized()</code> acquire the handler's recursive mutex. <code>Initialize()</code> does not take that mutex; serialize it with other entry points across threads, or run init from a single task until the driver is ready.</p>
-<p><code>driverViaSpi()</code> and <code>driverViaUart()</code> return raw pointers without locking — the caller must ensure no concurrent use with initialization or with other threads, or prefer <code>visitDriver()</code>. The Adc and Temperature inner classes use additional RtosMutex instances for their internal statistics tracking.</p>
+<p>The handler uses RtosMutex (recursive) for thread-safe access to all public methods. visitDriver() acquires the lock automatically. Raw pointer methods (driverViaSpi(), driverViaUart()) are NOT mutex-protected — the caller is responsible for synchronization when using them from multiple tasks. The Adc and Temperature inner classes use additional RtosMutex instances for their internal statistics tracking.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> Thin adapter for AdcManager ownership </dd>
 <dd>
 Tmc9660TemperatureWrapper Thin adapter for TemperatureManager ownership </dd>

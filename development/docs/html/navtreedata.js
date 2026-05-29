@@ -80,15 +80,15 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Ads7952Handler_8cpp.html",
-"Tmc9660Handler_8h.html",
-"classBno08xHandler.html#ac08bd345f853529de4448205be64cafb",
-"classLogger.html#ac78253f1f745833880231e9f3dc0ad00",
-"classPca9685PwmAdapter.html#a2f565d01eb539c60ef8266688bc3824c",
-"classTmc9660AdcWrapper.html#adb9d695d17dcd4909fd19024df2fefd9",
-"functions_func.html",
-"namespaceanonymous__namespace_02AlicatBasis2Handler_8cpp_03.html#ac74ab57c3bd5279c52f56c677d73730d",
-"structBno08xConfig.html#a927d6555fa3e3c4418afae4f3b3df3cf",
-"tle92466ed__handler__comprehensive__test_8cpp.html#ac5de30a9290d751035ea1495fef9cd6d"
+"Ws2812Handler_8h.html",
+"classBno08xHandler.html#acf9772bf644ddfeff83371740dd6216b",
+"classLogger.html#aea05eaeaa020b687d8ec39ec6e72b0c9",
+"classPca9685PwmAdapter.html#a99fbcd37f8ec3a7147f09895b6c8d0ce",
+"classTmc9660Handler.html#a1aea362e219afe55d37c69b637d48dc2",
+"functions_func_l.html",
+"namespacehandler__utils.html#afc7fd91265677d0865cbc2a413754ed8",
+"structBno08xEulerAngles.html#a8f2e2420f6aaed647d9107741e59fe7e",
+"tmc5160__handler__comprehensive__test_8cpp.html#a2e723b1283d9cf5fb62f391f378447d0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

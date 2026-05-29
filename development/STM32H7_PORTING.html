@@ -249,17 +249,19 @@
 </h2>
     
 
-<p>The product tree vendors <code class="language-plaintext highlighter-rouge">lib/core</code> without initialized submodule git metadata.
-To re-bind to upstream:</p>
+<p>The product tree binds <code class="language-plaintext highlighter-rouge">lib/core</code> as a git submodule. Nested init may fail on
+optional driver submodules (e.g. <code class="language-plaintext highlighter-rouge">hf-bno08x-driver/sh2</code>). Use:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-</pre></td><td class="rouge-code"><pre><span class="nb">cd </span>hal/pw-hal-flux-v1
-git submodule update <span class="nt">--init</span> <span class="nt">--recursive</span> lib/core
+3
+</pre></td><td class="rouge-code"><pre><span class="nb">cd </span>hal/pw-hal-flux-v1/lib/core
+git submodule update <span class="nt">--init</span> hf-core-utils hf-core-drivers
+git submodule update <span class="nt">--init</span> hf-core-drivers/internal/hf-internal-interface-wrap
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 
-<p>If submodule initialization is not possible in a given workspace, apply the
-patches below manually before building <code class="language-plaintext highlighter-rouge">pw-controller-sw</code> for STM32H747.</p>
+<p>If full recursive init fails, keep the vendored <code class="language-plaintext highlighter-rouge">lib/core.bak-*</code> snapshot as a
+reference and apply the patch inventory below.</p>
 <h2 id="patch-inventory">
   
   
@@ -299,9 +301,21 @@ patches below manually before building <code class="language-plaintext highlight
     </tr>
     <tr>
       <td>Logger factory</td>
-      <td><code class="language-plaintext highlighter-rouge">hf_core_handlers/StmLoggerFactory.cpp</code></td>
+      <td><code class="language-plaintext highlighter-rouge">lib/hf_core_handlers/StmLoggerFactory.cpp</code></td>
       <td><code class="language-plaintext highlighter-rouge">StmLogger::Backend::SWO_ITM</code></td>
       <td>Matches StmLogger backend enum</td>
+    </tr>
+    <tr>
+      <td>Pin config (product)</td>
+      <td><code class="language-plaintext highlighter-rouge">hf-core-drivers/internal/hf-pincfg/src/hf_functional_pin_config_pw_controller_v1.hpp</code></td>
+      <td>Board-specific functional pin map (ADR-007)</td>
+      <td>Required by <code class="language-plaintext highlighter-rouge">pw_hal_platform_gpio_util.hpp</code>; not yet upstream</td>
+    </tr>
+    <tr>
+      <td>Host thread stub</td>
+      <td><code class="language-plaintext highlighter-rouge">hf-core-utils/hf-utils-rtos-wrap/src/BaseThreadHostStub.cpp</code></td>
+      <td>Host-only BaseThread shim</td>
+      <td>Required for <code class="language-plaintext highlighter-rouge">HF_RTOS_NONE</code> host builds</td>
     </tr>
     <tr>
       <td>RTOS bring-up</td>

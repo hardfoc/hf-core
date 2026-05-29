@@ -1,6 +1,6 @@
 var classBno08xHandler =
 [
-    [ "Bno08xHandler", "classBno08xHandler.html#af28d334882ee5338c80c98dcd729dcb3", null ],
+    [ "Bno08xHandler", "classBno08xHandler.html#a23386de466024b4809f2bfe42fa76c67", null ],
     [ "Bno08xHandler", "classBno08xHandler.html#a801b02378a8bccc4a20a9af3697e8222", null ],
     [ "~Bno08xHandler", "classBno08xHandler.html#a4bdec4a51e6c90b2354db27fbc8b3251", null ],
     [ "Bno08xHandler", "classBno08xHandler.html#a6b2e5e14222d04f15591b31b319bb605", null ],

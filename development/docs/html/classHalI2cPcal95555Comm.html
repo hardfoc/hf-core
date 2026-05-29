@@ -134,9 +134,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab5f4b653944ba3a9470c1e684662dc1f" id="r_ab5f4b653944ba3a9470c1e684662dc1f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5f4b653944ba3a9470c1e684662dc1f">EnsureInitialized</a> () noexcept</td></tr>
 <tr class="memdesc:ab5f4b653944ba3a9470c1e684662dc1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure the I2C bus is initialized and ready.  <br /></td></tr>
 <tr class="separator:ab5f4b653944ba3a9470c1e684662dc1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84c98390992bb1c3596a009d8d1b0d1a" id="r_a84c98390992bb1c3596a009d8d1b0d1a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84c98390992bb1c3596a009d8d1b0d1a">SetAddressPins</a> (bool a0_level, bool a1_level, bool a2_level) noexcept</td></tr>
-<tr class="memdesc:a84c98390992bb1c3596a009d8d1b0d1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address strap pins A0–A2 are hardwired on Vortex (GND → 0x20); host does not drive them.  <br /></td></tr>
-<tr class="separator:a84c98390992bb1c3596a009d8d1b0d1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a5517910e3a771091471f2843ea26ed" id="r_a8a5517910e3a771091471f2843ea26ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a5517910e3a771091471f2843ea26ed">RegisterInterruptHandler</a> (std::function&lt; void()&gt; handler) noexcept</td></tr>
 <tr class="memdesc:a8a5517910e3a771091471f2843ea26ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register an interrupt handler to be called when the INT pin fires.  <br /></td></tr>
 <tr class="separator:a8a5517910e3a771091471f2843ea26ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -341,44 +338,6 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if handler was stored (always returns true; actual GPIO setup is done by <a class="el" href="classPcal95555Handler.html#add6bf45bbac47b7d8d579fbd9bc50d2e" title="Configure the hardware interrupt pin (falling edge, active-low).">Pcal95555Handler::ConfigureHardwareInterrupt</a>). </dd></dl>
-
-</div>
-</div>
-<a id="a84c98390992bb1c3596a009d8d1b0d1a" name="a84c98390992bb1c3596a009d8d1b0d1a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84c98390992bb1c3596a009d8d1b0d1a">&#9670;&#160;</a></span>SetAddressPins()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool HalI2cPcal95555Comm::SetAddressPins </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>a0_level</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>a1_level</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>a2_level</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Address strap pins A0–A2 are hardwired on Vortex (GND → 0x20); host does not drive them. </p>
-<dl class="section return"><dt>Returns</dt><dd>false — per hf-pcal95555-driver I2cInterface: straps not under software control. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>initialize() ignores the return value; ChangeAddress() uses it with comm verification. </dd></dl>
 
 </div>
 </div>
