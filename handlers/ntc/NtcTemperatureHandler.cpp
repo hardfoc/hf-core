@@ -228,16 +228,10 @@ bool NtcTemperatureHandler::Initialize() noexcept {
     
     // Set thresholds if enabled
     if (config_.enable_threshold_monitoring) {
-        hf_temp_err_t threshold_err =
-            SetThresholdsUnlocked(config_.low_threshold_celsius, config_.high_threshold_celsius);
-        if (threshold_err != TEMP_SUCCESS) {
-            Logger::GetInstance().Error(TAG, "Failed to apply init thresholds");
-            SetLastError(threshold_err);
-            return false;
-        }
-        SetThresholdMonitoringUnlocked(config_.threshold_callback, config_.threshold_user_data);
+        SetThresholds(config_.low_threshold_celsius, config_.high_threshold_celsius);
+        EnableThresholdMonitoring(config_.threshold_callback, config_.threshold_user_data);
     }
-
+    
     initialized_ = true;
     current_state_ = HF_TEMP_STATE_INITIALIZED;
     
@@ -358,8 +352,16 @@ hf_temp_err_t NtcTemperatureHandler::SetThresholds(float low_threshold_celsius, 
     if (!EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
-
-    return SetThresholdsUnlocked(low_threshold_celsius, high_threshold_celsius);
+    
+    if (low_threshold_celsius >= high_threshold_celsius) {
+        return TEMP_ERR_INVALID_THRESHOLD;
+    }
+    
+    config_.low_threshold_celsius = low_threshold_celsius;
+    config_.high_threshold_celsius = high_threshold_celsius;
+    
+    Logger::GetInstance().Info(TAG, "Thresholds set: low=%.2f°C, high=%.2f°C", low_threshold_celsius, high_threshold_celsius);
+    return TEMP_SUCCESS;
 }
 
 hf_temp_err_t NtcTemperatureHandler::GetThresholds(float* low_threshold_celsius, float* high_threshold_celsius) const noexcept {
@@ -384,8 +386,12 @@ hf_temp_err_t NtcTemperatureHandler::EnableThresholdMonitoring(hf_temp_threshold
     if (!EnsureInitialized()) {
         return TEMP_ERR_NOT_INITIALIZED;
     }
-
-    SetThresholdMonitoringUnlocked(callback, user_data);
+    
+    threshold_callback_ = callback;
+    threshold_user_data_ = user_data;
+    diagnostics_.threshold_monitoring_enabled = (callback != nullptr);
+    
+    Logger::GetInstance().Info(TAG, "Threshold monitoring %s", callback ? "enabled" : "disabled");
     return TEMP_SUCCESS;
 }
 
@@ -921,28 +927,6 @@ void NtcTemperatureHandler::CheckThresholds(float temperature_celsius) noexcept 
         statistics_.threshold_violations++;
         threshold_callback_(this, temperature_celsius, 1, threshold_user_data_); // 1 = high threshold
     }
-}
-
-hf_temp_err_t NtcTemperatureHandler::SetThresholdsUnlocked(float low_threshold_celsius,
-                                                           float high_threshold_celsius) noexcept {
-    if (low_threshold_celsius >= high_threshold_celsius) {
-        return TEMP_ERR_INVALID_THRESHOLD;
-    }
-
-    config_.low_threshold_celsius = low_threshold_celsius;
-    config_.high_threshold_celsius = high_threshold_celsius;
-
-    Logger::GetInstance().Info(TAG, "Thresholds set: low=%.2f°C, high=%.2f°C",
-                               low_threshold_celsius, high_threshold_celsius);
-    return TEMP_SUCCESS;
-}
-
-void NtcTemperatureHandler::SetThresholdMonitoringUnlocked(hf_temp_threshold_callback_t callback,
-                                                           void* user_data) noexcept {
-    threshold_callback_ = callback;
-    threshold_user_data_ = user_data;
-    diagnostics_.threshold_monitoring_enabled = (callback != nullptr);
-    Logger::GetInstance().Info(TAG, "Threshold monitoring %s", callback ? "enabled" : "disabled");
 }
 
 hf_temp_err_t NtcTemperatureHandler::ConvertNtcError(NtcError ntc_error) const noexcept {

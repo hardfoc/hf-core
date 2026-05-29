@@ -4,83 +4,25 @@
 #include <cmath>
 #include <algorithm>
 #include "HandlerCommon.h"
-#include "core/hf-core-drivers/external/hf-tmc9660-driver/inc/tmc9660_comm_interface.hpp"
 #include "core/hf-core-utils/hf-utils-rtos-wrap/include/OsAbstraction.h"
 #include "core/hf-core-utils/hf-utils-rtos-wrap/include/OsUtility.h"
-
-namespace {
-// EspUart::Read returns UART_SUCCESS even on partial / 0-byte reads (it only
-// distinguishes ESP-IDF "no error" from negative error codes). The TMC9660 caller
-// passes an uninitialized 8/9-byte stack buffer and then runs CRC over it, which
-// then trips "CRC mismatch" any time the chip is silent. The vendor ESP32
-// reference (`examples/TMC9660/TMC9660.c` + `examples/esp32/main/esp32_tmc9660_bus.hpp`)
-// only ever returns success when `bytes_read == expected`, so mirror that here.
-static bool ReadExactBytesUart(BaseUart& uart, uint8_t* dst, size_t total,
-                                uint32_t total_timeout_ms) noexcept {
-    if (total == 0) {
-        return true;
-    }
-    const int64_t deadline_us =
-        handler_utils::MonotonicTimeUs() + static_cast<int64_t>(total_timeout_ms) * 1000;
-    size_t got = 0;
-    while (got < total) {
-        if (handler_utils::MonotonicTimeUs() >= deadline_us) {
-            return false;
-        }
-        const auto avail = uart.BytesAvailable();
-        if (avail == 0) {
-            handler_utils::DelayMs(1);
-            continue;
-        }
-        const uint16_t to_read =
-            static_cast<uint16_t>(std::min<size_t>(total - got, static_cast<size_t>(avail)));
-        // Single-shot Read with a small timeout — at this point bytes are queued.
-        const auto r = uart.Read(dst + got, to_read, /*timeout_ms=*/5);
-        if (r != hf_uart_err_t::UART_SUCCESS) {
-            return false;
-        }
-        got += to_read;
-    }
-    return got == total;
-}
-
-// Hex-dump a fixed-size byte array. When @p is_tmcl is true, output is gated by
-// `TMC9660_LOG_TMCL_RAW_FRAMES` in `tmc9660_comm_interface.hpp` (default 0). Bootloader
-// `[BL TX]` / `[BL RX]` lines stay on (they use `is_tmcl == false`).
-template <size_t N>
-static void LogHexDump(const char* tag, const char* prefix,
-                        const std::array<uint8_t, N>& buf, bool is_tmcl) noexcept {
-#if !TMC9660_LOG_TMCL_RAW_FRAMES
-    if (is_tmcl) {
-        (void)tag;
-        (void)prefix;
-        (void)buf;
-        return;
-    }
-#endif
-    auto& log = Logger::GetInstance();
-    if (N == 8) {
-        log.Info(tag, "%s %02X %02X %02X %02X %02X %02X %02X %02X", prefix, buf[0], buf[1], buf[2],
-                 buf[3], buf[4], buf[5], buf[6], buf[7]);
-    } else if (N == 9) {
-        log.Info(tag, "%s %02X %02X %02X %02X %02X %02X %02X %02X %02X", prefix, buf[0], buf[1],
-                 buf[2], buf[3], buf[4], buf[5], buf[6], buf[7], buf[8]);
-    }
-}
-} // namespace
 
 //==============================================================================
 // DEFAULT BOOTLOADER CONFIGURATION
 //==============================================================================
 
 /**
- * @brief Default TMC9660 bootloader configuration for the vendor three-phase reference evaluation kit.
+ * @brief Default TMC9660 bootloader configuration based on TMC9660-3PH-EVAL board settings.
  *
- * On-die options only; host RST/DRV_EN/WAKE/SPI CS wiring stays in the app (`BaseGpio` / `BaseSpi`).
- *
- * Matches `hf-tmc9660-driver` `bldc_comprehensive_test.cpp` when `use_flash == false`: same
- * GPIO pull profile, Hall, ABN1/2, Y2 brake chopper / mechanical brake, comms, clock, and
- * SPI flash off. Pass a custom `BootloaderConfig*` if your netlist differs.
+ * Configuration highlights:
+ * - LDO: VEXT1=5.0V, VEXT2=3.3V with 3ms slope control
+ * - Boot Mode: Parameter mode for TMCL parameter-based control
+ * - UART: Auto16x baud rate detection, GPIO6/7 pins, device address 1
+ * - External Clock: 16MHz crystal with PLL for stable 40MHz system clock
+ * - SPI Flash: Enabled on SPI0 (GPIO11 SCK, GPIO12 CS) at 10MHz
+ * - GPIO: GPIO5 analog input, GPIO17/18 digital inputs with pull-down
+ * - New sections (hall, abn1, abn2, ref, stepDir, spiEnc, mechBrake, brakeChopper,
+ *   memStorage) use safe defaults (disabled)
  */
 const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
     // LDO Configuration
@@ -100,11 +42,11 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         false,                                    // bl_config_fault
         true                                      // start_motor_control
     },
-    // UART Configuration (reference kit: TMCL UART on GPIO6/7 alongside SPI0)
+    // UART Configuration
     {
         1,                                         // device_address
         255,                                       // host_address (broadcast)
-        false,                                     // disable_uart (matches driver BLDC example)
+        false,                                     // disable_uart
         tmc9660::bootcfg::UartRxPin::GPIO7,       // rx_pin
         tmc9660::bootcfg::UartTxPin::GPIO6,       // tx_pin
         tmc9660::bootcfg::BaudRate::Auto16x       // baud_rate
@@ -116,19 +58,19 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         0,                                         // txen_pre_delay
         0                                          // txen_post_delay
     },
-    // SPI Boot Configuration (reference kit: SPI0 SCK on GPIO11; no external flash)
+    // SPI Boot Configuration
     {
         false,                                     // disable_spi
         tmc9660::bootcfg::SPIInterface::SPI0,     // boot_spi_iface
-        tmc9660::bootcfg::SPI0SckPin::GPIO11      // spi0_sck_pin
+        tmc9660::bootcfg::SPI0SckPin::GPIO6       // spi0_sck_pin
     },
-    // SPI Flash Configuration (disabled; enable + iface separation per datasheet if populated)
+    // SPI Flash Configuration
     {
-        false,                                     // enable_flash
-        tmc9660::bootcfg::SPIInterface::SPI0,     // flash_spi_iface (unused when flash off)
+        true,                                      // enable_flash
+        tmc9660::bootcfg::SPIInterface::SPI0,     // flash_spi_iface
         tmc9660::bootcfg::SPI0SckPin::GPIO11,     // spi0_sck_pin
-        12,                                        // cs_pin (unused when flash disabled)
-        tmc9660::bootcfg::SPIFlashFreq::Div4      // freq_div (unused when flash disabled)
+        12,                                        // cs_pin (GPIO12)
+        tmc9660::bootcfg::SPIFlashFreq::Div1      // freq_div (10MHz)
     },
     // I2C EEPROM Configuration (disabled)
     {
@@ -145,58 +87,35 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         tmc9660::bootcfg::XtalDrive::Freq16MHz,        // xtal_drive
         false,                                         // xtal_boost
         tmc9660::bootcfg::SysClkSource::PLL,           // pll_selection
-        15,                                            // rdiv (16 MHz ext: reference kit RDIV = MHz − 1)
+        14,                                            // rdiv
         tmc9660::bootcfg::SysClkDiv::Div1              // sysclk_div
     },
-    // GPIO Configuration (reference kit: Hall + ABN pull-ups, GPIO17–18 pulldowns, GPIO5 analog)
+    // GPIO Configuration (split masks: _0_15 uint16_t, _16_18 uint8_t)
     {
         0x0000, 0x00,  // outputMask_0_15, outputMask_16_18
         0x0000, 0x00,  // directionMask_0_15, directionMask_16_18
-        0xE11C, 0x01,  // pullUpMask_0_15 (2,3,4,8,13,14,15), pullUpMask_16_18 (GPIO16)
+        0x0000, 0x00,  // pullUpMask_0_15, pullUpMask_16_18
         0x0000, 0x06,  // pullDownMask_0_15, pullDownMask_16_18 (GPIO17, GPIO18)
         0x08           // analogMask_2_5 (GPIO5)
     },
-    // Hall Configuration (reference kit)
-    {
-        true,
-        tmc9660::bootcfg::HallUPin::GPIO2,
-        tmc9660::bootcfg::HallVPin::GPIO3,
-        tmc9660::bootcfg::HallWPin::GPIO4
-    },
-    // ABN Encoder 1 Configuration (reference kit)
-    {
-        true,
-        tmc9660::bootcfg::ABN1APin::GPIO8,
-        tmc9660::bootcfg::ABN1BPin::GPIO13,
-        tmc9660::bootcfg::ABN1NPin::GPIO14
-    },
-    // ABN Encoder 2 Configuration (reference kit)
-    {
-        true,
-        tmc9660::bootcfg::ABN2APin::GPIO15,
-        tmc9660::bootcfg::ABN2BPin::GPIO16
-    },
-    // Reference Switches Configuration (disabled)
+    // Hall Configuration (disabled by default)
     {},
-    // Step/Direction Configuration (disabled)
+    // ABN Encoder 1 Configuration (disabled by default)
     {},
-    // SPI Encoder Configuration (disabled)
+    // ABN Encoder 2 Configuration (disabled by default)
     {},
-    // Mechanical Brake Configuration (reference kit: Y2_LS)
-    {
-        true,
-        tmc9660::bootcfg::MechBrakeOutput::Y2_LS
-    },
-    // Brake Chopper Configuration (reference kit: Y2_HS)
-    {
-        true,
-        tmc9660::bootcfg::BrakeChopperOutput::Y2_HS
-    },
-    // Memory Storage Configuration (no external flash / EEPROM in this path)
-    {
-        tmc9660::bootcfg::MemStorage::Disabled,
-        tmc9660::bootcfg::MemStorage::Disabled
-    }
+    // Reference Switches Configuration (disabled by default)
+    {},
+    // Step/Direction Configuration (disabled by default)
+    {},
+    // SPI Encoder Configuration (disabled by default)
+    {},
+    // Mechanical Brake Configuration (disabled by default)
+    {},
+    // Brake Chopper Configuration (disabled by default)
+    {},
+    // Memory Storage Configuration (disabled by default)
+    {}
 };
 
 //==============================================================================
@@ -206,43 +125,28 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
 namespace {
 
 /**
- * @brief Set a BaseGpio pin level based on a TMC9660 signal.
- *
- * @details The BaseGpio is already configured with the IC's natural polarity
- *          (`HF_GPIO_ACTIVE_LOW` for active-low signals like WAKE/FAULTN, normal
- *          for RST/DRV_EN). So `SetState(ACTIVE)` drives the physical line to
- *          whatever level *asserts* the signal at the IC. Applying `active_high`
- *          again here would double-invert and break WAKE: when the driver asks
- *          for `gpioSetActive(WAKE)`, the IC needs physical LOW, but a second
- *          inversion would call `SetState(INACTIVE)` → physical HIGH → chip
- *          stays in hibernate and never replies on UART. We deliberately ignore
- *          `active_high` here for that reason and let the BaseGpio handle it.
+ * @brief Set a BaseGpio pin level based on a TMC9660 signal and its active-level config.
  */
-static bool setGpioFromSignal(BaseGpio& gpio_pin, tmc9660::GpioSignal signal,
-                              bool /*active_high - unused; BaseGpio handles polarity*/) noexcept {
-    auto state = (signal == tmc9660::GpioSignal::ACTIVE)
-                     ? hf_gpio_state_t::HF_GPIO_STATE_ACTIVE
-                     : hf_gpio_state_t::HF_GPIO_STATE_INACTIVE;
+static bool setGpioFromSignal(BaseGpio& gpio_pin, tmc9660::GpioSignal signal, bool active_high) noexcept {
+    // Map TMC9660 signal + polarity to the BaseGpio public state API.
+    // When the signal is ACTIVE and the pin is active-high, we want the pin active (and vice versa).
+    bool want_active = (signal == tmc9660::GpioSignal::ACTIVE) == active_high;
+    auto state = want_active ? hf_gpio_state_t::HF_GPIO_STATE_ACTIVE : hf_gpio_state_t::HF_GPIO_STATE_INACTIVE;
     return gpio_pin.SetState(state) == hf_gpio_err_t::GPIO_SUCCESS;
 }
 
 /**
- * @brief Read a BaseGpio pin and convert to TMC9660 signal.
- *
- * @details Mirror of `setGpioFromSignal`: the BaseGpio's `IsActive()` already
- *          returns "is the IC signal asserted" (because its `active_state` is
- *          configured for the IC's natural polarity). Applying `active_high`
- *          again would invert FAULTN reads. Ignored on purpose.
+ * @brief Read a BaseGpio pin and convert to TMC9660 signal based on active-level config.
  */
-static bool readGpioToSignal(BaseGpio& gpio_pin, tmc9660::GpioSignal& signal,
-                             bool /*active_high - unused; BaseGpio handles polarity*/) noexcept {
+static bool readGpioToSignal(BaseGpio& gpio_pin, tmc9660::GpioSignal& signal, bool active_high) noexcept {
+    // Read the logical state through the BaseGpio public API and map back
+    // to TMC9660 signal using the active-level polarity.
     bool is_active = false;
     if (gpio_pin.IsActive(is_active) != hf_gpio_err_t::GPIO_SUCCESS) {
         return false;
     }
-    // BaseGpio::IsActive() already returns "is the IC signal asserted" (it knows its
-    // own active_state). Map straight through.
-    signal = is_active ? tmc9660::GpioSignal::ACTIVE : tmc9660::GpioSignal::INACTIVE;
+    // If the pin is logically active AND active_high, the TMC9660 signal is ACTIVE (and vice versa).
+    signal = (is_active == active_high) ? tmc9660::GpioSignal::ACTIVE : tmc9660::GpioSignal::INACTIVE;
     return true;
 }
 
@@ -266,14 +170,6 @@ bool HalSpiTmc9660Comm::spiTransferTMCL(std::array<uint8_t, 8>& tx, std::array<u
         return false;
     }
     hf_spi_err_t result = spi_.Transfer(tx.data(), rx.data(), hf_u16_t(8), hf_u32_t(0));
-    // TMC9660 SPI TMCL pacing: the chip uses a two-transaction protocol where
-    // TX1 carries the new command and TX2 (NO_OP) drains its reply. Fast SPI
-    // plus short CS gaps can return SPI_STATUS=OK but TMCL_STATUS=INVALID_CMD
-    // on the reply sampled by TX2. `SpiCommInterface::transferTMCL` adds an
-    // explicit pre-TX2 delay; this post-transfer delay keeps consecutive
-    // *different* TMCL commands (back-to-back driver calls) from colliding the
-    // same way. Keep in sync with the inter-phase delay in tmc9660_comm_interface.hpp.
-    handler_utils::DelayUs(350);
     return result == hf_spi_err_t::SPI_SUCCESS;
 }
 
@@ -319,12 +215,7 @@ bool HalUartTmc9660Comm::uartSendTMCL(const std::array<uint8_t, 9>& data) noexce
     if (!uart_.EnsureInitialized()) {
         return false;
     }
-    // Drop any garbage so the following 9-byte read aligns with this transaction's reply.
-    (void)uart_.FlushRx();
-    LogHexDump("Tmc9660Uart", "[TMCL TX]", data, true);
-    // Use a real timeout so EspUart::Write also waits for the TX FIFO to drain
-    // (Vendor ESP32 UART reference waits for TX idle after each write.)
-    hf_uart_err_t result = uart_.Write(data.data(), 9, /*timeout_ms=*/100);
+    hf_uart_err_t result = uart_.Write(data.data(), 9);
     return result == hf_uart_err_t::UART_SUCCESS;
 }
 
@@ -332,13 +223,8 @@ bool HalUartTmc9660Comm::uartReceiveTMCL(std::array<uint8_t, 9>& data) noexcept 
     if (!uart_.EnsureInitialized()) {
         return false;
     }
-    // Pre-fill so a partial / silent read can never accidentally pass the address+checksum check.
-    data.fill(0xFF);
-    if (!ReadExactBytesUart(uart_, data.data(), data.size(), /*total_timeout_ms=*/200)) {
-        return false;
-    }
-    LogHexDump("Tmc9660Uart", "[TMCL RX]", data, true);
-    return true;
+    hf_uart_err_t result = uart_.Read(data.data(), 9, 1000); // 1 second timeout
+    return result == hf_uart_err_t::UART_SUCCESS;
 }
 
 bool HalUartTmc9660Comm::uartTransferBootloader(const std::array<uint8_t, 8>& tx,
@@ -346,18 +232,12 @@ bool HalUartTmc9660Comm::uartTransferBootloader(const std::array<uint8_t, 8>& tx
     if (!uart_.EnsureInitialized()) {
         return false;
     }
-    // Mirror vendor ESP32 UART reference: drain stale RX, send, then read EXACTLY 8 bytes.
-    (void)uart_.FlushRx();
-    LogHexDump("Tmc9660Uart", "[BL TX]", tx, false);
-    if (uart_.Write(tx.data(), 8, /*timeout_ms=*/100) != hf_uart_err_t::UART_SUCCESS) {
+    hf_uart_err_t write_result = uart_.Write(tx.data(), 8);
+    if (write_result != hf_uart_err_t::UART_SUCCESS) {
         return false;
     }
-    rx.fill(0xFF);
-    if (!ReadExactBytesUart(uart_, rx.data(), rx.size(), /*total_timeout_ms=*/200)) {
-        return false;
-    }
-    LogHexDump("Tmc9660Uart", "[BL RX]", rx, false);
-    return true;
+    hf_uart_err_t read_result = uart_.Read(rx.data(), 8, 1000);
+    return read_result == hf_uart_err_t::UART_SUCCESS;
 }
 
 bool HalUartTmc9660Comm::gpioSet(tmc9660::TMC9660CtrlPin pin, tmc9660::GpioSignal signal) noexcept {
@@ -449,21 +329,6 @@ bool Tmc9660Handler::Initialize(bool performReset, bool retrieveBootloaderInfo,
         }
     }
 
-    // DRV_EN / WAKE before bootloader traffic: hf-tmc9660-driver's bootloaderInit() toggles RST
-    // and polls FAULTN but does not assert DRV_EN or WAKE first. When those nets are off-chip,
-    // expander-driven, or otherwise idle at boot, leaving them inactive can yield all-zero SPI/UART
-    // until the die is fully enabled / out of hibernate (same reason reference BLDC flows assert
-    // DRV_EN first).
-    if (use_spi_ && spi_comm_) {
-        (void)spi_comm_->gpioSetActive(tmc9660::TMC9660CtrlPin::DRV_EN);
-        (void)spi_comm_->gpioSetActive(tmc9660::TMC9660CtrlPin::WAKE);
-        spi_comm_->delayMs(2);
-    } else if (!use_spi_ && uart_comm_) {
-        (void)uart_comm_->gpioSetActive(tmc9660::TMC9660CtrlPin::DRV_EN);
-        (void)uart_comm_->gpioSetActive(tmc9660::TMC9660CtrlPin::WAKE);
-        uart_comm_->delayMs(2);
-    }
-
     // Run bootloader initialization.
     // NOTE: visitDriver() cannot be used here because SpiDriver::BootloaderInitResult
     // and UartDriver::BootloaderInitResult are separate enum types from different
@@ -483,9 +348,6 @@ bool Tmc9660Handler::Initialize(bool performReset, bool retrieveBootloaderInfo,
 
     if (!success) {
         Logger::GetInstance().Error(TAG, "Bootloader initialization failed");
-        // Drop driver so IsDriverReady() stays false and a later EnsureInitialized() can retry.
-        spi_driver_.reset();
-        uart_driver_.reset();
         return false;
     }
 

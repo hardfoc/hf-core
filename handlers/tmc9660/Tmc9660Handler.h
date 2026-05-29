@@ -57,7 +57,7 @@
  *
  * // 4. Access motor control via typed driver pointer
  * auto* drv = handler.driverViaSpi();
- * drv->velocityControl.setTargetVelocityRpm(1000.0, drv->getMotorContext());
+ * drv->velocityControl.setTargetVelocity(1000);
  * float voltage = drv->telemetry.getSupplyVoltage();
  *
  * // 5. Or via visitDriver for generic code
@@ -68,14 +68,10 @@
  *
  * ## Thread Safety
  *
- * `visitDriver()`, `EnsureInitialized()`, and peripheral accessors that call
- * `EnsureInitialized()` acquire the handler's recursive mutex. `Initialize()` does
- * not take that mutex; serialize it with other entry points across threads, or run
- * init from a single task until the driver is ready.
- *
- * `driverViaSpi()` and `driverViaUart()` return raw pointers without locking — the
- * caller must ensure no concurrent use with initialization or with other threads, or
- * prefer `visitDriver()`.
+ * The handler uses RtosMutex (recursive) for thread-safe access to all public
+ * methods. visitDriver() acquires the lock automatically. Raw pointer methods
+ * (driverViaSpi(), driverViaUart()) are NOT mutex-protected — the caller is
+ * responsible for synchronization when using them from multiple tasks.
  * The Adc and Temperature inner classes use additional RtosMutex instances
  * for their internal statistics tracking.
  *
@@ -220,16 +216,6 @@ public:
      * @param[in,out] tx 8-byte transmit buffer (TMCL command frame).
      * @param[out]    rx 8-byte receive buffer (TMCL reply frame).
      * @return true if BaseSpi::Transfer() succeeded.
-     *
-     * @note Inserts a deterministic ~150 µs post-transfer delay. The TMC9660
-     *       SPI TMCL protocol is two-transaction (TX1 = command, TX2 = NO_OP
-     *       drains the reply); back-to-back transfers at >=1 MHz starve the
-     *       chip's TMCL parser and surface as `SPI_STATUS=OK` /
-     *       `TMCL_STATUS=REPLY_INVALID_CMD` on the second transaction. The
-     *       delay matches the natural inter-frame pacing of a 9-byte UART
-     *       TMCL frame (~780 µs at 115200 baud), keeping host pacing
-     *       conservative across SPI clocks. UART transfers are paced by the
-     *       wire and do not need this hook.
      */
     bool spiTransferTMCL(std::array<uint8_t, 8>& tx, std::array<uint8_t, 8>& rx) noexcept;
 
@@ -283,8 +269,8 @@ public:
     /**
      * @brief Delay execution for the specified number of microseconds.
      *
-     * Delegates to the comm adapter implementation (typically ROM microsecond delay where the
-     * platform provides it, otherwise a short busy-wait for sub-millisecond timing).
+     * On ESP32, uses esp_rom_delay_us() for accurate sub-millisecond timing.
+     * On other platforms, uses a busy-wait loop based on the processor cycle counter.
      *
      * @param us Microseconds to delay.
      */
@@ -438,7 +424,7 @@ private:
  * drv->motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);
  * drv->commutation.setMode(tmcl::CommutationMode::FOC);
  * drv->motorControl.enable();
- * drv->velocityControl.setTargetVelocityRpm(1000.0, drv->getMotorContext());
+ * drv->velocityControl.setTargetVelocity(1000);
  *
  * // Telemetry via driver
  * float supply_v = drv->telemetry.getSupplyVoltage();
@@ -490,13 +476,18 @@ public:
     //==========================================================================
 
     /**
-     * @brief Default bootloader configuration matching the vendor TMC9660-3PH reference EV kit
-     *        and driver BLDC example (`use_flash == false`): parameter mode, SPI0 SCK/UART pin
-     *        codes as in that reference, flash off.
+     * @brief Default bootloader configuration based on TMC9660-3PH-EVAL board settings.
      *
-     * @details hf-core does not model carrier routing (e.g. GPIO expanders); host buses and
-     *          control pins are injected via `BaseGpio` / `BaseSpi` / `BaseUart`. Pass a custom
-     *          `BootloaderConfig*` when strapping or pin mux differs from this reference set.
+     * @details Configures:
+     * - LDO: VEXT1=5.0V, VEXT2=3.3V, 3ms slope
+     * - Boot mode: Parameter mode with motor control start
+     * - UART: Auto16x baud rate, GPIO6/7, address 1
+     * - External clock: 16MHz crystal with PLL (40MHz system)
+     * - SPI Flash: Enabled on SPI0 (GPIO11/12) at 10MHz
+     * - GPIO: GPIO5 analog, GPIO17/18 digital pull-down
+     * - Hall, ABN encoders, step/dir, etc.: disabled (safe defaults)
+     *
+     * Override by passing a custom tmc9660::BootloaderConfig* to the constructor.
      */
     static const tmc9660::BootloaderConfig kDefaultBootConfig;
 
@@ -1107,7 +1098,7 @@ public:
      * auto* drv = handler->driverViaSpi();
      * drv->feedbackSense.configureHall();
      * drv->motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);
-     * drv->velocityControl.setTargetVelocityRpm(1000.0, drv->getMotorContext());
+     * drv->velocityControl.setTargetVelocity(1000);
      * drv->protection.configureVoltage(48000, 10000);
      * @endcode
      *

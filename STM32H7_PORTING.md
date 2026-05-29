@@ -6,16 +6,17 @@ This document records local compatibility changes applied to the vendored
 
 ## Submodule status
 
-The product tree vendors `lib/core` without initialized submodule git metadata.
-To re-bind to upstream:
+The product tree binds `lib/core` as a git submodule. Nested init may fail on
+optional driver submodules (e.g. `hf-bno08x-driver/sh2`). Use:
 
 ```bash
-cd hal/pw-hal-flux-v1
-git submodule update --init --recursive lib/core
+cd hal/pw-hal-flux-v1/lib/core
+git submodule update --init hf-core-utils hf-core-drivers
+git submodule update --init hf-core-drivers/internal/hf-internal-interface-wrap
 ```
 
-If submodule initialization is not possible in a given workspace, apply the
-patches below manually before building `pw-controller-sw` for STM32H747.
+If full recursive init fails, keep the vendored `lib/core.bak-*` snapshot as a
+reference and apply the patch inventory below.
 
 ## Patch inventory
 
@@ -24,7 +25,9 @@ patches below manually before building `pw-controller-sw` for STM32H747.
 | HAL type guards | `hf-core-drivers/internal/hf-internal-interface-wrap/inc/mcu/stm32/StmTypes.h` | Per-module `#ifndef STM32H7xx_HAL_*_H` guards around HAL handle forward declarations | Prevents redefinition when CubeMX HAL headers are included alongside HardFOC wrappers |
 | GPIO guard | `hf-core-drivers/internal/hf-internal-interface-wrap/inc/mcu/stm32/StmGpio.h` | `#ifndef GPIOA` around `struct GPIO_TypeDef` forward declaration | Avoids conflict with CMSIS/HAL GPIO typedefs |
 | Logger enums | `hf-core-drivers/internal/hf-internal-interface-wrap/src/mcu/stm32/StmLogger.cpp` | Use `hf_log_level_t::LOG_LEVEL_*` and `statistics_.write_errors` | Aligns with hf-core enum/stat field names |
-| Logger factory | `hf_core_handlers/StmLoggerFactory.cpp` | `StmLogger::Backend::SWO_ITM` | Matches StmLogger backend enum |
+| Logger factory | `lib/hf_core_handlers/StmLoggerFactory.cpp` | `StmLogger::Backend::SWO_ITM` | Matches StmLogger backend enum |
+| Pin config (product) | `hf-core-drivers/internal/hf-pincfg/src/hf_functional_pin_config_pw_controller_v1.hpp` | Board-specific functional pin map (ADR-007) | Required by `pw_hal_platform_gpio_util.hpp`; not yet upstream |
+| Host thread stub | `hf-core-utils/hf-utils-rtos-wrap/src/BaseThreadHostStub.cpp` | Host-only BaseThread shim | Required for `HF_RTOS_NONE` host builds |
 | RTOS bring-up | `hf-core-utils/CMakeLists.txt` | `HF_RTOS_NONE=1` for host/STM32 pre-FreeRTOS builds | Allows handler/util compilation before CubeMX FreeRTOS is linked |
 | RTOS abstraction | `hf-core-utils/hf-utils-rtos-wrap/include/OsAbstraction.h` | `HF_RTOS_NONE` stub path alongside `HF_RTOS_FREERTOS` | Host and bare-metal builds without FreeRTOS headers |
 | RTOS mutex | `hf-core-utils/hf-utils-rtos-wrap/include/RtosMutex.h` | Stub mutex types when `HF_RTOS_NONE` | Keeps headers parseable without FreeRTOS |

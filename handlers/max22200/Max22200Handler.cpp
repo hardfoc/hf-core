@@ -7,9 +7,7 @@
 #include "Max22200Handler.h"
 #include "Logger.h"
 #include "HandlerCommon.h"
-
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+#include "OsUtility.h"
 
 static constexpr const char* TAG = "MAX22200";
 
@@ -290,7 +288,7 @@ bool Max22200Handler::WaitForActiveAndDrainFaults() noexcept {
 
     auto& log = Logger::GetInstance();
 
-    vTaskDelay(pdMS_TO_TICKS(kPostInitWaitMs));
+    os_thread_sleep(os_convert_msec_to_delay_ticks(kPostInitWaitMs));
 
     max22200::StatusConfig st{};
     uint32_t waited_ms = 0;
@@ -303,7 +301,7 @@ bool Max22200Handler::WaitForActiveAndDrainFaults() noexcept {
                      static_cast<unsigned>(kPostInitWaitMs + waited_ms));
             break;
         }
-        vTaskDelay(pdMS_TO_TICKS(kPollIntervalMs));
+        os_thread_sleep(os_convert_msec_to_delay_ticks(kPollIntervalMs));
         waited_ms += kPollIntervalMs;
     }
 

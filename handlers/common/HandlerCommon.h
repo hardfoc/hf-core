@@ -21,7 +21,6 @@
 
 #if defined(ESP_PLATFORM)
 #include "esp_rom_sys.h"
-#include "esp_timer.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #endif
@@ -91,20 +90,6 @@ inline void DelayUs(uint32_t us) noexcept {
 #else
     volatile uint32_t count = us * 10;
     while (count--) { __asm__ volatile(""); }
-#endif
-}
-
-/**
- * @brief Monotonic time in microseconds for bounded I/O waits.
- *
- * On ESP-IDF this is `esp_timer_get_time()` (not tied to RTOS tick rate). On other
- * platforms returns 0; use only where UART/SPI timing is validated for that target.
- */
-inline std::int64_t MonotonicTimeUs() noexcept {
-#if defined(ESP_PLATFORM)
-    return esp_timer_get_time();
-#else
-    return 0;
 #endif
 }
 

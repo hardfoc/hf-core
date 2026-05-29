@@ -53,15 +53,6 @@ bool HalI2cBno08xComm::Open() noexcept {
         int_gpio_->EnsureInitialized();
     }
 
-    if (boot_gpio_) {
-        boot_gpio_->SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT);
-        // BOOTN is active-low: ACTIVE = assert boot mode (drive LOW)
-        boot_gpio_->SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
-        boot_gpio_->EnsureInitialized();
-        // Normal application firmware: BOOT released (INACTIVE = HIGH)
-        boot_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
-    }
-
     // Ensure the I2C bus is initialized
     return i2c_.EnsureInitialized();
 }
@@ -133,19 +124,10 @@ void HalI2cBno08xComm::GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) n
             }
             break;
         case bno08x::CtrlPin::BOOTN:
-            if (!boot_gpio_) {
-                return;
-            }
-            if (signal == bno08x::GpioSignal::ACTIVE) {
-                boot_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_ACTIVE);
-            } else {
-                boot_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
-            }
-            break;
         case bno08x::CtrlPin::WAKE:
         case bno08x::CtrlPin::PS0:
         case bno08x::CtrlPin::PS1:
-            break; // Not under software control on this I2C adapter (often strapped on PCB)
+            break; // Not wired for I2C
     }
 }
 
@@ -269,10 +251,9 @@ void HalSpiBno08xComm::GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) n
 Bno08xHandler::Bno08xHandler(BaseI2c& i2c_device,
                              const Bno08xConfig& config,
                              BaseGpio* reset_gpio,
-                             BaseGpio* int_gpio,
-                             BaseGpio* boot_gpio) noexcept
+                             BaseGpio* int_gpio) noexcept
     : driver_ops_(std::make_unique<Bno08xDriverImpl<HalI2cBno08xComm>>(
-          HalI2cBno08xComm(i2c_device, reset_gpio, int_gpio, boot_gpio)))
+          HalI2cBno08xComm(i2c_device, reset_gpio, int_gpio)))
     , config_(config)
     , interface_type_(BNO085Interface::I2C) {
     std::snprintf(description_, sizeof(description_),
@@ -312,19 +293,8 @@ Bno08xError Bno08xHandler::Initialize() noexcept {
         return last_error_;
     }
 
-    // BOOTN is latched when RSTN is released. Configure transport GPIOs (BOOT released, RST
-    // released, INT pull-up) before any reset edge — `Begin()`/`sh2_open()` would open too late.
-    if (!driver_ops_->OpenTransport()) {
-        last_error_ = Bno08xError::INITIALIZATION_FAILED;
-        return last_error_;
-    }
-    driver_ops_->SetBootPin(false);
-
-    // Hardware reset: hf-bno08x-driver ESP32 examples use ~2ms assert + ~200ms before traffic
-    // (`HardwareReset(2, 200)` on Esp32Bno08xI2cBus). BNO085::HardwareReset(lowMs) asserts for
-    // lowMs then waits 50ms; add 150ms so total post-release delay matches bring-up scripts.
-    driver_ops_->HardwareReset(2);
-    os_delay_msec(150);
+    // Perform hardware reset via the driver (uses RSTN pin if wired)
+    driver_ops_->HardwareReset(10);
 
     // Initialize the SH-2 protocol
     if (!driver_ops_->Begin()) {

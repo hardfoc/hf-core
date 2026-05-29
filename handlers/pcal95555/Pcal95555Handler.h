@@ -170,13 +170,6 @@ public:
     bool EnsureInitialized() noexcept;
 
     /**
-     * @brief Address strap pins A0–A2 are hardwired on Vortex (GND → 0x20); host does not drive them.
-     * @return false — per hf-pcal95555-driver I2cInterface: straps not under software control.
-     * @note initialize() ignores the return value; ChangeAddress() uses it with comm verification.
-     */
-    bool SetAddressPins(bool a0_level, bool a1_level, bool a2_level) noexcept;
-
-    /**
      * @brief Register an interrupt handler to be called when the INT pin fires.
      *
      * The PCAL95555 driver calls this to register its HandleInterrupt() method.
@@ -522,13 +515,6 @@ public:
      * @return GPIO_SUCCESS or error code (checks driver error flags).
      */
     hf_gpio_err_t ReadInput(uint8_t pin, bool& active) noexcept;
-
-    /**
-     * @brief Read INPUT_PORT_0 and INPUT_PORT_1 in one driver pass.
-     * @param[out] levels Bit N = logical level on expander pin N (0..15).
-     * @return GPIO_SUCCESS on success, GPIO_ERR_READ_FAILURE if I2C error flags set.
-     */
-    hf_gpio_err_t ReadAllInputsSnapshot(uint16_t& levels) noexcept;
 
     /**
      * @brief Toggle the output state of a pin.
