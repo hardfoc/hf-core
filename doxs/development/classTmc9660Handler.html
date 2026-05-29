@@ -235,7 +235,7 @@ Public Member Functions</h2></td></tr>
 Static Public Attributes</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Default Configuration</div></td></tr>
 <tr class="memitem:a4de763121aff441af52e492f3cff6f1c" id="r_a4de763121aff441af52e492f3cff6f1c"><td class="memItemLeft" align="right" valign="top">static const tmc9660::BootloaderConfig&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4de763121aff441af52e492f3cff6f1c">kDefaultBootConfig</a></td></tr>
-<tr class="memdesc:a4de763121aff441af52e492f3cff6f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default bootloader configuration matching the vendor TMC9660-3PH reference EV kit and driver BLDC example (<code>use_flash == false</code>): parameter mode, SPI0 SCK/UART pin codes as in that reference, flash off.  <br /></td></tr>
+<tr class="memdesc:a4de763121aff441af52e492f3cff6f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default bootloader configuration based on TMC9660-3PH-EVAL board settings.  <br /></td></tr>
 <tr class="separator:a4de763121aff441af52e492f3cff6f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
@@ -325,7 +325,7 @@ Usage Example</h2>
 <div class="line">drv-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);</div>
 <div class="line">drv-&gt;commutation.setMode(tmcl::CommutationMode::FOC);</div>
 <div class="line">drv-&gt;motorControl.enable();</div>
-<div class="line">drv-&gt;velocityControl.setTargetVelocityRpm(1000.0, drv-&gt;getMotorContext());</div>
+<div class="line">drv-&gt;velocityControl.setTargetVelocity(1000);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Telemetry via driver</span></div>
 <div class="line"><span class="keywordtype">float</span> supply_v = drv-&gt;telemetry.getSupplyVoltage();</div>
@@ -345,7 +345,7 @@ Usage Example</h2>
 <div class="line">});</div>
 <div class="ttc" id="aclassLogger_html_a5789d11f8f1356e2192c0023a089cbc4"><div class="ttname"><a href="classLogger.html#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a></div><div class="ttdeci">static Logger &amp; GetInstance() noexcept</div><div class="ttdoc">Get singleton instance.</div><div class="ttdef"><b>Definition</b> Logger.cpp:91</div></div>
 <div class="ttc" id="aclassLogger_html_adce17848a5844e053bfd314863dc1404"><div class="ttname"><a href="classLogger.html#adce17848a5844e053bfd314863dc1404">Logger::Error</a></div><div class="ttdeci">void Error(const char *tag, const char *format,...) noexcept</div><div class="ttdoc">Log error message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:222</div></div>
-<div class="ttc" id="aclassTmc9660Handler_html"><div class="ttname"><a href="classTmc9660Handler.html">Tmc9660Handler</a></div><div class="ttdoc">Unified, non-templated handler for a single TMC9660 motor controller device.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:466</div></div>
+<div class="ttc" id="aclassTmc9660Handler_html"><div class="ttname"><a href="classTmc9660Handler.html">Tmc9660Handler</a></div><div class="ttdoc">Unified, non-templated handler for a single TMC9660 motor controller device.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:452</div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classHalSpiTmc9660Comm.html" title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">HalSpiTmc9660Comm</a> SPI communication adapter </dd>
 <dd>
 <a class="el" href="classHalUartTmc9660Comm.html" title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.">HalUartTmc9660Comm</a> UART communication adapter </dd>
@@ -746,7 +746,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="keyword">auto</span>* drv = handler-&gt;driverViaSpi();</div>
 <div class="line">drv-&gt;feedbackSense.configureHall();</div>
 <div class="line">drv-&gt;motorConfig.setType(tmcl::MotorType::BLDC_MOTOR, 7);</div>
-<div class="line">drv-&gt;velocityControl.setTargetVelocityRpm(1000.0, drv-&gt;getMotorContext());</div>
+<div class="line">drv-&gt;velocityControl.setTargetVelocity(1000);</div>
 <div class="line">drv-&gt;protection.configureVoltage(48000, 10000);</div>
 </div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Caller is responsible for external synchronization in multi-task environments. Prefer <a class="el" href="#a4e219285c12b2ca50075edfaf73b4e2f" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a> for thread-safe access. </dd></dl>
 <div class="dynheader">
@@ -1547,11 +1547,27 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Default bootloader configuration matching the vendor TMC9660-3PH reference EV kit and driver BLDC example (<code>use_flash == false</code>): parameter mode, SPI0 SCK/UART pin codes as in that reference, flash off. </p>
-<p>Default TMC9660 bootloader configuration for the vendor three-phase reference evaluation kit.</p>
-<p>hf-core does not model carrier routing (e.g. GPIO expanders); host buses and control pins are injected via <code>BaseGpio</code> / <code>BaseSpi</code> / <code>BaseUart</code>. Pass a custom <code>BootloaderConfig*</code> when strapping or pin mux differs from this reference set.</p>
-<p>On-die options only; host RST/DRV_EN/WAKE/SPI CS wiring stays in the app (<code>BaseGpio</code> / <code>BaseSpi</code>).</p>
-<p>Matches <code>hf-tmc9660-driver</code> <code>bldc_comprehensive_test.cpp</code> when <code>use_flash == false</code>: same GPIO pull profile, Hall, ABN1/2, Y2 brake chopper / mechanical brake, comms, clock, and SPI flash off. Pass a custom <code>BootloaderConfig*</code> if your netlist differs. </p>
+<p>Default bootloader configuration based on TMC9660-3PH-EVAL board settings. </p>
+<p>Default TMC9660 bootloader configuration based on TMC9660-3PH-EVAL board settings.</p>
+<p>Configures:</p><ul>
+<li>LDO: VEXT1=5.0V, VEXT2=3.3V, 3ms slope</li>
+<li>Boot mode: Parameter mode with motor control start</li>
+<li>UART: Auto16x baud rate, GPIO6/7, address 1</li>
+<li>External clock: 16MHz crystal with PLL (40MHz system)</li>
+<li>SPI Flash: Enabled on SPI0 (GPIO11/12) at 10MHz</li>
+<li>GPIO: GPIO5 analog, GPIO17/18 digital pull-down</li>
+<li>Hall, ABN encoders, step/dir, etc.: disabled (safe defaults)</li>
+</ul>
+<p>Override by passing a custom tmc9660::BootloaderConfig* to the constructor.</p>
+<p>Configuration highlights:</p><ul>
+<li>LDO: VEXT1=5.0V, VEXT2=3.3V with 3ms slope control</li>
+<li>Boot Mode: Parameter mode for TMCL parameter-based control</li>
+<li>UART: Auto16x baud rate detection, GPIO6/7 pins, device address 1</li>
+<li>External Clock: 16MHz crystal with PLL for stable 40MHz system clock</li>
+<li>SPI Flash: Enabled on SPI0 (GPIO11 SCK, GPIO12 CS) at 10MHz</li>
+<li>GPIO: GPIO5 analog input, GPIO17/18 digital inputs with pull-down</li>
+<li>New sections (hall, abn1, abn2, ref, stepDir, spiEnc, mechBrake, brakeChopper, memStorage) use safe defaults (disabled) </li>
+</ul>
 
 </div>
 </div>

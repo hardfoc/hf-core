@@ -14,15 +14,12 @@ var namespaces_dup =
       [ "MapI2c", "namespaceanonymous__namespace_02Se050Handler_8cpp_03.html#a2a6831a1ec2b7c917f283d1788590978", null ]
     ] ],
     [ "anonymous_namespace{Tmc9660Handler.cpp}", "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html", [
-      [ "LogHexDump", "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#ae63557e186ffd913155acb3129de7ac9", null ],
-      [ "ReadExactBytesUart", "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a75bfafbdf838187780b833848b1e87eb", null ],
-      [ "readGpioToSignal", "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a9dc9d5dcab6377d0a891fcfc400abe10", null ],
-      [ "setGpioFromSignal", "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a747df189a572cdfd86ec4d3f74160078", null ]
+      [ "readGpioToSignal", "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#aee82d92e54869f56afcdfa5bf23dbf2f", null ],
+      [ "setGpioFromSignal", "namespaceanonymous__namespace_02Tmc9660Handler_8cpp_03.html#a91f1b4322a75b8ac25a8890110ec9af6", null ]
     ] ],
     [ "handler_utils", "namespacehandler__utils.html", [
       [ "DelayMs", "namespacehandler__utils.html#afc7fd91265677d0865cbc2a413754ed8", null ],
       [ "DelayUs", "namespacehandler__utils.html#ac2999c5753a6d86504463b742c23dcfe", null ],
-      [ "MonotonicTimeUs", "namespacehandler__utils.html#a75d4e97d12033f5c07ab4deab842ebe9", null ],
       [ "RouteLogToLogger", "namespacehandler__utils.html#a71864e1d5801bea0d6d830326b6b183a", null ]
     ] ],
     [ "logger_decor", "namespacelogger__decor.html", [
