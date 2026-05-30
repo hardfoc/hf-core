@@ -90,7 +90,8 @@ Pf1550Handler::Pf1550Handler(BaseI2c& i2c, BaseGpio* standby_gpio, BaseGpio* usb
       usb_otg_en_gpio_(usb_otg_en_gpio),
       comm_(nullptr),
       driver_(nullptr),
-      initialized_(false) {}
+      initialized_(false),
+      cached_snapshot_() {}
 
 bool Pf1550Handler::ensureInitializedLocked() noexcept {
     if (initialized_) {
@@ -123,6 +124,14 @@ bool Pf1550Handler::ApplyPortentaH7Profile() noexcept {
     return driver_->ApplyPortentaH7DefaultProfile();
 }
 
+bool Pf1550Handler::ApplyPortentaH7CarrierProfile() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!ensureInitializedLocked() || driver_ == nullptr) {
+        return false;
+    }
+    return driver_->ApplyPortentaH7CarrierProfile();
+}
+
 bool Pf1550Handler::SetPowerMode(pf1550::PowerMode mode) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!ensureInitializedLocked() || driver_ == nullptr) {
@@ -145,6 +154,50 @@ bool Pf1550Handler::ReadPmicStatus(uint8_t& status) noexcept {
         return false;
     }
     return driver_->ReadPmicStatus(status);
+}
+
+bool Pf1550Handler::RefreshDiagnosticSnapshot() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!ensureInitializedLocked() || driver_ == nullptr) {
+        return false;
+    }
+    return driver_->ReadDiagnosticSnapshot(cached_snapshot_);
+}
+
+bool Pf1550Handler::ReadDiagnosticSnapshot(pf1550::DiagnosticSnapshot& out) noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    out = cached_snapshot_;
+    return cached_snapshot_.read_ok;
+}
+
+bool Pf1550Handler::RunPowerSelfTest(pf1550::SelfTestResult& out) noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!ensureInitializedLocked() || driver_ == nullptr) {
+        out = pf1550::SelfTestResult{};
+        out.ran = false;
+        return false;
+    }
+    const bool ok = driver_->RunPowerSelfTest(out);
+    cached_snapshot_ = out.snapshot;
+    return ok;
+}
+
+bool Pf1550Handler::ClearLatchedFaults() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!ensureInitializedLocked() || driver_ == nullptr) {
+        return false;
+    }
+    return driver_->ClearLatchedFaults();
+}
+
+bool Pf1550Handler::HasMcuAffectingFault() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!cached_snapshot_.read_ok) {
+        return false;
+    }
+    const auto sev = pf1550::WorstSeverityPortentaH7(cached_snapshot_.faults);
+    return static_cast<uint8_t>(sev) >=
+           static_cast<uint8_t>(pf1550::FaultSeverity::kCritical);
 }
 
 Pf1550Handler::Pf1550Driver* Pf1550Handler::GetDriver() noexcept { return driver_.get(); }

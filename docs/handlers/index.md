@@ -24,7 +24,7 @@ CRTP-templated device drivers. Each handler:
 | [As5047uHandler](as5047u_handler.md) | hf-as5047u-driver | BaseSpi | 14-bit angle, velocity, DAEC, GetDriver/visitDriver |
 | [Bno08xHandler](bno08x_handler.md) | hf-bno08x-driver | BaseI2c / BaseSpi | 9-DOF IMU, type-erased IBno08xDriverOps, GetDriver/visitDriver |
 | [Pca9685Handler](pca9685_handler.md) | hf-pca9685-driver | BaseI2c | 16-ch PWM, duty + phase, sleep/wake, PwmAdapter |
-| [Pf1550Handler](pf1550_handler.md) | hf-pf1550-driver | BaseI2c (+ opt. BaseGpio) | PF1550 PMIC, Portenta profile, power/USB straps |
+| [Pf1550Handler](pf1550_handler.md) | hf-pf1550-driver | BaseI2c (+ opt. BaseGpio) | PF1550 PMIC; `portenta_h7_carrier` / default profiles |
 | [Pcal95555Handler](pcal95555_handler.md) | hf-pcal95555-driver | BaseI2c | 16-pin GPIO expander, interrupts, Agile I/O, batch ops |
 | [NtcTemperatureHandler](ntc_temperature_handler.md) | hf-ntc-thermistor-driver | BaseAdc | Temperature sensing, EMA filter, thresholds, monitoring |
 | [Tmc9660Handler](tmc9660_handler.md) | hf-tmc9660-driver | BaseSpi / BaseUart | BLDC motor, GPIO/ADC/Temp wrappers, GetDriver/visitDriver |
