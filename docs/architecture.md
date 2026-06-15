@@ -21,7 +21,7 @@ The HardFOC platform follows a strict layered architecture:
 │  As5047uHandler  Bno08xHandler  Pca9685Handler       │
 │  Pcal95555Handler  NtcTemperatureHandler              │
 │  Tmc9660Handler  Tmc5160Handler  Tle92466edHandler    │
-│  Max22200Handler  Ws2812Handler  Logger               │
+│  Max22200Handler  Ws2812Handler  Isf15acp4Handler  Logger │
 ├──────────────────────────────────────────────────────┤
 │              BASE INTERFACES (internal)               │
 │  BaseSpi  BaseI2c  BaseGpio  BaseAdc                 │
@@ -32,7 +32,8 @@ The HardFOC platform follows a strict layered architecture:
 │  hf-as5047u-driver  hf-pca9685-driver               │
 │  hf-pcal95555-driver  hf-ntc-thermistor-driver      │
 │  hf-tmc5160-driver  hf-tle92466ed-driver            │
-│  hf-max22200-driver  hf-ws2812-rmt-driver           │
+│  hf-max22200-driver  hf-ws2812-rmt-driver            │
+│  hf-isf15acp4-driver                                 │
 ├──────────────────────────────────────────────────────┤
 │           PLATFORM IMPLEMENTATIONS                    │
 │  EspI2cBus/Device  EspSpi  EspGpio  EspAdc          │

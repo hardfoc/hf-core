@@ -37,7 +37,9 @@ Pipeline stages:
 
 Only apps with `ci_enabled: true` in `app_config.yml` are included in the matrix.
 Currently, `canopen_utils_test` and `full_integration_test` are disabled because they
-require specific hardware or network configuration.
+require specific hardware or network configuration. Handler tests such as
+`isf15acp4_handler_test` compile in CI (`ci_enabled: true`) even when the OLED module
+is not connected — runtime tests skip gracefully when initialization fails.
 
 ### 2. C++ Static Analysis (`ci-cpp-analysis.yml`)
 

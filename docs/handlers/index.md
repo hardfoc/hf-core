@@ -31,6 +31,7 @@ CRTP-templated device drivers. Each handler:
 | [Tmc5160Handler](tmc5160_handler.md) | hf-tmc5160-driver | BaseSpi / BaseUart | Stepper motor, 15 subsystems, GetDriver/visitDriver |
 | [Tle92466edHandler](tle92466ed_handler.md) | hf-tle92466ed-driver | BaseSpi | 6-ch solenoid driver, PWM, diagnostics, watchdog |
 | [Max22200Handler](max22200_handler.md) | hf-max22200-driver | BaseSpi | 8-ch solenoid/motor, CDR/VDR, HIT/HOLD, DPM |
+| [Isf15acp4Handler](isf15acp4_handler.md) | hf-isf15acp4-driver | BaseSpi + BaseGpio | 96×64 OLED pushbutton, pluggable graphics |
 | [Ws2812Handler](ws2812_handler.md) | hf-ws2812-rmt-driver | RMT | Addressable LED strip, GetDriver/visitDriver/visitAnimator |
 | [Logger](logger.md) | — | — | Singleton, colors, ASCII art, per-tag filtering |
 | [Se050Handler](se050_handler.md) | hf-se050-driver | BaseI2c (+ opt. BaseGpio) | T=1 SE050, `GetDevice()` = `se050::Device` |

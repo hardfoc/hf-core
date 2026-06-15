@@ -173,6 +173,22 @@ apps:
     ci_enabled: true
     featured: true
 
+  # ── ISF15ACP4 SmartDisplay OLED Handler ─────────────────────────────────
+  # Requires HF_CORE_ENABLE_ISF15ACP4 ON in components/hf_core/CMakeLists.txt
+  isf15acp4_handler_test:
+    description: >
+      Comprehensive test of Isf15acp4Handler: SPI/GPIO adapter with software SS,
+      initialization, DisplayOn/Off, FillScreen/Present, visitDriver/GetDriver,
+      error flags, deinitialize, and pre-init error handling.
+    source_file: "handler_tests/isf15acp4_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "NKK ISF15ACP4 on SPI (CS/DC/RES/VCC_EN/SWITCH GPIOs)"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: false
+
   # ── WS2812 LED Strip Handler ───────────────────────────────────────────
   ws2812_handler_test:
     description: >

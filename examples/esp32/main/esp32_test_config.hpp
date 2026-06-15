@@ -202,6 +202,32 @@
 #endif
 
 // ═══════════════════════════════════════════════════════════════════════════
+// ISF15ACP4 SMARTDISPLAY OLED (SPI + GPIO)
+// ═══════════════════════════════════════════════════════════════════════════
+
+#ifndef PIN_ISF15ACP4_SPI_DUMMY_CS
+#define PIN_ISF15ACP4_SPI_DUMMY_CS 46  // SPI device placeholder (SS is software GPIO)
+#endif
+#ifndef PIN_ISF15ACP4_CS
+#define PIN_ISF15ACP4_CS 14
+#endif
+#ifndef PIN_ISF15ACP4_DC
+#define PIN_ISF15ACP4_DC 15
+#endif
+#ifndef PIN_ISF15ACP4_RES
+#define PIN_ISF15ACP4_RES 16
+#endif
+#ifndef PIN_ISF15ACP4_VCC_EN
+#define PIN_ISF15ACP4_VCC_EN 17
+#endif
+#ifndef PIN_ISF15ACP4_SWITCH
+#define PIN_ISF15ACP4_SWITCH 18
+#endif
+#ifndef ISF15ACP4_SPI_CLOCK_HZ
+#define ISF15ACP4_SPI_CLOCK_HZ 6000000
+#endif
+
+// ═══════════════════════════════════════════════════════════════════════════
 // WS2812 ADDRESSABLE LED STRIP (RMT)
 // ═══════════════════════════════════════════════════════════════════════════
 

@@ -45,6 +45,7 @@ lib/core/
 │   │   ├── tmc5160_handler.md
 │   │   ├── tle92466ed_handler.md
 │   │   ├── max22200_handler.md
+│   │   ├── isf15acp4_handler.md
 │   │   ├── ws2812_handler.md
 │   │   ├── se050_handler.md
 │   │   └── logger.md
@@ -71,7 +72,7 @@ lib/core/
 │       │   ├── TestFramework.h         #     Shared test macros
 │       │   ├── esp32_bus_setup.hpp     #     Shared bus factories
 │       │   ├── esp32_test_config.hpp   #     Pin/address constants
-│       │   ├── handler_tests/          #     Handler test apps (11 files)
+│       │   ├── handler_tests/          #     Handler test apps (12 files)
 │       │   ├── utils_tests/            #     Utility test apps (4 files)
 │       │   └── integration_tests/      #     System integration test
 │       └── scripts/                    #     Build tools (git submodule)
@@ -91,6 +92,9 @@ lib/core/
 │   ├── max22200/
 │   │   ├── Max22200Handler.cpp
 │   │   └── Max22200Handler.h
+│   ├── isf15acp4/
+│   │   ├── Isf15acp4Handler.cpp
+│   │   └── Isf15acp4Handler.h
 │   ├── ntc/
 │   │   ├── NtcTemperatureHandler.cpp
 │   │   └── NtcTemperatureHandler.h
@@ -123,6 +127,7 @@ lib/core/
 │   │   ├── hf-as5047u-driver/
 │   │   ├── hf-bno08x-driver/
 │   │   ├── hf-max22200-driver/
+│   │   ├── hf-isf15acp4-driver/
 │   │   ├── hf-ntc-thermistor-driver/
 │   │   ├── hf-pca9685-driver/
 │   │   ├── hf-pcal95555-driver/

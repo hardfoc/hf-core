@@ -113,6 +113,7 @@ target_compile_definitions(${COMPONENT_LIB} PUBLIC ${HF_CORE_COMPILE_DEFINITIONS
 | `HF_CORE_ENABLE_TMC5160` | hf-tmc5160-driver | SPI/UART | Tmc5160Handler |
 | `HF_CORE_ENABLE_TMC9660` | hf-tmc9660-driver | SPI/UART | Tmc9660Handler + Tmc9660AdcWrapper |
 | `HF_CORE_ENABLE_WS2812` | hf-ws2812-rmt-driver | RMT | Ws2812Handler |
+| `HF_CORE_ENABLE_ISF15ACP4` | hf-isf15acp4-driver | SPI + GPIO | Isf15acp4Handler (**default OFF**) |
 | `HF_CORE_ENABLE_LOGGER` | internal | — | Logger (default ON) |
 
 ### Optional Interface Implementations (default OFF)
@@ -170,6 +171,7 @@ Each enabled feature adds a preprocessor definition:
 HARDFOC_AS5047U_SUPPORT=1      (if HF_CORE_ENABLE_AS5047U)
 HARDFOC_BNO08X_SUPPORT=1       (if HF_CORE_ENABLE_BNO08X)
 HARDFOC_TMC9660_SUPPORT=1      (if HF_CORE_ENABLE_TMC9660)
+HARDFOC_ISF15ACP4_SUPPORT=1    (if HF_CORE_ENABLE_ISF15ACP4)
 HARDFOC_LOGGER=1               (if HF_CORE_ENABLE_LOGGER)
 HARDFOC_CANOPEN_UTILS=1        (if HF_CORE_ENABLE_UTILS_CANOPEN)
 HF_MCU_FAMILY_ESP32=1          (always)
