@@ -158,6 +158,12 @@ public:
     /** @brief Check if initialized. */
     [[nodiscard]] bool IsInitialized() const noexcept { return initialized_; }
 
+    /**
+     * @brief STATUS[7:0] captured on the last command-phase SPI byte.
+     * @return 0xFF if the driver is not constructed; 0x04 = COMER.
+     */
+    [[nodiscard]] uint8_t GetLastFaultByte() const noexcept;
+
     //=========================================================================
     // Channel Configuration
     //=========================================================================
@@ -268,6 +274,8 @@ public:
     void DumpDiagnostics() noexcept;
 
 private:
+    /** @brief Initialize with default board configuration while @ref mutex_ is held. */
+    max22200::DriverStatus InitializeLocked() noexcept;
     bool EnsureInitializedLocked() noexcept;
 
     /**

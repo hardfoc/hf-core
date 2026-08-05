@@ -189,6 +189,10 @@ Max22200Handler::~Max22200Handler() noexcept {
 
 max22200::DriverStatus Max22200Handler::Initialize() noexcept {
     MutexLockGuard lock(mutex_);
+    return InitializeLocked();
+}
+
+max22200::DriverStatus Max22200Handler::InitializeLocked() noexcept {
     if (initialized_) {
         Logger::GetInstance().Warn(TAG, "Already initialized");
         return max22200::DriverStatus::OK;
@@ -265,7 +269,11 @@ bool Max22200Handler::EnsureInitializedLocked() noexcept {
         Logger::GetInstance().Error(TAG, "Comm adapter not created");
         return false;
     }
-    return Initialize() == max22200::DriverStatus::OK;
+    return InitializeLocked() == max22200::DriverStatus::OK;
+}
+
+uint8_t Max22200Handler::GetLastFaultByte() const noexcept {
+    return driver_ ? driver_->GetLastFaultByte() : static_cast<uint8_t>(0xFF);
 }
 
 bool Max22200Handler::WaitForActiveAndDrainFaults() noexcept {
@@ -483,6 +491,11 @@ void Max22200Handler::DumpDiagnostics() noexcept {
     max22200::FaultStatus faults{};
     if (driver_->ReadFaultRegister(faults) == max22200::DriverStatus::OK) {
         log.Info(TAG, "  Faults: hasFault=%s", faults.hasFault() ? "YES" : "no");
+        log.Info(TAG, "  OLF=0x%02x OCP=0x%02x HHF=0x%02x DPM=0x%02x",
+                 faults.open_load_fault_channel_mask,
+                 faults.overcurrent_channel_mask,
+                 faults.hit_not_reached_channel_mask,
+                 faults.plunger_movement_fault_channel_mask);
     }
 
     // Statistics

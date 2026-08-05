@@ -1282,6 +1282,7 @@ private:
     /// @{
     const tmc9660::BootloaderConfig* bootCfg_;   ///< Bootloader config (not owned; must outlive handler).
     uint8_t device_address_;                      ///< 7-bit TMCL device address.
+    bool boot_ok_{false};                         ///< true only after bootloaderInit Success.
     /// @}
 
     /// @name Thread Safety

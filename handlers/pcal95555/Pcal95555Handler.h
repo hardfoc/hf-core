@@ -220,8 +220,8 @@ private:
  * - Polarity inversion
  * - Interrupt configuration (delegates to handler for centralized management)
  *
- * @note Pin instances are created via Pcal95555Handler::CreateGpioPin() and
- *       stored in the handler's pin registry as shared_ptr.
+ * @note Pins may be heap-created via CreateGpioPin() or statically attached via
+ *       AttachStaticPin() (preferred when avoiding heap during bring-up).
  */
 class Pcal95555GpioPin : public BaseGpio {
 public:
@@ -239,7 +239,8 @@ public:
                      hf_gpio_direction_t direction = hf_gpio_direction_t::HF_GPIO_DIRECTION_INPUT,
                      hf_gpio_active_state_t active_state = hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH,
                      hf_gpio_output_mode_t output_mode = hf_gpio_output_mode_t::HF_GPIO_OUTPUT_MODE_PUSH_PULL,
-                     hf_gpio_pull_mode_t pull_mode = hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_FLOATING) noexcept;
+                     hf_gpio_pull_mode_t pull_mode = hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_FLOATING,
+                     bool configure_hardware = true) noexcept;
 
     /** @brief Default destructor. */
     ~Pcal95555GpioPin() noexcept override = default;
@@ -355,6 +356,7 @@ private:
     hf_pin_num_t pin_;                     ///< Pin number (0-15).
     Pcal95555Handler* parent_handler_;     ///< Owning handler (not owned).
     char description_[32] = {};            ///< Human-readable description.
+    bool configure_hardware_{true};        ///< If false, Initialize() skips I2C.
 
     /// @name Per-Pin Interrupt State
     /// @{
@@ -647,19 +649,26 @@ public:
     uint8_t GetI2cAddress() const noexcept;
 
     /**
-     * @brief Create or retrieve an existing BaseGpio pin wrapper.
+     * @brief Register a caller-owned pin wrapper (no heap allocation).
      *
-     * If a wrapper for the given pin already exists in the registry and
-     * allow_existing is true, the existing instance is returned. Otherwise
-     * a new Pcal95555GpioPin is created, initialized, and registered.
+     * Prefer for static/.bss pin maps: place @c Pcal95555GpioPin in fixed
+     * storage, batch-program directions, then attach with
+     * @c configure_hardware=false in the pin ctor.
      *
-     * @param pin            Pin number (0-15).
-     * @param direction      Initial direction (ignored if pin exists).
-     * @param active_state   Active polarity (ignored if pin exists).
-     * @param output_mode    Output mode (ignored if pin exists).
-     * @param pull_mode      Pull resistor mode (ignored if pin exists).
-     * @param allow_existing If true, returns existing pin; if false, fails if exists.
-     * @return shared_ptr<BaseGpio> or nullptr on failure.
+     * @return true if registered (or already the same object at that index).
+     */
+    bool AttachStaticPin(Pcal95555GpioPin& pin) noexcept;
+
+    /**
+     * @brief Create or retrieve an existing BaseGpio pin wrapper (heap).
+     *
+     * Prefer @ref AttachStaticPin when bring-up must avoid heap. This factory
+     * remains for tests and ad-hoc tools.
+     *
+     * @param configure_hardware If false, Initialize() skips I2C direction/pull
+     *        (caller must have batched SetDirections).
+     * @return shared_ptr that does not own the object (handler unique_ptr does);
+     *         nullptr on failure.
      */
     std::shared_ptr<BaseGpio> CreateGpioPin(
         hf_pin_num_t pin,
@@ -667,14 +676,25 @@ public:
         hf_gpio_active_state_t active_state = hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH,
         hf_gpio_output_mode_t output_mode = hf_gpio_output_mode_t::HF_GPIO_OUTPUT_MODE_PUSH_PULL,
         hf_gpio_pull_mode_t pull_mode = hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_FLOATING,
-        bool allow_existing = true) noexcept;
+        bool allow_existing = true,
+        bool configure_hardware = true) noexcept;
 
     /**
      * @brief Get an existing GPIO pin wrapper by number.
-     * @param pin Pin number (0-15).
-     * @return shared_ptr<BaseGpio> or nullptr if pin not created.
+     * @return non-owning shared_ptr, or nullptr if not registered.
      */
     std::shared_ptr<BaseGpio> GetGpioPin(hf_pin_num_t pin) noexcept;
+
+    /**
+     * @brief Raw pointer to a registered pin (no shared_ptr control block).
+     */
+    Pcal95555GpioPin* GetGpioPinRaw(hf_pin_num_t pin) noexcept;
+
+    /**
+     * @brief Read both INPUT_PORT registers in one dual-port transaction.
+     * @param[out] levels Bit N = physical HIGH on PCA pin N.
+     */
+    hf_gpio_err_t ReadAllInputLevels(uint16_t& levels) noexcept;
 
     /**
      * @brief Check if a pin wrapper has been created.
@@ -717,6 +737,14 @@ public:
      * @return GPIO_ERR_OK on success, or a specific hf_gpio_err_t error code.
      */
     hf_gpio_err_t SetPolarityInversion(hf_pin_num_t pin, bool invert) noexcept;
+
+    /**
+     * @brief Batch-set input polarity inversion for a pin mask.
+     * @param pin_mask Bits set select pins 0..15.
+     * @param invert   true to invert, false for normal (typical clear: mask=0xFFFF).
+     * @return GPIO_ERR_OK on success, or a specific hf_gpio_err_t error code.
+     */
+    hf_gpio_err_t SetMultiplePolarityInversion(uint16_t pin_mask, bool invert) noexcept;
 
     /**
      * @brief Set the per-pin interrupt mask.
@@ -904,7 +932,8 @@ private:
 
     /// @name Pin Registry
     /// @{
-    std::array<std::shared_ptr<Pcal95555GpioPin>, 16> pin_registry_; ///< Created pin wrappers.
+    std::array<Pcal95555GpioPin*, 16> pin_registry_{}; ///< Non-owning registry slots.
+    std::array<std::unique_ptr<Pcal95555GpioPin>, 16> owned_pins_{}; ///< Heap pins from CreateGpioPin.
     /// @}
 
     /// @name Interrupt Management

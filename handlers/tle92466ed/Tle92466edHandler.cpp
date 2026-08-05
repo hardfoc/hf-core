@@ -256,6 +256,10 @@ Tle92466edHandler::~Tle92466edHandler() noexcept {
 
 tle92466ed::DriverResult<void> Tle92466edHandler::Initialize() noexcept {
     MutexLockGuard lock(mutex_);
+    return InitializeLocked();
+}
+
+tle92466ed::DriverResult<void> Tle92466edHandler::InitializeLocked() noexcept {
     if (initialized_) {
         Logger::GetInstance().Warn(TAG, "Already initialized");
         return {};
@@ -327,7 +331,7 @@ bool Tle92466edHandler::EnsureInitializedLocked() noexcept {
         Logger::GetInstance().Error(TAG, "Comm adapter not created");
         return false;
     }
-    return Initialize().has_value();
+    return InitializeLocked().has_value();
 }
 
 tle92466ed::DriverResult<void> Tle92466edHandler::Deinitialize() noexcept {

@@ -17,7 +17,8 @@
  * Configuration highlights:
  * - LDO: VEXT1=5.0V, VEXT2=3.3V with 3ms slope control
  * - Boot Mode: Parameter mode for TMCL parameter-based control
- * - UART: Auto16x baud rate detection, GPIO6/7 pins, device address 1
+ * - UART: BR115200, GPIO6/7 pins, device address 1
+ * - Host SPI TMCL disabled (`disable_spi`); on-module SPI flash enabled
  * - External Clock: 16MHz crystal with PLL for stable 40MHz system clock
  * - SPI Flash: Enabled on SPI0 (GPIO11 SCK, GPIO12 CS) at 10MHz
  * - GPIO: GPIO5 analog input, GPIO17/18 digital inputs with pull-down
@@ -49,7 +50,7 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         false,                                     // disable_uart
         tmc9660::bootcfg::UartRxPin::GPIO7,       // rx_pin
         tmc9660::bootcfg::UartTxPin::GPIO6,       // tx_pin
-        tmc9660::bootcfg::BaudRate::Auto16x       // baud_rate
+        tmc9660::bootcfg::BaudRate::BR115200      // baud_rate (115200 8N1)
     },
     // RS485 Configuration (disabled)
     {
@@ -58,9 +59,9 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         0,                                         // txen_pre_delay
         0                                          // txen_post_delay
     },
-    // SPI Boot Configuration
+    // SPI Boot Configuration — host SPI TMCL off; UART primary
     {
-        false,                                     // disable_spi
+        true,                                      // disable_spi
         tmc9660::bootcfg::SPIInterface::SPI0,     // boot_spi_iface
         tmc9660::bootcfg::SPI0SckPin::GPIO6       // spi0_sck_pin
     },
@@ -287,7 +288,12 @@ Tmc9660Handler::Tmc9660Handler(BaseUart& uart, BaseGpio& rst, BaseGpio& drv_en,
       bootCfg_(bootCfg),
       device_address_(address) {
     // Create UART comm interface and driver (lazy - driver created in Initialize)
-    uart_comm_ = std::make_unique<HalUartTmc9660Comm>(uart, rst, drv_en, faultn, wake);
+    uart_comm_ = std::make_unique<HalUartTmc9660Comm>(
+        uart, rst, drv_en, faultn, wake,
+        /*rst_active_high=*/true,
+        /*drv_en_active_high=*/true,
+        /*faultn_active_low=*/true,
+        /*wake_active_low=*/true);  // nWK from expander is typically active-low
     // Eagerly create peripheral wrappers so accessors never return dangling refs.
     gpioWrappers_[0] = std::make_unique<Gpio>(*this, 17);
     gpioWrappers_[1] = std::make_unique<Gpio>(*this, 18);
@@ -306,7 +312,7 @@ bool Tmc9660Handler::Initialize(bool performReset, bool retrieveBootloaderInfo,
                                  bool failOnVerifyError) {
     static constexpr const char* TAG = "Tmc9660Handler";
 
-    if (IsDriverReady()) {
+    if (boot_ok_) {
         return true;
     }
 
@@ -348,12 +354,17 @@ bool Tmc9660Handler::Initialize(bool performReset, bool retrieveBootloaderInfo,
 
     if (!success) {
         Logger::GetInstance().Error(TAG, "Bootloader initialization failed");
+        /* Drop partial driver so IsDriverReady stays false and retries redo init. */
+        spi_driver_.reset();
+        uart_driver_.reset();
+        boot_ok_ = false;
         return false;
     }
 
     // Peripheral wrappers (GPIO, ADC, Temperature) are created eagerly in the
     // constructor so that the accessors always return valid references.
 
+    boot_ok_ = true;
     Logger::GetInstance().Info(TAG, "TMC9660 initialized successfully via %s",
                                use_spi_ ? "SPI" : "UART");
     return true;
@@ -365,15 +376,14 @@ bool Tmc9660Handler::EnsureInitialized() noexcept {
 }
 
 bool Tmc9660Handler::EnsureInitializedLocked() noexcept {
-    if (IsDriverReady()) {
+    if (boot_ok_) {
         return true;
     }
     return Initialize();
 }
 
 bool Tmc9660Handler::IsDriverReady() const noexcept {
-    if (use_spi_) return spi_driver_ != nullptr;
-    return uart_driver_ != nullptr;
+    return boot_ok_;
 }
 
 //==============================================================================

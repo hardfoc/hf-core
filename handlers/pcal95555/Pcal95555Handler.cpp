@@ -33,35 +33,35 @@ HalI2cPcal95555Comm::HalI2cPcal95555Comm(BaseI2c& i2c_device) noexcept
 
 bool HalI2cPcal95555Comm::Write(uint8_t addr, uint8_t reg,
                                 const uint8_t* data, size_t len) noexcept {
-    MutexLockGuard lock(i2c_mutex_);
-
-    // Validate that the driver's address matches the BaseI2c device address.
-    if (addr != i2c_device_.GetDeviceAddress()) {
+    /* Serialization: StmI2cBus::LockBus inside BaseI2c::Write. The adapter
+     * RtosMutex is intentionally not taken — dual-core bring-up saw
+     * BindAndVerify WriteRead succeed while HalI2c (mutex-gated) failed. */
+    if (addr < 0x20U || addr > 0x27U) {
         return false;
     }
+    (void)addr;
 
-    // Frame the I2C register write: [register, data...]
-    // PCAL9555 register writes are at most 2 data bytes; 4-byte buffer is sufficient.
     constexpr size_t kMaxBuf = 4;
     if (len + 1 > kMaxBuf) {
-        return false;  // Unexpected oversized write for this device.
+        return false;
     }
 
     uint8_t command[kMaxBuf];
     command[0] = reg;
     std::memcpy(&command[1], data, len);
-    return i2c_device_.Write(command, len + 1) == hf_i2c_err_t::I2C_SUCCESS;
+    return i2c_device_.Write(command, static_cast<hf_u16_t>(len + 1), 200) ==
+           hf_i2c_err_t::I2C_SUCCESS;
 }
 
 bool HalI2cPcal95555Comm::Read(uint8_t addr, uint8_t reg,
                                uint8_t* data, size_t len) noexcept {
-    MutexLockGuard lock(i2c_mutex_);
-
-    if (addr != i2c_device_.GetDeviceAddress()) {
+    if (addr < 0x20U || addr > 0x27U || data == nullptr || len == 0U) {
         return false;
     }
+    (void)addr;
 
-    return i2c_device_.WriteRead(&reg, 1, data, len) == hf_i2c_err_t::I2C_SUCCESS;
+    return i2c_device_.WriteRead(&reg, 1, data, static_cast<hf_u16_t>(len), 200) ==
+           hf_i2c_err_t::I2C_SUCCESS;
 }
 
 bool HalI2cPcal95555Comm::EnsureInitialized() noexcept {
@@ -87,6 +87,9 @@ Pcal95555Handler::Pcal95555Handler(BaseI2c& i2c_device,
       interrupt_pin_(interrupt_pin),
       interrupt_configured_(false) {
     pin_registry_.fill(nullptr);
+    for (auto& owned : owned_pins_) {
+        owned.reset();
+    }
     pull_mode_cache_.fill(hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_FLOATING);
 }
 
@@ -126,17 +129,35 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
         }
     }
 
-    // 2. Create the typed PCAL95555 driver (address-based constructor).
+    // 2. Create the typed PCAL95555 driver at the *current* BaseI2c address.
+    //    Recreate on every attempt so a rebound strap address is picked up after
+    //    a failed Mem_Read (static handler must not keep a stale driver).
+    pcal95555_driver_.reset();
+    uint8_t addr = static_cast<uint8_t>(i2c_device_.GetDeviceAddress());
+    if (addr < 0x20U || addr > 0x27U) {
+#if defined(PW_PCAL9555_I2C_ADDR)
+      addr = static_cast<uint8_t>(PW_PCAL9555_I2C_ADDR);
+#else
+      addr = 0x20U;
+#endif
+    }
+#if defined(HF_PCAL95555_FORCE_PCA9555) && HF_PCAL95555_FORCE_PCA9555
+    /* Some TCA/PCA modules NACK the Agile ID (0x4F). Probing it can leave
+     * certain I2C masters sticky; force PCA9555 when the board profile sets
+     * HF_PCAL95555_FORCE_PCA9555. */
+    pcal95555_driver_ = std::make_unique<Pcal95555Driver>(
+        i2c_adapter_.get(), addr, pcal95555::ChipVariant::PCA9555);
+#else
+    pcal95555_driver_ = std::make_unique<Pcal95555Driver>(
+        i2c_adapter_.get(), addr);
+#endif
     if (!pcal95555_driver_) {
-        pcal95555_driver_ = std::make_unique<Pcal95555Driver>(
-            i2c_adapter_.get(), i2c_device_.GetDeviceAddress());
-        if (!pcal95555_driver_) {
-            return hf_gpio_err_t::GPIO_ERR_OUT_OF_MEMORY;
-        }
+        return hf_gpio_err_t::GPIO_ERR_OUT_OF_MEMORY;
     }
 
     // 3. Initialize the driver (lazy init, auto-detects chip variant).
     if (!pcal95555_driver_->EnsureInitialized()) {
+        pcal95555_driver_.reset();
         return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
     }
 
@@ -196,6 +217,9 @@ hf_gpio_err_t Pcal95555Handler::Deinitialize() noexcept {
 
     // Clear pin registry (handler_mutex_ already held by caller).
     pin_registry_.fill(nullptr);
+    for (auto& owned : owned_pins_) {
+        owned.reset();
+    }
 
     // Release driver and adapter.
     pcal95555_driver_.reset();
@@ -240,9 +264,11 @@ hf_gpio_err_t Pcal95555Handler::ReadInput(uint8_t pin, bool& active) noexcept {
 
     active = pcal95555_driver_->ReadPin(pin);
 
-    // ReadPin returns the level directly; check error flags for I2C failures.
-    uint16_t error_flags = pcal95555_driver_->GetErrorFlags();
-    if (error_flags != 0) {
+    /* Only the I2C-read bit means this ReadPin failed. Sticky I2CWriteFail /
+     * UnsupportedFeature from an earlier op must not poison every IsActive()
+     * (that blocked MAX EN prove + ic_diag SampleCtrlFlags with map ready). */
+    constexpr uint16_t kReadFail = static_cast<uint16_t>(Error::I2CReadFail);
+    if ((pcal95555_driver_->GetErrorFlags() & kReadFail) != 0U) {
         return hf_gpio_err_t::GPIO_ERR_READ_FAILURE;
     }
     return hf_gpio_err_t::GPIO_SUCCESS;
@@ -585,7 +611,7 @@ void Pcal95555Handler::ProcessInterrupts() noexcept {
                     ? hf_gpio_interrupt_trigger_t::HF_GPIO_INTERRUPT_TRIGGER_RISING_EDGE
                     : hf_gpio_interrupt_trigger_t::HF_GPIO_INTERRUPT_TRIGGER_FALLING_EDGE;
             gpio_pin->interrupt_callback_(
-                gpio_pin.get(), actual, gpio_pin->interrupt_user_data_);
+                gpio_pin, actual, gpio_pin->interrupt_user_data_);
         }
     }
 }
@@ -609,38 +635,91 @@ uint8_t Pcal95555Handler::GetI2cAddress() const noexcept {
     return pcal95555_driver_ ? pcal95555_driver_->GetAddress() : 0;
 }
 
+namespace {
+
+struct NonOwningGpioDeleter {
+    void operator()(BaseGpio*) const noexcept {}
+};
+
+std::shared_ptr<BaseGpio> ShareNonOwning(Pcal95555GpioPin* pin) noexcept {
+    if (pin == nullptr) {
+        return nullptr;
+    }
+    return std::shared_ptr<BaseGpio>(static_cast<BaseGpio*>(pin),
+                                     NonOwningGpioDeleter{});
+}
+
+}  // namespace
+
+bool Pcal95555Handler::AttachStaticPin(Pcal95555GpioPin& pin) noexcept {
+    const hf_pin_num_t idx = pin.GetPin();
+    if (idx >= 16) {
+        return false;
+    }
+
+    /* Initialize outside the handler mutex — soft-attach Initialize() does not
+     * re-enter SetDirection when configure_hardware=false. */
+    if (!pin.Initialize()) {
+        return false;
+    }
+
+    MutexLockGuard lock(handler_mutex_);
+    if (!EnsureInitializedLocked()) {
+        return false;
+    }
+    if (pin_registry_[idx] != nullptr && pin_registry_[idx] != &pin) {
+        return false;
+    }
+    /* Static attach must not collide with a heap-owned slot. */
+    if (owned_pins_[idx] != nullptr && owned_pins_[idx].get() != &pin) {
+        return false;
+    }
+    pin_registry_[idx] = &pin;
+    return true;
+}
+
 std::shared_ptr<BaseGpio> Pcal95555Handler::CreateGpioPin(
     hf_pin_num_t pin,
     hf_gpio_direction_t direction,
     hf_gpio_active_state_t active_state,
     hf_gpio_output_mode_t output_mode,
     hf_gpio_pull_mode_t pull_mode,
-    bool allow_existing) noexcept {
+    bool allow_existing,
+    bool configure_hardware) noexcept {
 
     if (pin >= 16) return nullptr;
+
+    /* Do not hold handler_mutex_ across unique_ptr alloc / pin->Initialize(). */
+    {
+        MutexLockGuard lock(handler_mutex_);
+        if (!EnsureInitializedLocked()) return nullptr;
+        if (pin_registry_[pin] != nullptr) {
+            return allow_existing ? ShareNonOwning(pin_registry_[pin]) : nullptr;
+        }
+    }
+
+    auto new_pin = std::make_unique<Pcal95555GpioPin>(
+        pin, this, direction, active_state, output_mode, pull_mode,
+        configure_hardware);
+    if (!new_pin || !new_pin->Initialize()) {
+        return nullptr;
+    }
+
     MutexLockGuard lock(handler_mutex_);
-    if (!EnsureInitializedLocked()) return nullptr;
-
-    // Check if pin already exists.
     if (pin_registry_[pin] != nullptr) {
-        return allow_existing
-                   ? std::static_pointer_cast<BaseGpio>(pin_registry_[pin])
-                   : nullptr;
+        return allow_existing ? ShareNonOwning(pin_registry_[pin]) : nullptr;
     }
-
-    // Create a new Pcal95555GpioPin with handler reference (not driver pointer).
-    auto new_pin = std::make_shared<Pcal95555GpioPin>(
-        pin, this, direction, active_state, output_mode, pull_mode);
-
-    if (new_pin && new_pin->Initialize()) {
-        pin_registry_[pin] = new_pin;
-        return new_pin;
-    }
-
-    return nullptr;
+    Pcal95555GpioPin* raw = new_pin.get();
+    owned_pins_[pin] = std::move(new_pin);
+    pin_registry_[pin] = raw;
+    return ShareNonOwning(raw);
 }
 
 std::shared_ptr<BaseGpio> Pcal95555Handler::GetGpioPin(hf_pin_num_t pin) noexcept {
+    return ShareNonOwning(GetGpioPinRaw(pin));
+}
+
+Pcal95555GpioPin* Pcal95555Handler::GetGpioPinRaw(hf_pin_num_t pin) noexcept {
     if (pin >= 16) return nullptr;
     MutexLockGuard lock(handler_mutex_);
     return pin_registry_[pin];
@@ -661,6 +740,19 @@ uint16_t Pcal95555Handler::GetCreatedPinMask() const noexcept {
         }
     }
     return mask;
+}
+
+hf_gpio_err_t Pcal95555Handler::ReadAllInputLevels(uint16_t& levels) noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!EnsureInitializedLocked()) {
+        return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    }
+    levels = pcal95555_driver_->ReadAllInputs();
+    constexpr uint16_t kReadFail = static_cast<uint16_t>(Error::I2CReadFail);
+    if ((pcal95555_driver_->GetErrorFlags() & kReadFail) != 0U) {
+        return hf_gpio_err_t::GPIO_ERR_READ_FAILURE;
+    }
+    return hf_gpio_err_t::GPIO_SUCCESS;
 }
 
 // =====================================================================
@@ -684,6 +776,18 @@ hf_gpio_err_t Pcal95555Handler::SetPolarityInversion(hf_pin_num_t pin, bool inve
 
     Polarity pol = invert ? Polarity::Inverted : Polarity::Normal;
     return pcal95555_driver_->SetPinPolarity(pin, pol)
+               ? hf_gpio_err_t::GPIO_SUCCESS
+               : hf_gpio_err_t::GPIO_ERR_COMMUNICATION_FAILURE;
+}
+
+hf_gpio_err_t Pcal95555Handler::SetMultiplePolarityInversion(uint16_t pin_mask,
+                                                             bool invert) noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!EnsureInitializedLocked()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    if (pin_mask == 0U) return hf_gpio_err_t::GPIO_SUCCESS;
+
+    const Polarity pol = invert ? Polarity::Inverted : Polarity::Normal;
+    return pcal95555_driver_->SetMultiplePolarities(pin_mask, pol)
                ? hf_gpio_err_t::GPIO_SUCCESS
                : hf_gpio_err_t::GPIO_ERR_COMMUNICATION_FAILURE;
 }
@@ -877,10 +981,12 @@ Pcal95555GpioPin::Pcal95555GpioPin(
     hf_gpio_direction_t direction,
     hf_gpio_active_state_t active_state,
     hf_gpio_output_mode_t output_mode,
-    hf_gpio_pull_mode_t pull_mode) noexcept
+    hf_gpio_pull_mode_t pull_mode,
+    bool configure_hardware) noexcept
     : BaseGpio(pin, direction, active_state, output_mode, pull_mode),
       pin_(pin),
-      parent_handler_(parent_handler) {
+      parent_handler_(parent_handler),
+      configure_hardware_(configure_hardware) {
     snprintf(description_, sizeof(description_), "PCAL95555_PIN_%d",
              static_cast<int>(pin_));
 }
@@ -888,9 +994,21 @@ Pcal95555GpioPin::Pcal95555GpioPin(
 bool Pcal95555GpioPin::Initialize() noexcept {
     if (!parent_handler_) return false;
 
+    /* Soft attach: directions/pulls already programmed (batch bring-up). */
+    if (!configure_hardware_) {
+        initialized_ = true;
+        return true;
+    }
+
     // Configure direction via the handler (which routes to the driver).
-    auto dir_result = parent_handler_->SetDirection(
-        static_cast<uint8_t>(pin_), current_direction_);
+    hf_gpio_err_t dir_result = hf_gpio_err_t::GPIO_ERR_FAILURE;
+    for (int attempt = 0; attempt < 5; ++attempt) {
+        dir_result = parent_handler_->SetDirection(
+            static_cast<uint8_t>(pin_), current_direction_);
+        if (dir_result == hf_gpio_err_t::GPIO_SUCCESS) {
+            break;
+        }
+    }
     if (dir_result != hf_gpio_err_t::GPIO_SUCCESS) {
         return false;
     }

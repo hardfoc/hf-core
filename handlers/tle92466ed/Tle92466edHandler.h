@@ -330,6 +330,8 @@ public:
     void DumpDiagnostics() noexcept;
 
 private:
+    /** @brief Initialize while @ref mutex_ is already held. */
+    tle92466ed::DriverResult<void> InitializeLocked() noexcept;
     bool EnsureInitializedLocked() noexcept;
 
     /// @brief Type trait to detect tle92466ed::DriverResult<T> types

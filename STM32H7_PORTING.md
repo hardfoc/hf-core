@@ -26,7 +26,7 @@ reference and apply the patch inventory below.
 | GPIO guard | `hf-core-drivers/internal/hf-internal-interface-wrap/inc/mcu/stm32/StmGpio.h` | `#ifndef GPIOA` around `struct GPIO_TypeDef` forward declaration | Avoids conflict with CMSIS/HAL GPIO typedefs |
 | Logger enums | `hf-core-drivers/internal/hf-internal-interface-wrap/src/mcu/stm32/StmLogger.cpp` | Use `hf_log_level_t::LOG_LEVEL_*` and `statistics_.write_errors` | Aligns with hf-core enum/stat field names |
 | Logger factory | `lib/hf_core_handlers/StmLoggerFactory.cpp` | `StmLogger::Backend::SWO_ITM` | Matches StmLogger backend enum |
-| Pin config (product) | `hf-core-drivers/internal/hf-pincfg/src/hf_functional_pin_config_pw_controller_v1.hpp` | Board-specific functional pin map (ADR-007) | Required by `pw_hal_platform_gpio_util.hpp`; not yet upstream |
+| Pin config (product) | `hf-core-drivers/internal/hf-pincfg/src/hf_functional_pin_config_pw_controller_v1.hpp` | Board-specific functional pin map (ADR-0014) | Required by `pw_hal_platform_gpio_util.hpp`; not yet upstream |
 | Host thread stub | `hf-core-utils/hf-utils-rtos-wrap/src/BaseThreadHostStub.cpp` | Host-only BaseThread shim | Required for `HF_RTOS_NONE` host builds |
 | RTOS bring-up | `hf-core-utils/CMakeLists.txt` | `HF_RTOS_NONE=1` for host/STM32 pre-FreeRTOS builds | Allows handler/util compilation before CubeMX FreeRTOS is linked |
 | RTOS abstraction | `hf-core-utils/hf-utils-rtos-wrap/include/OsAbstraction.h` | `HF_RTOS_NONE` stub path alongside `HF_RTOS_FREERTOS` | Host and bare-metal builds without FreeRTOS headers |
@@ -61,6 +61,6 @@ cmake --preset stm32-debug && cmake --build build/stm32-debug
 ## Notes
 
 - Do not copy EvKit/Vortex pin maps into product HAL; board bindings live in
-  `pw_hal_comm_platform.cpp` and ADR-007 pin freeze.
+  `pw_hal_comm_platform.cpp` and ADR-0014 pin authority.
 - Full FreeRTOS mode activates automatically when CubeMX generates the kernel
   (`PW_ENABLE_FREERTOS=1` via `cmake/pw_cubemx_detect.cmake`).
