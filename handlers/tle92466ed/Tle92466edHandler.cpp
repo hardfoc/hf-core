@@ -10,6 +10,13 @@
 
 static constexpr const char* TAG = "TLE92466ED";
 
+namespace {
+/* D1 AXI .bss — never frame SPI on the CM4 FMC SDRAM heap/stack (ldrb hazard;
+ * HalSpiTle92466edComm itself may live in SDRAM via unique_ptr). */
+uint8_t g_tle_spi_tx[4]{};
+uint8_t g_tle_spi_rx[4]{};
+}  // namespace
+
 ///////////////////////////////////////////////////////////////////////////////
 // HalSpiTle92466edComm Implementation
 ///////////////////////////////////////////////////////////////////////////////
@@ -25,12 +32,9 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::Init() noexcept {
         return tle::unexpected(last_error_);
     }
 
-    // Configure required control pins to known-safe defaults.
-    if (resn_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT) !=
-        hf_gpio_err_t::GPIO_SUCCESS) {
-        last_error_ = tle92466ed::CommError::HardwareNotReady;
-        return tle::unexpected(last_error_);
-    }
+    /* Pins are batch-programmed by PcalActuatorGpioMap — only confirm polarity
+     * and park levels. Extra SetDirection RMW on Mid I2C0 has wedged the
+     * expander after map bring-up. */
     resn_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
     if (!resn_.EnsureInitialized() ||
         resn_.SetInactive() != hf_gpio_err_t::GPIO_SUCCESS) {
@@ -38,11 +42,6 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::Init() noexcept {
         return tle::unexpected(last_error_);
     }
 
-    if (en_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT) !=
-        hf_gpio_err_t::GPIO_SUCCESS) {
-        last_error_ = tle92466ed::CommError::HardwareNotReady;
-        return tle::unexpected(last_error_);
-    }
     en_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH);
     if (!en_.EnsureInitialized() ||
         en_.SetInactive() != hf_gpio_err_t::GPIO_SUCCESS) {
@@ -51,11 +50,6 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::Init() noexcept {
     }
 
     if (faultn_) {
-        if (faultn_->SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_INPUT) !=
-            hf_gpio_err_t::GPIO_SUCCESS) {
-            last_error_ = tle92466ed::CommError::HardwareNotReady;
-            return tle::unexpected(last_error_);
-        }
         faultn_->SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
         if (!faultn_->EnsureInitialized()) {
             last_error_ = tle92466ed::CommError::HardwareNotReady;
@@ -78,28 +72,31 @@ tle92466ed::CommResult<uint32_t> HalSpiTle92466edComm::Transfer32(uint32_t tx_da
         last_error_ = tle92466ed::CommError::HardwareNotReady;
         return tle::unexpected(last_error_);
     }
-    // 32-bit full-duplex: 4 bytes MSB-first
-    uint8_t tx_buf[4] = {
-        static_cast<uint8_t>((tx_data >> 24) & 0xFF),
-        static_cast<uint8_t>((tx_data >> 16) & 0xFF),
-        static_cast<uint8_t>((tx_data >>  8) & 0xFF),
-        static_cast<uint8_t>((tx_data >>  0) & 0xFF)
-    };
-    uint8_t rx_buf[4] = {};
+    /* Assemble in AXI scratch from registers — not a task-stack frame. */
+    g_tle_spi_tx[0] = static_cast<uint8_t>((tx_data >> 24) & 0xFF);
+    g_tle_spi_tx[1] = static_cast<uint8_t>((tx_data >> 16) & 0xFF);
+    g_tle_spi_tx[2] = static_cast<uint8_t>((tx_data >> 8) & 0xFF);
+    g_tle_spi_tx[3] = static_cast<uint8_t>((tx_data >> 0) & 0xFF);
+    g_tle_spi_rx[0] = g_tle_spi_rx[1] = g_tle_spi_rx[2] = g_tle_spi_rx[3] = 0;
 
-    auto err = spi_.Transfer(tx_buf, rx_buf, hf_u16_t{4}, hf_u32_t{0});
+    auto err = spi_.Transfer(g_tle_spi_tx, g_tle_spi_rx, hf_u16_t{4}, hf_u32_t{0});
     if (err != hf_spi_err_t::SPI_SUCCESS) {
         Logger::GetInstance().Error(TAG,
             "Transfer32: SPI Transfer failed (err=%d) tx=%02X %02X %02X %02X",
-            static_cast<int>(err), tx_buf[0], tx_buf[1], tx_buf[2], tx_buf[3]);
+            static_cast<int>(err), g_tle_spi_tx[0], g_tle_spi_tx[1],
+            g_tle_spi_tx[2], g_tle_spi_tx[3]);
         last_error_ = tle92466ed::CommError::TransferError;
         return tle::unexpected(last_error_);
     }
 
-    uint32_t rx_data = (static_cast<uint32_t>(rx_buf[0]) << 24) |
-                       (static_cast<uint32_t>(rx_buf[1]) << 16) |
-                       (static_cast<uint32_t>(rx_buf[2]) <<  8) |
-                       (static_cast<uint32_t>(rx_buf[3]) <<  0);
+    const uint32_t rx_data =
+        (static_cast<uint32_t>(g_tle_spi_rx[0]) << 24) |
+        (static_cast<uint32_t>(g_tle_spi_rx[1]) << 16) |
+        (static_cast<uint32_t>(g_tle_spi_rx[2]) << 8) |
+        (static_cast<uint32_t>(g_tle_spi_rx[3]) << 0);
+    last_rx_ = rx_data;
+    /* Inter-frame gap between CS cycles (TLE two-transfer read protocol). */
+    handler_utils::DelayUs(5U);
     last_error_ = tle92466ed::CommError::None;
     return rx_data;
 }

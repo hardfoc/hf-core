@@ -7,6 +7,15 @@
 #include "Max22200Handler.h"
 #include "Logger.h"
 #include "HandlerCommon.h"
+
+#include <cstring>
+
+namespace {
+/* D1 AXI .bss — MAX driver builds 4-byte frames on the SDRAM task stack;
+ * stage through AXI before HAL_SPI_* (same CM4 FMC ldrb class as I2C). */
+uint8_t g_max_spi_tx[8]{};
+uint8_t g_max_spi_rx[8]{};
+}  // namespace
 #include "OsUtility.h"
 
 static constexpr const char* TAG = "MAX22200";
@@ -29,40 +38,27 @@ bool HalSpiMax22200Comm::Initialize() noexcept {
         return false;
     }
 
-    auto err = enable_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT);
-    if (err != hf_gpio_err_t::GPIO_SUCCESS) {
-        log.Error(TAG, "comm.Init: ENABLE.SetDirection failed (%d)", static_cast<int>(err));
-        initialized_ = false;
-        return false;
-    }
+    /* Map already programmed directions — polarity + park only. */
     enable_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH);
     if (!enable_.EnsureInitialized()) {
         log.Error(TAG, "comm.Init: ENABLE.EnsureInitialized failed");
         initialized_ = false;
         return false;
     }
-    err = enable_.SetInactive();
+    auto err = enable_.SetInactive();
     if (err != hf_gpio_err_t::GPIO_SUCCESS) {
         log.Error(TAG, "comm.Init: ENABLE.SetInactive failed (%d)", static_cast<int>(err));
         initialized_ = false;
         return false;
     }
 
-    err = cmd_.SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT);
-    if (err != hf_gpio_err_t::GPIO_SUCCESS) {
-        log.Error(TAG, "comm.Init: CMD.SetDirection failed (%d)", static_cast<int>(err));
-        initialized_ = false;
-        return false;
-    }
     cmd_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH);
     if (!cmd_.EnsureInitialized()) {
         log.Error(TAG, "comm.Init: CMD.EnsureInitialized failed");
         initialized_ = false;
         return false;
     }
-    // Drive CMD HIGH so the MAX22200 is parked in command-write phase (the
-    // driver toggles CMD per-transaction; matches the proven driver test
-    // bus which configures CMD initial level = 1).
+    /* Park CMD HIGH (command-write phase); driver toggles per transaction. */
     err = cmd_.SetActive();
     if (err != hf_gpio_err_t::GPIO_SUCCESS) {
         log.Error(TAG, "comm.Init: CMD.SetActive failed (%d)", static_cast<int>(err));
@@ -71,12 +67,6 @@ bool HalSpiMax22200Comm::Initialize() noexcept {
     }
 
     if (fault_) {
-        if (fault_->SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_INPUT) !=
-            hf_gpio_err_t::GPIO_SUCCESS) {
-            log.Error(TAG, "comm.Init: FAULT.SetDirection failed");
-            initialized_ = false;
-            return false;
-        }
         fault_->SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
         if (!fault_->EnsureInitialized()) {
             log.Error(TAG, "comm.Init: FAULT.EnsureInitialized failed");
@@ -94,8 +84,30 @@ bool HalSpiMax22200Comm::Transfer(const uint8_t* tx_data, uint8_t* rx_data, size
     if (!IsReady() || tx_data == nullptr || rx_data == nullptr || length == 0) {
         return false;
     }
-    auto err = spi_.Transfer(tx_data, rx_data, static_cast<hf_u16_t>(length), hf_u32_t{0});
-    return (err == hf_spi_err_t::SPI_SUCCESS);
+    if (length > sizeof(g_max_spi_tx)) {
+        return false;
+    }
+    /* Word-sized hop into AXI when possible (avoids FMC ldrb on stack bytes). */
+    if (length == 4U) {
+        uint32_t tw = 0;
+        std::memcpy(&tw, tx_data, 4U);
+        std::memcpy(g_max_spi_tx, &tw, 4U);
+    } else {
+        std::memcpy(g_max_spi_tx, tx_data, length);
+    }
+    auto err = spi_.Transfer(g_max_spi_tx, g_max_spi_rx,
+                             static_cast<hf_u16_t>(length), hf_u32_t{0});
+    if (err != hf_spi_err_t::SPI_SUCCESS) {
+        return false;
+    }
+    if (length == 4U) {
+        uint32_t rw = 0;
+        std::memcpy(&rw, g_max_spi_rx, 4U);
+        std::memcpy(rx_data, &rw, 4U);
+    } else {
+        std::memcpy(rx_data, g_max_spi_rx, length);
+    }
+    return true;
 }
 
 bool HalSpiMax22200Comm::SetChipSelect(bool /*state*/) noexcept {

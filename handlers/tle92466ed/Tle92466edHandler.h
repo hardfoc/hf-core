@@ -49,12 +49,18 @@
  * @brief CRTP SPI communication adapter for TLE92466ED using BaseSpi and BaseGpio.
  *
  * Implements all methods required by tle92466ed::SpiInterface<HalSpiTle92466edComm>.
+ *
+ * @note Flying-wire (Portenta SPI2 Mode 1, CS PI0): driver @c Init holds EN LOW
+ *       only for the RESN pulse, then asserts EN HIGH before the SPI identity
+ *       read. Channel outputs remain gated by CH_CTRL after POR — EN high is
+ *       not “valves open”. Callers must @c ClaimChipHandlerOwnership on the
+ *       PCAL map before constructing this adapter.
  */
 class HalSpiTle92466edComm : public tle92466ed::SpiInterface<HalSpiTle92466edComm> {
 public:
     /**
      * @brief Construct the SPI adapter.
-     * @param spi    Reference to pre-configured BaseSpi.
+     * @param spi    Reference to pre-configured BaseSpi (Mode 1, 32-bit frames).
      * @param resn   BaseGpio connected to RESN (reset, active LOW).
      * @param en     BaseGpio connected to EN (enable, active HIGH).
      * @param faultn Optional BaseGpio connected to FAULTN (active LOW input).
@@ -68,6 +74,10 @@ public:
     // Bring base class variadic Log into scope (avoids name hiding)
     using tle92466ed::SpiInterface<HalSpiTle92466edComm>::Log;
 
+    /**
+     * @brief Reset pulse, assert EN, then SPI identity / fault clear.
+     * @return Failure leaves last RX in @ref LastRxWord for CDC diag.
+     */
     tle92466ed::CommResult<void> Init() noexcept;
     tle92466ed::CommResult<void> Deinit() noexcept;
     tle92466ed::CommResult<uint32_t> Transfer32(uint32_t tx_data) noexcept;
@@ -84,6 +94,9 @@ public:
     void Log(tle92466ed::LogLevel level, const char* tag,
              const char* format, va_list args) noexcept;
 
+    /** @brief Last 32-bit SPI RX word (bring-up / WrongDeviceID diagnostics). */
+    [[nodiscard]] uint32_t LastRxWord() const noexcept { return last_rx_; }
+
     /// @}
 
 private:
@@ -93,6 +106,7 @@ private:
     BaseGpio*  faultn_;
     bool       initialized_{false};
     tle92466ed::CommError last_error_{tle92466ed::CommError::None};
+    uint32_t   last_rx_{0};
 };
 
 /// @}
@@ -314,6 +328,11 @@ public:
 
     /** @brief Get IC version (returns 0 on error). */
     uint32_t GetIcVersion() noexcept;
+
+    /** @brief Last SPI RX word from the comm adapter (init / probe diagnostics). */
+    [[nodiscard]] uint32_t LastSpiRxWord() const noexcept {
+        return comm_ ? comm_->LastRxWord() : 0U;
+    }
 
     //=========================================================================
     // Direct Driver Access

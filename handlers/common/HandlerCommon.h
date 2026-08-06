@@ -23,6 +23,10 @@
 #include "esp_rom_sys.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#elif defined(HF_RTOS_FREERTOS)
+#include "OsUtility.h"
+#elif defined(USE_HAL_DRIVER)
+extern "C" void HAL_Delay(uint32_t Delay);
 #endif
 
 namespace handler_utils {
@@ -57,26 +61,42 @@ inline void RouteLogToLogger(int level, const char* tag,
 /**
  * @brief RTOS-aware millisecond delay.
  *
- * On ESP-IDF, yields to the RTOS scheduler via vTaskDelay.
- * On other platforms, falls back to a busy-wait loop.
+ * On ESP-IDF / FreeRTOS (Portenta CM4), yields via the scheduler so TLE/MAX
+ * reset settle times (datasheet ≥10 ms) are real wall time — not a short
+ * `volatile` busy-wait that was ~3×–10× too short at 200–240 MHz.
  *
  * @param ms Delay duration in milliseconds.
  */
 inline void DelayMs(uint32_t ms) noexcept {
 #if defined(ESP_PLATFORM)
     vTaskDelay(pdMS_TO_TICKS(ms));
+#elif defined(HF_RTOS_FREERTOS)
+    while (ms > 0U) {
+        const uint16_t chunk =
+            (ms > 60000U) ? static_cast<uint16_t>(60000U)
+                          : static_cast<uint16_t>(ms);
+        os_delay_msec(chunk);
+        ms -= chunk;
+    }
+#elif defined(USE_HAL_DRIVER)
+    HAL_Delay(ms);
 #else
-    volatile uint32_t count = ms * 10000;
-    while (count--) { __asm__ volatile(""); }
+    /* Last-resort busy-wait (~1 ms @ CM4 ~200 MHz). Prefer RTOS/HAL above. */
+    for (uint32_t m = 0; m < ms; ++m) {
+        volatile uint32_t spin = 40000U;
+        while (spin--) {
+            __asm__ volatile("");
+        }
+    }
 #endif
 }
 
 /**
  * @brief Microsecond delay with automatic fallback to RTOS delay for large values.
  *
- * For delays >= 1 ms, delegates to an RTOS task delay to avoid blocking
- * the CPU. For shorter delays, uses a hardware microsecond delay on
- * ESP-IDF or a busy-wait loop on other platforms.
+ * For delays >= 1 ms, delegates to @ref DelayMs (scheduler / HAL). Shorter
+ * delays use `esp_rom_delay_us` on ESP-IDF or a denser busy-wait on STM32
+ * so SPI CS setup / inter-frame gaps are not no-ops.
  *
  * @param us Delay duration in microseconds.
  */
@@ -88,8 +108,17 @@ inline void DelayUs(uint32_t us) noexcept {
         esp_rom_delay_us(us);
     }
 #else
-    volatile uint32_t count = us * 10;
-    while (count--) { __asm__ volatile(""); }
+    if (us >= 1000U) {
+        DelayMs((us + 999U) / 1000U);
+        return;
+    }
+    /* ~1 µs/iteration @ CM4 ~200–240 MHz (Portenta dual-core). */
+    for (uint32_t i = 0; i < us; ++i) {
+        volatile uint32_t spin = 40U;
+        while (spin--) {
+            __asm__ volatile("");
+        }
+    }
 #endif
 }
 

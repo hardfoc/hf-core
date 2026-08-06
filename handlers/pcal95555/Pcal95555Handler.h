@@ -193,6 +193,10 @@ private:
     BaseI2c& i2c_device_;                  ///< I2C device interface (not owned).
     mutable RtosMutex i2c_mutex_;          ///< Thread safety for I2C operations.
     std::function<void()> interrupt_handler_; ///< Stored interrupt handler from driver.
+    uint8_t cmd_scratch_{0};               ///< Register cmd byte for Read/Write framing.
+    /** TX/RX framing in handler .bss (D1 AXI) — never on CM4 FMC SDRAM stack. */
+    uint8_t tx_scratch_[4]{};
+    uint8_t rx_scratch_[2]{};
 };
 
 /// @} // end of PCAL95555_HAL_I2CAdapter
@@ -511,7 +515,11 @@ public:
     hf_gpio_err_t SetOutput(uint8_t pin, bool active) noexcept;
 
     /**
-     * @brief Read the logical level of an input pin.
+     * @brief Read the physical level of a pin.
+     *
+     * Output pins (CONFIG bit clear) return the OUTPUT latch shadow — Mid
+     * I2C0 @c INPUT_PORT is not used for driven lines. Input pins sample
+     * the wire via the driver.
      * @param pin         Pin number (0-15).
      * @param[out] active true if HIGH, false if LOW.
      * @return GPIO_SUCCESS or error code (checks driver error flags).
@@ -695,6 +703,52 @@ public:
      * @param[out] levels Bit N = physical HIGH on PCA pin N.
      */
     hf_gpio_err_t ReadAllInputLevels(uint16_t& levels) noexcept;
+
+    /**
+     * @brief Absolute program POL=0, OUTPUT latch, and CONFIG (no RMW).
+     *
+     * Seeds the handler port shadow used by @ref SetOutput / @ref SetDirections.
+     * Verifies via latch readback when distinct, else INPUT pad follow on
+     * driven-high output bits (datasheet: INPUT mirrors pad for outputs).
+     *
+     * @param config CONFIG mask (bit=1 → input)
+     * @param output OUTPUT latch mask
+     * @param out_check_mask bits of OUTPUT that must match for verify
+     */
+    hf_gpio_err_t ProgramPortsAbsolute(uint16_t config, uint16_t output,
+                                       uint16_t out_check_mask) noexcept;
+
+    /**
+     * @brief Read CONFIG (1=input) and OUTPUT latch port pairs (PCA pin bits).
+     */
+    hf_gpio_err_t ReadConfigAndOutputPorts(uint16_t& config,
+                                           uint16_t& output) noexcept;
+
+    /**
+     * @brief Read the full standard PCA9555 bank (0x00..0x07) as four 16-bit ports.
+     *
+     * @details Per NXP datasheet: INPUT reflects pad levels even when the pin is
+     *          an output; OUTPUT readback is the latch flip-flop; CONFIG bit=1
+     *          means input. Use after a write to confirm the latch took effect.
+     */
+    hf_gpio_err_t ReadStandardRegisterBank(uint16_t& input, uint16_t& output,
+                                           uint16_t& polarity,
+                                           uint16_t& config) noexcept;
+
+    /**
+     * @brief Drive one pin and verify OUTPUT latch + INPUT pad follow.
+     *
+     * @param pin PCA pin 0..15 (prefer an unused pad for bench integrity tests).
+     * @param[out] latch_high OUTPUT bank after writing HIGH
+     * @param[out] input_high INPUT bank after writing HIGH
+     * @param[out] latch_low  OUTPUT bank after writing LOW
+     * @param[out] input_low  INPUT bank after writing LOW
+     * @return GPIO_SUCCESS when latch followed both edges; pad follow is best-effort
+     *         (external shorts may still make INPUT disagree — check the out masks).
+     */
+    hf_gpio_err_t VerifyOutputPinEffect(uint8_t pin, uint16_t& latch_high,
+                                        uint16_t& input_high, uint16_t& latch_low,
+                                        uint16_t& input_low) noexcept;
 
     /**
      * @brief Check if a pin wrapper has been created.
@@ -953,6 +1007,15 @@ private:
     /// @brief Tracks previous input state for rising/falling edge filtering.
     /// @{
     uint16_t prev_input_state_ = 0; ///< Last-read pin input levels (bitmask).
+    /// @}
+
+    /// @name Port shadows (absolute write path)
+    /// @brief Avoid read-modify-write when register readback is untrustworthy.
+    /// @{
+    uint16_t output_shadow_{0xFFFFU};   ///< PCA POR default OUTPUT
+    uint16_t config_shadow_{0xFFFFU};   ///< PCA POR default CONFIG (all input)
+    uint16_t polarity_shadow_{0};       ///< POLARITY_INV
+    bool port_shadow_valid_{false};
     /// @}
 };
 

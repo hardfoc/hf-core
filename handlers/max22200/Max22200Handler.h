@@ -42,7 +42,9 @@
  * @brief CRTP SPI communication adapter for MAX22200 using BaseSpi and BaseGpio.
  *
  * Implements all methods required by max22200::SpiInterface<HalSpiMax22200Comm>.
- * Handles the two-phase CMD-pin SPI protocol.
+ * Handles the two-phase CMD-pin SPI protocol (CMD HIGH = command byte,
+ * CMD LOW = data). Flying-wire: Portenta SPI2 Mode 0, soft CS **PC13**;
+ * EN/CMD/nFLT are PCAL-backed — claim map ownership before Initialize.
  */
 class HalSpiMax22200Comm : public max22200::SpiInterface<HalSpiMax22200Comm> {
 public:

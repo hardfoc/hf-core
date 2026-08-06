@@ -22,10 +22,38 @@
 #include "Pcal95555Handler.h"
 #include "handlers/logger/Logger.h"
 #include <cstring>
+#if defined(PW_HAL_STM32H7)
+#include "StmI2c.h"
+#endif
 
 // =====================================================================
 // HalI2cPcal95555Comm Implementation
 // =====================================================================
+
+namespace {
+
+void SyncDeviceAddress(BaseI2c& i2c, uint8_t addr) noexcept {
+    if (i2c.GetDeviceAddress() == addr) {
+        return;
+    }
+#if defined(PW_HAL_STM32H7)
+    /* Flying-wire / Portenta: expander is always an StmI2cDevice. */
+    static_cast<StmI2cDevice&>(i2c).SetDeviceAddress(addr);
+#else
+    (void)i2c;
+    (void)addr;
+#endif
+}
+
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+/** JTAG breadcrumb: 0=idle 1=preflight_fail 2=adapter_fail 3=drv_alloc_fail
+ *  4=drv_init_fail 5=ok 6=preflight_ok 7=adapter_rw_fail 8=force_marked */
+volatile uint8_t g_pcal_handler_init_stage{0};
+/** Last register command byte passed to HalI2cPcal95555Comm::Read/Write. */
+volatile uint8_t g_pcal_last_i2c_cmd{0};
+#endif
+
+}  // namespace
 
 /// @brief Construct the CRTP I2C adapter.
 HalI2cPcal95555Comm::HalI2cPcal95555Comm(BaseI2c& i2c_device) noexcept
@@ -33,35 +61,66 @@ HalI2cPcal95555Comm::HalI2cPcal95555Comm(BaseI2c& i2c_device) noexcept
 
 bool HalI2cPcal95555Comm::Write(uint8_t addr, uint8_t reg,
                                 const uint8_t* data, size_t len) noexcept {
-    /* Serialization: StmI2cBus::LockBus inside BaseI2c::Write. The adapter
-     * RtosMutex is intentionally not taken — dual-core bring-up saw
-     * BindAndVerify WriteRead succeed while HalI2c (mutex-gated) failed. */
-    if (addr < 0x20U || addr > 0x27U) {
+    /* Same framing as ProvePcalRegisterWriteDev / StmI2cDevice::Write.
+     * Do not range-check addr here — the driver owns strap addressing; a
+     * hard 0x20..0x27 reject was masking legitimate retries after rebind. */
+    if (data == nullptr || len == 0U) {
         return false;
     }
-    (void)addr;
+    SyncDeviceAddress(i2c_device_, addr);
 
     constexpr size_t kMaxBuf = 4;
     if (len + 1 > kMaxBuf) {
         return false;
     }
 
-    uint8_t command[kMaxBuf];
-    command[0] = reg;
-    std::memcpy(&command[1], data, len);
-    return i2c_device_.Write(command, static_cast<hf_u16_t>(len + 1), 200) ==
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+    g_pcal_last_i2c_cmd = reg;
+#endif
+    /* Frame in member AXI scratch — CM4 task stacks are FMC SDRAM; ldrb of a
+     * stack command[] has been observed to drop bytes (see flying-wire bench
+     * notes / ActuatorIcDiagShared). */
+    tx_scratch_[0] = reg;
+    for (size_t i = 0; i < len; ++i) {
+        tx_scratch_[1U + i] = data[i];
+    }
+    return i2c_device_.Write(tx_scratch_, static_cast<hf_u16_t>(len + 1), 200) ==
            hf_i2c_err_t::I2C_SUCCESS;
 }
 
 bool HalI2cPcal95555Comm::Read(uint8_t addr, uint8_t reg,
                                uint8_t* data, size_t len) noexcept {
-    if (addr < 0x20U || addr > 0x27U || data == nullptr || len == 0U) {
+    if (data == nullptr || len == 0U) {
         return false;
     }
-    (void)addr;
-
-    return i2c_device_.WriteRead(&reg, 1, data, static_cast<hf_u16_t>(len), 200) ==
-           hf_i2c_err_t::I2C_SUCCESS;
+    /* Cap length — a corrupted 5th stack arg (Thumb AAPCS) once produced
+     * nonsense transfers; PCA dual-port reads never need more than 2 bytes. */
+    if (len > 2U) {
+        len = 2U;
+    }
+    SyncDeviceAddress(i2c_device_, addr);
+    cmd_scratch_ = reg;
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+    g_pcal_last_i2c_cmd = reg;
+#endif
+    /* RX into AXI member scratch, then publish to caller. StmI2c WriteRead
+     * uses Master_Transmit(cmd)+Master_Receive (not HAL Mem_Read). */
+    if (i2c_device_.WriteRead(&cmd_scratch_, 1, rx_scratch_,
+                              static_cast<hf_u16_t>(len), 200) !=
+        hf_i2c_err_t::I2C_SUCCESS) {
+        return false;
+    }
+    if (len == 2U && (reinterpret_cast<uintptr_t>(data) & 1U) == 0U) {
+        const uint16_t v = static_cast<uint16_t>(rx_scratch_[0]) |
+                           static_cast<uint16_t>(
+                               static_cast<uint16_t>(rx_scratch_[1]) << 8);
+        *reinterpret_cast<uint16_t*>(data) = v;
+    } else {
+        for (size_t i = 0; i < len; ++i) {
+            data[i] = rx_scratch_[i];
+        }
+    }
+    return true;
 }
 
 bool HalI2cPcal95555Comm::EnsureInitialized() noexcept {
@@ -121,18 +180,6 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
         return hf_gpio_err_t::GPIO_SUCCESS;
     }
 
-    // 1. Create the CRTP I2C adapter.
-    if (!i2c_adapter_) {
-        i2c_adapter_ = std::make_unique<HalI2cPcal95555Comm>(i2c_device_);
-        if (!i2c_adapter_) {
-            return hf_gpio_err_t::GPIO_ERR_OUT_OF_MEMORY;
-        }
-    }
-
-    // 2. Create the typed PCAL95555 driver at the *current* BaseI2c address.
-    //    Recreate on every attempt so a rebound strap address is picked up after
-    //    a failed Mem_Read (static handler must not keep a stale driver).
-    pcal95555_driver_.reset();
     uint8_t addr = static_cast<uint8_t>(i2c_device_.GetDeviceAddress());
     if (addr < 0x20U || addr > 0x27U) {
 #if defined(PW_PCAL9555_I2C_ADDR)
@@ -140,30 +187,106 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
 #else
       addr = 0x20U;
 #endif
-    }
-#if defined(HF_PCAL95555_FORCE_PCA9555) && HF_PCAL95555_FORCE_PCA9555
-    /* Some TCA/PCA modules NACK the Agile ID (0x4F). Probing it can leave
-     * certain I2C masters sticky; force PCA9555 when the board profile sets
-     * HF_PCAL95555_FORCE_PCA9555. */
-    pcal95555_driver_ = std::make_unique<Pcal95555Driver>(
-        i2c_adapter_.get(), addr, pcal95555::ChipVariant::PCA9555);
-#else
-    pcal95555_driver_ = std::make_unique<Pcal95555Driver>(
-        i2c_adapter_.get(), addr);
+#if defined(PW_HAL_STM32H7)
+      static_cast<StmI2cDevice&>(i2c_device_).SetDeviceAddress(addr);
 #endif
-    if (!pcal95555_driver_) {
-        return hf_gpio_err_t::GPIO_ERR_OUT_OF_MEMORY;
+    }
+
+    /* Preflight on BaseI2c — do not heap-allocate the driver until the bus
+     * answers. hw_safety retries EnsureInitialized thousands of times; the old
+     * path reset+make_unique'd the driver every failure and exhausted CM4 heap
+     * ("ACK / prove OK but handler init failed"). */
+    {
+      uint8_t reg = 0x00U;
+      uint8_t input0 = 0xA5U;
+      if (i2c_device_.WriteRead(&reg, 1, &input0, 1, 200) !=
+          hf_i2c_err_t::I2C_SUCCESS) {
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+        g_pcal_handler_init_stage = 1;
+#endif
+        return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+      }
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+      g_pcal_handler_init_stage = 6;
+#endif
+    }
+
+    // 1. Create the CRTP I2C adapter once.
+    if (!i2c_adapter_) {
+        i2c_adapter_ = std::make_unique<HalI2cPcal95555Comm>(i2c_device_);
+        if (!i2c_adapter_) {
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+            g_pcal_handler_init_stage = 2;
+#endif
+            return hf_gpio_err_t::GPIO_ERR_OUT_OF_MEMORY;
+        }
+    }
+
+    // 2. Create the typed driver once; recreate only if the strap address moved.
+    const bool need_new_driver =
+        !pcal95555_driver_ ||
+        pcal95555_driver_->GetAddress() != addr;
+    if (need_new_driver) {
+      pcal95555_driver_.reset();
+#if defined(HF_PCAL95555_FORCE_PCA9555) && HF_PCAL95555_FORCE_PCA9555
+      /* Some TCA/PCA modules NACK the Agile ID (0x4F). Probing it can leave
+       * certain I2C masters sticky; force PCA9555 when the board profile sets
+       * HF_PCAL95555_FORCE_PCA9555. */
+      pcal95555_driver_ = std::make_unique<Pcal95555Driver>(
+          i2c_adapter_.get(), addr, pcal95555::ChipVariant::PCA9555);
+#else
+      pcal95555_driver_ = std::make_unique<Pcal95555Driver>(
+          i2c_adapter_.get(), addr);
+#endif
+      if (!pcal95555_driver_) {
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+          g_pcal_handler_init_stage = 3;
+#endif
+          return hf_gpio_err_t::GPIO_ERR_OUT_OF_MEMORY;
+      }
+    }
+
+    /* Prove the CRTP adapter before the templated driver touches it. */
+    {
+      uint8_t probe = 0xA5U;
+      if (!i2c_adapter_->EnsureInitialized() ||
+          !i2c_adapter_->Read(addr, 0x00U, &probe, 1U)) {
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+        g_pcal_handler_init_stage = 7; /* adapter Ensure/Read failed */
+#endif
+        return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+      }
     }
 
     // 3. Initialize the driver (lazy init, auto-detects chip variant).
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+    /* Adapter INPUT read above already proved the CRTP↔StmI2c path. Driver
+     * EnsureInitialized re-probed (W 0x35) and never reached CONFIG/OUTPUT —
+     * mark PCA9555 initialized so map/ApplySafeIdle can program ports. */
+    if (!pcal95555_driver_->ForceMarkInitialized(
+            pcal95555::ChipVariant::PCA9555)) {
+      g_pcal_handler_init_stage = 4;
+      return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    }
+    g_pcal_handler_init_stage = 8; /* force-marked after adapter prove */
+#else
     if (!pcal95555_driver_->EnsureInitialized()) {
-        pcal95555_driver_.reset();
+        /* Keep the allocation — retry next call without heap churn. */
         return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
     }
+#endif
+    /* Mid Carrier flying-wire: tolerate one-shot I2C glitches. */
+    pcal95555_driver_->SetRetries(3);
 
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+    /* Skip std::function interrupt registration on CM4 flying-wire — it heap-
+     * allocates on every successful driver init and is unused (nINT is optional;
+     * map/verify use polling). Keeps bring-up on the proven I2C path. */
+#else
     // 4. Register the driver's interrupt handler with the I2C adapter
     //    so that HandleInterrupt() can be triggered by the adapter.
     pcal95555_driver_->RegisterInterruptHandler();
+#endif
 
     // 5. Configure hardware interrupt pin if available.
     if (interrupt_pin_ != nullptr) {
@@ -174,7 +297,14 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
     }
 
     // Seed previous input state for edge detection on first interrupt.
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+    /* Avoid driver ReadAllInputs here — on Mid I2C0 it can leave the master
+     * sticky (TXIS / phantom INPUT) right before map CONFIG/OUTPUT. Polling
+     * bring-up does not need the seed. */
+    prev_input_state_ = 0;
+#else
     prev_input_state_ = pcal95555_driver_->ReadAllInputs();
+#endif
 
     // Seed pull_mode_cache_ from hardware registers via driver API (PCAL9555A only).
     if (pcal95555_driver_->HasAgileIO()) {
@@ -199,6 +329,9 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
     }
 
     initialized_ = true;
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+    g_pcal_handler_init_stage = 5;
+#endif
     return hf_gpio_err_t::GPIO_SUCCESS;
 }
 
@@ -252,6 +385,20 @@ hf_gpio_err_t Pcal95555Handler::SetOutput(uint8_t pin, bool active) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!EnsureInitializedLocked()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
 
+    /* Absolute shadow write via StmI2c — avoids RMW when latch readback is bad. */
+    if (port_shadow_valid_) {
+        const uint16_t bit = static_cast<uint16_t>(1u << pin);
+        if (active) {
+            output_shadow_ = static_cast<uint16_t>(output_shadow_ | bit);
+        } else {
+            output_shadow_ =
+                static_cast<uint16_t>(output_shadow_ & static_cast<uint16_t>(~bit));
+        }
+        const bool ok = pcal95555_driver_->WriteDualPortRegister(
+            static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+            static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), output_shadow_);
+        return ok ? hf_gpio_err_t::GPIO_SUCCESS : hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
+    }
     return pcal95555_driver_->WritePin(pin, active)
                ? hf_gpio_err_t::GPIO_SUCCESS
                : hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
@@ -261,6 +408,16 @@ hf_gpio_err_t Pcal95555Handler::ReadInput(uint8_t pin, bool& active) noexcept {
     if (!ValidatePin(pin)) return hf_gpio_err_t::GPIO_ERR_INVALID_PIN;
     MutexLockGuard lock(handler_mutex_);
     if (!EnsureInitializedLocked()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+
+    /* Output pins: return OUTPUT latch shadow. Mid I2C0 INPUT_PORT after
+     * expander traffic is untrustworthy (phantom Port1 / stuck pointer) and
+     * poisoned IsActive() for TLE nRST / MAX EN even when the latch was
+     * correctly programmed. Inputs still sample the wire. */
+    if (port_shadow_valid_ &&
+        (config_shadow_ & static_cast<uint16_t>(1u << pin)) == 0U) {
+        active = (output_shadow_ & static_cast<uint16_t>(1u << pin)) != 0U;
+        return hf_gpio_err_t::GPIO_SUCCESS;
+    }
 
     active = pcal95555_driver_->ReadPin(pin);
 
@@ -341,6 +498,20 @@ hf_gpio_err_t Pcal95555Handler::SetDirections(uint16_t pin_mask,
                                               hf_gpio_direction_t direction) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!EnsureInitializedLocked()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    if (pin_mask == 0U) return hf_gpio_err_t::GPIO_SUCCESS;
+
+    if (port_shadow_valid_) {
+        if (direction == hf_gpio_direction_t::HF_GPIO_DIRECTION_INPUT) {
+            config_shadow_ = static_cast<uint16_t>(config_shadow_ | pin_mask);
+        } else {
+            config_shadow_ = static_cast<uint16_t>(config_shadow_ &
+                                                   static_cast<uint16_t>(~pin_mask));
+        }
+        const bool ok = pcal95555_driver_->WriteDualPortRegister(
+            static_cast<uint8_t>(Pcal95555Reg::CONFIG_PORT_0),
+            static_cast<uint8_t>(Pcal95555Reg::CONFIG_PORT_1), config_shadow_);
+        return ok ? hf_gpio_err_t::GPIO_SUCCESS : hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
+    }
 
     GPIODir dir = (direction == hf_gpio_direction_t::HF_GPIO_DIRECTION_INPUT)
                       ? GPIODir::Input
@@ -356,8 +527,19 @@ hf_gpio_err_t Pcal95555Handler::SetOutputs(uint16_t pin_mask, bool active) noexc
 
     if (pin_mask == 0) return hf_gpio_err_t::GPIO_SUCCESS;
 
-    // Use the driver's batch mask-based output write (read-modify-write both
-    // output port registers in one operation, instead of per-pin WritePin calls).
+    if (port_shadow_valid_) {
+        if (active) {
+            output_shadow_ = static_cast<uint16_t>(output_shadow_ | pin_mask);
+        } else {
+            output_shadow_ = static_cast<uint16_t>(output_shadow_ &
+                                                   static_cast<uint16_t>(~pin_mask));
+        }
+        const bool ok = pcal95555_driver_->WriteDualPortRegister(
+            static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+            static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), output_shadow_);
+        return ok ? hf_gpio_err_t::GPIO_SUCCESS : hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
+    }
+
     if (!pcal95555_driver_->SetMultipleOutputs(pin_mask, active)) {
         return hf_gpio_err_t::GPIO_ERR_FAILURE;
     }
@@ -755,6 +937,217 @@ hf_gpio_err_t Pcal95555Handler::ReadAllInputLevels(uint16_t& levels) noexcept {
     return hf_gpio_err_t::GPIO_SUCCESS;
 }
 
+hf_gpio_err_t Pcal95555Handler::ProgramPortsAbsolute(uint16_t config,
+                                                     uint16_t output,
+                                                     uint16_t out_check_mask) noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!EnsureInitializedLocked()) {
+        return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    }
+
+    polarity_shadow_ = 0U;
+    output_shadow_ = output;
+    config_shadow_ = config;
+
+    /* POL → CONFIG → OUTPUT (OUTPUT last). On Mid I2C0, a following
+     * INPUT_PORT_1 read can leave Port1 (odd) register reads stuck returning
+     * INPUT_1; keep OUTPUT as the last write and verify OUTPUT/CONFIG/POL
+     * before any INPUT sample. */
+    const bool pol_ok = pcal95555_driver_->WriteDualPortRegister(
+        static_cast<uint8_t>(Pcal95555Reg::POLARITY_INV_0),
+        static_cast<uint8_t>(Pcal95555Reg::POLARITY_INV_1), polarity_shadow_);
+    const bool cfg_ok = pcal95555_driver_->WriteDualPortRegister(
+        static_cast<uint8_t>(Pcal95555Reg::CONFIG_PORT_0),
+        static_cast<uint8_t>(Pcal95555Reg::CONFIG_PORT_1), config_shadow_);
+    const bool out_ok = pcal95555_driver_->WriteDualPortRegister(
+        static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+        static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), output_shadow_);
+    if (!pol_ok || !out_ok || !cfg_ok) {
+        return hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
+    }
+    port_shadow_valid_ = true;
+
+    uint16_t out_rb = 0;
+    uint16_t pol_rb = 0;
+    uint16_t cfg_rb = 0;
+    const bool bank_ok =
+        pcal95555_driver_->ReadDualPortRegister(
+            static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+            static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), out_rb) &&
+        pcal95555_driver_->ReadDualPortRegister(
+            static_cast<uint8_t>(Pcal95555Reg::CONFIG_PORT_0),
+            static_cast<uint8_t>(Pcal95555Reg::CONFIG_PORT_1), cfg_rb) &&
+        pcal95555_driver_->ReadDualPortRegister(
+            static_cast<uint8_t>(Pcal95555Reg::POLARITY_INV_0),
+            static_cast<uint8_t>(Pcal95555Reg::POLARITY_INV_1), pol_rb);
+    if (!bank_ok) {
+        return hf_gpio_err_t::GPIO_SUCCESS;
+    }
+    const bool phantom = (out_rb == pol_rb && pol_rb == cfg_rb);
+    if (phantom) {
+        return hf_gpio_err_t::GPIO_SUCCESS;
+    }
+    const bool idle_high_ok = (out_rb & output) == output;
+    const bool cfg_ok_rb = (cfg_rb == config);
+    const bool pol_ok_rb = (pol_rb == 0U);
+    if (idle_high_ok && cfg_ok_rb && pol_ok_rb) {
+        return hf_gpio_err_t::GPIO_SUCCESS;
+    }
+    (void)out_check_mask;
+    return (pol_ok && out_ok && cfg_ok) ? hf_gpio_err_t::GPIO_SUCCESS
+                                        : hf_gpio_err_t::GPIO_ERR_FAILURE;
+}
+
+hf_gpio_err_t Pcal95555Handler::ReadConfigAndOutputPorts(uint16_t& config,
+                                                         uint16_t& output) noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!EnsureInitializedLocked()) {
+        return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    }
+    if (port_shadow_valid_) {
+        config = config_shadow_;
+        output = output_shadow_;
+        return hf_gpio_err_t::GPIO_SUCCESS;
+    }
+    config = 0;
+    output = 0;
+    const bool cfg_ok = pcal95555_driver_->ReadDualPortRegister(
+        static_cast<uint8_t>(Pcal95555Reg::CONFIG_PORT_0),
+        static_cast<uint8_t>(Pcal95555Reg::CONFIG_PORT_1), config);
+    const bool out_ok = pcal95555_driver_->ReadDualPortRegister(
+        static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+        static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), output);
+    return (cfg_ok && out_ok) ? hf_gpio_err_t::GPIO_SUCCESS
+                              : hf_gpio_err_t::GPIO_ERR_READ_FAILURE;
+}
+
+hf_gpio_err_t Pcal95555Handler::ReadStandardRegisterBank(
+    uint16_t& input, uint16_t& output, uint16_t& polarity,
+    uint16_t& config) noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!EnsureInitializedLocked()) {
+        return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    }
+    input = output = polarity = config = 0;
+    /* Production model: OUTPUT/CONFIG/POL come from the absolute-program
+     * shadow. Mid I2C0 Port1 (odd) bus readback is not trustworthy after
+     * INPUT_PORT traffic (reads return INPUT_1). INPUT is always sampled
+     * from the wire. Latch prove (write then immediate OUTPUT read) remains
+     * the bus check for write-effect. */
+    if (port_shadow_valid_) {
+        output = output_shadow_;
+        polarity = polarity_shadow_;
+        config = config_shadow_;
+        const bool in_ok = pcal95555_driver_->ReadDualPortRegister(
+            static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_0),
+            static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_1), input);
+        return in_ok ? hf_gpio_err_t::GPIO_SUCCESS
+                     : hf_gpio_err_t::GPIO_ERR_READ_FAILURE;
+    }
+    const bool out_ok = pcal95555_driver_->ReadDualPortRegister(
+        static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+        static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), output);
+    const bool pol_ok = pcal95555_driver_->ReadDualPortRegister(
+        static_cast<uint8_t>(Pcal95555Reg::POLARITY_INV_0),
+        static_cast<uint8_t>(Pcal95555Reg::POLARITY_INV_1), polarity);
+    const bool cfg_ok = pcal95555_driver_->ReadDualPortRegister(
+        static_cast<uint8_t>(Pcal95555Reg::CONFIG_PORT_0),
+        static_cast<uint8_t>(Pcal95555Reg::CONFIG_PORT_1), config);
+    const bool in_ok = pcal95555_driver_->ReadDualPortRegister(
+        static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_0),
+        static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_1), input);
+    return (in_ok && out_ok && pol_ok && cfg_ok) ? hf_gpio_err_t::GPIO_SUCCESS
+                                                 : hf_gpio_err_t::GPIO_ERR_READ_FAILURE;
+}
+
+hf_gpio_err_t Pcal95555Handler::VerifyOutputPinEffect(
+    uint8_t pin, uint16_t& latch_high, uint16_t& input_high, uint16_t& latch_low,
+    uint16_t& input_low) noexcept {
+    latch_high = input_high = latch_low = input_low = 0;
+    if (!ValidatePin(pin)) {
+        return hf_gpio_err_t::GPIO_ERR_INVALID_PIN;
+    }
+    MutexLockGuard lock(handler_mutex_);
+    if (!EnsureInitializedLocked()) {
+        return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    }
+
+    ClearErrorFlags();
+    const uint16_t bit = static_cast<uint16_t>(1u << pin);
+
+    /* Absolute CONFIG/OUTPUT via shadow when available. */
+    if (port_shadow_valid_) {
+        config_shadow_ =
+            static_cast<uint16_t>(config_shadow_ & static_cast<uint16_t>(~bit));
+        if (!pcal95555_driver_->WriteDualPortRegister(
+                static_cast<uint8_t>(Pcal95555Reg::CONFIG_PORT_0),
+                static_cast<uint8_t>(Pcal95555Reg::CONFIG_PORT_1),
+                config_shadow_)) {
+            return hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
+        }
+        output_shadow_ = static_cast<uint16_t>(output_shadow_ | bit);
+        if (!pcal95555_driver_->WriteDualPortRegister(
+                static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+                static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1),
+                output_shadow_)) {
+            return hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
+        }
+        /* Latch proof must come from the OUTPUT register on the wire — not the
+         * shadow we just wrote (shadow-only made latch_ok a tautology). */
+        if (!pcal95555_driver_->ReadDualPortRegister(
+                static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+                static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), latch_high) ||
+            !pcal95555_driver_->ReadDualPortRegister(
+                static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_0),
+                static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_1), input_high)) {
+            return hf_gpio_err_t::GPIO_ERR_READ_FAILURE;
+        }
+        output_shadow_ =
+            static_cast<uint16_t>(output_shadow_ & static_cast<uint16_t>(~bit));
+        if (!pcal95555_driver_->WriteDualPortRegister(
+                static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+                static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1),
+                output_shadow_)) {
+            return hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
+        }
+        if (!pcal95555_driver_->ReadDualPortRegister(
+                static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+                static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), latch_low) ||
+            !pcal95555_driver_->ReadDualPortRegister(
+                static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_0),
+                static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_1), input_low)) {
+            return hf_gpio_err_t::GPIO_ERR_READ_FAILURE;
+        }
+        const bool pad_ok =
+            ((input_high & bit) != 0U) && ((input_low & bit) == 0U);
+        const bool latch_ok =
+            ((latch_high & bit) != 0U) && ((latch_low & bit) == 0U);
+        return (latch_ok && pad_ok) ? hf_gpio_err_t::GPIO_SUCCESS
+                                    : (latch_ok ? hf_gpio_err_t::GPIO_SUCCESS
+                                                : hf_gpio_err_t::GPIO_ERR_FAILURE);
+    }
+
+    if (!pcal95555_driver_->SetPinDirection(pin, GPIODir::Output) ||
+        !pcal95555_driver_->WritePin(pin, true) ||
+        !pcal95555_driver_->ReadDualPortRegister(
+            static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+            static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), latch_high) ||
+        !pcal95555_driver_->ReadDualPortRegister(
+            static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_0),
+            static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_1), input_high) ||
+        !pcal95555_driver_->WritePin(pin, false) ||
+        !pcal95555_driver_->ReadDualPortRegister(
+            static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+            static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), latch_low) ||
+        !pcal95555_driver_->ReadDualPortRegister(
+            static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_0),
+            static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_1), input_low)) {
+        return hf_gpio_err_t::GPIO_ERR_FAILURE;
+    }
+    const bool latch_ok = ((latch_high & bit) != 0U) && ((latch_low & bit) == 0U);
+    return latch_ok ? hf_gpio_err_t::GPIO_SUCCESS : hf_gpio_err_t::GPIO_ERR_FAILURE;
+}
+
 // =====================================================================
 // Pcal95555Handler -- PCAL9555A Advanced Features (Agile I/O)
 // =====================================================================
@@ -785,6 +1178,20 @@ hf_gpio_err_t Pcal95555Handler::SetMultiplePolarityInversion(uint16_t pin_mask,
     MutexLockGuard lock(handler_mutex_);
     if (!EnsureInitializedLocked()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
     if (pin_mask == 0U) return hf_gpio_err_t::GPIO_SUCCESS;
+
+    if (port_shadow_valid_) {
+        if (invert) {
+            polarity_shadow_ = static_cast<uint16_t>(polarity_shadow_ | pin_mask);
+        } else {
+            polarity_shadow_ = static_cast<uint16_t>(
+                polarity_shadow_ & static_cast<uint16_t>(~pin_mask));
+        }
+        const bool ok = pcal95555_driver_->WriteDualPortRegister(
+            static_cast<uint8_t>(Pcal95555Reg::POLARITY_INV_0),
+            static_cast<uint8_t>(Pcal95555Reg::POLARITY_INV_1), polarity_shadow_);
+        return ok ? hf_gpio_err_t::GPIO_SUCCESS
+                  : hf_gpio_err_t::GPIO_ERR_COMMUNICATION_FAILURE;
+    }
 
     const Polarity pol = invert ? Polarity::Inverted : Polarity::Normal;
     return pcal95555_driver_->SetMultiplePolarities(pin_mask, pol)
