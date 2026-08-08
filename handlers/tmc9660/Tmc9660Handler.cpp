@@ -65,9 +65,10 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         tmc9660::bootcfg::SPIInterface::SPI0,     // boot_spi_iface
         tmc9660::bootcfg::SPI0SckPin::GPIO6       // spi0_sck_pin
     },
-    // SPI Flash Configuration
+    // SPI Flash Configuration — off by default for UART-primary / bench stand-in
+    // (no SPI0 flash on many bench modules). EVKIT-with-flash can override.
     {
-        true,                                      // enable_flash
+        false,                                     // enable_flash
         tmc9660::bootcfg::SPIInterface::SPI0,     // flash_spi_iface
         tmc9660::bootcfg::SPI0SckPin::GPIO11,     // spi0_sck_pin
         12,                                        // cs_pin (GPIO12)
@@ -88,7 +89,7 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         tmc9660::bootcfg::XtalDrive::Freq16MHz,        // xtal_drive
         false,                                         // xtal_boost
         tmc9660::bootcfg::SysClkSource::PLL,           // pll_selection
-        14,                                            // rdiv
+        15,                                            // rdiv (EVKIT / 16 MHz × PLL)
         tmc9660::bootcfg::SysClkDiv::Div1              // sysclk_div
     },
     // GPIO Configuration (split masks: _0_15 uint16_t, _16_18 uint8_t)
@@ -232,7 +233,7 @@ bool HalUartTmc9660Comm::uartReceiveTMCL(std::array<uint8_t, 9>& data) noexcept 
     if (!uart_.EnsureInitialized()) {
         return false;
     }
-    /* ESP uses ~10 ms; give flying-wire PCAL/cable a little more, not 1 s. */
+    /* ESP uses ~10 ms; give bench stand-in PCAL/cable a little more, not 1 s. */
     hf_uart_err_t result = uart_.Read(data.data(), 9, 100);
     return result == hf_uart_err_t::UART_SUCCESS;
 }

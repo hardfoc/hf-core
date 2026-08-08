@@ -45,7 +45,7 @@ void SyncDeviceAddress(BaseI2c& i2c, uint8_t addr) noexcept {
 #endif
 }
 
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
 /** JTAG breadcrumb: 0=idle 1=preflight_fail 2=adapter_fail 3=drv_alloc_fail
  *  4=drv_init_fail 5=ok 6=preflight_ok 7=adapter_rw_fail 8=force_marked */
 volatile uint8_t g_pcal_handler_init_stage{0};
@@ -74,7 +74,7 @@ bool HalI2cPcal95555Comm::Write(uint8_t addr, uint8_t reg,
         return false;
     }
 
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
     g_pcal_last_i2c_cmd = reg;
 #endif
     /* Frame [reg|payload…] in member scratch (internal SRAM), not a stack
@@ -100,7 +100,7 @@ bool HalI2cPcal95555Comm::Read(uint8_t addr, uint8_t reg,
     }
     SyncDeviceAddress(i2c_device_, addr);
     cmd_scratch_ = reg;
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
     g_pcal_last_i2c_cmd = reg;
 #endif
     /* RX into AXI member scratch, then publish to caller. StmI2c WriteRead
@@ -201,12 +201,12 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
       uint8_t input0 = 0xA5U;
       if (i2c_device_.WriteRead(&reg, 1, &input0, 1, 200) !=
           hf_i2c_err_t::I2C_SUCCESS) {
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
         g_pcal_handler_init_stage = 1;
 #endif
         return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
       }
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
       g_pcal_handler_init_stage = 6;
 #endif
     }
@@ -215,7 +215,7 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
     if (!i2c_adapter_) {
         i2c_adapter_ = std::make_unique<HalI2cPcal95555Comm>(i2c_device_);
         if (!i2c_adapter_) {
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
             g_pcal_handler_init_stage = 2;
 #endif
             return hf_gpio_err_t::GPIO_ERR_OUT_OF_MEMORY;
@@ -239,7 +239,7 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
           i2c_adapter_.get(), addr);
 #endif
       if (!pcal95555_driver_) {
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
           g_pcal_handler_init_stage = 3;
 #endif
           return hf_gpio_err_t::GPIO_ERR_OUT_OF_MEMORY;
@@ -251,7 +251,7 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
       uint8_t probe = 0xA5U;
       if (!i2c_adapter_->EnsureInitialized() ||
           !i2c_adapter_->Read(addr, 0x00U, &probe, 1U)) {
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
         g_pcal_handler_init_stage = 7; /* adapter Ensure/Read failed */
 #endif
         return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
@@ -259,7 +259,7 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
     }
 
     // 3. Initialize the driver (lazy init, auto-detects chip variant).
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
     /* Adapter INPUT read above already proved the CRTP↔StmI2c path. Driver
      * EnsureInitialized re-probed (W 0x35) and never reached CONFIG/OUTPUT —
      * mark PCA9555 initialized so map/ApplySafeIdle can program ports. */
@@ -275,11 +275,11 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
         return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
     }
 #endif
-    /* Mid Carrier flying-wire: tolerate one-shot I2C glitches. */
+    /* Mid Carrier live actuators: tolerate one-shot I2C glitches. */
     pcal95555_driver_->SetRetries(3);
 
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
-    /* Skip std::function interrupt registration on CM4 flying-wire — it heap-
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
+    /* Skip std::function interrupt registration on CM4 bench stand-in — it heap-
      * allocates on every successful driver init and is unused (nINT is optional;
      * map/verify use polling). Keeps bring-up on the proven I2C path. */
 #else
@@ -297,7 +297,7 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
     }
 
     // Seed previous input state for edge detection on first interrupt.
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
     /* Avoid driver ReadAllInputs here — on Mid I2C0 it can leave the master
      * sticky (TXIS / phantom INPUT) right before map CONFIG/OUTPUT. Polling
      * bring-up does not need the seed. */
@@ -329,7 +329,7 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
     }
 
     initialized_ = true;
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
     g_pcal_handler_init_stage = 5;
 #endif
     return hf_gpio_err_t::GPIO_SUCCESS;
@@ -397,7 +397,7 @@ hf_gpio_err_t Pcal95555Handler::SetOutput(uint8_t pin, bool active) noexcept {
             output_shadow_ =
                 static_cast<uint16_t>(output_shadow_ & static_cast<uint16_t>(~bit));
         }
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
         /* MAX CMD (P1.7) toggles on every SPI frame. Write+read+retry verify
          * was ~half of the ~18 ms sol apply budget. Trust the shadow write for
          * this hot pin; keep verified path for EN/nRST/control straps. */

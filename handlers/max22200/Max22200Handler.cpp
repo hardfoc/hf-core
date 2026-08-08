@@ -43,7 +43,7 @@ bool HalSpiMax22200Comm::Initialize() noexcept {
 
     /* Map already programmed directions — polarity + park only.
      * Keep ENABLE HIGH: forcing it low here then relying on the driver's
-     * 0.5 ms post-rise delay is too short for PCAL-backed flying-wire and
+     * 0.5 ms post-rise delay is too short for PCAL-backed bench stand-in and
      * left STATUS/ACTIVE dead while a raw CS ping still saw COMER (0x04). */
     enable_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH);
     if (!enable_.EnsureInitialized()) {
@@ -175,11 +175,11 @@ void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal sig
         return;
     }
 
-    /* EN is still PCAL I2C on flying-wire; CMD is MCU PD5 (no settle). */
+    /* EN is still PCAL I2C on live-actuator bring-up; CMD is MCU PD5 (no settle). */
     if (pin == max22200::CtrlPin::ENABLE) {
         DelayUs(2000);
     } else if (pin == max22200::CtrlPin::CMD) {
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
         /* MCU GPIO: datasheet tCMS is 20 ns — no software settle. */
 #else
         DelayUs(200);
@@ -330,7 +330,7 @@ bool Max22200Handler::WaitForActiveAndDrainFaults() noexcept {
     // See hf-max22200-driver/docs/troubleshooting.md.
     constexpr uint32_t kPostInitWaitMs = 50;
     constexpr uint32_t kPollIntervalMs = 25;
-#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
     constexpr uint32_t kPollTimeoutMs = 4000;
 #else
     constexpr uint32_t kPollTimeoutMs = 2000;
@@ -351,7 +351,7 @@ bool Max22200Handler::WaitForActiveAndDrainFaults() noexcept {
             ++status_ok_polls;
         }
         /* ACTIVE=1 is the bring-up gate. UVM alone is logged but not fatal —
-         * flying-wire rails can leave a sticky UVM bit while SPI is healthy. */
+         * bench stand-in rails can leave a sticky UVM bit while SPI is healthy. */
         if (st.active) {
             if (st.undervoltage) {
                 log.Warn(TAG,
