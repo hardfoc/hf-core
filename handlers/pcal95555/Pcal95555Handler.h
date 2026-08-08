@@ -194,7 +194,7 @@ private:
     mutable RtosMutex i2c_mutex_;          ///< Thread safety for I2C operations.
     std::function<void()> interrupt_handler_; ///< Stored interrupt handler from driver.
     uint8_t cmd_scratch_{0};               ///< Register cmd byte for Read/Write framing.
-    /** TX/RX framing in handler .bss (D1 AXI) — never on CM4 FMC SDRAM stack. */
+    /** TX/RX framing scratch in internal SRAM (not task-stack / external RAM). */
     uint8_t tx_scratch_[4]{};
     uint8_t rx_scratch_[2]{};
 };

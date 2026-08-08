@@ -51,11 +51,11 @@
  *
  * Implements all methods required by tle92466ed::SpiInterface<HalSpiTle92466edComm>.
  *
- * @note Flying-wire (Portenta SPI2 Mode 1, CS PI0): driver @c Init holds EN LOW
- *       only for the RESN pulse, then asserts EN HIGH before the SPI identity
- *       read. Channel outputs remain gated by CH_CTRL after POR — EN high is
- *       not “valves open”. Callers must @c ClaimChipHandlerOwnership on the
- *       PCAL map before constructing this adapter.
+ * @note Bring-up order: @c Init holds EN LOW only for the RESN pulse, then
+ *       asserts EN HIGH before the SPI identity read. Channel outputs remain
+ *       gated by CH_CTRL after POR — EN high is not “outputs energized”.
+ *       When EN/RESN are expander-backed, claim ownership of those pins before
+ *       constructing this adapter.
  */
 class HalSpiTle92466edComm : public tle92466ed::SpiInterface<HalSpiTle92466edComm> {
 public:

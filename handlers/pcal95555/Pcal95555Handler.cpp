@@ -37,7 +37,7 @@ void SyncDeviceAddress(BaseI2c& i2c, uint8_t addr) noexcept {
         return;
     }
 #if defined(PW_HAL_STM32H7)
-    /* Flying-wire / Portenta: expander is always an StmI2cDevice. */
+    /* STM32 BaseI2c concrete type exposes SetDeviceAddress for 7-bit rebind. */
     static_cast<StmI2cDevice&>(i2c).SetDeviceAddress(addr);
 #else
     (void)i2c;
@@ -77,9 +77,9 @@ bool HalI2cPcal95555Comm::Write(uint8_t addr, uint8_t reg,
 #if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
     g_pcal_last_i2c_cmd = reg;
 #endif
-    /* Frame in member AXI scratch — CM4 task stacks are FMC SDRAM; ldrb of a
-     * stack command[] has been observed to drop bytes (see flying-wire bench
-     * notes / ActuatorIcDiagShared). */
+    /* Frame [reg|payload…] in member scratch (internal SRAM), not a stack
+     * temporary — some MCU maps cannot reliably feed single-byte loads from
+     * external/task-stack RAM into the I2C transfer path. */
     tx_scratch_[0] = reg;
     for (size_t i = 0; i < len; ++i) {
         tx_scratch_[1U + i] = data[i];

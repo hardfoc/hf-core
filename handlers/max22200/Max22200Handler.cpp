@@ -12,8 +12,10 @@
 #include <cstring>
 
 namespace {
-/* D1 AXI .bss — MAX driver builds 4-byte frames on the SDRAM task stack;
- * stage through AXI before HAL_SPI_* (same CM4 FMC ldrb class as I2C). */
+/* Fixed SPI staging buffers in TU static storage (internal SRAM).
+ * The MAX protocol builds short frames that must not be handed to the SPI
+ * peripheral from a task stack or external RAM on MCUs with restricted
+ * single-byte access outside tightly-coupled memory. */
 uint8_t g_max_spi_tx[8]{};
 uint8_t g_max_spi_rx[8]{};
 }  // namespace
@@ -94,8 +96,9 @@ bool HalSpiMax22200Comm::Transfer(const uint8_t* tx_data, uint8_t* rx_data, size
     if (length > sizeof(g_max_spi_tx)) {
         return false;
     }
-    /* FMC-safe stage: aligned 32-bit loads from caller (often SDRAM stack
-     * cmd_byte / tx[4]). Plain memcpy/ldrb has returned 0 on this CM4 FMC. */
+    /* Copy TX via aligned 32-bit loads into internal SRAM staging.
+     * Plain byte loads from external/task-stack buffers are unsafe on some
+     * MCU memory maps; word loads keep the SPI path coherent. */
     for (size_t i = 0; i < length; ++i) {
         const auto addr = reinterpret_cast<uintptr_t>(tx_data + i);
         const auto aligned = addr & ~static_cast<uintptr_t>(3U);

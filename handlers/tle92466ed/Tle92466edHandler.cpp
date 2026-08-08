@@ -11,8 +11,10 @@
 static constexpr const char* TAG = "TLE92466ED";
 
 namespace {
-/* D1 AXI .bss — never frame SPI on the CM4 FMC SDRAM heap/stack (ldrb hazard;
- * HalSpiTle92466edComm itself may live in SDRAM via unique_ptr). */
+/* Fixed TX/RX frame buffers in TU static storage (internal SRAM).
+ * Do not stage 32-bit SPI frames on a task stack or external RAM — the MCU
+ * SPI path must always see tightly-coupled / internal SRAM pointers. The
+ * Comm adapter object itself may still live elsewhere. */
 uint8_t g_tle_spi_tx[4]{};
 uint8_t g_tle_spi_rx[4]{};
 }  // namespace
@@ -95,7 +97,8 @@ tle92466ed::CommResult<uint32_t> HalSpiTle92466edComm::Transfer32(uint32_t tx_da
         (static_cast<uint32_t>(g_tle_spi_rx[2]) << 8) |
         (static_cast<uint32_t>(g_tle_spi_rx[3]) << 0);
     last_rx_ = rx_data;
-    /* ESP INTER_FRAME_US=10; 20 µs on flying-wire between TLE 32-bit frames. */
+    /* Inter-frame gap between CS cycles (TLE two-transfer read protocol).
+     * 20 µs covers long soft-CS leads; ESP bench uses ~10 µs on short PCB. */
     handler_utils::DelayUs(20U);
     last_error_ = tle92466ed::CommError::None;
     return rx_data;
