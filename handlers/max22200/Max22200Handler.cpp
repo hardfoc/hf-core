@@ -8,6 +8,7 @@
 #include "Logger.h"
 #include "HandlerCommon.h"
 
+#include <cstdint>
 #include <cstring>
 
 namespace {
@@ -38,16 +39,19 @@ bool HalSpiMax22200Comm::Initialize() noexcept {
         return false;
     }
 
-    /* Map already programmed directions — polarity + park only. */
+    /* Map already programmed directions — polarity + park only.
+     * Keep ENABLE HIGH: forcing it low here then relying on the driver's
+     * 0.5 ms post-rise delay is too short for PCAL-backed flying-wire and
+     * left STATUS/ACTIVE dead while a raw CS ping still saw COMER (0x04). */
     enable_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH);
     if (!enable_.EnsureInitialized()) {
         log.Error(TAG, "comm.Init: ENABLE.EnsureInitialized failed");
         initialized_ = false;
         return false;
     }
-    auto err = enable_.SetInactive();
+    auto err = enable_.SetActive();
     if (err != hf_gpio_err_t::GPIO_SUCCESS) {
-        log.Error(TAG, "comm.Init: ENABLE.SetInactive failed (%d)", static_cast<int>(err));
+        log.Error(TAG, "comm.Init: ENABLE.SetActive failed (%d)", static_cast<int>(err));
         initialized_ = false;
         return false;
     }
@@ -75,7 +79,10 @@ bool HalSpiMax22200Comm::Initialize() noexcept {
         }
     }
 
-    log.Info(TAG, "comm.Init: OK (EN=LOW, CMD=HIGH, FAULT=input)");
+    /* PCAL + VM wake margin before first STATUS (driver adds another 0.5 ms). */
+    DelayUs(5000);
+
+    log.Info(TAG, "comm.Init: OK (EN=HIGH, CMD=HIGH, FAULT=input)");
     initialized_ = true;
     return true;
 }
@@ -87,31 +94,36 @@ bool HalSpiMax22200Comm::Transfer(const uint8_t* tx_data, uint8_t* rx_data, size
     if (length > sizeof(g_max_spi_tx)) {
         return false;
     }
-    /* Word-sized hop into AXI when possible (avoids FMC ldrb on stack bytes). */
-    if (length == 4U) {
-        uint32_t tw = 0;
-        std::memcpy(&tw, tx_data, 4U);
-        std::memcpy(g_max_spi_tx, &tw, 4U);
-    } else {
-        std::memcpy(g_max_spi_tx, tx_data, length);
+    /* FMC-safe stage: aligned 32-bit loads from caller (often SDRAM stack
+     * cmd_byte / tx[4]). Plain memcpy/ldrb has returned 0 on this CM4 FMC. */
+    for (size_t i = 0; i < length; ++i) {
+        const auto addr = reinterpret_cast<uintptr_t>(tx_data + i);
+        const auto aligned = addr & ~static_cast<uintptr_t>(3U);
+        const uint32_t word =
+            *reinterpret_cast<const volatile uint32_t*>(aligned);
+        const unsigned shift = static_cast<unsigned>((addr & 3U) * 8U);
+        g_max_spi_tx[i] = static_cast<uint8_t>((word >> shift) & 0xFFU);
     }
     auto err = spi_.Transfer(g_max_spi_tx, g_max_spi_rx,
                              static_cast<hf_u16_t>(length), hf_u32_t{0});
     if (err != hf_spi_err_t::SPI_SUCCESS) {
         return false;
     }
-    if (length == 4U) {
-        uint32_t rw = 0;
-        std::memcpy(&rw, g_max_spi_rx, 4U);
-        std::memcpy(rx_data, &rw, 4U);
-    } else {
-        std::memcpy(rx_data, g_max_spi_rx, length);
+    for (size_t i = 0; i < length; ++i) {
+        const auto addr = reinterpret_cast<uintptr_t>(rx_data + i);
+        const auto aligned = addr & ~static_cast<uintptr_t>(3U);
+        volatile uint32_t* cell = reinterpret_cast<volatile uint32_t*>(aligned);
+        const unsigned shift = static_cast<unsigned>((addr & 3U) * 8U);
+        const uint32_t mask = static_cast<uint32_t>(0xFFU) << shift;
+        const uint32_t old = *cell;
+        *cell = (old & ~mask) | (static_cast<uint32_t>(g_max_spi_rx[i]) << shift);
     }
     return true;
 }
 
 bool HalSpiMax22200Comm::SetChipSelect(bool /*state*/) noexcept {
-    // BaseSpi manages CS automatically per transfer
+    /* Soft-CS is owned by StmSpiDevice (SoftChipSelectGuard per Transfer).
+     * External MAX driver may call this — ignore; never drive CS here. */
     return true;
 }
 
@@ -154,8 +166,23 @@ void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal sig
     }
 
     if (gpio_err != hf_gpio_err_t::GPIO_SUCCESS) {
-        initialized_ = false;
+        /* Do not clear initialized_ — a single PCAL I2C glitch during CMD
+         * toggle must not permanently kill IsReady()/Transfer mid-init. */
         Logger::GetInstance().Error(TAG, "GPIO control failed for MAX22200 control pin");
+        return;
+    }
+
+    /* PCAL-backed CMD/EN need settle before SPI CS edges (ESP uses fast GPIO). */
+    if (pin == max22200::CtrlPin::ENABLE) {
+        DelayUs(2000);
+    } else if (pin == max22200::CtrlPin::CMD) {
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+        /* Mid-carrier: I2C already serializes; 200 µs×2 dominated nothing vs
+         * the dual-port verify we removed — keep a short settle only. */
+        DelayUs(50);
+#else
+        DelayUs(200);
+#endif
     }
 }
 
@@ -217,17 +244,21 @@ max22200::DriverStatus Max22200Handler::InitializeLocked() noexcept {
     driver_ = std::make_unique<DriverType>(*comm_);
     auto status = driver_->Initialize();
     if (status != max22200::DriverStatus::OK) {
-        Logger::GetInstance().Error(TAG, "Driver init failed: %s",
-                                   max22200::DriverStatusToStr(status));
+        last_fault_byte_ = driver_->GetLastFaultByte();
+        Logger::GetInstance().Error(TAG, "Driver init failed: %s fault=0x%02X",
+                                   max22200::DriverStatusToStr(status),
+                                   last_fault_byte_);
         driver_.reset();
         return status;
     }
 
     if (!WaitForActiveAndDrainFaults()) {
+        last_fault_byte_ = driver_ ? driver_->GetLastFaultByte() : last_fault_byte_;
         driver_.reset();
         return max22200::DriverStatus::INITIALIZATION_ERROR;
     }
 
+    last_fault_byte_ = driver_->GetLastFaultByte();
     initialized_ = true;
     Logger::GetInstance().Info(TAG, "MAX22200 initialized successfully");
     return max22200::DriverStatus::OK;
@@ -257,17 +288,21 @@ max22200::DriverStatus Max22200Handler::Initialize(const max22200::BoardConfig& 
     // Then initialize
     auto status = driver_->Initialize();
     if (status != max22200::DriverStatus::OK) {
-        Logger::GetInstance().Error(TAG, "Driver init failed: %s",
-                                   max22200::DriverStatusToStr(status));
+        last_fault_byte_ = driver_->GetLastFaultByte();
+        Logger::GetInstance().Error(TAG, "Driver init failed: %s fault=0x%02X",
+                                   max22200::DriverStatusToStr(status),
+                                   last_fault_byte_);
         driver_.reset();
         return status;
     }
 
     if (!WaitForActiveAndDrainFaults()) {
+        last_fault_byte_ = driver_ ? driver_->GetLastFaultByte() : last_fault_byte_;
         driver_.reset();
         return max22200::DriverStatus::INITIALIZATION_ERROR;
     }
 
+    last_fault_byte_ = driver_->GetLastFaultByte();
     initialized_ = true;
     Logger::GetInstance().Info(TAG, "MAX22200 initialized with board config");
     return max22200::DriverStatus::OK;
@@ -285,26 +320,20 @@ bool Max22200Handler::EnsureInitializedLocked() noexcept {
 }
 
 uint8_t Max22200Handler::GetLastFaultByte() const noexcept {
-    return driver_ ? driver_->GetLastFaultByte() : static_cast<uint8_t>(0xFF);
+    return driver_ ? driver_->GetLastFaultByte() : last_fault_byte_;
 }
 
 bool Max22200Handler::WaitForActiveAndDrainFaults() noexcept {
-    // The driver's `Initialize()` returns OK as soon as its STATUS write
-    // transaction completes, but per datasheet (Electrical Characteristics)
-    // the chip's t_WU = 2.5 ms from the ACTIVE=1 write to "OUT_ active".
-    // On boards where the V18 LDO bypass cap gives a slow rail ramp,
-    // ACTIVE may take dozens of ms to physically latch.
-    //
-    // Poll STATUS, re-issuing a bare ACTIVE=1 write each iteration, until
-    // ACTIVE actually reads back as 1. Then drain any POR-latched fault
-    // bits in FAULT (read-to-clear per datasheet) so nFAULT releases.
-    //
-    // Bench-validated against a Parker C21 24V solenoid on the Flux V1
-    // dev rig — see hf-max22200-driver/docs/troubleshooting.md
-    // ("ACTIVE bit reads back as 0 even though Initialize returned OK").
+    // Proven ESP / troubleshooting pattern: bare STATUS=0x1 ACTIVE poke after
+    // Initialize(), then ReadStatus until ACTIVE latches (t_WU + slow V18).
+    // See hf-max22200-driver/docs/troubleshooting.md.
     constexpr uint32_t kPostInitWaitMs = 50;
     constexpr uint32_t kPollIntervalMs = 25;
-    constexpr uint32_t kPollTimeoutMs  = 2000;
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+    constexpr uint32_t kPollTimeoutMs = 4000;
+#else
+    constexpr uint32_t kPollTimeoutMs = 2000;
+#endif
 
     auto& log = Logger::GetInstance();
 
@@ -312,13 +341,27 @@ bool Max22200Handler::WaitForActiveAndDrainFaults() noexcept {
 
     max22200::StatusConfig st{};
     uint32_t waited_ms = 0;
+    uint32_t status_ok_polls = 0;
     while (waited_ms < kPollTimeoutMs) {
         (void)driver_->WriteRegister32(max22200::RegBank::STATUS, 0x00000001U);
-        (void)driver_->ReadStatus(st);
-        if (st.active && !st.undervoltage) {
-            log.Info(TAG,
-                     "Chip awake after %u ms — ACTIVE=1, UVM=0",
-                     static_cast<unsigned>(kPostInitWaitMs + waited_ms));
+        const auto rs = driver_->ReadStatus(st);
+        last_fault_byte_ = driver_->GetLastFaultByte();
+        if (rs == max22200::DriverStatus::OK) {
+            ++status_ok_polls;
+        }
+        /* ACTIVE=1 is the bring-up gate. UVM alone is logged but not fatal —
+         * flying-wire rails can leave a sticky UVM bit while SPI is healthy. */
+        if (st.active) {
+            if (st.undervoltage) {
+                log.Warn(TAG,
+                         "ACTIVE=1 after %u ms with UVM still set (fault=0x%02X) — continuing",
+                         static_cast<unsigned>(kPostInitWaitMs + waited_ms),
+                         last_fault_byte_);
+            } else {
+                log.Info(TAG,
+                         "Chip awake after %u ms — ACTIVE=1, UVM=0",
+                         static_cast<unsigned>(kPostInitWaitMs + waited_ms));
+            }
             break;
         }
         os_thread_sleep(os_convert_msec_to_delay_ticks(kPollIntervalMs));
@@ -326,17 +369,31 @@ bool Max22200Handler::WaitForActiveAndDrainFaults() noexcept {
     }
 
     if (!st.active) {
-        log.Error(TAG,
-                  "Chip never reached ACTIVE=1 after %u ms (last STATUS: "
-                  "ACTIVE=%d UVM=%d). See hf-max22200-driver troubleshooting "
-                  "guide.",
-                  static_cast<unsigned>(kPostInitWaitMs + waited_ms),
-                  st.active, st.undervoltage);
-        return false;
+        last_fault_byte_ = driver_->GetLastFaultByte();
+        /* Only called after driver_->Initialize() succeeded (COMER cleared).
+         * ACTIVE may stay clear on marginal VM — continue when STATUS polls OK. */
+        if (status_ok_polls >= 3U) {
+            log.Warn(TAG,
+                     "ACTIVE not latched after %u ms (UVM=%d fault=0x%02X) after "
+                     "%u OK STATUS polls — accepting SPI-live (check VM/ACTIVE)",
+                     static_cast<unsigned>(kPostInitWaitMs + waited_ms),
+                     st.undervoltage ? 1 : 0, last_fault_byte_,
+                     static_cast<unsigned>(status_ok_polls));
+        } else {
+            log.Error(TAG,
+                      "Chip never reached ACTIVE=1 after %u ms (last STATUS: "
+                      "ACTIVE=%d UVM=%d fault=0x%02X ok=%u). See "
+                      "hf-max22200-driver troubleshooting guide.",
+                      static_cast<unsigned>(kPostInitWaitMs + waited_ms),
+                      st.active, st.undervoltage, last_fault_byte_,
+                      static_cast<unsigned>(status_ok_polls));
+            return false;
+        }
     }
 
     max22200::FaultStatus drain{};
     (void)driver_->ReadFaultRegister(drain);
+    last_fault_byte_ = driver_->GetLastFaultByte();
     log.Debug(TAG,
               "Drained POR fault bits: OCP=0x%02X OLF=0x%02X HHF=0x%02X DPM=0x%02X",
               drain.overcurrent_channel_mask,

@@ -385,7 +385,10 @@ hf_gpio_err_t Pcal95555Handler::SetOutput(uint8_t pin, bool active) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!EnsureInitializedLocked()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
 
-    /* Absolute shadow write via StmI2c — avoids RMW when latch readback is bad. */
+    /* Absolute shadow write via StmI2c — avoids RMW when latch readback is bad.
+     * Mid-I2C0 can drop Port1 OUTPUT writes (TXIS / pointer); verify the wire
+     * latch and retry so TLE nRST cannot stay LOW on the chip while the
+     * shadow / CDC flags claim released. */
     if (port_shadow_valid_) {
         const uint16_t bit = static_cast<uint16_t>(1u << pin);
         if (active) {
@@ -394,10 +397,38 @@ hf_gpio_err_t Pcal95555Handler::SetOutput(uint8_t pin, bool active) noexcept {
             output_shadow_ =
                 static_cast<uint16_t>(output_shadow_ & static_cast<uint16_t>(~bit));
         }
-        const bool ok = pcal95555_driver_->WriteDualPortRegister(
-            static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
-            static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), output_shadow_);
-        return ok ? hf_gpio_err_t::GPIO_SUCCESS : hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
+#if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
+        /* MAX CMD (P1.7) toggles on every SPI frame. Write+read+retry verify
+         * was ~half of the ~18 ms sol apply budget. Trust the shadow write for
+         * this hot pin; keep verified path for EN/nRST/control straps. */
+        constexpr uint8_t kMaxCmdPin = 15U;  // PcalActuatorGpioId::MaxCmd
+        if (pin == kMaxCmdPin) {
+            return pcal95555_driver_->WriteDualPortRegister(
+                       static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+                       static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1),
+                       output_shadow_)
+                       ? hf_gpio_err_t::GPIO_SUCCESS
+                       : hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
+        }
+#endif
+        for (int attempt = 0; attempt < 3; ++attempt) {
+            if (!pcal95555_driver_->WriteDualPortRegister(
+                    static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+                    static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1),
+                    output_shadow_)) {
+                return hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
+            }
+            uint16_t out_rb = 0;
+            if (!pcal95555_driver_->ReadDualPortRegister(
+                    static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+                    static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), out_rb)) {
+                continue;
+            }
+            if ((out_rb & bit) == (output_shadow_ & bit)) {
+                return hf_gpio_err_t::GPIO_SUCCESS;
+            }
+        }
+        return hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
     }
     return pcal95555_driver_->WritePin(pin, active)
                ? hf_gpio_err_t::GPIO_SUCCESS
@@ -929,9 +960,12 @@ hf_gpio_err_t Pcal95555Handler::ReadAllInputLevels(uint16_t& levels) noexcept {
     if (!EnsureInitializedLocked()) {
         return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
     }
-    levels = pcal95555_driver_->ReadAllInputs();
-    constexpr uint16_t kReadFail = static_cast<uint16_t>(Error::I2CReadFail);
-    if ((pcal95555_driver_->GetErrorFlags() & kReadFail) != 0U) {
+    /* Prefer dual-port path (same as `pcal status`) over ReadAllInputs —
+     * keeps Port1 assembly in driver .bss and matches the proven bank read. */
+    levels = 0;
+    if (!pcal95555_driver_->ReadDualPortRegister(
+            static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_0),
+            static_cast<uint8_t>(Pcal95555Reg::INPUT_PORT_1), levels)) {
         return hf_gpio_err_t::GPIO_ERR_READ_FAILURE;
     }
     return hf_gpio_err_t::GPIO_SUCCESS;
@@ -996,6 +1030,20 @@ hf_gpio_err_t Pcal95555Handler::ProgramPortsAbsolute(uint16_t config,
     (void)out_check_mask;
     return (pol_ok && out_ok && cfg_ok) ? hf_gpio_err_t::GPIO_SUCCESS
                                         : hf_gpio_err_t::GPIO_ERR_FAILURE;
+}
+
+hf_gpio_err_t Pcal95555Handler::ReadOutputLatchFromWire(uint16_t& output) noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!EnsureInitializedLocked()) {
+        return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    }
+    output = 0;
+    /* OUTPUT only — never touch INPUT_PORT here (poisons Port1 readback). */
+    return pcal95555_driver_->ReadDualPortRegister(
+               static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+               static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), output)
+               ? hf_gpio_err_t::GPIO_SUCCESS
+               : hf_gpio_err_t::GPIO_ERR_READ_FAILURE;
 }
 
 hf_gpio_err_t Pcal95555Handler::ReadConfigAndOutputPorts(uint16_t& config,
