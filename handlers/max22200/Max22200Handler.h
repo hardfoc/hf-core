@@ -322,6 +322,8 @@ private:
     mutable RtosMutex mutex_;
     std::unique_ptr<HalSpiMax22200Comm> comm_;
     std::unique_ptr<DriverType> driver_;
+    /** Retained after failed init when driver_ is reset (CDC max_fault). */
+    uint8_t last_fault_byte_{0xFF};
 };
 
 /// @}

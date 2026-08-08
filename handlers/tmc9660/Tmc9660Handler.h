@@ -197,10 +197,9 @@ public:
      *                         pre-configured as output.
      * @param rst_active_high  Physical GPIO level when RST is ACTIVE (default: true = HIGH).
      * @param drv_en_active_high Physical GPIO level when DRV_EN is ACTIVE (default: true = HIGH).
-     * @param faultn_active_low  Physical GPIO level when FAULTN is ACTIVE (default: false = HIGH).
-     *                           Set to true if your board inverts the FAULTN signal.
-     * @param wake_active_low    Physical GPIO level when WAKE is ACTIVE (default: false = HIGH).
-     *                           Set to true if your board inverts the WAKE signal.
+     * @param faultn_active_low  true if FAULTN ACTIVE is physical LOW (ESP/PCAL nFLT).
+     * @param wake_active_low    true if WAKE ACTIVE is physical LOW (ESP/PCAL nWK).
+     *                           Mapped to CommInterface as !flag (active_level).
      */
     HalSpiTmc9660Comm(BaseSpi& spi, BaseGpio& rst, BaseGpio& drv_en,
                        BaseGpio& faultn, BaseGpio& wake,

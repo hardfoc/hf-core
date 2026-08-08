@@ -71,7 +71,7 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         tmc9660::bootcfg::SPIInterface::SPI0,     // flash_spi_iface
         tmc9660::bootcfg::SPI0SckPin::GPIO11,     // spi0_sck_pin
         12,                                        // cs_pin (GPIO12)
-        tmc9660::bootcfg::SPIFlashFreq::Div1      // freq_div (10MHz)
+        tmc9660::bootcfg::SPIFlashFreq::Div4      // SysClk/4 = 10 MHz (ESP/EVKIT)
     },
     // I2C EEPROM Configuration (disabled)
     {
@@ -126,28 +126,27 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
 namespace {
 
 /**
- * @brief Set a BaseGpio pin level based on a TMC9660 signal and its active-level config.
+ * Map TMC9660 ACTIVE/INACTIVE onto BaseGpio logical state.
+ *
+ * ESP32 bus uses physical levels via CommInterface::signalToGpioLevel
+ * (RST/DRV_EN active-HIGH, WAKE/FAULTN active-LOW). On STM32 the PCAL
+ * BaseGpio pins already carry that polarity — do not re-apply
+ * pinActiveLevels_ here (that double-mapped and inverted nWK/nFLT).
  */
-static bool setGpioFromSignal(BaseGpio& gpio_pin, tmc9660::GpioSignal signal, bool active_high) noexcept {
-    // Map TMC9660 signal + polarity to the BaseGpio public state API.
-    // When the signal is ACTIVE and the pin is active-high, we want the pin active (and vice versa).
-    bool want_active = (signal == tmc9660::GpioSignal::ACTIVE) == active_high;
-    auto state = want_active ? hf_gpio_state_t::HF_GPIO_STATE_ACTIVE : hf_gpio_state_t::HF_GPIO_STATE_INACTIVE;
-    return gpio_pin.SetState(state) == hf_gpio_err_t::GPIO_SUCCESS;
+static bool setGpioFromSignal(BaseGpio& gpio_pin, tmc9660::GpioSignal signal,
+                              bool /*physical_active_high*/) noexcept {
+    return (signal == tmc9660::GpioSignal::ACTIVE ? gpio_pin.SetActive()
+                                                  : gpio_pin.SetInactive()) ==
+           hf_gpio_err_t::GPIO_SUCCESS;
 }
 
-/**
- * @brief Read a BaseGpio pin and convert to TMC9660 signal based on active-level config.
- */
-static bool readGpioToSignal(BaseGpio& gpio_pin, tmc9660::GpioSignal& signal, bool active_high) noexcept {
-    // Read the logical state through the BaseGpio public API and map back
-    // to TMC9660 signal using the active-level polarity.
+static bool readGpioToSignal(BaseGpio& gpio_pin, tmc9660::GpioSignal& signal,
+                             bool /*physical_active_high*/) noexcept {
     bool is_active = false;
     if (gpio_pin.IsActive(is_active) != hf_gpio_err_t::GPIO_SUCCESS) {
         return false;
     }
-    // If the pin is logically active AND active_high, the TMC9660 signal is ACTIVE (and vice versa).
-    signal = (is_active == active_high) ? tmc9660::GpioSignal::ACTIVE : tmc9660::GpioSignal::INACTIVE;
+    signal = is_active ? tmc9660::GpioSignal::ACTIVE : tmc9660::GpioSignal::INACTIVE;
     return true;
 }
 
@@ -161,8 +160,10 @@ HalSpiTmc9660Comm::HalSpiTmc9660Comm(BaseSpi& spi, BaseGpio& rst, BaseGpio& drv_
                                        BaseGpio& faultn, BaseGpio& wake,
                                        bool rst_active_high, bool drv_en_active_high,
                                        bool faultn_active_low, bool wake_active_low) noexcept
-    : SpiCommInterface<HalSpiTmc9660Comm>(rst_active_high, drv_en_active_high,
-                                           wake_active_low, faultn_active_low),
+    : SpiCommInterface<HalSpiTmc9660Comm>(
+          rst_active_high, drv_en_active_high,
+          /*wake_active_level=*/!wake_active_low,
+          /*faultn_active_level=*/!faultn_active_low),
       spi_(spi), ctrl_pins_{rst, drv_en, faultn, wake} {
 }
 
@@ -171,6 +172,8 @@ bool HalSpiTmc9660Comm::spiTransferTMCL(std::array<uint8_t, 8>& tx, std::array<u
         return false;
     }
     hf_spi_err_t result = spi_.Transfer(tx.data(), rx.data(), hf_u16_t(8), hf_u32_t(0));
+    /* Pace like UART frame gap — back-to-back Mode3 frames starve TMCL parser. */
+    handler_utils::DelayUs(150);
     return result == hf_spi_err_t::SPI_SUCCESS;
 }
 
@@ -179,6 +182,7 @@ bool HalSpiTmc9660Comm::spiTransferBootloader(std::array<uint8_t, 5>& tx, std::a
         return false;
     }
     hf_spi_err_t result = spi_.Transfer(tx.data(), rx.data(), hf_u16_t(5), hf_u32_t(0));
+    handler_utils::DelayUs(150);
     return result == hf_spi_err_t::SPI_SUCCESS;
 }
 
@@ -207,8 +211,10 @@ HalUartTmc9660Comm::HalUartTmc9660Comm(BaseUart& uart, BaseGpio& rst, BaseGpio& 
                                          BaseGpio& faultn, BaseGpio& wake,
                                          bool rst_active_high, bool drv_en_active_high,
                                          bool faultn_active_low, bool wake_active_low) noexcept
-    : UartCommInterface<HalUartTmc9660Comm>(rst_active_high, drv_en_active_high,
-                                             wake_active_low, faultn_active_low),
+    : UartCommInterface<HalUartTmc9660Comm>(
+          rst_active_high, drv_en_active_high,
+          /*wake_active_level=*/!wake_active_low,
+          /*faultn_active_level=*/!faultn_active_low),
       uart_(uart), ctrl_pins_{rst, drv_en, faultn, wake} {
 }
 
@@ -216,6 +222,8 @@ bool HalUartTmc9660Comm::uartSendTMCL(const std::array<uint8_t, 9>& data) noexce
     if (!uart_.EnsureInitialized()) {
         return false;
     }
+    /* Match ESP uart_flush_input before TX — stale RX wedges TMCL framing. */
+    (void)uart_.FlushRx();
     hf_uart_err_t result = uart_.Write(data.data(), 9);
     return result == hf_uart_err_t::UART_SUCCESS;
 }
@@ -224,7 +232,8 @@ bool HalUartTmc9660Comm::uartReceiveTMCL(std::array<uint8_t, 9>& data) noexcept 
     if (!uart_.EnsureInitialized()) {
         return false;
     }
-    hf_uart_err_t result = uart_.Read(data.data(), 9, 1000); // 1 second timeout
+    /* ESP uses ~10 ms; give flying-wire PCAL/cable a little more, not 1 s. */
+    hf_uart_err_t result = uart_.Read(data.data(), 9, 100);
     return result == hf_uart_err_t::UART_SUCCESS;
 }
 
@@ -233,11 +242,14 @@ bool HalUartTmc9660Comm::uartTransferBootloader(const std::array<uint8_t, 8>& tx
     if (!uart_.EnsureInitialized()) {
         return false;
     }
+    (void)uart_.FlushRx();
     hf_uart_err_t write_result = uart_.Write(tx.data(), 8);
     if (write_result != hf_uart_err_t::UART_SUCCESS) {
         return false;
     }
-    hf_uart_err_t read_result = uart_.Read(rx.data(), 8, 1000);
+    /* ESP uart_read_bytes(..., 10 ms). Keep short so a dead bus cannot stall
+     * hw_safety for tens of seconds inside applyConfiguration. */
+    hf_uart_err_t read_result = uart_.Read(rx.data(), 8, 50);
     return read_result == hf_uart_err_t::UART_SUCCESS;
 }
 
@@ -269,8 +281,15 @@ Tmc9660Handler::Tmc9660Handler(BaseSpi& spi, BaseGpio& rst, BaseGpio& drv_en,
     : use_spi_(true),
       bootCfg_(bootCfg),
       device_address_(address) {
-    // Create SPI comm interface and driver (lazy - driver created in Initialize)
-    spi_comm_ = std::make_unique<HalSpiTmc9660Comm>(spi, rst, drv_en, faultn, wake);
+    /* Match ESP Esp32Tmc9660*Bus: CommInterface(true,true,false,false) —
+     * RST/DRV_EN ACTIVE=HIGH, WAKE/FAULTN ACTIVE=LOW. PCAL BaseGpio polarity
+     * already matches; gpioSet uses SetActive/SetInactive (see helpers). */
+    spi_comm_ = std::make_unique<HalSpiTmc9660Comm>(
+        spi, rst, drv_en, faultn, wake,
+        /*rst_active_high=*/true,
+        /*drv_en_active_high=*/true,
+        /*faultn_active_low=*/true,   /* → CommInterface faultn_active_level=false */
+        /*wake_active_low=*/true);    /* → CommInterface wake_active_level=false */
     // Eagerly create peripheral wrappers so accessors never return dangling refs.
     // The wrapper methods themselves guard on IsDriverReady().
     gpioWrappers_[0] = std::make_unique<Gpio>(*this, 17);
@@ -292,8 +311,8 @@ Tmc9660Handler::Tmc9660Handler(BaseUart& uart, BaseGpio& rst, BaseGpio& drv_en,
         uart, rst, drv_en, faultn, wake,
         /*rst_active_high=*/true,
         /*drv_en_active_high=*/true,
-        /*faultn_active_low=*/true,
-        /*wake_active_low=*/true);  // nWK from expander is typically active-low
+        /*faultn_active_low=*/true,   /* → CommInterface faultn_active_level=false */
+        /*wake_active_low=*/true);    /* → CommInterface wake_active_level=false */
     // Eagerly create peripheral wrappers so accessors never return dangling refs.
     gpioWrappers_[0] = std::make_unique<Gpio>(*this, 17);
     gpioWrappers_[1] = std::make_unique<Gpio>(*this, 18);

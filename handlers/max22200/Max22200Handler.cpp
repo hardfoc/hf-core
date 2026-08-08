@@ -172,14 +172,12 @@ void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal sig
         return;
     }
 
-    /* PCAL-backed CMD/EN need settle before SPI CS edges (ESP uses fast GPIO). */
+    /* EN is still PCAL I2C on flying-wire; CMD is MCU PD5 (no settle). */
     if (pin == max22200::CtrlPin::ENABLE) {
         DelayUs(2000);
     } else if (pin == max22200::CtrlPin::CMD) {
 #if defined(PW_FLYING_WIRE_ACTUATION) && PW_FLYING_WIRE_ACTUATION
-        /* Mid-carrier: I2C already serializes; 200 µs×2 dominated nothing vs
-         * the dual-port verify we removed — keep a short settle only. */
-        DelayUs(50);
+        /* MCU GPIO: datasheet tCMS is 20 ns — no software settle. */
 #else
         DelayUs(200);
 #endif

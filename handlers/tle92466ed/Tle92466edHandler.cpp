@@ -72,7 +72,7 @@ tle92466ed::CommResult<uint32_t> HalSpiTle92466edComm::Transfer32(uint32_t tx_da
         last_error_ = tle92466ed::CommError::HardwareNotReady;
         return tle::unexpected(last_error_);
     }
-    /* Assemble in AXI scratch from registers — not a task-stack frame. */
+    /* MSB-first on the wire (matches ESP byte_swap_32 + LE DMA). AXI scratch. */
     g_tle_spi_tx[0] = static_cast<uint8_t>((tx_data >> 24) & 0xFF);
     g_tle_spi_tx[1] = static_cast<uint8_t>((tx_data >> 16) & 0xFF);
     g_tle_spi_tx[2] = static_cast<uint8_t>((tx_data >> 8) & 0xFF);
@@ -95,8 +95,8 @@ tle92466ed::CommResult<uint32_t> HalSpiTle92466edComm::Transfer32(uint32_t tx_da
         (static_cast<uint32_t>(g_tle_spi_rx[2]) << 8) |
         (static_cast<uint32_t>(g_tle_spi_rx[3]) << 0);
     last_rx_ = rx_data;
-    /* Inter-frame gap between CS cycles (TLE two-transfer read protocol). */
-    handler_utils::DelayUs(5U);
+    /* ESP INTER_FRAME_US=10; 20 µs on flying-wire between TLE 32-bit frames. */
+    handler_utils::DelayUs(20U);
     last_error_ = tle92466ed::CommError::None;
     return rx_data;
 }
@@ -108,10 +108,11 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::TransferMulti(
         last_error_ = tle92466ed::CommError::HardwareNotReady;
         return tle::unexpected(last_error_);
     }
-    if (tx_data.size() != rx_data.size()) {
+    if (tx_data.size() != rx_data.size() || tx_data.empty()) {
         last_error_ = tle92466ed::CommError::InvalidParameter;
         return tle::unexpected(last_error_);
     }
+    /* Proven path: per-frame Transfer32 (CS rise + inter-frame gap). */
     for (size_t i = 0; i < tx_data.size(); ++i) {
         auto result = Transfer32(tx_data[i]);
         if (!result) {
@@ -251,12 +252,14 @@ Tle92466edHandler::~Tle92466edHandler() noexcept {
     }
 }
 
-tle92466ed::DriverResult<void> Tle92466edHandler::Initialize() noexcept {
+tle92466ed::DriverResult<void> Tle92466edHandler::Initialize(
+    bool perform_hardware_reset) noexcept {
     MutexLockGuard lock(mutex_);
-    return InitializeLocked();
+    return InitializeLocked(perform_hardware_reset);
 }
 
-tle92466ed::DriverResult<void> Tle92466edHandler::InitializeLocked() noexcept {
+tle92466ed::DriverResult<void> Tle92466edHandler::InitializeLocked(
+    bool perform_hardware_reset) noexcept {
     if (initialized_) {
         Logger::GetInstance().Warn(TAG, "Already initialized");
         return {};
@@ -267,7 +270,7 @@ tle92466ed::DriverResult<void> Tle92466edHandler::InitializeLocked() noexcept {
     }
 
     driver_ = std::make_unique<DriverType>(*comm_);
-    auto result = driver_->Init();
+    auto result = driver_->Init(perform_hardware_reset);
     if (!result) {
         Logger::GetInstance().Error(TAG, "Driver init failed: %d",
                                    static_cast<int>(result.error()));
@@ -328,7 +331,7 @@ bool Tle92466edHandler::EnsureInitializedLocked() noexcept {
         Logger::GetInstance().Error(TAG, "Comm adapter not created");
         return false;
     }
-    return InitializeLocked().has_value();
+    return InitializeLocked(/*perform_hardware_reset=*/true).has_value();
 }
 
 tle92466ed::DriverResult<void> Tle92466edHandler::Deinitialize() noexcept {
@@ -387,6 +390,15 @@ tle92466ed::DriverResult<void> Tle92466edHandler::SetChannelCurrent(uint8_t chan
         if (channel >= kNumChannels)
             return tle::unexpected(tle92466ed::DriverError::InvalidChannel);
         return drv.SetCurrentSetpoint(toChannel(channel), current_ma);
+    });
+}
+
+tle92466ed::DriverResult<uint16_t> Tle92466edHandler::GetChannelCurrentSetpoint(
+    uint8_t channel, bool parallel_mode) noexcept {
+    return withDriver([&](auto& drv) -> tle92466ed::DriverResult<uint16_t> {
+        if (channel >= kNumChannels)
+            return tle::unexpected(tle92466ed::DriverError::InvalidChannel);
+        return drv.GetCurrentSetpoint(toChannel(channel), parallel_mode);
     });
 }
 

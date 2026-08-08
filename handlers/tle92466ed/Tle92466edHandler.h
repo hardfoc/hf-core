@@ -16,9 +16,10 @@
  * - `GetDriver()` for **advanced** APIs (`ConfigurePwmPeriod`, `ConfigureDither`,
  *   `GetAverageCurrent`, rail reads, …) — see `docs/handlers/tle92466ed_handler.md`
  *
- * @note **RESN / EN semantics:** the driver maps logical `GpioSignal::ACTIVE` on `RESN` to
- *       *not in reset* (pin released). Configure each `BaseGpio` active state so that
- *       `SetActive()` / `SetInactive()` match your schematic (typical RESN = active-low).
+ * @note **RESN / EN semantics:** RESN is active-low. With `HF_GPIO_ACTIVE_LOW`,
+ *       `GpioSignal::ACTIVE` / `SetReset(true)` → physical **LOW** (in reset);
+ *       `INACTIVE` / `SetReset(false)` → physical **HIGH** (released). EN is
+ *       active-high. Configure each `BaseGpio` active state to match the schematic.
  *
  * @author HardFOC Team
  * @date 2025
@@ -164,7 +165,11 @@ public:
 
     /** @brief Initialize driver (hardware reset + SPI init + enter config mode).
      *  @return DriverResult with void on success, DriverError on failure. */
-    tle92466ed::DriverResult<void> Initialize() noexcept;
+    /**
+     * @param perform_hardware_reset Pulse RESN on first bring-up; false keeps
+     *        RESN released for SPI-only retries (see Driver::Init).
+     */
+    tle92466ed::DriverResult<void> Initialize(bool perform_hardware_reset = true) noexcept;
 
     /**
      * @brief Ensure driver is initialized (lazy init entrypoint).
@@ -215,6 +220,12 @@ public:
      * @param current_ma Current in milliamps.
      */
     tle92466ed::DriverResult<void> SetChannelCurrent(uint8_t channel, uint16_t current_ma) noexcept;
+
+    /**
+     * @brief Read channel current setpoint (mA) for SW-HAL-01 read-back.
+     */
+    tle92466ed::DriverResult<uint16_t> GetChannelCurrentSetpoint(
+        uint8_t channel, bool parallel_mode = false) noexcept;
 
     /**
      * @brief Configure raw PWM period for a channel.
@@ -350,7 +361,7 @@ public:
 
 private:
     /** @brief Initialize while @ref mutex_ is already held. */
-    tle92466ed::DriverResult<void> InitializeLocked() noexcept;
+    tle92466ed::DriverResult<void> InitializeLocked(bool perform_hardware_reset) noexcept;
     bool EnsureInitializedLocked() noexcept;
 
     /// @brief Type trait to detect tle92466ed::DriverResult<T> types

@@ -725,6 +725,14 @@ public:
                                            uint16_t& output) noexcept;
 
     /**
+     * @brief Read OUTPUT_PORT_0/1 from the chip (never the CM4 shadow).
+     *
+     * @details Use after SetOutput to confirm Mid-I2C0 actually updated the
+     *          latch. Must run before any INPUT_PORT read on this bus.
+     */
+    hf_gpio_err_t ReadOutputLatchFromWire(uint16_t& output) noexcept;
+
+    /**
      * @brief Read the full standard PCA9555 bank (0x00..0x07) as four 16-bit ports.
      *
      * @details Per NXP datasheet: INPUT reflects pad levels even when the pin is
