@@ -16,7 +16,6 @@
 #include <cstring>
 #include <algorithm>
 #include "handlers/logger/Logger.h"
-#include "esp_log.h"
 
 //======================================================//
 // ADS7952 SPI ADAPTER IMPLEMENTATION
@@ -30,7 +29,8 @@ Ads7952SpiAdapter::Ads7952SpiAdapter(BaseSpi& spi_interface) noexcept
 void Ads7952SpiAdapter::transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept {
     if (len == 0) return;
 
-    ESP_LOGD(TAG_SPI, "SPI transfer: len=%u", static_cast<unsigned>(len));
+    Logger::GetInstance().Debug(TAG_SPI, "SPI transfer: len=%u",
+                                static_cast<unsigned>(len));
 
     // Bridge BaseSpi::Transfer ↔ ads7952::SpiInterface<>::transfer
     // BaseSpi handles CS assertion/deassertion per transaction
@@ -40,7 +40,8 @@ void Ads7952SpiAdapter::transfer(const uint8_t* tx, uint8_t* rx, std::size_t len
         1000  // 1 second timeout
     );
 
-    ESP_LOGD(TAG_SPI, "SPI transfer done: result=%d", static_cast<int>(result));
+    Logger::GetInstance().Debug(TAG_SPI, "SPI transfer done: result=%d",
+                                static_cast<int>(result));
 
     // ADS7952 driver detects errors through frame validation
     (void)result;
