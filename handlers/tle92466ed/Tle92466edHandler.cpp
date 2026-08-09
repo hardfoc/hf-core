@@ -29,6 +29,15 @@ HalSpiTle92466edComm::HalSpiTle92466edComm(
     : spi_(spi), resn_(resn), en_(en), faultn_(faultn) {}
 
 tle92466ed::CommResult<void> HalSpiTle92466edComm::Init() noexcept {
+    /* Idempotent: Driver::Init calls Comm::Init on every bring-up retry.
+     * Re-parking EN low here made the ENABLE LED blink at the retry rate
+     * while ICVID was failing — EN must latch once, then only move for an
+     * intentional HW reset (Driver::SetEnable) or safe-off. */
+    if (initialized_) {
+        last_error_ = tle92466ed::CommError::None;
+        return {};
+    }
+
     if (!spi_.EnsureInitialized()) {
         last_error_ = tle92466ed::CommError::HardwareNotReady;
         return tle::unexpected(last_error_);
@@ -36,7 +45,8 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::Init() noexcept {
 
     /* Pins are batch-programmed by PcalActuatorGpioMap — only confirm polarity
      * and park levels. Extra SetDirection RMW on Mid I2C0 has wedged the
-     * expander after map bring-up. */
+     * expander after map bring-up. First Init only: park EN low / RESN
+     * released; Driver::Init then owns the reset+enable sequence. */
     resn_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
     if (!resn_.EnsureInitialized() ||
         resn_.SetInactive() != hf_gpio_err_t::GPIO_SUCCESS) {
@@ -526,7 +536,9 @@ uint32_t Tle92466edHandler::GetIcVersion() noexcept {
 
 Tle92466edHandler::DriverType* Tle92466edHandler::GetDriver() noexcept {
     MutexLockGuard lock(mutex_);
-    if (!EnsureInitializedLocked()) {
+    /* Never HW-reset from GetDriver — ValvesManager owns RESN policy. Callers
+     * that need init must go through Initialize() / EnsureInitialized(). */
+    if (!initialized_ || !driver_) {
         return nullptr;
     }
     return driver_.get();
