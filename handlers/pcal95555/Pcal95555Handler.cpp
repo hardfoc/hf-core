@@ -386,9 +386,9 @@ hf_gpio_err_t Pcal95555Handler::SetOutput(uint8_t pin, bool active) noexcept {
     if (!EnsureInitializedLocked()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
 
     /* Absolute shadow write via StmI2c — avoids RMW when latch readback is bad.
-     * Mid-I2C0 can drop Port1 OUTPUT writes (TXIS / pointer); verify the wire
-     * latch and retry so TLE nRST cannot stay LOW on the chip while the
-     * shadow / CDC flags claim released. */
+     * STM32H7 I2C TXIS/pointer quirks can drop Port1 OUTPUT writes; verify the
+     * wire latch and retry so nRST cannot stay LOW on the chip while the
+     * shadow / host flags claim released. */
     if (port_shadow_valid_) {
         const uint16_t bit = static_cast<uint16_t>(1u << pin);
         if (active) {

@@ -727,8 +727,8 @@ public:
     /**
      * @brief Read OUTPUT_PORT_0/1 from the chip (never the CM4 shadow).
      *
-     * @details Use after SetOutput to confirm Mid-I2C0 actually updated the
-     *          latch. Must run before any INPUT_PORT read on this bus.
+     * @details Use after SetOutput to confirm the chip latch actually updated.
+     *          Must run before any INPUT_PORT read on this bus.
      */
     hf_gpio_err_t ReadOutputLatchFromWire(uint16_t& output) noexcept;
 
