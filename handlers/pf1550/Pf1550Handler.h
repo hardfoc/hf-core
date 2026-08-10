@@ -3,7 +3,7 @@
  * @brief HAL handler for NXP PF1550 PMIC (I2C + optional strap GPIOs).
  *
  * Bridges the **portable** `pf1550::PF1550<HalPf1550Comm>` driver to HardFOC
- * `BaseI2c` / `BaseGpio` abstractions used inside `pw-controller-sw`. Adds:
+ * `BaseI2c` / `BaseGpio` abstractions. Adds:
  *
  *  - **Thread-safe** access via @c RtosMutex for both the I²C transport and
  *    the handler-level state (init flag, last snapshot).
@@ -46,7 +46,7 @@ public:
     bool Read(uint8_t addr, uint8_t reg, uint8_t* data, size_t len) noexcept;
     /// @brief Idempotently bring up the underlying I²C peripheral.
     bool EnsureInitialized() noexcept;
-    /// @brief Drive a `CtrlPin` strap (PJ0 / PJ4 / PJ6 on Portenta) Active/Inactive.
+    /// @brief Drive a `CtrlPin` strap GPIO Active/Inactive.
     void GpioSet(pf1550::CtrlPin pin, pf1550::GpioSignal signal) noexcept;
     /// @brief Coarse `µs`-precision delay used between profile writes.
     void DelayUs(uint32_t us) noexcept;
@@ -125,8 +125,8 @@ public:
      * @brief Run boot-time self-test (uses internal snapshot path).
      *
      * On success @c out.worst_severity == @c FaultSeverity::kInfo. Failures
-     * are classified into Warning / Critical / McuKill following the
-     * Portenta H7 wiring (see @ref pf1550::FaultSeverityPortentaH7).
+     * are classified into Warning / Critical / McuKill via
+     * @ref pf1550::FaultSeverityPortentaH7 (board-profile severity table).
      */
     bool RunPowerSelfTest(pf1550::SelfTestResult& out) noexcept;
 

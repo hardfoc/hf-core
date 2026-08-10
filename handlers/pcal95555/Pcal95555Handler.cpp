@@ -275,13 +275,13 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
         return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
     }
 #endif
-    /* Mid Carrier live actuators: tolerate one-shot I2C glitches. */
+    /* Live-actuator buses: tolerate one-shot I2C glitches. */
     pcal95555_driver_->SetRetries(3);
 
 #if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
-    /* Skip std::function interrupt registration on CM4 bench stand-in — it heap-
-     * allocates on every successful driver init and is unused (nINT is optional;
-     * map/verify use polling). Keeps bring-up on the proven I2C path. */
+    /* Skip std::function interrupt registration on polling-only bring-up — it
+     * heap-allocates on every successful driver init and is unused when nINT
+     * is optional and map/verify use polling. */
 #else
     // 4. Register the driver's interrupt handler with the I2C adapter
     //    so that HandleInterrupt() can be triggered by the adapter.
@@ -298,9 +298,9 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
 
     // Seed previous input state for edge detection on first interrupt.
 #if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
-    /* Avoid driver ReadAllInputs here — on Mid I2C0 it can leave the master
-     * sticky (TXIS / phantom INPUT) right before map CONFIG/OUTPUT. Polling
-     * bring-up does not need the seed. */
+    /* Avoid driver ReadAllInputs here — on a busy expander bus it can leave
+     * the master sticky (TXIS / phantom INPUT) right before map CONFIG/OUTPUT.
+     * Polling bring-up does not need the seed. */
     prev_input_state_ = 0;
 #else
     prev_input_state_ = pcal95555_driver_->ReadAllInputs();
@@ -401,7 +401,7 @@ hf_gpio_err_t Pcal95555Handler::SetOutput(uint8_t pin, bool active) noexcept {
         /* MAX CMD (P1.7) toggles on every SPI frame. Write+read+retry verify
          * was ~half of the ~18 ms sol apply budget. Trust the shadow write for
          * this hot pin; keep verified path for EN/nRST/control straps. */
-        constexpr uint8_t kMaxCmdPin = 15U;  // PcalActuatorGpioId::MaxCmd
+        constexpr uint8_t kMaxCmdPin = 15U;  // hot SPI CMD strap pin
         if (pin == kMaxCmdPin) {
             return pcal95555_driver_->WriteDualPortRegister(
                        static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
@@ -440,9 +440,9 @@ hf_gpio_err_t Pcal95555Handler::ReadInput(uint8_t pin, bool& active) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!EnsureInitializedLocked()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
 
-    /* Output pins: return OUTPUT latch shadow. Mid I2C0 INPUT_PORT after
-     * expander traffic is untrustworthy (phantom Port1 / stuck pointer) and
-     * poisoned IsActive() for TLE nRST / MAX EN even when the latch was
+    /* Output pins: return OUTPUT latch shadow. INPUT_PORT after expander
+     * traffic can be untrustworthy (phantom Port1 / stuck pointer) and
+     * poisoned IsActive() for control straps even when the latch was
      * correctly programmed. Inputs still sample the wire. */
     if (port_shadow_valid_ &&
         (config_shadow_ & static_cast<uint16_t>(1u << pin)) == 0U) {
@@ -983,10 +983,9 @@ hf_gpio_err_t Pcal95555Handler::ProgramPortsAbsolute(uint16_t config,
     output_shadow_ = output;
     config_shadow_ = config;
 
-    /* POL → CONFIG → OUTPUT (OUTPUT last). On Mid I2C0, a following
-     * INPUT_PORT_1 read can leave Port1 (odd) register reads stuck returning
-     * INPUT_1; keep OUTPUT as the last write and verify OUTPUT/CONFIG/POL
-     * before any INPUT sample. */
+    /* POL → CONFIG → OUTPUT (OUTPUT last). A following INPUT_PORT_1 read can
+     * leave Port1 (odd) register reads stuck returning INPUT_1; keep OUTPUT
+     * as the last write and verify OUTPUT/CONFIG/POL before any INPUT sample. */
     const bool pol_ok = pcal95555_driver_->WriteDualPortRegister(
         static_cast<uint8_t>(Pcal95555Reg::POLARITY_INV_0),
         static_cast<uint8_t>(Pcal95555Reg::POLARITY_INV_1), polarity_shadow_);
@@ -1078,10 +1077,10 @@ hf_gpio_err_t Pcal95555Handler::ReadStandardRegisterBank(
     }
     input = output = polarity = config = 0;
     /* Production model: OUTPUT/CONFIG/POL come from the absolute-program
-     * shadow. Mid I2C0 Port1 (odd) bus readback is not trustworthy after
-     * INPUT_PORT traffic (reads return INPUT_1). INPUT is always sampled
-     * from the wire. Latch prove (write then immediate OUTPUT read) remains
-     * the bus check for write-effect. */
+     * shadow. Port1 (odd) bus readback is not trustworthy after INPUT_PORT
+     * traffic on some expander buses (reads return INPUT_1). INPUT is always
+     * sampled from the wire. Latch prove (write then immediate OUTPUT read)
+     * remains the bus check for write-effect. */
     if (port_shadow_valid_) {
         output = output_shadow_;
         polarity = polarity_shadow_;

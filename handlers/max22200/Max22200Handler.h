@@ -43,8 +43,8 @@
  *
  * Implements all methods required by max22200::SpiInterface<HalSpiMax22200Comm>.
  * Handles the two-phase CMD-pin SPI protocol (CMD HIGH = command byte,
- * CMD LOW = data). Live actuators: Portenta SPI2 Mode 0, soft CS **PC13**;
- * EN/CMD/nFLT are PCAL-backed — claim map ownership before Initialize.
+ * CMD LOW = data). Live actuators typically use Mode 0 soft-CS SPI; EN/CMD/nFLT
+ * may be expander-backed — claim board GPIO map ownership before Initialize.
  */
 class HalSpiMax22200Comm : public max22200::SpiInterface<HalSpiMax22200Comm> {
 public:

@@ -61,9 +61,9 @@ inline void RouteLogToLogger(int level, const char* tag,
 /**
  * @brief RTOS-aware millisecond delay.
  *
- * On ESP-IDF / FreeRTOS (Portenta CM4), yields via the scheduler so TLE/MAX
- * reset settle times (datasheet ≥10 ms) are real wall time — not a short
- * `volatile` busy-wait that was ~3×–10× too short at 200–240 MHz.
+ * On ESP-IDF / FreeRTOS, yields via the scheduler so TLE/MAX reset settle
+ * times (datasheet ≥10 ms) are real wall time — not a short `volatile`
+ * busy-wait that was ~3×–10× too short at 200–240 MHz.
  *
  * @param ms Delay duration in milliseconds.
  */
@@ -81,7 +81,7 @@ inline void DelayMs(uint32_t ms) noexcept {
 #elif defined(USE_HAL_DRIVER)
     HAL_Delay(ms);
 #else
-    /* Last-resort busy-wait (~1 ms @ CM4 ~200 MHz). Prefer RTOS/HAL above. */
+    /* Last-resort busy-wait (~1 ms @ ~200 MHz Cortex-M). Prefer RTOS/HAL. */
     for (uint32_t m = 0; m < ms; ++m) {
         volatile uint32_t spin = 40000U;
         while (spin--) {
@@ -112,7 +112,7 @@ inline void DelayUs(uint32_t us) noexcept {
         DelayMs((us + 999U) / 1000U);
         return;
     }
-    /* ~1 µs/iteration @ CM4 ~200–240 MHz (Portenta dual-core). */
+    /* ~1 µs/iteration @ Cortex-M ~200–240 MHz. */
     for (uint32_t i = 0; i < us; ++i) {
         volatile uint32_t spin = 40U;
         while (spin--) {

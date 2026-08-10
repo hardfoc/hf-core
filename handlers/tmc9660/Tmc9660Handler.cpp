@@ -65,7 +65,7 @@ const tmc9660::BootloaderConfig Tmc9660Handler::kDefaultBootConfig = {
         tmc9660::bootcfg::SPIInterface::SPI0,     // boot_spi_iface
         tmc9660::bootcfg::SPI0SckPin::GPIO6       // spi0_sck_pin
     },
-    // SPI Flash Configuration — off by default for UART-primary / bench stand-in
+    // SPI Flash Configuration — off by default for UART-primary bring-up
     // (no SPI0 flash on many bench modules). EVKIT-with-flash can override.
     {
         false,                                     // enable_flash
@@ -233,7 +233,7 @@ bool HalUartTmc9660Comm::uartReceiveTMCL(std::array<uint8_t, 9>& data) noexcept 
     if (!uart_.EnsureInitialized()) {
         return false;
     }
-    /* ESP uses ~10 ms; give bench stand-in PCAL/cable a little more, not 1 s. */
+    /* ESP uses ~10 ms; allow a little more for expander/cable latency, not 1 s. */
     hf_uart_err_t result = uart_.Read(data.data(), 9, 100);
     return result == hf_uart_err_t::UART_SUCCESS;
 }
