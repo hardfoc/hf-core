@@ -43,8 +43,8 @@ bool HalSpiMax22200Comm::Initialize() noexcept {
 
     /* Map already programmed directions — polarity + park only.
      * Keep ENABLE HIGH: forcing it low here then relying on the driver's
-     * 0.5 ms post-rise delay is too short for PCAL-backed bench stand-in and
-     * left STATUS/ACTIVE dead while a raw CS ping still saw COMER (0x04). */
+     * 0.5 ms post-rise delay is too short when EN is behind an I2C expander
+     * and left STATUS/ACTIVE dead while a raw CS ping still saw COMER (0x04). */
     enable_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH);
     if (!enable_.EnsureInitialized()) {
         log.Error(TAG, "comm.Init: ENABLE.EnsureInitialized failed");
@@ -81,7 +81,7 @@ bool HalSpiMax22200Comm::Initialize() noexcept {
         }
     }
 
-    /* PCAL + VM wake margin before first STATUS (driver adds another 0.5 ms). */
+    /* Expander + VM wake margin before first STATUS (driver adds another 0.5 ms). */
     DelayUs(5000);
 
     log.Info(TAG, "comm.Init: OK (EN=HIGH, CMD=HIGH, FAULT=input)");
@@ -169,13 +169,13 @@ void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal sig
     }
 
     if (gpio_err != hf_gpio_err_t::GPIO_SUCCESS) {
-        /* Do not clear initialized_ — a single PCAL I2C glitch during CMD
+        /* Do not clear initialized_ — a single expander I2C glitch during CMD
          * toggle must not permanently kill IsReady()/Transfer mid-init. */
         Logger::GetInstance().Error(TAG, "GPIO control failed for MAX22200 control pin");
         return;
     }
 
-    /* EN is still PCAL I2C on live-actuator bring-up; CMD is MCU PD5 (no settle). */
+    /* EN may be expander I2C (needs settle); CMD is local MCU GPIO (no settle). */
     if (pin == max22200::CtrlPin::ENABLE) {
         DelayUs(2000);
     } else if (pin == max22200::CtrlPin::CMD) {
@@ -351,7 +351,8 @@ bool Max22200Handler::WaitForActiveAndDrainFaults() noexcept {
             ++status_ok_polls;
         }
         /* ACTIVE=1 is the bring-up gate. UVM alone is logged but not fatal —
-         * bench stand-in rails can leave a sticky UVM bit while SPI is healthy. */
+         * long-lead / soft-rail setups can leave a sticky UVM bit while SPI
+         * is healthy. */
         if (st.active) {
             if (st.undervoltage) {
                 log.Warn(TAG,

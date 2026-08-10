@@ -30,7 +30,7 @@ HalSpiTle92466edComm::HalSpiTle92466edComm(
 
 tle92466ed::CommResult<void> HalSpiTle92466edComm::Init() noexcept {
     /* Idempotent: Driver::Init calls Comm::Init on every bring-up retry.
-     * Re-parking EN low here made the ENABLE LED blink at the retry rate
+     * Re-parking EN low here toggled the enable rail at the retry rate
      * while ICVID was failing — EN must latch once, then only move for an
      * intentional HW reset (Driver::SetEnable) or safe-off. */
     if (initialized_) {
@@ -43,10 +43,10 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::Init() noexcept {
         return tle::unexpected(last_error_);
     }
 
-    /* Pins are batch-programmed by PcalActuatorGpioMap — only confirm polarity
-     * and park levels. Extra SetDirection RMW on Mid I2C0 has wedged the
-     * expander after map bring-up. First Init only: park EN low / RESN
-     * released; Driver::Init then owns the reset+enable sequence. */
+    /* Pins are batch-programmed by the board GPIO map — only confirm polarity
+     * and park levels. Extra SetDirection RMW on a shared I2C expander bus
+     * has wedged the expander after map bring-up. First Init only: park EN
+     * low / RESN released; Driver::Init then owns the reset+enable sequence. */
     resn_.SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
     if (!resn_.EnsureInitialized() ||
         resn_.SetInactive() != hf_gpio_err_t::GPIO_SUCCESS) {
@@ -450,8 +450,13 @@ tle92466ed::DriverResult<void> Tle92466edHandler::EnableFeedbackUpdates() noexce
         // when cleared. Writing 0x0000 unfreezes every channel. The driver's
         // public API doesn't expose an FB_FRZ helper, so go through the
         // generic WriteRegister.
+        //
+        // Skip write-verify: shared Mode1 soft-CS readback of FB_FRZ is often a
+        // phantom (same class as CH_CTRL sticky-zero). A hard verify fail would
+        // leave channels frozen and FB_I_AVG stuck at 0 even when the clear
+        // write landed.
         constexpr uint16_t kFbFrzAddr = tle92466ed::CentralReg::FB_FRZ;
-        return drv.WriteRegister(kFbFrzAddr, 0x0000);
+        return drv.WriteRegister(kFbFrzAddr, 0x0000, false, false);
     });
 }
 
@@ -536,7 +541,7 @@ uint32_t Tle92466edHandler::GetIcVersion() noexcept {
 
 Tle92466edHandler::DriverType* Tle92466edHandler::GetDriver() noexcept {
     MutexLockGuard lock(mutex_);
-    /* Never HW-reset from GetDriver — ValvesManager owns RESN policy. Callers
+    /* Never HW-reset from GetDriver — upper layers own RESN policy. Callers
      * that need init must go through Initialize() / EnsureInitialized(). */
     if (!initialized_ || !driver_) {
         return nullptr;
