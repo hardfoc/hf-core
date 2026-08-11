@@ -223,18 +223,28 @@ bool HalUartTmc9660Comm::uartSendTMCL(const std::array<uint8_t, 9>& data) noexce
     if (!uart_.EnsureInitialized()) {
         return false;
     }
-    /* Match ESP uart_flush_input before TX — stale RX wedges TMCL framing. */
+    /* Flush stale RX before TX only — never flush between TX and RX or the
+     * 9-byte TMCL reply is discarded (HIL: endless APPLY step cycling). */
     (void)uart_.FlushRx();
-    hf_uart_err_t result = uart_.Write(data.data(), 9);
-    return result == hf_uart_err_t::UART_SUCCESS;
+    hf_uart_err_t result = uart_.Write(data.data(), 9, 50);
+    if (result != hf_uart_err_t::UART_SUCCESS) {
+        return false;
+    }
+    /* Parameter-mode turnaround: chip needs a short gap before the reply
+     * stream is ready (ADI demos are far slower than back-to-back HAL TX/RX). */
+    delayUs(500);
+    return true;
 }
 
 bool HalUartTmc9660Comm::uartReceiveTMCL(std::array<uint8_t, 9>& data) noexcept {
     if (!uart_.EnsureInitialized()) {
         return false;
     }
-    /* ESP uses ~10 ms; allow a little more for expander/cable latency, not 1 s. */
-    hf_uart_err_t result = uart_.Read(data.data(), 9, 100);
+    /* Do not FlushRx here — reply bytes may already be in the UART FIFO. */
+    hf_uart_err_t result = uart_.Read(data.data(), 9, 40);
+    if (result != hf_uart_err_t::UART_SUCCESS) {
+        (void)uart_.FlushRx();
+    }
     return result == hf_uart_err_t::UART_SUCCESS;
 }
 
