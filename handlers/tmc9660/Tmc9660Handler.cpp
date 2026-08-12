@@ -170,20 +170,58 @@ HalSpiTmc9660Comm::HalSpiTmc9660Comm(BaseSpi& spi, BaseGpio& rst, BaseGpio& drv_
 
 bool HalSpiTmc9660Comm::spiTransferTMCL(std::array<uint8_t, 8>& tx, std::array<uint8_t, 8>& rx) noexcept {
     if (!spi_.EnsureInitialized()) {
+        last_spi_err_ = 0xEEu; /* EnsureInitialized failed — not a transfer code */
         return false;
     }
-    hf_spi_err_t result = spi_.Transfer(tx.data(), rx.data(), hf_u16_t(8), hf_u32_t(0));
-    /* Pace like UART frame gap — back-to-back Mode3 frames starve TMCL parser. */
-    handler_utils::DelayUs(150);
+    /* Explicit timeout — timeout_ms=0 used the 1 s bus default and made FOC
+     * APPLY appear stuck for tens of seconds on a quiet MISO. */
+    hf_spi_err_t result = spi_.Transfer(tx.data(), rx.data(), hf_u16_t(8), hf_u32_t(50));
+    last_spi_err_ = static_cast<uint32_t>(result);
+    handler_utils::DelayUs(200);
     return result == hf_spi_err_t::SPI_SUCCESS;
+}
+
+bool HalSpiTmc9660Comm::hostSpiTransferTMCLPair(std::array<uint8_t, 8>& tx1,
+                                                 std::array<uint8_t, 8>& rx1,
+                                                 std::array<uint8_t, 8>& tx2,
+                                                 std::array<uint8_t, 8>& rx2,
+                                                 uint32_t gap_us) noexcept {
+    if (!spi_.EnsureInitialized()) {
+        last_spi_err_ = 0xEEu;
+        return false;
+    }
+    /* One bus lock across both TMCL soft-CS windows — peers (TLE Mode1) cannot
+     * SPE-rewrite CPOL between cmd and NO_OP. TransferChain also defers Mode3
+     * peer-park until after frame 2. */
+    const hf_u8_t* tx_frames[2] = {tx1.data(), tx2.data()};
+    hf_u8_t* rx_frames[2] = {rx1.data(), rx2.data()};
+    const hf_u32_t gap = (gap_us > 0U) ? gap_us : 1000U;
+    hf_spi_err_t result = spi_.TransferChain(tx_frames, rx_frames, hf_u16_t(8),
+                                             hf_u16_t(2), gap, hf_u32_t(50));
+    last_spi_err_ = static_cast<uint32_t>(result);
+    handler_utils::DelayUs(200);
+    return result == hf_spi_err_t::SPI_SUCCESS;
+}
+
+uint32_t HalSpiTmc9660Comm::rawTmclProbe(std::array<uint8_t, 8>& tx,
+                                          std::array<uint8_t, 8>& rx,
+                                          uint32_t timeout_ms) noexcept {
+    if (!spi_.EnsureInitialized()) {
+        return 0xEEu;
+    }
+    const hf_spi_err_t result =
+        spi_.Transfer(tx.data(), rx.data(), hf_u16_t(8), hf_u32_t(timeout_ms));
+    return static_cast<uint32_t>(result);
 }
 
 bool HalSpiTmc9660Comm::spiTransferBootloader(std::array<uint8_t, 5>& tx, std::array<uint8_t, 5>& rx) noexcept {
     if (!spi_.EnsureInitialized()) {
+        last_spi_err_ = 0xEEu;
         return false;
     }
-    hf_spi_err_t result = spi_.Transfer(tx.data(), rx.data(), hf_u16_t(5), hf_u32_t(0));
-    handler_utils::DelayUs(150);
+    hf_spi_err_t result = spi_.Transfer(tx.data(), rx.data(), hf_u16_t(5), hf_u32_t(50));
+    last_spi_err_ = static_cast<uint32_t>(result);
+    handler_utils::DelayUs(200);
     return result == hf_spi_err_t::SPI_SUCCESS;
 }
 
@@ -226,13 +264,11 @@ bool HalUartTmc9660Comm::uartSendTMCL(const std::array<uint8_t, 9>& data) noexce
     /* Flush stale RX before TX only — never flush between TX and RX or the
      * 9-byte TMCL reply is discarded (HIL: endless APPLY step cycling). */
     (void)uart_.FlushRx();
-    hf_uart_err_t result = uart_.Write(data.data(), 9, 50);
+    hf_uart_err_t result = uart_.Write(data.data(), 9, 80);
     if (result != hf_uart_err_t::UART_SUCCESS) {
         return false;
     }
-    /* Parameter-mode turnaround: chip needs a short gap before the reply
-     * stream is ready (ADI demos are far slower than back-to-back HAL TX/RX). */
-    delayUs(500);
+    delayUs(1000);
     return true;
 }
 
@@ -241,7 +277,7 @@ bool HalUartTmc9660Comm::uartReceiveTMCL(std::array<uint8_t, 9>& data) noexcept 
         return false;
     }
     /* Do not FlushRx here — reply bytes may already be in the UART FIFO. */
-    hf_uart_err_t result = uart_.Read(data.data(), 9, 40);
+    hf_uart_err_t result = uart_.Read(data.data(), 9, 80);
     if (result != hf_uart_err_t::UART_SUCCESS) {
         (void)uart_.FlushRx();
     }

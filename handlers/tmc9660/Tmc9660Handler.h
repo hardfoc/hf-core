@@ -219,6 +219,16 @@ public:
     bool spiTransferTMCL(std::array<uint8_t, 8>& tx, std::array<uint8_t, 8>& rx) noexcept;
 
     /**
+     * @brief Two TMCL soft-CS frames under one bus lock (cmd + NO_OP / reply).
+     * @details CRTP name is hostSpi* so @c requires detection does not match
+     *          an inherited default. Prevents Mode1 peers rewriting SPE/CPOL
+     *          between halves (Mid HIL: OPENLOOP_VOLTAGE tmcl_st=56).
+     */
+    bool hostSpiTransferTMCLPair(std::array<uint8_t, 8>& tx1, std::array<uint8_t, 8>& rx1,
+                                 std::array<uint8_t, 8>& tx2, std::array<uint8_t, 8>& rx2,
+                                 uint32_t gap_us) noexcept;
+
+    /**
      * @brief Perform a 5-byte full-duplex SPI transfer for bootloader mode.
      * @param[in,out] tx 5-byte transmit buffer (bootloader command).
      * @param[out]    rx 5-byte receive buffer (bootloader reply).
@@ -277,9 +287,26 @@ public:
 
     /// @}
 
+    /**
+     * @brief Last BaseSpi error observed by any TMCL/bootloader transfer.
+     * @return Numeric hf_spi_err_t of the most recent transfer (0 = SPI_SUCCESS).
+     *         Bench diagnostic: distinguishes bus-lock starvation (BUS_BUSY=7),
+     *         HAL timeout (TRANSFER_TIMEOUT=12) from a silent chip (SUCCESS + zeros).
+     */
+    uint32_t transportDiag() const noexcept { return last_spi_err_; }
+
+    /**
+     * @brief Single-shot raw 8-byte transfer with caller-chosen bus-lock timeout.
+     * @return Numeric hf_spi_err_t (0 = success). Bench diagnostic only — no
+     *         retry, no parse; discriminates lock starvation from a silent chip.
+     */
+    uint32_t rawTmclProbe(std::array<uint8_t, 8>& tx, std::array<uint8_t, 8>& rx,
+                          uint32_t timeout_ms) noexcept;
+
 private:
     BaseSpi&  spi_;             ///< SPI bus interface (not owned).
     Tmc9660CtrlPins ctrl_pins_; ///< Host-side control pin references.
+    uint32_t  last_spi_err_{0}; ///< Last hf_spi_err_t from Transfer/TransferChain.
 };
 
 /**
