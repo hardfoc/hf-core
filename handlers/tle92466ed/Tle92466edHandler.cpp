@@ -17,6 +17,14 @@ namespace {
  * Comm adapter object itself may still live elsewhere. */
 uint8_t g_tle_spi_tx[4]{};
 uint8_t g_tle_spi_rx[4]{};
+
+/* Chain staging for the pipelined command+dummy read. Frame pointers are
+ * handed to BaseSpi::TransferChain, which holds ONE bus-ownership window
+ * across every frame — see kTleChainGapUs. */
+constexpr size_t kTleChainMaxFrames = 4;
+constexpr uint32_t kTleChainGapUs = 20U;
+uint8_t g_tle_chain_tx[kTleChainMaxFrames][4]{};
+uint8_t g_tle_chain_rx[kTleChainMaxFrames][4]{};
 }  // namespace
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -75,6 +83,7 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::Init() noexcept {
 }
 
 tle92466ed::CommResult<void> HalSpiTle92466edComm::Deinit() noexcept {
+    /* Comm deinit is a flag only — Driver::Deinit owns safe-off sequencing. */
     initialized_ = false;
     return {};
 }
@@ -84,7 +93,8 @@ tle92466ed::CommResult<uint32_t> HalSpiTle92466edComm::Transfer32(uint32_t tx_da
         last_error_ = tle92466ed::CommError::HardwareNotReady;
         return tle::unexpected(last_error_);
     }
-    /* MSB-first on the wire (matches ESP byte_swap_32 + LE DMA). AXI scratch. */
+    /* MSB-first on the wire (matches byte_swap + LE DMA staging). Uses TU-static
+     * internal SRAM buffers — not stack or external RAM (see g_tle_spi_tx). */
     g_tle_spi_tx[0] = static_cast<uint8_t>((tx_data >> 24) & 0xFF);
     g_tle_spi_tx[1] = static_cast<uint8_t>((tx_data >> 16) & 0xFF);
     g_tle_spi_tx[2] = static_cast<uint8_t>((tx_data >> 8) & 0xFF);
@@ -125,7 +135,56 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::TransferMulti(
         last_error_ = tle92466ed::CommError::InvalidParameter;
         return tle::unexpected(last_error_);
     }
-    /* Proven path: per-frame Transfer32 (CS rise + inter-frame gap). */
+
+    /* The TLE92466ED reply pipeline spans two CS windows: the response to the
+     * command frame only appears on the NEXT frame. Issuing those frames as
+     * independent BaseSpi::Transfer calls releases the SPI2 bus mutex between
+     * them, so a peer transaction can consume this device's pipeline slot —
+     * observed as "sticky-zero" register reads and impossible FB_I_AVG ratios
+     * (TP_MANT spliced from another frame). TransferChain keeps ONE bus
+     * ownership window across the whole pipeline while still raising CS
+     * between frames, which is what the protocol requires. */
+    if (tx_data.size() <= kTleChainMaxFrames) {
+        const size_t n = tx_data.size();
+        const uint8_t* tx_ptrs[kTleChainMaxFrames]{};
+        uint8_t* rx_ptrs[kTleChainMaxFrames]{};
+        for (size_t i = 0; i < n; ++i) {
+            g_tle_chain_tx[i][0] = static_cast<uint8_t>((tx_data[i] >> 24) & 0xFF);
+            g_tle_chain_tx[i][1] = static_cast<uint8_t>((tx_data[i] >> 16) & 0xFF);
+            g_tle_chain_tx[i][2] = static_cast<uint8_t>((tx_data[i] >> 8) & 0xFF);
+            g_tle_chain_tx[i][3] = static_cast<uint8_t>((tx_data[i] >> 0) & 0xFF);
+            g_tle_chain_rx[i][0] = g_tle_chain_rx[i][1] = 0;
+            g_tle_chain_rx[i][2] = g_tle_chain_rx[i][3] = 0;
+            tx_ptrs[i] = g_tle_chain_tx[i];
+            rx_ptrs[i] = g_tle_chain_rx[i];
+        }
+
+        const auto err = spi_.TransferChain(tx_ptrs, rx_ptrs, hf_u16_t{4},
+                                            static_cast<hf_u16_t>(n),
+                                            hf_u32_t{kTleChainGapUs},
+                                            hf_u32_t{0});
+        if (err != hf_spi_err_t::SPI_SUCCESS) {
+            Logger::GetInstance().Error(
+                TAG, "TransferMulti: TransferChain failed (err=%d, frames=%u)",
+                static_cast<int>(err), static_cast<unsigned>(n));
+            last_error_ = tle92466ed::CommError::TransferError;
+            return tle::unexpected(last_error_);
+        }
+
+        for (size_t i = 0; i < n; ++i) {
+            rx_data[i] = (static_cast<uint32_t>(g_tle_chain_rx[i][0]) << 24) |
+                         (static_cast<uint32_t>(g_tle_chain_rx[i][1]) << 16) |
+                         (static_cast<uint32_t>(g_tle_chain_rx[i][2]) << 8) |
+                         (static_cast<uint32_t>(g_tle_chain_rx[i][3]) << 0);
+        }
+        last_rx_ = rx_data[n - 1];
+        last_rx_first_ = rx_data[0];
+        last_error_ = tle92466ed::CommError::None;
+        return {};
+    }
+
+    /* Longer bursts are not part of any TLE protocol sequence; fall back to
+     * per-frame transfers rather than silently truncating the chain. */
     for (size_t i = 0; i < tx_data.size(); ++i) {
         auto result = Transfer32(tx_data[i]);
         if (!result) {
@@ -143,7 +202,7 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::Delay(uint32_t microseconds) 
 
 tle92466ed::CommResult<void> HalSpiTle92466edComm::Configure(
     const tle92466ed::SPIConfig& /*config*/) noexcept {
-    // BaseSpi is pre-configured — nothing to do here
+    /* Board bind configures SPI2 Mode 1 / 32-bit before this adapter exists. */
     return {};
 }
 
@@ -183,7 +242,8 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::GpioSet(
         return tle::unexpected(last_error_);
     }
 
-    // BaseGpio active level is configured per-pin — use SetActive/SetInactive
+    // BaseGpio active level is configured per-pin — map driver ACTIVE/INACTIVE
+    // to SetActive/SetInactive rather than raw pin writes.
     hf_gpio_err_t gpio_err = hf_gpio_err_t::GPIO_SUCCESS;
     if (signal == tle92466ed::GpioSignal::ACTIVE) {
         gpio_err = gpio->SetActive();
@@ -245,6 +305,7 @@ void HalSpiTle92466edComm::Log(tle92466ed::LogLevel level, const char* tag,
 ///////////////////////////////////////////////////////////////////////////////
 
 static inline tle92466ed::Channel toChannel(uint8_t ch) {
+    /* Bounds are validated by every public handler entrypoint before call. */
     return static_cast<tle92466ed::Channel>(ch);
 }
 
@@ -260,6 +321,7 @@ Tle92466edHandler::Tle92466edHandler(
 }
 
 Tle92466edHandler::~Tle92466edHandler() noexcept {
+    /* Best-effort safe-off; do not throw from destructor. */
     if (initialized_) {
         Deinitialize();
     }
@@ -273,6 +335,8 @@ tle92466ed::DriverResult<void> Tle92466edHandler::Initialize(
 
 tle92466ed::DriverResult<void> Tle92466edHandler::InitializeLocked(
     bool perform_hardware_reset) noexcept {
+    /* Caller holds mutex_. Comm::Init is idempotent; Driver::Init owns RESN/EN
+     * sequencing and the first ICVID read after optional hardware reset. */
     if (initialized_) {
         Logger::GetInstance().Warn(TAG, "Already initialized");
         return {};
@@ -314,7 +378,7 @@ tle92466ed::DriverResult<void> Tle92466edHandler::Initialize(const tle92466ed::G
 
     driver_ = std::make_unique<DriverType>(*comm_);
 
-    // Init first, then configure global settings
+    /* Init() always hardware-resets; GlobalConfig overload has no reset flag. */
     auto result = driver_->Init();
     if (!result) {
         Logger::GetInstance().Error(TAG, "Driver init failed: %d",
@@ -337,6 +401,7 @@ tle92466ed::DriverResult<void> Tle92466edHandler::Initialize(const tle92466ed::G
 }
 
 bool Tle92466edHandler::EnsureInitializedLocked() noexcept {
+    /* Lazy path always hardware-resets so first consumer sees a known device. */
     if (initialized_ && driver_) {
         return true;
     }
@@ -352,7 +417,7 @@ tle92466ed::DriverResult<void> Tle92466edHandler::Deinitialize() noexcept {
     if (!initialized_) return {};
 
     if (driver_) {
-        // Disable all channels before shutdown
+        /* Drop channel enables before destroying driver_; does not pulse RESN. */
         (void)driver_->DisableAllChannels();
     }
     driver_.reset();
@@ -550,6 +615,7 @@ Tle92466edHandler::DriverType* Tle92466edHandler::GetDriver() noexcept {
 }
 
 const Tle92466edHandler::DriverType* Tle92466edHandler::GetDriver() const noexcept {
+    /* Delegate to non-const impl: lazy init is intentionally unavailable here. */
     auto* self = const_cast<Tle92466edHandler*>(this);
     return self->GetDriver();
 }

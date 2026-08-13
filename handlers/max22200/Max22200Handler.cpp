@@ -1,6 +1,10 @@
 /**
  * @file Max22200Handler.cpp
- * @brief Implementation of MAX22200 handler with SPI communication adapter.
+ * @brief Implementation of MAX22200 handler with SPI2 communication adapter.
+ *
+ * @details Shared SPI2, two-phase CMD-pin protocol. Bench carrier wires
+ *          channel 0 only (Parker C21 solenoid); channels 1..7 unpopulated.
+ *
  * @copyright Copyright (c) 2024-2025 HardFOC. All rights reserved.
  */
 
@@ -502,7 +506,7 @@ max22200::DriverStatus Max22200Handler::GetChannelFaults(uint8_t channel,
                                         max22200::FaultStatus& faults) noexcept {
     return withDriver([&](auto& drv) -> max22200::DriverStatus {
         if (channel >= kNumChannels) return max22200::DriverStatus::INVALID_PARAMETER;
-        (void)channel; // FaultStatus is device-wide
+        (void)channel; /* FaultStatus is device-wide; channel is range-checked only. */
         return drv.ReadFaultRegister(faults);
     });
 }
@@ -550,7 +554,6 @@ void Max22200Handler::DumpDiagnostics() noexcept {
 
     log.Info(TAG, "=== MAX22200 Diagnostics ===");
 
-    // Status
     max22200::StatusConfig status{};
     if (driver_->ReadStatus(status) == max22200::DriverStatus::OK) {
         log.Info(TAG, "  Active: %s", status.active ? "yes" : "no");
@@ -558,7 +561,6 @@ void Max22200Handler::DumpDiagnostics() noexcept {
         log.Info(TAG, "  Has fault: %s", status.hasFault() ? "YES" : "no");
     }
 
-    // Fault register
     max22200::FaultStatus faults{};
     if (driver_->ReadFaultRegister(faults) == max22200::DriverStatus::OK) {
         log.Info(TAG, "  Faults: hasFault=%s", faults.hasFault() ? "YES" : "no");
@@ -569,7 +571,6 @@ void Max22200Handler::DumpDiagnostics() noexcept {
                  faults.plunger_movement_fault_channel_mask);
     }
 
-    // Statistics
     auto stats = driver_->GetStatistics();
     log.Info(TAG, "  Transfers: %lu, Success rate: %.1f%%",
              static_cast<unsigned long>(stats.total_transfers),

@@ -3,16 +3,22 @@
  * @brief Unified handler for MAX22200 octal solenoid and motor driver.
  *
  * @details
- * Provides HAL-level integration for the MAX22200 using BaseSpi and BaseGpio.
- * Features:
- * - CRTP SPI adapter bridging BaseSpi to the MAX22200 two-phase SPI protocol
+ * Provides HAL-level integration for the MAX22200 on shared SPI2 using
+ * BaseSpi and BaseGpio. Features:
+ * - CRTP SPI adapter bridging BaseSpi to the MAX22200 two-phase CMD-pin SPI
+ *   protocol (CMD HIGH = command byte, CMD LOW = data)
  * - 8-channel high/low-side output control with CDR/VDR drive modes
  * - Channel-pair modes (independent, parallel, half-bridge, full-bridge)
  * - Comprehensive fault monitoring and DPM (Detect Plunger Movement)
  * - Convenience APIs with real-unit parameters (mA, %, ms)
- * - Thread-safe operations with RtosMutex
+ * - Thread-safe operations with RtosMutex (@ref WithDriver preferred)
  * - Lazy initialization pattern
- * - Full driver access through GetDriver() for advanced operations
+ * - Raw driver access through @ref GetDriver for single-threaded bring-up only
+ *
+ * @note On the live-actuators bench carrier only channel 0 is populated
+ *       (Parker C21 on/off solenoid, 500 mA HIT / 250 mA HOLD). Channels
+ *       1..7 are unpopulated — their open-load detectors stay disabled and
+ *       must not contribute OLF/OCP faults.
  *
  * @author HardFOC Team
  * @date 2025
@@ -25,6 +31,7 @@
 #include <cstdint>
 #include <memory>
 #include <type_traits>
+#include <utility>
 #include "core/hf-core-drivers/external/hf-max22200-driver/inc/max22200.hpp"
 #include "core/hf-core-drivers/external/hf-max22200-driver/inc/max22200_spi_interface.hpp"
 #include "core/hf-core-drivers/external/hf-max22200-driver/inc/max22200_types.hpp"
@@ -61,13 +68,47 @@ public:
     /// @name CRTP-Required Methods
     /// @{
 
+    /** @brief Park ENABLE/CMD, optional nFAULT input, and 5 ms VM settle. */
     bool Initialize() noexcept;
+
+    /**
+     * @brief SPI exchange via aligned internal-SRAM staging buffers.
+     * @param tx_data TX buffer (may live outside tightly-coupled memory).
+     * @param rx_data RX buffer (updated in place via aligned word stores).
+     * @param length  Frame length in bytes (max 8).
+     * @return false if not @ref IsReady, null pointers, or SPI failure.
+     */
     bool Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) noexcept;
+
+    /**
+     * @brief Soft-CS no-op — chip select is owned by StmSpiDevice.
+     * @return Always true.
+     */
     bool SetChipSelect(bool state) noexcept;
+
+    /**
+     * @brief SPI mode/speed no-op — BaseSpi is pre-configured (Mode 0).
+     * @return Always true.
+     */
     bool Configure(uint32_t speed_hz, uint8_t mode, bool msb_first = true) noexcept;
+
+    /** @brief True when comm adapter and all bound GPIO/SPI objects are ready. */
     [[nodiscard]] bool IsReady() const noexcept;
+
+    /** @brief Blocking microsecond delay (handler_utils::DelayUs). */
     void DelayUs(uint32_t us) noexcept;
+
+    /**
+     * @brief Drive ENABLE, CMD, or nFAULT through BaseGpio.
+     * @note ENABLE (expander-backed) gets a 2 ms settle; CMD is local GPIO.
+     */
     void GpioSet(max22200::CtrlPin pin, max22200::GpioSignal signal) noexcept;
+
+    /**
+     * @brief Read ENABLE, CMD, or nFAULT level.
+     * @param[out] signal ACTIVE or INACTIVE on success.
+     * @return false if not ready, pin unsupported, or GPIO read failed.
+     */
     bool GpioRead(max22200::CtrlPin pin, max22200::GpioSignal& signal) noexcept;
 
     /// @}
@@ -91,6 +132,10 @@ private:
  * @class Max22200Handler
  * @brief Unified handler for MAX22200 octal solenoid/motor driver.
  *
+ * Serialises all driver access behind an internal mutex. Production callers
+ * should use @ref WithDriver for multi-register sequences; @ref GetDriver
+ * does not protect subsequent use of the returned pointer.
+ *
  * Provides thread-safe access to all MAX22200 driver features:
  * - 8-channel output control (enable/disable)
  * - CDR (Current Drive Regulation) and VDR (Voltage Drive Regulation) modes
@@ -98,13 +143,17 @@ private:
  * - Channel-pair modes (independent, parallel, half-bridge, full-bridge)
  * - Fault monitoring and diagnostics
  * - DPM (Detect Plunger Movement) configuration
- * - Convenience APIs with real-unit parameters
+ * - Convenience APIs with real-unit parameters (mA, %, ms)
+ *
+ * @note Bench carrier: only channel 0 is wired (Parker C21, 500 mA HIT /
+ *       250 mA HOLD). Unpopulated channels 1..7 must keep OL detection off.
  */
 class Max22200Handler {
 public:
-    /// @brief Driver type alias
+    /// @brief Underlying max22200::MAX22200 driver type.
     using DriverType = max22200::MAX22200<HalSpiMax22200Comm>;
 
+    /** @brief Number of MAX22200 output channels (0..7). */
     static constexpr uint8_t kNumChannels = 8;
 
     //=========================================================================
@@ -138,31 +187,47 @@ public:
     /**
      * @brief Initialize driver (ENABLE HIGH, read/clear STATUS, set ACTIVE).
      * @return DriverStatus::OK on success, specific error code on failure.
+     *
+     * @note Does not set board IFS. CDR current APIs require
+     *       @ref Initialize(const max22200::BoardConfig&) or a subsequent
+     *       @ref WithDriver call to SetBoardConfig().
      */
     max22200::DriverStatus Initialize() noexcept;
 
     /**
      * @brief Ensure driver is initialized (lazy init entrypoint).
      * @return true if initialized and ready.
+     *
+     * @note Thread-safe; acquires @ref mutex_ internally.
      */
-    bool EnsureInitialized() noexcept;
+    [[nodiscard]] bool EnsureInitialized() noexcept;
 
     /**
      * @brief Initialize with board configuration.
-     * @param board_config Board-specific IFS and safety limits.
+     * @param board_config Board-specific IFS (from RREF) and max-current limits.
      * @return DriverStatus::OK on success, specific error code on failure.
+     *
+     * @note Preferred production entrypoint — live bench uses
+     *       BoardConfig(15.0f, false) before CDR setup.
      */
     max22200::DriverStatus Initialize(const max22200::BoardConfig& board_config) noexcept;
 
-    /** @brief Deinitialize — disable all channels, ACTIVE=0, ENABLE LOW. */
+    /**
+     * @brief Deinitialize — disable all channels, ACTIVE=0, ENABLE LOW.
+     * @return DriverStatus::OK (always succeeds when not initialized).
+     */
     max22200::DriverStatus Deinitialize() noexcept;
 
-    /** @brief Check if initialized. */
+    /** @brief Check if @ref Initialize completed successfully. */
     [[nodiscard]] bool IsInitialized() const noexcept { return initialized_; }
 
     /**
      * @brief STATUS[7:0] captured on the last command-phase SPI byte.
-     * @return 0xFF if the driver is not constructed; 0x04 = COMER.
+     * @return 0xFF if the driver object was reset after failed init;
+     *         0x04 indicates COMER (communication error).
+     *
+     * @note Retained in @ref last_fault_byte_ when init fails and driver_ is
+     *       destroyed — safe to call without holding @ref mutex_.
      */
     [[nodiscard]] uint8_t GetLastFaultByte() const noexcept;
 
@@ -181,10 +246,12 @@ public:
     /**
      * @brief Quick CDR setup with milliamp values.
      * @param channel Channel number (0-7).
-     * @param hit_ma  HIT current in milliamps.
-     * @param hold_ma HOLD current in milliamps.
-     * @param hit_time_ms HIT time in milliseconds.
+     * @param hit_ma  HIT current in milliamps (bench CH0: 500 mA).
+     * @param hold_ma HOLD current in milliamps (bench CH0: 250 mA).
+     * @param hit_time_ms HIT phase duration in milliseconds.
      * @return DriverStatus::OK on success, first failing operation's error code.
+     *
+     * @note Requires board IFS via @ref Initialize(const max22200::BoardConfig&).
      */
     max22200::DriverStatus SetupCdrChannel(uint8_t channel, uint16_t hit_ma,
                          uint16_t hold_ma, float hit_time_ms) noexcept;
@@ -192,9 +259,9 @@ public:
     /**
      * @brief Quick VDR setup with duty cycle percentages.
      * @param channel Channel number (0-7).
-     * @param hit_duty_pct  HIT duty cycle percentage.
-     * @param hold_duty_pct HOLD duty cycle percentage.
-     * @param hit_time_ms   HIT time in milliseconds.
+     * @param hit_duty_pct  HIT duty cycle (0..100 %).
+     * @param hold_duty_pct HOLD duty cycle (0..100 %).
+     * @param hit_time_ms   HIT phase duration in milliseconds.
      * @return DriverStatus::OK on success, first failing operation's error code.
      */
     max22200::DriverStatus SetupVdrChannel(uint8_t channel, float hit_duty_pct,
@@ -204,24 +271,37 @@ public:
     // Channel Control
     //=========================================================================
 
-    /** @brief Enable a channel. */
+    /**
+     * @brief Enable a channel (sets bit in STATUS channels_on_mask).
+     * @param channel Channel number (0-7).
+     * @return DriverStatus::INVALID_PARAMETER if channel out of range.
+     */
     max22200::DriverStatus EnableChannel(uint8_t channel) noexcept;
 
-    /** @brief Disable a channel. */
+    /**
+     * @brief Disable a channel.
+     * @param channel Channel number (0-7).
+     * @return DriverStatus::INVALID_PARAMETER if channel out of range.
+     */
     max22200::DriverStatus DisableChannel(uint8_t channel) noexcept;
 
-    /** @brief Enable all channels. */
+    /** @brief Enable all eight channels (writes full channels_on_mask). */
     max22200::DriverStatus EnableAllChannels() noexcept;
 
     /** @brief Disable all channels. */
     max22200::DriverStatus DisableAllChannels() noexcept;
 
-    /** @brief Check if a channel is enabled. */
-    bool IsChannelEnabled(uint8_t channel) noexcept;
+    /**
+     * @brief Check if a channel is enabled (reads STATUS channels_on_mask).
+     * @param channel Channel number (0-7).
+     * @return false if channel invalid, STATUS read fails, or bit clear.
+     */
+    [[nodiscard]] bool IsChannelEnabled(uint8_t channel) noexcept;
 
     /**
      * @brief Set channels enabled by bitmask.
-     * @param mask Bitmask of channels to enable (bit 0 = CH0, etc.).
+     * @param mask Bitmask of channels to enable (bit 0 = CH0, bit 7 = CH7).
+     * @return DriverStatus from underlying SetChannelsOn().
      */
     max22200::DriverStatus SetChannelsMask(uint8_t mask) noexcept;
 
@@ -237,17 +317,23 @@ public:
     max22200::DriverStatus GetStatus(max22200::StatusConfig& status) noexcept;
 
     /**
-     * @brief Read fault flags for a channel.
-     * @param channel Channel number (0-7).
-     * @param[out] faults Fault status structure.
-     * @return DriverStatus::OK on success.
+     * @brief Read the device-wide FAULT register (channel param is range-checked only).
+     * @param channel Channel number (0-7); validated but not used — @ref FaultStatus
+     *                carries per-channel bitmasks for all eight outputs.
+     * @param[out] faults Populated fault register snapshot.
+     * @return DriverStatus::INVALID_PARAMETER if channel out of range.
+     *
+     * @note Prefer @ref ReadFaultRegister when the channel argument is not needed.
      */
     max22200::DriverStatus GetChannelFaults(uint8_t channel, max22200::FaultStatus& faults) noexcept;
 
-    /** @brief Check if any fault is present. */
-    bool HasFault() noexcept;
+    /**
+     * @brief Check if any fault flag is set (reads STATUS fault summary).
+     * @return false if STATUS read fails.
+     */
+    [[nodiscard]] bool HasFault() noexcept;
 
-    /** @brief Clear all fault flags. */
+    /** @brief Clear all latched fault flags (read-clear FAULT register). */
     max22200::DriverStatus ClearFaults() noexcept;
 
     //=========================================================================
@@ -255,9 +341,11 @@ public:
     //=========================================================================
 
     /**
-     * @brief Read fault register into status.
-     * @param[out] faults Fault status.
+     * @brief Read the FAULT register (OCP/OLF/HHF/DPM channel bitmasks).
+     * @param[out] faults Device-wide fault snapshot.
      * @return DriverStatus::OK on success.
+     *
+     * @see GetChannelFaults
      */
     max22200::DriverStatus ReadFaultRegister(max22200::FaultStatus& faults) noexcept;
 
@@ -266,35 +354,79 @@ public:
     //=========================================================================
 
     /**
+     * @brief Run @p fn against the raw driver with @ref mutex_ held.
+     *
+     * Preferred over @ref GetDriver for any multi-register sequence: the
+     * MAX22200 uses a two-phase CMD-pin protocol (command byte, then data),
+     * so a peer transaction landing between the phases desynchronizes the
+     * device. Holding the handler mutex across the whole callback keeps the
+     * sequence coherent.
+     *
+     * @tparam Fn Callable taking `DriverType&`.
+     * @return `fn`'s result, or `INITIALIZATION_ERROR` / a value-initialized
+     *         result when the driver is unavailable. When `fn` returns void,
+     *         this returns `bool` (true when `fn` actually ran).
+     */
+    template <typename Fn>
+    auto WithDriver(Fn&& fn) noexcept {
+        using R = std::invoke_result_t<Fn, DriverType&>;
+        if constexpr (std::is_void_v<R>) {
+            MutexLockGuard lock(mutex_);
+            if (!EnsureInitializedLocked() || !driver_) return false;
+            fn(*driver_);
+            return true;
+        } else {
+            return withDriver(std::forward<Fn>(fn));
+        }
+    }
+
+    /**
      * @brief Get the underlying driver for advanced operations.
-     * @return Pointer to driver, or nullptr if not initialized.
+     * @return Pointer to driver, or nullptr if lazy init fails.
+     *
+     * @warning The returned pointer is **not** protected: the mutex is
+     *          released when this call returns. Production code must use
+     *          @ref WithDriver; this accessor remains for single-threaded
+     *          bring-up and bench example programs.
      */
     [[nodiscard]] DriverType* GetDriver() noexcept;
+
+    /**
+     * @brief Const view of @ref GetDriver (delegates via const_cast).
+     * @return Pointer to driver, or nullptr if lazy init fails.
+     *
+     * @warning Same thread-safety constraints as @ref GetDriver.
+     */
     [[nodiscard]] const DriverType* GetDriver() const noexcept;
 
-    /** @brief Dump diagnostics to logger. */
+    /**
+     * @brief Log STATUS, FAULT register, and SPI transfer statistics.
+     * @note No-op with warning if not initialized. Holds @ref mutex_ for
+     *       the duration of the dump.
+     */
     void DumpDiagnostics() noexcept;
 
 private:
-    /** @brief Initialize with default board configuration while @ref mutex_ is held. */
+    /** @brief Initialize while @ref mutex_ is held (no board IFS). */
     max22200::DriverStatus InitializeLocked() noexcept;
     bool EnsureInitializedLocked() noexcept;
 
     /**
-     * @brief Bring the chip from POR through to a verified ACTIVE=1, UVM=0
-     *        state, then drain POR-latched fault bits.
+     * @brief Post-init wake poll: poke ACTIVE=1, wait for latch or SPI-live fallback.
      *
      * Must be called with `mutex_` held and `driver_` constructed.
      *
      * The driver's `Initialize()` returns OK as soon as its STATUS write
      * transaction completes, but the chip's t_WU = 2.5 ms (per datasheet)
      * and the V18 LDO can take dozens of ms to settle on real boards.
-     * Polls STATUS while re-issuing a bare ACTIVE=1 write each iteration
-     * until ACTIVE actually reads back as 1, then read-clears FAULT so
-     * nFAULT releases.
+     * Polls STATUS while re-issuing a bare ACTIVE=1 write each iteration.
+     * UVM may remain set on soft-rail setups — logged but not fatal.
+     * If ACTIVE never latches, accepts SPI-live after >=3 OK STATUS polls,
+     * then read-clears FAULT so nFAULT releases.
      *
-     * @return true on success (chip is ACTIVE=1 and faults drained),
-     *         false if the chip never reached ACTIVE within the timeout.
+     * @return true when faults are drained and either ACTIVE=1 latched or
+     *         SPI is live (>=3 consecutive OK STATUS polls without ACTIVE);
+     *         false if STATUS never reads OK within the timeout.
      */
     bool WaitForActiveAndDrainFaults() noexcept;
 
