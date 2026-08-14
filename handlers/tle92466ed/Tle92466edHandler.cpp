@@ -127,6 +127,16 @@ tle92466ed::CommResult<uint32_t> HalSpiTle92466edComm::Transfer32(uint32_t tx_da
 tle92466ed::CommResult<void> HalSpiTle92466edComm::TransferMulti(
     std::span<const uint32_t> tx_data,
     std::span<uint32_t> rx_data) noexcept {
+    return TransferMulti(tx_data, rx_data, 0U);
+}
+
+tle92466ed::CommResult<void> HalSpiTle92466edComm::TransferMulti(
+    std::span<const uint32_t> tx_data,
+    std::span<uint32_t> rx_data,
+    uint32_t gap_us) noexcept {
+    if (gap_us == 0U) {
+        gap_us = kTleChainGapUs;
+    }
     if (!initialized_) {
         last_error_ = tle92466ed::CommError::HardwareNotReady;
         return tle::unexpected(last_error_);
@@ -161,7 +171,7 @@ tle92466ed::CommResult<void> HalSpiTle92466edComm::TransferMulti(
 
         const auto err = spi_.TransferChain(tx_ptrs, rx_ptrs, hf_u16_t{4},
                                             static_cast<hf_u16_t>(n),
-                                            hf_u32_t{kTleChainGapUs},
+                                            hf_u32_t{gap_us},
                                             hf_u32_t{0});
         if (err != hf_spi_err_t::SPI_SUCCESS) {
             Logger::GetInstance().Error(

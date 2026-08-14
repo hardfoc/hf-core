@@ -106,6 +106,17 @@ public:
     tle92466ed::CommResult<void> TransferMulti(std::span<const uint32_t> tx_data,
                                                 std::span<uint32_t> rx_data) noexcept;
 
+    /**
+     * @brief @ref TransferMulti with an explicit inter-frame CS-high gap.
+     * @param gap_us CS-high time between chained frames in microseconds;
+     *        @c 0 selects the production default (20 µs). Bench diagnostics
+     *        use this to probe reply-latency / timing hypotheses without a
+     *        rebuild.
+     */
+    tle92466ed::CommResult<void> TransferMulti(std::span<const uint32_t> tx_data,
+                                                std::span<uint32_t> rx_data,
+                                                uint32_t gap_us) noexcept;
+
     /** @brief Busy-wait delay in microseconds (datasheet timing gaps). */
     tle92466ed::CommResult<void> Delay(uint32_t microseconds) noexcept;
 
@@ -463,12 +474,33 @@ public:
      *          device state — not for production paths.
      */
     [[nodiscard]] bool RawSpiChain(std::span<const uint32_t> tx,
-                                   std::span<uint32_t> rx) noexcept {
+                                   std::span<uint32_t> rx,
+                                   uint32_t gap_us = 0U) noexcept {
         MutexLockGuard lock(mutex_);
         if (!EnsureInitializedLocked() || !comm_) {
             return false;
         }
-        return comm_->TransferMulti(tx, rx).has_value();
+        return comm_->TransferMulti(tx, rx, gap_us).has_value();
+    }
+
+    /**
+     * @brief Run @p fn (no arguments) while @ref mutex_ is held.
+     *
+     * @ref WithDriver keeps a *single* driver call coherent, but a snapshot
+     * built from several handler calls (probe: PIN_STAT + FB_STAT + FB_FRZ +
+     * CH_CTRL + …) can still interleave with InnerControl between those
+     * calls, so the fields describe different instants. @ref mutex_ is
+     * recursive, so @p fn may freely call @ref WithDriver and any other
+     * handler method; the outer hold makes the whole composition atomic with
+     * respect to every other TLE user.
+     *
+     * @warning Everything in @p fn runs with the TLE pipeline blocked for
+     *          other threads — keep sleeps inside to a few milliseconds.
+     */
+    template <typename Fn>
+    auto WithLock(Fn&& fn) noexcept {
+        MutexLockGuard lock(mutex_);
+        return std::forward<Fn>(fn)();
     }
 
     //=========================================================================
