@@ -96,7 +96,7 @@ if(NOT DEFINED HF_CORE_RTOS)
 endif()
 string(TOUPPER "${HF_CORE_RTOS}" HF_CORE_RTOS)
 
-set(_HF_SUPPORTED_RTOS "FREERTOS;NONE")   # extend: THREADX, ZEPHYR
+set(_HF_SUPPORTED_RTOS "FREERTOS;THREADX;NONE")
 if(NOT HF_CORE_RTOS IN_LIST _HF_SUPPORTED_RTOS)
     message(FATAL_ERROR
         "[hf-core] Unsupported RTOS '${HF_CORE_RTOS}'. "
@@ -383,11 +383,17 @@ if(HF_CORE_RTOS STREQUAL "FREERTOS")
         "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/SignalSemaphore.cpp"
     )
 
-# elseif(HF_CORE_RTOS STREQUAL "THREADX")
-#     set(HF_CORE_RTOS_SOURCES
-#         "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/threadx/BaseThread.cpp"
-#         ...
-#     )
+elseif(HF_CORE_RTOS STREQUAL "THREADX")
+    # Same C++ wrappers as FreeRTOS; OsAbstraction.h maps to tx_*. No FreeRTOSUtils.
+    set(HF_CORE_RTOS_SOURCES
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/BaseThread.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/CriticalSection.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/Mutex.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/MutexGuard.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/OsUtility.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/PeriodicTimer.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/SignalSemaphore.cpp"
+    )
 
 elseif(HF_CORE_RTOS STREQUAL "NONE")
     # No RTOS — bare-metal or host-only build.
@@ -873,9 +879,9 @@ endif()
 if(HF_CORE_RTOS STREQUAL "FREERTOS")
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_RTOS_FREERTOS=1)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_THREAD_SAFE=1)
-# elseif(HF_CORE_RTOS STREQUAL "THREADX")
-#     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_RTOS_THREADX=1)
-#     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_THREAD_SAFE=1)
+elseif(HF_CORE_RTOS STREQUAL "THREADX")
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_RTOS_THREADX=1)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_THREAD_SAFE=1)
 elseif(HF_CORE_RTOS STREQUAL "NONE")
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_RTOS_NONE=1)
     # No HF_THREAD_SAFE — single-threaded, no mutex/semaphore overhead
