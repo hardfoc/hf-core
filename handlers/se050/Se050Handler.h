@@ -69,9 +69,15 @@ public:
 
     void delay_ms_impl(std::uint32_t ms) noexcept;
 
+    /** Hold I2C1 across a T=1 APDU (Write/Read pairs). Nested I2cWrite/Read skip lock. */
+    [[nodiscard]] bool HoldBus(std::uint32_t timeout_ms) noexcept;
+    void ReleaseBus() noexcept;
+    [[nodiscard]] bool BusHeld() const noexcept { return bus_held_; }
+
 private:
     BaseI2c&   i2c_;
     BaseGpio* reset_gpio_;
+    bool      bus_held_{false};
 };
 
 //==============================================================================
@@ -86,6 +92,8 @@ struct Se050HandlerConfig {
     std::uint32_t warm_reset_timeout_ms{200};
     /// Inter-frame delay before reading a T=1 response (ms).
     std::uint32_t t1_inter_frame_delay_ms{2};
+    /// When true, skip `ChipWarmReset` (caller already did T=1 warm-reset + ATR).
+    bool skip_chip_warm_reset{false};
 };
 
 //==============================================================================

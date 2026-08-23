@@ -43,7 +43,10 @@ class At25040Handler {
   ProbeResult Probe() noexcept;
   uint8_t LastRdsr() const noexcept { return device_.LastRdsr(); }
   bool Read(uint16_t addr, uint8_t* dst, uint16_t len) noexcept;
+  /** @brief Page-loop write. Caller owns identity/cal policy (ADR-0036). */
+  bool Write(uint16_t addr, const uint8_t* src, uint16_t len) noexcept;
   void ReleaseWriteProtect() noexcept;
+  void ParkWriteProtect() noexcept;
 
  private:
   At25040SpiAdapter adapter_;
