@@ -114,6 +114,7 @@ target_compile_definitions(${COMPONENT_LIB} PUBLIC ${HF_CORE_COMPILE_DEFINITIONS
 | `HF_CORE_ENABLE_TMC9660` | hf-tmc9660-driver | SPI/UART | Tmc9660Handler + Tmc9660AdcWrapper |
 | `HF_CORE_ENABLE_WS2812` | hf-ws2812-rmt-driver | RMT | Ws2812Handler |
 | `HF_CORE_ENABLE_ISF15ACP4` | hf-isf15acp4-driver | SPI + GPIO | Isf15acp4Handler (**default OFF**) |
+| `HF_CORE_ENABLE_ADS9324` | hf-ads9324-driver | SPI + CONVST/DRDY GPIO | Ads9324Handler (**default OFF**; ESP32 examples ON) |
 | `HF_CORE_ENABLE_LOGGER` | internal | — | Logger (default ON) |
 
 ### Optional Interface Implementations (default OFF)
@@ -172,6 +173,7 @@ HARDFOC_AS5047U_SUPPORT=1      (if HF_CORE_ENABLE_AS5047U)
 HARDFOC_BNO08X_SUPPORT=1       (if HF_CORE_ENABLE_BNO08X)
 HARDFOC_TMC9660_SUPPORT=1      (if HF_CORE_ENABLE_TMC9660)
 HARDFOC_ISF15ACP4_SUPPORT=1    (if HF_CORE_ENABLE_ISF15ACP4)
+HARDFOC_ADS9324_SUPPORT=1      (if HF_CORE_ENABLE_ADS9324)
 HARDFOC_LOGGER=1               (if HF_CORE_ENABLE_LOGGER)
 HARDFOC_CANOPEN_UTILS=1        (if HF_CORE_ENABLE_UTILS_CANOPEN)
 HF_MCU_FAMILY_ESP32=1          (always)
@@ -241,6 +243,8 @@ set(HF_CORE_ENABLE_TLE92466ED     ON)
 set(HF_CORE_ENABLE_TMC5160        ON)
 set(HF_CORE_ENABLE_TMC9660        ON)
 set(HF_CORE_ENABLE_WS2812         ON)
+set(HF_CORE_ENABLE_ISF15ACP4      ON)
+set(HF_CORE_ENABLE_ADS9324        ON)   # examples only; product images keep OFF
 set(HF_CORE_ENABLE_LOGGER         ON)
 set(HF_CORE_ENABLE_UTILS_CANOPEN  ON)
 set(HF_CORE_ENABLE_UART           ON)
@@ -259,7 +263,7 @@ handles both transparently:
 
 | Style | Drivers | Guard | Root Path | Include Var | Source Var |
 |-------|---------|-------|-----------|-------------|-----------|
-| **A** | AS5047U, BNO08x, MAX22200, PCA9685, PCAL95555, TLE92466ED, TMC5160 | `include_guard(GLOBAL)` | `CMAKE_CURRENT_LIST_DIR` | `HF_<NAME>_PUBLIC_INCLUDE_DIRS` | `HF_<NAME>_SOURCE_FILES` |
+| **A** | AS5047U, ADS9324, BNO08x, MAX22200, PCA9685, PCAL95555, TLE92466ED, TMC5160 | `include_guard(GLOBAL)` | `CMAKE_CURRENT_LIST_DIR` | `HF_<NAME>_PUBLIC_INCLUDE_DIRS` | `HF_<NAME>_SOURCE_FILES` |
 | **B** | NTC Thermistor, TMC9660, WS2812 | Manual boolean | Requires `HF_<NAME>_ROOT` | `HF_<NAME>_INCLUDE_DIRS` | `HF_<NAME>_SOURCES` |
 
 The core build settings sets `HF_<NAME>_ROOT` automatically for Style B drivers

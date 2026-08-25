@@ -28,6 +28,7 @@ at build time via the `APP_TYPE` mechanism.
 | `tmc5160_handler_test` | `handler_tests/tmc5160_handler_comprehensive_test.cpp` | TMC5160 + SPI |
 | `tle92466ed_handler_test` | `handler_tests/tle92466ed_handler_comprehensive_test.cpp` | TLE92466ED + SPI; mission, output stage, `EnableFeedbackUpdates`, `ConfigureDither`, `GetAverageCurrent` |
 | `max22200_handler_test` | `handler_tests/max22200_handler_comprehensive_test.cpp` | MAX22200 + SPI |
+| `ads9324_handler_test` | `handler_tests/ads9324_handler_comprehensive_test.cpp` | ADS9324 + SPI/CONVST/DRDY (compile in CI; silicon optional) |
 | `isf15acp4_handler_test` | `handler_tests/isf15acp4_handler_comprehensive_test.cpp` | ISF15ACP4 + SPI/GPIO (compile in CI; HW optional) |
 | `ws2812_handler_test` | `handler_tests/ws2812_handler_comprehensive_test.cpp` | WS2812 + RMT |
 | `se050_handler_test` | `handler_tests/se050_handler_comprehensive_test.cpp` | SE050 + I²C (optional reset GPIO) |

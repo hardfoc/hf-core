@@ -173,6 +173,24 @@ apps:
     ci_enabled: true
     featured: true
 
+  # ── ADS9324 16-ch simultaneous SAR + PGA Handler ───────────────────────
+  # Requires HF_CORE_ENABLE_ADS9324 ON in components/hf_core/CMakeLists.txt
+  # (examples only). Product images keep the flag OFF.
+  ads9324_handler_test:
+    description: >
+      Comprehensive test of Ads9324Handler: CRTP SPI + CONVST/DRDY adapter,
+      BaseAdc 16-channel map, PGA/offset/gain, snapshot, visitDriver/GetDriver,
+      diagnostics, missing-CONVST guard, and pre-init error handling.
+      Compiles in CI; silicon optional at runtime (init fails gracefully).
+    source_file: "handler_tests/ads9324_handler_comprehensive_test.cpp"
+    category: "handler_testing"
+    hardware_required: true
+    hardware_notes: "ADS9324 on SPI (CS/CONVST/DRDY). Without silicon, init skips live tests."
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+
   # ── ISF15ACP4 SmartDisplay OLED Handler ─────────────────────────────────
   # Requires HF_CORE_ENABLE_ISF15ACP4 ON in components/hf_core/CMakeLists.txt
   isf15acp4_handler_test:

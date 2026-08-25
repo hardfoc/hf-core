@@ -29,6 +29,7 @@ set(HF_CORE_ENABLE_TMC5160        ON)
 set(HF_CORE_ENABLE_TMC9660        ON)
 set(HF_CORE_ENABLE_WS2812         ON)
 set(HF_CORE_ENABLE_ISF15ACP4      ON)   # Compile handler test in CI (hardware optional at runtime)
+set(HF_CORE_ENABLE_ADS9324        ON)   # Compile Ads9324Handler + test; product images keep this OFF
 set(HF_CORE_ENABLE_SE050          ON)   # NXP SE050 secure element (I²C); handler test + integration
 set(HF_CORE_ENABLE_LOGGER         ON)
 # Optional utilities

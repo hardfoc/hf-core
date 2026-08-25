@@ -50,7 +50,7 @@ depend on this repo and add managers, API, and pin mapping.
 
 ## ✨ Features
 
-- ✅ **13 Device Handlers** — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, TMC5160, TLE92466ED, MAX22200, ISF15ACP4 (opt-in), WS2812, SE050, Logger
+- ✅ **14 Device Handlers** — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, TMC5160, TLE92466ED, MAX22200, ISF15ACP4 (opt-in), ADS9324 (opt-in), WS2812, SE050, Logger
 - ✅ **30+ General Utilities** — Buffers, filters, timers, CRC, interpolation, linked
   lists, flag sets, physical units
 - ✅ **Full RTOS Abstraction** — Mutex, semaphore, queue, event flags, threads, timers
@@ -136,6 +136,7 @@ Use the CI pipeline or iterate over `app_config.yml` entries:
 | `Tle92466edHandler` | TLE92466ED | SPI | 6-ch solenoid driver, PWM, diagnostics, watchdog |
 | `Max22200Handler` | MAX22200 | SPI | 8-ch solenoid/motor, CDR/VDR, HIT/HOLD, DPM |
 | `Isf15acp4Handler` | ISF15ACP4 | SPI + GPIO | 96×64 OLED pushbutton, pluggable graphics ([details](docs/handlers/isf15acp4_handler.md); **default OFF**) |
+| `Ads9324Handler` | ADS9324 | SPI + CONVST/DRDY | 16-ch 16-bit simultaneous SAR + PGA ([details](docs/handlers/ads9324_handler.md); **default OFF**) |
 | `Ws2812Handler` | WS2812 | RMT | Addressable LED strip, pixel control, animations |
 | `Se050Handler` | SE050 / SE050A | I2C | Secure element, T=1 over I²C, `GetDevice()` for `se050::Device` ([details](docs/handlers/se050_handler.md)) |
 | `Logger` | — | — | Singleton, log levels, per-tag filter, formatted output, MCU-agnostic via injectable `BaseLogger` backend ([details](handlers/logger/README.md)) |
@@ -154,6 +155,7 @@ Use the CI pipeline or iterate over `app_config.yml` entries:
 hf-core/
 ├── handlers/           # Device handler implementations
 │   ├── as5047u/        #   Magnetic encoder (SPI)
+│   ├── ads9324/        #   16-ch simultaneous SAR + PGA (SPI; default OFF)
 │   ├── bno08x/         #   9-axis IMU (I2C)
 │   ├── common/         #   Shared handler utilities (HandlerCommon.h)
 │   ├── logger/         #   Singleton logging
@@ -172,7 +174,7 @@ hf-core/
 │   └── esp32/          # ESP-IDF test applications
 │       ├── app_config.yml      # Test app registry (16 apps)
 │       ├── main/
-│       │   ├── handler_tests/  # 11 handler test apps
+│       │   ├── handler_tests/  # 13 handler test apps
 │       │   ├── utils_tests/    # 4 utility test apps
 │       │   └── integration_tests/  # 1 integration test
 │       └── components/

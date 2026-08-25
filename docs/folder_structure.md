@@ -81,6 +81,9 @@ lib/core/
 │   ├── as5047u/
 │   │   ├── As5047uHandler.cpp
 │   │   └── As5047uHandler.h
+│   ├── ads9324/
+│   │   ├── Ads9324Handler.cpp
+│   │   └── Ads9324Handler.h
 │   ├── bno08x/
 │   │   ├── Bno08xHandler.cpp
 │   │   └── Bno08xHandler.h
@@ -125,6 +128,7 @@ lib/core/
 ├── hf-core-drivers/                    # Driver libraries (git submodule)
 │   ├── external/                       #   CRTP device drivers
 │   │   ├── hf-as5047u-driver/
+│   │   ├── hf-ads9324-driver/
 │   │   ├── hf-bno08x-driver/
 │   │   ├── hf-max22200-driver/
 │   │   ├── hf-isf15acp4-driver/
