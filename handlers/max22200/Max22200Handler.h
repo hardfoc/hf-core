@@ -15,10 +15,9 @@
  * - Lazy initialization pattern
  * - Raw driver access through @ref GetDriver for single-threaded bring-up only
  *
- * @note On the live-actuators bench carrier only channel 0 is populated
- *       (Parker C21 on/off solenoid, 500 mA HIT / 250 mA HOLD). Channels
- *       1..7 are unpopulated — their open-load detectors stay disabled and
- *       must not contribute OLF/OCP faults.
+ * @note Which channels are populated and with what part is defined by
+ *       pw_shared/plant/valve_catalog.hpp. Unpopulated channels keep their
+ *       open-load detectors disabled so they cannot contribute OLF/OCP faults.
  *
  * @author HardFOC Team
  * @date 2025
