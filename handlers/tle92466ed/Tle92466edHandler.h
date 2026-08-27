@@ -109,9 +109,7 @@ public:
     /**
      * @brief @ref TransferMulti with an explicit inter-frame CS-high gap.
      * @param gap_us CS-high time between chained frames in microseconds;
-     *        @c 0 selects the production default (20 µs). Bench diagnostics
-     *        use this to probe reply-latency / timing hypotheses without a
-     *        rebuild.
+     *        @c 0 selects the production default (5 µs, ≥ datasheet tCSN_TD).
      */
     tle92466ed::CommResult<void> TransferMulti(std::span<const uint32_t> tx_data,
                                                 std::span<uint32_t> rx_data,

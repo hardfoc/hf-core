@@ -18,11 +18,19 @@ namespace {
 uint8_t g_tle_spi_tx[4]{};
 uint8_t g_tle_spi_rx[4]{};
 
-/* Chain staging for the pipelined command+dummy read. Frame pointers are
- * handed to BaseSpi::TransferChain, which holds ONE bus-ownership window
- * across every frame — see kTleChainGapUs. */
-constexpr size_t kTleChainMaxFrames = 4;
-constexpr uint32_t kTleChainGapUs = 20U;
+/* Chain staging for pipelined command+dummy bursts. Frame pointers are handed
+ * to BaseSpi::TransferChain, which holds ONE bus-ownership window across every
+ * frame — see kTleChainGapUs.
+ *
+ * 16 frames covers the widest sequence the driver builds: a pipelined read of
+ * all six channels' FB_DC + FB_I_AVG (12 commands + leading flush + trailing
+ * dummy = 14). The previous limit of 4 forced every logical register access to
+ * be its own 3-frame chain, so N reads cost 3N frames instead of N+2. */
+constexpr size_t kTleChainMaxFrames = 16;
+/* Datasheet Rev 1.2 Table 18: tCSN_TD (rising CSN to falling CSN) ≥ 600 ns.
+ * 5 µs is ~8× that — enough margin for soft-CS lead lengths on the carrier
+ * without paying 20 µs of busy-wait between every frame of a burst. */
+constexpr uint32_t kTleChainGapUs = 5U;
 uint8_t g_tle_chain_tx[kTleChainMaxFrames][4]{};
 uint8_t g_tle_chain_rx[kTleChainMaxFrames][4]{};
 }  // namespace
@@ -117,9 +125,9 @@ tle92466ed::CommResult<uint32_t> HalSpiTle92466edComm::Transfer32(uint32_t tx_da
         (static_cast<uint32_t>(g_tle_spi_rx[2]) << 8) |
         (static_cast<uint32_t>(g_tle_spi_rx[3]) << 0);
     last_rx_ = rx_data;
-    /* Inter-frame gap between CS cycles (TLE two-transfer read protocol).
-     * 20 µs covers long soft-CS leads; ESP bench uses ~10 µs on short PCB. */
-    handler_utils::DelayUs(20U);
+    /* Inter-frame gap between CS cycles (TLE two-transfer read protocol) —
+     * datasheet tCSN_TD, see kTleChainGapUs. */
+    handler_utils::DelayUs(kTleChainGapUs);
     last_error_ = tle92466ed::CommError::None;
     return rx_data;
 }
@@ -520,18 +528,8 @@ tle92466ed::DriverResult<void> Tle92466edHandler::DisableOutputStage() noexcept 
 
 tle92466ed::DriverResult<void> Tle92466edHandler::EnableFeedbackUpdates() noexcept {
     return withDriver([](auto& drv) -> tle92466ed::DriverResult<void> {
-        // FB_FRZ register lives at central register offset 0x0007. Bit n of
-        // the lower byte freezes channel n's feedback when set, unfreezes
-        // when cleared. Writing 0x0000 unfreezes every channel. The driver's
-        // public API doesn't expose an FB_FRZ helper, so go through the
-        // generic WriteRegister.
-        //
-        // Skip write-verify: shared Mode1 soft-CS readback of FB_FRZ is often a
-        // phantom (same class as CH_CTRL sticky-zero). A hard verify fail would
-        // leave channels frozen and FB_I_AVG stuck at 0 even when the clear
-        // write landed.
-        constexpr uint16_t kFbFrzAddr = tle92466ed::CentralReg::FB_FRZ;
-        return drv.WriteRegister(kFbFrzAddr, 0x0000, false, false);
+        /* Driver owns FB_FRZ. A leftover freeze stops Tmeas for that channel. */
+        return drv.ReleaseFeedbackFreeze();
     });
 }
 
