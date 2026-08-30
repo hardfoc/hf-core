@@ -4,8 +4,7 @@
  *
  * @details Bridges the platform-agnostic templated `fdo2::Driver<UartT>`
  *          (from `hf-core-drivers/external/hf-fdo2-driver`) to a
- *          `BaseUart&` reference. Apps that already own a configured
- *          UART (acquired via `CommChannelsManager::AcquireUart`) can
+ *          `BaseUart&` reference. Apps that already own a configured UART can
  *          construct a handler with a single `BaseUart&` and the
  *          handler internally:
  *
@@ -110,7 +109,7 @@ struct Fdo2HandlerConfig {
  * @brief HAL handler wrapping one FDO2-G2 oxygen probe on a `BaseUart`.
  *
  * Ownership: the handler holds a reference to the supplied `BaseUart`
- * (the HAL owns the actual `EspUart` via `CommChannelsManager`); the
+ * (the host owns the UART instance); the
  * handler owns the CRTP adapter + the templated driver instance.
  */
 class Fdo2Handler {
@@ -120,8 +119,7 @@ public:
     /**
      * @brief Construct a handler around an already-configured UART.
      *
-     * @param uart       Reference to a UART acquired via
-     *                   `CommChannelsManager::AcquireUart`. Must outlive
+     * @param uart       Reference to an already-configured UART. Must outlive
      *                   the handler.
      * @param config     Per-instance timeouts + diagnostics index.
      * @param bus_mutex  Optional shared mutex (non-null) when more than

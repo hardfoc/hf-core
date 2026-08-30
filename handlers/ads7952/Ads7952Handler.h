@@ -8,14 +8,13 @@
  * - Lazy initialization with lightweight construction
  * - Complete exception-free design with noexcept methods
  * - Thread-safe operations with RtosMutex protection
- * - Implements BaseAdc interface for seamless AdcManager integration
+ * - Implements BaseAdc so a host can register this handler as an ADC source
  * - Comprehensive error handling, diagnostics, and statistics
  * - Factory method supporting multiple devices on the same SPI bus (different CS)
  *
- * Hardware Notes (Flux V1 board):
+ * Electrical defaults (not a board pin map):
  *   - ADS7952 is a 12-channel, 12-bit SAR ADC from TI
- *   - 2.5V external Vref, up to 5.0V VA supply
- *   - Connected via SPI3 (dedicated bus): nCS=GPIO10, MOSI=GPIO11, SCK=GPIO12, MISO=GPIO13
+ *   - Typical 2.5 V external Vref, up to 5.0 V VA supply
  *   - Multiple devices can share the same SPI bus with different CS pins
  *
  * @author HardFOC Team
@@ -87,8 +86,8 @@ struct Ads7952HandlerConfig {
 };
 
 /**
- * @brief Get the default ADS7952 handler config for the Flux V1 board.
- * @return Default Ads7952HandlerConfig (2.5V Vref, 5.0V VA, 2xVref range, all 12 channels)
+ * @brief Default ADS7952 handler config (2.5 V Vref, 5.0 V VA, 2×Vref range).
+ * @return Ads7952HandlerConfig covering all 12 channels in Manual mode.
  */
 inline Ads7952HandlerConfig GetDefaultAds7952Config() noexcept {
     return Ads7952HandlerConfig{
@@ -129,7 +128,7 @@ struct Ads7952Diagnostics {
  * @brief Unified handler for ADS7952 12-channel SAR ADC with BaseAdc integration.
  *
  * Provides a comprehensive interface for the ADS7952 ADC with:
- * - BaseAdc implementation for seamless AdcManager integration
+ * - BaseAdc implementation for host ADC ownership
  * - CRTP SPI bridge for zero-overhead bus communication
  * - Lazy initialization with lightweight construction
  * - Thread-safe operations with mutex protection

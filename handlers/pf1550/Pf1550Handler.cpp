@@ -116,6 +116,15 @@ bool Pf1550Handler::EnsureInitialized() noexcept {
     return ensureInitializedLocked();
 }
 
+bool Pf1550Handler::ApplyProfile(
+    std::span<const pf1550::profiles::RegisterWrite> profile) noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!ensureInitializedLocked() || driver_ == nullptr) {
+        return false;
+    }
+    return driver_->ApplyProfile(profile);
+}
+
 bool Pf1550Handler::ApplyPortentaH7Profile() noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!ensureInitializedLocked() || driver_ == nullptr) {

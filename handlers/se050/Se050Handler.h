@@ -51,16 +51,42 @@
  */
 class HalI2cSe050Comm : public se050::I2cTransceiveInterface<HalI2cSe050Comm> {
 public:
+    /**
+     * @brief Construct the CRTP I²C adapter.
+     * @param i2c Host I²C device (typically 7-bit address 0x48).
+     * @param reset_gpio Optional SE_RESET line; nullptr if unused.
+     */
     HalI2cSe050Comm(BaseI2c& i2c, BaseGpio* reset_gpio) noexcept : i2c_(i2c), reset_gpio_(reset_gpio) {}
 
     [[nodiscard]] bool EnsureInitialized() noexcept { return i2c_.EnsureInitialized(); }
 
+    /**
+     * @brief Write bytes on I²C.
+     * @param tx Transmit payload.
+     * @param tx_len Byte count.
+     * @param timeout_ms Transfer deadline.
+     */
     [[nodiscard]] se050::Error I2cWrite(const std::uint8_t* tx, std::size_t tx_len,
                                         std::uint32_t timeout_ms) noexcept;
 
+    /**
+     * @brief Read bytes on I²C.
+     * @param rx Receive buffer.
+     * @param rx_len Byte count to read.
+     * @param timeout_ms Transfer deadline.
+     */
     [[nodiscard]] se050::Error I2cRead(std::uint8_t* rx, std::size_t rx_len,
                                         std::uint32_t timeout_ms) noexcept;
 
+    /**
+     * @brief Combined write-then-read (T=1oI2C frame).
+     * @param tx Transmit payload.
+     * @param tx_len Transmit length.
+     * @param rx Receive buffer.
+     * @param rx_cap Receive capacity.
+     * @param rx_len_out Actual bytes received.
+     * @param timeout_ms Transfer deadline.
+     */
     [[nodiscard]] se050::Error Transceive(const std::uint8_t* tx, std::size_t tx_len, std::uint8_t* rx,
                                           std::size_t rx_cap, std::size_t* rx_len_out,
                                           std::uint32_t timeout_ms) noexcept;
@@ -69,7 +95,10 @@ public:
 
     void delay_ms_impl(std::uint32_t ms) noexcept;
 
-    /** Hold I2C1 across a T=1 APDU (Write/Read pairs). Nested I2cWrite/Read skip lock. */
+    /**
+     * @brief Hold the I²C bus across a T=1 APDU (Write/Read pairs). Nested I2cWrite/Read skip lock.
+     * @param timeout_ms How long to wait for the bus lock.
+     */
     [[nodiscard]] bool HoldBus(std::uint32_t timeout_ms) noexcept;
     void ReleaseBus() noexcept;
     [[nodiscard]] bool BusHeld() const noexcept { return bus_held_; }

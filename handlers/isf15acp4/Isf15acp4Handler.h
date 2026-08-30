@@ -21,6 +21,14 @@
 
 /**
  * @brief CRTP SPI/GPIO adapter bridging BaseSpi + BaseGpio to isf15acp4::SpiInterface.
+ *
+ * @param spi Host SPI (transactions started after CS/DC/reset GPIO).
+ * @param cs Software chip-select GPIO (required — not hardware CS).
+ * @param dc Data/command GPIO.
+ * @param reset Panel reset GPIO.
+ * @param vcc_enable Optional panel VCC enable; nullptr if hard-wired.
+ * @param switch_in Optional switch sense GPIO; nullptr if unused.
+ * @param switch_active_low True when the switch input is active-low.
  */
 class HalIsf15acp4SpiAdapter : public isf15acp4::SpiInterface<HalIsf15acp4SpiAdapter> {
 public:
@@ -60,6 +68,15 @@ struct Isf15acp4HandlerConfig {
 
 /**
  * @brief Unified handler for ISF15ACP4 SmartDisplay modules.
+ *
+ * @param spi Host SPI.
+ * @param cs Software chip-select GPIO.
+ * @param dc Data/command GPIO.
+ * @param reset Panel reset GPIO.
+ * @param config Product variant and graphics backend.
+ * @param vcc_enable Optional VCC enable GPIO.
+ * @param switch_in Optional switch sense GPIO.
+ * @param switch_active_low True when the switch input is active-low.
  */
 class Isf15acp4Handler {
 public:
@@ -76,11 +93,20 @@ public:
     bool EnsureInitialized() noexcept;
     bool EnsureDeinitialized() noexcept;
     bool Deinitialize() noexcept;
+    /** @return true after a successful EnsureInitialized. */
     [[nodiscard]] bool IsInitialized() const noexcept { return initialized_; }
 
     bool DisplayOn() noexcept;
     bool DisplayOff() noexcept;
+    /**
+     * @brief Fill the panel with a packed RGB565 color.
+     * @param color 16-bit RGB565 value.
+     */
     bool FillScreen(isf15acp4::Color565 color) noexcept;
+    /**
+     * @brief Blit the graphics context to the panel.
+     * @param gfx Canvas produced by CreateGraphicsContext().
+     */
     bool Present(const isf15acp4::GraphicsContext& gfx) noexcept;
     [[nodiscard]] isf15acp4::GraphicsContext CreateGraphicsContext() const noexcept;
     [[nodiscard]] bool IsPressed() const noexcept;

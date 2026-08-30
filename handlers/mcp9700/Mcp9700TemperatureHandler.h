@@ -18,13 +18,19 @@
  */
 class Mcp9700AdcAdapter {
 public:
+    /** @param adc Host ADC; must outlive this adapter. */
     explicit Mcp9700AdcAdapter(BaseAdc* adc) noexcept : adc_(adc) {}
 
     [[nodiscard]] bool EnsureInitialized() noexcept {
         return adc_ != nullptr && adc_->EnsureInitialized();
     }
 
-    /** @return 0 on success (matches Mcp9700Thermistor<> driver template). */
+    /**
+     * @brief Read one ADC channel as volts for the thermistor conversion.
+     * @param channel Logical ADC channel bound to this MCP9700.
+     * @param voltage_v Output voltage in volts.
+     * @return 0 on success (matches Mcp9700Thermistor<> driver template).
+     */
     int ReadChannelV(uint8_t channel, float* voltage_v) noexcept {
         if (adc_ == nullptr || voltage_v == nullptr) {
             return static_cast<int>(hf_adc_err_t::ADC_ERR_NULL_POINTER);
@@ -42,6 +48,10 @@ using Mcp9700ThermistorConcrete = hf::mcp9700::Mcp9700Thermistor<Mcp9700AdcAdapt
 
 /**
  * @brief BaseTemperature implementation for an MCP9700 on a multiplexed ADC channel.
+ *
+ * @param adc_interface Host ADC providing the thermistor millivolt channel.
+ * @param adc_channel Channel index on that ADC.
+ * @param sensor_name Diagnostic label stored on the BaseTemperature info block.
  */
 class Mcp9700TemperatureHandler : public BaseTemperature {
 public:

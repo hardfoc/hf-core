@@ -1,7 +1,7 @@
 /**
  * @file CanOpenBaseCanLink.hpp
  * @brief Facade: `CanOpen::CanFrame` I/O on HAL `BaseCan` via `HfUtilsCanOpenTransport`.
- * @details Use with `CommChannelsManager::GetCanOpenBus()` after HAL init. Same role as app-local
+ * @details Use with a host `BaseCan` after HAL init. Same role as app-local
  *          wrappers; kept in hf-core so `main/` only includes one canonical adapter.
  */
 #pragma once
@@ -10,7 +10,7 @@
 #include "CanFrame.h"
 
 /**
- * @brief Facade used by `CANOpenBLDCThread` (`Open` / `Write` / `Read` / `Close`).
+ * @brief Facade for CANopen frame I/O (`Open` / `Write` / `Read` / `Close`).
  */
 class CanOpenBaseCanLink {
 public:

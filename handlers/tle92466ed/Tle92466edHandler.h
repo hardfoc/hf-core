@@ -486,7 +486,7 @@ public:
      *
      * @ref WithDriver keeps a *single* driver call coherent, but a snapshot
      * built from several handler calls (probe: PIN_STAT + FB_STAT + FB_FRZ +
-     * CH_CTRL + …) can still interleave with InnerControl between those
+     * CH_CTRL + …) can still interleave with other host SPI users between those
      * calls, so the fields describe different instants. @ref mutex_ is
      * recursive, so @p fn may freely call @ref WithDriver and any other
      * handler method; the outer hold makes the whole composition atomic with
@@ -514,9 +514,8 @@ public:
      * window, so two threads interleaving driver calls consume each other's
      * pipeline slots — which surfaced as sticky-zero register readback and
      * impossible FB_I_AVG ratios. Holding the handler mutex for the whole
-     * sequence keeps a multi-register operation coherent across InnerControl
-     * (~500 Hz), ValveDriverDiagnostics (~19 Hz), HardwareActuation (200 Hz),
-     * and SelfTest threads; @ref HalSpiTle92466edComm::TransferMulti
+     * sequence keeps a multi-register operation coherent across host
+     * control (~500 Hz) and diagnostic threads; @ref HalSpiTle92466edComm::TransferMulti
      * additionally keeps the SPI2 bus lock across the frames of a single
      * pipelined access.
      *

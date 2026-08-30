@@ -1,6 +1,6 @@
 /**
  * @file Tmc9660AdcWrapper.h
- * @brief Thin BaseAdc delegation wrapper for manager-layer ownership of TMC9660 ADC.
+ * @brief Thin BaseAdc delegation wrapper when the host owns a unique_ptr.
  *
  * @details
  * ## Purpose
@@ -9,14 +9,12 @@
  * class of Tmc9660Handler that inherits from BaseAdc). The handler owns this inner
  * class instance and exposes it via Tmc9660Handler::adc().
  *
- * However, the AdcManager needs to own a std::unique_ptr<BaseAdc> that it can
- * register, manage, and destroy independently. Since Tmc9660Handler::Adc is owned
- * by the handler (and cannot be transferred), this wrapper class exists to bridge
- * the ownership gap:
+ * A host that needs to own a std::unique_ptr<BaseAdc> cannot take ownership of
+ * the inner class. This wrapper bridges that gap:
  *
  * @code
  *  ┌──────────────┐      ┌─────────────────────┐      ┌───────────────────────┐
- *  │  AdcManager  │ owns │  Tmc9660AdcWrapper  │ refs │  Tmc9660Handler::Adc  │
+ *  │  host owner  │ owns │  Tmc9660AdcWrapper  │ refs │  Tmc9660Handler::Adc  │
  *  │              │─────>│  (BaseAdc)          │─────>│  (BaseAdc impl)       │
  *  │  unique_ptr  │      │  delegates all calls│      │  reads TMC9660 driver │
  *  └──────────────┘      └─────────────────────┘      └───────────────────────┘
@@ -29,17 +27,10 @@
  * ## Lifetime Requirements
  *
  * The Tmc9660Handler referenced by this wrapper must remain alive for the entire
- * lifetime of the wrapper. This is naturally satisfied when MotorController owns
- * the handler and AdcManager creates the wrapper from that handler, since both
- * managers are singletons with matched lifetimes.
- *
- * ## Analogous Patterns
- *
- * - Tmc9660TemperatureWrapper (in TemperatureManager.h) does the same for
- *   BaseTemperature, delegating to Tmc9660Handler::Temperature.
+ * lifetime of the wrapper. The host that owns both objects is responsible for
+ * matching those lifetimes.
  *
  * @see Tmc9660Handler::Adc  The actual ADC implementation this class delegates to.
- * @see AdcManager::CreateTmc9660AdcWrapper  Factory that creates instances of this class.
  *
  * @author HardFOC Team
  * @date 2025
@@ -60,7 +51,7 @@ class Tmc9660Handler;
  * @details
  * This is a pure delegation class. Every BaseAdc method simply calls the
  * corresponding method on the Tmc9660Handler's internal Adc instance via
- * `handler_.adc()`. It exists solely to allow AdcManager to own a
+ * `handler_.adc()`. It exists solely to allow a host to own a
  * `std::unique_ptr<BaseAdc>` that refers to TMC9660 ADC functionality
  * without transferring ownership of the handler's internal objects.
  *

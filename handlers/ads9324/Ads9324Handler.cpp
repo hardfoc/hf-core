@@ -2,6 +2,12 @@
  * @file Ads9324Handler.cpp
  * @brief ADS9324 handler — CRTP SPI/host bridge + BaseAdc.
  * @copyright HardFOC
+ *
+ * Public contracts and thread-safety notes live in Ads9324Handler.h.
+ * Implementation caveats:
+ * - DelayUs is a busy loop (no hf-core microsecond OS delay).
+ * - ReadChannel averages signed codes then stores the mean as uint16_t.
+ * - GetDriver() is intentionally unlocked; use visitDriver().
  */
 
 #include "Ads9324Handler.h"
@@ -46,6 +52,8 @@ bool Ads9324SpiHostAdapter::DrdyRead() noexcept {
 bool Ads9324SpiHostAdapter::HasDrdy() const noexcept { return drdy_ != nullptr; }
 
 void Ads9324SpiHostAdapter::DelayUs(uint32_t us) noexcept {
+    // Busy-wait: hf-core has no portable microsecond sleep. Tune the inner
+    // count per MCU if CONVST pulse width or DRDY poll is too short/long.
     for (uint32_t i = 0; i < us; ++i) {
         for (volatile int j = 0; j < 40; ++j) {
         }
@@ -164,6 +172,8 @@ hf_adc_err_t Ads9324Handler::ReadChannel(hf_channel_id_t channel, hf_u32_t& coun
         acc += r.count;
         vacc += r.voltage;
     }
+    // Mean of signed 16-bit codes, stored as the two's-complement bit pattern
+    // in a uint16_t (BaseAdc count is unsigned). Negative voltages wrap.
     count = static_cast<hf_u32_t>(static_cast<uint16_t>(acc / n));
     voltage = vacc / static_cast<float>(n);
     ++total_reads_;

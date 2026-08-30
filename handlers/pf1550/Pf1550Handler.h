@@ -9,9 +9,10 @@
  *    the handler-level state (init flag, last snapshot).
  *  - **Diagnostic-snapshot caching** for non-blocking reads from monitor
  *    threads (see @ref Pf1550Handler::ReadDiagnosticSnapshot).
- *  - **Boot self-test** entry point used by the system boot recipe
+ *  - **Boot self-test** entry point for a host boot recipe
  *    (see @ref Pf1550Handler::RunPowerSelfTest).
- *  - **Severity classification** through @ref pf1550::FaultSeverityPortentaH7.
+ *  - **Generic profile apply** via @ref Pf1550Handler::ApplyProfile. Named
+ *    `ApplyPortentaH7*` methods are eval-board sequences in the driver.
  *
  * @copyright Copyright (c) 2026 HardFOC. All rights reserved.
  */
@@ -20,6 +21,7 @@
 
 #include <cstdint>
 #include <memory>
+#include <span>
 
 #include "RtosMutex.h"
 #include "base/BaseGpio.h"
@@ -72,7 +74,9 @@ private:
  * Lifecycle:
  *  1. Construct with bound `BaseI2c` and optional strap `BaseGpio*` pins.
  *  2. Call @ref EnsureInitialized (idempotent) before any other method.
- *  3. (Optional) call @ref ApplyPortentaH7CarrierProfile in early boot.
+ *  3. (Optional) host calls @ref ApplyProfile with a register-write table.
+ *     @ref ApplyPortentaH7CarrierProfile is a driver-named eval sequence for
+ *     ESP examples — not a product board bind.
  *  4. Periodically call @ref RefreshDiagnosticSnapshot from a monitor thread.
  */
 class Pf1550Handler {
@@ -80,7 +84,13 @@ public:
     /// @brief Alias for the templated driver type.
     using Pf1550Driver = pf1550::PF1550<HalPf1550Comm>;
 
-    /// @brief Construct with required I²C and optional strap pins.
+    /**
+     * @brief Construct with required I²C and optional strap pins.
+     * @param i2c I²C device whose 7-bit address matches the PF1550.
+     * @param standby_gpio Optional STANDBY strap; nullptr if unused.
+     * @param usb_vbus_en_gpio Optional USB_VBUS_EN strap; nullptr if unused.
+     * @param usb_otg_en_gpio Optional USB_OTG_EN strap; nullptr if unused.
+     */
     Pf1550Handler(BaseI2c& i2c, BaseGpio* standby_gpio = nullptr,
                   BaseGpio* usb_vbus_en_gpio = nullptr,
                   BaseGpio* usb_otg_en_gpio = nullptr) noexcept;
@@ -93,9 +103,23 @@ public:
     /// @brief Has @ref EnsureInitialized ever succeeded?
     bool IsInitialized() const noexcept { return initialized_; }
 
-    /// @brief Apply VFR-heritage default profile (legacy).
+    /**
+     * @brief Apply an ordered register-write sequence.
+     * @param profile Writes applied in order; each entry may delay after the write.
+     */
+    bool ApplyProfile(std::span<const pf1550::profiles::RegisterWrite> profile) noexcept;
+
+    /**
+     * @brief Driver-named Arduino Portenta H7 eval sequence (legacy VFR order).
+     * @note Hosts that are not that eval board skip this and pass their own table
+     *       to @ref ApplyProfile.
+     */
     bool ApplyPortentaH7Profile() noexcept;
-    /// @brief Apply carrier-aware profile (SW1-first, full SW2 enable).
+    /**
+     * @brief Driver-named Portenta-H7-on-carrier eval sequence (SW1-first).
+     * @note Hosts that are not that eval board skip this and pass their own table
+     *       to @ref ApplyProfile.
+     */
     bool ApplyPortentaH7CarrierProfile() noexcept;
 
     /// @brief Drive STANDBY strap to RUN or STANDBY.

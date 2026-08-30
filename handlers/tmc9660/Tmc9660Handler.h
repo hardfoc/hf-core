@@ -40,7 +40,7 @@
  * - One Adc wrapper (multi-channel TMC9660 ADC)
  * - One Temperature wrapper (chip temperature sensor)
  *
- * External managers (AdcManager, TemperatureManager) that need to own a BaseAdc* or
+ * External hosts that need to own a BaseAdc* or
  * BaseTemperature* should use the thin delegation wrappers Tmc9660AdcWrapper and
  * Tmc9660TemperatureWrapper (defined in their own files), which delegate to the
  * handler's inner class instances.
@@ -75,9 +75,8 @@
  * The Adc and Temperature inner classes use additional RtosMutex instances
  * for their internal statistics tracking.
  *
- * @see Tmc9660AdcWrapper       Thin adapter for AdcManager ownership
- * @see Tmc9660TemperatureWrapper  Thin adapter for TemperatureManager ownership
- * @see MotorController         Higher-level manager that owns Tmc9660Handler instances
+ * @see Tmc9660AdcWrapper       Thin adapter when the host owns a BaseAdc*
+ * @see Tmc9660TemperatureWrapper  Thin adapter when the host owns a BaseTemperature*
  *
  * @author HardFOC Team
  * @date 2025
@@ -409,7 +408,7 @@ private:
  * @brief Unified, non-templated handler for a single TMC9660 motor controller device.
  *
  * @details
- * Tmc9660Handler is the primary interface that application and manager code uses to
+ * Tmc9660Handler is the primary interface that application and host-HAL code uses to
  * interact with a TMC9660 motor driver. It hides the template complexity of
  * tmc9660::TMC9660<CommType> behind a clean, polymorphism-free API.
  *
@@ -417,7 +416,7 @@ private:
  *
  * - **Non-templated**: The handler uses visitDriver() to route calls to the
  *   correct typed driver (SPI or UART). This prevents template propagation
- *   through the codebase and allows MotorController to store handlers in a
+ *   through the codebase and allows a host to store handlers in a
  *   plain std::unique_ptr<Tmc9660Handler>.
  *
  * - **Control pins required**: The TMC9660 bootloader initialization sequence
@@ -430,8 +429,7 @@ private:
  *
  * - **Peripheral wrappers**: Inner classes Gpio, Adc, and Temperature implement
  *   the HardFOC base interfaces, making TMC9660 peripherals available to the
- *   manager layer (GpioManager, AdcManager, TemperatureManager) through the
- *   standard abstractions.
+ *   host as BaseGpio / BaseAdc / BaseTemperature.
  *
  * ## Usage Example
  *
@@ -472,8 +470,7 @@ private:
  *
  * @see HalSpiTmc9660Comm    SPI communication adapter
  * @see HalUartTmc9660Comm   UART communication adapter
- * @see MotorController       Multi-device manager that owns Tmc9660Handler instances
- * @see Tmc9660AdcWrapper     Thin BaseAdc adapter for AdcManager ownership
+ * @see Tmc9660AdcWrapper     Thin BaseAdc adapter for host ownership
  */
 class Tmc9660Handler {
 public:
@@ -747,10 +744,10 @@ public:
      * temperature and motor data channels, the "voltage" field contains the
      * physical value directly (degrees Celsius, mA, etc.).
      *
-     * @note This inner class is owned by the handler. For manager-layer ownership,
-     *       use Tmc9660AdcWrapper which delegates to this instance.
+     * @note This inner class is owned by the handler. For host ownership of a
+     *       `BaseAdc*`, use Tmc9660AdcWrapper which delegates to this instance.
      *
-     * @see Tmc9660AdcWrapper  Thin delegation wrapper for AdcManager ownership
+     * @see Tmc9660AdcWrapper  Thin delegation wrapper for host BaseAdc ownership
      */
     class Adc : public BaseAdc {
     public:
@@ -958,8 +955,8 @@ public:
      * - Accuracy: ±2°C typical
      * - Response time: ~100ms
      *
-     * @note This inner class is owned by the handler. For manager-layer ownership,
-     *       use Tmc9660TemperatureWrapper (defined in TemperatureManager.h).
+     * @note This inner class is owned by the handler. For host ownership of a
+     *       `BaseTemperature*`, use Tmc9660TemperatureWrapper.
      */
     class Temperature : public BaseTemperature {
     public:

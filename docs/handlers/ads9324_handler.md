@@ -16,17 +16,15 @@ optional DRDY GPIO into `hf-ads9324-driver`.
 | Context | `HF_CORE_ENABLE_ADS9324` |
 |:--------|:-------------------------|
 | hf-core default | **OFF** |
-| Product `pw_hal_core_features.cmake` | **OFF** (not in the insufflator image) |
 | ESP32 examples (`examples/esp32/components/hf_core`) | **ON** so this handler and `ads9324_handler_test` compile |
 
-Product `AdcManager` does **not** construct this handler. Live manifold AFE
-remains ADS7952. When a pressure board carries ADS9324, bind SPI CS + CONVST +
-DRDY in `bsp_bind/board` and attach from `AdcManager` behind a new probe path.
+Host HALs construct this handler only when they opt in. This layer does not
+own board CS maps.
 
-Compile the standalone driver (no hf-core, no product image):
+Standalone driver (no hf-core):
 
 ```bash
-cmake -S firmware/hal/pw-hal/lib/core/hf-core-drivers/external/hf-ads9324-driver \
+cmake -S hf-core-drivers/external/hf-ads9324-driver \
       -B /tmp/hf-ads9324-build -DHF_ADS9324_BUILD_HOST_TESTS=ON
 cmake --build /tmp/hf-ads9324-build
 ctest --test-dir /tmp/hf-ads9324-build
