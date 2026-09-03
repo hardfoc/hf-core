@@ -183,11 +183,7 @@ void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal sig
     if (pin == max22200::CtrlPin::ENABLE) {
         DelayUs(2000);
     } else if (pin == max22200::CtrlPin::CMD) {
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
         /* MCU GPIO: datasheet tCMS is 20 ns — no software settle. */
-#else
-        DelayUs(200);
-#endif
     }
 }
 
@@ -334,11 +330,7 @@ bool Max22200Handler::WaitForActiveAndDrainFaults() noexcept {
     // See hf-max22200-driver/docs/troubleshooting.md.
     constexpr uint32_t kPostInitWaitMs = 50;
     constexpr uint32_t kPollIntervalMs = 25;
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
     constexpr uint32_t kPollTimeoutMs = 4000;
-#else
-    constexpr uint32_t kPollTimeoutMs = 2000;
-#endif
 
     auto& log = Logger::GetInstance();
 

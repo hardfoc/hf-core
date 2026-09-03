@@ -45,13 +45,11 @@ void SyncDeviceAddress(BaseI2c& i2c, uint8_t addr) noexcept {
 #endif
 }
 
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
 /** JTAG breadcrumb: 0=idle 1=preflight_fail 2=adapter_fail 3=drv_alloc_fail
  *  4=drv_init_fail 5=ok 6=preflight_ok 7=adapter_rw_fail 8=force_marked */
 volatile uint8_t g_pcal_handler_init_stage{0};
 /** Last register command byte passed to HalI2cPcal95555Comm::Read/Write. */
 volatile uint8_t g_pcal_last_i2c_cmd{0};
-#endif
 
 }  // namespace
 
@@ -74,9 +72,7 @@ bool HalI2cPcal95555Comm::Write(uint8_t addr, uint8_t reg,
         return false;
     }
 
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
     g_pcal_last_i2c_cmd = reg;
-#endif
     /* Frame [reg|payload…] in member scratch (internal SRAM), not a stack
      * temporary — some MCU maps cannot reliably feed single-byte loads from
      * external/task-stack RAM into the I2C transfer path. */
@@ -100,9 +96,7 @@ bool HalI2cPcal95555Comm::Read(uint8_t addr, uint8_t reg,
     }
     SyncDeviceAddress(i2c_device_, addr);
     cmd_scratch_ = reg;
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
     g_pcal_last_i2c_cmd = reg;
-#endif
     /* RX into AXI member scratch, then publish to caller. StmI2c WriteRead
      * uses Master_Transmit(cmd)+Master_Receive (not HAL Mem_Read). */
     if (i2c_device_.WriteRead(&cmd_scratch_, 1, rx_scratch_,
@@ -201,23 +195,17 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
       uint8_t input0 = 0xA5U;
       if (i2c_device_.WriteRead(&reg, 1, &input0, 1, 200) !=
           hf_i2c_err_t::I2C_SUCCESS) {
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
         g_pcal_handler_init_stage = 1;
-#endif
         return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
       }
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
       g_pcal_handler_init_stage = 6;
-#endif
     }
 
     // 1. Create the CRTP I2C adapter once.
     if (!i2c_adapter_) {
         i2c_adapter_ = std::make_unique<HalI2cPcal95555Comm>(i2c_device_);
         if (!i2c_adapter_) {
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
             g_pcal_handler_init_stage = 2;
-#endif
             return hf_gpio_err_t::GPIO_ERR_OUT_OF_MEMORY;
         }
     }
@@ -239,9 +227,7 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
           i2c_adapter_.get(), addr);
 #endif
       if (!pcal95555_driver_) {
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
           g_pcal_handler_init_stage = 3;
-#endif
           return hf_gpio_err_t::GPIO_ERR_OUT_OF_MEMORY;
       }
     }
@@ -251,15 +237,12 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
       uint8_t probe = 0xA5U;
       if (!i2c_adapter_->EnsureInitialized() ||
           !i2c_adapter_->Read(addr, 0x00U, &probe, 1U)) {
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
         g_pcal_handler_init_stage = 7; /* adapter Ensure/Read failed */
-#endif
         return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
       }
     }
 
     // 3. Initialize the driver (lazy init, auto-detects chip variant).
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
     /* Adapter INPUT read above already proved the CRTP↔StmI2c path. Driver
      * EnsureInitialized re-probed (W 0x35) and never reached CONFIG/OUTPUT —
      * mark PCA9555 initialized so map/ApplySafeIdle can program ports. */
@@ -269,24 +252,12 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
       return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
     }
     g_pcal_handler_init_stage = 8; /* force-marked after adapter prove */
-#else
-    if (!pcal95555_driver_->EnsureInitialized()) {
-        /* Keep the allocation — retry next call without heap churn. */
-        return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
-    }
-#endif
     /* Live-actuator buses: tolerate one-shot I2C glitches. */
     pcal95555_driver_->SetRetries(3);
 
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
     /* Skip std::function interrupt registration on polling-only bring-up — it
      * heap-allocates on every successful driver init and is unused when nINT
      * is optional and map/verify use polling. */
-#else
-    // 4. Register the driver's interrupt handler with the I2C adapter
-    //    so that HandleInterrupt() can be triggered by the adapter.
-    pcal95555_driver_->RegisterInterruptHandler();
-#endif
 
     // 5. Configure hardware interrupt pin if available.
     if (interrupt_pin_ != nullptr) {
@@ -297,14 +268,10 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
     }
 
     // Seed previous input state for edge detection on first interrupt.
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
     /* Avoid driver ReadAllInputs here — on a busy expander bus it can leave
      * the master sticky (TXIS / phantom INPUT) right before map CONFIG/OUTPUT.
      * Polling bring-up does not need the seed. */
     prev_input_state_ = 0;
-#else
-    prev_input_state_ = pcal95555_driver_->ReadAllInputs();
-#endif
 
     // Seed pull_mode_cache_ from hardware registers via driver API (PCAL9555A only).
     if (pcal95555_driver_->HasAgileIO()) {
@@ -329,9 +296,7 @@ hf_gpio_err_t Pcal95555Handler::Initialize() noexcept {
     }
 
     initialized_ = true;
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
     g_pcal_handler_init_stage = 5;
-#endif
     return hf_gpio_err_t::GPIO_SUCCESS;
 }
 
@@ -397,7 +362,6 @@ hf_gpio_err_t Pcal95555Handler::SetOutput(uint8_t pin, bool active) noexcept {
             output_shadow_ =
                 static_cast<uint16_t>(output_shadow_ & static_cast<uint16_t>(~bit));
         }
-#if defined(PW_FEATURE_LIVE_ACTUATORS) && PW_FEATURE_LIVE_ACTUATORS
         /* MAX CMD (P1.7) toggles on every SPI frame. Write+read+retry verify
          * was ~half of the ~18 ms sol apply budget. Trust the shadow write for
          * this hot pin; keep verified path for EN/nRST/control straps. */
@@ -410,7 +374,6 @@ hf_gpio_err_t Pcal95555Handler::SetOutput(uint8_t pin, bool active) noexcept {
                        ? hf_gpio_err_t::GPIO_SUCCESS
                        : hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
         }
-#endif
         for (int attempt = 0; attempt < 3; ++attempt) {
             if (!pcal95555_driver_->WriteDualPortRegister(
                     static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
