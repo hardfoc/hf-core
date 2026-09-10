@@ -259,6 +259,15 @@ public:
     bool ReadAllChannels(ads7952::ChannelReadings& readings) noexcept;
 
     /**
+     * @brief Bring-up trace: raw 16-bit response words for a manual select.
+     * @param channel Channel selected in frame 0.
+     * @param out Destination for @p n words (DO15:12 address, DO11:0 data).
+     * @param n Frames to clock (select + CONTINUEs).
+     * @return Words written (0 when not initialized).
+     */
+    uint8_t RawManualFrames(uint8_t channel, uint16_t* out, uint8_t n) noexcept;
+
+    /**
      * @brief Program alarm threshold for a channel (in 12-bit counts).
      * @param channel Channel number (0–11)
      * @param bound High or Low alarm

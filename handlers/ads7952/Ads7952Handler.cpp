@@ -315,6 +315,13 @@ bool Ads7952Handler::ReadAllChannels(ads7952::ChannelReadings& readings) noexcep
     return false;
 }
 
+uint8_t Ads7952Handler::RawManualFrames(uint8_t channel, uint16_t* out,
+                                        uint8_t n) noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!EnsureInitializedLocked()) return 0;
+    return adc_driver_->RawManualFrames(channel, out, n);
+}
+
 bool Ads7952Handler::ProgramAlarm(uint8_t channel, ads7952::AlarmBound bound,
                                    uint16_t threshold_12bit) noexcept {
     MutexLockGuard lock(handler_mutex_);

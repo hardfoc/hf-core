@@ -16,7 +16,7 @@
  * - Raw driver access through @ref GetDriver for single-threaded bring-up only
  *
  * @note Which channels are populated and with what part is defined by
- *       pw_shared/plant/valve_catalog.hpp. Unpopulated channels keep their
+ *       pw_hal/valve_hardware.hpp. Unpopulated channels keep their
  *       open-load detectors disabled so they cannot contribute OLF/OCP faults.
  *
  * @author HardFOC Team
