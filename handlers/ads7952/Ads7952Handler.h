@@ -259,6 +259,15 @@ public:
     bool ReadAllChannels(ads7952::ChannelReadings& readings) noexcept;
 
     /**
+     * @brief Auto-1 burst for a channel mask; stay in Auto-1 (no Manual hop).
+     * @param mask Bits 0–11; 0 uses @c ads7952::kAllChannels.
+     * @param[out] readings Per-channel counts for bits set in @p mask.
+     * @return true when every masked channel arrived.
+     */
+    bool ReadAuto1Channels(uint16_t mask,
+                           ads7952::ChannelReadings& readings) noexcept;
+
+    /**
      * @brief Bring-up trace: raw 16-bit response words for a manual select.
      * @param channel Channel selected in frame 0.
      * @param out Destination for @p n words (DO15:12 address, DO11:0 data).

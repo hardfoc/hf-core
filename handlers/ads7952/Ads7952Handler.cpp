@@ -295,19 +295,21 @@ hf_adc_err_t Ads7952Handler::ReadMultipleChannels(const hf_channel_id_t* channel
 //======================================================//
 
 bool Ads7952Handler::ReadAllChannels(ads7952::ChannelReadings& readings) noexcept {
+    return ReadAuto1Channels(ads7952::kAllChannels, readings);
+}
+
+bool Ads7952Handler::ReadAuto1Channels(uint16_t mask,
+                                       ads7952::ChannelReadings& readings) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!EnsureInitializedLocked()) return false;
 
-    // Save current mode and switch to Auto-1 with all channels
-    adc_driver_->ProgramAuto1Channels(ads7952::kAllChannels);
-    adc_driver_->EnterAuto1Mode(true);
-
+    const uint16_t use = (mask & 0x0FFFU) != 0U ? (mask & 0x0FFFU)
+                                                : ads7952::kAllChannels;
+    adc_driver_->ProgramAuto1Channels(use);
     readings = adc_driver_->ReadAllChannels();
+    /* Stay in Auto-1 so the next inner-loop pump skips a Manual hop. */
 
-    // Restore manual mode
-    adc_driver_->EnterManualMode(0);
-
-    if (readings.ok()) {
+    if (readings.ok() && readings.valid_mask == use) {
         ++total_reads_;
         return true;
     }
