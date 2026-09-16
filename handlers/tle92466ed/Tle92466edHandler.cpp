@@ -489,6 +489,14 @@ tle92466ed::DriverResult<void> Tle92466edHandler::SetChannelCurrent(uint8_t chan
     });
 }
 
+tle92466ed::DriverResult<void> Tle92466edHandler::SetChannelCurrentUa(uint8_t channel, uint32_t current_ua) noexcept {
+    return withDriver([&](auto& drv) -> tle92466ed::DriverResult<void> {
+        if (channel >= kNumChannels)
+            return tle::unexpected(tle92466ed::DriverError::InvalidChannel);
+        return drv.SetCurrentSetpointUa(toChannel(channel), current_ua);
+    });
+}
+
 tle92466ed::DriverResult<uint16_t> Tle92466edHandler::GetChannelCurrentSetpoint(
     uint8_t channel, bool parallel_mode) noexcept {
     return withDriver([&](auto& drv) -> tle92466ed::DriverResult<uint16_t> {

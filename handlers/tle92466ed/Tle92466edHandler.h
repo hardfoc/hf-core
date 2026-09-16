@@ -303,6 +303,13 @@ public:
     tle92466ed::DriverResult<void> SetChannelCurrent(uint8_t channel, uint16_t current_ma) noexcept;
 
     /**
+     * @brief Set channel ICC setpoint in microamperes (15-bit TARGET resolution, ~61 µA LSB).
+     * @param channel Channel index.
+     * @param current_ua Target current in µA.
+     */
+    tle92466ed::DriverResult<void> SetChannelCurrentUa(uint8_t channel, uint32_t current_ua) noexcept;
+
+    /**
      * @brief Read back programmed current setpoint for SW-HAL-01 verification.
      * @param channel Channel index 0–5.
      * @param parallel_mode When @c true, read parallel-setpoint register path.
