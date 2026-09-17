@@ -172,6 +172,12 @@ endif()
 if(NOT DEFINED HF_CORE_ENABLE_FDO2)
     set(HF_CORE_ENABLE_FDO2 OFF)
 endif()
+if(NOT DEFINED HF_CORE_ENABLE_SFM)
+    set(HF_CORE_ENABLE_SFM OFF)
+endif()
+if(NOT DEFINED HF_CORE_ENABLE_BMP581)
+    set(HF_CORE_ENABLE_BMP581 OFF)
+endif()
 if(NOT DEFINED HF_CORE_ENABLE_SE050)
     set(HF_CORE_ENABLE_SE050 OFF)
 endif()
@@ -578,6 +584,26 @@ if(HF_CORE_ENABLE_FDO2)
     list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_FDO2_PUBLIC_INCLUDE_DIRS})
 endif()
 
+# ── Sensirion SF06-family gas mass flow meter (SFM4300, I²C, header-only) ──
+# `SfmHandler` bridges the templated `sfm::Driver<I2cT>` to a `BaseI2c&`
+# via an internal CRTP adapter (raw command write / CRC-8 word read).
+if(HF_CORE_ENABLE_SFM)
+    include("${HF_CORE_DRIVER_EXT}/hf-sfm-flow-meter-driver/cmake/hf_sfm_build_settings.cmake")
+    list(APPEND HF_CORE_HANDLER_SOURCES
+        "${HF_CORE_HANDLER_ROOT}/sfm/SfmHandler.cpp")
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_SFM_PUBLIC_INCLUDE_DIRS})
+endif()
+
+# ── Bosch BMP581 barometric pressure sensor (I²C register map, header-only) ─
+# `Bmp581Handler` bridges `bmp581::Driver<BusT>` to a `BaseI2c&` via an
+# internal CRTP register adapter.
+if(HF_CORE_ENABLE_BMP581)
+    include("${HF_CORE_DRIVER_EXT}/hf-bmp581-driver/cmake/hf_bmp581_build_settings.cmake")
+    list(APPEND HF_CORE_HANDLER_SOURCES
+        "${HF_CORE_HANDLER_ROOT}/bmp581/Bmp581Handler.cpp")
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_BMP581_PUBLIC_INCLUDE_DIRS})
+endif()
+
 # ── NXP SE050 / SE050A secure element (I²C T=1oI2C — PORTABLE, header-only) ─
 if(HF_CORE_ENABLE_SE050)
     include("${HF_CORE_DRIVER_EXT}/hf-se050-driver/cmake/hf_se050_build_settings.cmake")
@@ -779,6 +805,12 @@ if(HF_CORE_ENABLE_ALICAT_BASIS2)
 endif()
 if(HF_CORE_ENABLE_FDO2)
     list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/fdo2")
+endif()
+if(HF_CORE_ENABLE_SFM)
+    list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/sfm")
+endif()
+if(HF_CORE_ENABLE_BMP581)
+    list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/bmp581")
 endif()
 if(HF_CORE_ENABLE_SE050)
     list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/se050")

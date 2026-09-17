@@ -50,7 +50,7 @@ depend on this repo and add managers, API, and pin mapping.
 
 ## ✨ Features
 
-- ✅ **14 Device Handlers** — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, TMC5160, TLE92466ED, MAX22200, ISF15ACP4 (opt-in), ADS9324 (opt-in), WS2812, SE050, Logger
+- ✅ **16 Device Handlers** — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, TMC5160, TLE92466ED, MAX22200, ISF15ACP4 (opt-in), ADS9324 (opt-in), SFM (opt-in), BMP581 (opt-in), WS2812, SE050, Logger
 - ✅ **30+ General Utilities** — Buffers, filters, timers, CRC, interpolation, linked
   lists, flag sets, physical units
 - ✅ **Full RTOS Abstraction** — Mutex, semaphore, queue, event flags, threads, timers
@@ -138,6 +138,8 @@ Use the CI pipeline or iterate over `app_config.yml` entries:
 | `Isf15acp4Handler` | ISF15ACP4 | SPI + GPIO | 96×64 OLED pushbutton, pluggable graphics ([details](docs/handlers/isf15acp4_handler.md); **default OFF**) |
 | `Ads9324Handler` | ADS9324 | SPI + CONVST/DRDY | 16-ch 16-bit simultaneous SAR + PGA ([details](docs/handlers/ads9324_handler.md); **default OFF**) |
 | `Ws2812Handler` | WS2812 | RMT | Addressable LED strip, pixel control, animations |
+| `SfmHandler` | SFM4300 / SF06 family | I2C | Gas mass flow: per-gas tables, CRC-8 frames, averaging, variant gating ([details](docs/handlers/sfm_handler.md); **default OFF**) |
+| `Bmp581Handler` | BMP581 | I2C | Barometric pressure: OSR/ODR/IIR preset, data-ready, Pa/°C ([details](docs/handlers/bmp581_handler.md); **default OFF**) |
 | `Se050Handler` | SE050 / SE050A | I2C | Secure element, T=1 over I²C, `GetDevice()` for `se050::Device` ([details](docs/handlers/se050_handler.md)) |
 | `Logger` | — | — | Singleton, log levels, per-tag filter, formatted output, MCU-agnostic via injectable `BaseLogger` backend ([details](handlers/logger/README.md)) |
 

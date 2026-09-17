@@ -115,6 +115,8 @@ target_compile_definitions(${COMPONENT_LIB} PUBLIC ${HF_CORE_COMPILE_DEFINITIONS
 | `HF_CORE_ENABLE_WS2812` | hf-ws2812-rmt-driver | RMT | Ws2812Handler |
 | `HF_CORE_ENABLE_ISF15ACP4` | hf-isf15acp4-driver | SPI + GPIO | Isf15acp4Handler (**default OFF**) |
 | `HF_CORE_ENABLE_ADS9324` | hf-ads9324-driver | SPI + CONVST/DRDY GPIO | Ads9324Handler (**default OFF**; ESP32 examples ON) |
+| `HF_CORE_ENABLE_SFM` | hf-sfm-flow-meter-driver | I2C | SfmHandler (**default OFF**) |
+| `HF_CORE_ENABLE_BMP581` | hf-bmp581-driver | I2C | Bmp581Handler (**default OFF**) |
 | `HF_CORE_ENABLE_LOGGER` | internal | — | Logger (default ON) |
 
 ### Optional Interface Implementations (default OFF)

@@ -25,6 +25,8 @@ CRTP-templated device drivers. Each handler:
 | [Bno08xHandler](bno08x_handler.md) | hf-bno08x-driver | BaseI2c / BaseSpi | 9-DOF IMU, type-erased IBno08xDriverOps, GetDriver/visitDriver |
 | [Pca9685Handler](pca9685_handler.md) | hf-pca9685-driver | BaseI2c | 16-ch PWM, duty + phase, sleep/wake, PwmAdapter |
 | [Pf1550Handler](pf1550_handler.md) | hf-pf1550-driver | BaseI2c (+ opt. BaseGpio) | PF1550 PMIC; `portenta_h7_carrier` / default profiles |
+| [SfmHandler](sfm_handler.md) | hf-sfm-flow-meter-driver | BaseI2c | Sensirion SF06 gas mass flow (SFM4300); per-gas tables, CRC-8, averaging, variant gating |
+| [Bmp581Handler](bmp581_handler.md) | hf-bmp581-driver | BaseI2c | Bosch BMP581 barometric pressure; preset config, data-ready, Pa/°C |
 | [Pcal95555Handler](pcal95555_handler.md) | hf-pcal95555-driver | BaseI2c | 16-pin GPIO expander, interrupts, Agile I/O, batch ops |
 | [NtcTemperatureHandler](ntc_temperature_handler.md) | hf-ntc-thermistor-driver | BaseAdc | Temperature sensing, EMA filter, thresholds, monitoring |
 | [Tmc9660Handler](tmc9660_handler.md) | hf-tmc9660-driver | BaseSpi / BaseUart | BLDC motor, GPIO/ADC/Temp wrappers, GetDriver/visitDriver |
