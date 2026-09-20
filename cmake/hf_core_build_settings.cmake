@@ -172,6 +172,9 @@ endif()
 if(NOT DEFINED HF_CORE_ENABLE_FDO2)
     set(HF_CORE_ENABLE_FDO2 OFF)
 endif()
+if(NOT DEFINED HF_CORE_ENABLE_DYNAMIXEL)
+    set(HF_CORE_ENABLE_DYNAMIXEL OFF)
+endif()
 if(NOT DEFINED HF_CORE_ENABLE_SFM)
     set(HF_CORE_ENABLE_SFM OFF)
 endif()
@@ -219,7 +222,8 @@ endif()
 # ===========================================================================
 
 # Drivers that use UART need the UART interface implementation
-if(HF_CORE_ENABLE_TMC5160 OR HF_CORE_ENABLE_TMC9660 OR HF_CORE_ENABLE_ALICAT_BASIS2 OR HF_CORE_ENABLE_FDO2)
+if(HF_CORE_ENABLE_TMC5160 OR HF_CORE_ENABLE_TMC9660 OR HF_CORE_ENABLE_ALICAT_BASIS2
+   OR HF_CORE_ENABLE_FDO2 OR HF_CORE_ENABLE_DYNAMIXEL)
     set(HF_CORE_ENABLE_UART ON)
 endif()
 
@@ -571,6 +575,30 @@ if(HF_CORE_ENABLE_ALICAT_BASIS2)
     list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_ALICAT_BASIS2_SOURCE_FILES})
 endif()
 
+# ── ROBOTIS Dynamixel Protocol 2.0 (UART, official SDK wrap) ───────────────
+# Portable `dynamixel::Bus` / `Device`. `DynamixelHandler` bridges a
+# `BaseUart&` through `HalUartDynamixelComm`. Default OFF; UART is
+# auto-enabled. SDK TUs get `__linux__` only on those source files.
+if(HF_CORE_ENABLE_DYNAMIXEL)
+    if(NOT EXISTS "${HF_CORE_DRIVER_EXT}/hf-dynamixel-driver/cmake/hf_dynamixel_build_settings.cmake")
+        message(FATAL_ERROR
+            "[hf-core] HF_CORE_ENABLE_DYNAMIXEL=ON but hf-dynamixel-driver is missing at "
+            "'${HF_CORE_DRIVER_EXT}/hf-dynamixel-driver'. Initialize the git submodule under "
+            "hf-core-drivers (external/hf-dynamixel-driver).")
+    endif()
+    include("${HF_CORE_DRIVER_EXT}/hf-dynamixel-driver/cmake/hf_dynamixel_build_settings.cmake")
+    list(APPEND HF_CORE_HANDLER_SOURCES
+        "${HF_CORE_HANDLER_ROOT}/dynamixel/DynamixelHandler.cpp")
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS
+        ${HF_DYNAMIXEL_PUBLIC_INCLUDE_DIRS}
+        ${HF_DYNAMIXEL_PRIVATE_INCLUDE_DIRS})
+    list(APPEND HF_CORE_EXT_DRIVER_SOURCES ${HF_DYNAMIXEL_SOURCE_FILES})
+    if(HF_DYNAMIXEL_SDK_COMPILE_DEFINITIONS)
+        set_property(SOURCE ${HF_DYNAMIXEL_SDK_SOURCE_FILES} APPEND PROPERTY
+            COMPILE_DEFINITIONS ${HF_DYNAMIXEL_SDK_COMPILE_DEFINITIONS})
+    endif()
+endif()
+
 # ── PyroScience FDO2-G2 oxygen probe (UART, PSUP ASCII) ────────────────────
 # Header-only driver. The HAL handler (`Fdo2Handler`) bridges the
 # templated `fdo2::Driver<UartT>` to a `BaseUart&` via an internal
@@ -806,6 +834,9 @@ endif()
 if(HF_CORE_ENABLE_FDO2)
     list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/fdo2")
 endif()
+if(HF_CORE_ENABLE_DYNAMIXEL)
+    list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/dynamixel")
+endif()
 if(HF_CORE_ENABLE_SFM)
     list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/sfm")
 endif()
@@ -980,6 +1011,9 @@ endif()
 if(HF_CORE_ENABLE_FDO2)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_FDO2_SUPPORT=1)
 endif()
+if(HF_CORE_ENABLE_DYNAMIXEL)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_DYNAMIXEL_SUPPORT=1)
+endif()
 if(HF_CORE_ENABLE_SFM)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_SFM_SUPPORT=1)
 endif()
@@ -1082,6 +1116,9 @@ if(HF_CORE_ENABLE_MCP9700)
 endif()
 if(HF_CORE_ENABLE_ALICAT_BASIS2)
     string(APPEND _hf_enabled_features " AlicatBASIS2")
+endif()
+if(HF_CORE_ENABLE_DYNAMIXEL)
+    string(APPEND _hf_enabled_features " Dynamixel")
 endif()
 if(HF_CORE_ENABLE_PCA9685)
     string(APPEND _hf_enabled_features " PCA9685")

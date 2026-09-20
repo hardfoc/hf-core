@@ -31,6 +31,7 @@ set(HF_CORE_ENABLE_WS2812         ON)
 set(HF_CORE_ENABLE_ISF15ACP4      ON)   # Compile handler test in CI (hardware optional at runtime)
 set(HF_CORE_ENABLE_ADS9324        ON)   # Compile Ads9324Handler + test; product images keep this OFF
 set(HF_CORE_ENABLE_SE050          ON)   # NXP SE050 secure element (I²C); handler test + integration
+set(HF_CORE_ENABLE_DYNAMIXEL      ON)   # Protocol 2.0 Dynamixel (UART); XC430 + X-series fallback
 set(HF_CORE_ENABLE_LOGGER         ON)
 # Optional utilities
 set(HF_CORE_ENABLE_UTILS_CANOPEN  ON)

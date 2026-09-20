@@ -117,13 +117,14 @@ target_compile_definitions(${COMPONENT_LIB} PUBLIC ${HF_CORE_COMPILE_DEFINITIONS
 | `HF_CORE_ENABLE_ADS9324` | hf-ads9324-driver | SPI + CONVST/DRDY GPIO | Ads9324Handler (**default OFF**; ESP32 examples ON) |
 | `HF_CORE_ENABLE_SFM` | hf-sfm-flow-meter-driver | I2C | SfmHandler (**default OFF**) |
 | `HF_CORE_ENABLE_BMP581` | hf-bmp581-driver | I2C | Bmp581Handler (**default OFF**) |
+| `HF_CORE_ENABLE_DYNAMIXEL` | hf-dynamixel-driver | UART | DynamixelHandler (**default OFF**; ESP32 examples ON) |
 | `HF_CORE_ENABLE_LOGGER` | internal | — | Logger (default ON) |
 
 ### Optional Interface Implementations (default OFF)
 
 | Toggle | ESP32 Implementation | Auto-Enabled By |
 |--------|---------------------|-----------------|
-| `HF_CORE_ENABLE_UART` | EspUart | TMC5160, TMC9660 |
+| `HF_CORE_ENABLE_UART` | EspUart | TMC5160, TMC9660, Alicat, FDO2, Dynamixel |
 | `HF_CORE_ENABLE_CAN` | EspCan | (manual only) |
 | `HF_CORE_ENABLE_PWM` | EspPwm | (manual only) |
 | `HF_CORE_ENABLE_PIO` | EspPio | (manual only) |
@@ -148,7 +149,7 @@ The build settings automatically enable bus interfaces required by selected driv
 
 | If You Enable... | Auto-Enabled |
 |-----------------|--------------|
-| `TMC5160` or `TMC9660` | `HF_CORE_ENABLE_UART` + `esp_driver_uart` IDF component |
+| `TMC5160` or `TMC9660` or `ALICAT_BASIS2` or `FDO2` or `DYNAMIXEL` | `HF_CORE_ENABLE_UART` + `esp_driver_uart` IDF component |
 | `WS2812` | `HF_CORE_ENABLE_RMT` + `esp_driver_rmt` IDF component |
 | `NTC_THERMISTOR` | `HF_CORE_ENABLE_ADC` + `esp_adc` IDF component |
 

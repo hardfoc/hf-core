@@ -37,5 +37,6 @@ CRTP-templated device drivers. Each handler:
 | [Ads9324Handler](ads9324_handler.md) | hf-ads9324-driver | BaseSpi + CONVST/DRDY GPIO | 16-ch 16-bit simultaneous SAR + PGA; **default OFF** (ESP32 examples ON) |
 | [Isf15acp4Handler](isf15acp4_handler.md) | hf-isf15acp4-driver | BaseSpi + BaseGpio | 96×64 OLED pushbutton, pluggable graphics |
 | [Ws2812Handler](ws2812_handler.md) | hf-ws2812-rmt-driver | RMT | Addressable LED strip, GetDriver/visitDriver/visitAnimator |
+| [DynamixelHandler](dynamixel_handler.md) | hf-dynamixel-driver | BaseUart | Protocol 2.0 XC430 + X-series fallback; **default OFF** (ESP32 examples ON) |
 | [Logger](logger.md) | — | — | Singleton, colors, ASCII art, per-tag filtering |
 | [Se050Handler](se050_handler.md) | hf-se050-driver | BaseI2c (+ opt. BaseGpio) | T=1 SE050, `GetDevice()` = `se050::Device` |
