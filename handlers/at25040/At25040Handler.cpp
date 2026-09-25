@@ -28,7 +28,8 @@ bool At25040Handler::Read(uint16_t addr, uint8_t* dst, uint16_t len) noexcept {
   uint16_t off = 0;
   while (off < len) {
     const uint16_t chunk =
-        static_cast<uint16_t>((len - off) > 16U ? 16U : (len - off));
+        static_cast<uint16_t>((len - off) > static_cast<uint16_t>(16) ? static_cast<uint16_t>(16)
+                                                                       : (len - off));
     if (device_.Read(static_cast<uint16_t>(addr + off), dst + off, chunk) !=
         at25040::Status::Ok) {
       return false;

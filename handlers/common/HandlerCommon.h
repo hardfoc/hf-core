@@ -114,9 +114,8 @@ inline void DelayUs(uint32_t us) noexcept {
     }
     /* ~1 µs/iteration @ Cortex-M ~200–240 MHz. */
     for (uint32_t i = 0; i < us; ++i) {
-        volatile uint32_t spin = 40U;
-        while (spin--) {
-            __asm__ volatile("");
+        for (uint32_t spin = 40U; spin > 0U; --spin) {
+            __asm__ volatile("" ::: "memory");
         }
     }
 #endif
