@@ -21,7 +21,6 @@
 // ADS7952 SPI ADAPTER IMPLEMENTATION
 //======================================================//
 
-static constexpr const char* TAG_SPI = "Ads7952Spi";
 
 Ads7952SpiAdapter::Ads7952SpiAdapter(BaseSpi& spi_interface) noexcept
     : spi_interface_(spi_interface) {}
@@ -29,19 +28,14 @@ Ads7952SpiAdapter::Ads7952SpiAdapter(BaseSpi& spi_interface) noexcept
 void Ads7952SpiAdapter::transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept {
     if (len == 0) return;
 
-    Logger::GetInstance().Debug(TAG_SPI, "SPI transfer: len=%u",
-                                static_cast<unsigned>(len));
-
     // Bridge BaseSpi::Transfer ↔ ads7952::SpiInterface<>::transfer
-    // BaseSpi handles CS assertion/deassertion per transaction
+    // BaseSpi handles CS assertion/deassertion per transaction. This runs once
+    // per 16-bit frame (a dozen per bank, up to 1 kHz): no per-frame logging.
     hf_spi_err_t result = spi_interface_.Transfer(
         tx, rx,
         static_cast<uint16_t>(len),
         1000  // 1 second timeout
     );
-
-    Logger::GetInstance().Debug(TAG_SPI, "SPI transfer done: result=%d",
-                                static_cast<int>(result));
 
     // ADS7952 driver detects errors through frame validation
     (void)result;
