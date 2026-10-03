@@ -112,6 +112,18 @@ bool SfmHandler::EnsureInitializedLocked() noexcept {
         bus_errors_.fetch_add(1, std::memory_order_relaxed);
         return false;
     }
+    if (id.value.variant == sfm::Variant::Unknown) {
+        /* An 8-bit CRC per word lets a corrupted identifier through now and
+         * then (an SFM6000D read 0x18DE7F40 once on a 25 kHz bench bus), and
+         * the identity decides the family — i.e. what every later command
+         * means. Accept an unknown part only when a second read agrees. */
+        comm_.DelayMs(1);
+        const auto again = driver_->ReadProductIdentifier();
+        if (!again.ok() || again.value.product_id != id.value.product_id) {
+            bus_errors_.fetch_add(1, std::memory_order_relaxed);
+            return false;
+        }
+    }
     identity_ = id.value;
     initialized_.store(true, std::memory_order_release);
     return true;
@@ -137,7 +149,9 @@ sfm::DriverResult<void> SfmHandler::Start(sfm::Gas gas) noexcept {
         }
         return r;
     }
-    if (config_.averaging_window != 0U) {
+    /* On-chip averaging is SF06-only; SFx6000 samples at 1 kHz and the
+     * reader averages. */
+    if (config_.averaging_window != 0U && driver_->PartFamily() == sfm::Family::Sf06) {
         r = driver_->ConfigureAveraging(config_.averaging_window);
     }
     return r;
@@ -192,6 +206,27 @@ sfm::DriverResult<void> SfmHandler::UpdateConcentration(std::uint16_t o2_permill
     }
     return r;
 }
+
+sfm::DriverResult<float> SfmHandler::ReadTemperature() noexcept {
+    MutexLockGuard lock(*bus_mutex_);
+    if (!initialized_.load(std::memory_order_acquire)) {
+        return sfm::DriverResult<float>::failure(sfm::DriverError::NotInitialized);
+    }
+    return driver_->ReadTemperature();
+}
+
+sfm::DriverResult<sfm::Measurement> SfmHandler::DecodeFrame(const std::uint8_t frame[9]) noexcept {
+    const auto m = DriverType::DecodeMeasurement(driver_->PartFamily(), driver_->ActiveScaling(),
+                                                 frame);
+    if (m.ok()) {
+        frames_.fetch_add(1, std::memory_order_relaxed);
+    } else {
+        crc_errors_.fetch_add(1, std::memory_order_relaxed);
+    }
+    return m;
+}
+
+sfm::Family SfmHandler::Family() const noexcept { return driver_->PartFamily(); }
 
 sfm::Gas SfmHandler::ActiveGas() const noexcept { return driver_->ActiveGas(); }
 

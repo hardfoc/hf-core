@@ -1,6 +1,7 @@
 /**
  * @file SfmHandler.h
- * @brief Handler for Sensirion SF06-family gas mass flow meters (SFM4300, …) on a `BaseI2c`.
+ * @brief Handler for Sensirion gas mass flow meters on a `BaseI2c`: SF06
+ *        (SFM4300, …) and SFx6000 (SFM6000D).
  *
  * @details Bridges the templated `sfm::Driver<I2cT>` (hf-sfm-flow-meter-driver)
  *          to the HardFOC `BaseI2c` device interface through an internal CRTP
@@ -12,8 +13,10 @@
  *          adapter and the driver instance. Bring-up is lazy and idempotent.
  *
  *          Gas-table gating: after the product identifier is read the driver
- *          refuses tables the part does not carry (SFM4300-50-x has no CO2 or
- *          N2O tables). `Start()` reports `UnsupportedGas` in that case so the
+ *          knows the part family (which start code means which gas — they
+ *          differ between SF06 and SFx6000) and refuses tables the part does
+ *          not carry (SFM4300-50-x has no CO2 or N2O tables). Before the
+ *          identity is known only O2 and Air may start. `Start()` reports `UnsupportedGas` in that case so the
  *          caller can choose a fallback and flag the reading — the handler
  *          never substitutes a table silently.
  *
@@ -118,6 +121,14 @@ public:
      */
     bool EnsureInitialized() noexcept;
 
+    /**
+     * @brief Forget the cached identity: the next `EnsureInitialized()` (or
+     *        Start) reads the product identifier again. For a re-probe after
+     *        a fault — the part may have been reset, swapped, or identified
+     *        from a corrupted read.
+     */
+    void Invalidate() noexcept { initialized_.store(false, std::memory_order_release); }
+
     /// True once `EnsureInitialized()` has succeeded.
     [[nodiscard]] bool IsPresent() const noexcept {
         return initialized_.load(std::memory_order_acquire);
@@ -157,6 +168,22 @@ public:
 
     /// Update the O2 fraction of a running mixture table.
     sfm::DriverResult<void> UpdateConcentration(std::uint16_t o2_permille) noexcept;
+
+    /// SFx6000: flow-chip temperature while measuring (`NotSupported` on SF06).
+    sfm::DriverResult<float> ReadTemperature() noexcept;
+
+    /**
+     * @brief Decode a 9-byte frame fetched by an interrupt / DMA reader with
+     *        the active family and scaling; counts frames and CRC errors.
+     * @note No bus access. The caller owns the bus transaction.
+     */
+    sfm::DriverResult<sfm::Measurement> DecodeFrame(const std::uint8_t frame[9]) noexcept;
+
+    /// Part family (from the identifier once probed).
+    [[nodiscard]] sfm::Family Family() const noexcept;
+
+    /// 7-bit address of the bound device.
+    [[nodiscard]] std::uint8_t Address() const noexcept { return comm_.DeviceAddress(); }
 
     /// Gas selected by the last successful `Start()`.
     [[nodiscard]] sfm::Gas ActiveGas() const noexcept;
