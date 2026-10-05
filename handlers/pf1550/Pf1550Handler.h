@@ -138,6 +138,13 @@ public:
      * @return `true` if all I²C transactions completed.
      */
     bool RefreshDiagnosticSnapshot() noexcept;
+    /**
+     * @brief Refresh the status part of the cached snapshot only (driver
+     *        `RefreshStatusSnapshot`); identity and rail configuration stay
+     *        from the last full refresh. Falls back to a full read when the
+     *        cache holds none.
+     */
+    bool RefreshStatusSnapshot() noexcept;
 
     /**
      * @brief Copy the cached snapshot out (zero-copy not provided to keep
@@ -179,6 +186,7 @@ private:
     std::unique_ptr<Pf1550Driver> driver_;
     bool initialized_;
     pf1550::DiagnosticSnapshot cached_snapshot_;
+    bool have_full_snapshot_{false};  ///< cached_snapshot_ holds a successful full read
     mutable RtosMutex handler_mutex_;
 };
 

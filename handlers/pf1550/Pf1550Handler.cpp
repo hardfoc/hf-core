@@ -170,7 +170,20 @@ bool Pf1550Handler::RefreshDiagnosticSnapshot() noexcept {
     if (!ensureInitializedLocked() || driver_ == nullptr) {
         return false;
     }
-    return driver_->ReadDiagnosticSnapshot(cached_snapshot_);
+    have_full_snapshot_ = driver_->ReadDiagnosticSnapshot(cached_snapshot_);
+    return have_full_snapshot_;
+}
+
+bool Pf1550Handler::RefreshStatusSnapshot() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!ensureInitializedLocked() || driver_ == nullptr) {
+        return false;
+    }
+    if (!have_full_snapshot_) {
+        have_full_snapshot_ = driver_->ReadDiagnosticSnapshot(cached_snapshot_);
+        return have_full_snapshot_;
+    }
+    return driver_->RefreshStatusSnapshot(cached_snapshot_);
 }
 
 bool Pf1550Handler::ReadDiagnosticSnapshot(pf1550::DiagnosticSnapshot& out) noexcept {
@@ -188,6 +201,7 @@ bool Pf1550Handler::RunPowerSelfTest(pf1550::SelfTestResult& out) noexcept {
     }
     const bool ok = driver_->RunPowerSelfTest(out);
     cached_snapshot_ = out.snapshot;
+    have_full_snapshot_ = out.snapshot.read_ok;
     return ok;
 }
 
