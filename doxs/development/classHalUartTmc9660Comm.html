@@ -106,19 +106,20 @@ $(function(){initNavTree('classHalUartTmc9660Comm.html',''); initResizable(); })
 <div class="dynheader">
 Inheritance diagram for HalUartTmc9660Comm:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalUartTmc9660Comm__inherit__graph.svg" width="227" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for HalUartTmc9660Comm:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalUartTmc9660Comm__coll__graph.svg" width="384" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+ <div class="center">
+  <img src="classHalUartTmc9660Comm.png" alt=""/>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a144c7a0f50237dff1fa25c235084c3e1" id="r_a144c7a0f50237dff1fa25c235084c3e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a144c7a0f50237dff1fa25c235084c3e1">HalUartTmc9660Comm</a> (BaseUart &amp;uart, BaseGpio &amp;rst, BaseGpio &amp;drv_en, BaseGpio &amp;faultn, BaseGpio &amp;wake, bool rst_active_high=true, bool drv_en_active_high=true, bool faultn_active_low=false, bool wake_active_low=false) noexcept</td></tr>
 <tr class="memdesc:a144c7a0f50237dff1fa25c235084c3e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the UART communication adapter.  <br /></td></tr>
 <tr class="separator:a144c7a0f50237dff1fa25c235084c3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2591ae09ecaaecc8816abed53467422" id="r_ab2591ae09ecaaecc8816abed53467422"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2591ae09ecaaecc8816abed53467422">setReplyTimeoutMs</a> (uint32_t ms) noexcept</td></tr>
+<tr class="memdesc:ab2591ae09ecaaecc8816abed53467422"><td class="mdescLeft">&#160;</td><td class="mdescRight">How long a TMCL reply may take before the exchange fails.  <br /></td></tr>
+<tr class="separator:ab2591ae09ecaaecc8816abed53467422"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a610647df8d601e5eb5892d924fa1fde6" id="r_a610647df8d601e5eb5892d924fa1fde6"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a610647df8d601e5eb5892d924fa1fde6">replyTimeoutMs</a> () const noexcept</td></tr>
+<tr class="separator:a610647df8d601e5eb5892d924fa1fde6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">CRTP-Required Methods</div></td></tr>
 <tr class="memitem:a213dfdf5041d1d98372413b9cd3a9b53" id="r_a213dfdf5041d1d98372413b9cd3a9b53"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a213dfdf5041d1d98372413b9cd3a9b53">uartSendTMCL</a> (const std::array&lt; uint8_t, 9 &gt; &amp;data) noexcept</td></tr>
 <tr class="memdesc:a213dfdf5041d1d98372413b9cd3a9b53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a 9-byte TMCL datagram over UART.  <br /></td></tr>
@@ -153,6 +154,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a7d842bccb7b871b4fa3367935b3c4024" id="r_a7d842bccb7b871b4fa3367935b3c4024"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structTmc9660CtrlPins.html">Tmc9660CtrlPins</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d842bccb7b871b4fa3367935b3c4024">ctrl_pins_</a></td></tr>
 <tr class="memdesc:a7d842bccb7b871b4fa3367935b3c4024"><td class="mdescLeft">&#160;</td><td class="mdescRight">Host-side control pin references.  <br /></td></tr>
 <tr class="separator:a7d842bccb7b871b4fa3367935b3c4024"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5017fad0cce1e963730dff7dbd1609d0" id="r_a5017fad0cce1e963730dff7dbd1609d0"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5017fad0cce1e963730dff7dbd1609d0">reply_timeout_ms_</a> {80U}</td></tr>
+<tr class="memdesc:a5017fad0cce1e963730dff7dbd1609d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">see setReplyTimeoutMs  <br /></td></tr>
+<tr class="separator:a5017fad0cce1e963730dff7dbd1609d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio. </p>
@@ -296,11 +300,6 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalUartTmc9660Comm_a1a992dfbd1c60452f19f38dff2754403_cgraph.svg" width="623" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -334,11 +333,6 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalUartTmc9660Comm_ac4e3272567e3486a74e62d53ccd814d9_cgraph.svg" width="404" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -373,11 +367,6 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalUartTmc9660Comm_a03e458d1dca85da1149a9040d8458c06_cgraph.svg" width="403" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -418,11 +407,6 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the GPIO read succeeded.   </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalUartTmc9660Comm_af2f8bd1ec3ad0a3c3d59b97e13babff2_cgraph.svg" width="414" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -463,11 +447,59 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the GPIO write succeeded.   </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalUartTmc9660Comm_a85aa3e262d86857902e11e818e2e818e_cgraph.svg" width="414" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+
 </div>
+</div>
+<a id="a610647df8d601e5eb5892d924fa1fde6" name="a610647df8d601e5eb5892d924fa1fde6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a610647df8d601e5eb5892d924fa1fde6">&#9670;&#160;</a></span>replyTimeoutMs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t HalUartTmc9660Comm::replyTimeoutMs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab2591ae09ecaaecc8816abed53467422" name="ab2591ae09ecaaecc8816abed53467422"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2591ae09ecaaecc8816abed53467422">&#9670;&#160;</a></span>setReplyTimeoutMs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HalUartTmc9660Comm::setReplyTimeoutMs </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>ms</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>How long a TMCL reply may take before the exchange fails. </p>
+<p>A reply is 9 bytes (~0.8 ms at 115200) after ~1 ms of chip latency. Discovery and configuration may allow 80 ms; a caller on a real-time thread should allow ~10 ms, or one lost reply blocks its Step for the whole window (desk 2026-10-15: a ≥ 65 ms motor_drv Step per lost telemetry reply). </p>
 
 </div>
 </div>
@@ -600,6 +632,30 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Host-side control pin references. </p>
+
+</div>
+</div>
+<a id="a5017fad0cce1e963730dff7dbd1609d0" name="a5017fad0cce1e963730dff7dbd1609d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5017fad0cce1e963730dff7dbd1609d0">&#9670;&#160;</a></span>reply_timeout_ms_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t HalUartTmc9660Comm::reply_timeout_ms_ {80U}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>see setReplyTimeoutMs </p>
 
 </div>
 </div>

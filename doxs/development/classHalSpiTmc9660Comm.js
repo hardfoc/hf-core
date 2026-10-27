@@ -6,8 +6,12 @@ var classHalSpiTmc9660Comm =
     [ "delayUs", "classHalSpiTmc9660Comm.html#aeed51d5504933aa294d940f0799c279a", null ],
     [ "gpioRead", "classHalSpiTmc9660Comm.html#aa7c3ebc1dfe70f3012ce352c0e881ca3", null ],
     [ "gpioSet", "classHalSpiTmc9660Comm.html#ad62042c7cc3d39dd901ecf1f6a3ccb6c", null ],
+    [ "hostSpiTransferTMCLPair", "classHalSpiTmc9660Comm.html#a0bab91ce7d731fa96bf50cfa9b5495fa", null ],
+    [ "rawTmclProbe", "classHalSpiTmc9660Comm.html#ae364a929ba09c27d675dde8613063f3b", null ],
     [ "spiTransferBootloader", "classHalSpiTmc9660Comm.html#a691d8a1d66cf606952d11afc73bffda0", null ],
     [ "spiTransferTMCL", "classHalSpiTmc9660Comm.html#a84b3ab081c7b9cab86432945ca9e3f6e", null ],
+    [ "transportDiag", "classHalSpiTmc9660Comm.html#a2569902a00690043e386003f413b853b", null ],
     [ "ctrl_pins_", "classHalSpiTmc9660Comm.html#a57a03a0afc398cb7af11919a42aff141", null ],
+    [ "last_spi_err_", "classHalSpiTmc9660Comm.html#abe9a38c16d2446dc0cb6d1b3d6e1f0fc", null ],
     [ "spi_", "classHalSpiTmc9660Comm.html#a79247e058a5250b805f60de3c2e58ced", null ]
 ];

@@ -108,16 +108,6 @@ $(function(){initNavTree('Ads7952Handler_8h.html',''); initResizable(); });
 <code>#include &quot;base/BaseSpi.h&quot;</code><br />
 <code>#include &quot;base/BaseAdc.h&quot;</code><br />
 <code>#include &quot;RtosMutex.h&quot;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for Ads7952Handler.h:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Ads7952Handler_8h__incl.svg" width="1002" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div><div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Ads7952Handler_8h__dep__incl.svg" width="166" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 </div>
 <p><a href="Ads7952Handler_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -139,7 +129,7 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ad16c327738b31a420b2e42c5a7acb663" id="r_ad16c327738b31a420b2e42c5a7acb663"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAds7952HandlerConfig.html">Ads7952HandlerConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad16c327738b31a420b2e42c5a7acb663">GetDefaultAds7952Config</a> () noexcept</td></tr>
-<tr class="memdesc:ad16c327738b31a420b2e42c5a7acb663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the default ADS7952 handler config for the Flux V1 board.  <br /></td></tr>
+<tr class="memdesc:ad16c327738b31a420b2e42c5a7acb663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default ADS7952 handler config (2.5 V Vref, 5.0 V VA, 2×Vref range).  <br /></td></tr>
 <tr class="separator:ad16c327738b31a420b2e42c5a7acb663"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0422e1d432065e66df70e927a30b49e4" id="r_a0422e1d432065e66df70e927a30b49e4"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classAds7952Handler.html">Ads7952Handler</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0422e1d432065e66df70e927a30b49e4">CreateAds7952Handler</a> (BaseSpi &amp;spi_interface, const <a class="el" href="structAds7952HandlerConfig.html">Ads7952HandlerConfig</a> &amp;config=<a class="el" href="#ad16c327738b31a420b2e42c5a7acb663">GetDefaultAds7952Config</a>()) noexcept</td></tr>
 <tr class="memdesc:a0422e1d432065e66df70e927a30b49e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create ADS7952 handler instance.  <br /></td></tr>
@@ -152,14 +142,13 @@ Functions</h2></td></tr>
 <li>Lazy initialization with lightweight construction</li>
 <li>Complete exception-free design with noexcept methods</li>
 <li>Thread-safe operations with RtosMutex protection</li>
-<li>Implements BaseAdc interface for seamless AdcManager integration</li>
+<li>Implements BaseAdc so a host can register this handler as an ADC source</li>
 <li>Comprehensive error handling, diagnostics, and statistics</li>
 <li>Factory method supporting multiple devices on the same SPI bus (different CS)</li>
 </ul>
-<p>Hardware Notes (Flux V1 board):</p><ul>
+<p>Electrical defaults (not a board pin map):</p><ul>
 <li>ADS7952 is a 12-channel, 12-bit SAR ADC from TI</li>
-<li>2.5V external Vref, up to 5.0V VA supply</li>
-<li>Connected via SPI3 (dedicated bus): nCS=GPIO10, MOSI=GPIO11, SCK=GPIO12, MISO=GPIO13</li>
+<li>Typical 2.5 V external Vref, up to 5.0 V VA supply</li>
 <li>Multiple devices can share the same SPI bus with different CS pins</li>
 </ul>
 <dl class="section author"><dt>Author</dt><dd>HardFOC Team </dd></dl>
@@ -229,8 +218,8 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the default ADS7952 handler config for the Flux V1 board. </p>
-<dl class="section return"><dt>Returns</dt><dd>Default <a class="el" href="structAds7952HandlerConfig.html" title="Configuration for ADS7952 handler initialization.">Ads7952HandlerConfig</a> (2.5V Vref, 5.0V VA, 2xVref range, all 12 channels) </dd></dl>
+<p>Default ADS7952 handler config (2.5 V Vref, 5.0 V VA, 2×Vref range). </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structAds7952HandlerConfig.html" title="Configuration for ADS7952 handler initialization.">Ads7952HandlerConfig</a> covering all 12 channels in Manual mode. </dd></dl>
 
 </div>
 </div>

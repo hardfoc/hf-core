@@ -104,11 +104,6 @@ $(function(){initNavTree('classTmc9660Handler.html',''); initResizable(); });
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Tmc9660Handler_8h_source.html">Tmc9660Handler.h</a>&gt;</code></p>
-<div class="dynheader">
-Collaboration diagram for Tmc9660Handler:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler__coll__graph.svg" width="2103" height="484"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -172,6 +167,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a13db97d201a287d8aa60384e04070b9f" id="r_a13db97d201a287d8aa60384e04070b9f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13db97d201a287d8aa60384e04070b9f">IsDriverReady</a> () const noexcept</td></tr>
 <tr class="memdesc:a13db97d201a287d8aa60384e04070b9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the TMC9660 driver has been initialized and is ready.  <br /></td></tr>
 <tr class="separator:a13db97d201a287d8aa60384e04070b9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a419ea352256ec90536a3107047a6b225" id="r_a419ea352256ec90536a3107047a6b225"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a419ea352256ec90536a3107047a6b225">SetTmclReplyTimeoutMs</a> (uint32_t ms) noexcept</td></tr>
+<tr class="memdesc:a419ea352256ec90536a3107047a6b225"><td class="mdescLeft">&#160;</td><td class="mdescRight">TMCL reply window for UART transfers (<a class="el" href="classHalUartTmc9660Comm.html#ab2591ae09ecaaecc8816abed53467422" title="How long a TMCL reply may take before the exchange fails.">HalUartTmc9660Comm::setReplyTimeoutMs</a>).  <br /></td></tr>
+<tr class="separator:a419ea352256ec90536a3107047a6b225"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Peripheral Accessors</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Retrieve references to the handler's internal peripheral wrappers. </p>
 </div></td></tr>
@@ -293,6 +291,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a1aea362e219afe55d37c69b637d48dc2" id="r_a1aea362e219afe55d37c69b637d48dc2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1aea362e219afe55d37c69b637d48dc2">device_address_</a></td></tr>
 <tr class="memdesc:a1aea362e219afe55d37c69b637d48dc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">7-bit TMCL device address.  <br /></td></tr>
 <tr class="separator:a1aea362e219afe55d37c69b637d48dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f9a3d129d2f815114ef7d07e544d3ab" id="r_a7f9a3d129d2f815114ef7d07e544d3ab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f9a3d129d2f815114ef7d07e544d3ab">boot_ok_</a> {false}</td></tr>
+<tr class="memdesc:a7f9a3d129d2f815114ef7d07e544d3ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">true only after bootloaderInit Success.  <br /></td></tr>
+<tr class="separator:a7f9a3d129d2f815114ef7d07e544d3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Thread Safety</div></td></tr>
 <tr class="memitem:a9fe707c03f7c0ea26d83cbd0771780af" id="r_a9fe707c03f7c0ea26d83cbd0771780af"><td class="memItemLeft" align="right" valign="top">RtosMutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fe707c03f7c0ea26d83cbd0771780af">handler_mutex_</a></td></tr>
 <tr class="memdesc:a9fe707c03f7c0ea26d83cbd0771780af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursive mutex for thread-safe access.  <br /></td></tr>
@@ -300,16 +301,16 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Unified, non-templated handler for a single TMC9660 motor controller device. </p>
-<p><a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a> is the primary interface that application and manager code uses to interact with a TMC9660 motor driver. It hides the template complexity of tmc9660::TMC9660&lt;CommType&gt; behind a clean, polymorphism-free API.</p>
-<h2><a class="anchor" id="autotoc_md26"></a>
+<p><a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a> is the primary interface that application and host-HAL code uses to interact with a TMC9660 motor driver. It hides the template complexity of tmc9660::TMC9660&lt;CommType&gt; behind a clean, polymorphism-free API.</p>
+<h2><a class="anchor" id="autotoc_md25"></a>
 Design Decisions</h2>
 <ul>
-<li><b>Non-templated</b>: The handler uses <a class="el" href="#a4e219285c12b2ca50075edfaf73b4e2f" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a> to route calls to the correct typed driver (SPI or UART). This prevents template propagation through the codebase and allows MotorController to store handlers in a plain std::unique_ptr&lt;Tmc9660Handler&gt;.</li>
+<li><b>Non-templated</b>: The handler uses <a class="el" href="#a4e219285c12b2ca50075edfaf73b4e2f" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a> to route calls to the correct typed driver (SPI or UART). This prevents template propagation through the codebase and allows a host to store handlers in a plain std::unique_ptr&lt;Tmc9660Handler&gt;.</li>
 <li><b>Control pins required</b>: The TMC9660 bootloader initialization sequence requires host-side GPIO control of four pins (RST, DRV_EN, FAULTN, WAKE). These must be provided at construction time.</li>
 <li><b>Lazy driver creation</b>: The typed TMC9660 driver instance is created during <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a>, not in the constructor. This saves memory until initialization is actually needed.</li>
-<li><b>Peripheral wrappers</b>: Inner classes <a class="el" href="classTmc9660Handler_1_1Gpio.html" title="BaseGpio adapter for a single TMC9660 internal GPIO channel.">Gpio</a>, <a class="el" href="classTmc9660Handler_1_1Adc.html" title="BaseAdc adapter for all TMC9660 ADC channels.">Adc</a>, and <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a> implement the HardFOC base interfaces, making TMC9660 peripherals available to the manager layer (GpioManager, AdcManager, TemperatureManager) through the standard abstractions.</li>
+<li><b>Peripheral wrappers</b>: Inner classes <a class="el" href="classTmc9660Handler_1_1Gpio.html" title="BaseGpio adapter for a single TMC9660 internal GPIO channel.">Gpio</a>, <a class="el" href="classTmc9660Handler_1_1Adc.html" title="BaseAdc adapter for all TMC9660 ADC channels.">Adc</a>, and <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a> implement the HardFOC base interfaces, making TMC9660 peripherals available to the host as BaseGpio / BaseAdc / BaseTemperature.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md26"></a>
 Usage Example</h2>
 <div class="fragment"><div class="line"><span class="comment">// Construction (SPI mode, address 1, default boot config)</span></div>
 <div class="line"><a class="code hl_class" href="classTmc9660Handler.html">Tmc9660Handler</a> handler(spi_bus, rst_pin, drv_en_pin, faultn_pin, wake_pin, 0x01);</div>
@@ -345,14 +346,12 @@ Usage Example</h2>
 <div class="line">});</div>
 <div class="ttc" id="aclassLogger_html_a5789d11f8f1356e2192c0023a089cbc4"><div class="ttname"><a href="classLogger.html#a5789d11f8f1356e2192c0023a089cbc4">Logger::GetInstance</a></div><div class="ttdeci">static Logger &amp; GetInstance() noexcept</div><div class="ttdoc">Get singleton instance.</div><div class="ttdef"><b>Definition</b> Logger.cpp:91</div></div>
 <div class="ttc" id="aclassLogger_html_adce17848a5844e053bfd314863dc1404"><div class="ttname"><a href="classLogger.html#adce17848a5844e053bfd314863dc1404">Logger::Error</a></div><div class="ttdeci">void Error(const char *tag, const char *format,...) noexcept</div><div class="ttdoc">Log error message.</div><div class="ttdef"><b>Definition</b> Logger.cpp:222</div></div>
-<div class="ttc" id="aclassTmc9660Handler_html"><div class="ttname"><a href="classTmc9660Handler.html">Tmc9660Handler</a></div><div class="ttdoc">Unified, non-templated handler for a single TMC9660 motor controller device.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:452</div></div>
+<div class="ttc" id="aclassTmc9660Handler_html"><div class="ttname"><a href="classTmc9660Handler.html">Tmc9660Handler</a></div><div class="ttdoc">Unified, non-templated handler for a single TMC9660 motor controller device.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:487</div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classHalSpiTmc9660Comm.html" title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">HalSpiTmc9660Comm</a> SPI communication adapter </dd>
 <dd>
 <a class="el" href="classHalUartTmc9660Comm.html" title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.">HalUartTmc9660Comm</a> UART communication adapter </dd>
 <dd>
-MotorController Multi-device manager that owns <a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a> instances </dd>
-<dd>
-<a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> Thin BaseAdc adapter for AdcManager ownership </dd></dl>
+<a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> Thin BaseAdc adapter for host ownership </dd></dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a110c823022b879cd6d2c47cdc4468321" name="a110c823022b879cd6d2c47cdc4468321"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a110c823022b879cd6d2c47cdc4468321">&#9670;&#160;</a></span>ConstDriverVariant</h2>
@@ -642,16 +641,6 @@ MotorController Multi-device manager that owns <a class="el" href="classTmc9660H
 <p>Get a reference to the ADC wrapper. </p>
 <dl class="section return"><dt>Returns</dt><dd>Reference to the internal <a class="el" href="classTmc9660Handler_1_1Adc.html" title="BaseAdc adapter for all TMC9660 ADC channels.">Adc</a> instance. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>The returned reference is valid only as long as this handler exists. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a7fe382c4dbf6bf84ed31586e52ec2e6e_cgraph.svg" width="1686" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a7fe382c4dbf6bf84ed31586e52ec2e6e_icgraph.svg" width="392" height="307"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -707,11 +696,6 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Const version of <a class="el" href="#a85be9cd2e065b83c7abb36cb70fa6c67" title="Get the TMC9660 driver instance connected via SPI (nullptr if using UART).">driverViaSpi()</a>. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ad8946c2dd3a3d5e26620c514988fa2df_cgraph.svg" width="2010" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -749,16 +733,6 @@ Here is the call graph for this function:</div>
 <div class="line">drv-&gt;velocityControl.setTargetVelocity(1000);</div>
 <div class="line">drv-&gt;protection.configureVoltage(48000, 10000);</div>
 </div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Caller is responsible for external synchronization in multi-task environments. Prefer <a class="el" href="#a4e219285c12b2ca50075edfaf73b4e2f" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a> for thread-safe access. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a85be9cd2e065b83c7abb36cb70fa6c67_cgraph.svg" width="1742" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a85be9cd2e065b83c7abb36cb70fa6c67_icgraph.svg" width="499" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -786,11 +760,6 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Const version of <a class="el" href="#ac4f303f9e7be9cb737a667dd5d85dd3a" title="Get the TMC9660 driver instance connected via UART (nullptr if using SPI).">driverViaUart()</a>. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a4eb74918e10999d77de25728b19542cf_cgraph.svg" width="2026" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -822,16 +791,6 @@ Here is the call graph for this function:</div>
 <div class="fragment"><div class="line"><span class="keyword">auto</span>* drv = handler-&gt;driverViaUart();</div>
 <div class="line">drv-&gt;feedbackSense.configureABNEncoder(1024);</div>
 </div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Prefer <a class="el" href="#a4e219285c12b2ca50075edfaf73b4e2f" title="Execute a function on the underlying typed TMC9660 driver.">visitDriver()</a>. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac4f303f9e7be9cb737a667dd5d85dd3a_cgraph.svg" width="1750" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac4f303f9e7be9cb737a667dd5d85dd3a_icgraph.svg" width="515" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -861,11 +820,6 @@ Here is the caller graph for this function:</div>
 <p>Dump comprehensive diagnostics to the system log. </p>
 <p>Logs device status, communication mode, supply voltage, chip temperature, status/error flags, GPIO wrapper count, ADC status, and bootloader config summary at INFO level.</p>
 <dl class="section note"><dt>Note</dt><dd>Non-const because telemetry reads require I2C transactions. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adee8a764564554f060b879752048bf74_cgraph.svg" width="1480" height="243"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -894,16 +848,6 @@ Here is the call graph for this function:</div>
 
 <p>Ensure driver is initialized (lazy init entrypoint). </p>
 <dl class="section return"><dt>Returns</dt><dd>true if initialized and ready. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a5a279ae9d4b5a8e0d71cb24577ad88ea_cgraph.svg" width="1474" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a5a279ae9d4b5a8e0d71cb24577ad88ea_icgraph.svg" width="812" height="555"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -931,16 +875,6 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Ensure initialized while handler_mutex_ is already held. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a7c1d8073576d678b09dac24c9eb12845_cgraph.svg" width="1176" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a7c1d8073576d678b09dac24c9eb12845_icgraph.svg" width="1116" height="555"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1024,11 +958,6 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Const overload of <a class="el" href="#ac29a3cfd55b2186f357c8b2f56d16bce" title="Get the active driver pointer without requiring visitor usage.">GetDriver()</a>. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ae1d6f6676180aff28d02dcb954917b79_cgraph.svg" width="2002" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1057,11 +986,6 @@ Here is the call graph for this function:</div>
 
 <p>Get the active driver pointer without requiring visitor usage. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>SpiDriver*</code> or <code>UartDriver*</code> wrapped in std::variant, or monostate if unavailable. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_ac29a3cfd55b2186f357c8b2f56d16bce_cgraph.svg" width="2002" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1090,11 +1014,6 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>Reference to the corresponding <a class="el" href="classTmc9660Handler_1_1Gpio.html" title="BaseGpio adapter for a single TMC9660 internal GPIO channel.">Gpio</a> wrapper instance.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>If an unsupported GPIO number is given, falls back to GPIO17's wrapper. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>The returned reference is valid only as long as this handler exists. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_acf7d1583239c9f767f82b42fc03b56cf_cgraph.svg" width="1691" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1145,16 +1064,6 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>true if initialization completed successfully, false on any failure.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Can be called multiple times; subsequent calls skip driver creation if already initialized. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>This method must be called before any motor control, telemetry, or peripheral access methods. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adc564847f8ae26c47412aaee0758991c_cgraph.svg" width="879" height="135"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_adc564847f8ae26c47412aaee0758991c_icgraph.svg" width="1362" height="555"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1183,11 +1092,6 @@ Here is the caller graph for this function:</div>
 
 <p>Check if the TMC9660 driver has been initialized and is ready. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if <a class="el" href="#adc564847f8ae26c47412aaee0758991c" title="Initialize the TMC9660 device.">Initialize()</a> has completed successfully and the driver instance exists, false otherwise. </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a13db97d201a287d8aa60384e04070b9f_icgraph.svg" width="1356" height="555"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1245,6 +1149,34 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a419ea352256ec90536a3107047a6b225" name="a419ea352256ec90536a3107047a6b225"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a419ea352256ec90536a3107047a6b225">&#9670;&#160;</a></span>SetTmclReplyTimeoutMs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tmc9660Handler::SetTmclReplyTimeoutMs </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>ms</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>TMCL reply window for UART transfers (<a class="el" href="classHalUartTmc9660Comm.html#ab2591ae09ecaaecc8816abed53467422" title="How long a TMCL reply may take before the exchange fails.">HalUartTmc9660Comm::setReplyTimeoutMs</a>). </p>
+<p>Callers on a real-time thread use a short window (~10 ms) and widen it (80 ms) for discovery / configuration they run below the real-time band. No effect on an SPI link. </p>
+
+</div>
+</div>
 <a id="a393382194d0602e7aa02da6a8fd7a20a" name="a393382194d0602e7aa02da6a8fd7a20a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a393382194d0602e7aa02da6a8fd7a20a">&#9670;&#160;</a></span>temperature()</h2>
 
@@ -1263,11 +1195,6 @@ Here is the caller graph for this function:</div>
 <p>Get a reference to the <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a> wrapper. </p>
 <dl class="section return"><dt>Returns</dt><dd>Reference to the internal <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Temperature</a> instance. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>The returned reference is valid only as long as this handler exists. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a393382194d0602e7aa02da6a8fd7a20a_cgraph.svg" width="1744" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1340,11 +1267,6 @@ template&lt;typename Func &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The return value of <code>func</code>, or a default-constructed value if the driver is not ready. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a4e219285c12b2ca50075edfaf73b4e2f_cgraph.svg" width="1434" height="151"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1374,11 +1296,6 @@ template&lt;typename Func &gt; </div>
 </div><div class="memdoc">
 
 <p>Internal no-lock visitDriver for use from already-locked contexts. </p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_a07fd9e33de7e1f90137626b730bb5d27_icgraph.svg" width="524" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1404,6 +1321,30 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Multi-channel ADC wrapper. </p>
+
+</div>
+</div>
+<a id="a7f9a3d129d2f815114ef7d07e544d3ab" name="a7f9a3d129d2f815114ef7d07e544d3ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f9a3d129d2f815114ef7d07e544d3ab">&#9670;&#160;</a></span>boot_ok_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tmc9660Handler::boot_ok_ {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>true only after bootloaderInit Success. </p>
 
 </div>
 </div>
@@ -1562,7 +1503,8 @@ Here is the caller graph for this function:</div>
 <p>Configuration highlights:</p><ul>
 <li>LDO: VEXT1=5.0V, VEXT2=3.3V with 3ms slope control</li>
 <li>Boot Mode: Parameter mode for TMCL parameter-based control</li>
-<li>UART: Auto16x baud rate detection, GPIO6/7 pins, device address 1</li>
+<li>UART: BR115200, GPIO6/7 pins, device address 1</li>
+<li>Host SPI TMCL disabled (<code>disable_spi</code>); on-module SPI flash enabled</li>
 <li>External Clock: 16MHz crystal with PLL for stable 40MHz system clock</li>
 <li>SPI Flash: Enabled on SPI0 (GPIO11 SCK, GPIO12 CS) at 10MHz</li>
 <li>GPIO: GPIO5 analog input, GPIO17/18 digital inputs with pull-down</li>

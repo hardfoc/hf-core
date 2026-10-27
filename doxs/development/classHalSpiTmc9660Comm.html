@@ -106,25 +106,30 @@ $(function(){initNavTree('classHalSpiTmc9660Comm.html',''); initResizable(); });
 <div class="dynheader">
 Inheritance diagram for HalSpiTmc9660Comm:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTmc9660Comm__inherit__graph.svg" width="219" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for HalSpiTmc9660Comm:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTmc9660Comm__coll__graph.svg" width="376" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+ <div class="center">
+  <img src="classHalSpiTmc9660Comm.png" alt=""/>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af1a0f32616c37bc82b428e3ebd141f54" id="r_af1a0f32616c37bc82b428e3ebd141f54"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1a0f32616c37bc82b428e3ebd141f54">HalSpiTmc9660Comm</a> (BaseSpi &amp;spi, BaseGpio &amp;rst, BaseGpio &amp;drv_en, BaseGpio &amp;faultn, BaseGpio &amp;wake, bool rst_active_high=true, bool drv_en_active_high=true, bool faultn_active_low=false, bool wake_active_low=false) noexcept</td></tr>
 <tr class="memdesc:af1a0f32616c37bc82b428e3ebd141f54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the SPI communication adapter.  <br /></td></tr>
 <tr class="separator:af1a0f32616c37bc82b428e3ebd141f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2569902a00690043e386003f413b853b" id="r_a2569902a00690043e386003f413b853b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2569902a00690043e386003f413b853b">transportDiag</a> () const noexcept</td></tr>
+<tr class="memdesc:a2569902a00690043e386003f413b853b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last BaseSpi error observed by any TMCL/bootloader transfer.  <br /></td></tr>
+<tr class="separator:a2569902a00690043e386003f413b853b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae364a929ba09c27d675dde8613063f3b" id="r_ae364a929ba09c27d675dde8613063f3b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae364a929ba09c27d675dde8613063f3b">rawTmclProbe</a> (std::array&lt; uint8_t, 8 &gt; &amp;tx, std::array&lt; uint8_t, 8 &gt; &amp;rx, uint32_t timeout_ms) noexcept</td></tr>
+<tr class="memdesc:ae364a929ba09c27d675dde8613063f3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Single-shot raw 8-byte transfer with caller-chosen bus-lock timeout.  <br /></td></tr>
+<tr class="separator:ae364a929ba09c27d675dde8613063f3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">CRTP-Required Methods</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>These are called by tmc9660::SpiCommInterface&lt;HalSpiTmc9660Comm&gt; via static dispatch. </p>
 </div></td></tr>
 <tr class="memitem:a84b3ab081c7b9cab86432945ca9e3f6e" id="r_a84b3ab081c7b9cab86432945ca9e3f6e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84b3ab081c7b9cab86432945ca9e3f6e">spiTransferTMCL</a> (std::array&lt; uint8_t, 8 &gt; &amp;tx, std::array&lt; uint8_t, 8 &gt; &amp;rx) noexcept</td></tr>
 <tr class="memdesc:a84b3ab081c7b9cab86432945ca9e3f6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform an 8-byte full-duplex SPI transfer for TMCL parameter mode.  <br /></td></tr>
 <tr class="separator:a84b3ab081c7b9cab86432945ca9e3f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bab91ce7d731fa96bf50cfa9b5495fa" id="r_a0bab91ce7d731fa96bf50cfa9b5495fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bab91ce7d731fa96bf50cfa9b5495fa">hostSpiTransferTMCLPair</a> (std::array&lt; uint8_t, 8 &gt; &amp;tx1, std::array&lt; uint8_t, 8 &gt; &amp;rx1, std::array&lt; uint8_t, 8 &gt; &amp;tx2, std::array&lt; uint8_t, 8 &gt; &amp;rx2, uint32_t gap_us) noexcept</td></tr>
+<tr class="memdesc:a0bab91ce7d731fa96bf50cfa9b5495fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Two TMCL soft-CS frames under one bus lock (cmd + NO_OP / reply).  <br /></td></tr>
+<tr class="separator:a0bab91ce7d731fa96bf50cfa9b5495fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a691d8a1d66cf606952d11afc73bffda0" id="r_a691d8a1d66cf606952d11afc73bffda0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a691d8a1d66cf606952d11afc73bffda0">spiTransferBootloader</a> (std::array&lt; uint8_t, 5 &gt; &amp;tx, std::array&lt; uint8_t, 5 &gt; &amp;rx) noexcept</td></tr>
 <tr class="memdesc:a691d8a1d66cf606952d11afc73bffda0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a 5-byte full-duplex SPI transfer for bootloader mode.  <br /></td></tr>
 <tr class="separator:a691d8a1d66cf606952d11afc73bffda0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,6 +157,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a57a03a0afc398cb7af11919a42aff141" id="r_a57a03a0afc398cb7af11919a42aff141"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structTmc9660CtrlPins.html">Tmc9660CtrlPins</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57a03a0afc398cb7af11919a42aff141">ctrl_pins_</a></td></tr>
 <tr class="memdesc:a57a03a0afc398cb7af11919a42aff141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Host-side control pin references.  <br /></td></tr>
 <tr class="separator:a57a03a0afc398cb7af11919a42aff141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe9a38c16d2446dc0cb6d1b3d6e1f0fc" id="r_abe9a38c16d2446dc0cb6d1b3d6e1f0fc"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe9a38c16d2446dc0cb6d1b3d6e1f0fc">last_spi_err_</a> {0}</td></tr>
+<tr class="memdesc:abe9a38c16d2446dc0cb6d1b3d6e1f0fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last hf_spi_err_t from Transfer/TransferChain.  <br /></td></tr>
+<tr class="separator:abe9a38c16d2446dc0cb6d1b3d6e1f0fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio. </p>
@@ -163,7 +171,7 @@ Private Attributes</h2></td></tr>
 <li><b>Timing</b>: Platform-aware delays (millisecond via RTOS, microsecond via esp_rom_delay_us or busy-wait fallback)</li>
 <li><b>Logging</b>: Routes TMC9660 driver debug output to the HardFOC <a class="el" href="classLogger.html" title="Advanced logging system with formatting capabilities.">Logger</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md25"></a>
+<h2><a class="anchor" id="autotoc_md24"></a>
 Control Pin Polarity</h2>
 <p>Each control pin can be configured as active-high or active-low to match the board's electrical design (e.g., inverting buffers). The constructor parameters set the initial polarity; the base class provides set_pin_active_level() for runtime reconfiguration if needed.</p>
 <dl class="section note"><dt>Note</dt><dd>This class does NOT own the BaseSpi or BaseGpio instances; they must remain valid for the lifetime of this object.</dd></dl>
@@ -243,8 +251,8 @@ Control Pin Polarity</h2>
     <tr><td class="paramname">wake</td><td>BaseGpio connected to TMC9660 WAKE (pin 19). Must be pre-configured as output. </td></tr>
     <tr><td class="paramname">rst_active_high</td><td>Physical GPIO level when RST is ACTIVE (default: true = HIGH). </td></tr>
     <tr><td class="paramname">drv_en_active_high</td><td>Physical GPIO level when DRV_EN is ACTIVE (default: true = HIGH). </td></tr>
-    <tr><td class="paramname">faultn_active_low</td><td>Physical GPIO level when FAULTN is ACTIVE (default: false = HIGH). Set to true if your board inverts the FAULTN signal. </td></tr>
-    <tr><td class="paramname">wake_active_low</td><td>Physical GPIO level when WAKE is ACTIVE (default: false = HIGH). Set to true if your board inverts the WAKE signal. </td></tr>
+    <tr><td class="paramname">faultn_active_low</td><td>true if FAULTN ACTIVE is physical LOW (ESP/PCAL nFLT). </td></tr>
+    <tr><td class="paramname">wake_active_low</td><td>true if WAKE ACTIVE is physical LOW (ESP/PCAL nWK). Mapped to CommInterface as !flag (active_level). </td></tr>
   </table>
   </dd>
 </dl>
@@ -299,11 +307,6 @@ Control Pin Polarity</h2>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTmc9660Comm_ac7145aa4216147b19418a4b23cccda75_cgraph.svg" width="623" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -337,11 +340,6 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTmc9660Comm_a1f4360b2fe821d797fc4a8d771150656_cgraph.svg" width="404" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -376,11 +374,6 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTmc9660Comm_aeed51d5504933aa294d940f0799c279a_cgraph.svg" width="403" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -421,11 +414,6 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the GPIO read succeeded. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTmc9660Comm_aa7c3ebc1dfe70f3012ce352c0e881ca3_cgraph.svg" width="414" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -466,11 +454,90 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the GPIO write succeeded. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTmc9660Comm_ad62042c7cc3d39dd901ecf1f6a3ccb6c_cgraph.svg" width="414" height="66"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+
 </div>
+</div>
+<a id="a0bab91ce7d731fa96bf50cfa9b5495fa" name="a0bab91ce7d731fa96bf50cfa9b5495fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bab91ce7d731fa96bf50cfa9b5495fa">&#9670;&#160;</a></span>hostSpiTransferTMCLPair()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HalSpiTmc9660Comm::hostSpiTransferTMCLPair </td>
+          <td>(</td>
+          <td class="paramtype">std::array&lt; uint8_t, 8 &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>tx1</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::array&lt; uint8_t, 8 &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>rx1</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::array&lt; uint8_t, 8 &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>tx2</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::array&lt; uint8_t, 8 &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>rx2</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>gap_us</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Two TMCL soft-CS frames under one bus lock (cmd + NO_OP / reply). </p>
+<p>CRTP name is hostSpi* so <code>requires</code> detection does not match an inherited default. Prevents Mode1 peers rewriting SPE/CPOL between halves (Mid HIL: OPENLOOP_VOLTAGE tmcl_st=56). </p>
+
+</div>
+</div>
+<a id="ae364a929ba09c27d675dde8613063f3b" name="ae364a929ba09c27d675dde8613063f3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae364a929ba09c27d675dde8613063f3b">&#9670;&#160;</a></span>rawTmclProbe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t HalSpiTmc9660Comm::rawTmclProbe </td>
+          <td>(</td>
+          <td class="paramtype">std::array&lt; uint8_t, 8 &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>tx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::array&lt; uint8_t, 8 &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>rx</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>timeout_ms</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Single-shot raw 8-byte transfer with caller-chosen bus-lock timeout. </p>
+<dl class="section return"><dt>Returns</dt><dd>Numeric hf_spi_err_t (0 = success). Bench diagnostic only — no retry, no parse; discriminates lock starvation from a silent chip. </dd></dl>
 
 </div>
 </div>
@@ -552,6 +619,34 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a2569902a00690043e386003f413b853b" name="a2569902a00690043e386003f413b853b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2569902a00690043e386003f413b853b">&#9670;&#160;</a></span>transportDiag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t HalSpiTmc9660Comm::transportDiag </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Last BaseSpi error observed by any TMCL/bootloader transfer. </p>
+<dl class="section return"><dt>Returns</dt><dd>Numeric hf_spi_err_t of the most recent transfer (0 = SPI_SUCCESS). Bench diagnostic: distinguishes bus-lock starvation (BUS_BUSY=7), HAL timeout (TRANSFER_TIMEOUT=12) from a silent chip (SUCCESS + zeros). </dd></dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a57a03a0afc398cb7af11919a42aff141" name="a57a03a0afc398cb7af11919a42aff141"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a57a03a0afc398cb7af11919a42aff141">&#9670;&#160;</a></span>ctrl_pins_</h2>
@@ -574,6 +669,30 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Host-side control pin references. </p>
+
+</div>
+</div>
+<a id="abe9a38c16d2446dc0cb6d1b3d6e1f0fc" name="abe9a38c16d2446dc0cb6d1b3d6e1f0fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe9a38c16d2446dc0cb6d1b3d6e1f0fc">&#9670;&#160;</a></span>last_spi_err_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t HalSpiTmc9660Comm::last_spi_err_ {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Last hf_spi_err_t from Transfer/TransferChain. </p>
 
 </div>
 </div>

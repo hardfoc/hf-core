@@ -1,6 +1,6 @@
 var classPcal95555GpioPin =
 [
-    [ "Pcal95555GpioPin", "classPcal95555GpioPin.html#a8e9d68f8d2eee1414afb54c9bca28164", null ],
+    [ "Pcal95555GpioPin", "classPcal95555GpioPin.html#ac198902065a7c14f6774fa2809fb5e5a", null ],
     [ "~Pcal95555GpioPin", "classPcal95555GpioPin.html#a0f4144b4e01a57439b4b1a43f1779ef6", null ],
     [ "ConfigureInterrupt", "classPcal95555GpioPin.html#adfadb2f35d756b7660c28fd419120c01", null ],
     [ "Deinitialize", "classPcal95555GpioPin.html#a18fb43e58cfbe361b98c794fee82ea28", null ],
@@ -21,6 +21,7 @@ var classPcal95555GpioPin =
     [ "SetPullModeImpl", "classPcal95555GpioPin.html#a019aa1c94129daff3c817d73499cbb9c", null ],
     [ "SupportsInterrupts", "classPcal95555GpioPin.html#a4b3f3c93b648f3d6cd3142078cba0575", null ],
     [ "Pcal95555Handler", "classPcal95555GpioPin.html#a227c584070b705ad70832ca30f5d0adf", null ],
+    [ "configure_hardware_", "classPcal95555GpioPin.html#a026cdfce1af4973beab83aa92fd8e527", null ],
     [ "description_", "classPcal95555GpioPin.html#a539b73d425615efef5cdb64ac4a1347c", null ],
     [ "interrupt_callback_", "classPcal95555GpioPin.html#a336231d16e990c8f59fb96dcf90e89ea", null ],
     [ "interrupt_enabled_", "classPcal95555GpioPin.html#a8b3bbdf5d209bd8784bbbae6a5e3cb54", null ],

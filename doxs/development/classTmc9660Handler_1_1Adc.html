@@ -107,13 +107,9 @@ $(function(){initNavTree('classTmc9660Handler_1_1Adc.html',''); initResizable();
 <div class="dynheader">
 Inheritance diagram for Tmc9660Handler::Adc:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_1_1Adc__inherit__graph.svg" width="176" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for Tmc9660Handler::Adc:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_1_1Adc__coll__graph.svg" width="2114" height="354"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+ <div class="center">
+  <img src="classTmc9660Handler_1_1Adc.png" alt=""/>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -236,8 +232,8 @@ Private Attributes</h2></td></tr>
 <td class="markdownTableBodyCenter">40 - 42   </td><td class="markdownTableBodyLeft">Motor data   </td><td class="markdownTableBodyLeft">40=current, 41=velocity, 42=pos   </td></tr>
 </table>
 <p>The wrapper includes thread-safe statistics and diagnostics tracking via RtosMutex. Voltage conversions use a default 3.3V / 16-bit scale; for temperature and motor data channels, the "voltage" field contains the physical value directly (degrees Celsius, mA, etc.).</p>
-<dl class="section note"><dt>Note</dt><dd>This inner class is owned by the handler. For manager-layer ownership, use <a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> which delegates to this instance.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> Thin delegation wrapper for AdcManager ownership </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This inner class is owned by the handler. For host ownership of a <code>BaseAdc*</code>, use <a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> which delegates to this instance.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> Thin delegation wrapper for host BaseAdc ownership </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6f5e9eb8f504a04682523c5097ae713e" name="a6f5e9eb8f504a04682523c5097ae713e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f5e9eb8f504a04682523c5097ae713e">&#9670;&#160;</a></span>Adc()</h2>
@@ -316,11 +312,6 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Deinitialize ADC wrapper (no-op). </p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_1_1Adc_afde209e0b01c869413c927cca08bf4a2_icgraph.svg" width="394" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -431,11 +422,6 @@ Here is the caller graph for this function:</div>
 <p>Returns the total number of readable channels (15). </p>
 <p>The TMC9660 uses a non-contiguous channel ID scheme (0-3, 10-13, 20-21, 30-31, 40-42). Since IDs are sparse, callers should use IsChannelAvailable(channel_id) to validate specific channel IDs rather than iterating <code>0..<a class="el" href="#a54138fdf832c471ce109a7c19521d27b" title="Returns the total number of readable channels (15).">GetMaxChannels()</a>-1</code>.</p>
 <dl class="section return"><dt>Returns</dt><dd>15 (the count of all valid channel IDs across all ranges). </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_1_1Adc_a54138fdf832c471ce109a7c19521d27b_icgraph.svg" width="394" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -490,11 +476,6 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Initialize ADC wrapper (no-op; TMC9660 ADC is always available). </p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_1_1Adc_a3b750314ba12d924c747518c3949bc1f_icgraph.svg" width="394" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1037,11 +1018,6 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Reset diagnostics counters and health flags. </p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_1_1Adc_a4ac45d019ddc392ca9e04194e81cc3ae_icgraph.svg" width="394" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1069,11 +1045,6 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Reset all accumulated statistics to zero. </p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classTmc9660Handler_1_1Adc_aeb392d8c266f3183dbce1f31f7bff568_icgraph.svg" width="394" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
