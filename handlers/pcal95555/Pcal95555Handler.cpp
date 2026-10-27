@@ -540,6 +540,34 @@ hf_gpio_err_t Pcal95555Handler::SetOutputs(uint16_t pin_mask, bool active) noexc
     return hf_gpio_err_t::GPIO_SUCCESS;
 }
 
+hf_gpio_err_t Pcal95555Handler::SetOutputsVerified(uint16_t pin_mask, bool active) noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!EnsureInitializedLocked()) return hf_gpio_err_t::GPIO_ERR_NOT_INITIALIZED;
+    if (pin_mask == 0) return hf_gpio_err_t::GPIO_SUCCESS;
+    if (!port_shadow_valid_) {
+        return pcal95555_driver_->SetMultipleOutputs(pin_mask, active)
+                   ? hf_gpio_err_t::GPIO_SUCCESS
+                   : hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
+    }
+    output_shadow_ = active ? static_cast<uint16_t>(output_shadow_ | pin_mask)
+                            : static_cast<uint16_t>(output_shadow_ & static_cast<uint16_t>(~pin_mask));
+    for (int attempt = 0; attempt < 3; ++attempt) {
+        if (!pcal95555_driver_->WriteDualPortRegister(
+                static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+                static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), output_shadow_)) {
+            continue;
+        }
+        uint16_t out_rb = 0;
+        if (pcal95555_driver_->ReadDualPortRegister(
+                static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_0),
+                static_cast<uint8_t>(Pcal95555Reg::OUTPUT_PORT_1), out_rb) &&
+            (out_rb & pin_mask) == (output_shadow_ & pin_mask)) {
+            return hf_gpio_err_t::GPIO_SUCCESS;
+        }
+    }
+    return hf_gpio_err_t::GPIO_ERR_WRITE_FAILURE;
+}
+
 hf_gpio_err_t Pcal95555Handler::SetPullModes(uint16_t pin_mask,
                                              hf_gpio_pull_mode_t pull_mode) noexcept {
     MutexLockGuard lock(handler_mutex_);

@@ -265,11 +265,10 @@ bool HalUartTmc9660Comm::uartSendTMCL(const std::array<uint8_t, 9>& data) noexce
      * 9-byte TMCL reply is discarded (HIL: endless APPLY step cycling). */
     (void)uart_.FlushRx();
     hf_uart_err_t result = uart_.Write(data.data(), 9, 80);
-    if (result != hf_uart_err_t::UART_SUCCESS) {
-        return false;
-    }
-    delayUs(1000);
-    return true;
+    /* No fixed wait before the reply: uartReceiveTMCL blocks on the RX
+     * interrupt until the 9 bytes are in (a 1 ms sleep here added ≥ 1 ms to
+     * every exchange — tens of ms across a recipe). */
+    return result == hf_uart_err_t::UART_SUCCESS;
 }
 
 bool HalUartTmc9660Comm::uartReceiveTMCL(std::array<uint8_t, 9>& data) noexcept {
@@ -277,7 +276,7 @@ bool HalUartTmc9660Comm::uartReceiveTMCL(std::array<uint8_t, 9>& data) noexcept 
         return false;
     }
     /* Do not FlushRx here — reply bytes may already be in the UART FIFO. */
-    hf_uart_err_t result = uart_.Read(data.data(), 9, 80);
+    hf_uart_err_t result = uart_.Read(data.data(), 9, reply_timeout_ms_);
     if (result != hf_uart_err_t::UART_SUCCESS) {
         (void)uart_.FlushRx();
     }

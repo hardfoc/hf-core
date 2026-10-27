@@ -582,6 +582,18 @@ public:
     hf_gpio_err_t SetOutputs(uint16_t pin_mask, bool active) noexcept;
 
     /**
+     * @brief Write output level for multiple pins in one transaction, then
+     *        read the latch back and retry (up to 3×) until every selected
+     *        bit matches.
+     * @details The verified single-pin path costs a write + read per pin;
+     *          parking several control straps one by one (TMC EN + nRST,
+     *          re-asserted) held the motor thread ~30 ms (desk 2026-10-15).
+     *          One dual-port write + one read-back covers them all.
+     * @return GPIO_SUCCESS, or GPIO_ERR_WRITE_FAILURE when the latch never matched.
+     */
+    hf_gpio_err_t SetOutputsVerified(uint16_t pin_mask, bool active) noexcept;
+
+    /**
      * @brief Set pull mode for multiple pins at once.
      * @param pin_mask  16-bit mask (bit N = pin N).
      * @param pull_mode Common pull mode for all selected pins.

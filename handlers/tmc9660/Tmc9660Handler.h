@@ -390,9 +390,21 @@ public:
 
     /// @}
 
+    /**
+     * @brief How long a TMCL reply may take before the exchange fails.
+     * @details A reply is 9 bytes (~0.8 ms at 115200) after ~1 ms of chip
+     *          latency. Discovery and configuration may allow 80 ms; a caller
+     *          on a real-time thread should allow ~10 ms, or one lost reply
+     *          blocks its Step for the whole window (desk 2026-10-15: a
+     *          ≥ 65 ms motor_drv Step per lost telemetry reply).
+     */
+    void setReplyTimeoutMs(uint32_t ms) noexcept { reply_timeout_ms_ = ms == 0U ? 80U : ms; }
+    uint32_t replyTimeoutMs() const noexcept { return reply_timeout_ms_; }
+
 private:
     BaseUart& uart_;            ///< UART bus interface (not owned).
     Tmc9660CtrlPins ctrl_pins_; ///< Host-side control pin references.
+    uint32_t reply_timeout_ms_{80U};  ///< see setReplyTimeoutMs
 };
 
 /// @} // end of TMC9660_HAL_CommAdapters
@@ -629,6 +641,16 @@ public:
      *         instance exists, false otherwise.
      */
     bool IsDriverReady() const noexcept;
+
+    /**
+     * @brief TMCL reply window for UART transfers (HalUartTmc9660Comm::setReplyTimeoutMs).
+     * @details Callers on a real-time thread use a short window (~10 ms) and
+     *          widen it (80 ms) for discovery / configuration they run below
+     *          the real-time band. No effect on an SPI link.
+     */
+    void SetTmclReplyTimeoutMs(uint32_t ms) noexcept {
+        if (uart_comm_) uart_comm_->setReplyTimeoutMs(ms);
+    }
 
     /// @}
 
