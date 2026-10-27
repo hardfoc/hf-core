@@ -114,6 +114,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a606129b8490fc78bfd77b25dcb0b313c" id="r_a606129b8490fc78bfd77b25dcb0b313c"><td class="memItemLeft" align="right" valign="top">std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a606129b8490fc78bfd77b25dcb0b313c">t1_inter_frame_delay_ms</a> {2}</td></tr>
 <tr class="memdesc:a606129b8490fc78bfd77b25dcb0b313c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inter-frame delay before reading a T=1 response (ms).  <br /></td></tr>
 <tr class="separator:a606129b8490fc78bfd77b25dcb0b313c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46fd8c97fb384f7e2c88e70e924c7ff7" id="r_a46fd8c97fb384f7e2c88e70e924c7ff7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46fd8c97fb384f7e2c88e70e924c7ff7">skip_chip_warm_reset</a> {false}</td></tr>
+<tr class="memdesc:a46fd8c97fb384f7e2c88e70e924c7ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">When true, skip <code>ChipWarmReset</code> (caller already did T=1 warm-reset + ATR).  <br /></td></tr>
+<tr class="separator:a46fd8c97fb384f7e2c88e70e924c7ff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Runtime tuning for one SE050 instance on a <code>BaseI2c</code> device. </p>
@@ -131,6 +134,22 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Timeout for management / crypto APDUs (<code>GetVersion</code>, <code>GetRandom</code>, …). </p>
+
+</div>
+</div>
+<a id="a46fd8c97fb384f7e2c88e70e924c7ff7" name="a46fd8c97fb384f7e2c88e70e924c7ff7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46fd8c97fb384f7e2c88e70e924c7ff7">&#9670;&#160;</a></span>skip_chip_warm_reset</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Se050HandlerConfig::skip_chip_warm_reset {false}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>When true, skip <code>ChipWarmReset</code> (caller already did T=1 warm-reset + ATR). </p>
 
 </div>
 </div>

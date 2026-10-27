@@ -107,13 +107,9 @@ $(function(){initNavTree('classAds7952Handler.html',''); initResizable(); });
 <div class="dynheader">
 Inheritance diagram for Ads7952Handler:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAds7952Handler__inherit__graph.svg" width="140" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for Ads7952Handler:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAds7952Handler__coll__graph.svg" width="986" height="215"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+ <div class="center">
+  <img src="classAds7952Handler.png" alt=""/>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -158,6 +154,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adf5fd6ce6e060862d6d0f83b896b403f" id="r_adf5fd6ce6e060862d6d0f83b896b403f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf5fd6ce6e060862d6d0f83b896b403f">ReadAllChannels</a> (ads7952::ChannelReadings &amp;readings) noexcept</td></tr>
 <tr class="memdesc:adf5fd6ce6e060862d6d0f83b896b403f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all 12 channels using Auto-1 mode.  <br /></td></tr>
 <tr class="separator:adf5fd6ce6e060862d6d0f83b896b403f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbb86a7af87f258fdadf5e436800a6be" id="r_afbb86a7af87f258fdadf5e436800a6be"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbb86a7af87f258fdadf5e436800a6be">ReadAuto1Channels</a> (uint16_t mask, ads7952::ChannelReadings &amp;readings) noexcept</td></tr>
+<tr class="memdesc:afbb86a7af87f258fdadf5e436800a6be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auto-1 burst for a channel mask; stay in Auto-1 (no Manual hop).  <br /></td></tr>
+<tr class="separator:afbb86a7af87f258fdadf5e436800a6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a2b66bed2f15d3e9c3ab2c2b5f06d2d" id="r_a5a2b66bed2f15d3e9c3ab2c2b5f06d2d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a2b66bed2f15d3e9c3ab2c2b5f06d2d">RawManualFrames</a> (uint8_t channel, uint16_t *out, uint8_t n) noexcept</td></tr>
+<tr class="memdesc:a5a2b66bed2f15d3e9c3ab2c2b5f06d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bring-up trace: raw 16-bit response words for a manual select.  <br /></td></tr>
+<tr class="separator:a5a2b66bed2f15d3e9c3ab2c2b5f06d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0efbed6e9ec52986720b088d74310743" id="r_a0efbed6e9ec52986720b088d74310743"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0efbed6e9ec52986720b088d74310743">ProgramAlarm</a> (uint8_t channel, ads7952::AlarmBound bound, uint16_t threshold_12bit) noexcept</td></tr>
 <tr class="memdesc:a0efbed6e9ec52986720b088d74310743"><td class="mdescLeft">&#160;</td><td class="mdescRight">Program alarm threshold for a channel (in 12-bit counts).  <br /></td></tr>
 <tr class="separator:a0efbed6e9ec52986720b088d74310743"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -234,7 +236,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Unified handler for ADS7952 12-channel SAR ADC with BaseAdc integration. </p>
 <p>Provides a comprehensive interface for the ADS7952 ADC with:</p><ul>
-<li>BaseAdc implementation for seamless AdcManager integration</li>
+<li>BaseAdc implementation for host ADC ownership</li>
 <li>CRTP SPI bridge for zero-overhead bus communication</li>
 <li>Lazy initialization with lightweight construction</li>
 <li>Thread-safe operations with mutex protection</li>
@@ -392,11 +394,6 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Apply configuration to the driver after init. </p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAds7952Handler_a3cc3a33955e1e0b218f801f1b98192f2_icgraph.svg" width="1308" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -425,11 +422,6 @@ Here is the caller graph for this function:</div>
 
 <p>Deinitialize the ADC and release driver resources. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if successful </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAds7952Handler_afbc0202e5ff46d90c5bcbef8618ff94d_cgraph.svg" width="892" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -457,11 +449,6 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Dump comprehensive diagnostics to log. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAds7952Handler_a993769ffc1a79c7253cc7ebddcb7f622_cgraph.svg" width="463" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -489,16 +476,6 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Ensure initialized while mutex is already held. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAds7952Handler_a4541d57be2e20b35d9270a62642fb862_cgraph.svg" width="1278" height="234"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAds7952Handler_a4541d57be2e20b35d9270a62642fb862_icgraph.svg" width="758" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -606,11 +583,6 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAds7952Handler_ae85d3136bffa914057733aacd43ecd65_cgraph.svg" width="1774" height="234"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -640,16 +612,6 @@ Here is the call graph for this function:</div>
 <p>Get raw pointer to the ADS7952 driver for advanced operations. </p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to driver or nullptr if not initialized </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Raw pointer — NOT mutex-protected. Prefer <a class="el" href="#a69677cd8a49a9d456c739755d3bd2943" title="Visit the underlying ADS7952 driver under handler mutex protection.">visitDriver()</a>. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAds7952Handler_a7703915b68bb1ef88fbbd980bf938d90_cgraph.svg" width="1526" height="234"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAds7952Handler_a7703915b68bb1ef88fbbd980bf938d90_icgraph.svg" width="459" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -734,16 +696,6 @@ Here is the caller graph for this function:</div>
 <p>Initialize the ADS7952 ADC (lazy initialization). </p>
 <dl class="section return"><dt>Returns</dt><dd>true if successful</dd></dl>
 <p>Creates the CRTP SPI adapter and ADS7952 driver instance, applies configuration (range, mode, channel mask), and verifies communication. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAds7952Handler_a0644e9b1c82bc200591155b36a9ca4dd_cgraph.svg" width="984" height="234"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAds7952Handler_a0644e9b1c82bc200591155b36a9ca4dd_icgraph.svg" width="999" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -921,6 +873,51 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a5a2b66bed2f15d3e9c3ab2c2b5f06d2d" name="a5a2b66bed2f15d3e9c3ab2c2b5f06d2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a2b66bed2f15d3e9c3ab2c2b5f06d2d">&#9670;&#160;</a></span>RawManualFrames()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Ads7952Handler::RawManualFrames </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *</td>          <td class="paramname"><span class="paramname"><em>out</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bring-up trace: raw 16-bit response words for a manual select. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel selected in frame 0. </td></tr>
+    <tr><td class="paramname">out</td><td>Destination for <code>n</code> words (DO15:12 address, DO11:0 data). </td></tr>
+    <tr><td class="paramname">n</td><td>Frames to clock (select + CONTINUEs). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Words written (0 when not initialized). </dd></dl>
+
+</div>
+</div>
 <a id="adf5fd6ce6e060862d6d0f83b896b403f" name="adf5fd6ce6e060862d6d0f83b896b403f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adf5fd6ce6e060862d6d0f83b896b403f">&#9670;&#160;</a></span>ReadAllChannels()</h2>
 
@@ -952,6 +949,45 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if successful </dd></dl>
+
+</div>
+</div>
+<a id="afbb86a7af87f258fdadf5e436800a6be" name="afbb86a7af87f258fdadf5e436800a6be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbb86a7af87f258fdadf5e436800a6be">&#9670;&#160;</a></span>ReadAuto1Channels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Ads7952Handler::ReadAuto1Channels </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>mask</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ads7952::ChannelReadings &amp;</td>          <td class="paramname"><span class="paramname"><em>readings</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Auto-1 burst for a channel mask; stay in Auto-1 (no Manual hop). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">mask</td><td>Bits 0–11; 0 uses <code>ads7952::kAllChannels</code>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">readings</td><td>Per-channel counts for bits set in <code>mask</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true when every masked channel arrived. </dd></dl>
 
 </div>
 </div>
@@ -1259,11 +1295,6 @@ template&lt;typename Fn &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Callable result or default-constructed value when driver is unavailable </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAds7952Handler_a69677cd8a49a9d456c739755d3bd2943_cgraph.svg" width="1531" height="234"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>

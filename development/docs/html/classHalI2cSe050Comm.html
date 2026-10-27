@@ -106,30 +106,37 @@ $(function(){initNavTree('classHalI2cSe050Comm.html',''); initResizable(); });
 <div class="dynheader">
 Inheritance diagram for HalI2cSe050Comm:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalI2cSe050Comm__inherit__graph.svg" width="226" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for HalI2cSe050Comm:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalI2cSe050Comm__coll__graph.svg" width="226" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+ <div class="center">
+  <img src="classHalI2cSe050Comm.png" alt=""/>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a79546790eb1ee4897c2cbace6bf95330" id="r_a79546790eb1ee4897c2cbace6bf95330"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79546790eb1ee4897c2cbace6bf95330">HalI2cSe050Comm</a> (BaseI2c &amp;i2c, BaseGpio *reset_gpio) noexcept</td></tr>
+<tr class="memdesc:a79546790eb1ee4897c2cbace6bf95330"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the CRTP I²C adapter.  <br /></td></tr>
 <tr class="separator:a79546790eb1ee4897c2cbace6bf95330"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafe10210e9cfb60c100ebfcf4803983d" id="r_aafe10210e9cfb60c100ebfcf4803983d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafe10210e9cfb60c100ebfcf4803983d">EnsureInitialized</a> () noexcept</td></tr>
 <tr class="separator:aafe10210e9cfb60c100ebfcf4803983d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70e1aefefc05f67353ba8cc5e2a66fdb" id="r_a70e1aefefc05f67353ba8cc5e2a66fdb"><td class="memItemLeft" align="right" valign="top">se050::Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70e1aefefc05f67353ba8cc5e2a66fdb">I2cWrite</a> (const std::uint8_t *tx, std::size_t tx_len, std::uint32_t timeout_ms) noexcept</td></tr>
+<tr class="memdesc:a70e1aefefc05f67353ba8cc5e2a66fdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write bytes on I²C.  <br /></td></tr>
 <tr class="separator:a70e1aefefc05f67353ba8cc5e2a66fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a961f84f8344a2612fc5eaf765ea760a9" id="r_a961f84f8344a2612fc5eaf765ea760a9"><td class="memItemLeft" align="right" valign="top">se050::Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a961f84f8344a2612fc5eaf765ea760a9">I2cRead</a> (std::uint8_t *rx, std::size_t rx_len, std::uint32_t timeout_ms) noexcept</td></tr>
+<tr class="memdesc:a961f84f8344a2612fc5eaf765ea760a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read bytes on I²C.  <br /></td></tr>
 <tr class="separator:a961f84f8344a2612fc5eaf765ea760a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6709bf21c025c3520a0b975d96f8e3db" id="r_a6709bf21c025c3520a0b975d96f8e3db"><td class="memItemLeft" align="right" valign="top">se050::Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6709bf21c025c3520a0b975d96f8e3db">Transceive</a> (const std::uint8_t *tx, std::size_t tx_len, std::uint8_t *rx, std::size_t rx_cap, std::size_t *rx_len_out, std::uint32_t timeout_ms) noexcept</td></tr>
+<tr class="memdesc:a6709bf21c025c3520a0b975d96f8e3db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combined write-then-read (T=1oI2C frame).  <br /></td></tr>
 <tr class="separator:a6709bf21c025c3520a0b975d96f8e3db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8078b2b9ac2e5ac4df40519b0aaea8b5" id="r_a8078b2b9ac2e5ac4df40519b0aaea8b5"><td class="memItemLeft" align="right" valign="top">se050::Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8078b2b9ac2e5ac4df40519b0aaea8b5">HardwareReset</a> () noexcept</td></tr>
 <tr class="separator:a8078b2b9ac2e5ac4df40519b0aaea8b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5a6e9ff0bfe08f99111fe4f43ee51d3" id="r_ac5a6e9ff0bfe08f99111fe4f43ee51d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5a6e9ff0bfe08f99111fe4f43ee51d3">delay_ms_impl</a> (std::uint32_t ms) noexcept</td></tr>
 <tr class="separator:ac5a6e9ff0bfe08f99111fe4f43ee51d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7563d8499622691cf7c0eab4dbbcbaab" id="r_a7563d8499622691cf7c0eab4dbbcbaab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7563d8499622691cf7c0eab4dbbcbaab">HoldBus</a> (std::uint32_t timeout_ms) noexcept</td></tr>
+<tr class="memdesc:a7563d8499622691cf7c0eab4dbbcbaab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hold the I²C bus across a T=1 APDU (Write/Read pairs). Nested I2cWrite/Read skip lock.  <br /></td></tr>
+<tr class="separator:a7563d8499622691cf7c0eab4dbbcbaab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b713deeb54cd11eb1b2e2c050db794c" id="r_a3b713deeb54cd11eb1b2e2c050db794c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b713deeb54cd11eb1b2e2c050db794c">ReleaseBus</a> () noexcept</td></tr>
+<tr class="separator:a3b713deeb54cd11eb1b2e2c050db794c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a969bb59f3f10bccb688721df908004b0" id="r_a969bb59f3f10bccb688721df908004b0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a969bb59f3f10bccb688721df908004b0">BusHeld</a> () const noexcept</td></tr>
+<tr class="separator:a969bb59f3f10bccb688721df908004b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -137,6 +144,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:ac13616ce7150a4f1dade01af631339c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad295dc332511e15e87f488fab44ce56a" id="r_ad295dc332511e15e87f488fab44ce56a"><td class="memItemLeft" align="right" valign="top">BaseGpio *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad295dc332511e15e87f488fab44ce56a">reset_gpio_</a></td></tr>
 <tr class="separator:ad295dc332511e15e87f488fab44ce56a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada5e0dda64f64ce4bcc75f68436e1c14" id="r_ada5e0dda64f64ce4bcc75f68436e1c14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada5e0dda64f64ce4bcc75f68436e1c14">bus_held_</a> {false}</td></tr>
+<tr class="separator:ada5e0dda64f64ce4bcc75f68436e1c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>CRTP adapter mapping <code>BaseI2c</code> primitives to <code>se050::I2cTransceiveInterface</code>. </p>
@@ -169,9 +178,43 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Construct the CRTP I²C adapter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i2c</td><td>Host I²C device (typically 7-bit address 0x48). </td></tr>
+    <tr><td class="paramname">reset_gpio</td><td>Optional SE_RESET line; nullptr if unused. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a969bb59f3f10bccb688721df908004b0" name="a969bb59f3f10bccb688721df908004b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a969bb59f3f10bccb688721df908004b0">&#9670;&#160;</a></span>BusHeld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HalI2cSe050Comm::BusHeld </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ac5a6e9ff0bfe08f99111fe4f43ee51d3" name="ac5a6e9ff0bfe08f99111fe4f43ee51d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac5a6e9ff0bfe08f99111fe4f43ee51d3">&#9670;&#160;</a></span>delay_ms_impl()</h2>
 
@@ -194,11 +237,6 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalI2cSe050Comm_ac5a6e9ff0bfe08f99111fe4f43ee51d3_icgraph.svg" width="467" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -224,11 +262,6 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalI2cSe050Comm_aafe10210e9cfb60c100ebfcf4803983d_icgraph.svg" width="539" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -254,11 +287,39 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalI2cSe050Comm_a8078b2b9ac2e5ac4df40519b0aaea8b5_cgraph.svg" width="539" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+
 </div>
+</div>
+<a id="a7563d8499622691cf7c0eab4dbbcbaab" name="a7563d8499622691cf7c0eab4dbbcbaab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7563d8499622691cf7c0eab4dbbcbaab">&#9670;&#160;</a></span>HoldBus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HalI2cSe050Comm::HoldBus </td>
+          <td>(</td>
+          <td class="paramtype">std::uint32_t</td>          <td class="paramname"><span class="paramname"><em>timeout_ms</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Hold the I²C bus across a T=1 APDU (Write/Read pairs). Nested I2cWrite/Read skip lock. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timeout_ms</td><td>How long to wait for the bus lock. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -293,11 +354,16 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalI2cSe050Comm_a961f84f8344a2612fc5eaf765ea760a9_cgraph.svg" width="446" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+
+<p>Read bytes on I²C. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rx</td><td>Receive buffer. </td></tr>
+    <tr><td class="paramname">rx_len</td><td>Byte count to read. </td></tr>
+    <tr><td class="paramname">timeout_ms</td><td>Transfer deadline. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -332,11 +398,41 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalI2cSe050Comm_a70e1aefefc05f67353ba8cc5e2a66fdb_cgraph.svg" width="447" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+
+<p>Write bytes on I²C. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tx</td><td>Transmit payload. </td></tr>
+    <tr><td class="paramname">tx_len</td><td>Byte count. </td></tr>
+    <tr><td class="paramname">timeout_ms</td><td>Transfer deadline. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
+</div>
+<a id="a3b713deeb54cd11eb1b2e2c050db794c" name="a3b713deeb54cd11eb1b2e2c050db794c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b713deeb54cd11eb1b2e2c050db794c">&#9670;&#160;</a></span>ReleaseBus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HalI2cSe050Comm::ReleaseBus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -386,15 +482,45 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalI2cSe050Comm_a6709bf21c025c3520a0b975d96f8e3db_cgraph.svg" width="462" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+
+<p>Combined write-then-read (T=1oI2C frame). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tx</td><td>Transmit payload. </td></tr>
+    <tr><td class="paramname">tx_len</td><td>Transmit length. </td></tr>
+    <tr><td class="paramname">rx</td><td>Receive buffer. </td></tr>
+    <tr><td class="paramname">rx_cap</td><td>Receive capacity. </td></tr>
+    <tr><td class="paramname">rx_len_out</td><td>Actual bytes received. </td></tr>
+    <tr><td class="paramname">timeout_ms</td><td>Transfer deadline. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="ada5e0dda64f64ce4bcc75f68436e1c14" name="ada5e0dda64f64ce4bcc75f68436e1c14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada5e0dda64f64ce4bcc75f68436e1c14">&#9670;&#160;</a></span>bus_held_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HalI2cSe050Comm::bus_held_ {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ac13616ce7150a4f1dade01af631339c0" name="ac13616ce7150a4f1dade01af631339c0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac13616ce7150a4f1dade01af631339c0">&#9670;&#160;</a></span>i2c_</h2>
 

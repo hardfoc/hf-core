@@ -102,22 +102,13 @@ $(function(){initNavTree('Max22200Handler_8h.html',''); initResizable(); });
 <div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
 <code>#include &quot;core/hf-core-drivers/external/hf-max22200-driver/inc/max22200.hpp&quot;</code><br />
 <code>#include &quot;core/hf-core-drivers/external/hf-max22200-driver/inc/max22200_spi_interface.hpp&quot;</code><br />
 <code>#include &quot;core/hf-core-drivers/external/hf-max22200-driver/inc/max22200_types.hpp&quot;</code><br />
 <code>#include &quot;base/BaseSpi.h&quot;</code><br />
 <code>#include &quot;base/BaseGpio.h&quot;</code><br />
 <code>#include &quot;RtosMutex.h&quot;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for Max22200Handler.h:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Max22200Handler_8h__incl.svg" width="1406" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div><div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Max22200Handler_8h__dep__incl.svg" width="456" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 </div>
 <p><a href="Max22200Handler_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -132,16 +123,17 @@ Classes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Unified handler for MAX22200 octal solenoid and motor driver. </p>
-<p>Provides HAL-level integration for the MAX22200 using BaseSpi and BaseGpio. Features:</p><ul>
-<li>CRTP SPI adapter bridging BaseSpi to the MAX22200 two-phase SPI protocol</li>
+<p>Provides HAL-level integration for the MAX22200 on shared SPI2 using BaseSpi and BaseGpio. Features:</p><ul>
+<li>CRTP SPI adapter bridging BaseSpi to the MAX22200 two-phase CMD-pin SPI protocol (CMD HIGH = command byte, CMD LOW = data)</li>
 <li>8-channel high/low-side output control with CDR/VDR drive modes</li>
 <li>Channel-pair modes (independent, parallel, half-bridge, full-bridge)</li>
 <li>Comprehensive fault monitoring and DPM (Detect Plunger Movement)</li>
 <li>Convenience APIs with real-unit parameters (mA, %, ms)</li>
-<li>Thread-safe operations with RtosMutex</li>
+<li>Thread-safe operations with RtosMutex (WithDriver preferred)</li>
 <li>Lazy initialization pattern</li>
-<li>Full driver access through GetDriver() for advanced operations</li>
+<li>Raw driver access through GetDriver for single-threaded bring-up only</li>
 </ul>
+<dl class="section note"><dt>Note</dt><dd>Which channels are populated and with what part is defined by pw_hal/valve_hardware.hpp. Unpopulated channels keep their open-load detectors disabled so they cannot contribute OLF/OCP faults.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>HardFOC Team </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>HardFOC </dd></dl>

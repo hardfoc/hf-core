@@ -1,7 +1,9 @@
 var dir_13e4b33a5d8b02a78a3cf9f2d8ee83af =
 [
+    [ "ads9324_handler_comprehensive_test.cpp", "ads9324__handler__comprehensive__test_8cpp.html", "ads9324__handler__comprehensive__test_8cpp" ],
     [ "as5047u_handler_comprehensive_test.cpp", "as5047u__handler__comprehensive__test_8cpp.html", "as5047u__handler__comprehensive__test_8cpp" ],
     [ "bno08x_handler_comprehensive_test.cpp", "bno08x__handler__comprehensive__test_8cpp.html", "bno08x__handler__comprehensive__test_8cpp" ],
+    [ "isf15acp4_handler_comprehensive_test.cpp", "isf15acp4__handler__comprehensive__test_8cpp.html", "isf15acp4__handler__comprehensive__test_8cpp" ],
     [ "max22200_handler_comprehensive_test.cpp", "max22200__handler__comprehensive__test_8cpp.html", "max22200__handler__comprehensive__test_8cpp" ],
     [ "ntc_handler_comprehensive_test.cpp", "ntc__handler__comprehensive__test_8cpp.html", "ntc__handler__comprehensive__test_8cpp" ],
     [ "pca9685_handler_comprehensive_test.cpp", "pca9685__handler__comprehensive__test_8cpp.html", "pca9685__handler__comprehensive__test_8cpp" ],

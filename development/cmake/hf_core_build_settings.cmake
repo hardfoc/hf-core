@@ -96,7 +96,7 @@ if(NOT DEFINED HF_CORE_RTOS)
 endif()
 string(TOUPPER "${HF_CORE_RTOS}" HF_CORE_RTOS)
 
-set(_HF_SUPPORTED_RTOS "FREERTOS;NONE")   # extend: THREADX, ZEPHYR
+set(_HF_SUPPORTED_RTOS "FREERTOS;THREADX;NONE")
 if(NOT HF_CORE_RTOS IN_LIST _HF_SUPPORTED_RTOS)
     message(FATAL_ERROR
         "[hf-core] Unsupported RTOS '${HF_CORE_RTOS}'. "
@@ -148,6 +148,12 @@ endif()
 if(NOT DEFINED HF_CORE_ENABLE_ADS7952)
     set(HF_CORE_ENABLE_ADS7952 OFF)
 endif()
+if(NOT DEFINED HF_CORE_ENABLE_ADS9324)
+    set(HF_CORE_ENABLE_ADS9324 OFF)
+endif()
+if(NOT DEFINED HF_CORE_ENABLE_AT25040)
+    set(HF_CORE_ENABLE_AT25040 OFF)
+endif()
 if(NOT DEFINED HF_CORE_ENABLE_BNO08X)
     set(HF_CORE_ENABLE_BNO08X OFF)
 endif()
@@ -166,11 +172,23 @@ endif()
 if(NOT DEFINED HF_CORE_ENABLE_FDO2)
     set(HF_CORE_ENABLE_FDO2 OFF)
 endif()
+if(NOT DEFINED HF_CORE_ENABLE_DYNAMIXEL)
+    set(HF_CORE_ENABLE_DYNAMIXEL OFF)
+endif()
+if(NOT DEFINED HF_CORE_ENABLE_SFM)
+    set(HF_CORE_ENABLE_SFM OFF)
+endif()
+if(NOT DEFINED HF_CORE_ENABLE_BMP581)
+    set(HF_CORE_ENABLE_BMP581 OFF)
+endif()
 if(NOT DEFINED HF_CORE_ENABLE_SE050)
     set(HF_CORE_ENABLE_SE050 OFF)
 endif()
 if(NOT DEFINED HF_CORE_ENABLE_PCA9685)
     set(HF_CORE_ENABLE_PCA9685 OFF)
+endif()
+if(NOT DEFINED HF_CORE_ENABLE_PF1550)
+    set(HF_CORE_ENABLE_PF1550 OFF)
 endif()
 if(NOT DEFINED HF_CORE_ENABLE_PCAL95555)
     set(HF_CORE_ENABLE_PCAL95555 OFF)
@@ -187,6 +205,9 @@ endif()
 if(NOT DEFINED HF_CORE_ENABLE_WS2812)
     set(HF_CORE_ENABLE_WS2812 OFF)
 endif()
+if(NOT DEFINED HF_CORE_ENABLE_ISF15ACP4)
+    set(HF_CORE_ENABLE_ISF15ACP4 OFF)
+endif()
 if(NOT DEFINED HF_CORE_ENABLE_VORTEX_DRIVER)
     set(HF_CORE_ENABLE_VORTEX_DRIVER OFF)
 endif()
@@ -201,7 +222,8 @@ endif()
 # ===========================================================================
 
 # Drivers that use UART need the UART interface implementation
-if(HF_CORE_ENABLE_TMC5160 OR HF_CORE_ENABLE_TMC9660 OR HF_CORE_ENABLE_ALICAT_BASIS2 OR HF_CORE_ENABLE_FDO2)
+if(HF_CORE_ENABLE_TMC5160 OR HF_CORE_ENABLE_TMC9660 OR HF_CORE_ENABLE_ALICAT_BASIS2
+   OR HF_CORE_ENABLE_FDO2 OR HF_CORE_ENABLE_DYNAMIXEL)
     set(HF_CORE_ENABLE_UART ON)
 endif()
 
@@ -377,11 +399,17 @@ if(HF_CORE_RTOS STREQUAL "FREERTOS")
         "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/SignalSemaphore.cpp"
     )
 
-# elseif(HF_CORE_RTOS STREQUAL "THREADX")
-#     set(HF_CORE_RTOS_SOURCES
-#         "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/threadx/BaseThread.cpp"
-#         ...
-#     )
+elseif(HF_CORE_RTOS STREQUAL "THREADX")
+    # Same C++ wrappers as FreeRTOS; OsAbstraction.h maps to tx_*. No FreeRTOSUtils.
+    set(HF_CORE_RTOS_SOURCES
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/BaseThread.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/CriticalSection.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/Mutex.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/MutexGuard.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/OsUtility.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/PeriodicTimer.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/SignalSemaphore.cpp"
+    )
 
 elseif(HF_CORE_RTOS STREQUAL "NONE")
     # No RTOS — bare-metal or host-only build.
@@ -484,6 +512,24 @@ if(HF_CORE_ENABLE_ADS7952)
     list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_ADS7952_SOURCE_FILES})
 endif()
 
+# ── ADS9324 (SPI 16-ch 16-bit simultaneous SAR + PGA — header-only) ──────
+if(HF_CORE_ENABLE_ADS9324)
+    include("${HF_CORE_DRIVER_EXT}/hf-ads9324-driver/cmake/hf_ads9324_build_settings.cmake")
+    list(APPEND HF_CORE_HANDLER_SOURCES
+        "${HF_CORE_HANDLER_ROOT}/ads9324/Ads9324Handler.cpp")
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_ADS9324_PUBLIC_INCLUDE_DIRS})
+    list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_ADS9324_SOURCE_FILES})
+endif()
+
+# ── AT25040 (SPI EEPROM — PORTABLE, header-only, Style A) ────────────────
+if(HF_CORE_ENABLE_AT25040)
+    include("${HF_CORE_DRIVER_EXT}/hf-at25040-driver/cmake/hf_at25040_build_settings.cmake")
+    list(APPEND HF_CORE_HANDLER_SOURCES
+        "${HF_CORE_HANDLER_ROOT}/at25040/At25040Handler.cpp")
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_AT25040_PUBLIC_INCLUDE_DIRS})
+    list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_AT25040_SOURCE_FILES})
+endif()
+
 # ── BNO08x (I2C/SPI IMU — PORTABLE, vendor C sources, Style A) ───────────
 if(HF_CORE_ENABLE_BNO08X)
     include("${HF_CORE_DRIVER_EXT}/hf-bno08x-driver/cmake/hf_bno08x_build_settings.cmake")
@@ -529,6 +575,30 @@ if(HF_CORE_ENABLE_ALICAT_BASIS2)
     list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_ALICAT_BASIS2_SOURCE_FILES})
 endif()
 
+# ── ROBOTIS Dynamixel Protocol 2.0 (UART, official SDK wrap) ───────────────
+# Portable `dynamixel::Bus` / `Device`. `DynamixelHandler` bridges a
+# `BaseUart&` through `HalUartDynamixelComm`. Default OFF; UART is
+# auto-enabled. SDK TUs get `__linux__` only on those source files.
+if(HF_CORE_ENABLE_DYNAMIXEL)
+    if(NOT EXISTS "${HF_CORE_DRIVER_EXT}/hf-dynamixel-driver/cmake/hf_dynamixel_build_settings.cmake")
+        message(FATAL_ERROR
+            "[hf-core] HF_CORE_ENABLE_DYNAMIXEL=ON but hf-dynamixel-driver is missing at "
+            "'${HF_CORE_DRIVER_EXT}/hf-dynamixel-driver'. Initialize the git submodule under "
+            "hf-core-drivers (external/hf-dynamixel-driver).")
+    endif()
+    include("${HF_CORE_DRIVER_EXT}/hf-dynamixel-driver/cmake/hf_dynamixel_build_settings.cmake")
+    list(APPEND HF_CORE_HANDLER_SOURCES
+        "${HF_CORE_HANDLER_ROOT}/dynamixel/DynamixelHandler.cpp")
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS
+        ${HF_DYNAMIXEL_PUBLIC_INCLUDE_DIRS}
+        ${HF_DYNAMIXEL_PRIVATE_INCLUDE_DIRS})
+    list(APPEND HF_CORE_EXT_DRIVER_SOURCES ${HF_DYNAMIXEL_SOURCE_FILES})
+    if(HF_DYNAMIXEL_SDK_COMPILE_DEFINITIONS)
+        set_property(SOURCE ${HF_DYNAMIXEL_SDK_SOURCE_FILES} APPEND PROPERTY
+            COMPILE_DEFINITIONS ${HF_DYNAMIXEL_SDK_COMPILE_DEFINITIONS})
+    endif()
+endif()
+
 # ── PyroScience FDO2-G2 oxygen probe (UART, PSUP ASCII) ────────────────────
 # Header-only driver. The HAL handler (`Fdo2Handler`) bridges the
 # templated `fdo2::Driver<UartT>` to a `BaseUart&` via an internal
@@ -540,6 +610,26 @@ if(HF_CORE_ENABLE_FDO2)
     list(APPEND HF_CORE_HANDLER_SOURCES
         "${HF_CORE_HANDLER_ROOT}/fdo2/Fdo2Handler.cpp")
     list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_FDO2_PUBLIC_INCLUDE_DIRS})
+endif()
+
+# ── Sensirion SF06-family gas mass flow meter (SFM4300, I²C, header-only) ──
+# `SfmHandler` bridges the templated `sfm::Driver<I2cT>` to a `BaseI2c&`
+# via an internal CRTP adapter (raw command write / CRC-8 word read).
+if(HF_CORE_ENABLE_SFM)
+    include("${HF_CORE_DRIVER_EXT}/hf-sfm-flow-meter-driver/cmake/hf_sfm_build_settings.cmake")
+    list(APPEND HF_CORE_HANDLER_SOURCES
+        "${HF_CORE_HANDLER_ROOT}/sfm/SfmHandler.cpp")
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_SFM_PUBLIC_INCLUDE_DIRS})
+endif()
+
+# ── Bosch BMP581 barometric pressure sensor (I²C register map, header-only) ─
+# `Bmp581Handler` bridges `bmp581::Driver<BusT>` to a `BaseI2c&` via an
+# internal CRTP register adapter.
+if(HF_CORE_ENABLE_BMP581)
+    include("${HF_CORE_DRIVER_EXT}/hf-bmp581-driver/cmake/hf_bmp581_build_settings.cmake")
+    list(APPEND HF_CORE_HANDLER_SOURCES
+        "${HF_CORE_HANDLER_ROOT}/bmp581/Bmp581Handler.cpp")
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_BMP581_PUBLIC_INCLUDE_DIRS})
 endif()
 
 # ── NXP SE050 / SE050A secure element (I²C T=1oI2C — PORTABLE, header-only) ─
@@ -557,6 +647,15 @@ if(HF_CORE_ENABLE_PCA9685)
         "${HF_CORE_HANDLER_ROOT}/pca9685/Pca9685Handler.cpp")
     list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_PCA9685_PUBLIC_INCLUDE_DIRS})
     list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_PCA9685_SOURCE_FILES})
+endif()
+
+# ── PF1550 PMIC (I2C power management — PORTABLE, header-only) ───────────
+if(HF_CORE_ENABLE_PF1550)
+    include("${HF_CORE_DRIVER_EXT}/hf-pf1550-driver/cmake/hf_pf1550_build_settings.cmake")
+    list(APPEND HF_CORE_HANDLER_SOURCES
+        "${HF_CORE_HANDLER_ROOT}/pf1550/Pf1550Handler.cpp")
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_PF1550_PUBLIC_INCLUDE_DIRS})
+    list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_PF1550_SOURCE_FILES})
 endif()
 
 # ── PCAL95555 (I2C GPIO expander — PORTABLE, header-only, Style A) ───────
@@ -621,6 +720,15 @@ if(HF_CORE_ENABLE_WS2812)
         "${HF_CORE_HANDLER_ROOT}/ws2812/Ws2812Handler.cpp")
     list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_WS2812_RMT_PUBLIC_INCLUDE_DIRS})
     list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_WS2812_RMT_SOURCE_FILES})
+endif()
+
+# ── ISF15ACP4 (SPI OLED SmartDisplay — PORTABLE, SSD1331, Style A) ────────
+if(HF_CORE_ENABLE_ISF15ACP4)
+    include("${HF_CORE_DRIVER_EXT}/hf-isf15acp4-driver/cmake/hf_isf15acp4_build_settings.cmake")
+    list(APPEND HF_CORE_HANDLER_SOURCES
+        "${HF_CORE_HANDLER_ROOT}/isf15acp4/Isf15acp4Handler.cpp")
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_ISF15ACP4_PUBLIC_INCLUDE_DIRS})
+    list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_ISF15ACP4_SOURCE_FILES})
 endif()
 
 # ── Logger Handler (MCU-agnostic core + per-MCU backend factory) ──────────
@@ -702,6 +810,12 @@ endif()
 if(HF_CORE_ENABLE_ADS7952)
     list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/ads7952")
 endif()
+if(HF_CORE_ENABLE_ADS9324)
+    list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/ads9324")
+endif()
+if(HF_CORE_ENABLE_AT25040)
+    list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/at25040")
+endif()
 if(HF_CORE_ENABLE_BNO08X)
     list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/bno08x")
 endif()
@@ -720,11 +834,23 @@ endif()
 if(HF_CORE_ENABLE_FDO2)
     list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/fdo2")
 endif()
+if(HF_CORE_ENABLE_DYNAMIXEL)
+    list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/dynamixel")
+endif()
+if(HF_CORE_ENABLE_SFM)
+    list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/sfm")
+endif()
+if(HF_CORE_ENABLE_BMP581)
+    list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/bmp581")
+endif()
 if(HF_CORE_ENABLE_SE050)
     list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/se050")
 endif()
 if(HF_CORE_ENABLE_PCA9685)
     list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/pca9685")
+endif()
+if(HF_CORE_ENABLE_PF1550)
+    list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/pf1550")
 endif()
 if(HF_CORE_ENABLE_PCAL95555)
     list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/pcal95555")
@@ -740,6 +866,9 @@ if(HF_CORE_ENABLE_TMC9660)
 endif()
 if(HF_CORE_ENABLE_WS2812)
     list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/ws2812")
+endif()
+if(HF_CORE_ENABLE_ISF15ACP4)
+    list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/isf15acp4")
 endif()
 if(HF_CORE_ENABLE_LOGGER)
     list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/logger")
@@ -843,9 +972,9 @@ endif()
 if(HF_CORE_RTOS STREQUAL "FREERTOS")
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_RTOS_FREERTOS=1)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_THREAD_SAFE=1)
-# elseif(HF_CORE_RTOS STREQUAL "THREADX")
-#     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_RTOS_THREADX=1)
-#     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_THREAD_SAFE=1)
+elseif(HF_CORE_RTOS STREQUAL "THREADX")
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_RTOS_THREADX=1)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_THREAD_SAFE=1)
 elseif(HF_CORE_RTOS STREQUAL "NONE")
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HF_RTOS_NONE=1)
     # No HF_THREAD_SAFE — single-threaded, no mutex/semaphore overhead
@@ -857,6 +986,12 @@ if(HF_CORE_ENABLE_AS5047U)
 endif()
 if(HF_CORE_ENABLE_ADS7952)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_ADS7952_SUPPORT=1)
+endif()
+if(HF_CORE_ENABLE_ADS9324)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_ADS9324_SUPPORT=1)
+endif()
+if(HF_CORE_ENABLE_AT25040)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_AT25040_SUPPORT=1)
 endif()
 if(HF_CORE_ENABLE_BNO08X)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_BNO08X_SUPPORT=1)
@@ -873,8 +1008,23 @@ endif()
 if(HF_CORE_ENABLE_ALICAT_BASIS2)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_ALICAT_BASIS2_SUPPORT=1)
 endif()
+if(HF_CORE_ENABLE_FDO2)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_FDO2_SUPPORT=1)
+endif()
+if(HF_CORE_ENABLE_DYNAMIXEL)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_DYNAMIXEL_SUPPORT=1)
+endif()
+if(HF_CORE_ENABLE_SFM)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_SFM_SUPPORT=1)
+endif()
+if(HF_CORE_ENABLE_BMP581)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_BMP581_SUPPORT=1)
+endif()
 if(HF_CORE_ENABLE_PCA9685)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_PCA9685_SUPPORT=1)
+endif()
+if(HF_CORE_ENABLE_PF1550)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_PF1550_SUPPORT=1)
 endif()
 if(HF_CORE_ENABLE_PCAL95555)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_PCAL95555_SUPPORT=1)
@@ -893,6 +1043,9 @@ if(HF_CORE_ENABLE_VORTEX_DRIVER)
 endif()
 if(HF_CORE_ENABLE_WS2812)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_WS2812_SUPPORT=1)
+endif()
+if(HF_CORE_ENABLE_ISF15ACP4)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_ISF15ACP4_SUPPORT=1)
 endif()
 if(HF_CORE_ENABLE_LOGGER)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_LOGGER=1)
@@ -943,6 +1096,12 @@ endif()
 if(HF_CORE_ENABLE_ADS7952)
     string(APPEND _hf_enabled_features " ADS7952")
 endif()
+if(HF_CORE_ENABLE_ADS9324)
+    string(APPEND _hf_enabled_features " ADS9324")
+endif()
+if(HF_CORE_ENABLE_AT25040)
+    string(APPEND _hf_enabled_features " AT25040")
+endif()
 if(HF_CORE_ENABLE_BNO08X)
     string(APPEND _hf_enabled_features " BNO08x")
 endif()
@@ -958,8 +1117,14 @@ endif()
 if(HF_CORE_ENABLE_ALICAT_BASIS2)
     string(APPEND _hf_enabled_features " AlicatBASIS2")
 endif()
+if(HF_CORE_ENABLE_DYNAMIXEL)
+    string(APPEND _hf_enabled_features " Dynamixel")
+endif()
 if(HF_CORE_ENABLE_PCA9685)
     string(APPEND _hf_enabled_features " PCA9685")
+endif()
+if(HF_CORE_ENABLE_PF1550)
+    string(APPEND _hf_enabled_features " PF1550")
 endif()
 if(HF_CORE_ENABLE_PCAL95555)
     string(APPEND _hf_enabled_features " PCAL95555")
@@ -978,6 +1143,9 @@ if(HF_CORE_ENABLE_VORTEX_DRIVER)
 endif()
 if(HF_CORE_ENABLE_WS2812)
     string(APPEND _hf_enabled_features " WS2812")
+endif()
+if(HF_CORE_ENABLE_ISF15ACP4)
+    string(APPEND _hf_enabled_features " ISF15ACP4")
 endif()
 if(HF_CORE_ENABLE_LOGGER)
     string(APPEND _hf_enabled_features " Logger")

@@ -134,18 +134,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>RTOS-aware millisecond delay. </p>
-<p>On ESP-IDF, yields to the RTOS scheduler via vTaskDelay. On other platforms, falls back to a busy-wait loop.</p>
+<p>On ESP-IDF / FreeRTOS, yields via the scheduler so TLE/MAX reset settle times (datasheet ≥10 ms) are real wall time — not a short <code>volatile</code> busy-wait that was ~3×–10× too short at 200–240 MHz.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ms</td><td>Delay duration in milliseconds. </td></tr>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacehandler__utils_afc7fd91265677d0865cbc2a413754ed8_icgraph.svg" width="404" height="243"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -173,18 +168,13 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Microsecond delay with automatic fallback to RTOS delay for large values. </p>
-<p>For delays &gt;= 1 ms, delegates to an RTOS task delay to avoid blocking the CPU. For shorter delays, uses a hardware microsecond delay on ESP-IDF or a busy-wait loop on other platforms.</p>
+<p>For delays &gt;= 1 ms, delegates to <a class="el" href="#afc7fd91265677d0865cbc2a413754ed8">DelayMs</a> (scheduler / HAL). Shorter delays use <code>esp_rom_delay_us</code> on ESP-IDF or a denser busy-wait on STM32 so SPI CS setup / inter-frame gaps are not no-ops.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">us</td><td>Delay duration in microseconds. </td></tr>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacehandler__utils_ac2999c5753a6d86504463b742c23dcfe_icgraph.svg" width="411" height="371"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -241,16 +231,6 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacehandler__utils_a71864e1d5801bea0d6d830326b6b183a_cgraph.svg" width="400" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacehandler__utils_a71864e1d5801bea0d6d830326b6b183a_icgraph.svg" width="463" height="294"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>

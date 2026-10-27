@@ -8,7 +8,10 @@ var searchData=
   ['firstcantxmessage_5',['firstCANtxMessage',['../structCO__CANmodule__t.html#ac12bd37971b89b5796fec0de71be0f07',1,'CO_CANmodule_t']]],
   ['flow_5fdecimals_5f_6',['flow_decimals_',['../classAlicatBasis2Handler.html#ad8339393101f5c6357f300675b53f751',1,'AlicatBasis2Handler']]],
   ['flow_5fdecimals_5fdefault_7',['flow_decimals_default',['../structAlicatBasis2HandlerConfig.html#aaa1795d23555157dadf8a4ba2633826e',1,'AlicatBasis2HandlerConfig']]],
-  ['format_5fascii_5fart_8',['format_ascii_art',['../structLogConfig.html#ab2bec83242fdfe9d6bd2cfc05ade0824',1,'LogConfig']]],
-  ['frame_5fformat_9',['frame_format',['../structAs5047uConfig.html#af7982d833742164706c12d4e7c5e7739',1,'As5047uConfig']]],
-  ['fully_5fcalibrated_10',['fully_calibrated',['../structBno08xCalibrationStatus.html#a1682b52f8db214f1d43c3a249843f765',1,'Bno08xCalibrationStatus']]]
+  ['format_8',['format',['../structAds9324HandlerConfig.html#a1c2770f491b91ac259e1b1aa6a34c2c5',1,'Ads9324HandlerConfig']]],
+  ['format_5fascii_5fart_9',['format_ascii_art',['../structLogConfig.html#ab2bec83242fdfe9d6bd2cfc05ade0824',1,'LogConfig']]],
+  ['frame_5fformat_10',['frame_format',['../structAs5047uConfig.html#af7982d833742164706c12d4e7c5e7739',1,'As5047uConfig']]],
+  ['frames_11',['frames',['../structSfmHandler_1_1Counters.html#a5cd6ab0b01ba68efc4f06e68f87a883a',1,'SfmHandler::Counters']]],
+  ['frames_5f_12',['frames_',['../classSfmHandler.html#a8f7b8d16c3208c41a4b9a7bd1d78e298',1,'SfmHandler']]],
+  ['fully_5fcalibrated_13',['fully_calibrated',['../structBno08xCalibrationStatus.html#a1682b52f8db214f1d43c3a249843f765',1,'Bno08xCalibrationStatus']]]
 ];

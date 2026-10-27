@@ -19,10 +19,12 @@ var group__MAX22200__Handler =
       [ "GetChannelFaults", "classMax22200Handler.html#ac593ec1cad7b098494a53b327521cbb6", null ],
       [ "GetDriver", "classMax22200Handler.html#aee42537a3d2f0955a1479709b2d4b4b8", null ],
       [ "GetDriver", "classMax22200Handler.html#a001e00b9d9a02611b51951f16bcb78d1", null ],
+      [ "GetLastFaultByte", "classMax22200Handler.html#ac60a7cd413fc94d0eff7529aa626643e", null ],
       [ "GetStatus", "classMax22200Handler.html#a650e6b9666b785a5b3eadc729e187556", null ],
       [ "HasFault", "classMax22200Handler.html#ac5b60b117fec404c55597929134fa1a1", null ],
       [ "Initialize", "classMax22200Handler.html#a0dce05cd6639a10e52c0f669b72baf52", null ],
       [ "Initialize", "classMax22200Handler.html#aca940fd8213ecb633bafb7c3e143a361", null ],
+      [ "InitializeLocked", "classMax22200Handler.html#abad786f185502af5b31b94835e424b15", null ],
       [ "IsChannelEnabled", "classMax22200Handler.html#a07c395b7496c7da567fb6a8d58d9d992", null ],
       [ "IsInitialized", "classMax22200Handler.html#a84534ddd9d77b88a861f093bd5a587de", null ],
       [ "operator=", "classMax22200Handler.html#abf7d8a8e79978ac0554f802bd154a0f9", null ],
@@ -32,11 +34,13 @@ var group__MAX22200__Handler =
       [ "SetupCdrChannel", "classMax22200Handler.html#ad723710c3ee6c0519b6bde20925b1bf8", null ],
       [ "SetupVdrChannel", "classMax22200Handler.html#a6892c6f6c6efdef080d9a485e4de2223", null ],
       [ "WaitForActiveAndDrainFaults", "classMax22200Handler.html#a46a1ed5c96b117192f0cae05c4f9627b", null ],
+      [ "WithDriver", "classMax22200Handler.html#a0bb0a70cc02384071ce92a83ad2acbc9", null ],
       [ "withDriver", "classMax22200Handler.html#abcdd9746a0df9c28bb36508d52d80ef5", null ],
       [ "comm_", "classMax22200Handler.html#a24eb0c32f2cf5360a3882523e7eeb08f", null ],
       [ "driver_", "classMax22200Handler.html#a748af00c00ba68752bf7590f04b588e4", null ],
       [ "initialized_", "classMax22200Handler.html#a7551cc6aef14367b839f97c1dc096b1a", null ],
       [ "kNumChannels", "classMax22200Handler.html#a8505ffd513d2ebedcd107bc452407da1", null ],
+      [ "last_fault_byte_", "classMax22200Handler.html#ae92b7d84d748444d428ad487da488d7c", null ],
       [ "mutex_", "classMax22200Handler.html#a08079ccf08dd0068f39e2a4a208de9a4", null ]
     ] ]
 ];

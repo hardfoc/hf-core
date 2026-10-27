@@ -7,10 +7,12 @@ var searchData=
   ['pcal95555_5fdriver_5f_4',['pcal95555_driver_',['../classPcal95555Handler.html#a19c7623e661a824f5341b08420a3dd69',1,'Pcal95555Handler']]],
   ['pickup_5fdetected_5',['pickup_detected',['../structBno08xActivityData.html#a508cd74ccb7e95beddd7634143841593',1,'Bno08xActivityData']]],
   ['pin_5f_6',['pin_',['../classPca9685GpioPin.html#a0cee0fcf79159c62d601f391a409b6bc',1,'Pca9685GpioPin::pin_'],['../classPcal95555GpioPin.html#a4ad94123075d15cf74df599d636af2b0',1,'Pcal95555GpioPin::pin_']]],
-  ['pin_5fregistry_5f_7',['pin_registry_',['../classPcal95555Handler.html#a73f16fa7e56fd17c87093c825d7b7531',1,'Pcal95555Handler']]],
+  ['pin_5fregistry_5f_7',['pin_registry_',['../classPcal95555Handler.html#aec7e78d4ce7e63c8f8d1b336b09e5cae',1,'Pcal95555Handler']]],
   ['pitch_8',['pitch',['../structBno08xEulerAngles.html#ae2dba92a3a192db0b30c290fed76934d',1,'Bno08xEulerAngles']]],
-  ['prev_5finput_5fstate_5f_9',['prev_input_state_',['../classPcal95555Handler.html#a41f16f23becbbc45984e1adfed1320b0',1,'Pcal95555Handler']]],
-  ['private_5fmutex_5f_10',['private_mutex_',['../classAlicatBasis2Handler.html#aff9d1e09053403078971df23240870f6',1,'AlicatBasis2Handler::private_mutex_'],['../classFdo2Handler.html#ad6d2ab49fcccb2d307112253707715ea',1,'Fdo2Handler::private_mutex_'],['../classSe050Handler.html#ab5ce089c45ce53b97d95e944d2df14f5',1,'Se050Handler::private_mutex_']]],
-  ['pull_5fmode_5fcache_5f_11',['pull_mode_cache_',['../classPcal95555Handler.html#aa2bb96cbbd906cb83a398e3a8d310bc6',1,'Pcal95555Handler']]],
-  ['pwm_5fadapter_5f_12',['pwm_adapter_',['../classPca9685Handler.html#a6f6e37a5f910fb63c8d02db3192eb296',1,'Pca9685Handler']]]
+  ['polarity_5fshadow_5f_9',['polarity_shadow_',['../classPcal95555Handler.html#ae7b92323d2fbb92fc1033b124c900599',1,'Pcal95555Handler']]],
+  ['port_5fshadow_5fvalid_5f_10',['port_shadow_valid_',['../classPcal95555Handler.html#a651563d023f252c7eb4ef8c241b3f8a8',1,'Pcal95555Handler']]],
+  ['prev_5finput_5fstate_5f_11',['prev_input_state_',['../classPcal95555Handler.html#a41f16f23becbbc45984e1adfed1320b0',1,'Pcal95555Handler']]],
+  ['private_5fmutex_5f_12',['private_mutex_',['../classAlicatBasis2Handler.html#aff9d1e09053403078971df23240870f6',1,'AlicatBasis2Handler::private_mutex_'],['../classBmp581Handler.html#a2210f284140ff45a4af3080582b215f7',1,'Bmp581Handler::private_mutex_'],['../classDynamixelHandler.html#a897f38c972dce7ae04a62f74314f5f05',1,'DynamixelHandler::private_mutex_'],['../classFdo2Handler.html#ad6d2ab49fcccb2d307112253707715ea',1,'Fdo2Handler::private_mutex_'],['../classSe050Handler.html#ab5ce089c45ce53b97d95e944d2df14f5',1,'Se050Handler::private_mutex_'],['../classSfmHandler.html#ae9ad7b52a212626227e8c6b7f0ecabfd',1,'SfmHandler::private_mutex_']]],
+  ['pull_5fmode_5fcache_5f_13',['pull_mode_cache_',['../classPcal95555Handler.html#aa2bb96cbbd906cb83a398e3a8d310bc6',1,'Pcal95555Handler']]],
+  ['pwm_5fadapter_5f_14',['pwm_adapter_',['../classPca9685Handler.html#a6f6e37a5f910fb63c8d02db3192eb296',1,'Pca9685Handler']]]
 ];

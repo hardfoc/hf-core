@@ -7,8 +7,11 @@ var group__PCAL95555__HAL__I2CAdapter =
       [ "Read", "classHalI2cPcal95555Comm.html#a4a772bc05d784a0ef807a4c3c099beb0", null ],
       [ "RegisterInterruptHandler", "classHalI2cPcal95555Comm.html#a8a5517910e3a771091471f2843ea26ed", null ],
       [ "Write", "classHalI2cPcal95555Comm.html#a4f6987588b44889b656c627cdb6f9523", null ],
+      [ "cmd_scratch_", "classHalI2cPcal95555Comm.html#a1725f4bcf6c8775f42772131486b8a8f", null ],
       [ "i2c_device_", "classHalI2cPcal95555Comm.html#aaab0f2ead8fb5c16cd047a24bc8139f5", null ],
       [ "i2c_mutex_", "classHalI2cPcal95555Comm.html#a8f693605b5546ee054ee647f1d681b17", null ],
-      [ "interrupt_handler_", "classHalI2cPcal95555Comm.html#a5f821ea69c3532d8cc758b444e1d83cd", null ]
+      [ "interrupt_handler_", "classHalI2cPcal95555Comm.html#a5f821ea69c3532d8cc758b444e1d83cd", null ],
+      [ "rx_scratch_", "classHalI2cPcal95555Comm.html#a9bad3cf07822e4dd367a725aac48c03a", null ],
+      [ "tx_scratch_", "classHalI2cPcal95555Comm.html#aea7b83e5acbd6808e63b96b61ea6940e", null ]
     ] ]
 ];

@@ -104,11 +104,6 @@ $(function(){initNavTree('classPcal95555Handler.html',''); initResizable(); });
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Pcal95555Handler_8h_source.html">Pcal95555Handler.h</a>&gt;</code></p>
-<div class="dynheader">
-Collaboration diagram for Pcal95555Handler:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler__coll__graph.svg" width="1991" height="230"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -158,7 +153,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a4591e7da481679beac69c20bbd554db1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a logical level to an output pin.  <br /></td></tr>
 <tr class="separator:a4591e7da481679beac69c20bbd554db1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32cb9ad0e9a4cf9e804e30420900edde" id="r_a32cb9ad0e9a4cf9e804e30420900edde"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32cb9ad0e9a4cf9e804e30420900edde">ReadInput</a> (uint8_t pin, bool &amp;active) noexcept</td></tr>
-<tr class="memdesc:a32cb9ad0e9a4cf9e804e30420900edde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the logical level of an input pin.  <br /></td></tr>
+<tr class="memdesc:a32cb9ad0e9a4cf9e804e30420900edde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the physical level of a pin.  <br /></td></tr>
 <tr class="separator:a32cb9ad0e9a4cf9e804e30420900edde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb6abd365588fa5386e4bf78ac913f05" id="r_adb6abd365588fa5386e4bf78ac913f05"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb6abd365588fa5386e4bf78ac913f05">Toggle</a> (uint8_t pin) noexcept</td></tr>
 <tr class="memdesc:adb6abd365588fa5386e4bf78ac913f05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle the output state of a pin.  <br /></td></tr>
@@ -178,6 +173,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6ba1e5c9ca60f28a0dad4eae7fc2c4b6" id="r_a6ba1e5c9ca60f28a0dad4eae7fc2c4b6"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ba1e5c9ca60f28a0dad4eae7fc2c4b6">SetOutputs</a> (uint16_t pin_mask, bool active) noexcept</td></tr>
 <tr class="memdesc:a6ba1e5c9ca60f28a0dad4eae7fc2c4b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write output level for multiple pins at once.  <br /></td></tr>
 <tr class="separator:a6ba1e5c9ca60f28a0dad4eae7fc2c4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa74e1628bd1f61b6e5c1367dada481dd" id="r_aa74e1628bd1f61b6e5c1367dada481dd"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa74e1628bd1f61b6e5c1367dada481dd">SetOutputsVerified</a> (uint16_t pin_mask, bool active) noexcept</td></tr>
+<tr class="memdesc:aa74e1628bd1f61b6e5c1367dada481dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write output level for multiple pins in one transaction, then read the latch back and retry (up to 3×) until every selected bit matches.  <br /></td></tr>
+<tr class="separator:aa74e1628bd1f61b6e5c1367dada481dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72ce8f8a0f79654cfeb2a4ce7e7559d8" id="r_a72ce8f8a0f79654cfeb2a4ce7e7559d8"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72ce8f8a0f79654cfeb2a4ce7e7559d8">SetPullModes</a> (uint16_t pin_mask, hf_gpio_pull_mode_t pull_mode) noexcept</td></tr>
 <tr class="memdesc:a72ce8f8a0f79654cfeb2a4ce7e7559d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set pull mode for multiple pins at once.  <br /></td></tr>
 <tr class="separator:a72ce8f8a0f79654cfeb2a4ce7e7559d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,6 +191,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a31401008daec249d3a06a98aa9a336e6" id="r_a31401008daec249d3a06a98aa9a336e6"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31401008daec249d3a06a98aa9a336e6">SetPolarityInversion</a> (hf_pin_num_t pin, bool invert) noexcept</td></tr>
 <tr class="memdesc:a31401008daec249d3a06a98aa9a336e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set input polarity inversion for a pin.  <br /></td></tr>
 <tr class="separator:a31401008daec249d3a06a98aa9a336e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3095861c90ba05b81eb89c4ff3813663" id="r_a3095861c90ba05b81eb89c4ff3813663"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3095861c90ba05b81eb89c4ff3813663">SetMultiplePolarityInversion</a> (uint16_t pin_mask, bool invert) noexcept</td></tr>
+<tr class="memdesc:a3095861c90ba05b81eb89c4ff3813663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Batch-set input polarity inversion for a pin mask.  <br /></td></tr>
+<tr class="separator:a3095861c90ba05b81eb89c4ff3813663"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a693538e569689249d3e6ee19872a4972" id="r_a693538e569689249d3e6ee19872a4972"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a693538e569689249d3e6ee19872a4972">SetInterruptMask</a> (hf_pin_num_t pin, bool mask) noexcept</td></tr>
 <tr class="memdesc:a693538e569689249d3e6ee19872a4972"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the per-pin interrupt mask.  <br /></td></tr>
 <tr class="separator:a693538e569689249d3e6ee19872a4972"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -281,9 +282,12 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:ada54239b8d7a1b3429070e8325d2c208"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread safety for handler operations.  <br /></td></tr>
 <tr class="separator:ada54239b8d7a1b3429070e8325d2c208"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Pin Registry</div></td></tr>
-<tr class="memitem:a73f16fa7e56fd17c87093c825d7b7531" id="r_a73f16fa7e56fd17c87093c825d7b7531"><td class="memItemLeft" align="right" valign="top">std::array&lt; std::shared_ptr&lt; <a class="el" href="classPcal95555GpioPin.html">Pcal95555GpioPin</a> &gt;, 16 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73f16fa7e56fd17c87093c825d7b7531">pin_registry_</a></td></tr>
-<tr class="memdesc:a73f16fa7e56fd17c87093c825d7b7531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Created pin wrappers.  <br /></td></tr>
-<tr class="separator:a73f16fa7e56fd17c87093c825d7b7531"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec7e78d4ce7e63c8f8d1b336b09e5cae" id="r_aec7e78d4ce7e63c8f8d1b336b09e5cae"><td class="memItemLeft" align="right" valign="top">std::array&lt; <a class="el" href="classPcal95555GpioPin.html">Pcal95555GpioPin</a> *, 16 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec7e78d4ce7e63c8f8d1b336b09e5cae">pin_registry_</a> {}</td></tr>
+<tr class="memdesc:aec7e78d4ce7e63c8f8d1b336b09e5cae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-owning registry slots.  <br /></td></tr>
+<tr class="separator:aec7e78d4ce7e63c8f8d1b336b09e5cae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca6bd0126a289ef68ea3a846943d153d" id="r_aca6bd0126a289ef68ea3a846943d153d"><td class="memItemLeft" align="right" valign="top">std::array&lt; std::unique_ptr&lt; <a class="el" href="classPcal95555GpioPin.html">Pcal95555GpioPin</a> &gt;, 16 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca6bd0126a289ef68ea3a846943d153d">owned_pins_</a> {}</td></tr>
+<tr class="memdesc:aca6bd0126a289ef68ea3a846943d153d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heap pins from CreateGpioPin.  <br /></td></tr>
+<tr class="separator:aca6bd0126a289ef68ea3a846943d153d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Internal Pull Mode Tracking</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Tracks pull mode per-pin since the driver doesn't provide readback. </p>
 </div></td></tr>
@@ -295,6 +299,20 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a41f16f23becbbc45984e1adfed1320b0" id="r_a41f16f23becbbc45984e1adfed1320b0"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41f16f23becbbc45984e1adfed1320b0">prev_input_state_</a> = 0</td></tr>
 <tr class="memdesc:a41f16f23becbbc45984e1adfed1320b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last-read pin input levels (bitmask).  <br /></td></tr>
 <tr class="separator:a41f16f23becbbc45984e1adfed1320b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Port shadows (absolute write path)</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Avoid read-modify-write when register readback is untrustworthy. </p>
+</div></td></tr>
+<tr class="memitem:a11cd669d0c9317619e4eba98e2f43dbb" id="r_a11cd669d0c9317619e4eba98e2f43dbb"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11cd669d0c9317619e4eba98e2f43dbb">output_shadow_</a> {0xFFFFU}</td></tr>
+<tr class="memdesc:a11cd669d0c9317619e4eba98e2f43dbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">PCA POR default OUTPUT.  <br /></td></tr>
+<tr class="separator:a11cd669d0c9317619e4eba98e2f43dbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a863827b584dd3a129343827039a7190a" id="r_a863827b584dd3a129343827039a7190a"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a863827b584dd3a129343827039a7190a">config_shadow_</a> {0xFFFFU}</td></tr>
+<tr class="memdesc:a863827b584dd3a129343827039a7190a"><td class="mdescLeft">&#160;</td><td class="mdescRight">PCA POR default CONFIG (all input)  <br /></td></tr>
+<tr class="separator:a863827b584dd3a129343827039a7190a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7b92323d2fbb92fc1033b124c900599" id="r_ae7b92323d2fbb92fc1033b124c900599"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7b92323d2fbb92fc1033b124c900599">polarity_shadow_</a> {0}</td></tr>
+<tr class="memdesc:ae7b92323d2fbb92fc1033b124c900599"><td class="mdescLeft">&#160;</td><td class="mdescRight">POLARITY_INV.  <br /></td></tr>
+<tr class="separator:ae7b92323d2fbb92fc1033b124c900599"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a651563d023f252c7eb4ef8c241b3f8a8" id="r_a651563d023f252c7eb4ef8c241b3f8a8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a651563d023f252c7eb4ef8c241b3f8a8">port_shadow_valid_</a> {false}</td></tr>
+<tr class="separator:a651563d023f252c7eb4ef8c241b3f8a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
@@ -334,12 +352,36 @@ Friends</h2></td></tr>
 <tr class="memitem:a0a5df15d919f0d07454f2485ded1aa29" id="r_a0a5df15d919f0d07454f2485ded1aa29"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a5df15d919f0d07454f2485ded1aa29">GetI2cAddress</a> () const noexcept</td></tr>
 <tr class="memdesc:a0a5df15d919f0d07454f2485ded1aa29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the I2C address of the underlying device.  <br /></td></tr>
 <tr class="separator:a0a5df15d919f0d07454f2485ded1aa29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a600303a7bb4b99af37eb20cc2a30c8e2" id="r_a600303a7bb4b99af37eb20cc2a30c8e2"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; BaseGpio &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a600303a7bb4b99af37eb20cc2a30c8e2">CreateGpioPin</a> (hf_pin_num_t pin, hf_gpio_direction_t direction=hf_gpio_direction_t::HF_GPIO_DIRECTION_INPUT, hf_gpio_active_state_t active_state=hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH, hf_gpio_output_mode_t output_mode=hf_gpio_output_mode_t::HF_GPIO_OUTPUT_MODE_PUSH_PULL, hf_gpio_pull_mode_t pull_mode=hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_FLOATING, bool allow_existing=true) noexcept</td></tr>
-<tr class="memdesc:a600303a7bb4b99af37eb20cc2a30c8e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create or retrieve an existing BaseGpio pin wrapper.  <br /></td></tr>
-<tr class="separator:a600303a7bb4b99af37eb20cc2a30c8e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28d96ee5b65b2019ad925857da3b0fc9" id="r_a28d96ee5b65b2019ad925857da3b0fc9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28d96ee5b65b2019ad925857da3b0fc9">AttachStaticPin</a> (<a class="el" href="classPcal95555GpioPin.html">Pcal95555GpioPin</a> &amp;pin) noexcept</td></tr>
+<tr class="memdesc:a28d96ee5b65b2019ad925857da3b0fc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a caller-owned pin wrapper (no heap allocation).  <br /></td></tr>
+<tr class="separator:a28d96ee5b65b2019ad925857da3b0fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8aaf65b110fcc05a55588abc448c338c" id="r_a8aaf65b110fcc05a55588abc448c338c"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; BaseGpio &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8aaf65b110fcc05a55588abc448c338c">CreateGpioPin</a> (hf_pin_num_t pin, hf_gpio_direction_t direction=hf_gpio_direction_t::HF_GPIO_DIRECTION_INPUT, hf_gpio_active_state_t active_state=hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH, hf_gpio_output_mode_t output_mode=hf_gpio_output_mode_t::HF_GPIO_OUTPUT_MODE_PUSH_PULL, hf_gpio_pull_mode_t pull_mode=hf_gpio_pull_mode_t::HF_GPIO_PULL_MODE_FLOATING, bool allow_existing=true, bool configure_hardware=true) noexcept</td></tr>
+<tr class="memdesc:a8aaf65b110fcc05a55588abc448c338c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create or retrieve an existing BaseGpio pin wrapper (heap).  <br /></td></tr>
+<tr class="separator:a8aaf65b110fcc05a55588abc448c338c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2f28f1eaaf4c26798167d1b4c7487f0" id="r_ae2f28f1eaaf4c26798167d1b4c7487f0"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; BaseGpio &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2f28f1eaaf4c26798167d1b4c7487f0">GetGpioPin</a> (hf_pin_num_t pin) noexcept</td></tr>
 <tr class="memdesc:ae2f28f1eaaf4c26798167d1b4c7487f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an existing GPIO pin wrapper by number.  <br /></td></tr>
 <tr class="separator:ae2f28f1eaaf4c26798167d1b4c7487f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a0768a2f350d9bca3b10e1dbbc029b4" id="r_a7a0768a2f350d9bca3b10e1dbbc029b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPcal95555GpioPin.html">Pcal95555GpioPin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a0768a2f350d9bca3b10e1dbbc029b4">GetGpioPinRaw</a> (hf_pin_num_t pin) noexcept</td></tr>
+<tr class="memdesc:a7a0768a2f350d9bca3b10e1dbbc029b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raw pointer to a registered pin (no shared_ptr control block).  <br /></td></tr>
+<tr class="separator:a7a0768a2f350d9bca3b10e1dbbc029b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ff2904be993d89b71dc798c1ec5eb04" id="r_a2ff2904be993d89b71dc798c1ec5eb04"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ff2904be993d89b71dc798c1ec5eb04">ReadAllInputLevels</a> (uint16_t &amp;levels) noexcept</td></tr>
+<tr class="memdesc:a2ff2904be993d89b71dc798c1ec5eb04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read both INPUT_PORT registers in one dual-port transaction.  <br /></td></tr>
+<tr class="separator:a2ff2904be993d89b71dc798c1ec5eb04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0767335c4d2594a03df060ed820eefe" id="r_ae0767335c4d2594a03df060ed820eefe"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0767335c4d2594a03df060ed820eefe">ProgramPortsAbsolute</a> (uint16_t config, uint16_t output, uint16_t out_check_mask) noexcept</td></tr>
+<tr class="memdesc:ae0767335c4d2594a03df060ed820eefe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absolute program POL=0, OUTPUT latch, and CONFIG (no RMW).  <br /></td></tr>
+<tr class="separator:ae0767335c4d2594a03df060ed820eefe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a001163d478f30c49dc3f5afec27ac17c" id="r_a001163d478f30c49dc3f5afec27ac17c"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a001163d478f30c49dc3f5afec27ac17c">ReadConfigAndOutputPorts</a> (uint16_t &amp;config, uint16_t &amp;output) noexcept</td></tr>
+<tr class="memdesc:a001163d478f30c49dc3f5afec27ac17c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read CONFIG (1=input) and OUTPUT latch port pairs (PCA pin bits).  <br /></td></tr>
+<tr class="separator:a001163d478f30c49dc3f5afec27ac17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57bc7b4236fb5cb437c9e31f922a4829" id="r_a57bc7b4236fb5cb437c9e31f922a4829"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57bc7b4236fb5cb437c9e31f922a4829">ReadOutputLatchFromWire</a> (uint16_t &amp;output) noexcept</td></tr>
+<tr class="memdesc:a57bc7b4236fb5cb437c9e31f922a4829"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read OUTPUT_PORT_0/1 from the chip (never the CM4 shadow).  <br /></td></tr>
+<tr class="separator:a57bc7b4236fb5cb437c9e31f922a4829"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14bddc4daa10a06e8db9213e2fb7f656" id="r_a14bddc4daa10a06e8db9213e2fb7f656"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14bddc4daa10a06e8db9213e2fb7f656">ReadStandardRegisterBank</a> (uint16_t &amp;input, uint16_t &amp;output, uint16_t &amp;polarity, uint16_t &amp;config) noexcept</td></tr>
+<tr class="memdesc:a14bddc4daa10a06e8db9213e2fb7f656"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the full standard PCA9555 bank (0x00..0x07) as four 16-bit ports.  <br /></td></tr>
+<tr class="separator:a14bddc4daa10a06e8db9213e2fb7f656"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c9cfff643067cc85279cc373a11d6ae" id="r_a7c9cfff643067cc85279cc373a11d6ae"><td class="memItemLeft" align="right" valign="top">hf_gpio_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c9cfff643067cc85279cc373a11d6ae">VerifyOutputPinEffect</a> (uint8_t pin, uint16_t &amp;latch_high, uint16_t &amp;input_high, uint16_t &amp;latch_low, uint16_t &amp;input_low) noexcept</td></tr>
+<tr class="memdesc:a7c9cfff643067cc85279cc373a11d6ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive one pin and verify OUTPUT latch + INPUT pad follow.  <br /></td></tr>
+<tr class="separator:a7c9cfff643067cc85279cc373a11d6ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c3999b62728839cd55ab4f03a54bba1" id="r_a2c3999b62728839cd55ab4f03a54bba1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c3999b62728839cd55ab4f03a54bba1">IsPinCreated</a> (hf_pin_num_t pin) const noexcept</td></tr>
 <tr class="memdesc:a2c3999b62728839cd55ab4f03a54bba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a pin wrapper has been created.  <br /></td></tr>
 <tr class="separator:a2c3999b62728839cd55ab4f03a54bba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -358,7 +400,7 @@ Design Decisions</h2>
 <ul>
 <li><b>Non-templated</b>: The handler owns a concrete typed driver instance (pcal95555::PCAL95555&lt;HalI2cPcal95555Comm&gt;) internally. Since only one I2C communication type is used per handler, no dispatch mechanism is needed (unlike the TMC9660Handler which supports SPI or UART).</li>
 <li><b>Lazy initialization</b>: The driver and adapter are created in <a class="el" href="#a5c2e68d6c9e39e373d40e94f5e951558" title="Internal initialization (called by EnsureInitialized under mutex).">Initialize()</a>, not in the constructor. The driver itself also uses lazy initialization (auto-detecting chip variant on first I2C access).</li>
-<li><b>Pin factory pattern</b>: Pins are created on demand via <a class="el" href="#a600303a7bb4b99af37eb20cc2a30c8e2" title="Create or retrieve an existing BaseGpio pin wrapper.">CreateGpioPin()</a> and stored in a shared_ptr registry. Multiple calls for the same pin return the same instance.</li>
+<li><b>Pin factory pattern</b>: Pins are created on demand via <a class="el" href="#a8aaf65b110fcc05a55588abc448c338c" title="Create or retrieve an existing BaseGpio pin wrapper (heap).">CreateGpioPin()</a> and stored in a shared_ptr registry. Multiple calls for the same pin return the same instance.</li>
 <li><b>Chip variant awareness</b>: After initialization, <a class="el" href="#a997583346dffe6c95e5f8fcfc127c37b" title="Check if the detected chip supports Agile I/O features.">HasAgileIO()</a> reports whether PCAL9555A features (pull resistors, drive strength, interrupts, input latch, output mode) are available. Methods requiring Agile I/O gracefully fail on standard PCA9555.</li>
 </ul>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classHalI2cPcal95555Comm.html" title="Concrete I2C communication adapter for PCAL95555 using BaseI2c.">HalI2cPcal95555Comm</a> I2C communication adapter </dd>
@@ -505,6 +547,35 @@ GpioManager Manager that creates and owns handler instances </dd></dl>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a28d96ee5b65b2019ad925857da3b0fc9" name="a28d96ee5b65b2019ad925857da3b0fc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28d96ee5b65b2019ad925857da3b0fc9">&#9670;&#160;</a></span>AttachStaticPin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pcal95555Handler::AttachStaticPin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classPcal95555GpioPin.html">Pcal95555GpioPin</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>pin</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Register a caller-owned pin wrapper (no heap allocation). </p>
+<p>Prefer for static/.bss pin maps: place <code><a class="el" href="classPcal95555GpioPin.html" title="BaseGpio adapter for a single PCAL95555 GPIO expander pin.">Pcal95555GpioPin</a></code> in fixed storage, batch-program directions, then attach with <code>configure_hardware=false</code> in the pin ctor.</p>
+<dl class="section return"><dt>Returns</dt><dd>true if registered (or already the same object at that index). </dd></dl>
+
+</div>
+</div>
 <a id="afcb849e480d9f660d8f3f6c50b813fc6" name="afcb849e480d9f660d8f3f6c50b813fc6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afcb849e480d9f660d8f3f6c50b813fc6">&#9670;&#160;</a></span>ClearErrorFlags()</h2>
 
@@ -563,21 +634,11 @@ GpioManager Manager that creates and owns handler instances </dd></dl>
 
 <p>Configure the hardware interrupt pin (falling edge, active-low). </p>
 <dl class="section return"><dt>Returns</dt><dd>GPIO error code. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_add6bf45bbac47b7d8d579fbd9bc50d2e_cgraph.svg" width="480" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_add6bf45bbac47b7d8d579fbd9bc50d2e_icgraph.svg" width="1231" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
-<a id="a600303a7bb4b99af37eb20cc2a30c8e2" name="a600303a7bb4b99af37eb20cc2a30c8e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a600303a7bb4b99af37eb20cc2a30c8e2">&#9670;&#160;</a></span>CreateGpioPin()</h2>
+<a id="a8aaf65b110fcc05a55588abc448c338c" name="a8aaf65b110fcc05a55588abc448c338c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8aaf65b110fcc05a55588abc448c338c">&#9670;&#160;</a></span>CreateGpioPin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -613,7 +674,12 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>allow_existing</em><span class="paramdefsep"> = </span><span class="paramdefval">true</span></span>&#160;)</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>allow_existing</em><span class="paramdefsep"> = </span><span class="paramdefval">true</span>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>configure_hardware</em><span class="paramdefsep"> = </span><span class="paramdefval">true</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -623,20 +689,15 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Create or retrieve an existing BaseGpio pin wrapper. </p>
-<p>If a wrapper for the given pin already exists in the registry and allow_existing is true, the existing instance is returned. Otherwise a new <a class="el" href="classPcal95555GpioPin.html" title="BaseGpio adapter for a single PCAL95555 GPIO expander pin.">Pcal95555GpioPin</a> is created, initialized, and registered.</p>
+<p>Create or retrieve an existing BaseGpio pin wrapper (heap). </p>
+<p>Prefer <a class="el" href="#a28d96ee5b65b2019ad925857da3b0fc9">AttachStaticPin</a> when bring-up must avoid heap. This factory remains for tests and ad-hoc tools.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pin</td><td>Pin number (0-15). </td></tr>
-    <tr><td class="paramname">direction</td><td>Initial direction (ignored if pin exists). </td></tr>
-    <tr><td class="paramname">active_state</td><td>Active polarity (ignored if pin exists). </td></tr>
-    <tr><td class="paramname">output_mode</td><td>Output mode (ignored if pin exists). </td></tr>
-    <tr><td class="paramname">pull_mode</td><td>Pull resistor mode (ignored if pin exists). </td></tr>
-    <tr><td class="paramname">allow_existing</td><td>If true, returns existing pin; if false, fails if exists. </td></tr>
+    <tr><td class="paramname">configure_hardware</td><td>If false, <a class="el" href="#a5c2e68d6c9e39e373d40e94f5e951558" title="Internal initialization (called by EnsureInitialized under mutex).">Initialize()</a> skips I2C direction/pull (caller must have batched SetDirections). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>shared_ptr&lt;BaseGpio&gt; or nullptr on failure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>shared_ptr that does not own the object (handler unique_ptr does); nullptr on failure. </dd></dl>
 
 </div>
 </div>
@@ -665,11 +726,6 @@ Here is the caller graph for this function:</div>
 
 <p>Internal deinitialization. </p>
 <dl class="section return"><dt>Returns</dt><dd>GPIO error code. </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a233b1596b075c64ee9de7ba5d78342be_icgraph.svg" width="474" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -699,11 +755,6 @@ Here is the caller graph for this function:</div>
 <p>Drain any pending interrupt that was deferred from ISR context. </p>
 <p>This method should be called from task context (e.g., a polling loop or a dedicated worker task). It checks the atomic interrupt_pending_ flag, and if set, performs the I2C reads and user callback dispatch safely.</p>
 <dl class="section return"><dt>Returns</dt><dd>true if an interrupt was processed, false if none was pending. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a2e8fc9ad39143e2cc26a2e6a9d711a7e_cgraph.svg" width="492" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -732,11 +783,6 @@ Here is the call graph for this function:</div>
 
 <p>Dump comprehensive diagnostics to the system log. </p>
 <p>Logs initialization status, I2C address, chip variant, pin registry, interrupt configuration, and error flags at INFO level. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a7fcf65a91f94a68330ee6738f8297b83_cgraph.svg" width="944" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -806,11 +852,6 @@ Here is the call graph for this function:</div>
 <p>Deinitialize the handler and release resources. </p>
 <p>Disables hardware interrupt, clears the pin registry, and releases the driver and I2C adapter.</p>
 <dl class="section return"><dt>Returns</dt><dd>true if already deinitialized or deinitialization succeeded. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a305b8bc372d595fd0f176daa5bf9c6d1_cgraph.svg" width="474" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -840,16 +881,6 @@ Here is the call graph for this function:</div>
 <p>Ensure the handler is initialized (lazy initialization). </p>
 <p>On first call, creates the I2C adapter and driver, runs the driver's <a class="el" href="#a255f8ed3461301b509ff4ae9f6e78c51" title="Ensure the handler is initialized (lazy initialization).">EnsureInitialized()</a> (which auto-detects chip variant), and optionally configures the hardware interrupt pin.</p>
 <dl class="section return"><dt>Returns</dt><dd>true if already initialized or initialization succeeded. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a255f8ed3461301b509ff4ae9f6e78c51_cgraph.svg" width="972" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a255f8ed3461301b509ff4ae9f6e78c51_icgraph.svg" width="578" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -879,16 +910,6 @@ Here is the caller graph for this function:</div>
 <p>Check init state under already-held handler_mutex_. </p>
 <p>Check initialization under an already-held handler_mutex_.</p>
 <dl class="section return"><dt>Returns</dt><dd>true if initialized or initialization succeeds. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a7d8ed72bf4fc9dfcb0be4877deec99b3_cgraph.svg" width="972" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a7d8ed72bf4fc9dfcb0be4877deec99b3_icgraph.svg" width="720" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1041,11 +1062,6 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a8121efea49cc4be54c4526eb346e5f8d_cgraph.svg" width="1490" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1074,16 +1090,6 @@ Here is the call graph for this function:</div>
 
 <p>Get the underlying PCAL95555 driver for advanced register-level operations. </p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the CRTP driver, or nullptr if not initialized. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a6715e51d5d09a2466b3b86820b9f5ea6_cgraph.svg" width="1231" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a6715e51d5d09a2466b3b86820b9f5ea6_icgraph.svg" width="480" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1139,13 +1145,34 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Get an existing GPIO pin wrapper by number. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pin</td><td>Pin number (0-15). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>shared_ptr&lt;BaseGpio&gt; or nullptr if pin not created. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>non-owning shared_ptr, or nullptr if not registered. </dd></dl>
+
+</div>
+</div>
+<a id="a7a0768a2f350d9bca3b10e1dbbc029b4" name="a7a0768a2f350d9bca3b10e1dbbc029b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a0768a2f350d9bca3b10e1dbbc029b4">&#9670;&#160;</a></span>GetGpioPinRaw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPcal95555GpioPin.html">Pcal95555GpioPin</a> * Pcal95555Handler::GetGpioPinRaw </td>
+          <td>(</td>
+          <td class="paramtype">hf_pin_num_t</td>          <td class="paramname"><span class="paramname"><em>pin</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Raw pointer to a registered pin (no shared_ptr control block). </p>
 
 </div>
 </div>
@@ -1253,11 +1280,6 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>GPIO_SUCCESS or error code. </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a1228e87bf2287b442883106c275a0bda_icgraph.svg" width="484" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1302,11 +1324,6 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a87e8b50faf5d3d815227068ff26b1a6b_icgraph.svg" width="1490" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1336,11 +1353,6 @@ Here is the caller graph for this function:</div>
 <p>Check if the detected chip supports Agile I/O features. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if PCAL9555A detected, false if PCA9555 or not yet initialized. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Call after <a class="el" href="#a255f8ed3461301b509ff4ae9f6e78c51" title="Ensure the handler is initialized (lazy initialization).">EnsureInitialized()</a> for accurate results. </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a997583346dffe6c95e5f8fcfc127c37b_icgraph.svg" width="483" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1369,11 +1381,6 @@ Here is the caller graph for this function:</div>
 
 <p>Check if hardware interrupt support is available. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if an interrupt pin was provided at construction. </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a582a8375e50b2df78dfd91aa132955af_icgraph.svg" width="492" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1402,16 +1409,6 @@ Here is the caller graph for this function:</div>
 
 <p>Internal initialization (called by EnsureInitialized under mutex). </p>
 <dl class="section return"><dt>Returns</dt><dd>GPIO error code. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a5c2e68d6c9e39e373d40e94f5e951558_cgraph.svg" width="732" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a5c2e68d6c9e39e373d40e94f5e951558_icgraph.svg" width="972" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1610,11 +1607,115 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Process pending interrupts by reading status and dispatching callbacks. </p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a7b9a82a463f57e0394b55a4f3ecead39_icgraph.svg" width="492" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+
 </div>
+</div>
+<a id="ae0767335c4d2594a03df060ed820eefe" name="ae0767335c4d2594a03df060ed820eefe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0767335c4d2594a03df060ed820eefe">&#9670;&#160;</a></span>ProgramPortsAbsolute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">hf_gpio_err_t Pcal95555Handler::ProgramPortsAbsolute </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>config</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>output</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>out_check_mask</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Absolute program POL=0, OUTPUT latch, and CONFIG (no RMW). </p>
+<p>Seeds the handler port shadow used by <a class="el" href="#a4591e7da481679beac69c20bbd554db1">SetOutput</a> / <a class="el" href="#a6475963048e57f95207bead94c0b46f9">SetDirections</a>. Verifies via latch readback when distinct, else INPUT pad follow on driven-high output bits (datasheet: INPUT mirrors pad for outputs).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">config</td><td>CONFIG mask (bit=1 → input) </td></tr>
+    <tr><td class="paramname">output</td><td>OUTPUT latch mask </td></tr>
+    <tr><td class="paramname">out_check_mask</td><td>bits of OUTPUT that must match for verify </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2ff2904be993d89b71dc798c1ec5eb04" name="a2ff2904be993d89b71dc798c1ec5eb04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ff2904be993d89b71dc798c1ec5eb04">&#9670;&#160;</a></span>ReadAllInputLevels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">hf_gpio_err_t Pcal95555Handler::ReadAllInputLevels </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>levels</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read both INPUT_PORT registers in one dual-port transaction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">levels</td><td>Bit N = physical HIGH on PCA pin N. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a001163d478f30c49dc3f5afec27ac17c" name="a001163d478f30c49dc3f5afec27ac17c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a001163d478f30c49dc3f5afec27ac17c">&#9670;&#160;</a></span>ReadConfigAndOutputPorts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">hf_gpio_err_t Pcal95555Handler::ReadConfigAndOutputPorts </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>output</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read CONFIG (1=input) and OUTPUT latch port pairs (PCA pin bits). </p>
 
 </div>
 </div>
@@ -1645,8 +1746,8 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Read the logical level of an input pin. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Read the physical level of a pin. </p>
+<p>Output pins (CONFIG bit clear) return the OUTPUT latch shadow — Mid I2C0 <code>INPUT_PORT</code> is not used for driven lines. Input pins sample the wire via the driver. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">pin</td><td>Pin number (0-15). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">active</td><td>true if HIGH, false if LOW. </td></tr>
@@ -1654,6 +1755,76 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>GPIO_SUCCESS or error code (checks driver error flags). </dd></dl>
+
+</div>
+</div>
+<a id="a57bc7b4236fb5cb437c9e31f922a4829" name="a57bc7b4236fb5cb437c9e31f922a4829"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57bc7b4236fb5cb437c9e31f922a4829">&#9670;&#160;</a></span>ReadOutputLatchFromWire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">hf_gpio_err_t Pcal95555Handler::ReadOutputLatchFromWire </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>output</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read OUTPUT_PORT_0/1 from the chip (never the CM4 shadow). </p>
+<p>Use after SetOutput to confirm the chip latch actually updated. Must run before any INPUT_PORT read on this bus. </p>
+
+</div>
+</div>
+<a id="a14bddc4daa10a06e8db9213e2fb7f656" name="a14bddc4daa10a06e8db9213e2fb7f656"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14bddc4daa10a06e8db9213e2fb7f656">&#9670;&#160;</a></span>ReadStandardRegisterBank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">hf_gpio_err_t Pcal95555Handler::ReadStandardRegisterBank </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>input</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>output</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>polarity</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read the full standard PCA9555 bank (0x00..0x07) as four 16-bit ports. </p>
+<p>Per NXP datasheet: INPUT reflects pad levels even when the pin is an output; OUTPUT readback is the latch flip-flop; CONFIG bit=1 means input. Use after a write to confirm the latch took effect. </p>
 
 </div>
 </div>
@@ -1705,11 +1876,6 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>GPIO error code. </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a59b2dcc6d426c19a487175e8a83ed999_icgraph.svg" width="471" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1738,11 +1904,6 @@ Here is the caller graph for this function:</div>
 
 <p>Reset all registers to power-on default state. </p>
 <dl class="section return"><dt>Returns</dt><dd>GPIO_ERR_OK on success, or a specific hf_gpio_err_t error code. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_ab614d32aa8d2c6bb775ebbbd148875b3_cgraph.svg" width="1219" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1782,11 +1943,6 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>GPIO_SUCCESS or error code. </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_a5ff0ad1ac3c4dcaf45dc4c0d27827da7_icgraph.svg" width="490" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1909,6 +2065,45 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a3095861c90ba05b81eb89c4ff3813663" name="a3095861c90ba05b81eb89c4ff3813663"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3095861c90ba05b81eb89c4ff3813663">&#9670;&#160;</a></span>SetMultiplePolarityInversion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">hf_gpio_err_t Pcal95555Handler::SetMultiplePolarityInversion </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>pin_mask</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>invert</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Batch-set input polarity inversion for a pin mask. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pin_mask</td><td>Bits set select pins 0..15. </td></tr>
+    <tr><td class="paramname">invert</td><td>true to invert, false for normal (typical clear: mask=0xFFFF). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>GPIO_ERR_OK on success, or a specific hf_gpio_err_t error code. </dd></dl>
+
+</div>
+</div>
 <a id="a4591e7da481679beac69c20bbd554db1" name="a4591e7da481679beac69c20bbd554db1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4591e7da481679beac69c20bbd554db1">&#9670;&#160;</a></span>SetOutput()</h2>
 
@@ -2027,6 +2222,38 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="aa74e1628bd1f61b6e5c1367dada481dd" name="aa74e1628bd1f61b6e5c1367dada481dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa74e1628bd1f61b6e5c1367dada481dd">&#9670;&#160;</a></span>SetOutputsVerified()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">hf_gpio_err_t Pcal95555Handler::SetOutputsVerified </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>pin_mask</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>active</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write output level for multiple pins in one transaction, then read the latch back and retry (up to 3×) until every selected bit matches. </p>
+<p>The verified single-pin path costs a write + read per pin; parking several control straps one by one (TMC EN + nRST, re-asserted) held the motor thread ~30 ms (desk 2026-10-15). One dual-port write + one read-back covers them all. </p><dl class="section return"><dt>Returns</dt><dd>GPIO_SUCCESS, or GPIO_ERR_WRITE_FAILURE when the latch never matched. </dd></dl>
+
+</div>
+</div>
 <a id="a31401008daec249d3a06a98aa9a336e6" name="a31401008daec249d3a06a98aa9a336e6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a31401008daec249d3a06a98aa9a336e6">&#9670;&#160;</a></span>SetPolarityInversion()</h2>
 
@@ -2109,11 +2336,6 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>GPIO_SUCCESS or error code. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Requires PCAL9555A. Returns GPIO_ERR_UNSUPPORTED_OPERATION on PCA9555. </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPcal95555Handler_ab1ea2933e065e8a224874ba21cb5bf43_icgraph.svg" width="491" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -2252,6 +2474,63 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a7c9cfff643067cc85279cc373a11d6ae" name="a7c9cfff643067cc85279cc373a11d6ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c9cfff643067cc85279cc373a11d6ae">&#9670;&#160;</a></span>VerifyOutputPinEffect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">hf_gpio_err_t Pcal95555Handler::VerifyOutputPinEffect </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>latch_high</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>input_high</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>latch_low</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>input_low</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Drive one pin and verify OUTPUT latch + INPUT pad follow. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">pin</td><td>PCA pin 0..15 (prefer an unused pad for bench integrity tests). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">latch_high</td><td>OUTPUT bank after writing HIGH </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">input_high</td><td>INPUT bank after writing HIGH </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">latch_low</td><td>OUTPUT bank after writing LOW </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">input_low</td><td>INPUT bank after writing LOW </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>GPIO_SUCCESS when latch followed both edges; pad follow is best-effort (external shorts may still make INPUT disagree — check the out masks). </dd></dl>
+
+</div>
+</div>
 <h2 class="groupheader">Friends And Related Symbol Documentation</h2>
 <a id="ab5ff10bc52cad940896de791a45cc012" name="ab5ff10bc52cad940896de791a45cc012"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab5ff10bc52cad940896de791a45cc012">&#9670;&#160;</a></span>Pcal95555GpioPin</h2>
@@ -2278,6 +2557,30 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a863827b584dd3a129343827039a7190a" name="a863827b584dd3a129343827039a7190a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a863827b584dd3a129343827039a7190a">&#9670;&#160;</a></span>config_shadow_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t Pcal95555Handler::config_shadow_ {0xFFFFU}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>PCA POR default CONFIG (all input) </p>
+
+</div>
+</div>
 <a id="ada54239b8d7a1b3429070e8325d2c208" name="ada54239b8d7a1b3429070e8325d2c208"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ada54239b8d7a1b3429070e8325d2c208">&#9670;&#160;</a></span>handler_mutex_</h2>
 
@@ -2446,6 +2749,54 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a11cd669d0c9317619e4eba98e2f43dbb" name="a11cd669d0c9317619e4eba98e2f43dbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11cd669d0c9317619e4eba98e2f43dbb">&#9670;&#160;</a></span>output_shadow_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t Pcal95555Handler::output_shadow_ {0xFFFFU}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>PCA POR default OUTPUT. </p>
+
+</div>
+</div>
+<a id="aca6bd0126a289ef68ea3a846943d153d" name="aca6bd0126a289ef68ea3a846943d153d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca6bd0126a289ef68ea3a846943d153d">&#9670;&#160;</a></span>owned_pins_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt;std::unique_ptr&lt;<a class="el" href="classPcal95555GpioPin.html">Pcal95555GpioPin</a>&gt;, 16&gt; Pcal95555Handler::owned_pins_ {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Heap pins from CreateGpioPin. </p>
+
+</div>
+</div>
 <a id="a19c7623e661a824f5341b08420a3dd69" name="a19c7623e661a824f5341b08420a3dd69"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a19c7623e661a824f5341b08420a3dd69">&#9670;&#160;</a></span>pcal95555_driver_</h2>
 
@@ -2470,8 +2821,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a73f16fa7e56fd17c87093c825d7b7531" name="a73f16fa7e56fd17c87093c825d7b7531"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73f16fa7e56fd17c87093c825d7b7531">&#9670;&#160;</a></span>pin_registry_</h2>
+<a id="aec7e78d4ce7e63c8f8d1b336b09e5cae" name="aec7e78d4ce7e63c8f8d1b336b09e5cae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec7e78d4ce7e63c8f8d1b336b09e5cae">&#9670;&#160;</a></span>pin_registry_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2480,7 +2831,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::array&lt;std::shared_ptr&lt;<a class="el" href="classPcal95555GpioPin.html">Pcal95555GpioPin</a>&gt;, 16&gt; Pcal95555Handler::pin_registry_</td>
+          <td class="memname">std::array&lt;<a class="el" href="classPcal95555GpioPin.html">Pcal95555GpioPin</a>*, 16&gt; Pcal95555Handler::pin_registry_ {}</td>
         </tr>
       </table>
   </td>
@@ -2490,7 +2841,53 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Created pin wrappers. </p>
+<p>Non-owning registry slots. </p>
+
+</div>
+</div>
+<a id="ae7b92323d2fbb92fc1033b124c900599" name="ae7b92323d2fbb92fc1033b124c900599"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b92323d2fbb92fc1033b124c900599">&#9670;&#160;</a></span>polarity_shadow_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t Pcal95555Handler::polarity_shadow_ {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>POLARITY_INV. </p>
+
+</div>
+</div>
+<a id="a651563d023f252c7eb4ef8c241b3f8a8" name="a651563d023f252c7eb4ef8c241b3f8a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a651563d023f252c7eb4ef8c241b3f8a8">&#9670;&#160;</a></span>port_shadow_valid_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Pcal95555Handler::port_shadow_valid_ {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

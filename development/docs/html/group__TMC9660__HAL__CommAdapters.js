@@ -15,9 +15,13 @@ var group__TMC9660__HAL__CommAdapters =
       [ "delayUs", "classHalSpiTmc9660Comm.html#aeed51d5504933aa294d940f0799c279a", null ],
       [ "gpioRead", "classHalSpiTmc9660Comm.html#aa7c3ebc1dfe70f3012ce352c0e881ca3", null ],
       [ "gpioSet", "classHalSpiTmc9660Comm.html#ad62042c7cc3d39dd901ecf1f6a3ccb6c", null ],
+      [ "hostSpiTransferTMCLPair", "classHalSpiTmc9660Comm.html#a0bab91ce7d731fa96bf50cfa9b5495fa", null ],
+      [ "rawTmclProbe", "classHalSpiTmc9660Comm.html#ae364a929ba09c27d675dde8613063f3b", null ],
       [ "spiTransferBootloader", "classHalSpiTmc9660Comm.html#a691d8a1d66cf606952d11afc73bffda0", null ],
       [ "spiTransferTMCL", "classHalSpiTmc9660Comm.html#a84b3ab081c7b9cab86432945ca9e3f6e", null ],
+      [ "transportDiag", "classHalSpiTmc9660Comm.html#a2569902a00690043e386003f413b853b", null ],
       [ "ctrl_pins_", "classHalSpiTmc9660Comm.html#a57a03a0afc398cb7af11919a42aff141", null ],
+      [ "last_spi_err_", "classHalSpiTmc9660Comm.html#abe9a38c16d2446dc0cb6d1b3d6e1f0fc", null ],
       [ "spi_", "classHalSpiTmc9660Comm.html#a79247e058a5250b805f60de3c2e58ced", null ]
     ] ],
     [ "HalUartTmc9660Comm", "classHalUartTmc9660Comm.html", [
@@ -27,10 +31,13 @@ var group__TMC9660__HAL__CommAdapters =
       [ "delayUs", "classHalUartTmc9660Comm.html#a03e458d1dca85da1149a9040d8458c06", null ],
       [ "gpioRead", "classHalUartTmc9660Comm.html#af2f8bd1ec3ad0a3c3d59b97e13babff2", null ],
       [ "gpioSet", "classHalUartTmc9660Comm.html#a85aa3e262d86857902e11e818e2e818e", null ],
+      [ "replyTimeoutMs", "classHalUartTmc9660Comm.html#a610647df8d601e5eb5892d924fa1fde6", null ],
+      [ "setReplyTimeoutMs", "classHalUartTmc9660Comm.html#ab2591ae09ecaaecc8816abed53467422", null ],
       [ "uartReceiveTMCL", "classHalUartTmc9660Comm.html#a0df8ee2b226b44eb2e21728e4b7c44d7", null ],
       [ "uartSendTMCL", "classHalUartTmc9660Comm.html#a213dfdf5041d1d98372413b9cd3a9b53", null ],
       [ "uartTransferBootloader", "classHalUartTmc9660Comm.html#a044f4af1242b3fb2a9412523e575447a", null ],
       [ "ctrl_pins_", "classHalUartTmc9660Comm.html#a7d842bccb7b871b4fa3367935b3c4024", null ],
+      [ "reply_timeout_ms_", "classHalUartTmc9660Comm.html#a5017fad0cce1e963730dff7dbd1609d0", null ],
       [ "uart_", "classHalUartTmc9660Comm.html#ad5eebb3f68eb20fe923a9370d6120ece", null ]
     ] ]
 ];

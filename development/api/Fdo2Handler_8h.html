@@ -106,16 +106,6 @@ $(function(){initNavTree('Fdo2Handler_8h.html',''); initResizable(); });
 <code>#include &quot;RtosMutex.h&quot;</code><br />
 <code>#include &quot;base/BaseUart.h&quot;</code><br />
 <code>#include &quot;core/hf-core-drivers/external/hf-fdo2-driver/inc/fdo2.hpp&quot;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for Fdo2Handler.h:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Fdo2Handler_8h__incl.svg" width="846" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div><div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Fdo2Handler_8h__dep__incl.svg" width="142" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 </div>
 <p><a href="Fdo2Handler_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -133,7 +123,7 @@ Classes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>HAL-level handler for the PyroScience FDO2-G2 oxygen probe. </p>
-<p>Bridges the platform-agnostic templated <code>fdo2::Driver&lt;UartT&gt;</code> (from <code>hf-core-drivers/external/hf-fdo2-driver</code>) to a <code>BaseUart&amp;</code> reference. Apps that already own a configured UART (acquired via <code>CommChannelsManager::AcquireUart</code>) can construct a handler with a single <code>BaseUart&amp;</code> and the handler internally:</p>
+<p>Bridges the platform-agnostic templated <code>fdo2::Driver&lt;UartT&gt;</code> (from <code>hf-core-drivers/external/hf-fdo2-driver</code>) to a <code>BaseUart&amp;</code> reference. Apps that already own a configured UART can construct a handler with a single <code>BaseUart&amp;</code> and the handler internally:</p>
 <ul>
 <li>instantiates the CRTP <code>fdo2::UartInterface&lt;&gt;</code> adapter that translates <code>BaseUart</code> calls into the byte-level read / write / flush primitives the driver needs,</li>
 <li>owns the templated <code>fdo2::Driver&lt;<a class="el" href="classHalUartFdo2Comm.html" title="CRTP adapter that turns a BaseUart&amp; into a transport the templated fdo2::Driver&lt;UartT&gt; can drive.">HalUartFdo2Comm</a>&gt;</code>,</li>

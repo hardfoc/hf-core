@@ -105,11 +105,6 @@ $(function(){initNavTree('classFdo2Handler.html',''); initResizable(); });
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Fdo2Handler_8h_source.html">Fdo2Handler.h</a>&gt;</code></p>
-<div class="dynheader">
-Collaboration diagram for Fdo2Handler:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classFdo2Handler__coll__graph.svg" width="750" height="214"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -174,7 +169,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>HAL handler wrapping one FDO2-G2 oxygen probe on a <code>BaseUart</code>. </p>
-<p>Ownership: the handler holds a reference to the supplied <code>BaseUart</code> (the HAL owns the actual <code>EspUart</code> via <code>CommChannelsManager</code>); the handler owns the CRTP adapter + the templated driver instance. </p>
+<p>Ownership: the handler holds a reference to the supplied <code>BaseUart</code> (the host owns the UART instance); the handler owns the CRTP adapter + the templated driver instance. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a32c49b5c3217e4b30c4da75a41a0c566" name="a32c49b5c3217e4b30c4da75a41a0c566"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a32c49b5c3217e4b30c4da75a41a0c566">&#9670;&#160;</a></span>DriverType</h2>
@@ -226,7 +221,7 @@ Private Attributes</h2></td></tr>
 <p>Construct a handler around an already-configured UART. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">uart</td><td>Reference to a UART acquired via <code>CommChannelsManager::AcquireUart</code>. Must outlive the handler. </td></tr>
+    <tr><td class="paramname">uart</td><td>Reference to an already-configured UART. Must outlive the handler. </td></tr>
     <tr><td class="paramname">config</td><td>Per-instance timeouts + diagnostics index. </td></tr>
     <tr><td class="paramname">bus_mutex</td><td>Optional shared mutex (non-null) when more than one PSUP device shares the UART. When null, the handler uses its own private mutex. </td></tr>
   </table>
@@ -310,11 +305,6 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Wait the FDO2-G2 power-up settle (<code>kFdo2G2PowerUpSettleMs</code>) and probe the device with <code>#VERS</code>. Caches the returned <code>VersionInfo</code> on success. Idempotent. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classFdo2Handler_a36795f24ed679bf45cc5de809fb9a9d8_cgraph.svg" width="756" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -340,16 +330,6 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classFdo2Handler_a78beeff055bbfb7035037778f87998fa_cgraph.svg" width="487" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classFdo2Handler_a78beeff055bbfb7035037778f87998fa_icgraph.svg" width="502" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -431,11 +411,6 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>One <code>#MOXY</code> round-trip — partial-pressure O2 + temperature + status. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classFdo2Handler_a99bba6021370bbd0dcf7b86f8f4efb4e_cgraph.svg" width="740" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -462,11 +437,6 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 <p>One <code>#MRAW</code> round-trip — same as MOXY plus back-side ambient pressure, optical signal, and housing humidity. Use this when the caller wants true volume-percent O2 (<code>100 · pO2 / pressure_mbar</code>). </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classFdo2Handler_a8d1c48731fcc63071c675fae4e566985_cgraph.svg" width="740" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -544,11 +514,6 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Read the device's 64-bit unique serial via <code>#IDNR</code>. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classFdo2Handler_a9ca814fc66a1d02cb0b3bfb7879e9f8c_cgraph.svg" width="739" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>

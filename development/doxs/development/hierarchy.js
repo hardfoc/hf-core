@@ -5,6 +5,8 @@ var hierarchy =
     ] ],
     [ "Ads7952Diagnostics", "structAds7952Diagnostics.html", null ],
     [ "Ads7952HandlerConfig", "structAds7952HandlerConfig.html", null ],
+    [ "Ads9324Diagnostics", "structAds9324Diagnostics.html", null ],
+    [ "Ads9324HandlerConfig", "structAds9324HandlerConfig.html", null ],
     [ "AlicatBasis2Handler", "classAlicatBasis2Handler.html", null ],
     [ "AlicatBasis2HandlerConfig", "structAlicatBasis2HandlerConfig.html", null ],
     [ "As5047uConfig", "structAs5047uConfig.html", null ],
@@ -12,8 +14,10 @@ var hierarchy =
     [ "As5047uHandler", "classAs5047uHandler.html", null ],
     [ "As5047uMeasurement", "structAs5047uMeasurement.html", null ],
     [ "AsciiArtFormat", "structAsciiArtFormat.html", null ],
+    [ "At25040Handler", "classAt25040Handler.html", null ],
     [ "BaseAdc", null, [
       [ "Ads7952Handler", "classAds7952Handler.html", null ],
+      [ "Ads9324Handler", "classAds9324Handler.html", null ],
       [ "Tmc9660AdcWrapper", "classTmc9660AdcWrapper.html", null ],
       [ "Tmc9660Handler::Adc", "classTmc9660Handler_1_1Adc.html", null ]
     ] ],
@@ -33,6 +37,8 @@ var hierarchy =
     [ "BaseThread", null, [
       [ "TestThread", "classTestThread.html", null ]
     ] ],
+    [ "Bmp581Handler", "classBmp581Handler.html", null ],
+    [ "Bmp581HandlerConfig", "structBmp581HandlerConfig.html", null ],
     [ "Bno08xActivityData", "structBno08xActivityData.html", null ],
     [ "Bno08xCalibrationStatus", "structBno08xCalibrationStatus.html", null ],
     [ "Bno08xConfig", "structBno08xConfig.html", null ],
@@ -41,6 +47,12 @@ var hierarchy =
     [ "Bno08xImuData", "structBno08xImuData.html", null ],
     [ "Bno08xQuaternion", "structBno08xQuaternion.html", null ],
     [ "Bno08xVector3", "structBno08xVector3.html", null ],
+    [ "bmp581::BusInterface", null, [
+      [ "HalI2cBmp581Comm", "classHalI2cBmp581Comm.html", null ]
+    ] ],
+    [ "pf1550::BusInterface", null, [
+      [ "HalPf1550Comm", "classHalPf1550Comm.html", null ]
+    ] ],
     [ "CanOpenBaseCanLink", "classCanOpenBaseCanLink.html", null ],
     [ "CO_CANmodule_t", "structCO__CANmodule__t.html", null ],
     [ "CO_CANrx_t", "structCO__CANrx__t.html", null ],
@@ -52,7 +64,11 @@ var hierarchy =
       [ "HalSpiBno08xComm", "classHalSpiBno08xComm.html", null ]
     ] ],
     [ "Ws2812Handler::Config", "structWs2812Handler_1_1Config.html", null ],
+    [ "Bmp581Handler::Counters", "structBmp581Handler_1_1Counters.html", null ],
+    [ "SfmHandler::Counters", "structSfmHandler_1_1Counters.html", null ],
     [ "AlicatBasis2Handler::DiscoveredDevice", "structAlicatBasis2Handler_1_1DiscoveredDevice.html", null ],
+    [ "DynamixelHandler", "classDynamixelHandler.html", null ],
+    [ "DynamixelHandlerConfig", "structDynamixelHandlerConfig.html", null ],
     [ "std::false_type", null, [
       [ "Tle92466edHandler::is_driver_result< T >", "structTle92466edHandler_1_1is__driver__result.html", null ]
     ] ],
@@ -60,11 +76,17 @@ var hierarchy =
     [ "Fdo2HandlerConfig", "structFdo2HandlerConfig.html", null ],
     [ "HandlerTaskArgs", "structHandlerTaskArgs.html", null ],
     [ "HfUtilsCanOpenTransport", "classHfUtilsCanOpenTransport.html", null ],
+    [ "ads9324::HostInterface", null, [
+      [ "Ads9324SpiHostAdapter", "classAds9324SpiHostAdapter.html", null ]
+    ] ],
     [ "pca9685::I2cInterface", null, [
       [ "HalI2cPca9685Comm", "classHalI2cPca9685Comm.html", null ]
     ] ],
     [ "pcal95555::I2cInterface", null, [
       [ "HalI2cPcal95555Comm", "classHalI2cPcal95555Comm.html", null ]
+    ] ],
+    [ "sfm::I2cInterface", null, [
+      [ "HalI2cSfmComm", "classHalI2cSfmComm.html", null ]
     ] ],
     [ "se050::I2cTransceiveInterface", null, [
       [ "HalI2cSe050Comm", "classHalI2cSe050Comm.html", null ]
@@ -72,16 +94,22 @@ var hierarchy =
     [ "IBno08xDriverOps", "classIBno08xDriverOps.html", [
       [ "Bno08xDriverImpl< CommType >", "classBno08xDriverImpl.html", null ]
     ] ],
+    [ "Isf15acp4Handler", "classIsf15acp4Handler.html", null ],
+    [ "Isf15acp4HandlerConfig", "structIsf15acp4HandlerConfig.html", null ],
     [ "LogConfig", "structLogConfig.html", null ],
     [ "Logger", "classLogger.html", null ],
     [ "Max22200Handler", "classMax22200Handler.html", null ],
     [ "Mcp9700AdcAdapter", "classMcp9700AdcAdapter.html", null ],
+    [ "anonymous_namespace{Pcal95555Handler.cpp}::NonOwningGpioDeleter", "structanonymous__namespace_02Pcal95555Handler_8cpp_03_1_1NonOwningGpioDeleter.html", null ],
     [ "ntc_temp_handler_config_t", "structntc__temp__handler__config__t.html", null ],
     [ "sm_test::Owner", "structsm__test_1_1Owner.html", null ],
     [ "Pca9685Handler", "classPca9685Handler.html", null ],
     [ "Pcal95555Handler", "classPcal95555Handler.html", null ],
+    [ "Pf1550Handler", "classPf1550Handler.html", null ],
     [ "Se050Handler", "classSe050Handler.html", null ],
     [ "Se050HandlerConfig", "structSe050HandlerConfig.html", null ],
+    [ "SfmHandler", "classSfmHandler.html", null ],
+    [ "SfmHandlerConfig", "structSfmHandlerConfig.html", null ],
     [ "tmc51x0::SpiCommInterface", null, [
       [ "HalSpiTmc5160Comm", "classHalSpiTmc5160Comm.html", null ]
     ] ],
@@ -91,8 +119,17 @@ var hierarchy =
     [ "ads7952::SpiInterface", null, [
       [ "Ads7952SpiAdapter", "classAds7952SpiAdapter.html", null ]
     ] ],
+    [ "ads9324::SpiInterface", null, [
+      [ "Ads9324SpiHostAdapter", "classAds9324SpiHostAdapter.html", null ]
+    ] ],
     [ "as5047u::SpiInterface", null, [
       [ "As5047uSpiAdapter", "classAs5047uSpiAdapter.html", null ]
+    ] ],
+    [ "at25040::SpiInterface", null, [
+      [ "At25040SpiAdapter", "classAt25040SpiAdapter.html", null ]
+    ] ],
+    [ "isf15acp4::SpiInterface", null, [
+      [ "HalIsf15acp4SpiAdapter", "classHalIsf15acp4SpiAdapter.html", null ]
     ] ],
     [ "max22200::SpiInterface", null, [
       [ "HalSpiMax22200Comm", "classHalSpiMax22200Comm.html", null ]
@@ -108,6 +145,9 @@ var hierarchy =
     [ "Tmc5160Handler", "classTmc5160Handler.html", null ],
     [ "Tmc9660CtrlPins", "structTmc9660CtrlPins.html", null ],
     [ "Tmc9660Handler", "classTmc9660Handler.html", null ],
+    [ "dynamixel::Transport", null, [
+      [ "HalUartDynamixelComm", "classHalUartDynamixelComm.html", null ]
+    ] ],
     [ "std::true_type", null, [
       [ "Tle92466edHandler::is_driver_result< tle92466ed::DriverResult< T > >", "structTle92466edHandler_1_1is__driver__result_3_01tle92466ed_1_1DriverResult_3_01T_01_4_01_4.html", null ]
     ] ],

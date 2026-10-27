@@ -25,21 +25,21 @@
 var NAVTREE =
 [
   [ "HF-Core Platform", "index.html", [
-    [ "📚 Table of Contents", "index.html#autotoc_md30", null ],
-    [ "📦 Overview", "index.html#autotoc_md31", null ],
-    [ "✨ Features", "index.html#autotoc_md32", null ],
-    [ "🏗️ Architecture", "index.html#autotoc_md33", null ],
-    [ "🚀 Quick Start", "index.html#autotoc_md34", [
-      [ "Clone", "index.html#autotoc_md35", null ],
-      [ "Build and Flash a Test", "index.html#autotoc_md36", null ],
-      [ "Build All CI-Enabled Tests", "index.html#autotoc_md37", null ]
+    [ "📚 Table of Contents", "index.html#autotoc_md29", null ],
+    [ "📦 Overview", "index.html#autotoc_md30", null ],
+    [ "✨ Features", "index.html#autotoc_md31", null ],
+    [ "🏗️ Architecture", "index.html#autotoc_md32", null ],
+    [ "🚀 Quick Start", "index.html#autotoc_md33", [
+      [ "Clone", "index.html#autotoc_md34", null ],
+      [ "Build and Flash a Test", "index.html#autotoc_md35", null ],
+      [ "Build All CI-Enabled Tests", "index.html#autotoc_md36", null ]
     ] ],
-    [ "📖 Handlers", "index.html#autotoc_md38", null ],
-    [ "🔧 Utilities", "index.html#autotoc_md39", null ],
-    [ "📂 Repository Structure", "index.html#autotoc_md40", null ],
-    [ "📚 Documentation", "index.html#autotoc_md41", null ],
-    [ "🤝 Contributing", "index.html#autotoc_md42", null ],
-    [ "📄 License", "index.html#autotoc_md43", null ],
+    [ "📖 Handlers", "index.html#autotoc_md37", null ],
+    [ "🔧 Utilities", "index.html#autotoc_md38", null ],
+    [ "📂 Repository Structure", "index.html#autotoc_md39", null ],
+    [ "📚 Documentation", "index.html#autotoc_md40", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md41", null ],
+    [ "📄 License", "index.html#autotoc_md42", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -60,6 +60,7 @@ var NAVTREE =
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Typedefs", "functions_type.html", null ],
+        [ "Enumerations", "functions_enum.html", null ],
         [ "Related Symbols", "functions_rela.html", null ]
       ] ]
     ] ],
@@ -80,15 +81,17 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Ads7952Handler_8cpp.html",
-"Ws2812Handler_8h.html",
-"classBno08xHandler.html#acf9772bf644ddfeff83371740dd6216b",
-"classLogger.html#aea05eaeaa020b687d8ec39ec6e72b0c9",
-"classPca9685PwmAdapter.html#a99fbcd37f8ec3a7147f09895b6c8d0ce",
-"classTmc9660Handler.html#a1aea362e219afe55d37c69b637d48dc2",
-"functions_func_l.html",
-"namespacehandler__utils.html#afc7fd91265677d0865cbc2a413754ed8",
-"structBno08xEulerAngles.html#a8f2e2420f6aaed647d9107741e59fe7e",
-"tmc5160__handler__comprehensive__test_8cpp.html#a2e723b1283d9cf5fb62f391f378447d0"
+"TestFramework_8h.html#a57a48f91a141d98e45f82937581e1a97",
+"classAlicatBasis2Handler.html#a38b458591fe58f4115e9b4f5f8b9eb6a",
+"classHalI2cBno08xComm.html#a2b036e336f3f439a0a158fac5fdf1421",
+"classIsf15acp4Handler.html#a2805feb4c0fa354eab088fc2c5570f73",
+"classPca9685GpioPin.html#a30c9e37f305e5df75f0c9d56362351e7",
+"classSe050Handler.html#ad0ca869cab38533ee2f3d7a7998bf5a1",
+"classTmc9660Handler_1_1Gpio.html#a70c6aaec5983e4096c27e7d4e8767ef2",
+"functions_x.html",
+"namespacelogger__decor.html",
+"structBno08xConfig.html#a83422ed8164bc618ec23072faf5ac31a",
+"tle92466ed__handler__comprehensive__test_8cpp.html#a3a90ad4389a9d7da93fe8c62c4aede90"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

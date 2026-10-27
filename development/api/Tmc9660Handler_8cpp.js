@@ -1,5 +1,5 @@
 var Tmc9660Handler_8cpp =
 [
-    [ "readGpioToSignal", "Tmc9660Handler_8cpp.html#aee82d92e54869f56afcdfa5bf23dbf2f", null ],
-    [ "setGpioFromSignal", "Tmc9660Handler_8cpp.html#a91f1b4322a75b8ac25a8890110ec9af6", null ]
+    [ "readGpioToSignal", "Tmc9660Handler_8cpp.html#a9dc9d5dcab6377d0a891fcfc400abe10", null ],
+    [ "setGpioFromSignal", "Tmc9660Handler_8cpp.html#a747df189a572cdfd86ec4d3f74160078", null ]
 ];

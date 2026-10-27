@@ -109,16 +109,6 @@ $(function(){initNavTree('TestFramework_8h.html',''); initResizable(); });
 <code>#include &quot;freertos/queue.h&quot;</code><br />
 <code>#include &quot;freertos/semphr.h&quot;</code><br />
 <code>#include &quot;freertos/task.h&quot;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for TestFramework.h:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="TestFramework_8h__incl.svg" width="979" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div><div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="TestFramework_8h__dep__incl.svg" width="3906" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 </div>
 <p><a href="TestFramework_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -250,7 +240,7 @@ Variables</h2></td></tr>
 <div class="line">      ESP_LOGI(<a class="code hl_variable" href="Ads7952Handler_8cpp.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;Test &#39;%s&#39; disabled by configuration&quot;</span>, test_name);                             \</div>
 <div class="line">    }                                                                                              \</div>
 <div class="line">  } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="aAds7952Handler_8cpp_html_ae7d9c64644585526560e9e6824fd84dc"><div class="ttname"><a href="Ads7952Handler_8cpp.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a></div><div class="ttdeci">static constexpr const char * TAG</div><div class="ttdef"><b>Definition</b> Ads7952Handler.cpp:53</div></div>
+<div class="ttc" id="aAds7952Handler_8cpp_html_ae7d9c64644585526560e9e6824fd84dc"><div class="ttname"><a href="Ads7952Handler_8cpp.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a></div><div class="ttdeci">static constexpr const char * TAG</div><div class="ttdef"><b>Definition</b> Ads7952Handler.cpp:48</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -296,7 +286,7 @@ Variables</h2></td></tr>
 <div class="line">    <span class="keywordtype">bool</span> result = test_func();                                                                     \</div>
 <div class="line">    uint64_t end_time = esp_timer_get_time();                                                      \</div>
 <div class="line">    uint64_t execution_time = end_time - start_time;                                               \</div>
-<div class="line">    <a class="code hl_variable" href="as5047u__handler__comprehensive__test_8cpp.html#aaff89257c54366921eebb8ec1348b1fd">g_test_results</a>.<a class="code hl_function" href="structTestResults.html#a257eba3a9005a5c19c68ae27774948f7">add_result</a>(result, execution_time);                                             \</div>
+<div class="line">    <a class="code hl_variable" href="ads9324__handler__comprehensive__test_8cpp.html#aaff89257c54366921eebb8ec1348b1fd">g_test_results</a>.<a class="code hl_function" href="structTestResults.html#a257eba3a9005a5c19c68ae27774948f7">add_result</a>(result, execution_time);                                             \</div>
 <div class="line">    if (result) {                                                                                  \</div>
 <div class="line">      ESP_LOGI(<a class="code hl_variable" href="Ads7952Handler_8cpp.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;[SUCCESS] PASSED: &quot;</span> #test_func <span class="stringliteral">&quot; (%.2f ms)&quot;</span>, execution_time / 1000.0);        \</div>
 <div class="line">    } <span class="keywordflow">else</span> {                                                                                       \</div>
@@ -304,7 +294,7 @@ Variables</h2></td></tr>
 <div class="line">    }                                                                                              \</div>
 <div class="line">    vTaskDelay(pdMS_TO_TICKS(100));                                                                \</div>
 <div class="line">  } <span class="keywordflow">while</span> (0)</div>
-<div class="ttc" id="aas5047u__handler__comprehensive__test_8cpp_html_aaff89257c54366921eebb8ec1348b1fd"><div class="ttname"><a href="as5047u__handler__comprehensive__test_8cpp.html#aaff89257c54366921eebb8ec1348b1fd">g_test_results</a></div><div class="ttdeci">static TestResults g_test_results</div><div class="ttdef"><b>Definition</b> as5047u_handler_comprehensive_test.cpp:48</div></div>
+<div class="ttc" id="aads9324__handler__comprehensive__test_8cpp_html_aaff89257c54366921eebb8ec1348b1fd"><div class="ttname"><a href="ads9324__handler__comprehensive__test_8cpp.html#aaff89257c54366921eebb8ec1348b1fd">g_test_results</a></div><div class="ttdeci">static TestResults g_test_results</div><div class="ttdef"><b>Definition</b> ads9324_handler_comprehensive_test.cpp:36</div></div>
 <div class="ttc" id="astructTestResults_html_a257eba3a9005a5c19c68ae27774948f7"><div class="ttname"><a href="structTestResults.html#a257eba3a9005a5c19c68ae27774948f7">TestResults::add_result</a></div><div class="ttdeci">void add_result(bool passed, uint64_t execution_time) noexcept</div><div class="ttdoc">Add test result and update statistics.</div><div class="ttdef"><b>Definition</b> TestFramework.h:169</div></div>
 </div><!-- fragment -->
 <p>Standardized test execution macro with timing and result tracking. </p>
@@ -359,7 +349,7 @@ Variables</h2></td></tr>
 <div class="line">    <span class="keywordtype">bool</span> result = test_func();                                                                     \</div>
 <div class="line">    uint64_t end_time = esp_timer_get_time();                                                      \</div>
 <div class="line">    uint64_t execution_time = end_time - start_time;                                               \</div>
-<div class="line">    <a class="code hl_variable" href="as5047u__handler__comprehensive__test_8cpp.html#aaff89257c54366921eebb8ec1348b1fd">g_test_results</a>.<a class="code hl_function" href="structTestResults.html#a257eba3a9005a5c19c68ae27774948f7">add_result</a>(result, execution_time);                                             \</div>
+<div class="line">    <a class="code hl_variable" href="ads9324__handler__comprehensive__test_8cpp.html#aaff89257c54366921eebb8ec1348b1fd">g_test_results</a>.<a class="code hl_function" href="structTestResults.html#a257eba3a9005a5c19c68ae27774948f7">add_result</a>(result, execution_time);                                             \</div>
 <div class="line">    if (result) {                                                                                  \</div>
 <div class="line">      ESP_LOGI(<a class="code hl_variable" href="Ads7952Handler_8cpp.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;[SUCCESS] PASSED: %s (%.2f ms)&quot;</span>, test_name, execution_time / 1000.0);         \</div>
 <div class="line">    } <span class="keywordflow">else</span> {                                                                                       \</div>
@@ -685,16 +675,6 @@ Variables</h2></td></tr>
 
 <p>Automatically initialize GPIO14 test indicator if not already done. </p>
 <dl class="section note"><dt>Note</dt><dd>This function is called automatically by the test framework </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="TestFramework_8h_a57a48f91a141d98e45f82937581e1a97_cgraph.svg" width="386" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="TestFramework_8h_a57a48f91a141d98e45f82937581e1a97_icgraph.svg" width="535" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -723,11 +703,6 @@ Here is the caller graph for this function:</div>
 
 <p>Flip the test progression indicator to show next test. </p>
 <dl class="section note"><dt>Note</dt><dd>This function is automatically called by the test framework macros </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="TestFramework_8h_a7bb80345e5681c19686df292fa897daf_icgraph.svg" width="283" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -757,11 +732,6 @@ Here is the caller graph for this function:</div>
 <p>Initialize the test progression indicator on GPIO14. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if successful, false otherwise </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function is automatically called by the test framework </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="TestFramework_8h_a3967179ac699a5b02ef9787b549409fe_icgraph.svg" width="722" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -920,16 +890,6 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="TestFramework_8h_a200bb35a3a48c625b9cb8d2511d6bd87_cgraph.svg" width="572" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="TestFramework_8h_a200bb35a3a48c625b9cb8d2511d6bd87_icgraph.svg" width="284" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -973,16 +933,6 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="TestFramework_8h_ab7e4c076755ecdf2ad6212cb8f6578ab_cgraph.svg" width="587" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="TestFramework_8h_ab7e4c076755ecdf2ad6212cb8f6578ab_icgraph.svg" width="299" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -1010,11 +960,6 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>FreeRTOS task trampoline to execute a test with a larger dedicated stack. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="TestFramework_8h_ae0c6ad85cd439fc16572fe4b495e5479_cgraph.svg" width="391" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>

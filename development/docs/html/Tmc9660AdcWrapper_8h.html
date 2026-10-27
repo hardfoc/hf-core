@@ -97,19 +97,9 @@ $(function(){initNavTree('Tmc9660AdcWrapper_8h.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 
-<p>Thin BaseAdc delegation wrapper for manager-layer ownership of TMC9660 ADC.  
+<p>Thin BaseAdc delegation wrapper when the host owns a unique_ptr.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;base/BaseAdc.h&quot;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for Tmc9660AdcWrapper.h:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Tmc9660AdcWrapper_8h__incl.svg" width="183" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div><div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Tmc9660AdcWrapper_8h__dep__incl.svg" width="464" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 </div>
 <p><a href="Tmc9660AdcWrapper_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -120,30 +110,23 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Thin BaseAdc delegation wrapper for manager-layer ownership of TMC9660 ADC. </p>
+<div class="textblock"><p>Thin BaseAdc delegation wrapper when the host owns a unique_ptr. </p>
 <h2><a class="anchor" id="autotoc_md18"></a>
 Purpose</h2>
 <p>The TMC9660's ADC functionality is implemented by <a class="el" href="classTmc9660Handler_1_1Adc.html" title="BaseAdc adapter for all TMC9660 ADC channels.">Tmc9660Handler::Adc</a> (an inner class of <a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a> that inherits from BaseAdc). The handler owns this inner class instance and exposes it via <a class="el" href="classTmc9660Handler.html#a7fe382c4dbf6bf84ed31586e52ec2e6e" title="Get a reference to the ADC wrapper.">Tmc9660Handler::adc()</a>.</p>
-<p>However, the AdcManager needs to own a std::unique_ptr&lt;BaseAdc&gt; that it can register, manage, and destroy independently. Since <a class="el" href="classTmc9660Handler_1_1Adc.html" title="BaseAdc adapter for all TMC9660 ADC channels.">Tmc9660Handler::Adc</a> is owned by the handler (and cannot be transferred), this wrapper class exists to bridge the ownership gap:</p>
+<p>A host that needs to own a std::unique_ptr&lt;BaseAdc&gt; cannot take ownership of the inner class. This wrapper bridges that gap:</p>
 <div class="fragment"><div class="line">┌──────────────┐      ┌─────────────────────┐      ┌───────────────────────┐</div>
-<div class="line">│  AdcManager  │ owns │  <a class="code hl_class" href="classTmc9660AdcWrapper.html">Tmc9660AdcWrapper</a>  │ refs │  <a class="code hl_class" href="classTmc9660Handler_1_1Adc.html">Tmc9660Handler::Adc</a>  │</div>
+<div class="line">│  host owner  │ owns │  <a class="code hl_class" href="classTmc9660AdcWrapper.html">Tmc9660AdcWrapper</a>  │ refs │  <a class="code hl_class" href="classTmc9660Handler_1_1Adc.html">Tmc9660Handler::Adc</a>  │</div>
 <div class="line">│              │─────&gt;│  (BaseAdc)          │─────&gt;│  (BaseAdc impl)       │</div>
 <div class="line">│  unique_ptr  │      │  delegates all calls│      │  reads TMC9660 driver │</div>
 <div class="line">└──────────────┘      └─────────────────────┘      └───────────────────────┘</div>
-<div class="ttc" id="aclassTmc9660AdcWrapper_html"><div class="ttname"><a href="classTmc9660AdcWrapper.html">Tmc9660AdcWrapper</a></div><div class="ttdoc">Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.</div><div class="ttdef"><b>Definition</b> Tmc9660AdcWrapper.h:72</div></div>
-<div class="ttc" id="aclassTmc9660Handler_1_1Adc_html"><div class="ttname"><a href="classTmc9660Handler_1_1Adc.html">Tmc9660Handler::Adc</a></div><div class="ttdoc">BaseAdc adapter for all TMC9660 ADC channels.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:729</div></div>
+<div class="ttc" id="aclassTmc9660AdcWrapper_html"><div class="ttname"><a href="classTmc9660AdcWrapper.html">Tmc9660AdcWrapper</a></div><div class="ttdoc">Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.</div><div class="ttdef"><b>Definition</b> Tmc9660AdcWrapper.h:63</div></div>
+<div class="ttc" id="aclassTmc9660Handler_1_1Adc_html"><div class="ttname"><a href="classTmc9660Handler_1_1Adc.html">Tmc9660Handler::Adc</a></div><div class="ttdoc">BaseAdc adapter for all TMC9660 ADC channels.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:774</div></div>
 </div><!-- fragment --><p>Every BaseAdc virtual method in this class is a one-line delegation to handler_.adc().Method(). No additional logic, buffering, or transformation is performed.</p>
 <h2><a class="anchor" id="autotoc_md19"></a>
 Lifetime Requirements</h2>
-<p>The <a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a> referenced by this wrapper must remain alive for the entire lifetime of the wrapper. This is naturally satisfied when MotorController owns the handler and AdcManager creates the wrapper from that handler, since both managers are singletons with matched lifetimes.</p>
-<h2><a class="anchor" id="autotoc_md20"></a>
-Analogous Patterns</h2>
-<ul>
-<li>Tmc9660TemperatureWrapper (in TemperatureManager.h) does the same for BaseTemperature, delegating to <a class="el" href="classTmc9660Handler_1_1Temperature.html" title="BaseTemperature adapter for the TMC9660 internal chip temperature sensor.">Tmc9660Handler::Temperature</a>.</li>
-</ul>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classTmc9660Handler_1_1Adc.html" title="BaseAdc adapter for all TMC9660 ADC channels.">Tmc9660Handler::Adc</a> The actual ADC implementation this class delegates to. </dd>
-<dd>
-AdcManager::CreateTmc9660AdcWrapper Factory that creates instances of this class.</dd></dl>
+<p>The <a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a> referenced by this wrapper must remain alive for the entire lifetime of the wrapper. The host that owns both objects is responsible for matching those lifetimes.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classTmc9660Handler_1_1Adc.html" title="BaseAdc adapter for all TMC9660 ADC channels.">Tmc9660Handler::Adc</a> The actual ADC implementation this class delegates to.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>HardFOC Team </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
 </div></div><!-- contents -->

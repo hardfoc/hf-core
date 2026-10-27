@@ -106,13 +106,9 @@ $(function(){initNavTree('classHalI2cPcal95555Comm.html',''); initResizable(); }
 <div class="dynheader">
 Inheritance diagram for HalI2cPcal95555Comm:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalI2cPcal95555Comm__inherit__graph.svg" width="214" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for HalI2cPcal95555Comm:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalI2cPcal95555Comm__coll__graph.svg" width="214" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+ <div class="center">
+  <img src="classHalI2cPcal95555Comm.png" alt=""/>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -149,6 +145,13 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a5f821ea69c3532d8cc758b444e1d83cd" id="r_a5f821ea69c3532d8cc758b444e1d83cd"><td class="memItemLeft" align="right" valign="top">std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f821ea69c3532d8cc758b444e1d83cd">interrupt_handler_</a></td></tr>
 <tr class="memdesc:a5f821ea69c3532d8cc758b444e1d83cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stored interrupt handler from driver.  <br /></td></tr>
 <tr class="separator:a5f821ea69c3532d8cc758b444e1d83cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1725f4bcf6c8775f42772131486b8a8f" id="r_a1725f4bcf6c8775f42772131486b8a8f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1725f4bcf6c8775f42772131486b8a8f">cmd_scratch_</a> {0}</td></tr>
+<tr class="memdesc:a1725f4bcf6c8775f42772131486b8a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register cmd byte for Read/Write framing.  <br /></td></tr>
+<tr class="separator:a1725f4bcf6c8775f42772131486b8a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea7b83e5acbd6808e63b96b61ea6940e" id="r_aea7b83e5acbd6808e63b96b61ea6940e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea7b83e5acbd6808e63b96b61ea6940e">tx_scratch_</a> [4] {}</td></tr>
+<tr class="separator:aea7b83e5acbd6808e63b96b61ea6940e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bad3cf07822e4dd367a725aac48c03a" id="r_a9bad3cf07822e4dd367a725aac48c03a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9bad3cf07822e4dd367a725aac48c03a">rx_scratch_</a> [2] {}</td></tr>
+<tr class="separator:a9bad3cf07822e4dd367a725aac48c03a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Concrete I2C communication adapter for PCAL95555 using BaseI2c. </p>
@@ -394,6 +397,30 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a1725f4bcf6c8775f42772131486b8a8f" name="a1725f4bcf6c8775f42772131486b8a8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1725f4bcf6c8775f42772131486b8a8f">&#9670;&#160;</a></span>cmd_scratch_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t HalI2cPcal95555Comm::cmd_scratch_ {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Register cmd byte for Read/Write framing. </p>
+
+</div>
+</div>
 <a id="aaab0f2ead8fb5c16cd047a24bc8139f5" name="aaab0f2ead8fb5c16cd047a24bc8139f5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaab0f2ead8fb5c16cd047a24bc8139f5">&#9670;&#160;</a></span>i2c_device_</h2>
 
@@ -463,6 +490,51 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Stored interrupt handler from driver. </p>
+
+</div>
+</div>
+<a id="a9bad3cf07822e4dd367a725aac48c03a" name="a9bad3cf07822e4dd367a725aac48c03a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bad3cf07822e4dd367a725aac48c03a">&#9670;&#160;</a></span>rx_scratch_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t HalI2cPcal95555Comm::rx_scratch_[2] {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aea7b83e5acbd6808e63b96b61ea6940e" name="aea7b83e5acbd6808e63b96b61ea6940e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea7b83e5acbd6808e63b96b61ea6940e">&#9670;&#160;</a></span>tx_scratch_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t HalI2cPcal95555Comm::tx_scratch_[4] {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>TX/RX framing scratch in internal SRAM (not task-stack / external RAM). </p>
 
 </div>
 </div>

@@ -106,13 +106,9 @@ $(function(){initNavTree('classHalSpiTle92466edComm.html',''); initResizable(); 
 <div class="dynheader">
 Inheritance diagram for HalSpiTle92466edComm:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTle92466edComm__inherit__graph.svg" width="224" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for HalSpiTle92466edComm:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTle92466edComm__coll__graph.svg" width="224" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+ <div class="center">
+  <img src="classHalSpiTle92466edComm.png" alt=""/>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -121,29 +117,50 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae5ebff246df187621d975c09b4d32585"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">CRTP-Required Methods</div></td></tr>
 <tr class="memitem:a2f62649da77db8dcc44340f1bcf31973" id="r_a2f62649da77db8dcc44340f1bcf31973"><td class="memItemLeft" align="right" valign="top">tle92466ed::CommResult&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f62649da77db8dcc44340f1bcf31973">Init</a> () noexcept</td></tr>
+<tr class="memdesc:a2f62649da77db8dcc44340f1bcf31973"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset pulse, assert EN, then SPI identity / fault clear.  <br /></td></tr>
 <tr class="separator:a2f62649da77db8dcc44340f1bcf31973"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25410af1693bc75af0fcb40d7cce22ab" id="r_a25410af1693bc75af0fcb40d7cce22ab"><td class="memItemLeft" align="right" valign="top">tle92466ed::CommResult&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25410af1693bc75af0fcb40d7cce22ab">Deinit</a> () noexcept</td></tr>
+<tr class="memdesc:a25410af1693bc75af0fcb40d7cce22ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark adapter deinitialized; does not change GPIO or SPI state.  <br /></td></tr>
 <tr class="separator:a25410af1693bc75af0fcb40d7cce22ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63f84b0db1a338f4c02e76e8d01c8b65" id="r_a63f84b0db1a338f4c02e76e8d01c8b65"><td class="memItemLeft" align="right" valign="top">tle92466ed::CommResult&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63f84b0db1a338f4c02e76e8d01c8b65">Transfer32</a> (uint32_t tx_data) noexcept</td></tr>
+<tr class="memdesc:a63f84b0db1a338f4c02e76e8d01c8b65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Single 32-bit SPI frame (Mode 1, MSB first).  <br /></td></tr>
 <tr class="separator:a63f84b0db1a338f4c02e76e8d01c8b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a058b8f150542b2e746f08a1f3b84208b" id="r_a058b8f150542b2e746f08a1f3b84208b"><td class="memItemLeft" align="right" valign="top">tle92466ed::CommResult&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a058b8f150542b2e746f08a1f3b84208b">TransferMulti</a> (std::span&lt; const uint32_t &gt; tx_data, std::span&lt; uint32_t &gt; rx_data) noexcept</td></tr>
+<tr class="memdesc:a058b8f150542b2e746f08a1f3b84208b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pipelined multi-frame SPI transfer under one SPI2 bus lock.  <br /></td></tr>
 <tr class="separator:a058b8f150542b2e746f08a1f3b84208b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3abfd791065fcca6d44884f420bc1ced" id="r_a3abfd791065fcca6d44884f420bc1ced"><td class="memItemLeft" align="right" valign="top">tle92466ed::CommResult&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3abfd791065fcca6d44884f420bc1ced">TransferMulti</a> (std::span&lt; const uint32_t &gt; tx_data, std::span&lt; uint32_t &gt; rx_data, uint32_t gap_us) noexcept</td></tr>
+<tr class="memdesc:a3abfd791065fcca6d44884f420bc1ced"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a058b8f150542b2e746f08a1f3b84208b">TransferMulti</a> with an explicit inter-frame CS-high gap.  <br /></td></tr>
+<tr class="separator:a3abfd791065fcca6d44884f420bc1ced"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca4238d0c15c631b7fca413fdf7420ab" id="r_aca4238d0c15c631b7fca413fdf7420ab"><td class="memItemLeft" align="right" valign="top">tle92466ed::CommResult&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca4238d0c15c631b7fca413fdf7420ab">Delay</a> (uint32_t microseconds) noexcept</td></tr>
+<tr class="memdesc:aca4238d0c15c631b7fca413fdf7420ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busy-wait delay in microseconds (datasheet timing gaps).  <br /></td></tr>
 <tr class="separator:aca4238d0c15c631b7fca413fdf7420ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9aca0311d71b2663db79601720b3de07" id="r_a9aca0311d71b2663db79601720b3de07"><td class="memItemLeft" align="right" valign="top">tle92466ed::CommResult&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9aca0311d71b2663db79601720b3de07">Configure</a> (const tle92466ed::SPIConfig &amp;config) noexcept</td></tr>
+<tr class="memdesc:a9aca0311d71b2663db79601720b3de07"><td class="mdescLeft">&#160;</td><td class="mdescRight">No-op; <code>BaseSpi</code> is pre-configured for Mode 1 / 32-bit frames.  <br /></td></tr>
 <tr class="separator:a9aca0311d71b2663db79601720b3de07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74ccbe3aa8f726c7b9ca9096636dcf14" id="r_a74ccbe3aa8f726c7b9ca9096636dcf14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74ccbe3aa8f726c7b9ca9096636dcf14">IsReady</a> () const noexcept</td></tr>
+<tr class="memdesc:a74ccbe3aa8f726c7b9ca9096636dcf14"><td class="mdescLeft">&#160;</td><td class="mdescRight">True after <a class="el" href="#a2f62649da77db8dcc44340f1bcf31973">Init</a> succeeded (GPIO polarity parked, SPI ready).  <br /></td></tr>
 <tr class="separator:a74ccbe3aa8f726c7b9ca9096636dcf14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69ba2d992118332b715f6ab8e1fa0a56" id="r_a69ba2d992118332b715f6ab8e1fa0a56"><td class="memItemLeft" align="right" valign="top">tle92466ed::CommError&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69ba2d992118332b715f6ab8e1fa0a56">GetLastError</a> () const noexcept</td></tr>
+<tr class="memdesc:a69ba2d992118332b715f6ab8e1fa0a56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last comm-layer error from <a class="el" href="#a63f84b0db1a338f4c02e76e8d01c8b65">Transfer32</a> or GPIO helpers.  <br /></td></tr>
 <tr class="separator:a69ba2d992118332b715f6ab8e1fa0a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6284f4ee27f3afb48b9f7fb005d5e6c" id="r_ae6284f4ee27f3afb48b9f7fb005d5e6c"><td class="memItemLeft" align="right" valign="top">tle92466ed::CommResult&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6284f4ee27f3afb48b9f7fb005d5e6c">ClearErrors</a> () noexcept</td></tr>
+<tr class="memdesc:ae6284f4ee27f3afb48b9f7fb005d5e6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear <a class="el" href="#a2155df77a576e4c58d2365bc3ae39951">last_error_</a>; does not clear chip fault registers.  <br /></td></tr>
 <tr class="separator:ae6284f4ee27f3afb48b9f7fb005d5e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a324a1156fd81d3aaf3c6d6f07296ae3b" id="r_a324a1156fd81d3aaf3c6d6f07296ae3b"><td class="memItemLeft" align="right" valign="top">tle92466ed::CommResult&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a324a1156fd81d3aaf3c6d6f07296ae3b">GpioSet</a> (tle92466ed::CtrlPin pin, tle92466ed::GpioSignal signal) noexcept</td></tr>
+<tr class="memdesc:a324a1156fd81d3aaf3c6d6f07296ae3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive RESN, EN, or FAULTN via configured BaseGpio active levels.  <br /></td></tr>
 <tr class="separator:a324a1156fd81d3aaf3c6d6f07296ae3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a082f6fda7c85de00474f24f2bae90691" id="r_a082f6fda7c85de00474f24f2bae90691"><td class="memItemLeft" align="right" valign="top">tle92466ed::CommResult&lt; tle92466ed::GpioSignal &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a082f6fda7c85de00474f24f2bae90691">GpioRead</a> (tle92466ed::CtrlPin pin) noexcept</td></tr>
+<tr class="memdesc:a082f6fda7c85de00474f24f2bae90691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read RESN, EN, or FAULTN logical state.  <br /></td></tr>
 <tr class="separator:a082f6fda7c85de00474f24f2bae90691"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada2e34106a72dd56b1513f83a0cce63e" id="r_ada2e34106a72dd56b1513f83a0cce63e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada2e34106a72dd56b1513f83a0cce63e">Log</a> (tle92466ed::LogLevel level, const char *tag, const char *format, va_list args) noexcept</td></tr>
+<tr class="memdesc:ada2e34106a72dd56b1513f83a0cce63e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Route driver log lines to the HAL <a class="el" href="classLogger.html">Logger</a>.  <br /></td></tr>
 <tr class="separator:ada2e34106a72dd56b1513f83a0cce63e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a40e8c8cdb9dea21d7f828b1186a8ea" id="r_a4a40e8c8cdb9dea21d7f828b1186a8ea"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a40e8c8cdb9dea21d7f828b1186a8ea">LastRxWord</a> () const noexcept</td></tr>
+<tr class="memdesc:a4a40e8c8cdb9dea21d7f828b1186a8ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last 32-bit SPI RX word (bring-up / WrongDeviceID diagnostics).  <br /></td></tr>
+<tr class="separator:a4a40e8c8cdb9dea21d7f828b1186a8ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f7a1432092e8109ab3d7532eb56a9bf" id="r_a0f7a1432092e8109ab3d7532eb56a9bf"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f7a1432092e8109ab3d7532eb56a9bf">LastRxWordFirst</a> () const noexcept</td></tr>
+<tr class="memdesc:a0f7a1432092e8109ab3d7532eb56a9bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">RX word from the FIRST frame of the last <a class="el" href="#a058b8f150542b2e746f08a1f3b84208b">TransferMulti</a> chain.  <br /></td></tr>
+<tr class="separator:a0f7a1432092e8109ab3d7532eb56a9bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -159,10 +176,15 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a3e4ab75d1716561d08697a47917f56a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2155df77a576e4c58d2365bc3ae39951" id="r_a2155df77a576e4c58d2365bc3ae39951"><td class="memItemLeft" align="right" valign="top">tle92466ed::CommError&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2155df77a576e4c58d2365bc3ae39951">last_error_</a> {tle92466ed::CommError::None}</td></tr>
 <tr class="separator:a2155df77a576e4c58d2365bc3ae39951"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae59b8ba0ff0b0e44531ac6eff17ad248" id="r_ae59b8ba0ff0b0e44531ac6eff17ad248"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae59b8ba0ff0b0e44531ac6eff17ad248">last_rx_</a> {0}</td></tr>
+<tr class="separator:ae59b8ba0ff0b0e44531ac6eff17ad248"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15788acd3867684e0418a24a07af59a2" id="r_a15788acd3867684e0418a24a07af59a2"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15788acd3867684e0418a24a07af59a2">last_rx_first_</a> {0}</td></tr>
+<tr class="separator:a15788acd3867684e0418a24a07af59a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>CRTP SPI communication adapter for TLE92466ED using BaseSpi and BaseGpio. </p>
-<p>Implements all methods required by tle92466ed::SpiInterface&lt;HalSpiTle92466edComm&gt;. </p>
+<p>Implements all methods required by tle92466ed::SpiInterface&lt;HalSpiTle92466edComm&gt;.</p>
+<dl class="section note"><dt>Note</dt><dd>Bring-up order: <code>Init</code> holds EN LOW only for the RESN pulse, then asserts EN HIGH before the SPI identity read. Channel outputs remain gated by CH_CTRL after POR — EN high is not “outputs energized”. When EN/RESN are expander-backed, claim ownership of those pins before constructing this adapter. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae5ebff246df187621d975c09b4d32585" name="ae5ebff246df187621d975c09b4d32585"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae5ebff246df187621d975c09b4d32585">&#9670;&#160;</a></span>HalSpiTle92466edComm()</h2>
@@ -204,7 +226,7 @@ Private Attributes</h2></td></tr>
 <p>Construct the SPI adapter. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">spi</td><td>Reference to pre-configured BaseSpi. </td></tr>
+    <tr><td class="paramname">spi</td><td>Reference to pre-configured BaseSpi (Mode 1, 32-bit frames). </td></tr>
     <tr><td class="paramname">resn</td><td>BaseGpio connected to RESN (reset, active LOW). </td></tr>
     <tr><td class="paramname">en</td><td>BaseGpio connected to EN (enable, active HIGH). </td></tr>
     <tr><td class="paramname">faultn</td><td>Optional BaseGpio connected to FAULTN (active LOW input). </td></tr>
@@ -238,6 +260,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Clear <a class="el" href="#a2155df77a576e4c58d2365bc3ae39951">last_error_</a>; does not clear chip fault registers. </p>
+
 </div>
 </div>
 <a id="a9aca0311d71b2663db79601720b3de07" name="a9aca0311d71b2663db79601720b3de07"></a>
@@ -262,6 +286,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>No-op; <code>BaseSpi</code> is pre-configured for Mode 1 / 32-bit frames. </p>
 
 </div>
 </div>
@@ -288,6 +314,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Mark adapter deinitialized; does not change GPIO or SPI state. </p>
+
 </div>
 </div>
 <a id="aca4238d0c15c631b7fca413fdf7420ab" name="aca4238d0c15c631b7fca413fdf7420ab"></a>
@@ -312,11 +340,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTle92466edComm_aca4238d0c15c631b7fca413fdf7420ab_cgraph.svg" width="411" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+
+<p>Busy-wait delay in microseconds (datasheet timing gaps). </p>
 
 </div>
 </div>
@@ -343,6 +368,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Last comm-layer error from <a class="el" href="#a63f84b0db1a338f4c02e76e8d01c8b65">Transfer32</a> or GPIO helpers. </p>
+
 </div>
 </div>
 <a id="a082f6fda7c85de00474f24f2bae90691" name="a082f6fda7c85de00474f24f2bae90691"></a>
@@ -367,6 +394,9 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Read RESN, EN, or FAULTN logical state. </p>
+<dl class="section return"><dt>Returns</dt><dd>ACTIVE when the pin reads as asserted per BaseGpio polarity. </dd></dl>
 
 </div>
 </div>
@@ -397,6 +427,15 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Drive RESN, EN, or FAULTN via configured BaseGpio active levels. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pin</td><td>RESN (active LOW), EN (active HIGH), or FAULTN input. </td></tr>
+    <tr><td class="paramname">signal</td><td>ACTIVE / INACTIVE in driver semantics, not raw pin voltage. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a2f62649da77db8dcc44340f1bcf31973" name="a2f62649da77db8dcc44340f1bcf31973"></a>
@@ -422,6 +461,9 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Reset pulse, assert EN, then SPI identity / fault clear. </p>
+<dl class="section return"><dt>Returns</dt><dd>Failure leaves last RX in <a class="el" href="#a4a40e8c8cdb9dea21d7f828b1186a8ea">LastRxWord</a> for CDC diag. </dd></dl>
+
 </div>
 </div>
 <a id="a74ccbe3aa8f726c7b9ca9096636dcf14" name="a74ccbe3aa8f726c7b9ca9096636dcf14"></a>
@@ -446,6 +488,63 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>True after <a class="el" href="#a2f62649da77db8dcc44340f1bcf31973">Init</a> succeeded (GPIO polarity parked, SPI ready). </p>
+
+</div>
+</div>
+<a id="a4a40e8c8cdb9dea21d7f828b1186a8ea" name="a4a40e8c8cdb9dea21d7f828b1186a8ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a40e8c8cdb9dea21d7f828b1186a8ea">&#9670;&#160;</a></span>LastRxWord()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t HalSpiTle92466edComm::LastRxWord </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Last 32-bit SPI RX word (bring-up / WrongDeviceID diagnostics). </p>
+
+</div>
+</div>
+<a id="a0f7a1432092e8109ab3d7532eb56a9bf" name="a0f7a1432092e8109ab3d7532eb56a9bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f7a1432092e8109ab3d7532eb56a9bf">&#9670;&#160;</a></span>LastRxWordFirst()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t HalSpiTle92466edComm::LastRxWordFirst </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>RX word from the FIRST frame of the last <a class="el" href="#a058b8f150542b2e746f08a1f3b84208b">TransferMulti</a> chain. </p>
+<p>A register read is two CS windows and the reply is expected on the second. Keeping the first word lets bring-up tools prove which slot actually carried the reply instead of inferring it from a register that read back as zero. </p>
 
 </div>
 </div>
@@ -485,11 +584,8 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTle92466edComm_ada2e34106a72dd56b1513f83a0cce63e_cgraph.svg" width="663" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+
+<p>Route driver log lines to the HAL <a class="el" href="classLogger.html">Logger</a>. </p>
 
 </div>
 </div>
@@ -515,16 +611,21 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHalSpiTle92466edComm_a63f84b0db1a338f4c02e76e8d01c8b65_cgraph.svg" width="864" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+
+<p>Single 32-bit SPI frame (Mode 1, MSB first). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tx_data</td><td>Command or data word to shift out. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>RX word from this CS window (pipelined reply from the prior frame). </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Inserts <code>20</code> µs between CS cycles; prefer <a class="el" href="#a058b8f150542b2e746f08a1f3b84208b">TransferMulti</a> for reads. </dd></dl>
 
 </div>
 </div>
 <a id="a058b8f150542b2e746f08a1f3b84208b" name="a058b8f150542b2e746f08a1f3b84208b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a058b8f150542b2e746f08a1f3b84208b">&#9670;&#160;</a></span>TransferMulti()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a058b8f150542b2e746f08a1f3b84208b">&#9670;&#160;</a></span>TransferMulti() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -549,6 +650,59 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Pipelined multi-frame SPI transfer under one SPI2 bus lock. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tx_data</td><td>TX words (command frame followed by dummy frame(s) for reads). </td></tr>
+    <tr><td class="paramname">rx_data</td><td>RX buffer, same length as <code>tx_data</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>CommError::TransferError if BaseSpi::TransferChain fails. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd><code>tx_data</code> and <code>rx_data</code> must be equal length and non-empty. Releasing the bus between frames lets a peer consume this device's pipeline slot (sticky-zero reads). </dd></dl>
+
+</div>
+</div>
+<a id="a3abfd791065fcca6d44884f420bc1ced" name="a3abfd791065fcca6d44884f420bc1ced"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3abfd791065fcca6d44884f420bc1ced">&#9670;&#160;</a></span>TransferMulti() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">tle92466ed::CommResult&lt; void &gt; HalSpiTle92466edComm::TransferMulti </td>
+          <td>(</td>
+          <td class="paramtype">std::span&lt; const uint32_t &gt;</td>          <td class="paramname"><span class="paramname"><em>tx_data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::span&lt; uint32_t &gt;</td>          <td class="paramname"><span class="paramname"><em>rx_data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>gap_us</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="#a058b8f150542b2e746f08a1f3b84208b">TransferMulti</a> with an explicit inter-frame CS-high gap. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gap_us</td><td>CS-high time between chained frames in microseconds; <code>0</code> selects the production default (5 µs, ≥ datasheet tCSN_TD). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -630,6 +784,50 @@ Here is the call graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">tle92466ed::CommError HalSpiTle92466edComm::last_error_ {tle92466ed::CommError::None}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae59b8ba0ff0b0e44531ac6eff17ad248" name="ae59b8ba0ff0b0e44531ac6eff17ad248"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae59b8ba0ff0b0e44531ac6eff17ad248">&#9670;&#160;</a></span>last_rx_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t HalSpiTle92466edComm::last_rx_ {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a15788acd3867684e0418a24a07af59a2" name="a15788acd3867684e0418a24a07af59a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15788acd3867684e0418a24a07af59a2">&#9670;&#160;</a></span>last_rx_first_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t HalSpiTle92466edComm::last_rx_first_ {0}</td>
         </tr>
       </table>
   </td>

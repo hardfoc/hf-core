@@ -105,11 +105,6 @@ $(function(){initNavTree('classSe050Handler.html',''); initResizable(); });
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Se050Handler_8h_source.html">Se050Handler.h</a>&gt;</code></p>
-<div class="dynheader">
-Collaboration diagram for Se050Handler:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classSe050Handler__coll__graph.svg" width="515" height="214"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -168,9 +163,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="keywordflow">if</span> (!se.EnsureInitialized()) { ... }</div>
 <div class="line">se050::cmd::VersionInfo v{};</div>
 <div class="line">(void)se.<a class="code hl_function" href="#a7827d6df0d76cafdaefadcfb449509cf">GetDevice</a>().GetVersion(&amp;v, se.Config().apdu_timeout_ms);</div>
-<div class="ttc" id="aclassSe050Handler_html"><div class="ttname"><a href="classSe050Handler.html">Se050Handler</a></div><div class="ttdoc">Thread-safe façade around se050::Device&lt;HalI2cSe050Comm&gt;.</div><div class="ttdef"><b>Definition</b> Se050Handler.h:107</div></div>
-<div class="ttc" id="aclassSe050Handler_html_a7827d6df0d76cafdaefadcfb449509cf"><div class="ttname"><a href="#a7827d6df0d76cafdaefadcfb449509cf">Se050Handler::GetDevice</a></div><div class="ttdeci">DeviceType &amp; GetDevice() noexcept</div><div class="ttdoc">Direct access to the full se050::Device API (lock externally if needed).</div><div class="ttdef"><b>Definition</b> Se050Handler.h:138</div></div>
-<div class="ttc" id="astructSe050HandlerConfig_html"><div class="ttname"><a href="structSe050HandlerConfig.html">Se050HandlerConfig</a></div><div class="ttdoc">Runtime tuning for one SE050 instance on a BaseI2c device.</div><div class="ttdef"><b>Definition</b> Se050Handler.h:82</div></div>
+<div class="ttc" id="aclassSe050Handler_html"><div class="ttname"><a href="classSe050Handler.html">Se050Handler</a></div><div class="ttdoc">Thread-safe façade around se050::Device&lt;HalI2cSe050Comm&gt;.</div><div class="ttdef"><b>Definition</b> Se050Handler.h:144</div></div>
+<div class="ttc" id="aclassSe050Handler_html_a7827d6df0d76cafdaefadcfb449509cf"><div class="ttname"><a href="#a7827d6df0d76cafdaefadcfb449509cf">Se050Handler::GetDevice</a></div><div class="ttdeci">DeviceType &amp; GetDevice() noexcept</div><div class="ttdoc">Direct access to the full se050::Device API (lock externally if needed).</div><div class="ttdef"><b>Definition</b> Se050Handler.h:175</div></div>
+<div class="ttc" id="astructSe050HandlerConfig_html"><div class="ttname"><a href="structSe050HandlerConfig.html">Se050HandlerConfig</a></div><div class="ttdoc">Runtime tuning for one SE050 instance on a BaseI2c device.</div><div class="ttdef"><b>Definition</b> Se050Handler.h:117</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a528bb48a4a299b603225ecfa456aaafe" name="a528bb48a4a299b603225ecfa456aaafe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a528bb48a4a299b603225ecfa456aaafe">&#9670;&#160;</a></span>DeviceType</h2>
@@ -335,11 +330,6 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initialize I²C, pulse optional reset GPIO, run T=1 warm reset, <code>SELECT</code> applet, and verify with <code>GetVersion</code>. </p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classSe050Handler_a11b8c8b73d8c2e1f3a5cd7ef2af5f0c5_cgraph.svg" width="518" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -365,11 +355,6 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classSe050Handler_aaee404639b6be1dffc26a4840d2f12b6_icgraph.svg" width="518" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>

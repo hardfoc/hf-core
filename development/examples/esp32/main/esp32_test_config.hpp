@@ -202,6 +202,51 @@
 #endif
 
 // ═══════════════════════════════════════════════════════════════════════════
+// ADS9324 16-CH SIMULTANEOUS SAR + PGA (SPI + CONVST / DRDY)
+// Defaults target ESP32-S3 (hf-core examples). ESP32-C6 bring-up: override to
+// CS=10, CONVST=3, DRDY=11 (same as hf-ads9324-driver examples).
+// ═══════════════════════════════════════════════════════════════════════════
+
+#ifndef PIN_ADS9324_CS
+#define PIN_ADS9324_CS 38
+#endif
+#ifndef PIN_ADS9324_CONVST
+#define PIN_ADS9324_CONVST 37
+#endif
+#ifndef PIN_ADS9324_DRDY
+#define PIN_ADS9324_DRDY 21
+#endif
+#ifndef ADS9324_SPI_CLOCK_HZ
+#define ADS9324_SPI_CLOCK_HZ 8000000  // 8 MHz, SPI mode 0
+#endif
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ISF15ACP4 SMARTDISPLAY OLED (SPI + GPIO)
+// ═══════════════════════════════════════════════════════════════════════════
+
+#ifndef PIN_ISF15ACP4_SPI_DUMMY_CS
+#define PIN_ISF15ACP4_SPI_DUMMY_CS 46  // SPI device placeholder (SS is software GPIO)
+#endif
+#ifndef PIN_ISF15ACP4_CS
+#define PIN_ISF15ACP4_CS 14
+#endif
+#ifndef PIN_ISF15ACP4_DC
+#define PIN_ISF15ACP4_DC 15
+#endif
+#ifndef PIN_ISF15ACP4_RES
+#define PIN_ISF15ACP4_RES 16
+#endif
+#ifndef PIN_ISF15ACP4_VCC_EN
+#define PIN_ISF15ACP4_VCC_EN 17
+#endif
+#ifndef PIN_ISF15ACP4_SWITCH
+#define PIN_ISF15ACP4_SWITCH 18
+#endif
+#ifndef ISF15ACP4_SPI_CLOCK_HZ
+#define ISF15ACP4_SPI_CLOCK_HZ 6000000
+#endif
+
+// ═══════════════════════════════════════════════════════════════════════════
 // WS2812 ADDRESSABLE LED STRIP (RMT)
 // ═══════════════════════════════════════════════════════════════════════════
 

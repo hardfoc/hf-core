@@ -114,16 +114,6 @@ $(function(){initNavTree('Tmc9660Handler_8h.html',''); initResizable(); });
 <code>#include &quot;base/BaseUart.h&quot;</code><br />
 <code>#include &quot;RtosMutex.h&quot;</code><br />
 <code>#include &lt;utility&gt;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for Tmc9660Handler.h:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Tmc9660Handler_8h__incl.svg" width="2006" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-</div><div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Tmc9660Handler_8h__dep__incl.svg" width="848" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 </div>
 <p><a href="Tmc9660Handler_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -154,7 +144,7 @@ Classes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Unified handler for TMC9660 motor controller with GPIO, ADC, and temperature integration. </p>
 <p>This file provides the complete HAL-level integration for a single TMC9660 motor driver device. It bridges the HardFOC base interfaces (BaseSpi, BaseUart, BaseGpio, BaseAdc, BaseTemperature) with the templated tmc9660::TMC9660&lt;CommType&gt; driver from the hf-tmc9660-driver library.</p>
-<h2><a class="anchor" id="autotoc_md21"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 Architecture Overview</h2>
 <p>The file contains three layers:</p>
 <ol type="1">
@@ -168,7 +158,7 @@ Architecture Overview</h2>
 </li>
 <li><b>Peripheral Wrappers</b> (Gpio, Adc, Temperature inner classes): Implement BaseGpio, BaseAdc, and BaseTemperature respectively, delegating to the TMC9660 driver's subsystems (gpio, telemetry, etc.) via the handler's visitDriver().</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md22"></a>
+<h2><a class="anchor" id="autotoc_md21"></a>
 Ownership Model</h2>
 <p>The handler owns all its internal resources:</p><ul>
 <li>One <a class="el" href="classHalSpiTmc9660Comm.html" title="Concrete SPI communication adapter for TMC9660 using BaseSpi and BaseGpio.">HalSpiTmc9660Comm</a> or <a class="el" href="classHalUartTmc9660Comm.html" title="Concrete UART communication adapter for TMC9660 using BaseUart and BaseGpio.">HalUartTmc9660Comm</a> (communication adapter)</li>
@@ -177,8 +167,8 @@ Ownership Model</h2>
 <li>One Adc wrapper (multi-channel TMC9660 ADC)</li>
 <li>One Temperature wrapper (chip temperature sensor)</li>
 </ul>
-<p>External managers (AdcManager, TemperatureManager) that need to own a BaseAdc* or BaseTemperature* should use the thin delegation wrappers <a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> and Tmc9660TemperatureWrapper (defined in their own files), which delegate to the handler's inner class instances.</p>
-<h2><a class="anchor" id="autotoc_md23"></a>
+<p>External hosts that need to own a BaseAdc* or BaseTemperature* should use the thin delegation wrappers <a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> and Tmc9660TemperatureWrapper (defined in their own files), which delegate to the handler's inner class instances.</p>
+<h2><a class="anchor" id="autotoc_md22"></a>
 Initialization Sequence</h2>
 <div class="fragment"><div class="line"><span class="comment">// 1. Obtain SPI/UART interface and four GPIO control pin instances</span></div>
 <div class="line"><span class="comment">// 2. Construct the handler</span></div>
@@ -196,15 +186,13 @@ Initialization Sequence</h2>
 <div class="line">handler.visitDriver([](<span class="keyword">auto</span>&amp; d) {</div>
 <div class="line">    d.motorControl.enable();</div>
 <div class="line">});</div>
-<div class="ttc" id="aclassTmc9660Handler_html"><div class="ttname"><a href="classTmc9660Handler.html">Tmc9660Handler</a></div><div class="ttdoc">Unified, non-templated handler for a single TMC9660 motor controller device.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:452</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md24"></a>
+<div class="ttc" id="aclassTmc9660Handler_html"><div class="ttname"><a href="classTmc9660Handler.html">Tmc9660Handler</a></div><div class="ttdoc">Unified, non-templated handler for a single TMC9660 motor controller device.</div><div class="ttdef"><b>Definition</b> Tmc9660Handler.h:487</div></div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md23"></a>
 Thread Safety</h2>
 <p>The handler uses RtosMutex (recursive) for thread-safe access to all public methods. visitDriver() acquires the lock automatically. Raw pointer methods (driverViaSpi(), driverViaUart()) are NOT mutex-protected — the caller is responsible for synchronization when using them from multiple tasks. The Adc and Temperature inner classes use additional RtosMutex instances for their internal statistics tracking.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> Thin adapter for AdcManager ownership </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classTmc9660AdcWrapper.html" title="Delegation wrapper that adapts Tmc9660Handler::Adc for external ownership.">Tmc9660AdcWrapper</a> Thin adapter when the host owns a BaseAdc* </dd>
 <dd>
-Tmc9660TemperatureWrapper Thin adapter for TemperatureManager ownership </dd>
-<dd>
-MotorController Higher-level manager that owns <a class="el" href="classTmc9660Handler.html" title="Unified, non-templated handler for a single TMC9660 motor controller device.">Tmc9660Handler</a> instances</dd></dl>
+Tmc9660TemperatureWrapper Thin adapter when the host owns a BaseTemperature*</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>HardFOC Team </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
 </div></div><!-- contents -->
