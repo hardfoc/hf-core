@@ -538,7 +538,7 @@ not through handler-level wrapper methods:</p>
 </h2>
     
 
-<p>UART mode uses the same TMCL opcodes as SPI. The underlying <code class="language-plaintext highlighter-rouge">hf-tmc9660-driver</code> expects the platform <code class="language-plaintext highlighter-rouge">UartCommInterface</code> to deliver a <strong>complete 9-byte</strong> TMCL reply for every transaction. Partial reads or leftover RX bytes typically surface as checksum or TMCL status errors. See the driver’s <a href="https://github.com/N3b3x/hf-tmc9660-driver/blob/main/docs/platform_integration.md">Platform Integration</a> guide (<code class="language-plaintext highlighter-rouge">uartReceiveTMCL</code> contract).</p>
+<p>UART mode uses the same TMCL opcodes as SPI. The underlying <code class="language-plaintext highlighter-rouge">hf-tmc9660-driver</code> expects the platform <code class="language-plaintext highlighter-rouge">UartCommInterface</code> to deliver a <strong>complete 9-byte</strong> TMCL reply for every transaction. Partial reads or leftover RX bytes typically surface as checksum or TMCL status errors. See the driver’s <a href="https://github.com/hardfoc/hf-tmc9660-driver/blob/main/docs/platform_integration.md">Platform Integration</a> guide (<code class="language-plaintext highlighter-rouge">uartReceiveTMCL</code> contract).</p>
 <h2 id="spi-tmcl-pacing">
   
   

@@ -27,4 +27,4 @@ if (baro.EnsureInitialized()) {       // chip id + NVM ready, reset, configure
   restores the previous mode.
 - Sub-millisecond driver delays round up to one RTOS tick.
 
-Driver repo: [`hf-bmp581-driver`](https://github.com/N3b3x/hf-bmp581-driver).
+Driver repo: [`hf-bmp581-driver`](https://github.com/hardfoc/hf-bmp581-driver).

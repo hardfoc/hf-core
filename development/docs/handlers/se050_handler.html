@@ -248,7 +248,7 @@
     
 
 <p>HAL bridge from <code class="language-plaintext highlighter-rouge">BaseI2c</code> (and optional <code class="language-plaintext highlighter-rouge">BaseGpio</code> for <code class="language-plaintext highlighter-rouge">SE_RESET</code>) to the header-only
-<code class="language-plaintext highlighter-rouge">se050::Device&lt;&gt;</code> stack in <a href="https://github.com/N3b3x/hf-se050-driver"><code class="language-plaintext highlighter-rouge">hf-se050-driver</code></a>.
+<code class="language-plaintext highlighter-rouge">se050::Device&lt;&gt;</code> stack in <a href="https://github.com/hardfoc/hf-se050-driver"><code class="language-plaintext highlighter-rouge">hf-se050-driver</code></a>.
 Low-level T=1, APDU shapes, and <code class="language-plaintext highlighter-rouge">se050::Device</code> methods are covered by <strong>Doxygen</strong> in that
 repository; this page documents only the <strong>hf-core</strong> integration surface.</p>
 <h2 id="when-to-enable">
@@ -380,7 +380,7 @@ instead of the driver’s <code class="language-plaintext highlighter-rouge">HfS
 </table></div>
 
 <p>Matrix entries and CI flags live in
-<a href="https://github.com/N3b3x/hf-se050-driver/blob/main/examples/esp32/app_config.yml"><code class="language-plaintext highlighter-rouge">hf-se050-driver/examples/esp32/app_config.yml</code></a>.</p>
+<a href="https://github.com/hardfoc/hf-se050-driver/blob/main/examples/esp32/app_config.yml"><code class="language-plaintext highlighter-rouge">hf-se050-driver/examples/esp32/app_config.yml</code></a>.</p>
 <h3 id="host-side-companion-tooling-driver-repo">
   
   
@@ -394,7 +394,7 @@ instead of the driver’s <code class="language-plaintext highlighter-rouge">HfS
 verification, SBOM helpers, reprovision tokens, pytest) under
 <code class="language-plaintext highlighter-rouge">examples/esp32/main/se050_aws_iot_lifecycle/tools/</code> in <strong>hf-se050-driver</strong>. Those scripts
 complement firmware; they are not built into hf-core. Start from the driver’s
-<a href="https://github.com/N3b3x/hf-se050-driver/blob/main/examples/esp32/main/se050_aws_iot_lifecycle/tools/README.md"><code class="language-plaintext highlighter-rouge">tools/README.md</code></a>.</p>
+<a href="https://github.com/hardfoc/hf-se050-driver/blob/main/examples/esp32/main/se050_aws_iot_lifecycle/tools/README.md"><code class="language-plaintext highlighter-rouge">tools/README.md</code></a>.</p>
 <h2 id="hardware-and-pins">
   
   
