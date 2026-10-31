@@ -396,6 +396,7 @@ if(HF_CORE_RTOS STREQUAL "FREERTOS")
         "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/MutexGuard.cpp"
         "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/OsUtility.cpp"
         "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/PeriodicTimer.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/RtosMutex.cpp"
         "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/SignalSemaphore.cpp"
     )
 
@@ -408,13 +409,16 @@ elseif(HF_CORE_RTOS STREQUAL "THREADX")
         "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/MutexGuard.cpp"
         "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/OsUtility.cpp"
         "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/PeriodicTimer.cpp"
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/RtosMutex.cpp"
         "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/SignalSemaphore.cpp"
     )
 
 elseif(HF_CORE_RTOS STREQUAL "NONE")
-    # No RTOS — bare-metal or host-only build.
-    # Headers provide inline no-op stubs; no .cpp files compiled.
-    set(HF_CORE_RTOS_SOURCES "")
+    # No RTOS — bare-metal or host-only build. os_none.h provides inline no-op
+    # stubs; RtosMutex.cpp still builds because RtosMutex's members live there.
+    set(HF_CORE_RTOS_SOURCES
+        "${HF_CORE_UTILS_ROOT}/hf-utils-rtos-wrap/src/RtosMutex.cpp"
+    )
 
 endif()
 
