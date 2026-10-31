@@ -118,7 +118,7 @@ auto active = handler.GetDriver();
 
 ## UART TMCL expectations
 
-UART mode uses the same TMCL opcodes as SPI. The underlying `hf-tmc9660-driver` expects the platform `UartCommInterface` to deliver a **complete 9-byte** TMCL reply for every transaction. Partial reads or leftover RX bytes typically surface as checksum or TMCL status errors. See the driver’s [Platform Integration](https://github.com/N3b3x/hf-tmc9660-driver/blob/main/docs/platform_integration.md) guide (`uartReceiveTMCL` contract).
+UART mode uses the same TMCL opcodes as SPI. The underlying `hf-tmc9660-driver` expects the platform `UartCommInterface` to deliver a **complete 9-byte** TMCL reply for every transaction. Partial reads or leftover RX bytes typically surface as checksum or TMCL status errors. See the driver’s [Platform Integration](https://github.com/hardfoc/hf-tmc9660-driver/blob/main/docs/platform_integration.md) guide (`uartReceiveTMCL` contract).
 
 ## SPI TMCL pacing
 

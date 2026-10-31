@@ -16,4 +16,4 @@ pmic.ApplyProfile(host_register_table);
 `ApplyPortentaH7*` methods are driver-named eval sequences (Arduino Portenta
 H7). Hosts that are not that board pass their own table to `ApplyProfile`.
 
-Driver repo: [`hf-pf1550-driver`](https://github.com/N3b3x/hf-pf1550-driver).
+Driver repo: [`hf-pf1550-driver`](https://github.com/hardfoc/hf-pf1550-driver).

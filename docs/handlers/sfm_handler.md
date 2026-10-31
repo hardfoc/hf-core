@@ -33,4 +33,4 @@ if (flow.EnsureInitialized()) {       // product identifier → Variant
   `soft_reset_on_init` is a no-op on this transport and `Stop()` is used to
   bring a part left measuring back to idle.
 
-Driver repo: [`hf-sfm-flow-meter-driver`](https://github.com/N3b3x/hf-sfm-flow-meter-driver).
+Driver repo: [`hf-sfm-flow-meter-driver`](https://github.com/hardfoc/hf-sfm-flow-meter-driver).

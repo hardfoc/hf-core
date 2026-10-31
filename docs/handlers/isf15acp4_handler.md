@@ -90,4 +90,4 @@ Default test pins (`esp32_test_config.hpp`):
 | VCC_EN | 17 |
 | SWITCH | 18 |
 
-Driver repo examples and docs: [hf-isf15acp4-driver](https://github.com/N3b3x/hf-isf15acp4-driver).
+Driver repo examples and docs: [hf-isf15acp4-driver](https://github.com/hardfoc/hf-isf15acp4-driver).
