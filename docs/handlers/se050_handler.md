@@ -8,7 +8,7 @@ nav_order: 15
 # Se050Handler
 
 HAL bridge from `BaseI2c` (and optional `BaseGpio` for `SE_RESET`) to the header-only
-`se050::Device<>` stack in [`hf-se050-driver`](https://github.com/N3b3x/hf-se050-driver).
+`se050::Device<>` stack in [`hf-se050-driver`](https://github.com/hardfoc/hf-se050-driver).
 Low-level T=1, APDU shapes, and `se050::Device` methods are covered by **Doxygen** in that
 repository; this page documents only the **hf-core** integration surface.
 
@@ -73,7 +73,7 @@ instead of the driver’s `HfSe050EspIdfI2c` helper).
 | `se050_aws_iot_lifecycle/` | End-to-end: provision → network → TLS via SE050 → MQTT → OTA verify |
 
 Matrix entries and CI flags live in
-[`hf-se050-driver/examples/esp32/app_config.yml`](https://github.com/N3b3x/hf-se050-driver/blob/main/examples/esp32/app_config.yml).
+[`hf-se050-driver/examples/esp32/app_config.yml`](https://github.com/hardfoc/hf-se050-driver/blob/main/examples/esp32/app_config.yml).
 
 ### Host-side companion tooling (driver repo)
 
@@ -81,7 +81,7 @@ The **AWS IoT lifecycle** example ships Python utilities (factory provisioning, 
 verification, SBOM helpers, reprovision tokens, pytest) under
 `examples/esp32/main/se050_aws_iot_lifecycle/tools/` in **hf-se050-driver**. Those scripts
 complement firmware; they are not built into hf-core. Start from the driver’s
-[`tools/README.md`](https://github.com/N3b3x/hf-se050-driver/blob/main/examples/esp32/main/se050_aws_iot_lifecycle/tools/README.md).
+[`tools/README.md`](https://github.com/hardfoc/hf-se050-driver/blob/main/examples/esp32/main/se050_aws_iot_lifecycle/tools/README.md).
 
 ## Hardware and pins
 

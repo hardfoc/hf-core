@@ -57,6 +57,6 @@ if (tel.ok() && dxl.Model() && dxl.Model()->effort_is_current) {
 - First validated servo: XC430-W150. XM430/XH430 numbers are in the catalog;
   any other larger X-series uses the fallback until you add a descriptor.
 
-Driver repo: [`hf-dynamixel-driver`](https://github.com/N3b3x/hf-dynamixel-driver)
-· docs: [model support](https://n3b3x.github.io/hf-dynamixel-driver/docs/model_support/)
-· [ESP32 examples](https://n3b3x.github.io/hf-dynamixel-driver/docs/esp32_examples/).
+Driver repo: [`hf-dynamixel-driver`](https://github.com/hardfoc/hf-dynamixel-driver)
+· docs: [model support](https://hardfoc.github.io/hf-dynamixel-driver/docs/model_support/)
+· [ESP32 examples](https://hardfoc.github.io/hf-dynamixel-driver/docs/esp32_examples/).

@@ -9,7 +9,7 @@ nav_order: 8
 
 Six-channel solenoid gate-driver handler for the **Infineon TLE92466ED**, bridging **`BaseSpi`**
 and **`BaseGpio`** to the header-only **`tle92466ed::Driver<>`** stack in
-[`hf-tle92466ed-driver`](https://github.com/N3b3x/hf-tle92466ed-driver).
+[`hf-tle92466ed-driver`](https://github.com/hardfoc/hf-tle92466ed-driver).
 
 Low-level SPI framing, register maps, and Doxygen for `tle92466ed::Driver` live in that
 repository (including **wiring / SPI frame SVGs** and the **`lm_pro_cycle_test`** hardware
