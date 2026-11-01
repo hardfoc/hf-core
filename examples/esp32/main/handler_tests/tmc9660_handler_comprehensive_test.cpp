@@ -173,7 +173,7 @@ static bool test_set_target_velocity() noexcept {
 static bool test_set_target_position() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
     bool ok = g_handler->visitDriver([](auto& driver) -> bool {
-        return driver.positionControl.setTargetPosition(0);
+        return driver.positionControl.setTargetPositionRaw(0);
     });
     ESP_LOGI(TAG, "SetTargetPosition(0): %s", ok ? "OK" : "FAILED");
     return ok;

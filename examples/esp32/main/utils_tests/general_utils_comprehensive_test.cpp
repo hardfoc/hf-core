@@ -141,7 +141,7 @@ static bool test_software_version() noexcept {
              str, v.GetMajor(), v.GetMinor(), v.GetBuild());
     return major_ok && minor_ok && build_ok;
 }
-─────────────────────── StateMachine ───────────────────────
+// ─────────────────────── StateMachine ───────────────────────
 //
 // Exercises the new allocation-free `hf_utils::StateMachine` template:
 // Entry/Loop/Exit ordering, dwell + visit counters, illegal-transition
@@ -170,16 +170,6 @@ struct Owner {
 
     bool EnterC() noexcept { ++entry_c; return true; }
     uint32_t LoopC() noexcept { ++loop_c; return 50; }
-    RUN_TEST_SECTION_IF_ENABLED(ENABLE_STATE_MACHINE_TESTS, "STATE MACHINE",
-        RUN_TEST("finalize",          test_sm_finalize_requires_full_registration); flip_test_progress_indicator();
-        RUN_TEST("first_tick",        test_sm_entry_loop_runs_on_first_tick); flip_test_progress_indicator();
-        RUN_TEST("transition",        test_sm_owner_request_transition_runs_exit_then_entry); flip_test_progress_indicator();
-        RUN_TEST("illegal",           test_sm_illegal_transition_rejected); flip_test_progress_indicator();
-        RUN_TEST("external_intent",   test_sm_external_intent_drained_on_update); flip_test_progress_indicator();
-        RUN_TEST("entry_retry",       test_sm_entry_failure_retries_next_tick); flip_test_progress_indicator();
-        RUN_TEST("exit_retry",        test_sm_exit_failure_keeps_state_with_intent_pending); flip_test_progress_indicator();
-        RUN_TEST("watchdog",          test_sm_max_dwell_watchdog_fires_once_per_state); flip_test_progress_indicator();
-    );
     bool ExitC()  noexcept { ++exit_c; return true; }
 };
 
@@ -376,6 +366,16 @@ extern "C" void app_main(void) {
     );
     RUN_TEST_SECTION_IF_ENABLED(ENABLE_VERSION_TESTS, "SOFTWARE VERSION",
         RUN_TEST("version", test_software_version); flip_test_progress_indicator();
+    );
+    RUN_TEST_SECTION_IF_ENABLED(ENABLE_STATE_MACHINE_TESTS, "STATE MACHINE",
+        RUN_TEST("finalize",          test_sm_finalize_requires_full_registration); flip_test_progress_indicator();
+        RUN_TEST("first_tick",        test_sm_entry_loop_runs_on_first_tick); flip_test_progress_indicator();
+        RUN_TEST("transition",        test_sm_owner_request_transition_runs_exit_then_entry); flip_test_progress_indicator();
+        RUN_TEST("illegal",           test_sm_illegal_transition_rejected); flip_test_progress_indicator();
+        RUN_TEST("external_intent",   test_sm_external_intent_drained_on_update); flip_test_progress_indicator();
+        RUN_TEST("entry_retry",       test_sm_entry_failure_retries_next_tick); flip_test_progress_indicator();
+        RUN_TEST("exit_retry",        test_sm_exit_failure_keeps_state_with_intent_pending); flip_test_progress_indicator();
+        RUN_TEST("watchdog",          test_sm_max_dwell_watchdog_fires_once_per_state); flip_test_progress_indicator();
     );
 
     print_test_summary(g_test_results, "GENERAL UTILITIES COMPREHENSIVE", TAG);
