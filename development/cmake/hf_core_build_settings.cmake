@@ -45,6 +45,22 @@ set(HF_CORE_DRIVER_EXT    "${HF_CORE_ROOT}/hf-core-drivers/external")
 set(HF_CORE_DRIVER_INT    "${HF_CORE_ROOT}/hf-core-drivers/internal")
 set(HF_CORE_UTILS_ROOT    "${HF_CORE_ROOT}/hf-core-utils")
 
+# Sources include "core/..." paths, which resolve from the parent of this tree
+# only when it is checked out as core/ (as in the HAL). For any other checkout
+# directory (e.g. a standalone hf-core clone in CI), expose the tree as core/
+# through a symlink in the build directory.
+get_filename_component(_HF_CORE_REAL_ROOT "${HF_CORE_ROOT}" REALPATH)
+get_filename_component(_HF_CORE_DIR_NAME "${_HF_CORE_REAL_ROOT}" NAME)
+if(_HF_CORE_DIR_NAME STREQUAL "core")
+    get_filename_component(HF_CORE_PARENT_INCLUDE_DIR "${_HF_CORE_REAL_ROOT}" DIRECTORY)
+else()
+    set(HF_CORE_PARENT_INCLUDE_DIR "${CMAKE_BINARY_DIR}/hf_core_include_root")
+    if(NOT CMAKE_BUILD_EARLY_EXPANSION AND NOT EXISTS "${HF_CORE_PARENT_INCLUDE_DIR}/core")
+        file(MAKE_DIRECTORY "${HF_CORE_PARENT_INCLUDE_DIR}")
+        file(CREATE_LINK "${_HF_CORE_REAL_ROOT}" "${HF_CORE_PARENT_INCLUDE_DIR}/core" SYMBOLIC)
+    endif()
+endif()
+
 # Vendor CANopenNode (CiA 301) — checkout lives next to this hf-core tree (HAL `third_party/`), not inside the hf-core git submodule.
 if(NOT DEFINED HF_CORE_CANOPENNODE_ROOT)
     if(DEFINED HF_HAL_ROOT)
@@ -759,7 +775,7 @@ endif()
 # ── Foundation Include Dirs (always included) ─────────────────────────────
 set(HF_CORE_INCLUDE_DIRS
     # Parent of core/ — allows #include "core/handlers/xxx/Xxx.h" paths
-    "${HF_CORE_ROOT}/.."
+    "${HF_CORE_PARENT_INCLUDE_DIR}"
     # Core root — allows #include "handlers/xxx/Xxx.h" paths
     "${HF_CORE_ROOT}"
     # Handler common utilities

@@ -14119,13 +14119,6 @@
       <arglist>() noexcept</arglist>
     </member>
     <member kind="function">
-      <type></type>
-      <name>RUN_TEST_SECTION_IF_ENABLED</name>
-      <anchorfile>structsm__test_1_1Owner.html</anchorfile>
-      <anchor>ade5db954251c685c91a317daea2eb4a0</anchor>
-      <arglist>(ENABLE_STATE_MACHINE_TESTS, &quot;STATE MACHINE&quot;, RUN_TEST(&quot;finalize&quot;, test_sm_finalize_requires_full_registration);flip_test_progress_indicator();RUN_TEST(&quot;first_tick&quot;, test_sm_entry_loop_runs_on_first_tick);flip_test_progress_indicator();RUN_TEST(&quot;transition&quot;, test_sm_owner_request_transition_runs_exit_then_entry);flip_test_progress_indicator();RUN_TEST(&quot;illegal&quot;, test_sm_illegal_transition_rejected);flip_test_progress_indicator();RUN_TEST(&quot;external_intent&quot;, test_sm_external_intent_drained_on_update);flip_test_progress_indicator();RUN_TEST(&quot;entry_retry&quot;, test_sm_entry_failure_retries_next_tick);flip_test_progress_indicator();RUN_TEST(&quot;exit_retry&quot;, test_sm_exit_failure_keeps_state_with_intent_pending);flip_test_progress_indicator();RUN_TEST(&quot;watchdog&quot;, test_sm_max_dwell_watchdog_fires_once_per_state);flip_test_progress_indicator();)</arglist>
-    </member>
-    <member kind="function">
       <type>bool</type>
       <name>ExitC</name>
       <anchorfile>structsm__test_1_1Owner.html</anchorfile>

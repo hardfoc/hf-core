@@ -3,8 +3,8 @@ var searchData=
   ['rawmanualframes_0',['RawManualFrames',['../classAds7952Handler.html#a5a2b66bed2f15d3e9c3ab2c2b5f06d2d',1,'Ads7952Handler']]],
   ['rawspichain_1',['RawSpiChain',['../classTle92466edHandler.html#a47d8c9624c814c08152104917559ea1a',1,'Tle92466edHandler']]],
   ['rawtmclprobe_2',['rawTmclProbe',['../classHalSpiTmc9660Comm.html#ae364a929ba09c27d675dde8613063f3b',1,'HalSpiTmc9660Comm']]],
-  ['read_3',['read',['../classHalUartAlicatBasis2Comm.html#a9a370f8aee1dc9745cbb5c3ff8dc1ba9',1,'HalUartAlicatBasis2Comm::read()'],['../classHalUartFdo2Comm.html#af967fa684e34d0c0bd33728669eea72e',1,'HalUartFdo2Comm::read()']]],
-  ['read_4',['Read',['../classAt25040Handler.html#a896f0674cb1e585b54b3ff1b2bfb4c65',1,'At25040Handler::Read()'],['../classHalI2cBno08xComm.html#abcc28793c108a7f216b6e09247c5d849',1,'HalI2cBno08xComm::Read()'],['../classHalSpiBno08xComm.html#adcd09b77763bed245b9573e6f743f2a0',1,'HalSpiBno08xComm::Read()'],['../classCanOpenBaseCanLink.html#a3f41c2bb8730aebd02ce0671e9455344',1,'CanOpenBaseCanLink::Read()'],['../classHalI2cPca9685Comm.html#a527a3e92d1b7e9ee2e4d188f179b6929',1,'HalI2cPca9685Comm::Read()'],['../classHalI2cPcal95555Comm.html#a4a772bc05d784a0ef807a4c3c099beb0',1,'HalI2cPcal95555Comm::Read()'],['../classHalPf1550Comm.html#a0ddaa3f66fb44a34ff58e7f4f0e3e5da',1,'HalPf1550Comm::Read()'],['../classHalI2cSfmComm.html#ab08cb52164e81c9619e5aa6e90e2dcf8',1,'HalI2cSfmComm::Read()']]],
+  ['read_3',['Read',['../classAt25040Handler.html#a896f0674cb1e585b54b3ff1b2bfb4c65',1,'At25040Handler::Read()'],['../classHalI2cBno08xComm.html#abcc28793c108a7f216b6e09247c5d849',1,'HalI2cBno08xComm::Read()'],['../classHalSpiBno08xComm.html#adcd09b77763bed245b9573e6f743f2a0',1,'HalSpiBno08xComm::Read()'],['../classCanOpenBaseCanLink.html#a3f41c2bb8730aebd02ce0671e9455344',1,'CanOpenBaseCanLink::Read()'],['../classHalI2cPca9685Comm.html#a527a3e92d1b7e9ee2e4d188f179b6929',1,'HalI2cPca9685Comm::Read()'],['../classHalI2cPcal95555Comm.html#a4a772bc05d784a0ef807a4c3c099beb0',1,'HalI2cPcal95555Comm::Read()'],['../classHalPf1550Comm.html#a0ddaa3f66fb44a34ff58e7f4f0e3e5da',1,'HalPf1550Comm::Read()'],['../classHalI2cSfmComm.html#ab08cb52164e81c9619e5aa6e90e2dcf8',1,'HalI2cSfmComm::Read()']]],
+  ['read_4',['read',['../classHalUartAlicatBasis2Comm.html#a9a370f8aee1dc9745cbb5c3ff8dc1ba9',1,'HalUartAlicatBasis2Comm::read()'],['../classHalUartFdo2Comm.html#af967fa684e34d0c0bd33728669eea72e',1,'HalUartFdo2Comm::read()']]],
   ['read_5fsome_5',['read_some',['../classHalUartDynamixelComm.html#a8dbe013021d2d31bc2dae045ec1aab68',1,'HalUartDynamixelComm']]],
   ['readainchannel_6',['ReadAinChannel',['../classTmc9660Handler_1_1Adc.html#a7b53c42cd28f39699d34fc180a3df8f6',1,'Tmc9660Handler::Adc']]],
   ['readallchannels_7',['ReadAllChannels',['../classAds7952Handler.html#adf5fd6ce6e060862d6d0f83b896b403f',1,'Ads7952Handler']]],
@@ -60,6 +60,5 @@ var searchData=
   ['resolvemonitoringcontext_57',['ResolveMonitoringContext',['../classNtcTemperatureHandler.html#a2a459d108af3fc0c29d518c62cb791fe',1,'NtcTemperatureHandler']]],
   ['routelogtologger_58',['RouteLogToLogger',['../namespacehandler__utils.html#a71864e1d5801bea0d6d830326b6b183a',1,'handler_utils']]],
   ['rule_59',['Rule',['../namespacelogger__decor.html#ac5bed90d6e56255709791c8796eb02bf',1,'logger_decor']]],
-  ['run_5ftest_5fsection_5fif_5fenabled_60',['RUN_TEST_SECTION_IF_ENABLED',['../structsm__test_1_1Owner.html#ade5db954251c685c91a317daea2eb4a0',1,'sm_test::Owner']]],
-  ['runpowerselftest_61',['RunPowerSelfTest',['../classPf1550Handler.html#a3deeaf8555d0e6ddfa43fb2b201f230e',1,'Pf1550Handler']]]
+  ['runpowerselftest_60',['RunPowerSelfTest',['../classPf1550Handler.html#a3deeaf8555d0e6ddfa43fb2b201f230e',1,'Pf1550Handler']]]
 ];

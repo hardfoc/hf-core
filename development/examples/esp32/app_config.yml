@@ -10,15 +10,17 @@
 
 version: "1.0"
 
+# Keep target and idf_versions within the first five entries of this block;
+# the scripts' fallback parser (used when yq is not installed) only scans that far.
 metadata:
   project: "ESP32 HardFOC Core — Handler & Utils Tests"
-  description: >
-    Comprehensive test suite for the hf-core platform layer.
-  default_app: "general_utils_test"
-  default_build_type: "Debug"
   target: "esp32s3"
   idf_versions: ["release/v5.5"]
   build_types: [["Debug", "Release"], ["Debug"]]
+  default_app: "general_utils_test"
+  default_build_type: "Debug"
+  description: >
+    Comprehensive test suite for the hf-core platform layer.
 
 
 # ===========================================================================

@@ -9,7 +9,6 @@ var structsm__test_1_1Owner =
     [ "LoopA", "structsm__test_1_1Owner.html#ad979b85defb29aa7c54e6677b1103d31", null ],
     [ "LoopB", "structsm__test_1_1Owner.html#a9704ec4f1c2d9832877e2c601477895b", null ],
     [ "LoopC", "structsm__test_1_1Owner.html#aaa94d40139da7c86e06da38ac60b95ac", null ],
-    [ "RUN_TEST_SECTION_IF_ENABLED", "structsm__test_1_1Owner.html#ade5db954251c685c91a317daea2eb4a0", null ],
     [ "entry_a", "structsm__test_1_1Owner.html#a168d5bfadcab7dcc9a9dfbcbcb8900c6", null ],
     [ "entry_b", "structsm__test_1_1Owner.html#a99453eb2de5572a5b480bbdaef900e05", null ],
     [ "entry_b_should_fail", "structsm__test_1_1Owner.html#a895859248eebca109c88c270c030f635", null ],
