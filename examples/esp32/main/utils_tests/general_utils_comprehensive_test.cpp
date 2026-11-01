@@ -141,7 +141,7 @@ static bool test_software_version() noexcept {
              str, v.GetMajor(), v.GetMinor(), v.GetBuild());
     return major_ok && minor_ok && build_ok;
 }
-─────────────────────── StateMachine ───────────────────────
+// ─────────────────────── StateMachine ───────────────────────
 //
 // Exercises the new allocation-free `hf_utils::StateMachine` template:
 // Entry/Loop/Exit ordering, dwell + visit counters, illegal-transition
