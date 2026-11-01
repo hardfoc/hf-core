@@ -58,5 +58,5 @@ if (tel.ok() && dxl.Model() && dxl.Model()->effort_is_current) {
   any other larger X-series uses the fallback until you add a descriptor.
 
 Driver repo: [`hf-dynamixel-driver`](https://github.com/hardfoc/hf-dynamixel-driver)
-· docs: [model support](https://hardfoc.github.io/hf-dynamixel-driver/docs/model_support/)
-· [ESP32 examples](https://hardfoc.github.io/hf-dynamixel-driver/docs/esp32_examples/).
+· docs: [model support](https://github.com/hardfoc/hf-dynamixel-driver/blob/main/docs/model_support.md)
+· [ESP32 examples](https://github.com/hardfoc/hf-dynamixel-driver/blob/main/docs/esp32_examples.md).
