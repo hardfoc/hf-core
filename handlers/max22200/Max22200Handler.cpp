@@ -106,8 +106,8 @@ bool HalSpiMax22200Comm::Transfer(const uint8_t* tx_data, uint8_t* rx_data, size
     for (size_t i = 0; i < length; ++i) {
         const auto addr = reinterpret_cast<uintptr_t>(tx_data + i);
         const auto aligned = addr & ~static_cast<uintptr_t>(3U);
-        const uint32_t word =
-            *reinterpret_cast<const volatile uint32_t*>(aligned);
+        // NOLINTNEXTLINE(performance-no-int-to-ptr) word access is the point (see above)
+        const uint32_t word = *reinterpret_cast<const volatile uint32_t*>(aligned);
         const unsigned shift = static_cast<unsigned>((addr & 3U) * 8U);
         g_max_spi_tx[i] = static_cast<uint8_t>((word >> shift) & 0xFFU);
     }
@@ -119,6 +119,7 @@ bool HalSpiMax22200Comm::Transfer(const uint8_t* tx_data, uint8_t* rx_data, size
     for (size_t i = 0; i < length; ++i) {
         const auto addr = reinterpret_cast<uintptr_t>(rx_data + i);
         const auto aligned = addr & ~static_cast<uintptr_t>(3U);
+        // NOLINTNEXTLINE(performance-no-int-to-ptr) word access is the point (see above)
         volatile uint32_t* cell = reinterpret_cast<volatile uint32_t*>(aligned);
         const unsigned shift = static_cast<unsigned>((addr & 3U) * 8U);
         const uint32_t mask = static_cast<uint32_t>(0xFFU) << shift;

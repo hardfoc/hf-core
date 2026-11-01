@@ -142,7 +142,8 @@ NtcTemperatureHandler::NtcTemperatureHandler(NtcType ntc_type, BaseAdc* adc_inte
 NtcTemperatureHandler::~NtcTemperatureHandler() noexcept {
     // Stop monitoring if active
     if (monitoring_active_) {
-        StopContinuousMonitoring();
+        // Qualified: no virtual dispatch from a destructor.
+        NtcTemperatureHandler::StopContinuousMonitoring();
     }
     
     // Clean up timer (PeriodicTimer handles its own cleanup in destructor)

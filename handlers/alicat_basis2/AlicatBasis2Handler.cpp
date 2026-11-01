@@ -218,8 +218,8 @@ inline al::BaudRate BaudFromBps(std::uint32_t bps) noexcept {
         case 38400:  return al::BaudRate::Bps_38400;
         case 57600:  return al::BaudRate::Bps_57600;
         case 115200: return al::BaudRate::Bps_115200;
+        default:     return al::BaudRate::Bps_38400;
     }
-    return al::BaudRate::Bps_38400;
 }
 
 inline bool IsSupportedBaudBps(std::uint32_t bps) noexcept {

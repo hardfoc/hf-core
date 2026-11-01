@@ -607,12 +607,13 @@ void Bno08xHandler::DumpDiagnostics() const noexcept {
     Logger::GetInstance().Info(TAG, "  Description: %s", description_);
 
     // Interface
-    const char* iface_str = "UNKNOWN";
+    const char* iface_str = nullptr;
     switch (interface_type_) {
         case BNO085Interface::I2C:     iface_str = "I2C"; break;
         case BNO085Interface::SPI:     iface_str = "SPI"; break;
         case BNO085Interface::UART:    iface_str = "UART"; break;
         case BNO085Interface::UARTRVC: iface_str = "UART-RVC"; break;
+        default:                       iface_str = "UNKNOWN"; break;
     }
     Logger::GetInstance().Info(TAG, "  Interface: %s", iface_str);
 

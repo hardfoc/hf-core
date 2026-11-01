@@ -364,7 +364,8 @@ void As5047uHandler::DumpDiagnostics() const noexcept {
     
     // Performance Metrics
     if (diagnostics_.total_measurements > 0) {
-        float error_rate = (float)diagnostics_.communication_errors / diagnostics_.total_measurements * 100.0f;
+        const float error_rate = static_cast<float>(diagnostics_.communication_errors) /
+                                 static_cast<float>(diagnostics_.total_measurements) * 100.0f;
         Logger::GetInstance().Info(TAG, "Performance Metrics:");
         Logger::GetInstance().Info(TAG, "  Error Rate: %.2f%%", error_rate);
         Logger::GetInstance().Info(TAG, "  Success Rate: %.2f%%", 100.0f - error_rate);

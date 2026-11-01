@@ -559,25 +559,25 @@ void Logger::FormatAndLogAsciiArt(const char* tag, LogLevel level,
     auto emit_line = [&](const char* content, size_t content_len) {
         char out[512];
         size_t pos = 0;
-        if (prefix_len > 0 && pos + prefix_len < sizeof(out)) {
+        if (prefix_len > 0 && prefix_len < sizeof(out) - pos) {
             std::memcpy(out + pos, prefix, prefix_len);
             pos += prefix_len;
         }
-        if (content_len > 0 && pos + content_len < sizeof(out)) {
+        if (content_len > 0 && content_len < sizeof(out) - pos) {
             std::memcpy(out + pos, content, content_len);
             pos += content_len;
         }
-        if (suffix_len > 0 && pos + suffix_len < sizeof(out)) {
+        if (suffix_len > 0 && suffix_len < sizeof(out) - pos) {
             std::memcpy(out + pos, suffix, suffix_len);
             pos += suffix_len;
         }
-        out[pos] = '\0';
+        out[(pos < sizeof(out)) ? pos : sizeof(out) - 1] = '\0';
         base_logger_->Log(base_level, tag, "%s", out);
     };
 
     if (format.add_border) {
         size_t border_content_w = max_length + 2;
-        size_t total_w = border_content_w + 2 * format.border_padding;
+        size_t total_w = border_content_w + 2U * static_cast<size_t>(format.border_padding);
         char border_line[512];
         size_t bw = (total_w < sizeof(border_line) - 1) ? total_w : sizeof(border_line) - 1;
         std::memset(border_line, format.border_char, bw);
@@ -595,7 +595,7 @@ void Logger::FormatAndLogAsciiArt(const char* tag, LogLevel level,
             for (size_t j = 0; j < center_pad && rp < sizeof(row) - 1; ++j)
                 row[rp++] = ' ';
             size_t clen = lines[i].length;
-            if (rp + clen >= sizeof(row) - 1) clen = sizeof(row) - 1 - rp;
+            if (clen > sizeof(row) - 1 - rp) clen = sizeof(row) - 1 - rp;
             std::memcpy(row + rp, lines[i].start, clen);
             rp += clen;
             for (size_t j = lines[i].length; j < max_length && rp < sizeof(row) - 1; ++j)
@@ -617,7 +617,7 @@ void Logger::FormatAndLogAsciiArt(const char* tag, LogLevel level,
             for (size_t j = 0; j < center_pad && rp < sizeof(row) - 1; ++j)
                 row[rp++] = ' ';
             size_t clen = lines[i].length;
-            if (rp + clen >= sizeof(row) - 1) clen = sizeof(row) - 1 - rp;
+            if (clen > sizeof(row) - 1 - rp) clen = sizeof(row) - 1 - rp;
             std::memcpy(row + rp, lines[i].start, clen);
             rp += clen;
             row[rp] = '\0';
