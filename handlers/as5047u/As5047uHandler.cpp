@@ -205,6 +205,20 @@ AS5047U_Error As5047uHandler::GetLastError() const noexcept {
     return last_error_;
 }
 
+As5047uDiagnostics As5047uHandler::GetDiagnostics() const noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    return diagnostics_;
+}
+
+bool As5047uHandler::RefreshDiagnostics() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!EnsureInitializedLocked()) {
+        return false;
+    }
+    UpdateDiagnostics();
+    return true;
+}
+
 //======================================================//
 // PRIVATE HELPER METHODS
 //======================================================//
