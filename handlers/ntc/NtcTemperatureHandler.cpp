@@ -203,7 +203,17 @@ bool NtcTemperatureHandler::Initialize() noexcept {
         return false;
     }
     
-    // Apply configuration
+    // Apply configuration. The thermistor driver starts on its default ADC
+    // channel; without this a sensor wired to any other channel read the
+    // wrong input.
+    if (ntc_thermistor_->SetAdcChannel(config_.adc_channel) != NtcError::Success) {
+        Logger::GetInstance().Error(TAG, "Invalid ADC channel %u", static_cast<unsigned>(config_.adc_channel));
+        ntc_thermistor_.reset();
+        ntc_adc_adapter_.reset();
+        SetLastError(TEMP_ERR_INVALID_PARAMETER);
+        return false;
+    }
+
     if (config_.conversion_method != NtcConversionMethod::Auto) {
         ntc_thermistor_->SetConversionMethod(config_.conversion_method);
     }
