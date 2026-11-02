@@ -5,7 +5,7 @@ var classNtcTemperatureHandler =
     [ "NtcTemperatureHandler", "classNtcTemperatureHandler.html#a0845dd73d1b2678a058022e53ab1438a", null ],
     [ "NtcTemperatureHandler", "classNtcTemperatureHandler.html#a2c3640034987b3d7b27b1d2b96971d56", null ],
     [ "~NtcTemperatureHandler", "classNtcTemperatureHandler.html#aac69a65bcccfecfc2bfca99f7ac2aeb3", null ],
-    [ "Calibrate", "classNtcTemperatureHandler.html#ab9723f043883e044f077a2627b600fdb", null ],
+    [ "Calibrate", "classNtcTemperatureHandler.html#af4567733053a2cb1c039b06e03b1d500", null ],
     [ "CheckHealth", "classNtcTemperatureHandler.html#a9fe1485d86dd6d2b3f3e5f1d8545d24c", null ],
     [ "CheckThresholds", "classNtcTemperatureHandler.html#acc84378578731f61a0a368b2913ea034", null ],
     [ "ContinuousMonitoringCallback", "classNtcTemperatureHandler.html#aaaef3aab6d69f967a416db9f858c9d1c", null ],

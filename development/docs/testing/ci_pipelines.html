@@ -235,7 +235,7 @@
 </h2>
     
 
-<p>hf-core uses <strong>8 GitHub Actions workflows</strong> that mirror the standard CI pattern across
+<p>hf-core uses <strong>9 GitHub Actions workflows</strong> that mirror the standard CI pattern across
 all HardFOC repositories. Workflows use reusable workflow definitions from two shared
 CI tool repositories:</p>
 
@@ -392,7 +392,28 @@ directories (<code class="language-plaintext highlighter-rouge">hf-core-drivers/
   <li>Auto-generated changelog from commits since the last tag</li>
   <li>Source archive attached as a release artifact</li>
   <li>Release notes template</li>
-</ul><hr />
+</ul>
+<h3 id="9-host-build-and-tests-hostyml">
+  
+  
+    <a href="#9-host-build-and-tests-hostyml" class="anchor-heading" aria-labelledby="9-host-build-and-tests-hostyml"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 9. Host Build and Tests (<code class="language-plaintext highlighter-rouge">host.yml</code>)
+  
+  
+</h3>
+    
+
+<p><strong>Trigger:</strong> Every pull request; push to <code class="language-plaintext highlighter-rouge">main</code> and <code class="language-plaintext highlighter-rouge">release/*</code></p>
+
+<p>Runs inline (no reusable workflow yet) on Ubuntu 24.04:</p>
+
+<ol>
+  <li><strong>Host build and tests</strong> — <code class="language-plaintext highlighter-rouge">cmake --preset host-debug</code>, build, <code class="language-plaintext highlighter-rouge">ctest</code>, once with GCC and once with Clang</li>
+  <li><strong>clang-tidy</strong> — <code class="language-plaintext highlighter-rouge">tools/lint/run-clang-tidy.sh</code> (clang-tidy 18) on hf-core’s own sources</li>
+  <li><strong>cppcheck</strong> — <code class="language-plaintext highlighter-rouge">tools/lint/run-cppcheck.sh</code> on the same sources</li>
+  <li><strong>CI gate</strong> — passes only if every job above passed or was skipped; the one check to require on <code class="language-plaintext highlighter-rouge">main</code></li>
+</ol>
+
+<p>See <a href="/hf-core/development/docs/host-build.html">Host Build and Tests</a>.</p><hr />
 <h2 id="build-matrix-generation">
   
   

@@ -4424,6 +4424,7 @@
     <path>handlers/alicat_basis2/</path>
     <filename>AlicatBasis2Handler_8cpp.html</filename>
     <includes id="AlicatBasis2Handler_8h" name="AlicatBasis2Handler.h" local="yes" import="no" module="no" objc="no">AlicatBasis2Handler.h</includes>
+    <includes id="HandlerCommon_8h" name="HandlerCommon.h" local="yes" import="no" module="no" objc="no">HandlerCommon.h</includes>
     <namespace>anonymous_namespace{AlicatBasis2Handler.cpp}</namespace>
     <member kind="define">
       <type>#define</type>
@@ -4522,6 +4523,7 @@
     <filename>Bno08xHandler_8cpp.html</filename>
     <includes id="Bno08xHandler_8h" name="Bno08xHandler.h" local="yes" import="no" module="no" objc="no">Bno08xHandler.h</includes>
     <includes id="Logger_8h" name="Logger.h" local="yes" import="no" module="no" objc="no">handlers/logger/Logger.h</includes>
+    <namespace>anonymous_namespace{Bno08xHandler.cpp}</namespace>
   </compound>
   <compound kind="file">
     <name>Bno08xHandler.h</name>
@@ -4998,6 +5000,12 @@
     <name>EspLoggerFactory.cpp</name>
     <path>handlers/logger/factory/</path>
     <filename>EspLoggerFactory_8cpp.html</filename>
+    <includes id="Logger_8h" name="Logger.h" local="yes" import="no" module="no" objc="no">../Logger.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>NoBackendLoggerFactory.cpp</name>
+    <path>handlers/logger/factory/</path>
+    <filename>NoBackendLoggerFactory_8cpp.html</filename>
     <includes id="Logger_8h" name="Logger.h" local="yes" import="no" module="no" objc="no">../Logger.h</includes>
   </compound>
   <compound kind="file">
@@ -7243,6 +7251,20 @@
       <anchorfile>classAs5047uHandler.html</anchorfile>
       <anchor>a4cf122135165cde95680fe70ca55efcc</anchor>
       <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>As5047uDiagnostics</type>
+      <name>GetDiagnostics</name>
+      <anchorfile>classAs5047uHandler.html</anchorfile>
+      <anchor>a8a2d87930f802cfa8fbba194bb367dfc</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>RefreshDiagnostics</name>
+      <anchorfile>classAs5047uHandler.html</anchorfile>
+      <anchor>a653bc894993e9d109f6a4a716eb3fb28</anchor>
+      <arglist>() noexcept</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -13090,6 +13112,13 @@
       <anchor>ae42e3bcbe2b4451680706b0932f50685</anchor>
       <arglist>() noexcept override=default</arglist>
     </member>
+    <member kind="function">
+      <type>const char *</type>
+      <name>GetSensorName</name>
+      <anchorfile>classMcp9700TemperatureHandler.html</anchorfile>
+      <anchor>a9d30e577e7131c7a91fcbbfff2e8ed80</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
     <member kind="function" protection="protected">
       <type>bool</type>
       <name>Initialize</name>
@@ -13712,8 +13741,8 @@
       <type>hf_temp_err_t</type>
       <name>Calibrate</name>
       <anchorfile>classNtcTemperatureHandler.html</anchorfile>
-      <anchor>ab9723f043883e044f077a2627b600fdb</anchor>
-      <arglist>(float reference_temperature_celsius) noexcept</arglist>
+      <anchor>af4567733053a2cb1c039b06e03b1d500</anchor>
+      <arglist>(float reference_temperature_celsius) noexcept override</arglist>
     </member>
     <member kind="function">
       <type>NtcError</type>
@@ -19330,6 +19359,24 @@
       <anchorfile>namespaceanonymous__namespace_02Bmp581Handler_8cpp_03.html</anchorfile>
       <anchor>a055e48a209faf105c60406736021cc24</anchor>
       <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="namespace">
+    <name>anonymous_namespace{Bno08xHandler.cpp}</name>
+    <filename>namespaceanonymous__namespace_02Bno08xHandler_8cpp_03.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>PrepareResetPin</name>
+      <anchorfile>namespaceanonymous__namespace_02Bno08xHandler_8cpp_03.html</anchorfile>
+      <anchor>ac9460a957606eead80a2abe9522b1dea</anchor>
+      <arglist>(BaseGpio *reset_gpio) noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>DriveResetPin</name>
+      <anchorfile>namespaceanonymous__namespace_02Bno08xHandler_8cpp_03.html</anchorfile>
+      <anchor>a37877a124ad7dbf13572bbfe2b10ca3c</anchor>
+      <arglist>(BaseGpio *reset_gpio, bno08x::GpioSignal signal) noexcept</arglist>
     </member>
   </compound>
   <compound kind="namespace">

@@ -1,0 +1,38 @@
+# clang-tidy gate for hf-core's own sources on the host compile database.
+#
+# Defect checks only (analyzer, bugprone, performance), not style: the style
+# profile in _config/.clang-tidy stays advisory in ci-cpp-lint.yml. The
+# analyzer needs real include paths and defines, so run this through
+# tools/lint/run-clang-tidy.sh on a configured host-debug tree.
+#
+# Submodule headers are excluded by HeaderFilterRegex, and run-clang-tidy.sh
+# drops analyzer reports located in them; their own CI covers them.
+#
+# bugprone-exception-escape is off: target builds compile without exceptions,
+# so an allocation failure inside a noexcept function aborts either way.
+#
+# clang-analyzer-valist.Uninitialized is off: on the GitHub runner image it
+# reports every va_start/vsnprintf/va_end sequence (Logger, MockUart) as an
+# uninitialized va_list, a known analyzer false positive with the runner's
+# libc headers; it does not reproduce in a stock ubuntu:24.04 container.
+
+Checks: >
+  -*,
+  clang-analyzer-*,
+  bugprone-*,
+  performance-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-exception-escape,
+  -clang-analyzer-valist.Uninitialized,
+  -bugprone-branch-clone,
+  -performance-enum-size,
+  -clang-analyzer-optin.performance.Padding,
+  -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling
+
+WarningsAsErrors: ''
+HeaderFilterRegex: '.*/(handlers|tests/host)/.*'
+FormatStyle: none
+
+CheckOptions:
+  - key: bugprone-signed-char-misuse.CharTypdefsToIgnore
+    value: 'int8_t'

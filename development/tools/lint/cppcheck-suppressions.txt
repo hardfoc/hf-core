@@ -1,0 +1,18 @@
+# cppcheck suppressions for tools/lint/run-cppcheck.sh: project-wide policies only.
+# Suppress a one-off false positive in the code (`// cppcheck-suppress <id>` plus a comment saying why).
+
+# Submodules are separate repositories with their own CI; findings reached through their headers are theirs.
+*:*/hf-core-drivers/*
+*:*/hf-core-utils/*
+*:*/hf_core_dep_root/*
+
+# The analysis runs on a configured host tree; system headers come from the compiler.
+missingInclude
+missingIncludeSystem
+
+# Handler constructors build their owned bus adapters with make_unique in the body, after the members they
+# depend on are set. Moving those into the initializer list saves one null unique_ptr store and costs readability.
+useInitializationList
+
+# A suppression that matches nothing in a given configuration is not a finding.
+unmatchedSuppression

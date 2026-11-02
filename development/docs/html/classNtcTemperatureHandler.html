@@ -214,9 +214,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa685b6c62984e1112a1bc87b26a2df7d" id="r_aa685b6c62984e1112a1bc87b26a2df7d"><td class="memItemLeft" align="right" valign="top">NtcError&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa685b6c62984e1112a1bc87b26a2df7d">GetRawAdcValue</a> (uint32_t *adc_value) noexcept</td></tr>
 <tr class="memdesc:aa685b6c62984e1112a1bc87b26a2df7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get raw ADC value.  <br /></td></tr>
 <tr class="separator:aa685b6c62984e1112a1bc87b26a2df7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9723f043883e044f077a2627b600fdb" id="r_ab9723f043883e044f077a2627b600fdb"><td class="memItemLeft" align="right" valign="top">hf_temp_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9723f043883e044f077a2627b600fdb">Calibrate</a> (float reference_temperature_celsius) noexcept</td></tr>
-<tr class="memdesc:ab9723f043883e044f077a2627b600fdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calibrate the thermistor.  <br /></td></tr>
-<tr class="separator:ab9723f043883e044f077a2627b600fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4567733053a2cb1c039b06e03b1d500" id="r_af4567733053a2cb1c039b06e03b1d500"><td class="memItemLeft" align="right" valign="top">hf_temp_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4567733053a2cb1c039b06e03b1d500">Calibrate</a> (float reference_temperature_celsius) noexcept override</td></tr>
+<tr class="memdesc:af4567733053a2cb1c039b06e03b1d500"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calibrate the thermistor.  <br /></td></tr>
+<tr class="separator:af4567733053a2cb1c039b06e03b1d500"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5aca6936df7c82d48a1e91c8a348c965" id="r_a5aca6936df7c82d48a1e91c8a348c965"><td class="memItemLeft" align="right" valign="top">NtcError&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5aca6936df7c82d48a1e91c8a348c965">SetConversionMethod</a> (NtcConversionMethod method) noexcept</td></tr>
 <tr class="memdesc:a5aca6936df7c82d48a1e91c8a348c965"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set conversion method.  <br /></td></tr>
 <tr class="separator:a5aca6936df7c82d48a1e91c8a348c965"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -556,8 +556,8 @@ Supports all BaseTemperature features including threshold and continuous monitor
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab9723f043883e044f077a2627b600fdb" name="ab9723f043883e044f077a2627b600fdb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9723f043883e044f077a2627b600fdb">&#9670;&#160;</a></span>Calibrate()</h2>
+<a id="af4567733053a2cb1c039b06e03b1d500" name="af4567733053a2cb1c039b06e03b1d500"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4567733053a2cb1c039b06e03b1d500">&#9670;&#160;</a></span>Calibrate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -574,7 +574,7 @@ Supports all BaseTemperature features including threshold and continuous monitor
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

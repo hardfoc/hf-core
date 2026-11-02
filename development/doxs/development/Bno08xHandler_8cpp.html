@@ -91,6 +91,9 @@ $(function(){initNavTree('Bno08xHandler_8cpp.html',''); initResizable(); });
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Bno08xHandler.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -104,7 +107,21 @@ $(function(){initNavTree('Bno08xHandler_8cpp.html',''); initResizable(); });
 <code>#include &quot;<a class="el" href="Logger_8h_source.html">handlers/logger/Logger.h</a>&quot;</code><br />
 <code>#include &quot;OsUtility.h&quot;</code><br />
 <code>#include &quot;core/hf-core-drivers/external/hf-bno08x-driver/src/sh2/sh2_err.h&quot;</code><br />
-</div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceanonymous__namespace_02Bno08xHandler_8cpp_03" id="r_namespaceanonymous__namespace_02Bno08xHandler_8cpp_03"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02Bno08xHandler_8cpp_03.html">anonymous_namespace{Bno08xHandler.cpp}</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ac9460a957606eead80a2abe9522b1dea" id="r_ac9460a957606eead80a2abe9522b1dea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02Bno08xHandler_8cpp_03.html#ac9460a957606eead80a2abe9522b1dea">anonymous_namespace{Bno08xHandler.cpp}::PrepareResetPin</a> (BaseGpio *reset_gpio) noexcept</td></tr>
+<tr class="memdesc:ac9460a957606eead80a2abe9522b1dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure RSTN as an active-low output (idempotent).  <br /></td></tr>
+<tr class="separator:ac9460a957606eead80a2abe9522b1dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37877a124ad7dbf13572bbfe2b10ca3c" id="r_a37877a124ad7dbf13572bbfe2b10ca3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02Bno08xHandler_8cpp_03.html#a37877a124ad7dbf13572bbfe2b10ca3c">anonymous_namespace{Bno08xHandler.cpp}::DriveResetPin</a> (BaseGpio *reset_gpio, bno08x::GpioSignal signal) noexcept</td></tr>
+<tr class="separator:a37877a124ad7dbf13572bbfe2b10ca3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of unified BNO08x IMU sensor handler. </p>
 <p>This implementation provides:</p><ul>
 <li>CRTP communication adapters bridging BaseI2c/BaseSpi to bno08x::CommInterface</li>

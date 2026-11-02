@@ -38,6 +38,8 @@ var NAVTREEINDEX0 =
 "Bmp581Handler_8h.html":[14,0,1,5,1],
 "Bmp581Handler_8h_source.html":[14,0,1,5,1],
 "Bno08xHandler_8cpp.html":[14,0,1,6,0],
+"Bno08xHandler_8cpp.html#a37877a124ad7dbf13572bbfe2b10ca3c":[14,0,1,6,0,0],
+"Bno08xHandler_8cpp.html#ac9460a957606eead80a2abe9522b1dea":[14,0,1,6,0,1],
 "Bno08xHandler_8h.html":[14,0,1,6,1],
 "Bno08xHandler_8h.html#a00118ff1c99ae958c092ed6d21b59135":[14,0,1,6,1,14],
 "Bno08xHandler_8h.html#a1bd813a8294732698f36232c4b9ed0af":[14,0,1,6,1,15],
@@ -207,6 +209,7 @@ var NAVTREEINDEX0 =
 "Mcp9700TemperatureHandler_8h.html":[14,0,1,13,1],
 "Mcp9700TemperatureHandler_8h.html#a34b1fdd2365cf2120cb3ffa6fc17d0f6":[14,0,1,13,1,2],
 "Mcp9700TemperatureHandler_8h_source.html":[14,0,1,13,1],
+"NoBackendLoggerFactory_8cpp.html":[14,0,1,11,0,1],
 "NtcTemperatureHandler_8cpp.html":[14,0,1,14,0],
 "NtcTemperatureHandler_8cpp.html#a5a85b9c772bbeb480b209a3e6ea92b4c":[14,0,1,14,0,0],
 "NtcTemperatureHandler_8h.html":[14,0,1,14,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX0 =
 "TestFramework_8h.html#a0a4ef26bff61f2a0fd6a44aacf08c00d":[14,0,0,0,0,5,4],
 "TestFramework_8h.html#a0b263a245b65a247ab95a28992b8cc4c":[14,0,0,0,0,5,17],
 "TestFramework_8h.html#a200bb35a3a48c625b9cb8d2511d6bd87":[14,0,0,0,0,5,20],
-"TestFramework_8h.html#a214e38e25939e45e31ae73a073fca47f":[14,0,0,0,0,5,8],
-"TestFramework_8h.html#a2ed54564762f7490f6e746c6e78faaf5":[14,0,0,0,0,5,5],
-"TestFramework_8h.html#a3967179ac699a5b02ef9787b549409fe":[14,0,0,0,0,5,16],
-"TestFramework_8h.html#a42013656a31f033788afe39c84e96bec":[14,0,0,0,0,5,10]
+"TestFramework_8h.html#a214e38e25939e45e31ae73a073fca47f":[14,0,0,0,0,5,8]
 };

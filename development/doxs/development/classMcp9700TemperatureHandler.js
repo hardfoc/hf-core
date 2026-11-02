@@ -6,6 +6,7 @@ var classMcp9700TemperatureHandler =
     [ "Deinitialize", "classMcp9700TemperatureHandler.html#a5308ab9a70750306607b6dea72ff9814", null ],
     [ "GetCapabilities", "classMcp9700TemperatureHandler.html#a51c72b9c6e14b0101b6502f11ba8db71", null ],
     [ "GetSensorInfo", "classMcp9700TemperatureHandler.html#a810ee7b9fff07ee32b4ec4f3e189ecc1", null ],
+    [ "GetSensorName", "classMcp9700TemperatureHandler.html#a9d30e577e7131c7a91fcbbfff2e8ed80", null ],
     [ "Initialize", "classMcp9700TemperatureHandler.html#a63afda9405fae8a648e668bc33ba75a7", null ],
     [ "operator=", "classMcp9700TemperatureHandler.html#a8396b4c67d6d53ede751624941aca8e9", null ],
     [ "ReadTemperatureCelsiusImpl", "classMcp9700TemperatureHandler.html#ade877860a7c76e6e427f8f619bc6d8d6", null ],

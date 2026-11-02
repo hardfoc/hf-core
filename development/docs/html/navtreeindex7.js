@@ -1,5 +1,11 @@
 var NAVTREEINDEX7 =
 {
+"classTmc9660Handler_1_1Gpio.html#a025e514beea05768e2cd24b58e0fd7b0":[11,14,0,1,8],
+"classTmc9660Handler_1_1Gpio.html#a0370b84c0356793d8fc2529ba419bb41":[11,14,0,1,3],
+"classTmc9660Handler_1_1Gpio.html#a1bad24b764946fc93876d36fcc9b64dc":[11,14,0,1,10],
+"classTmc9660Handler_1_1Gpio.html#a3484e3f2b1591d88d58f1e1a008bfbbc":[11,14,0,1,13],
+"classTmc9660Handler_1_1Gpio.html#a4314495a5f96eca9ac7d9bb8134f8102":[11,14,0,1,17],
+"classTmc9660Handler_1_1Gpio.html#a4b370365fb2aa8c2cb8d4bdb2ff07caf":[11,14,0,1,12],
 "classTmc9660Handler_1_1Gpio.html#a70c6aaec5983e4096c27e7d4e8767ef2":[11,14,0,1,7],
 "classTmc9660Handler_1_1Gpio.html#a819b8d57d9ed8f80145a1c88e216ee62":[11,14,0,1,0],
 "classTmc9660Handler_1_1Gpio.html#a94de04e5fdade00c7f131b8b910bca80":[11,14,0,1,9],
@@ -243,11 +249,5 @@ var NAVTREEINDEX7 =
 "functions_vars_r.html":[13,3,2,15],
 "functions_vars_s.html":[13,3,2,16],
 "functions_vars_t.html":[13,3,2,17],
-"functions_vars_u.html":[13,3,2,18],
-"functions_vars_v.html":[13,3,2,19],
-"functions_vars_w.html":[13,3,2,20],
-"functions_vars_x.html":[13,3,2,21],
-"functions_vars_y.html":[13,3,2,22],
-"functions_vars_z.html":[13,3,2,23],
-"functions_w.html":[13,3,0,21]
+"functions_vars_u.html":[13,3,2,18]
 };
