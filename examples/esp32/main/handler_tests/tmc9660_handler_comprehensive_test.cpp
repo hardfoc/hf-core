@@ -240,22 +240,24 @@ static bool test_error_flags() noexcept {
 
 static bool test_gpio17_wrapper() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    auto& gpio17 = g_handler->gpio(17);
-    bool ok = gpio17.Initialize();
-    ESP_LOGI(TAG, "GPIO17 init: %s, desc: %s", ok ? "OK" : "FAILED", gpio17.GetDescription());
+    auto* gpio17 = g_handler->gpio(17);
+    if (gpio17 == nullptr) { ESP_LOGE(TAG, "GPIO17: TMC9660 not up"); return false; }
+    bool ok = gpio17->Initialize();
+    ESP_LOGI(TAG, "GPIO17 init: %s, desc: %s", ok ? "OK" : "FAILED", gpio17->GetDescription());
     if (ok) {
-        gpio17.SetState(hf_gpio_state_t::HF_GPIO_STATE_ACTIVE);
+        gpio17->SetState(hf_gpio_state_t::HF_GPIO_STATE_ACTIVE);
         vTaskDelay(pdMS_TO_TICKS(10));
-        gpio17.SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
+        gpio17->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
     }
     return ok;
 }
 
 static bool test_gpio18_wrapper() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    auto& gpio18 = g_handler->gpio(18);
-    bool available = gpio18.IsPinAvailable();
-    ESP_LOGI(TAG, "GPIO18 available: %d, max_pins: %d", available, gpio18.GetMaxPins());
+    auto* gpio18 = g_handler->gpio(18);
+    if (gpio18 == nullptr) { ESP_LOGE(TAG, "GPIO18: TMC9660 not up"); return false; }
+    bool available = gpio18->IsPinAvailable();
+    ESP_LOGI(TAG, "GPIO18 available: %d, max_pins: %d", available, gpio18->GetMaxPins());
     return available;
 }
 
@@ -263,14 +265,15 @@ static bool test_gpio18_wrapper() noexcept {
 
 static bool test_adc_wrapper() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    auto& adc = g_handler->adc();
-    bool ok = adc.Initialize();
+    auto* adc = g_handler->adc();
+    if (adc == nullptr) { ESP_LOGE(TAG, "ADC: TMC9660 not up"); return false; }
+    bool ok = adc->Initialize();
     ESP_LOGI(TAG, "ADC wrapper init: %s", ok ? "OK" : "FAILED");
 
     if (ok) {
         // Read supply voltage channel (ID 20)
         float voltage = 0.0f;
-        auto err = adc.ReadChannelV(20, voltage);
+        auto err = adc->ReadChannelV(20, voltage);
         ESP_LOGI(TAG, "ADC ch20 (supply): %.3fV, err=%d", voltage, static_cast<int>(err));
     }
     return ok;
@@ -288,13 +291,14 @@ static bool test_adc_wrapper_delegation() noexcept {
 
 static bool test_temperature_wrapper() noexcept {
     if (!g_hw_present) { ESP_LOGW(TAG, "SKIP: no hardware"); return true; }
-    auto& temp = g_handler->temperature();
-    bool ok = temp.Initialize();
+    auto* temp = g_handler->temperature();
+    if (temp == nullptr) { ESP_LOGE(TAG, "Temperature: TMC9660 not up"); return false; }
+    bool ok = temp->Initialize();
     ESP_LOGI(TAG, "Temperature wrapper init: %s", ok ? "OK" : "FAILED");
 
     if (ok) {
         float celsius = 0.0f;
-        auto err = temp.ReadTemperatureCelsius(&celsius);
+        auto err = temp->ReadTemperatureCelsius(&celsius);
         ESP_LOGI(TAG, "Chip temp via wrapper: %.2f°C, err=%d", celsius, static_cast<int>(err));
     }
     return ok;
