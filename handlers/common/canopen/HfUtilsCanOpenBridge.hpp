@@ -13,11 +13,15 @@
 #include <cstring>
 
 inline void HfUtilsCanFrameToMessage(const CanOpen::CanFrame& c, hf_can_message_t& m) noexcept {
+  // CanOpen::CanFrame is classic (8 data bytes); hf_can_message_t is FD-sized
+  // (64), so bound the copy by the source buffer and keep `dlc` a valid
+  // classic length.
+  const std::size_t n = (std::min)(static_cast<std::size_t>(c.dlc), sizeof(c.data));
   m.id = static_cast<hf_u32_t>(c.id);
-  m.dlc = c.dlc;
+  m.dlc = static_cast<hf_u8_t>(n);
   m.is_extended = c.extended;
   m.is_rtr = c.rtr;
-  const std::size_t n = (std::min)(static_cast<std::size_t>(c.dlc), sizeof(m.data));
+  m.is_canfd = false;
   (void)std::memcpy(m.data, c.data, n);
   if (n < sizeof(m.data)) {
     (void)std::memset(m.data + n, 0, sizeof(m.data) - n);

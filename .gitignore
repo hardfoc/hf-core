@@ -133,3 +133,7 @@ Thumbs.db
 # Backup files
 **/*.bak*
 *.bak
+
+# Static analysis reports (tools/lint)
+clang-tidy-report.txt
+cppcheck-report.txt

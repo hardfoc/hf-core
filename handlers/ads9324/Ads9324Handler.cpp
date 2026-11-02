@@ -55,7 +55,8 @@ void Ads9324SpiHostAdapter::DelayUs(uint32_t us) noexcept {
     // Busy-wait: hf-core has no portable microsecond sleep. Tune the inner
     // count per MCU if CONVST pulse width or DRDY poll is too short/long.
     for (uint32_t i = 0; i < us; ++i) {
-        for (volatile int j = 0; j < 40; ++j) {
+        for (uint32_t spin = 40U; spin > 0U; --spin) {
+            __asm__ volatile("" ::: "memory");
         }
     }
 }

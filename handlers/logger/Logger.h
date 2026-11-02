@@ -380,6 +380,9 @@ public:
      * @brief Get current configuration
      * @return Current configuration
      */
+    // A copy on purpose: other tasks may change the configuration while the
+    // caller uses the result.
+    // cppcheck-suppress returnByReference
     LogConfig GetConfig() const noexcept;
 
     /**

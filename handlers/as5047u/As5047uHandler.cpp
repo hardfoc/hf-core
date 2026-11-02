@@ -205,6 +205,20 @@ AS5047U_Error As5047uHandler::GetLastError() const noexcept {
     return last_error_;
 }
 
+As5047uDiagnostics As5047uHandler::GetDiagnostics() const noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    return diagnostics_;
+}
+
+bool As5047uHandler::RefreshDiagnostics() noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (!EnsureInitializedLocked()) {
+        return false;
+    }
+    UpdateDiagnostics();
+    return true;
+}
+
 //======================================================//
 // PRIVATE HELPER METHODS
 //======================================================//
@@ -350,7 +364,8 @@ void As5047uHandler::DumpDiagnostics() const noexcept {
     
     // Performance Metrics
     if (diagnostics_.total_measurements > 0) {
-        float error_rate = (float)diagnostics_.communication_errors / diagnostics_.total_measurements * 100.0f;
+        const float error_rate = static_cast<float>(diagnostics_.communication_errors) /
+                                 static_cast<float>(diagnostics_.total_measurements) * 100.0f;
         Logger::GetInstance().Info(TAG, "Performance Metrics:");
         Logger::GetInstance().Info(TAG, "  Error Rate: %.2f%%", error_rate);
         Logger::GetInstance().Info(TAG, "  Success Rate: %.2f%%", 100.0f - error_rate);

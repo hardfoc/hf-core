@@ -33,6 +33,7 @@ It provides:
 | [Handlers](handlers/index.md) | Per-handler API reference |
 | [Utilities](utils/index.md) | RTOS wrappers, general utils, CANopen |
 | [Testing](testing/testing_guide.md) | Test infrastructure, CI pipelines |
+| [Host Build and Tests](host-build.md) | Build and unit-test on Linux/macOS, mocks for HAL tests |
 
 ## Getting Started
 

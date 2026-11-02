@@ -269,6 +269,20 @@ public:
      * @return Last error that occurred
      */
     AS5047U_Error GetLastError() const noexcept;
+
+    /**
+     * @brief Snapshot of the diagnostics cached at the last refresh.
+     *
+     * Refreshed by Initialize() and RefreshDiagnostics(); reading this does
+     * not touch the bus.
+     */
+    As5047uDiagnostics GetDiagnostics() const noexcept;
+
+    /**
+     * @brief Read ERRFL from the sensor and update the cached diagnostics.
+     * @return false if the handler could not be initialized.
+     */
+    bool RefreshDiagnostics() noexcept;
     
     /**
      * @brief Dump comprehensive diagnostics and statistics to log as INFO level.
