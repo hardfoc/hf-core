@@ -1,62 +1,17 @@
 # Logger
 
-Singleton logging system with color output, ASCII art, and per-tag filtering.
+The Logger singleton: levels, per-tag filtering, colours and ASCII-art banners over a per-MCU backend.
 
-## Access
+## Logger
 
-```cpp
-auto& logger = Logger::GetInstance();
-logger.Initialize();  // Optional config: Logger::GetInstance().Initialize(config);
-```
+<!-- generated: handler-logger -->
+Advanced logging system with formatting capabilities.
 
-## Log Methods
+- Header: [`handlers/logger/Logger.h`](../../handlers/logger/Logger.h)
+- Switch: `HF_CORE_ENABLE_LOGGER` (default ON)
 
-```cpp
-logger.Error("MyTag", "Error: code %d", err);
-logger.Warn("MyTag", "Warning: value %.2f", val);
-logger.Info("MyTag", "Info: initialized");
-logger.Debug("MyTag", "Debug: state=%d", state);
-logger.Verbose("MyTag", "Verbose: raw=0x%04X", raw);
-```
+| Group | Public methods |
+| --- | --- |
+| All | `GetInstance()`, `Initialize()`, `Deinitialize()`, `IsInitialized()`, `SetLogLevel()`, `GetLogLevel()`, `SetTagLevel()`, `Error()`, `Warn()`, `Info()`, `Debug()`, `Verbose()`, `LogAsciiArt()`, `LogBanner()`, `SetConfig()`, `GetConfig()`, `EnableColors()`, `EnableEffects()`, `EnableAsciiArt()`, `Flush()` |
+<!-- /generated -->
 
-## Formatted Output
-
-```cpp
-logger.Info("Tag", LogColor::GREEN, LogStyle::BOLD,
-            "Bold green: %d", value);
-```
-
-## ASCII Art
-
-```cpp
-logger.LogBanner("Tag", R"(
-  _   _ _____ _____ _____ 
- | | | |  ___|  _  |  _  |
- | |_| | |__ | | | | |_| |
-)");
-```
-
-## Per-Tag Filtering
-
-```cpp
-logger.SetLogLevel("NoisyModule", LogLevel::WARN);  // Only WARN+ for this tag
-```
-
-## Convenience Macros
-
-```cpp
-LOG_ERROR("tag", "message %d", val);
-LOG_WARN("tag", "message");
-LOG_INFO("tag", "message");
-LOG_DEBUG("tag", "message");
-LOG_VERBOSE("tag", "message");
-```
-
-## Thread Safety
-
-The Logger is thread-safe and can be called from any RTOS task or ISR context
-(for short messages).
-
-## Test Coverage
-
-See `examples/esp32/main/utils_tests/logger_comprehensive_test.cpp`.

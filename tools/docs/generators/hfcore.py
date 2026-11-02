@@ -14,6 +14,7 @@
 from __future__ import annotations
 
 import re
+import textwrap
 from pathlib import Path
 
 from hardfoc_mkdocs_theme.paths import repo_root
@@ -61,7 +62,7 @@ def _family_of(folder: str) -> str:
 
 def _blocks(text: str):
     """Yield (condition, body) for every top-level ``if(HF_CORE_ENABLE_X)`` ... ``endif()`` block."""
-    for m in re.finditer(r"^if\((HF_CORE_ENABLE_\w+)\)\n(.*?)^endif\(\)", text, re.M | re.S):
+    for m in re.finditer(r"^[ \t]*if\((HF_CORE_ENABLE_\w+)\)\n(.*?)^[ \t]*endif\(\)", text, re.M | re.S):
         yield m.group(1), m.group(2)
 
 
@@ -79,7 +80,7 @@ def switches() -> list[dict]:
         d = re.match(r"^\s*if\(NOT DEFINED (HF_CORE_ENABLE_\w+)\)", line)
         if d and d.group(1) not in out:
             out[d.group(1)] = {"name": d.group(1), "group": group, "default": None, "auto": [], "define": "",
-                               "handler": "", "driver": "", "host": ""}
+                               "handler": "", "driver": "", "host": "", "ifaces": []}
             cur = d.group(1)
         s = re.match(r"^\s*set\((HF_CORE_ENABLE_\w+) (ON|OFF)\)", line)
         if s and s.group(1) in out and out[s.group(1)]["default"] is None:
@@ -100,6 +101,12 @@ def switches() -> list[dict]:
         hm = re.search(r'HF_CORE_INCLUDE_DIRS "\$\{HF_CORE_HANDLER_ROOT\}/(\w+)"', body)
         if hm and (HANDLERS / hm.group(1)).is_dir() and hm.group(1) not in NOT_HANDLERS:
             e["handler"] = hm.group(1)
+        for src in re.findall(r"_HF_MCU_SRC\}/((?:Esp|Stm)\w+)\.cpp", body):
+            if src not in e["ifaces"]:
+                e["ifaces"].append(src)
+        um = re.search(r"HF_CORE_UTILS_ROOT\}/(hf-utils-[a-z-]+)", body)
+        if um and not e["driver"]:
+            e["driver"] = um.group(1)
         rm = re.search(r"HF_CORE_DRIVER_EXT\}/(hf-[a-z0-9-]+)", body)
         if rm and not e["driver"]:
             e["driver"] = rm.group(1)
@@ -133,6 +140,8 @@ def feature_switches(page) -> str:
             compiles.append(f"[`handlers/{e['handler']}/`]({_family_of(e['handler'])}-link)")
         if e["driver"]:
             compiles.append(f"[{e['driver']}](https://github.com/hardfoc/{e['driver']})")
+        if e["ifaces"]:
+            compiles.append(" / ".join(f"`{i}`" for i in e["ifaces"]))
         auto = ", ".join(f"`{a}`" for a in e["auto"]) or ""
         host = e["host"] or e["default"]
         note = f" (needs {e['gate'].split(':')[0]}: {e['gate'].split(':')[1]})" if e["gate"] else ""
@@ -271,6 +280,24 @@ def handler_info(folder: str) -> dict:
             "ctors": ctors, "methods": methods, "ifaces": ifaces}
 
 
+def _split_args(args: str) -> list[str]:
+    """Split a parameter list at top-level commas."""
+    parts, depth, cur = [], 0, ""
+    for ch in args:
+        if ch in "(<{[":
+            depth += 1
+        elif ch in ")>}]":
+            depth -= 1
+        if ch == "," and depth == 0:
+            parts.append(cur.strip())
+            cur = ""
+        else:
+            cur += ch
+    if cur.strip():
+        parts.append(cur.strip())
+    return parts
+
+
 def _switch_by_handler() -> dict:
     return {e["handler"]: e for e in switches() if e["handler"]}
 
@@ -310,7 +337,7 @@ def _handler_block(folder: str):
     def render(page) -> str:
         h = handler_info(folder)
         e = _switch_by_handler().get(folder, {})
-        out = [h["brief"].rstrip(".") + ".", ""]
+        out = textwrap.wrap(h["brief"].rstrip(".") + ".", 118) + [""]
         facts = [f"Header: [`{h['header']}`]({page.rel(h['header'])})"]
         if e:
             facts.append(f"Switch: `{e['name']}` (default {e['default']})")
@@ -319,18 +346,26 @@ def _handler_block(folder: str):
         test = _host_test(folder)
         if test:
             facts.append(f"Host test: [`{test}`]({page.rel(test)})")
-        out.append(" · ".join(facts))
+        out.extend("- " + f for f in facts)
         out.append("")
         if h["ctors"]:
             out.append("```cpp")
-            out.extend(c + ";" for c in h["ctors"])
+            for c in h["ctors"]:
+                if len(c) <= 100:
+                    out.append(c + ";")
+                    continue
+                head, args = c.split("(", 1)
+                parts = _split_args(args[:-1])
+                out.append(head + "(")
+                out.extend("    " + a + ("," if i < len(parts) - 1 else ");") for i, a in enumerate(parts))
             out.append("```")
             out.append("")
         groups: dict[str, list[str]] = {}
         for g, m in h["methods"]:
-            groups.setdefault(g or "Other", [])
-            if m not in groups[g or "Other"]:
-                groups[g or "Other"].append(m)
+            key = g or "All"
+            groups.setdefault(key, [])
+            if m not in groups[key]:
+                groups[key].append(m)
         if groups:
             out.append("| Group | Public methods |")
             out.append("| --- | --- |")
@@ -344,3 +379,19 @@ def _handler_block(folder: str):
 REGIONS = {"feature-switches": feature_switches, "handler-catalogue": handler_catalogue}
 for _f in handler_folders():
     REGIONS["handler-" + _f.replace("_", "-")] = _handler_block(_f)
+
+
+def _section(path: str, name: str) -> str:
+    text = _read(path)
+    m = re.search(rf"--8<-- \[start:{name}\]\n(.*?)\n[^\n]*--8<-- \[end:{name}\]", text, re.S)
+    if not m:
+        raise SystemExit(f"[gen] no section {name!r} in {path}")
+    return m.group(1)
+
+
+def quickstart_code() -> str:
+    """The README copy of the Quickstart example (the site includes tests/docs/quickstart.cpp directly)."""
+    return "```cpp\n" + _section("tests/docs/quickstart.cpp", "quickstart") + "\n```\n"
+
+
+REGIONS["quickstart-code"] = quickstart_code
