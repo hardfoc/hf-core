@@ -10,14 +10,6 @@ fills variables, and the consumer registers them in whatever its build system wa
 plain CMake library, an STM32 project). Each external driver's own `build_settings.cmake` stays the source of
 truth for that driver's files; hf-core includes it when the driver's switch is on.
 
-```mermaid
-flowchart LR
-  S["HF_CORE_MCU, HF_CORE_RTOS<br/>HF_CORE_ENABLE_*"] --> B["hf_core_build_settings.cmake"]
-  D["each driver's<br/>build_settings.cmake"] --> B
-  B --> O["HF_CORE_SOURCES<br/>HF_CORE_INCLUDE_DIRS<br/>HF_CORE_IDF_REQUIRES<br/>HF_CORE_COMPILE_DEFINITIONS"]
-  O --> C["ESP-IDF component<br/>or CMake target"]
-```
-
 ## Platform selection
 
 Set both before the `include()`.
