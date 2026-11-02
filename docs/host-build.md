@@ -1,11 +1,7 @@
----
-layout: default
-title: Host Build and Tests
-parent: Testing
-nav_order: 3
----
+# Host build and mocks
 
-# Host Build and Tests
+Build and test hf-core on Linux or macOS with no MCU toolchain, and use its mocks from a board HAL's own host
+tests.
 
 hf-core builds and runs its unit tests on a Linux or macOS machine, with no
 ESP32 or STM32 toolchain. The host build compiles everything above the MCU
@@ -31,7 +27,7 @@ cmake --build --preset host-debug
 ctest --preset host-debug
 ```
 
-Each file under `tests/host/` is one executable and one ctest entry. Run a
+Each file under `tests/host/` is one executable and one ctest entry; `tests/docs/` adds one more. Run a
 single executable to see each case, or pass part of a case name to run only
 matching cases:
 
@@ -71,6 +67,7 @@ passed or was skipped.
 | `hf_core_host_clock` | `FakeClock`, the time source for the no-RTOS backend | `-Wall -Wextra -Werror` |
 | `hf_core_host_mocks` | `Mock*` fakes in `tests/host/mocks/` | `-Wall -Wextra -Werror` |
 | `hf_core_host_test_main` | The `HF_TEST` / `CHECK` harness and `main()` | `-Wall -Wextra -Werror` |
+| `test_doc_snippets` | The code shown on this site (`tests/docs/`), run against the mocks | `-Wall -Wextra -Werror` |
 | `hf_core_canopen_host` | The generic CANopenNode driver (`CO_driver_hardfoc.c`), `PipePort` / `PipeHub` and, on Linux, `LinuxSocketCanPort` (tests only) | `-Wall -Wextra -Werror` |
 
 Handlers left out: WS2812 (needs the ESP32 RMT peripheral), Dynamixel and the
@@ -140,7 +137,7 @@ pipelined SPI register map with CRC (`test_as5047u.cpp`), and a framed
 request/response protocol (SHTP in `test_bno08x.cpp`, TMCL in
 `test_tmc9660.cpp`).
 
-## Using hf-core and the mocks from a board HAL
+## From a board HAL
 
 A HAL's host test build adds hf-core as a subdirectory. Its unit tests stay
 off; the libraries, mocks and harness are built.
@@ -155,56 +152,19 @@ target_link_libraries(test_fan_manager PRIVATE hf_core_host_mocks hf_core_host_t
 add_test(NAME fan_manager COMMAND test_fan_manager)
 ```
 
-```cpp
-#include "HfCoreMocks.h"
-#include "HostTest.h"
-#include "FanManager.h"   // takes BaseGpio& and BaseAdc& in its constructor
+A test in the HAL then looks like this one, which hf-core's own host build compiles and runs:
 
-HF_TEST(FanManager_TurnsFanOnAboveThreshold) {
-    hf::host::MockGpio fan_en(3, hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT);
-    hf::host::MockAdc adc(8);
-    adc.SetVoltage(5, 2.1f);                  // board-specific scaling in FanManager
-    FanManager mgr(fan_en, adc, /*adc_channel=*/5);
-    CHECK(mgr.Update());
-    CHECK(fan_en.DrivenLevel() == hf_gpio_level_t::HF_GPIO_LEVEL_HIGH);
-}
+```cpp title="tests/docs/host_test.cpp"
+--8<-- "tests/docs/host_test.cpp:host-test"
 ```
 
 Managers that take `Base*` references, not `Esp*` or `Stm*` types, can be
 tested this way unchanged on any target MCU.
 
-## The MCU-agnostic boundary
+## The MCU boundary
 
-The host build is the check that code above the MCU layer stays portable: if
-it compiles and links with `HF_CORE_MCU=NONE`, it does not depend on a vendor
-SDK.
+The host build is the check that code above the MCU layer stays portable: if it compiles and links with
+`HF_CORE_MCU=NONE`, it does not depend on a vendor SDK. [MCU boundary](mcu-boundary.md) lists the files that may
+include one.
 
-May include ESP-IDF, STM32 HAL, FreeRTOS or other vendor headers:
-
-- `hf-core-drivers/internal/hf-internal-interface-wrap/inc/mcu/<mcu>/` and
-  `src/mcu/<mcu>/` — the `Esp*` and `Stm*` implementations of `Base*`;
-- `handlers/logger/factory/<Mcu>LoggerFactory.cpp` — the per-MCU default log
-  backend (the host build links `NoBackendLoggerFactory.cpp`, which returns
-  no backend; inject one with `Logger::Initialize(config, backend)`);
-- `hf-utils-rtos-wrap/include/os/os_<rtos>.h` and the RTOS sources selected by
-  `HF_CORE_RTOS`;
-- MCU-gated handlers in the gate table of `hf_core_build_settings.cmake`
-  (WS2812 on ESP32 RMT) and `handlers/common/canopen/CO_driver_*`.
-
-Must not include them: everything else in `handlers/`, the external drivers
-in `hf-core-drivers/external/`, `hf-utils-general` and `hf-utils-canopen`.
-Use `Base*` interfaces, `OsAbstraction.h` / `OsUtility.h` for time and
-locking, and `handler_utils::DelayMs()` / `DelayUs()` from `HandlerCommon.h`
-for delays. Where a handler needs an MCU-specific path, guard it on the
-platform macro (`ESP_PLATFORM`, `HF_MCU_FAMILY_STM32`) and keep a portable
-fallback so the host build still compiles it.
-
-Known leftovers inside portable handlers, kept as they are for now:
-
-- `Pcal95555Handler` and `Se050Handler` contain board-specific blocks guarded
-  by `PW_HAL_STM32H7` that include `StmI2c.h`. They are not compiled on the
-  host.
-- `HalSpiMax22200Comm::Transfer` copies the caller's buffers with aligned
-  32-bit word accesses, a workaround for one MCU's memory map. It is compiled
-  everywhere and touches up to three bytes on either side of the buffers, so
-  it would trip an address sanitizer.
+Next: [Examples](examples.md).

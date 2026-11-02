@@ -1,0 +1,32 @@
+---
+# Site navigation (mkdocs-awesome-nav): the core-library page set of the HardFOC docs style guide.
+nav:
+  - Home: index.md
+  - Get started:
+      - Quickstart: quickstart.md
+      - Integration: integration.md
+  - Concepts:
+      - Platform overview: architecture.md
+      - Handler model: handler-model.md
+      - Threading and RTOS: threading.md
+      - MCU boundary: mcu-boundary.md
+  - Guides:
+      - Handlers:
+          - All handlers: handlers/index.md
+          - Motor and motion control: handlers/motion.md
+          - Position and inertial sensing: handlers/position.md
+          - Solenoid and load drivers: handlers/actuators.md
+          - I/O, PWM, LEDs and displays: handlers/io.md
+          - Analog and temperature: handlers/analog.md
+          - Pressure, flow and gas: handlers/environment.md
+          - Power, memory and security: handlers/power-security.md
+          - Logger: handlers/logger.md
+      - CANopen: canopen.md
+      - Utilities: utilities.md
+      - Host build and mocks: host-build.md
+      - Examples: examples.md
+  - Reference:
+      - API reference: api-reference.md
+      - Feature switches: feature-switches.md
+      - Testing and CI: testing.md
+      - Figures: diagrams/index.md
