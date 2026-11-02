@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1038" viewBox="0 0 1200 1038" role="img" aria-labelledby="platform-layers-title platform-layers-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="platform-layers-title">Where hf-core sits</title>
+<desc id="platform-layers-desc">Layer diagram of the HardFOC platform. At the bottom, the MCU SDK and RTOS and the device driver repositories. Above them hf-core-drivers (drivers, interface wrap, pin config) and hf-core-utils (RTOS wrapper, general and CANopen utilities). On those, the hf-core handlers. Above the handlers, the board HALs, and at the top the products.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6C7889"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="1037" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#C7CBFF">PLATFORM</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#E8EDF3">Where hf-core sits</text>
+<text x="32" y="115.4" font-size="18" fill="#9AA6B5">Handlers turn a device driver into a thread-safe object that takes Base* interfaces, so a board HAL wires chips to buses and</text>
+<text x="32" y="141.5" font-size="18" fill="#9AA6B5">nothing above it sees the MCU.</text>
+<rect x="32" y="157.5" width="1136" height="1" fill="#252F3C"/>
+<rect x="32" y="433.5" width="1136" height="157" rx="16" fill="#1C1F3D" stroke="#3B4080" stroke-width="1.2"/>
+<rect x="32" y="784.5" width="749.3" height="191" rx="16" fill="#1B232E" stroke="#3A4656" stroke-width="1.2"/>
+<path d="M600 268.5 L600 300.5" fill="none" stroke="#6C7889" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M600 397.5 L600 429.5" fill="none" stroke="#6C7889" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M213.3 594.5 L213.3 626.5" fill="none" stroke="#6C7889" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M600 594.5 L600 626.5" fill="none" stroke="#6C7889" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M986.7 594.5 L986.7 626.5" fill="none" stroke="#6C7889" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M213.3 748.5 L213.3 780.5" fill="none" stroke="#6C7889" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M600 748.5 L600 756.5 Q600 764.5 608 764.5 L906.1 764.5 Q914.1 764.5 914.1 772.5 L914.1 780.5" fill="none" stroke="#6C7889" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M986.7 723.5 L986.7 780.5" fill="none" stroke="#6C7889" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="32" y="175.5" width="1136" height="89" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="32" y="183.5" width="4" height="73" rx="2" fill="#94A3B8"/>
+<rect x="32" y="304.5" width="1136" height="89" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="32" y="312.5" width="4" height="73" rx="2" fill="#94A3B8"/>
+<rect x="32" y="630.5" width="362.7" height="114" rx="12" fill="#0F2A28" stroke="#2DD4BF" stroke-width="1.4"/>
+<rect x="32" y="638.5" width="4" height="98" rx="2" fill="#2DD4BF"/>
+<rect x="418.7" y="630.5" width="362.7" height="114" rx="12" fill="#0F2A28" stroke="#2DD4BF" stroke-width="1.4"/>
+<rect x="418.7" y="638.5" width="4" height="98" rx="2" fill="#2DD4BF"/>
+<rect x="805.3" y="630.5" width="362.7" height="89" rx="12" fill="#0F2A28" stroke="#2DD4BF" stroke-width="1.4"/>
+<rect x="805.3" y="638.5" width="4" height="73" rx="2" fill="#2DD4BF"/>
+<rect x="805.3" y="784.5" width="362.7" height="191" rx="12" fill="#151C26" stroke="#3A4657" stroke-width="1"/>
+<rect x="805.3" y="792.5" width="4" height="175" rx="2" fill="#94A3B8"/>
+<text x="56" y="210.5" font-size="20" font-weight="700" fill="#E8EDF3">Products</text>
+<text x="56" y="241.2" font-size="17" fill="#D2DAE4">firmware on one board HAL: tasks, control loops, protocols</text>
+<text x="56" y="339.5" font-size="20" font-weight="700" fill="#E8EDF3">Board HALs: hf-hal-vortex-v1, hf-hal-flux-v1</text>
+<text x="56" y="370.1" font-size="17" fill="#D2DAE4">create the MCU peripherals, construct the handlers, expose managers; pin maps from hf-pincfg</text>
+<rect x="48" y="478.5" width="94.1" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="56" y="496.6" font-size="16" font-weight="700" fill="#C7CBFF">ADS7952</text>
+<rect x="150.1" y="478.5" width="96.1" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="158.1" y="496.6" font-size="16" font-weight="700" fill="#C7CBFF">ADS9324</text>
+<rect x="254.3" y="478.5" width="145.1" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="262.3" y="496.6" font-size="16" font-weight="700" fill="#C7CBFF">ALICAT BASIS2</text>
+<rect x="407.4" y="478.5" width="95.5" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="415.4" y="496.6" font-size="16" font-weight="700" fill="#C7CBFF">AS5047U</text>
+<rect x="510.9" y="478.5" width="95.6" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="518.9" y="496.6" font-size="16" font-weight="700" fill="#C7CBFF">AT25040</text>
+<rect x="614.4" y="478.5" width="82.9" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="622.4" y="496.6" font-size="16" font-weight="700" fill="#C7CBFF">BMP581</text>
+<rect x="705.3" y="478.5" width="88.2" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="713.3" y="496.6" font-size="16" font-weight="700" fill="#C7CBFF">BNO08X</text>
+<rect x="801.5" y="478.5" width="119.2" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="809.5" y="496.6" font-size="16" font-weight="700" fill="#C7CBFF">DYNAMIXEL</text>
+<rect x="928.7" y="478.5" width="62" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="936.7" y="496.6" font-size="16" font-weight="700" fill="#C7CBFF">FDO2</text>
+<rect x="998.7" y="478.5" width="107.4" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="1006.7" y="496.6" font-size="16" font-weight="700" fill="#C7CBFF">ISF15ACP4</text>
+<rect x="48" y="512.5" width="85.6" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="56" y="530.6" font-size="16" font-weight="700" fill="#C7CBFF">LOGGER</text>
+<rect x="141.6" y="512.5" width="111.9" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="149.6" y="530.6" font-size="16" font-weight="700" fill="#C7CBFF">MAX22200</text>
+<rect x="261.5" y="512.5" width="99.1" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="269.5" y="530.6" font-size="16" font-weight="700" fill="#C7CBFF">MCP9700</text>
+<rect x="368.5" y="512.5" width="52.8" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="376.5" y="530.6" font-size="16" font-weight="700" fill="#C7CBFF">NTC</text>
+<rect x="429.3" y="512.5" width="95.8" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="437.3" y="530.6" font-size="16" font-weight="700" fill="#C7CBFF">PCA9685</text>
+<rect x="533.1" y="512.5" width="115" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="541.1" y="530.6" font-size="16" font-weight="700" fill="#C7CBFF">PCAL95555</text>
+<rect x="656.1" y="512.5" width="76.8" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="664.1" y="530.6" font-size="16" font-weight="700" fill="#C7CBFF">PF1550</text>
+<rect x="740.9" y="512.5" width="70.8" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="748.9" y="530.6" font-size="16" font-weight="700" fill="#C7CBFF">SE050</text>
+<rect x="819.8" y="512.5" width="52.9" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="827.8" y="530.6" font-size="16" font-weight="700" fill="#C7CBFF">SFM</text>
+<rect x="880.6" y="512.5" width="125" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="888.6" y="530.6" font-size="16" font-weight="700" fill="#C7CBFF">TLE92466ED</text>
+<rect x="1013.6" y="512.5" width="96" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="1021.6" y="530.6" font-size="16" font-weight="700" fill="#C7CBFF">TMC5160</text>
+<rect x="48" y="546.5" width="100.1" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="56" y="564.6" font-size="16" font-weight="700" fill="#C7CBFF">TMC9660</text>
+<rect x="156.1" y="546.5" width="84.4" height="26" rx="13" fill="#1C1F3D" stroke="#3B4080" stroke-width="1"/>
+<text x="164.1" y="564.6" font-size="16" font-weight="700" fill="#C7CBFF">WS2812</text>
+<text x="48" y="462.5" font-size="17" font-weight="700" fill="#C7CBFF">HANDLERS (23)</text>
+<text x="199.3" y="462.5" font-size="16" fill="#C7CBFF">handlers/: thread-safe, lazy init, Base* in, driver inside</text>
+<text x="56" y="665.5" font-size="20" font-weight="700" fill="#A7F3E6">hf-core-drivers</text>
+<text x="56" y="696.1" font-size="17" fill="#D2DAE4">23 device drivers as submodules</text>
+<text x="56" y="720.8" font-size="17" fill="#D2DAE4">+ hf-pincfg</text>
+<text x="442.7" y="665.5" font-size="20" font-weight="700" fill="#A7F3E6">hf-internal-interface-wrap</text>
+<text x="442.7" y="696.1" font-size="17" fill="#D2DAE4">Base* interfaces</text>
+<text x="442.7" y="720.8" font-size="17" fill="#D2DAE4">Esp* today, Stm* next</text>
+<text x="829.3" y="665.5" font-size="20" font-weight="700" fill="#A7F3E6">hf-core-utils</text>
+<text x="829.3" y="696.1" font-size="17" fill="#D2DAE4">canopen, general, rtos-wrap</text>
+<rect x="48" y="829.5" width="94.1" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="56" y="847.6" font-size="16" font-weight="700" fill="#E2E8F0">ADS7952</text>
+<rect x="150.1" y="829.5" width="96.1" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="158.1" y="847.6" font-size="16" font-weight="700" fill="#E2E8F0">ADS9324</text>
+<rect x="254.3" y="829.5" width="149" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="262.3" y="847.6" font-size="16" font-weight="700" fill="#E2E8F0">ALICAT-BASIS2</text>
+<rect x="411.3" y="829.5" width="95.5" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="419.3" y="847.6" font-size="16" font-weight="700" fill="#E2E8F0">AS5047U</text>
+<rect x="514.8" y="829.5" width="95.6" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="522.8" y="847.6" font-size="16" font-weight="700" fill="#E2E8F0">AT25040</text>
+<rect x="618.3" y="829.5" width="82.9" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="626.3" y="847.6" font-size="16" font-weight="700" fill="#E2E8F0">BMP581</text>
+<rect x="48" y="863.5" width="88.2" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="56" y="881.6" font-size="16" font-weight="700" fill="#E2E8F0">BNO08X</text>
+<rect x="144.2" y="863.5" width="119.2" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="152.2" y="881.6" font-size="16" font-weight="700" fill="#E2E8F0">DYNAMIXEL</text>
+<rect x="271.4" y="863.5" width="62" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="279.4" y="881.6" font-size="16" font-weight="700" fill="#E2E8F0">FDO2</text>
+<rect x="341.4" y="863.5" width="107.4" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="349.4" y="881.6" font-size="16" font-weight="700" fill="#E2E8F0">ISF15ACP4</text>
+<rect x="456.7" y="863.5" width="111.9" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="464.7" y="881.6" font-size="16" font-weight="700" fill="#E2E8F0">MAX22200</text>
+<rect x="576.6" y="863.5" width="99.1" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="584.6" y="881.6" font-size="16" font-weight="700" fill="#E2E8F0">MCP9700</text>
+<rect x="48" y="897.5" width="173.4" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="56" y="915.6" font-size="16" font-weight="700" fill="#E2E8F0">NTC-THERMISTOR</text>
+<rect x="229.4" y="897.5" width="95.8" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="237.4" y="915.6" font-size="16" font-weight="700" fill="#E2E8F0">PCA9685</text>
+<rect x="333.2" y="897.5" width="115" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="341.2" y="915.6" font-size="16" font-weight="700" fill="#E2E8F0">PCAL95555</text>
+<rect x="456.2" y="897.5" width="76.8" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="464.2" y="915.6" font-size="16" font-weight="700" fill="#E2E8F0">PF1550</text>
+<rect x="541" y="897.5" width="70.8" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="549" y="915.6" font-size="16" font-weight="700" fill="#E2E8F0">SE050</text>
+<rect x="48" y="931.5" width="177.8" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="56" y="949.6" font-size="16" font-weight="700" fill="#E2E8F0">SFM-FLOW-METER</text>
+<rect x="233.8" y="931.5" width="125" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="241.8" y="949.6" font-size="16" font-weight="700" fill="#E2E8F0">TLE92466ED</text>
+<rect x="366.8" y="931.5" width="96" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="374.8" y="949.6" font-size="16" font-weight="700" fill="#E2E8F0">TMC5160</text>
+<rect x="470.7" y="931.5" width="100.1" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="478.7" y="949.6" font-size="16" font-weight="700" fill="#E2E8F0">TMC9660</text>
+<rect x="578.9" y="931.5" width="87" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="586.9" y="949.6" font-size="16" font-weight="700" fill="#E2E8F0">VORTEX</text>
+<rect x="673.9" y="931.5" width="84.4" height="26" rx="13" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="681.9" y="949.6" font-size="16" font-weight="700" fill="#E2E8F0">WS2812</text>
+<text x="48" y="813.5" font-size="17" font-weight="700" fill="#E2E8F0">DEVICE DRIVERS</text>
+<text x="209" y="813.5" font-size="16" fill="#E2E8F0">one repository per chip</text>
+<text x="829.3" y="819.5" font-size="20" font-weight="700" fill="#E8EDF3">MCU SDK and RTOS</text>
+<text x="829.3" y="850.1" font-size="17" fill="#D2DAE4">ESP-IDF and FreeRTOS today</text>
+<text x="829.3" y="874.8" font-size="17" fill="#D2DAE4">STM32 HAL, CAN FD next</text>
+<rect x="32" y="987.9" width="14" height="14" rx="4" fill="#1C1F3D" stroke="#8C93FF" stroke-width="1.4"/>
+<text x="54" y="1002.5" font-size="16" fill="#9AA6B5">hf-core</text>
+<rect x="138.2" y="987.9" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2DD4BF" stroke-width="1.4"/>
+<text x="160.2" y="1002.5" font-size="16" fill="#9AA6B5">hf-core submodules</text>
+<rect x="347" y="987.9" width="14" height="14" rx="4" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<text x="369" y="1002.5" font-size="16" fill="#9AA6B5">around hf-core</text>
+</svg>
