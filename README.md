@@ -1,206 +1,106 @@
-# HF-Core Platform
+# HardFOC Core
 
-**Shared platform layer for HardFOC boards — handlers, RTOS utilities, driver integration, and CANopen for motor control systems**
+The layer between the HardFOC device drivers and a board HAL: thread-safe handlers that take `Base*`
+interfaces, the MCU interfaces, RTOS wrappers and utilities they need, and a host build with mocks to test all
+of it without hardware.
 
-[![C++](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.cppreference.com/w/cpp/20.html)
-[![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![ESP-IDF Build](https://github.com/hardfoc/hf-core/actions/workflows/esp32-examples-build-ci.yml/badge.svg)](https://github.com/hardfoc/hf-core/actions/workflows/esp32-examples-build-ci.yml)
-[![C++ Analysis](https://github.com/hardfoc/hf-core/actions/workflows/ci-cpp-analysis.yml/badge.svg)](https://github.com/hardfoc/hf-core/actions/workflows/ci-cpp-analysis.yml)
-[![C++ Lint](https://github.com/hardfoc/hf-core/actions/workflows/ci-cpp-lint.yml/badge.svg)](https://github.com/hardfoc/hf-core/actions/workflows/ci-cpp-lint.yml)
-[![Docs](https://github.com/hardfoc/hf-core/actions/workflows/ci-docs-publish.yml/badge.svg)](https://github.com/hardfoc/hf-core/actions/workflows/ci-docs-publish.yml)
-[![Markdown Lint](https://github.com/hardfoc/hf-core/actions/workflows/ci-markdown-lint.yml/badge.svg)](https://github.com/hardfoc/hf-core/actions/workflows/ci-markdown-lint.yml)
-[![YAML Lint](https://github.com/hardfoc/hf-core/actions/workflows/ci-yaml-lint.yml/badge.svg)](https://github.com/hardfoc/hf-core/actions/workflows/ci-yaml-lint.yml)
-[![Link Check](https://github.com/hardfoc/hf-core/actions/workflows/ci-docs-linkcheck.yml/badge.svg)](https://github.com/hardfoc/hf-core/actions/workflows/ci-docs-linkcheck.yml)
-[![Release](https://github.com/hardfoc/hf-core/actions/workflows/release.yml/badge.svg)](https://github.com/hardfoc/hf-core/actions/workflows/release.yml)
+[![Host CI](https://github.com/hardfoc/hf-core/actions/workflows/host.yml/badge.svg?branch=main)](https://github.com/hardfoc/hf-core/actions/workflows/host.yml)
+[![ESP32 examples](https://github.com/hardfoc/hf-core/actions/workflows/esp32-examples-build-ci.yml/badge.svg?branch=main)](https://github.com/hardfoc/hf-core/actions/workflows/esp32-examples-build-ci.yml)
+[![Docs](https://github.com/hardfoc/hf-core/actions/workflows/ci-docs-publish.yml/badge.svg?branch=main)](https://hardfoc.github.io/hf-core/)
 
-## Table of Contents
+**Documentation: <https://hardfoc.github.io/hf-core/>**
 
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Architecture](#architecture)
-4. [Quick Start](#quick-start)
-5. [Handlers](#handlers)
-6. [Utilities](#utilities)
-7. [Repository Structure](#repository-structure)
-8. [Documentation](#documentation)
-9. [Contributing](#contributing)
-10. [License](#license)
+<!-- figure: platform-layers -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/platform-layers.dark.svg">
+  <img src="docs/diagrams/platform-layers.svg"
+    alt="Layer diagram of the HardFOC platform. At the bottom, the MCU SDK and RTOS and the device driver
+    repositories. Above them hf-core-drivers (drivers, interface wrap, pin config) and hf-core-utils
+    (RTOS wrapper, general and CANopen utilities). On those, the hf-core handlers. Above the handlers,
+    the board HALs, and at the top the products.">
+</picture>
+<!-- /figure -->
 
-## Overview
+## In 30 seconds
 
-> **📖 [📚🌐 Live Complete Documentation](https://hardfoc.github.io/hf-core/)** —
-> Architecture guides, per-handler API reference, and testing instructions
+Turn on a handler in CMake (`set(HF_CORE_ENABLE_PCAL95555 ON)`), give it the `BaseI2c` device your HAL created,
+and call it from any task:
 
-**hf-core** is the shared platform layer for all HardFOC boards. It provides
-the handler layer, RTOS utilities, and driver integration that form the backbone
-of the HardFOC motor control system.
+<!-- generated: quickstart-code -->
+```cpp
+#include "HandlerCommon.h"
+#include "Pcal95555Handler.h"
 
-hf-core is the **bridge layer** between hardware-agnostic base interfaces
-(`BaseI2c`, `BaseSpi`, `BaseGpio`, `BaseAdc`, `BaseTemperature`) and CRTP-templated
-device drivers (`hf-tmc9660-driver`, `hf-bno08x-driver`, `hf-as5047u-driver`, etc.).
-No board-specific configuration lives here — board HALs (e.g. `hf-hal-vortex-v1`)
-depend on this repo and add managers, API, and pin mapping.
+// `i2c` is the expander's BaseI2c device, created by the board HAL
+// (an EspI2cDevice on ESP32, a hf::host::MockI2c in a host test).
+bool BlinkStatusLed(BaseI2c& i2c) {
+  Pcal95555Handler expander(i2c);              // no bus traffic yet
+  if (!expander.EnsureInitialized()) {         // probes the chip once
+    return false;                              // wiring, address or power
+  }
 
-## Features
-
-- ✅ **16 Device Handlers** — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, TMC5160, TLE92466ED, MAX22200, ISF15ACP4 (opt-in), ADS9324 (opt-in), SFM (opt-in), BMP581 (opt-in), WS2812, SE050, Logger
-- ✅ **30+ General Utilities** — Buffers, filters, timers, CRC, interpolation, linked
-  lists, flag sets, physical units
-- ✅ **Full RTOS Abstraction** — Mutex, semaphore, queue, event flags, threads, timers
-- ✅ **CANopen Utilities** — CAN frame, SDO protocol, NMT commands
-- ✅ **ESP32 Test Suite** — 16 test applications covering every handler, utility, and
-  integration scenario
-- ✅ **8 CI Pipelines** — Build, lint, analysis, documentation, release
-- ✅ **Thread-Safe** — All handlers use `RtosMutex` for safe concurrent access
-- ✅ **Modern C++20** — Type-safe APIs with CRTP-based design and zero-overhead abstractions
-
-## Architecture
-
-```text
-┌─────────────────────────────────────────────────┐
-│                Board HAL (Vortex)                │  Managers + API
-├─────────────────────────────────────────────────┤
-│              hf-core (this repo)                │
-│  ┌──────────┐  ┌──────────────┐  ┌───────────┐ │
-│  │ Handlers │  │ hf-core-utils│  │  Logger   │ │
-│  │ (adapt)  │  │ (general,    │  │(singleton)│ │
-│  │          │  │  rtos, can)  │  │           │ │
-│  └────┬─────┘  └──────────────┘  └───────────┘ │
-│       │                                         │
-│  ┌────▼──────────────────────────────────────┐  │
-│  │         hf-core-drivers (submodule)       │  │
-│  │  BaseI2c, BaseSpi, BaseGpio, BaseAdc      │  │
-│  │  AS5047U, BNO08x, PCA9685, SE050, TMC9660 ... │  │
-│  └───────────────────────────────────────────┘  │
-├─────────────────────────────────────────────────┤
-│          MCU Platform (ESP32, etc.)             │
-└─────────────────────────────────────────────────┘
+  constexpr uint8_t kLedPin = 3;
+  if (expander.SetDirection(kLedPin, hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT) !=
+      hf_gpio_err_t::GPIO_SUCCESS) {
+    return false;
+  }
+  for (int i = 0; i < 6; ++i) {
+    if (expander.Toggle(kLedPin) != hf_gpio_err_t::GPIO_SUCCESS) {
+      return false;
+    }
+    handler_utils::DelayMs(250);
+  }
+  return true;
+}
 ```
+<!-- /generated -->
 
-Handlers **own** their driver instances and translate base-interface calls into
-high-level operations. They never expose the raw driver — all access goes through
-handler methods.
+## What it does
 
-## Quick Start
+- 23 handlers, one per device family (TMC9660, TMC5160, AS5047U, BNO08x, PCAL95555, PCA9685, TLE92466ED,
+  MAX22200, ADS7952, ADS9324, NTC, BMP581, SE050, ...): lazy initialisation, a recursive mutex, `Base*` in.
+- One CMake entry point, `cmake/hf_core_build_settings.cmake`: `HF_CORE_ENABLE_*` switches in; sources,
+  include directories, ESP-IDF requirements and compile definitions out.
+- `RtosMutex`, `MutexLockGuard`, `BaseThread` and the OS abstraction: FreeRTOS on target, a fake clock on the
+  host.
+- CANopen frame builders and parsers (NMT, SDO, heartbeat, emergency, CiA 402) bridged to any `BaseCan`.
+- A host build (`HF_CORE_MCU=NONE`) with mocks of every bus interface, used by hf-core's tests and by HAL tests.
+- ESP32 today; the STM32 interfaces are selectable and CAN FD fits the `BaseCan` frame.
 
-### Clone
+## Install
 
 ```bash
-git clone --recurse-submodules https://github.com/hardfoc/hf-core.git
+git submodule add https://github.com/hardfoc/hf-core.git lib/core
+git submodule update --init --recursive lib/core
 ```
 
-Or after a shallow clone:
-
-```bash
-git submodule update --init --recursive
+```cmake
+set(HF_CORE_MCU "ESP32")
+set(HF_CORE_ENABLE_PCAL95555 ON)
+include(lib/core/cmake/hf_core_build_settings.cmake)
+idf_component_register(SRCS ${HF_CORE_SOURCES} INCLUDE_DIRS ${HF_CORE_INCLUDE_DIRS} REQUIRES ${HF_CORE_IDF_REQUIRES})
+target_compile_definitions(${COMPONENT_LIB} PUBLIC ${HF_CORE_COMPILE_DEFINITIONS})
 ```
 
-### Build and Flash a Test
-
-```bash
-cd examples/esp32/scripts
-
-# Build a utility test (no hardware needed)
-./build_app.sh general_utils_test Debug
-
-# Flash and monitor
-cd .. && idf.py -p /dev/ttyUSB0 flash monitor
-```
-
-### Build All CI-Enabled Tests
-
-Use the CI pipeline or iterate over `app_config.yml` entries:
-
-```bash
-./build_app.sh list  # See all available apps
-```
-
-## Handlers
-
-| Handler | Device | Bus | Key Capabilities |
-|:--------|:-------|:----|:-----------------|
-| `As5047uHandler` | AS5047U | SPI | Angle, velocity, DAEC, diagnostics, zero-position |
-| `Bno08xHandler` | BNO08x | I2C | Sensor enable/disable, data read, freshness gating |
-| `Pca9685Handler` | PCA9685 | I2C | PWM duty/frequency, phase offset, sleep/wake |
-| `Pcal95555Handler` | PCAL95555 | I2C | GPIO read/write, toggle, batch, interrupt drain |
-| `NtcTemperatureHandler` | NTC | ADC | Temperature, calibration, EMA filter, thresholds |
-| `Tmc9660Handler` | TMC9660 | SPI/UART | Motor control, telemetry, GPIO/ADC/temp wrappers |
-| `Tmc5160Handler` | TMC5160 | SPI/UART | Stepper motor, ramp generator, StallGuard, visitDriver |
-| `Tle92466edHandler` | TLE92466ED | SPI | 6-ch solenoid driver, PWM, diagnostics, watchdog |
-| `Max22200Handler` | MAX22200 | SPI | 8-ch solenoid/motor, CDR/VDR, HIT/HOLD, DPM |
-| `Isf15acp4Handler` | ISF15ACP4 | SPI + GPIO | 96×64 OLED pushbutton, pluggable graphics ([details](docs/handlers/isf15acp4_handler.md); **default OFF**) |
-| `Ads9324Handler` | ADS9324 | SPI + CONVST/DRDY | 16-ch 16-bit simultaneous SAR + PGA ([details](docs/handlers/ads9324_handler.md); **default OFF**) |
-| `Ws2812Handler` | WS2812 | RMT | Addressable LED strip, pixel control, animations |
-| `SfmHandler` | SFM4300 / SF06 family | I2C | Gas mass flow: per-gas tables, CRC-8 frames, averaging, variant gating ([details](docs/handlers/sfm_handler.md); **default OFF**) |
-| `Bmp581Handler` | BMP581 | I2C | Barometric pressure: OSR/ODR/IIR preset, data-ready, Pa/°C ([details](docs/handlers/bmp581_handler.md); **default OFF**) |
-| `Se050Handler` | SE050 / SE050A | I2C | Secure element, T=1 over I²C, `GetDevice()` for `se050::Device` ([details](docs/handlers/se050_handler.md)) |
-| `Logger` | — | — | Singleton, log levels, per-tag filter, formatted output, MCU-agnostic via injectable `BaseLogger` backend ([details](handlers/logger/README.md)) |
-
-## Utilities
-
-| Library | Contents |
-|:--------|:---------|
-| `hf-utils-general` | CircularBuffer, RingBuffer, AveragingFilter, CRC, ActionTimer, IntervalAction, SoftwareVersion, LinearInterpolation, SimpleLinkedList, FlagSet, PhysicalUnit, and more |
-| `hf-utils-rtos-wrap` | RtosMutex, MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags, OsSemaphore, os_delay_msec |
-| `hf-utils-canopen` | CanFrame, SDO helpers, NMT commands |
-
-## Repository Structure
-
-```text
-hf-core/
-├── handlers/           # Device handler implementations
-│   ├── as5047u/        #   Magnetic encoder (SPI)
-│   ├── ads9324/        #   16-ch simultaneous SAR + PGA (SPI; default OFF)
-│   ├── bno08x/         #   9-axis IMU (I2C)
-│   ├── common/         #   Shared handler utilities (HandlerCommon.h)
-│   ├── logger/         #   Singleton logging
-│   ├── max22200/       #   8-ch solenoid/motor driver (SPI)
-│   ├── ntc/            #   NTC thermistor (ADC)
-│   ├── pca9685/        #   16-ch PWM controller (I2C)
-│   ├── pcal95555/      #   16-bit GPIO expander (I2C)
-│   ├── se050/          #   NXP SE050 secure element (I2C)
-│   ├── tle92466ed/     #   6-ch solenoid driver (SPI)
-│   ├── tmc5160/        #   Stepper motor driver (SPI/UART)
-│   ├── tmc9660/        #   Motor controller (SPI/UART)
-│   └── ws2812/         #   Addressable LED strip (RMT)
-├── hf-core-drivers/    # [submodule] Base interfaces + external drivers
-├── hf-core-utils/      # [submodule] General, RTOS, CANopen utilities
-├── examples/
-│   └── esp32/          # ESP-IDF test applications
-│       ├── app_config.yml      # Test app registry (16 apps)
-│       ├── main/
-│       │   ├── handler_tests/  # 13 handler test apps
-│       │   ├── utils_tests/    # 4 utility test apps
-│       │   └── integration_tests/  # 1 integration test
-│       └── components/
-│           └── hf_core/        # ESP-IDF component wrapper
-├── .github/workflows/  # 8 CI pipelines
-├── _config/            # clang-format, clang-tidy, Jekyll, Doxygen, linters
-├── docs/               # Jekyll documentation site
-└── README.md
-```
+Details: [Integration](https://hardfoc.github.io/hf-core/latest/integration/).
 
 ## Documentation
 
-Full documentation is available at the [GitHub Pages site](https://hardfoc.github.io/hf-core/):
+| | |
+| --- | --- |
+| [Quickstart](https://hardfoc.github.io/hf-core/latest/quickstart/) | Add hf-core and drive a handler |
+| [Platform overview](https://hardfoc.github.io/hf-core/latest/architecture/) | Layers, repositories, one call traced through them |
+| [Handlers](https://hardfoc.github.io/hf-core/latest/handlers/) | Every handler: chip, interfaces, switch, methods |
+| [Feature switches](https://hardfoc.github.io/hf-core/latest/feature-switches/) | Every `HF_CORE_ENABLE_*` with defaults and definitions |
+| [Host build and mocks](https://hardfoc.github.io/hf-core/latest/host-build/) | Build and test without hardware, from hf-core or a HAL |
+| [MCU boundary](https://hardfoc.github.io/hf-core/latest/mcu-boundary/) | What may include a vendor SDK; ESP32, STM32, CAN FD status |
 
-- [Architecture](docs/architecture.md) — Layered design, handler pattern, ownership
-- [Folder Structure](docs/folder_structure.md) — Complete tree with descriptions
-- [Handler Reference](docs/handlers/index.md) — Per-handler API documentation
-- [Utilities Reference](docs/utils/index.md) — General, RTOS, CANopen utilities
-- [Testing Guide](docs/testing/testing_guide.md) — How to build and run tests
-- [CI Pipelines](docs/testing/ci_pipelines.md) — Workflow descriptions
+## Tests
 
-## Contributing
-
-1. Create a feature branch from `develop`
-2. Follow `.clang-format` and `.clang-tidy` (configs in `_config/`)
-3. Add or update tests for any handler/utility changes
-4. Ensure all CI checks pass
-5. Open a pull request targeting `develop`
+```bash
+cmake --preset host-debug && cmake --build --preset host-debug && ctest --preset host-debug
+```
 
 ## License
 
-This project is licensed under the **GNU General Public License v3.0**.
-See the [GPL v3 license](https://www.gnu.org/licenses/gpl-3.0) for details.
-Individual submodules may carry their own licenses — see per-submodule LICENSE files.
+GPL-3.0-or-later.
