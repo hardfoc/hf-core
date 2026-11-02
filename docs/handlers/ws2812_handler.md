@@ -1,10 +1,3 @@
----
-layout: default
-title: WS2812 Handler
-parent: Handlers
-nav_order: 10
----
-
 # Ws2812Handler
 
 Addressable LED strip handler for WS2812/NeoPixel LEDs using the ESP32 RMT peripheral.

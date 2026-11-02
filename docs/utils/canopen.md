@@ -1,10 +1,3 @@
----
-layout: default
-title: CANopen
-parent: Utilities
-nav_order: 3
----
-
 # CANopen Utilities (hf-utils-canopen)
 
 CAN frame construction and CANopen protocol helpers.

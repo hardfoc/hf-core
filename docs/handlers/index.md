@@ -1,10 +1,3 @@
----
-layout: default
-title: Handlers
-nav_order: 4
-has_children: true
----
-
 # Handler Reference
 
 Handlers are the bridge layer between platform-agnostic base interfaces and

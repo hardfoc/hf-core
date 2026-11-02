@@ -1,10 +1,3 @@
----
-layout: default
-title: TLE92466ED Handler
-parent: Handlers
-nav_order: 8
----
-
 # Tle92466edHandler
 
 Six-channel solenoid gate-driver handler for the **Infineon TLE92466ED**, bridging **`BaseSpi`**

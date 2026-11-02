@@ -1,10 +1,3 @@
----
-layout: default
-title: RTOS Wrappers
-parent: Utilities
-nav_order: 2
----
-
 # RTOS Wrappers (hf-utils-rtos-wrap)
 
 C++ abstractions over FreeRTOS primitives for thread-safe embedded development.

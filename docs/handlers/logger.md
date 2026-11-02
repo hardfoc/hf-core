@@ -1,10 +1,3 @@
----
-layout: default
-title: Logger
-parent: Handlers
-nav_order: 7
----
-
 # Logger
 
 Singleton logging system with color output, ASCII art, and per-tag filtering.

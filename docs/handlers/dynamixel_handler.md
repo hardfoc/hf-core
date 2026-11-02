@@ -1,10 +1,3 @@
----
-layout: default
-title: Dynamixel Handler
-parent: Handlers
-nav_order: 18
----
-
 # DynamixelHandler
 
 HAL integration for ROBOTIS Protocol 2.0 Dynamixel servos via

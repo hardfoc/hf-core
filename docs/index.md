@@ -1,10 +1,3 @@
----
-layout: default
-title: Home
-nav_order: 1
-permalink: /
----
-
 # HF-Core Platform Documentation
 
 Welcome to the **HardFOC Core Platform (hf-core)** documentation. This module provides

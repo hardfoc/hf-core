@@ -5,17 +5,17 @@
 # =============================================================================
 
 # --- Project ---
-PROJECT_NAME           = "HF-Core Platform"
-PROJECT_BRIEF          = "Hardware-Agnostic Handler Layer & RTOS Utilities for HardFOC"
+PROJECT_NAME           = "HardFOC Core"
+PROJECT_BRIEF          = "API reference"
 PROJECT_NUMBER         =
-OUTPUT_DIRECTORY       = docs
+OUTPUT_DIRECTORY       = build/doxygen
 
 # --- Input ---
-INPUT                  = handlers examples/esp32/main README.md
+INPUT                  = handlers tests/host/mocks docs/_doxygen/mainpage.md
 FILE_PATTERNS          = *.c *.cpp *.h *.hpp
 RECURSIVE              = YES
-USE_MDFILE_AS_MAINPAGE = README.md
-FILTER_PATTERNS        = *.md="sed -e '/^---$/,/^---$/d'"
+USE_MDFILE_AS_MAINPAGE = docs/_doxygen/mainpage.md
+FILTER_PATTERNS        =
 
 EXCLUDE                = *build* *cmake-build-* *managed_components* \
                          *__pycache__* *.pyc
@@ -46,9 +46,7 @@ WARN_AS_ERROR          = NO
 
 # --- HTML ---
 GENERATE_HTML          = YES
-GENERATE_TREEVIEW      = YES
 PAGE_OUTLINE_PANEL     = NO
-HTML_COPY_CLIPBOARD    = NO
 SEARCHENGINE           = YES
 
 # --- Diagrams (Graphviz) ---
@@ -74,5 +72,8 @@ GENERATE_DOCBOOK       = NO
 # referenced .tag exists (doxygen errors on a missing file). Typical order:
 #   1) each hf-*-driver  2) hf-core  3) pw-hal  4) firmware apps / boot
 # Keep TAGFILES empty here; GENERATE_TAGFILE writes a gitignored artifact.
-GENERATE_TAGFILE       = docs/html/hf-core.tag
 TAGFILES               =
+
+CASE_SENSE_NAMES       = NO
+
+HTML_OUTPUT            = html

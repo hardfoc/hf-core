@@ -1,10 +1,3 @@
----
-layout: default
-title: Ads9324Handler
-parent: Handlers
-nav_order: 21
----
-
 # Ads9324Handler
 
 Thread-safe `BaseAdc` facade for the TI ADS9324 (16-channel, 16-bit simultaneous

@@ -1,10 +1,3 @@
----
-layout: default
-title: Utilities
-nav_order: 5
-has_children: true
----
-
 # Utility Libraries
 
 hf-core includes three utility libraries providing reusable infrastructure:

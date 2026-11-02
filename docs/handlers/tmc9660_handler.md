@@ -1,10 +1,3 @@
----
-layout: default
-title: TMC9660 Handler
-parent: Handlers
-nav_order: 6
----
-
 # Tmc9660Handler
 
 Unified handler for the TMC9660 3-phase BLDC motor controller with SPI/UART

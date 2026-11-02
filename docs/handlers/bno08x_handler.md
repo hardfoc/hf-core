@@ -1,10 +1,3 @@
----
-layout: default
-title: BNO08x Handler
-parent: Handlers
-nav_order: 2
----
-
 # Bno08xHandler
 
 9-DOF IMU handler supporting accelerometer, gyroscope, magnetometer, and fused

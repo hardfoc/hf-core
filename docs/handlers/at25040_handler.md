@@ -1,10 +1,3 @@
----
-layout: default
-title: At25040Handler
-parent: Handlers
-nav_order: 15
----
-
 # At25040Handler
 
 SPI EEPROM handler for Microchip AT25010/020/040B. Wraps `at25040::Device<>`

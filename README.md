@@ -1,10 +1,3 @@
----
-layout: default
-title: "HardFOC Core Platform"
-description: "Shared platform layer for HardFOC boards — handlers, RTOS utilities, driver integration, and CANopen for motor control systems"
-nav_order: 1
----
-
 # HF-Core Platform
 
 **Shared platform layer for HardFOC boards — handlers, RTOS utilities, driver integration, and CANopen for motor control systems**
@@ -20,20 +13,20 @@ nav_order: 1
 [![Link Check](https://github.com/hardfoc/hf-core/actions/workflows/ci-docs-linkcheck.yml/badge.svg)](https://github.com/hardfoc/hf-core/actions/workflows/ci-docs-linkcheck.yml)
 [![Release](https://github.com/hardfoc/hf-core/actions/workflows/release.yml/badge.svg)](https://github.com/hardfoc/hf-core/actions/workflows/release.yml)
 
-## 📚 Table of Contents
+## Table of Contents
 
-1. [Overview](#-overview)
-2. [Features](#-features)
-3. [Architecture](#-architecture)
-4. [Quick Start](#-quick-start)
-5. [Handlers](#-handlers)
-6. [Utilities](#-utilities)
-7. [Repository Structure](#-repository-structure)
-8. [Documentation](#-documentation)
-9. [Contributing](#-contributing)
-10. [License](#-license)
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Architecture](#architecture)
+4. [Quick Start](#quick-start)
+5. [Handlers](#handlers)
+6. [Utilities](#utilities)
+7. [Repository Structure](#repository-structure)
+8. [Documentation](#documentation)
+9. [Contributing](#contributing)
+10. [License](#license)
 
-## 📦 Overview
+## Overview
 
 > **📖 [📚🌐 Live Complete Documentation](https://hardfoc.github.io/hf-core/)** —
 > Architecture guides, per-handler API reference, and testing instructions
@@ -48,7 +41,7 @@ device drivers (`hf-tmc9660-driver`, `hf-bno08x-driver`, `hf-as5047u-driver`, et
 No board-specific configuration lives here — board HALs (e.g. `hf-hal-vortex-v1`)
 depend on this repo and add managers, API, and pin mapping.
 
-## ✨ Features
+## Features
 
 - ✅ **16 Device Handlers** — AS5047U, BNO08x, PCA9685, PCAL95555, NTC, TMC9660, TMC5160, TLE92466ED, MAX22200, ISF15ACP4 (opt-in), ADS9324 (opt-in), SFM (opt-in), BMP581 (opt-in), WS2812, SE050, Logger
 - ✅ **30+ General Utilities** — Buffers, filters, timers, CRC, interpolation, linked
@@ -61,7 +54,7 @@ depend on this repo and add managers, API, and pin mapping.
 - ✅ **Thread-Safe** — All handlers use `RtosMutex` for safe concurrent access
 - ✅ **Modern C++20** — Type-safe APIs with CRTP-based design and zero-overhead abstractions
 
-## 🏗️ Architecture
+## Architecture
 
 ```text
 ┌─────────────────────────────────────────────────┐
@@ -88,7 +81,7 @@ Handlers **own** their driver instances and translate base-interface calls into
 high-level operations. They never expose the raw driver — all access goes through
 handler methods.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Clone
 
@@ -122,7 +115,7 @@ Use the CI pipeline or iterate over `app_config.yml` entries:
 ./build_app.sh list  # See all available apps
 ```
 
-## 📖 Handlers
+## Handlers
 
 | Handler | Device | Bus | Key Capabilities |
 |:--------|:-------|:----|:-----------------|
@@ -143,7 +136,7 @@ Use the CI pipeline or iterate over `app_config.yml` entries:
 | `Se050Handler` | SE050 / SE050A | I2C | Secure element, T=1 over I²C, `GetDevice()` for `se050::Device` ([details](docs/handlers/se050_handler.md)) |
 | `Logger` | — | — | Singleton, log levels, per-tag filter, formatted output, MCU-agnostic via injectable `BaseLogger` backend ([details](handlers/logger/README.md)) |
 
-## 🔧 Utilities
+## Utilities
 
 | Library | Contents |
 |:--------|:---------|
@@ -151,7 +144,7 @@ Use the CI pipeline or iterate over `app_config.yml` entries:
 | `hf-utils-rtos-wrap` | RtosMutex, MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags, OsSemaphore, os_delay_msec |
 | `hf-utils-canopen` | CanFrame, SDO helpers, NMT commands |
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```text
 hf-core/
@@ -187,7 +180,7 @@ hf-core/
 └── README.md
 ```
 
-## 📚 Documentation
+## Documentation
 
 Full documentation is available at the [GitHub Pages site](https://hardfoc.github.io/hf-core/):
 
@@ -198,7 +191,7 @@ Full documentation is available at the [GitHub Pages site](https://hardfoc.githu
 - [Testing Guide](docs/testing/testing_guide.md) — How to build and run tests
 - [CI Pipelines](docs/testing/ci_pipelines.md) — Workflow descriptions
 
-## 🤝 Contributing
+## Contributing
 
 1. Create a feature branch from `develop`
 2. Follow `.clang-format` and `.clang-tidy` (configs in `_config/`)
@@ -206,7 +199,7 @@ Full documentation is available at the [GitHub Pages site](https://hardfoc.githu
 4. Ensure all CI checks pass
 5. Open a pull request targeting `develop`
 
-## 📄 License
+## License
 
 This project is licensed under the **GNU General Public License v3.0**.
 See the [GPL v3 license](https://www.gnu.org/licenses/gpl-3.0) for details.

@@ -137,3 +137,4 @@ Thumbs.db
 # Static analysis reports (tools/lint)
 clang-tidy-report.txt
 cppcheck-report.txt
+site/

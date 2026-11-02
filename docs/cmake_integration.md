@@ -1,11 +1,3 @@
----
-layout: default
-title: "⚙️ CMake Integration"
-description: "Configurable CMake build system for hf-core"
-nav_order: 5
-permalink: /docs/cmake_integration/
----
-
 # hf-core CMake Integration
 
 This document describes the **configurable CMake build system** that allows

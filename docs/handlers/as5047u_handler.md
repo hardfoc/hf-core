@@ -1,10 +1,3 @@
----
-layout: default
-title: AS5047U Handler
-parent: Handlers
-nav_order: 1
----
-
 # As5047uHandler
 
 High-precision 14-bit magnetic rotary encoder handler with SPI integration.

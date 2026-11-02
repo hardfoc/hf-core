@@ -1,10 +1,3 @@
----
-layout: default
-title: ISF15ACP4 Handler
-parent: Handlers
-nav_order: 11
----
-
 # Isf15acp4Handler
 
 NKK **ISF15ACP4** SmartDisplay handler — 96×64 RGB OLED (SSD1331) with integrated pushbutton.

@@ -1,10 +1,3 @@
----
-layout: default
-title: TMC5160 Handler
-parent: Handlers
-nav_order: 7
----
-
 # Tmc5160Handler
 
 Stepper motor driver handler for TMC5160/TMC5130 with SPI/UART support.

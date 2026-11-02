@@ -1,10 +1,3 @@
----
-layout: default
-title: Testing Guide
-parent: Testing
-nav_order: 1
----
-
 # Testing Guide
 
 ## Overview

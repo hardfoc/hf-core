@@ -1,10 +1,3 @@
----
-layout: default
-title: SE050 Handler
-parent: Handlers
-nav_order: 15
----
-
 # Se050Handler
 
 HAL bridge from `BaseI2c` (and optional `BaseGpio` for `SE_RESET`) to the header-only

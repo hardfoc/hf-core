@@ -1,10 +1,3 @@
----
-layout: default
-title: Host Build and Tests
-parent: Testing
-nav_order: 3
----
-
 # Host Build and Tests
 
 hf-core builds and runs its unit tests on a Linux or macOS machine, with no

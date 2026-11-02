@@ -1,10 +1,3 @@
----
-layout: default
-title: NTC Temperature Handler
-parent: Handlers
-nav_order: 5
----
-
 # NtcTemperatureHandler
 
 NTC thermistor temperature sensor handler implementing the full `BaseTemperature` interface.

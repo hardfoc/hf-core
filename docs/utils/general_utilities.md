@@ -1,10 +1,3 @@
----
-layout: default
-title: General Utilities
-parent: Utilities
-nav_order: 1
----
-
 # General Utilities (hf-utils-general)
 
 Header-only C++ utility library with no platform dependencies.

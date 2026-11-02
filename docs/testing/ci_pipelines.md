@@ -1,10 +1,3 @@
----
-layout: default
-title: CI Pipelines
-parent: Testing
-nav_order: 2
----
-
 # CI Pipelines
 
 ## Overview

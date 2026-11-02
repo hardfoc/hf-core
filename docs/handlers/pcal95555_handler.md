@@ -1,10 +1,3 @@
----
-layout: default
-title: PCAL95555 Handler
-parent: Handlers
-nav_order: 4
----
-
 # Pcal95555Handler
 
 16-pin I²C GPIO expander handler with interrupt support and Agile I/O features.

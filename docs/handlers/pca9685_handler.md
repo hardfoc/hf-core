@@ -1,10 +1,3 @@
----
-layout: default
-title: PCA9685 Handler
-parent: Handlers
-nav_order: 3
----
-
 # Pca9685Handler
 
 16-channel, 12-bit PWM driver handler with phase offset support.

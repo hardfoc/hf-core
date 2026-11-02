@@ -1,10 +1,3 @@
----
-layout: default
-title: MAX22200 Handler
-parent: Handlers
-nav_order: 9
----
-
 # Max22200Handler
 
 Octal solenoid/motor driver handler for the Analog Devices MAX22200.
