@@ -67,6 +67,14 @@ bool MakeWakePipe(int (&fds)[2]) {
   return true;
 }
 
+/** Write one wake byte; a full pipe already means "woken", so the result is not needed. */
+void PokeFd(int fd) {
+  const uint8_t b = 1;
+  if (write(fd, &b, 1) < 0) {
+    // EAGAIN: a wake is already pending.
+  }
+}
+
 void CloseFd(int& fd) {
   if (fd >= 0) {
     (void)close(fd);
@@ -176,8 +184,7 @@ void PipeHub::Stop() {
   if (!running_.exchange(false)) {
     return;
   }
-  const uint8_t b = 1;
-  (void)write(wake_[1], &b, 1);
+  PokeFd(wake_[1]);
   if (thread_.joinable()) {
     thread_.join();
   }
@@ -365,8 +372,7 @@ void PipePort::Close() {
 
 void PipePort::Wake() const {
   if (wake_[1] >= 0) {
-    const uint8_t b = 1;
-    (void)write(wake_[1], &b, 1);
+    PokeFd(wake_[1]);
   }
 }
 

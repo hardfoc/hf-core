@@ -31,6 +31,14 @@ uint32_t NowUs() {
           .count());
 }
 
+/** Write one wake byte; a full pipe already means "woken", so the result is not needed. */
+void PokeFd(int fd) {
+  const uint8_t b = 1;
+  if (write(fd, &b, 1) < 0) {
+    // EAGAIN: a wake is already pending.
+  }
+}
+
 void CloseFd(int& fd) {
   if (fd >= 0) {
     (void)close(fd);
@@ -98,8 +106,7 @@ bool LinuxSocketCanPort::Open() {
 
 void LinuxSocketCanPort::Close() {
   if (run_.exchange(false)) {
-    const uint8_t b = 1;
-    (void)write(wake_[1], &b, 1);
+    PokeFd(wake_[1]);
     if (reader_.joinable()) {
       reader_.join();
     }
@@ -152,8 +159,7 @@ TxResult LinuxSocketCanPort::Send(const CanFrame& frame) {
   if (errno == EAGAIN || errno == EWOULDBLOCK || errno == ENOBUFS) {
     tx_queue_full_.fetch_add(1, std::memory_order_relaxed);
     want_writable_.store(true, std::memory_order_release);
-    const uint8_t b = 1;
-    (void)write(wake_[1], &b, 1);
+    PokeFd(wake_[1]);
     return TxResult::QueueFull;
   }
   if (errno == ENETDOWN) {
