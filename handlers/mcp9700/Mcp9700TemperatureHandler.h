@@ -63,6 +63,9 @@ public:
 
     ~Mcp9700TemperatureHandler() noexcept override = default;
 
+    /** @brief Instance label given at construction ("MCP9700" by default). */
+    [[nodiscard]] const char* GetSensorName() const noexcept { return sensor_name_; }
+
 protected:
     bool Initialize() noexcept override;
     bool Deinitialize() noexcept override;

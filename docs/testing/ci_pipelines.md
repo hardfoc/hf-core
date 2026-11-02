@@ -9,7 +9,7 @@ nav_order: 2
 
 ## Overview
 
-hf-core uses **8 GitHub Actions workflows** that mirror the standard CI pattern across
+hf-core uses **9 GitHub Actions workflows** that mirror the standard CI pattern across
 all HardFOC repositories. Workflows use reusable workflow definitions from two shared
 CI tool repositories:
 
@@ -95,6 +95,19 @@ Creates a GitHub Release with:
 - Auto-generated changelog from commits since the last tag
 - Source archive attached as a release artifact
 - Release notes template
+
+### 9. Host Build and Tests (`host.yml`)
+
+**Trigger:** Every pull request; push to `main` and `release/*`
+
+Runs inline (no reusable workflow yet) on Ubuntu 24.04:
+
+1. **Host build and tests** — `cmake --preset host-debug`, build, `ctest`, once with GCC and once with Clang
+2. **clang-tidy** — `tools/lint/run-clang-tidy.sh` (clang-tidy 18) on hf-core's own sources
+3. **cppcheck** — `tools/lint/run-cppcheck.sh` on the same sources
+4. **CI gate** — passes only if every job above passed or was skipped; the one check to require on `main`
+
+See [Host Build and Tests](../host-build.md).
 
 ---
 

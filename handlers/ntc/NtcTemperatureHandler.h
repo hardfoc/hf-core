@@ -308,7 +308,7 @@ public:
      * @param reference_temperature_celsius Known reference temperature
      * @return Error code
      */
-    hf_temp_err_t Calibrate(float reference_temperature_celsius) noexcept;
+    hf_temp_err_t Calibrate(float reference_temperature_celsius) noexcept override;
     
     /**
      * @brief Set conversion method
