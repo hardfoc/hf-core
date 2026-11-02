@@ -21,6 +21,7 @@ from hardfoc_mkdocs_theme.paths import repo_root
 
 ROOT = repo_root()
 SETTINGS = "cmake/hf_core_build_settings.cmake"
+CANOPEN_LISTS = "cmake/hf_core_canopennode.cmake"
 HOST_CMAKE = "CMakeLists.txt"
 HANDLERS = ROOT / "handlers"
 
@@ -80,7 +81,7 @@ def switches() -> list[dict]:
         d = re.match(r"^\s*if\(NOT DEFINED (HF_CORE_ENABLE_\w+)\)", line)
         if d and d.group(1) not in out:
             out[d.group(1)] = {"name": d.group(1), "group": group, "default": None, "auto": [], "define": "",
-                               "handler": "", "driver": "", "host": "", "ifaces": []}
+                               "handler": "", "driver": "", "host": "", "ifaces": [], "sources": []}
             cur = d.group(1)
         s = re.match(r"^\s*set\((HF_CORE_ENABLE_\w+) (ON|OFF)\)", line)
         if s and s.group(1) in out and out[s.group(1)]["default"] is None:
@@ -110,6 +111,11 @@ def switches() -> list[dict]:
         rm = re.search(r"HF_CORE_DRIVER_EXT\}/(hf-[a-z0-9-]+)", body)
         if rm and not e["driver"]:
             e["driver"] = rm.group(1)
+    # HF_CORE_ENABLE_CANOPENNODE compiles the lists in hf_core_canopennode.cmake: the generic CO driver, the port
+    # bindings of the platform and the CANopenNode stack with the application's OD.
+    if "hf_core_canopennode.cmake" in text and "HF_CORE_ENABLE_CANOPENNODE" in out:
+        co = _read(CANOPEN_LISTS)
+        out["HF_CORE_ENABLE_CANOPENNODE"]["sources"] = re.findall(r"\$\{_hf_co_dir\}/(\w+)\.(?:c|cpp)\b", co)
     gates = dict((g.split(":")[0], g.split(":", 1)[1]) for g in re.findall(r'^\s*"(\w+:\w+:[^"]+)"', text, re.M))
     host = _read(HOST_CMAKE)
     for m in re.finditer(r"foreach\(_feature\s+(.*?)\)\s*\n\s*if\(NOT DEFINED HF_CORE_ENABLE_\$\{_feature\}\)\s*\n"
@@ -142,6 +148,9 @@ def feature_switches(page) -> str:
             compiles.append(f"[{e['driver']}](https://github.com/hardfoc/{e['driver']})")
         if e["ifaces"]:
             compiles.append(" / ".join(f"`{i}`" for i in e["ifaces"]))
+        if e["sources"]:
+            compiles.append("[`handlers/common/canopen/`](canopen-page-link): " + " / ".join(f"`{x}`" for x in e["sources"])
+                            + " + CANopenNode with the application's OD")
         auto = ", ".join(f"`{a}`" for a in e["auto"]) or ""
         host = e["host"] or e["default"]
         note = f" (needs {e['gate'].split(':')[0]}: {e['gate'].split(':')[1]})" if e["gate"] else ""
@@ -150,6 +159,7 @@ def feature_switches(page) -> str:
             f"{'`' + e['define'] + '`' if e['define'] else ''} |"
         )
     body = "\n".join(rows)
+    body = body.replace("](canopen-page-link)", f"]({page.rel('docs/canopen.md')})")
     body = re.sub(r"\]\(([a-z-]+)-link\)", lambda m: f"]({page.rel('docs/handlers/' + m.group(1) + '.md')})", body)
     return body + f"\n\nRead from [`{SETTINGS}`]({page.rel(SETTINGS)}) and [`{HOST_CMAKE}`]({page.rel(HOST_CMAKE)}).\n"
 

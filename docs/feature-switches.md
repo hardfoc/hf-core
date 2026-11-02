@@ -13,7 +13,7 @@ switches that set it automatically.
 | --- | --- | --- | --- | --- | --- |
 | **Utility groups** | | | | | |
 | `HF_CORE_ENABLE_UTILS_CANOPEN` | OFF | ON |  | [hf-utils-canopen](https://github.com/hardfoc/hf-utils-canopen) | `HARDFOC_CANOPEN_UTILS` |
-| `HF_CORE_ENABLE_CANOPENNODE` | OFF | OFF |  |  | `HARDFOC_CANOPENNODE_SLAVE` |
+| `HF_CORE_ENABLE_CANOPENNODE` | OFF | OFF |  | [`handlers/common/canopen/`](canopen.md): `CO_driver_hardfoc` / `EspTwaiPort` / `PipePort` / `LinuxSocketCanPort` + CANopenNode with the application's OD | `HARDFOC_CANOPENNODE_SLAVE` |
 | **MCU interfaces** | | | | | |
 | `HF_CORE_ENABLE_UART` | OFF | ON | `TMC5160`, `TMC9660`, `ALICAT_BASIS2`, `FDO2`, `DYNAMIXEL` | `EspUart` / `StmUart` |  |
 | `HF_CORE_ENABLE_USB_SERIAL_JTAG` | OFF | OFF |  | `EspUsbSerialJtag` | `HARDFOC_USB_SERIAL_JTAG_SUPPORT` |
@@ -58,4 +58,5 @@ Read from [`cmake/hf_core_build_settings.cmake`](../cmake/hf_core_build_settings
 Optional interfaces add their `Esp*` (or `Stm*`) source and ESP-IDF component: `UART` adds `EspUart` and
 `esp_driver_uart`, `CAN` adds `EspCan` and `esp_driver_twai` (ESP-IDF 5.5 and later), `USB_SERIAL_JTAG` adds
 `EspUsbSerialJtag`, `PWM` adds `EspPwm`, `PIO` adds `EspPio`. `HF_CORE_ENABLE_CANOPENNODE` needs
-`HF_CORE_ENABLE_UTILS_CANOPEN` and an upstream CANopenNode checkout at `HF_CORE_CANOPENNODE_ROOT`.
+`HF_CORE_ENABLE_UTILS_CANOPEN`, an upstream CANopenNode checkout at `HF_CORE_CANOPENNODE_ROOT` and the
+application's object dictionary at `HF_CORE_CANOPENNODE_OD_DIR` (see [CANopen](canopen.md)).

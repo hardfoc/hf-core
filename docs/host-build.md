@@ -68,10 +68,18 @@ passed or was skipped.
 | `hf_core_host_mocks` | `Mock*` fakes in `tests/host/mocks/` | `-Wall -Wextra -Werror` |
 | `hf_core_host_test_main` | The `HF_TEST` / `CHECK` harness and `main()` | `-Wall -Wextra -Werror` |
 | `test_doc_snippets` | The code shown on this site (`tests/docs/`), run against the mocks | `-Wall -Wextra -Werror` |
+| `hf_core_canopen_host` | The generic CANopenNode driver (`CO_driver_hardfoc.c`), `PipePort` / `PipeHub` and, on Linux, `LinuxSocketCanPort` (tests only) | `-Wall -Wextra -Werror` |
 
 Handlers left out: WS2812 (needs the ESP32 RMT peripheral), Dynamixel and the
-CANopenNode slave (both need third-party checkouts that live outside hf-core).
+CANopenNode stack (both need third-party checkouts that live outside hf-core,
+and the stack needs an application object dictionary).
 Set `HF_CORE_ENABLE_<CHIP>` before configuring to change the selection.
+
+The CANopen driver tests (`test_co_driver`, `test_frame_record`,
+`test_pipe_loopback`, ctest label `canopen`) only need CANopenNode's headers:
+they fetch the revision the HALs pin, or use `-DHF_CORE_CANOPENNODE_ROOT=<checkout>`.
+`-DHF_CORE_CANOPEN_SANITIZE=thread` builds them with ThreadSanitizer, as the
+`canopen-tsan` CI job does.
 
 Submodule headers are included as system headers, so warnings inside a driver
 do not fail hf-core's build. That is deliberate: each submodule is its own
