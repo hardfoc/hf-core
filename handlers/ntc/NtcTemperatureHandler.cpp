@@ -237,10 +237,21 @@ bool NtcTemperatureHandler::Initialize() noexcept {
         diagnostics_.calibration_valid = true;
     }
     
-    // Set thresholds if enabled
+    // Apply the threshold window from the config. This must not go through
+    // SetThresholds() / EnableThresholdMonitoring(): they call EnsureInitialized(),
+    // which re-enters Initialize() while initialized_ is still false.
     if (config_.enable_threshold_monitoring) {
-        SetThresholds(config_.low_threshold_celsius, config_.high_threshold_celsius);
-        EnableThresholdMonitoring(config_.threshold_callback, config_.threshold_user_data);
+        if (config_.low_threshold_celsius >= config_.high_threshold_celsius) {
+            Logger::GetInstance().Error(TAG, "Invalid threshold window: low=%.2f°C, high=%.2f°C",
+                                        config_.low_threshold_celsius, config_.high_threshold_celsius);
+            ntc_thermistor_.reset();
+            ntc_adc_adapter_.reset();
+            SetLastError(TEMP_ERR_INVALID_THRESHOLD);
+            return false;
+        }
+        threshold_callback_ = config_.threshold_callback;
+        threshold_user_data_ = config_.threshold_user_data;
+        diagnostics_.threshold_monitoring_enabled = (config_.threshold_callback != nullptr);
     }
     
     initialized_ = true;
