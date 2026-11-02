@@ -121,3 +121,83 @@ HF_TEST(Ntc_ConfiguredChannelMustExist) {
     NtcTemperatureHandler ntc(&adc, cfg);
     CHECK(!ntc.EnsureInitialized());
 }
+
+namespace {
+
+struct ThresholdHits {
+    int low{0};
+    int high{0};
+    float last{0.0f};
+};
+
+void OnThreshold(BaseTemperature* /*sensor*/, float celsius, hf_u32_t type, void* user_data) {
+    auto* hits = static_cast<ThresholdHits*>(user_data);
+    hits->last = celsius;
+    if (type == 0) {
+        ++hits->low;
+    } else {
+        ++hits->high;
+    }
+}
+
+}  // namespace
+
+// Initialize() used to apply the configured window through SetThresholds() and
+// EnableThresholdMonitoring(), which call EnsureInitialized() and re-entered
+// Initialize() until the stack overflowed.
+HF_TEST(Ntc_InitWithThresholdMonitoringAppliesTheWindow) {
+    MockAdc adc(4, kVref, 12);
+    adc.SetVoltage(kChannel, VoltageForResistance(10000.0f));  // 25 °C
+    ThresholdHits hits;
+    ntc_temp_handler_config_t cfg = Config();
+    cfg.enable_threshold_monitoring = true;
+    cfg.low_threshold_celsius = 0.0f;
+    cfg.high_threshold_celsius = 40.0f;
+    cfg.threshold_callback = OnThreshold;
+    cfg.threshold_user_data = &hits;
+    NtcTemperatureHandler ntc(&adc, cfg);
+    REQUIRE(ntc.EnsureInitialized());
+
+    float low = 0.0f;
+    float high = 0.0f;
+    CHECK(ntc.GetThresholds(&low, &high) == hf_temp_err_t::TEMP_SUCCESS);
+    CHECK_NEAR(low, 0.0, 1e-6);
+    CHECK_NEAR(high, 40.0, 1e-6);
+
+    float c = 0.0f;
+    CHECK(ntc.ReadTemperatureCelsius(&c) == hf_temp_err_t::TEMP_SUCCESS);
+    CHECK_EQ(hits.low + hits.high, 0);
+
+    adc.SetVoltage(kChannel, VoltageForResistance(3000.0f));  // about 55 °C
+    CHECK(ntc.ReadTemperatureCelsius(&c) == hf_temp_err_t::TEMP_SUCCESS);
+    CHECK_EQ(hits.high, 1);
+    CHECK_NEAR(hits.last, c, 1e-3);
+
+    adc.SetVoltage(kChannel, VoltageForResistance(40000.0f));  // below 0 °C
+    CHECK(ntc.ReadTemperatureCelsius(&c) == hf_temp_err_t::TEMP_SUCCESS);
+    CHECK_EQ(hits.low, 1);
+}
+
+HF_TEST(Ntc_InitWithThresholdMonitoringAndNoCallbackSucceeds) {
+    MockAdc adc(4, kVref, 12);
+    adc.SetVoltage(kChannel, VoltageForResistance(10000.0f));
+    ntc_temp_handler_config_t cfg = Config();
+    cfg.enable_threshold_monitoring = true;
+    cfg.low_threshold_celsius = 0.0f;
+    cfg.high_threshold_celsius = 85.0f;
+    NtcTemperatureHandler ntc(&adc, cfg);
+    REQUIRE(ntc.EnsureInitialized());
+    float c = 0.0f;
+    CHECK(ntc.ReadTemperatureCelsius(&c) == hf_temp_err_t::TEMP_SUCCESS);
+}
+
+HF_TEST(Ntc_InitRejectsAnInvertedThresholdWindow) {
+    MockAdc adc(4, kVref, 12);
+    adc.SetVoltage(kChannel, VoltageForResistance(10000.0f));
+    ntc_temp_handler_config_t cfg = Config();
+    cfg.enable_threshold_monitoring = true;
+    cfg.low_threshold_celsius = 85.0f;
+    cfg.high_threshold_celsius = 0.0f;
+    NtcTemperatureHandler ntc(&adc, cfg);
+    CHECK(!ntc.EnsureInitialized());
+}

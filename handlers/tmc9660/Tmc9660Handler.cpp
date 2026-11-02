@@ -337,8 +337,8 @@ Tmc9660Handler::Tmc9660Handler(BaseSpi& spi, BaseGpio& rst, BaseGpio& drv_en,
         /*drv_en_active_high=*/true,
         /*faultn_active_low=*/true,   /* → CommInterface faultn_active_level=false */
         /*wake_active_low=*/true);    /* → CommInterface wake_active_level=false */
-    // Eagerly create peripheral wrappers so accessors never return dangling refs.
-    // The wrapper methods themselves guard on IsDriverReady().
+    // Eagerly create the peripheral wrappers. The accessors hand them out only
+    // after a successful bring-up; the wrapper methods also guard on the driver.
     gpioWrappers_[0] = std::make_unique<Gpio>(*this, 17);
     gpioWrappers_[1] = std::make_unique<Gpio>(*this, 18);
     adcWrapper_         = std::make_unique<Adc>(*this);
@@ -360,7 +360,7 @@ Tmc9660Handler::Tmc9660Handler(BaseUart& uart, BaseGpio& rst, BaseGpio& drv_en,
         /*drv_en_active_high=*/true,
         /*faultn_active_low=*/true,   /* → CommInterface faultn_active_level=false */
         /*wake_active_low=*/true);    /* → CommInterface wake_active_level=false */
-    // Eagerly create peripheral wrappers so accessors never return dangling refs.
+    // Eagerly create the peripheral wrappers (see the SPI constructor).
     gpioWrappers_[0] = std::make_unique<Gpio>(*this, 17);
     gpioWrappers_[1] = std::make_unique<Gpio>(*this, 18);
     adcWrapper_         = std::make_unique<Adc>(*this);
@@ -428,7 +428,7 @@ bool Tmc9660Handler::Initialize(bool performReset, bool retrieveBootloaderInfo,
     }
 
     // Peripheral wrappers (GPIO, ADC, Temperature) are created eagerly in the
-    // constructor so that the accessors always return valid references.
+    // constructor; gpio(), adc() and temperature() return them from here on.
 
     boot_ok_ = true;
     Logger::GetInstance().Info(TAG, "TMC9660 initialized successfully via %s",
@@ -456,21 +456,22 @@ bool Tmc9660Handler::IsDriverReady() const noexcept {
 // PERIPHERAL ACCESSORS
 //==============================================================================
 
-Tmc9660Handler::Gpio& Tmc9660Handler::gpio(uint8_t gpioNumber) {
-    (void)EnsureInitialized();
-    if (gpioNumber == 17) return *gpioWrappers_[0];
-    if (gpioNumber == 18) return *gpioWrappers_[1];
-    return *gpioWrappers_[0]; // Fallback
+Tmc9660Handler::Gpio* Tmc9660Handler::gpio(uint8_t gpioNumber) noexcept {
+    if (gpioNumber != 17 && gpioNumber != 18) {
+        return nullptr;
+    }
+    if (!EnsureInitialized()) {
+        return nullptr;
+    }
+    return gpioWrappers_[gpioNumber == 17 ? 0 : 1].get();
 }
 
-Tmc9660Handler::Adc& Tmc9660Handler::adc() {
-    (void)EnsureInitialized();
-    return *adcWrapper_;
+Tmc9660Handler::Adc* Tmc9660Handler::adc() noexcept {
+    return EnsureInitialized() ? adcWrapper_.get() : nullptr;
 }
 
-Tmc9660Handler::Temperature& Tmc9660Handler::temperature() {
-    (void)EnsureInitialized();
-    return *temperatureWrapper_;
+Tmc9660Handler::Temperature* Tmc9660Handler::temperature() noexcept {
+    return EnsureInitialized() ? temperatureWrapper_.get() : nullptr;
 }
 
 //==============================================================================

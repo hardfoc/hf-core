@@ -21,7 +21,7 @@
  * @endcode
  *
  * Every BaseAdc virtual method in this class is a one-line delegation to
- * handler_.adc().Method(). No additional logic, buffering, or transformation
+ * the handler's Adc instance. No additional logic, buffering, or transformation
  * is performed.
  *
  * ## Lifetime Requirements
@@ -51,7 +51,7 @@ class Tmc9660Handler;
  * @details
  * This is a pure delegation class. Every BaseAdc method simply calls the
  * corresponding method on the Tmc9660Handler's internal Adc instance via
- * `handler_.adc()`. It exists solely to allow a host to own a
+ * `Tmc9660Handler::AdcInstance()`. It exists solely to allow a host to own a
  * `std::unique_ptr<BaseAdc>` that refers to TMC9660 ADC functionality
  * without transferring ownership of the handler's internal objects.
  *
@@ -64,7 +64,7 @@ class Tmc9660AdcWrapper : public BaseAdc {
 public:
     /**
      * @brief Construct the ADC delegation wrapper.
-     * @param handler Reference to a live Tmc9660Handler whose adc() will be used.
+     * @param handler Reference to a live Tmc9660Handler whose Adc instance this wrapper delegates to.
      * @warning The handler must remain valid for the lifetime of this wrapper.
      */
     explicit Tmc9660AdcWrapper(Tmc9660Handler& handler) noexcept;
@@ -79,7 +79,7 @@ public:
     Tmc9660AdcWrapper& operator=(Tmc9660AdcWrapper&&) = delete;
 
     /// @name BaseAdc Delegation Methods
-    /// @brief Each method delegates directly to handler_.adc().Method().
+    /// @brief Each method delegates directly to the handler's Adc instance.
     /// @{
 
     /** @copydoc BaseAdc::Initialize */

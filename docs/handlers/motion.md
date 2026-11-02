@@ -44,7 +44,9 @@ Tmc9660Handler(
 `visitDriver()` locks the handler and initialises it before calling you; `driverViaSpi()` and
 `driverViaUart()` return the typed driver without locking, so synchronise yourself when several tasks use
 them. `gpio()`, `adc()` and `temperature()` present the chip's GPIOs, ADC and temperature sensor as `BaseGpio`,
-`BaseAdc` and `BaseTemperature`. The driver itself is documented on the
+`BaseAdc` and `BaseTemperature`. Like the typed driver accessors they run the lazy bring-up and return `nullptr`
+when it fails; `gpio()` also returns `nullptr` for any pin other than 17 or 18. `bootConfig()` returns `nullptr`
+when the handler was built without a bootloader configuration. The driver itself is documented on the
 [TMC9660 driver site](https://hardfoc.github.io/hf-tmc9660-driver/).
 
 ## Tmc5160Handler

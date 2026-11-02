@@ -15,6 +15,7 @@
 
 #include "HfCoreMocks.h"
 #include "HostTest.h"
+#include "Tmc9660AdcWrapper.h"
 #include "Tmc9660Handler.h"
 
 #include <map>
@@ -219,4 +220,38 @@ HF_TEST(Tmc9660_SpiTransportErrorFailsTheCommand) {
     CHECK(!drv.writeParameter(Param::MOTOR_TYPE, 3));
     CHECK_EQ(comm.transportDiag(), static_cast<uint32_t>(hf_spi_err_t::SPI_ERR_TRANSFER_TIMEOUT));
     CHECK(drv.writeParameter(Param::MOTOR_TYPE, 3));  // bus recovered
+}
+
+// A handler whose bring-up failed (here: no bootloader config) hands out no
+// peripheral wrappers, and the accessors never dereference anything.
+HF_TEST(Tmc9660_AccessorsReturnNullWhenBringUpFailed) {
+    MockSpi spi;
+    Pins pins;
+    Tmc9660Handler h(spi, pins.rst, pins.drv_en, pins.faultn, pins.wake, 0x00, /*bootCfg=*/nullptr);
+    CHECK(!h.EnsureInitialized());
+    CHECK(h.gpio(17) == nullptr);
+    CHECK(h.gpio(18) == nullptr);
+    CHECK(h.adc() == nullptr);
+    CHECK(h.temperature() == nullptr);
+    CHECK(h.bootConfig() == nullptr);
+    CHECK(spi.Transactions().empty());
+}
+
+HF_TEST(Tmc9660_GpioRejectsPinsOtherThan17And18) {
+    MockSpi spi;
+    Pins pins;
+    Tmc9660Handler h(spi, pins.rst, pins.drv_en, pins.faultn, pins.wake, 0x00, /*bootCfg=*/nullptr);
+    CHECK(h.gpio(0) == nullptr);
+    CHECK(h.gpio(16) == nullptr);
+    CHECK(h.gpio(19) == nullptr);
+}
+
+HF_TEST(Tmc9660_AdcWrapperReportsErrorsWhenBringUpFailed) {
+    MockSpi spi;
+    Pins pins;
+    Tmc9660Handler h(spi, pins.rst, pins.drv_en, pins.faultn, pins.wake, 0x00, /*bootCfg=*/nullptr);
+    Tmc9660AdcWrapper adc(h);
+    float v = 1.0f;
+    CHECK(adc.ReadChannelV(0, v) != hf_adc_err_t::ADC_SUCCESS);
+    CHECK(spi.Transactions().empty());
 }
