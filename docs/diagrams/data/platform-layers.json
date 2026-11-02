@@ -1,0 +1,61 @@
+{
+  "drivers": [
+    "hf-ads7952-driver",
+    "hf-ads9324-driver",
+    "hf-alicat-basis2-driver",
+    "hf-as5047u-driver",
+    "hf-at25040-driver",
+    "hf-bmp581-driver",
+    "hf-bno08x-driver",
+    "hf-dynamixel-driver",
+    "hf-fdo2-driver",
+    "hf-isf15acp4-driver",
+    "hf-max22200-driver",
+    "hf-mcp9700-driver",
+    "hf-ntc-thermistor-driver",
+    "hf-pca9685-driver",
+    "hf-pcal95555-driver",
+    "hf-pf1550-driver",
+    "hf-se050-driver",
+    "hf-sfm-flow-meter-driver",
+    "hf-tle92466ed-driver",
+    "hf-tmc5160-driver",
+    "hf-tmc9660-driver",
+    "hf-vortex-driver",
+    "hf-ws2812-rmt-driver"
+  ],
+  "utils": [
+    "hf-utils-canopen",
+    "hf-utils-general",
+    "hf-utils-rtos-wrap"
+  ],
+  "handlers": [
+    "ads7952",
+    "ads9324",
+    "alicat_basis2",
+    "as5047u",
+    "at25040",
+    "bmp581",
+    "bno08x",
+    "dynamixel",
+    "fdo2",
+    "isf15acp4",
+    "logger",
+    "max22200",
+    "mcp9700",
+    "ntc",
+    "pca9685",
+    "pcal95555",
+    "pf1550",
+    "se050",
+    "sfm",
+    "tle92466ed",
+    "tmc5160",
+    "tmc9660",
+    "ws2812"
+  ],
+  "sources": [
+    "cmake/hf_core_build_settings.cmake:driver and utility paths",
+    "handlers/:handler folders"
+  ]
+}

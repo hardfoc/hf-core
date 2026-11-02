@@ -1,0 +1,14 @@
+{
+  "platform-layers": {
+    "title": "Where hf-core sits",
+    "alt": "Layer diagram of the HardFOC platform. At the bottom, the MCU SDK and RTOS and the device driver repositories. Above them hf-core-drivers (drivers, interface wrap, pin config) and hf-core-utils (RTOS wrapper, general and CANopen utilities). On those, the hf-core handlers. Above the handlers, the board HALs, and at the top the products.",
+    "description": "From the bottom up. Each device driver is its own repository and talks to its chip through a small CRTP interface; hf-core-drivers collects them as submodules, together with hf-internal-interface-wrap (the Base* interfaces and their ESP32 and STM32 implementations) and hf-pincfg. hf-core-utils collects the RTOS wrapper, the general utilities and the CANopen helpers. hf-core's handlers sit on top of those three: each one wraps one driver behind a thread-safe API that takes Base* interfaces. A board HAL creates the MCU peripherals, constructs the handlers it needs and exposes managers; a product is firmware on one board HAL. The driver list is read from cmake/hf_core_build_settings.cmake and the handler list from handlers/.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/diagrams/figures/platform-layers.py",
+    "sources": [
+      "cmake/hf_core_build_settings.cmake:driver and utility paths",
+      "handlers/:handler folders"
+    ]
+  }
+}
