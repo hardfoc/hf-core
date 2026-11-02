@@ -1,9 +1,0 @@
-<map id="Tmc5160Handler::visitDriverInternal" name="Tmc5160Handler::visitDriverInternal">
-<area shape="rect" id="Node000001" title="Helper: execute a visitor on the active driver (no lock, internal use)" alt="" coords="569,31,779,71"/>
-<area shape="rect" id="Node000002" href="$classTmc5160Handler.html#a262b31fb5ccbfe229766a9a4b3ce546b" title="Deinitialize — disable motor and release resources." alt="" coords="286,13,501,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="555,43,501,38,501,32,556,37"/>
-<area shape="rect" id="Node000004" href="$classTmc5160Handler.html#ab4bf5aabef968f6f8ee66d08cf05913a" title="Dump diagnostic information to logger." alt="" coords="265,62,521,87"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="556,63,522,66,522,61,555,58"/>
-<area shape="rect" id="Node000003" href="$classTmc5160Handler.html#aed4f4e077bf616f3a0b7af6f3fafcf74" title="Destructor." alt="" coords="5,5,217,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="272,28,218,28,218,23,272,23"/>
-</map>
