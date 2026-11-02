@@ -466,12 +466,16 @@ private:
  * float supply_v = drv->telemetry.getSupplyVoltage();
  * float chip_temp = drv->telemetry.getChipTemperature();
  *
- * // GPIO (TMC9660 internal GPIO17)
- * handler.gpio(17).SetPinLevel(hf_gpio_level_t::HF_GPIO_LEVEL_HIGH);
+ * // GPIO (TMC9660 internal GPIO17); nullptr if the chip did not come up
+ * if (auto* gpio17 = handler.gpio(17)) {
+ *     gpio17->SetPinLevel(hf_gpio_level_t::HF_GPIO_LEVEL_HIGH);
+ * }
  *
  * // ADC (read AIN channel 0)
  * float voltage;
- * handler.adc().ReadChannelV(0, voltage);
+ * if (auto* adc = handler.adc()) {
+ *     adc->ReadChannelV(0, voltage);
+ * }
  *
  * // Generic driver access via visitor
  * handler.visitDriver([](auto& driver) {
@@ -1048,30 +1052,32 @@ public:
     //==========================================================================
 
     /**
-     * @brief Get a reference to the GPIO wrapper for a TMC9660 internal GPIO pin.
+     * @brief Get the GPIO wrapper for a TMC9660 internal GPIO pin.
      *
-     * @param gpioNumber TMC9660 internal GPIO pin number.
-     *                   Currently supported: 17, 18.
-     * @return Reference to the corresponding Gpio wrapper instance.
+     * Runs the lazy bring-up (EnsureInitialized()) like the other accessors.
      *
-     * @note If an unsupported GPIO number is given, falls back to GPIO17's wrapper.
-     * @warning The returned reference is valid only as long as this handler exists.
+     * @param gpioNumber TMC9660 internal GPIO pin number. Supported: 17, 18.
+     * @return Pointer to the Gpio wrapper, or nullptr when @p gpioNumber is not
+     *         17 or 18, or when the TMC9660 bring-up has failed.
+     * @warning The returned pointer is valid only as long as this handler exists.
      */
-    Gpio& gpio(uint8_t gpioNumber);
+    Gpio* gpio(uint8_t gpioNumber) noexcept;
 
     /**
-     * @brief Get a reference to the ADC wrapper.
-     * @return Reference to the internal Adc instance.
-     * @warning The returned reference is valid only as long as this handler exists.
+     * @brief Get the ADC wrapper.
+     * @return Pointer to the internal Adc instance, or nullptr when the TMC9660
+     *         bring-up has failed.
+     * @warning The returned pointer is valid only as long as this handler exists.
      */
-    Adc& adc();
+    Adc* adc() noexcept;
 
     /**
-     * @brief Get a reference to the Temperature wrapper.
-     * @return Reference to the internal Temperature instance.
-     * @warning The returned reference is valid only as long as this handler exists.
+     * @brief Get the Temperature wrapper.
+     * @return Pointer to the internal Temperature instance, or nullptr when the
+     *         TMC9660 bring-up has failed.
+     * @warning The returned pointer is valid only as long as this handler exists.
      */
-    Temperature& temperature();
+    Temperature* temperature() noexcept;
 
     /// @}
 
@@ -1088,9 +1094,9 @@ public:
 
     /**
      * @brief Get the bootloader configuration in use.
-     * @return Const reference to the BootloaderConfig struct.
+     * @return The BootloaderConfig passed at construction, or nullptr if none was given.
      */
-    const tmc9660::BootloaderConfig& bootConfig() const noexcept { return *bootCfg_; }
+    const tmc9660::BootloaderConfig* bootConfig() const noexcept { return bootCfg_; }
 
     /// @}
 
@@ -1275,6 +1281,17 @@ private:
     //==========================================================================
     // Private Helpers
     //==========================================================================
+
+    /// Tmc9660AdcWrapper delegates to the Adc instance directly (see AdcInstance()).
+    friend class Tmc9660AdcWrapper;
+
+    /**
+     * @brief The always-present Adc instance, without the bring-up attempt adc() makes.
+     *
+     * The Adc methods guard on the driver themselves, so Tmc9660AdcWrapper can
+     * delegate here and report errors instead of handling a nullptr.
+     */
+    Adc& AdcInstance() noexcept { return *adcWrapper_; }
 
     /** @brief Ensure initialized while handler_mutex_ is already held. */
     bool EnsureInitializedLocked() noexcept;
