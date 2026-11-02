@@ -457,7 +457,12 @@ if(HF_CORE_ENABLE_UTILS_CANOPEN)
     )
 endif()
 
-# ── CANopenNode upstream (optional; blank CO driver + example OD) ─────────
+# ── CANopenNode (optional; generic driver + the application's OD) ─────────
+# Stack and driver source lists live in hf_core_canopennode.cmake. The OD
+# comes from the application: set HF_CORE_CANOPENNODE_OD_DIR to the directory
+# holding its OD.c / OD.h (and optionally HF_CORE_CANOPENNODE_CONFIG_DIR to
+# one holding hf_co_app_config.h). The upstream example OD and
+# CO_storageBlank.c are not compiled.
 set(HF_CORE_CANOPENNODE_SOURCES "")
 if(HF_CORE_ENABLE_CANOPENNODE)
     if(NOT HF_CORE_ENABLE_UTILS_CANOPEN)
@@ -471,25 +476,39 @@ if(HF_CORE_ENABLE_CANOPENNODE)
             "  From the HAL repository root (e.g. hal/hf-hal-vortex-v1), run:\n"
             "    git submodule update --init --recursive third_party/CANopenNode")
     endif()
-
-    set(_hf_co_root "${HF_CORE_CANOPENNODE_ROOT}")
-    set(_hf_co_ex "${_hf_co_root}/example")
+    if(NOT DEFINED HF_CORE_CANOPENNODE_OD_DIR OR "${HF_CORE_CANOPENNODE_OD_DIR}" STREQUAL "")
+        if(CMAKE_SCRIPT_MODE_FILE)
+            # ESP-IDF requirement expansion runs component CMakeLists in script
+            # mode, where the project's variables are not visible; nothing is
+            # compiled there.
+            set(HF_CORE_CANOPENNODE_OD_DIR "")
+        else()
+            message(FATAL_ERROR
+                "[hf-core] HF_CORE_ENABLE_CANOPENNODE=ON needs the application's object dictionary.\n"
+                "  Set HF_CORE_CANOPENNODE_OD_DIR to the directory holding OD.c / OD.h\n"
+                "  (for example in the project CMakeLists.txt before project()).")
+        endif()
+    endif()
+    if(NOT DEFINED HF_CORE_CANOPENNODE_CONFIG_DIR)
+        set(HF_CORE_CANOPENNODE_CONFIG_DIR "")
+    endif()
+    if(HF_CORE_MCU STREQUAL "ESP32")
+        set(HF_CORE_CANOPENNODE_PLATFORM "ESP32")
+    elseif(HF_CORE_MCU STREQUAL "NONE" AND (UNIX OR APPLE))
+        set(HF_CORE_CANOPENNODE_PLATFORM "POSIX")
+    else()
+        set(HF_CORE_CANOPENNODE_PLATFORM "NONE")
+    endif()
+    if(HF_CORE_RTOS STREQUAL "FREERTOS")
+        set(HF_CORE_CANOPENNODE_RTOS "FREERTOS")
+    else()
+        set(HF_CORE_CANOPENNODE_RTOS "NONE")
+    endif()
+    include("${CMAKE_CURRENT_LIST_DIR}/hf_core_canopennode.cmake")
     set(HF_CORE_CANOPENNODE_SOURCES
-        "${HF_CORE_HANDLER_ROOT}/common/canopen/CO_driver_vortex.c"
-        "${_hf_co_ex}/CO_storageBlank.c"
-        "${_hf_co_root}/301/CO_ODinterface.c"
-        "${_hf_co_root}/301/CO_NMT_Heartbeat.c"
-        "${_hf_co_root}/301/CO_HBconsumer.c"
-        "${_hf_co_root}/301/CO_Emergency.c"
-        "${_hf_co_root}/301/CO_SDOserver.c"
-        "${_hf_co_root}/301/CO_TIME.c"
-        "${_hf_co_root}/301/CO_SYNC.c"
-        "${_hf_co_root}/301/CO_PDO.c"
-        "${_hf_co_root}/303/CO_LEDs.c"
-        "${_hf_co_root}/305/CO_LSSslave.c"
-        "${_hf_co_root}/storage/CO_storage.c"
-        "${_hf_co_root}/CANopen.c"
-        "${_hf_co_ex}/OD.c"
+        ${HF_CORE_CANOPENNODE_DRIVER_SOURCES}
+        ${HF_CORE_CANOPENNODE_PORT_SOURCES}
+        ${HF_CORE_CANOPENNODE_STACK_SOURCES}
     )
 endif()
 
@@ -817,10 +836,9 @@ if(HF_CORE_ENABLE_UTILS_CANOPEN AND HF_CORE_ENABLE_CAN)
 endif()
 
 if(HF_CORE_ENABLE_CANOPENNODE)
-    list(APPEND HF_CORE_INCLUDE_DIRS
-        "${HF_CORE_HANDLER_ROOT}/common/canopen"
-        "${HF_CORE_CANOPENNODE_ROOT}"
-        "${HF_CORE_CANOPENNODE_ROOT}/example")
+    # hf_core_canopennode.cmake: driver dir (CO_driver_target.h), app config
+    # dir, app OD dir, CANopenNode root. Never CANopenNode/example.
+    list(APPEND HF_CORE_INCLUDE_DIRS ${HF_CORE_CANOPENNODE_INCLUDE_DIRS})
 endif()
 
 # ── Per-Handler Include Dirs (add handler dir for direct includes) ────────
@@ -1077,7 +1095,7 @@ if(HF_CORE_ENABLE_UTILS_CANOPEN)
     list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_CANOPEN_UTILS=1)
 endif()
 if(HF_CORE_ENABLE_CANOPENNODE)
-    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_CANOPENNODE_SLAVE=1)
+    list(APPEND HF_CORE_COMPILE_DEFINITIONS HARDFOC_CANOPENNODE_SLAVE=1 ${HF_CORE_CANOPENNODE_DEFINITIONS})
 endif()
 list(APPEND HF_CORE_COMPILE_DEFINITIONS
     HARDFOC_RTOS_WRAP=1
