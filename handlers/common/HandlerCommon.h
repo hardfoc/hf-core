@@ -83,9 +83,8 @@ inline void DelayMs(uint32_t ms) noexcept {
 #else
     /* Last-resort busy-wait (~1 ms @ ~200 MHz Cortex-M). Prefer RTOS/HAL. */
     for (uint32_t m = 0; m < ms; ++m) {
-        volatile uint32_t spin = 40000U;
-        while (spin--) {
-            __asm__ volatile("");
+        for (uint32_t spin = 40000U; spin > 0U; --spin) {
+            __asm__ volatile("" ::: "memory");
         }
     }
 #endif

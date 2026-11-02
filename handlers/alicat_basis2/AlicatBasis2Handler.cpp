@@ -9,8 +9,7 @@
 
 #include <cstring>
 
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+#include "HandlerCommon.h"
 
 namespace al = alicat_basis2;
 
@@ -40,7 +39,7 @@ void HalUartAlicatBasis2Comm::flush_rx() noexcept {
 
 void HalUartAlicatBasis2Comm::delay_ms_impl(std::uint32_t ms) noexcept {
     if (ms == 0) return;
-    vTaskDelay(pdMS_TO_TICKS(ms));
+    handler_utils::DelayMs(ms);
 }
 
 //==============================================================================
@@ -219,8 +218,8 @@ inline al::BaudRate BaudFromBps(std::uint32_t bps) noexcept {
         case 38400:  return al::BaudRate::Bps_38400;
         case 57600:  return al::BaudRate::Bps_57600;
         case 115200: return al::BaudRate::Bps_115200;
+        default:     return al::BaudRate::Bps_38400;
     }
-    return al::BaudRate::Bps_38400;
 }
 
 inline bool IsSupportedBaudBps(std::uint32_t bps) noexcept {
@@ -272,7 +271,7 @@ AlicatBasis2Handler::DiscoverAcrossBauds(DiscoveredDevice* out,
             continue;
         }
         ++any_switch_ok;
-        if (settle_ms) vTaskDelay(pdMS_TO_TICKS(settle_ms));
+        if (settle_ms) handler_utils::DelayMs(settle_ms);
         (void)comm_.flush_rx();
 
         std::uint8_t present[32] = {0};
@@ -345,7 +344,7 @@ AlicatBasis2Handler::NormalizeBusBaud(std::uint32_t           target_bps,
             SetBitmap(failed_bitmap, failed_bitmap_bytes, dev.address);
             continue;
         }
-        vTaskDelay(pdMS_TO_TICKS(15));
+        handler_utils::DelayMs(15);
         (void)comm_.flush_rx();
 
         // Step 2 — if it's already at the target, just verify.
@@ -362,12 +361,12 @@ AlicatBasis2Handler::NormalizeBusBaud(std::uint32_t           target_bps,
         (void)driver_->SetBaudRate(BaudFromBps(target_bps));
 
         // Step 4 — retune host to the target baud and verify.
-        vTaskDelay(pdMS_TO_TICKS(15));
+        handler_utils::DelayMs(15);
         if (!set_host_baud(target_bps)) {
             SetBitmap(failed_bitmap, failed_bitmap_bytes, dev.address);
             continue;
         }
-        vTaskDelay(pdMS_TO_TICKS(20));
+        handler_utils::DelayMs(20);
         (void)comm_.flush_rx();
 
         if (verify_at(dev.address)) {

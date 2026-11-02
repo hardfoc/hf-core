@@ -30,6 +30,38 @@ extern "C" {
 #include "core/hf-core-drivers/external/hf-bno08x-driver/src/sh2/sh2_err.h"
 }
 
+namespace {
+
+/**
+ * @brief Configure RSTN as an active-low output (idempotent).
+ *
+ * Bno08xHandler::Initialize() pulses RSTN (HardwareReset) before Begin()
+ * opens the link, so the pin must be usable before Open() runs. Without
+ * this the first reset pulse was dropped: the pin was not yet initialized
+ * and SetState() returned GPIO_ERR_NOT_INITIALIZED.
+ */
+void PrepareResetPin(BaseGpio* reset_gpio) noexcept {
+    if (reset_gpio == nullptr) {
+        return;
+    }
+    reset_gpio->SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT);
+    // RSTN is active-low: ACTIVE = assert reset (drive LOW)
+    reset_gpio->SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
+    reset_gpio->EnsureInitialized();
+}
+
+void DriveResetPin(BaseGpio* reset_gpio, bno08x::GpioSignal signal) noexcept {
+    if (reset_gpio == nullptr) {
+        return;
+    }
+    PrepareResetPin(reset_gpio);
+    // ACTIVE -> drives LOW (assert reset), INACTIVE -> drives HIGH (release)
+    reset_gpio->SetState(signal == bno08x::GpioSignal::ACTIVE ? hf_gpio_state_t::HF_GPIO_STATE_ACTIVE
+                                                              : hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
+}
+
+}  // namespace
+
 // ============================================================================
 //  I2C CRTP ADAPTER IMPLEMENTATION
 // ============================================================================
@@ -37,10 +69,7 @@ extern "C" {
 bool HalI2cBno08xComm::Open() noexcept {
     // Initialize GPIO pins if provided
     if (reset_gpio_) {
-        reset_gpio_->SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT);
-        // RSTN is active-low: ACTIVE = assert reset (drive LOW)
-        reset_gpio_->SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
-        reset_gpio_->EnsureInitialized();
+        PrepareResetPin(reset_gpio_);
         // Start with reset released (INACTIVE = HIGH)
         reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
     }
@@ -113,15 +142,7 @@ uint32_t HalI2cBno08xComm::GetTimeUs() noexcept {
 void HalI2cBno08xComm::GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept {
     switch (pin) {
         case bno08x::CtrlPin::RSTN:
-            if (!reset_gpio_) return;
-            // RSTN is configured as active-low in Open()
-            // ACTIVE -> SetState(ACTIVE) -> drives GPIO LOW (assert reset)
-            // INACTIVE -> SetState(INACTIVE) -> drives GPIO HIGH (release)
-            if (signal == bno08x::GpioSignal::ACTIVE) {
-                reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_ACTIVE);
-            } else {
-                reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
-            }
+            DriveResetPin(reset_gpio_, signal);
             break;
         case bno08x::CtrlPin::BOOTN:
         case bno08x::CtrlPin::WAKE:
@@ -138,9 +159,7 @@ void HalI2cBno08xComm::GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) n
 bool HalSpiBno08xComm::Open() noexcept {
     // Initialize GPIO pins if provided
     if (reset_gpio_) {
-        reset_gpio_->SetDirection(hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT);
-        reset_gpio_->SetActiveState(hf_gpio_active_state_t::HF_GPIO_ACTIVE_LOW);
-        reset_gpio_->EnsureInitialized();
+        PrepareResetPin(reset_gpio_);
         reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
     }
 
@@ -219,12 +238,7 @@ uint32_t HalSpiBno08xComm::GetTimeUs() noexcept {
 void HalSpiBno08xComm::GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept {
     switch (pin) {
         case bno08x::CtrlPin::RSTN:
-            if (!reset_gpio_) return;
-            if (signal == bno08x::GpioSignal::ACTIVE) {
-                reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_ACTIVE);
-            } else {
-                reset_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
-            }
+            DriveResetPin(reset_gpio_, signal);
             break;
         case bno08x::CtrlPin::WAKE:
             if (!wake_gpio_) return;
@@ -593,12 +607,13 @@ void Bno08xHandler::DumpDiagnostics() const noexcept {
     Logger::GetInstance().Info(TAG, "  Description: %s", description_);
 
     // Interface
-    const char* iface_str = "UNKNOWN";
+    const char* iface_str = nullptr;
     switch (interface_type_) {
         case BNO085Interface::I2C:     iface_str = "I2C"; break;
         case BNO085Interface::SPI:     iface_str = "SPI"; break;
         case BNO085Interface::UART:    iface_str = "UART"; break;
         case BNO085Interface::UARTRVC: iface_str = "UART-RVC"; break;
+        default:                       iface_str = "UNKNOWN"; break;
     }
     Logger::GetInstance().Info(TAG, "  Interface: %s", iface_str);
 
