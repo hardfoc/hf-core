@@ -177,7 +177,8 @@ bool HalSpiTmc9660Comm::spiTransferTMCL(std::array<uint8_t, 8>& tx, std::array<u
      * APPLY appear stuck for tens of seconds on a quiet MISO. */
     hf_spi_err_t result = spi_.Transfer(tx.data(), rx.data(), hf_u16_t(8), hf_u32_t(50));
     last_spi_err_ = static_cast<uint32_t>(result);
-    handler_utils::DelayUs(200);
+    /* No post-delay: the driver re-sends NOT_READY datagrams and checks the reply echo, which
+     * is what the former 200 us delay worked around (see the driver's timing docs). */
     return result == hf_spi_err_t::SPI_SUCCESS;
 }
 
@@ -195,11 +196,11 @@ bool HalSpiTmc9660Comm::hostSpiTransferTMCLPair(std::array<uint8_t, 8>& tx1,
      * peer-park until after frame 2. */
     const hf_u8_t* tx_frames[2] = {tx1.data(), tx2.data()};
     hf_u8_t* rx_frames[2] = {rx1.data(), rx2.data()};
-    const hf_u32_t gap = (gap_us > 0U) ? gap_us : 1000U;
+    /* gap_us is TmclSpiTiming::frameGapUs from the driver (default 0: the chip signals
+     * readiness with NOT_READY, which the driver polls). Pass it through unchanged. */
     hf_spi_err_t result = spi_.TransferChain(tx_frames, rx_frames, hf_u16_t(8),
-                                             hf_u16_t(2), gap, hf_u32_t(50));
+                                             hf_u16_t(2), hf_u32_t(gap_us), hf_u32_t(50));
     last_spi_err_ = static_cast<uint32_t>(result);
-    handler_utils::DelayUs(200);
     return result == hf_spi_err_t::SPI_SUCCESS;
 }
 
