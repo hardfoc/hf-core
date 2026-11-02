@@ -105,6 +105,47 @@
   <meta property="og:description" content="The HardFOC core platform: thread-safe handlers over the HardFOC device drivers, MCU interfaces, RTOS wrappers and utilities, with a host build and mocks for testing without hardware.">
   <meta property="og:url" content="https://hardfoc.github.io/hf-core/latest/mcu-boundary/">
   <meta name="twitter:card" content="summary">
+  <script>
+(function () {
+  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
+  var SRC = "https://unpkg.com/mermaid@11/dist/mermaid.min.js", config = {}, real, loading, waiting = [];
+  var stub = {
+    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
+    render: function (id, text) {
+      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-hf-mermaid])");
+      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
+      if (el) el.setAttribute("data-hf-mermaid", "");
+      return near(el).then(load).then(function (m) { return m.render(id, text); });
+    }
+  };
+  function load() {
+    return loading || (loading = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = SRC;
+      s.onload = function () {
+        real = window.mermaid;
+        window.mermaid = stub;
+        real.initialize(config);
+        resolve(real);
+      };
+      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
+      document.head.appendChild(s);
+    }));
+  }
+  function near(el) {
+    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
+    return new Promise(function (resolve) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); resolve(); }
+      }, { rootMargin: "100% 0px" });
+      io.observe(el);
+      waiting.push(function () { io.disconnect(); resolve(); });
+    });
+  }
+  window.addEventListener("beforeprint", function () { waiting.splice(0).forEach(function (go) { go(); }); });
+  window.mermaid = stub;
+})();
+</script>
 
   </head>
   
@@ -1098,7 +1139,7 @@ up to three bytes either side of the buffers, which an address sanitizer would f
 </tr>
 </tbody>
 </table>
-<p><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/STM32H7_PORTING.md"><code>STM32H7_PORTING.md</code></a> records the changes one downstream STM32H7 integration needed;
+<p><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/STM32H7_PORTING.md"><code>STM32H7_PORTING.md</code></a> records the changes one downstream STM32H7 integration needed;
 they are the starting list for making the STM32 path a tested target.</p>
 <h2 id="can-and-can-fd">CAN and CAN FD<a class="headerlink" href="#can-and-can-fd" title="Permanent link">&para;</a></h2>
 <p><code>BaseCan</code> messages are FD-sized (<code>hf_can_message_t</code>: 64-byte <code>data</code>, <code>is_canfd</code>, <code>is_brs</code>), so an FD controller

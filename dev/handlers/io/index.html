@@ -105,6 +105,47 @@
   <meta property="og:description" content="The HardFOC core platform: thread-safe handlers over the HardFOC device drivers, MCU interfaces, RTOS wrappers and utilities, with a host build and mocks for testing without hardware.">
   <meta property="og:url" content="https://hardfoc.github.io/hf-core/latest/handlers/io/">
   <meta name="twitter:card" content="summary">
+  <script>
+(function () {
+  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
+  var SRC = "https://unpkg.com/mermaid@11/dist/mermaid.min.js", config = {}, real, loading, waiting = [];
+  var stub = {
+    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
+    render: function (id, text) {
+      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-hf-mermaid])");
+      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
+      if (el) el.setAttribute("data-hf-mermaid", "");
+      return near(el).then(load).then(function (m) { return m.render(id, text); });
+    }
+  };
+  function load() {
+    return loading || (loading = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = SRC;
+      s.onload = function () {
+        real = window.mermaid;
+        window.mermaid = stub;
+        real.initialize(config);
+        resolve(real);
+      };
+      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
+      document.head.appendChild(s);
+    }));
+  }
+  function near(el) {
+    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
+    return new Promise(function (resolve) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); resolve(); }
+      }, { rootMargin: "100% 0px" });
+      io.observe(el);
+      waiting.push(function () { io.disconnect(); resolve(); });
+    });
+  }
+  window.addEventListener("beforeprint", function () { waiting.splice(0).forEach(function (go) { go(); }); });
+  window.mermaid = stub;
+})();
+</script>
 
   </head>
   
@@ -1352,10 +1393,10 @@ OLED pushbutton.</p>
 <!-- generated: handler-pcal95555 -->
 <p>Unified handler for the PCA9555 / PCAL9555A 16-bit I2C GPIO expander.</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/pcal95555/Pcal95555Handler.h"><code>handlers/pcal95555/Pcal95555Handler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/pcal95555/Pcal95555Handler.h"><code>handlers/pcal95555/Pcal95555Handler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_PCAL95555</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-pcal95555-driver">hf-pcal95555-driver</a></li>
-<li>Host test: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_pcal95555.cpp"><code>tests/host/test_pcal95555.cpp</code></a></li>
+<li>Host test: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_pcal95555.cpp"><code>tests/host/test_pcal95555.cpp</code></a></li>
 </ul>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Pcal95555Handler</span><span class="p">(</span><span class="n">BaseI2c</span><span class="o">&amp;</span><span class="w"> </span><span class="n">i2c_device</span><span class="p">,</span><span class="w"> </span><span class="n">BaseGpio</span><span class="o">*</span><span class="w"> </span><span class="n">interrupt_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">);</span>
 </span></code></pre></div>
@@ -1407,7 +1448,7 @@ OLED pushbutton.</p>
 <!-- generated: handler-pca9685 -->
 <p>Unified handler for the PCA9685 16-channel 12-bit PWM controller.</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/pca9685/Pca9685Handler.h"><code>handlers/pca9685/Pca9685Handler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/pca9685/Pca9685Handler.h"><code>handlers/pca9685/Pca9685Handler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_PCA9685</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-pca9685-driver">hf-pca9685-driver</a></li>
 </ul>
@@ -1449,7 +1490,7 @@ OLED pushbutton.</p>
 <!-- generated: handler-ws2812 -->
 <p>Unified handler for WS2812 addressable LED strips using RMT peripheral.</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/ws2812/Ws2812Handler.h"><code>handlers/ws2812/Ws2812Handler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/ws2812/Ws2812Handler.h"><code>handlers/ws2812/Ws2812Handler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_WS2812</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-ws2812-rmt-driver">hf-ws2812-rmt-driver</a></li>
 </ul>
@@ -1475,7 +1516,7 @@ OLED pushbutton.</p>
 <!-- generated: handler-isf15acp4 -->
 <p>HAL handler for NKK ISF15ACP4 SmartDisplay OLED pushbutton (SSD1331 SPI).</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/isf15acp4/Isf15acp4Handler.h"><code>handlers/isf15acp4/Isf15acp4Handler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/isf15acp4/Isf15acp4Handler.h"><code>handlers/isf15acp4/Isf15acp4Handler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_ISF15ACP4</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-isf15acp4-driver">hf-isf15acp4-driver</a></li>
 </ul>

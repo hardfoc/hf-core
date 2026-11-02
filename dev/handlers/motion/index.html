@@ -105,6 +105,47 @@
   <meta property="og:description" content="The HardFOC core platform: thread-safe handlers over the HardFOC device drivers, MCU interfaces, RTOS wrappers and utilities, with a host build and mocks for testing without hardware.">
   <meta property="og:url" content="https://hardfoc.github.io/hf-core/latest/handlers/motion/">
   <meta name="twitter:card" content="summary">
+  <script>
+(function () {
+  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
+  var SRC = "https://unpkg.com/mermaid@11/dist/mermaid.min.js", config = {}, real, loading, waiting = [];
+  var stub = {
+    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
+    render: function (id, text) {
+      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-hf-mermaid])");
+      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
+      if (el) el.setAttribute("data-hf-mermaid", "");
+      return near(el).then(load).then(function (m) { return m.render(id, text); });
+    }
+  };
+  function load() {
+    return loading || (loading = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = SRC;
+      s.onload = function () {
+        real = window.mermaid;
+        window.mermaid = stub;
+        real.initialize(config);
+        resolve(real);
+      };
+      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
+      document.head.appendChild(s);
+    }));
+  }
+  function near(el) {
+    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
+    return new Promise(function (resolve) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); resolve(); }
+      }, { rootMargin: "100% 0px" });
+      io.observe(el);
+      waiting.push(function () { io.disconnect(); resolve(); });
+    });
+  }
+  window.addEventListener("beforeprint", function () { waiting.splice(0).forEach(function (go) { go(); }); });
+  window.mermaid = stub;
+})();
+</script>
 
   </head>
   
@@ -1329,10 +1370,10 @@
 <!-- generated: handler-tmc9660 -->
 <p>Unified handler for TMC9660 motor controller with GPIO, ADC, and temperature integration.</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/tmc9660/Tmc9660Handler.h"><code>handlers/tmc9660/Tmc9660Handler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/tmc9660/Tmc9660Handler.h"><code>handlers/tmc9660/Tmc9660Handler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_TMC9660</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-tmc9660-driver">hf-tmc9660-driver</a></li>
-<li>Host test: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_tmc9660.cpp"><code>tests/host/test_tmc9660.cpp</code></a></li>
+<li>Host test: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_tmc9660.cpp"><code>tests/host/test_tmc9660.cpp</code></a></li>
 </ul>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Tmc9660Handler</span><span class="p">(</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">BaseSpi</span><span class="o">&amp;</span><span class="w"> </span><span class="n">spi</span><span class="p">,</span>
@@ -1390,13 +1431,15 @@
 <p><code>visitDriver()</code> locks the handler and initialises it before calling you; <code>driverViaSpi()</code> and
 <code>driverViaUart()</code> return the typed driver without locking, so synchronise yourself when several tasks use
 them. <code>gpio()</code>, <code>adc()</code> and <code>temperature()</code> present the chip's GPIOs, ADC and temperature sensor as <code>BaseGpio</code>,
-<code>BaseAdc</code> and <code>BaseTemperature</code>. The driver itself is documented on the
+<code>BaseAdc</code> and <code>BaseTemperature</code>. Like the typed driver accessors they run the lazy bring-up and return <code>nullptr</code>
+when it fails; <code>gpio()</code> also returns <code>nullptr</code> for any pin other than 17 or 18. <code>bootConfig()</code> returns <code>nullptr</code>
+when the handler was built without a bootloader configuration. The driver itself is documented on the
 <a href="https://hardfoc.github.io/hf-tmc9660-driver/">TMC9660 driver site</a>.</p>
 <h2 id="tmc5160handler">Tmc5160Handler<a class="headerlink" href="#tmc5160handler" title="Permanent link">&para;</a></h2>
 <!-- generated: handler-tmc5160 -->
 <p>Unified handler for TMC5160/TMC5130 stepper motor driver with SPI/UART integration.</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/tmc5160/Tmc5160Handler.h"><code>handlers/tmc5160/Tmc5160Handler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/tmc5160/Tmc5160Handler.h"><code>handlers/tmc5160/Tmc5160Handler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_TMC5160</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-tmc5160-driver">hf-tmc5160-driver</a></li>
 </ul>
@@ -1435,7 +1478,7 @@ them. <code>gpio()</code>, <code>adc()</code> and <code>temperature()</code> pre
 <!-- generated: handler-dynamixel -->
 <p>HAL-level handler for Protocol 2.0 Dynamixel servos on BaseUart.</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/dynamixel/DynamixelHandler.h"><code>handlers/dynamixel/DynamixelHandler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/dynamixel/DynamixelHandler.h"><code>handlers/dynamixel/DynamixelHandler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_DYNAMIXEL</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-dynamixel-driver">hf-dynamixel-driver</a></li>
 </ul>

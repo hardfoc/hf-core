@@ -105,6 +105,47 @@
   <meta property="og:description" content="The HardFOC core platform: thread-safe handlers over the HardFOC device drivers, MCU interfaces, RTOS wrappers and utilities, with a host build and mocks for testing without hardware.">
   <meta property="og:url" content="https://hardfoc.github.io/hf-core/latest/testing/">
   <meta name="twitter:card" content="summary">
+  <script>
+(function () {
+  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
+  var SRC = "https://unpkg.com/mermaid@11/dist/mermaid.min.js", config = {}, real, loading, waiting = [];
+  var stub = {
+    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
+    render: function (id, text) {
+      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-hf-mermaid])");
+      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
+      if (el) el.setAttribute("data-hf-mermaid", "");
+      return near(el).then(load).then(function (m) { return m.render(id, text); });
+    }
+  };
+  function load() {
+    return loading || (loading = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = SRC;
+      s.onload = function () {
+        real = window.mermaid;
+        window.mermaid = stub;
+        real.initialize(config);
+        resolve(real);
+      };
+      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
+      document.head.appendChild(s);
+    }));
+  }
+  function near(el) {
+    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
+    return new Promise(function (resolve) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); resolve(); }
+      }, { rootMargin: "100% 0px" });
+      io.observe(el);
+      waiting.push(function () { io.disconnect(); resolve(); });
+    });
+  }
+  window.addEventListener("beforeprint", function () { waiting.splice(0).forEach(function (go) { go(); }); });
+  window.mermaid = stub;
+})();
+</script>
 
   </head>
   
@@ -1025,39 +1066,39 @@ site, on every pull request.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_mocks.cpp"><code>tests/host/test_mocks.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_mocks.cpp"><code>tests/host/test_mocks.cpp</code></a></td>
 <td>The mocks themselves: the executable description of their behaviour</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_rtos_host.cpp"><code>tests/host/test_rtos_host.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_rtos_host.cpp"><code>tests/host/test_rtos_host.cpp</code></a></td>
 <td>The no-RTOS backend: fake clock, <code>BaseThread</code> without a scheduler, <code>RtosMutex</code></td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_utils_general.cpp"><code>tests/host/test_utils_general.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_utils_general.cpp"><code>tests/host/test_utils_general.cpp</code></a></td>
 <td>hf-utils-general</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_pcal95555.cpp"><code>tests/host/test_pcal95555.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_pcal95555.cpp"><code>tests/host/test_pcal95555.cpp</code></a></td>
 <td><code>Pcal95555Handler</code> against a register model</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_as5047u.cpp"><code>tests/host/test_as5047u.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_as5047u.cpp"><code>tests/host/test_as5047u.cpp</code></a></td>
 <td><code>As5047uHandler</code> against a pipelined SPI register map with CRC</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_bno08x.cpp"><code>tests/host/test_bno08x.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_bno08x.cpp"><code>tests/host/test_bno08x.cpp</code></a></td>
 <td><code>Bno08xHandler</code> against an SHTP model</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_tmc9660.cpp"><code>tests/host/test_tmc9660.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_tmc9660.cpp"><code>tests/host/test_tmc9660.cpp</code></a></td>
 <td><code>Tmc9660Handler</code> against a TMCL model</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_ntc.cpp"><code>tests/host/test_ntc.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_ntc.cpp"><code>tests/host/test_ntc.cpp</code></a></td>
 <td><code>NtcTemperatureHandler</code> over <code>MockAdc</code></td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/docs/CMakeLists.txt"><code>tests/docs/</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/docs/CMakeLists.txt"><code>tests/docs/</code></a></td>
 <td>The code on this site, compiled with <code>-Werror</code> and run against the mocks (<code>test_doc_snippets</code>)</td>
 </tr>
 </tbody>
@@ -1075,12 +1116,12 @@ site, on every pull request.</p>
 <tbody>
 <tr>
 <td>Host CI</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/.github/workflows/host.yml"><code>host.yml</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/.github/workflows/host.yml"><code>host.yml</code></a></td>
 <td>Host build and ctest with GCC and Clang, clang-tidy 18 and cppcheck on hf-core's own sources, and a <code>CI gate</code> job</td>
 </tr>
 <tr>
 <td>ESP32 examples build</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/.github/workflows/esp32-examples-build-ci.yml"><code>esp32-examples-build-ci.yml</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/.github/workflows/esp32-examples-build-ci.yml"><code>esp32-examples-build-ci.yml</code></a></td>
 <td>Validates <code>app_config.yml</code>, builds every application with <code>ci_enabled</code> for each ESP-IDF version and build type, lints, and a <code>CI gate</code> job</td>
 </tr>
 <tr>
@@ -1090,7 +1131,7 @@ site, on every pull request.</p>
 </tr>
 <tr>
 <td>Docs</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/.github/workflows/ci-docs-publish.yml"><code>ci-docs-publish.yml</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/.github/workflows/ci-docs-publish.yml"><code>ci-docs-publish.yml</code></a></td>
 <td>Strict site build, figure and generated-table drift, Doxygen, offline link check, Lighthouse, screenshots; publishes on <code>main</code> and tags</td>
 </tr>
 <tr>

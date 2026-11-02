@@ -105,6 +105,47 @@
   <meta property="og:description" content="The HardFOC core platform: thread-safe handlers over the HardFOC device drivers, MCU interfaces, RTOS wrappers and utilities, with a host build and mocks for testing without hardware.">
   <meta property="og:url" content="https://hardfoc.github.io/hf-core/latest/handlers/actuators/">
   <meta name="twitter:card" content="summary">
+  <script>
+(function () {
+  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
+  var SRC = "https://unpkg.com/mermaid@11/dist/mermaid.min.js", config = {}, real, loading, waiting = [];
+  var stub = {
+    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
+    render: function (id, text) {
+      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-hf-mermaid])");
+      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
+      if (el) el.setAttribute("data-hf-mermaid", "");
+      return near(el).then(load).then(function (m) { return m.render(id, text); });
+    }
+  };
+  function load() {
+    return loading || (loading = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = SRC;
+      s.onload = function () {
+        real = window.mermaid;
+        window.mermaid = stub;
+        real.initialize(config);
+        resolve(real);
+      };
+      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
+      document.head.appendChild(s);
+    }));
+  }
+  function near(el) {
+    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
+    return new Promise(function (resolve) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); resolve(); }
+      }, { rootMargin: "100% 0px" });
+      io.observe(el);
+      waiting.push(function () { io.disconnect(); resolve(); });
+    });
+  }
+  window.addEventListener("beforeprint", function () { waiting.splice(0).forEach(function (go) { go(); }); });
+  window.mermaid = stub;
+})();
+</script>
 
   </head>
   
@@ -1307,7 +1348,7 @@
 <!-- generated: handler-tle92466ed -->
 <p>Unified handler for TLE92466ED six-channel low-side solenoid driver IC.</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/tle92466ed/Tle92466edHandler.h"><code>handlers/tle92466ed/Tle92466edHandler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/tle92466ed/Tle92466edHandler.h"><code>handlers/tle92466ed/Tle92466edHandler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_TLE92466ED</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-tle92466ed-driver">hf-tle92466ed-driver</a></li>
 </ul>
@@ -1333,7 +1374,7 @@
 <!-- generated: handler-max22200 -->
 <p>Unified handler for MAX22200 octal solenoid and motor driver.</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/max22200/Max22200Handler.h"><code>handlers/max22200/Max22200Handler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/max22200/Max22200Handler.h"><code>handlers/max22200/Max22200Handler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_MAX22200</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-max22200-driver">hf-max22200-driver</a></li>
 </ul>

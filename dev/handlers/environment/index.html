@@ -105,6 +105,47 @@
   <meta property="og:description" content="The HardFOC core platform: thread-safe handlers over the HardFOC device drivers, MCU interfaces, RTOS wrappers and utilities, with a host build and mocks for testing without hardware.">
   <meta property="og:url" content="https://hardfoc.github.io/hf-core/latest/handlers/environment/">
   <meta name="twitter:card" content="summary">
+  <script>
+(function () {
+  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
+  var SRC = "https://unpkg.com/mermaid@11/dist/mermaid.min.js", config = {}, real, loading, waiting = [];
+  var stub = {
+    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
+    render: function (id, text) {
+      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-hf-mermaid])");
+      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
+      if (el) el.setAttribute("data-hf-mermaid", "");
+      return near(el).then(load).then(function (m) { return m.render(id, text); });
+    }
+  };
+  function load() {
+    return loading || (loading = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = SRC;
+      s.onload = function () {
+        real = window.mermaid;
+        window.mermaid = stub;
+        real.initialize(config);
+        resolve(real);
+      };
+      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
+      document.head.appendChild(s);
+    }));
+  }
+  function near(el) {
+    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
+    return new Promise(function (resolve) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); resolve(); }
+      }, { rootMargin: "100% 0px" });
+      io.observe(el);
+      waiting.push(function () { io.disconnect(); resolve(); });
+    });
+  }
+  window.addEventListener("beforeprint", function () { waiting.splice(0).forEach(function (go) { go(); }); });
+  window.mermaid = stub;
+})();
+</script>
 
   </head>
   
@@ -1352,7 +1393,7 @@ instrument and the PyroScience FDO2-G2 oxygen probe.</p>
 <!-- generated: handler-bmp581 -->
 <p>Handler for the Bosch BMP581 barometric pressure sensor on a <code>BaseI2c</code>.</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/bmp581/Bmp581Handler.h"><code>handlers/bmp581/Bmp581Handler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/bmp581/Bmp581Handler.h"><code>handlers/bmp581/Bmp581Handler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_BMP581</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-bmp581-driver">hf-bmp581-driver</a></li>
 </ul>
@@ -1381,7 +1422,7 @@ instrument and the PyroScience FDO2-G2 oxygen probe.</p>
 <!-- generated: handler-sfm -->
 <p>Handler for Sensirion gas mass flow meters on a <code>BaseI2c</code>: SF06 (SFM4300, …) and SFx6000 (SFM6000D).</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/sfm/SfmHandler.h"><code>handlers/sfm/SfmHandler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/sfm/SfmHandler.h"><code>handlers/sfm/SfmHandler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_SFM</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-sfm-flow-meter-driver">hf-sfm-flow-meter-driver</a></li>
 </ul>
@@ -1410,7 +1451,7 @@ instrument and the PyroScience FDO2-G2 oxygen probe.</p>
 <!-- generated: handler-alicat-basis2 -->
 <p>HAL-level handler for the Alicat BASIS-2 mass-flow instrument.</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/alicat_basis2/AlicatBasis2Handler.h"><code>handlers/alicat_basis2/AlicatBasis2Handler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/alicat_basis2/AlicatBasis2Handler.h"><code>handlers/alicat_basis2/AlicatBasis2Handler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_ALICAT_BASIS2</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-alicat-basis2-driver">hf-alicat-basis2-driver</a></li>
 </ul>
@@ -1439,7 +1480,7 @@ instrument and the PyroScience FDO2-G2 oxygen probe.</p>
 <!-- generated: handler-fdo2 -->
 <p>HAL-level handler for the PyroScience FDO2-G2 oxygen probe.</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/fdo2/Fdo2Handler.h"><code>handlers/fdo2/Fdo2Handler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/fdo2/Fdo2Handler.h"><code>handlers/fdo2/Fdo2Handler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_FDO2</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-fdo2-driver">hf-fdo2-driver</a></li>
 </ul>

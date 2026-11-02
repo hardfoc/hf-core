@@ -105,6 +105,47 @@
   <meta property="og:description" content="The HardFOC core platform: thread-safe handlers over the HardFOC device drivers, MCU interfaces, RTOS wrappers and utilities, with a host build and mocks for testing without hardware.">
   <meta property="og:url" content="https://hardfoc.github.io/hf-core/latest/handlers/power-security/">
   <meta name="twitter:card" content="summary">
+  <script>
+(function () {
+  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
+  var SRC = "https://unpkg.com/mermaid@11/dist/mermaid.min.js", config = {}, real, loading, waiting = [];
+  var stub = {
+    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
+    render: function (id, text) {
+      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-hf-mermaid])");
+      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
+      if (el) el.setAttribute("data-hf-mermaid", "");
+      return near(el).then(load).then(function (m) { return m.render(id, text); });
+    }
+  };
+  function load() {
+    return loading || (loading = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = SRC;
+      s.onload = function () {
+        real = window.mermaid;
+        window.mermaid = stub;
+        real.initialize(config);
+        resolve(real);
+      };
+      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
+      document.head.appendChild(s);
+    }));
+  }
+  function near(el) {
+    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
+    return new Promise(function (resolve) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); resolve(); }
+      }, { rootMargin: "100% 0px" });
+      io.observe(el);
+      waiting.push(function () { io.disconnect(); resolve(); });
+    });
+  }
+  window.addEventListener("beforeprint", function () { waiting.splice(0).forEach(function (go) { go(); }); });
+  window.mermaid = stub;
+})();
+</script>
 
   </head>
   
@@ -1329,7 +1370,7 @@
 <!-- generated: handler-pf1550 -->
 <p>HAL handler for NXP PF1550 PMIC (I2C + optional strap GPIOs).</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/pf1550/Pf1550Handler.h"><code>handlers/pf1550/Pf1550Handler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/pf1550/Pf1550Handler.h"><code>handlers/pf1550/Pf1550Handler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_PF1550</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-pf1550-driver">hf-pf1550-driver</a></li>
 </ul>
@@ -1359,7 +1400,7 @@
 <!-- generated: handler-at25040 -->
 <p>SPI AT25040B handler — BaseSpi + optional /WP, lazy Probe.</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/at25040/At25040Handler.h"><code>handlers/at25040/At25040Handler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/at25040/At25040Handler.h"><code>handlers/at25040/At25040Handler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_AT25040</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-at25040-driver">hf-at25040-driver</a></li>
 </ul>
@@ -1385,7 +1426,7 @@
 <!-- generated: handler-se050 -->
 <p>HAL-level handler for the NXP SE050 / SE050A secure element (I²C, T=1oI2C).</p>
 <ul>
-<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers/se050/Se050Handler.h"><code>handlers/se050/Se050Handler.h</code></a></li>
+<li>Header: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/handlers/se050/Se050Handler.h"><code>handlers/se050/Se050Handler.h</code></a></li>
 <li>Switch: <code>HF_CORE_ENABLE_SE050</code> (default OFF)</li>
 <li>Driver: <a href="https://github.com/hardfoc/hf-se050-driver">hf-se050-driver</a></li>
 </ul>

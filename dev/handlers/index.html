@@ -105,6 +105,47 @@
   <meta property="og:description" content="The HardFOC core platform: thread-safe handlers over the HardFOC device drivers, MCU interfaces, RTOS wrappers and utilities, with a host build and mocks for testing without hardware.">
   <meta property="og:url" content="https://hardfoc.github.io/hf-core/latest/handlers/">
   <meta name="twitter:card" content="summary">
+  <script>
+(function () {
+  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
+  var SRC = "https://unpkg.com/mermaid@11/dist/mermaid.min.js", config = {}, real, loading, waiting = [];
+  var stub = {
+    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
+    render: function (id, text) {
+      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-hf-mermaid])");
+      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
+      if (el) el.setAttribute("data-hf-mermaid", "");
+      return near(el).then(load).then(function (m) { return m.render(id, text); });
+    }
+  };
+  function load() {
+    return loading || (loading = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = SRC;
+      s.onload = function () {
+        real = window.mermaid;
+        window.mermaid = stub;
+        real.initialize(config);
+        resolve(real);
+      };
+      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
+      document.head.appendChild(s);
+    }));
+  }
+  function near(el) {
+    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
+    return new Promise(function (resolve) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); resolve(); }
+      }, { rootMargin: "100% 0px" });
+      io.observe(el);
+      waiting.push(function () { io.disconnect(); resolve(); });
+    });
+  }
+  window.addEventListener("beforeprint", function () { waiting.splice(0).forEach(function (go) { go(); }); });
+  window.mermaid = stub;
+})();
+</script>
 
   </head>
   
@@ -1243,7 +1284,7 @@ methods, read from its header; the <a href="../api-reference/">API reference</a>
 <td><a href="https://github.com/hardfoc/hf-tmc9660-driver">hf-tmc9660-driver</a></td>
 <td><code>BaseGpio</code>, <code>BaseSpi</code>, <code>BaseUart</code></td>
 <td><code>HF_CORE_ENABLE_TMC9660</code></td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_tmc9660.cpp"><code>test_tmc9660.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_tmc9660.cpp"><code>test_tmc9660.cpp</code></a></td>
 </tr>
 <tr>
 <td><a href="position/#as5047uhandler"><code>As5047uHandler</code></a></td>
@@ -1251,7 +1292,7 @@ methods, read from its header; the <a href="../api-reference/">API reference</a>
 <td><a href="https://github.com/hardfoc/hf-as5047u-driver">hf-as5047u-driver</a></td>
 <td><code>BaseSpi</code></td>
 <td><code>HF_CORE_ENABLE_AS5047U</code></td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_as5047u.cpp"><code>test_as5047u.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_as5047u.cpp"><code>test_as5047u.cpp</code></a></td>
 </tr>
 <tr>
 <td><a href="position/#bno08xhandler"><code>Bno08xHandler</code></a></td>
@@ -1259,7 +1300,7 @@ methods, read from its header; the <a href="../api-reference/">API reference</a>
 <td><a href="https://github.com/hardfoc/hf-bno08x-driver">hf-bno08x-driver</a></td>
 <td><code>BaseGpio</code>, <code>BaseI2c</code>, <code>BaseSpi</code></td>
 <td><code>HF_CORE_ENABLE_BNO08X</code></td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_bno08x.cpp"><code>test_bno08x.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_bno08x.cpp"><code>test_bno08x.cpp</code></a></td>
 </tr>
 <tr>
 <td><a href="actuators/#max22200handler"><code>Max22200Handler</code></a></td>
@@ -1299,7 +1340,7 @@ methods, read from its header; the <a href="../api-reference/">API reference</a>
 <td><a href="https://github.com/hardfoc/hf-pcal95555-driver">hf-pcal95555-driver</a></td>
 <td><code>BaseGpio</code>, <code>BaseI2c</code></td>
 <td><code>HF_CORE_ENABLE_PCAL95555</code></td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_pcal95555.cpp"><code>test_pcal95555.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_pcal95555.cpp"><code>test_pcal95555.cpp</code></a></td>
 </tr>
 <tr>
 <td><a href="io/#ws2812handler"><code>Ws2812Handler</code></a></td>
@@ -1339,7 +1380,7 @@ methods, read from its header; the <a href="../api-reference/">API reference</a>
 <td><a href="https://github.com/hardfoc/hf-ntc-thermistor-driver">hf-ntc-thermistor-driver</a></td>
 <td><code>BaseAdc</code></td>
 <td><code>HF_CORE_ENABLE_NTC_THERMISTOR</code></td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/tests/host/test_ntc.cpp"><code>test_ntc.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/tests/host/test_ntc.cpp"><code>test_ntc.cpp</code></a></td>
 </tr>
 <tr>
 <td><a href="environment/#alicatbasis2handler"><code>AlicatBasis2Handler</code></a></td>
@@ -1407,7 +1448,7 @@ methods, read from its header; the <a href="../api-reference/">API reference</a>
 </tr>
 </tbody>
 </table>
-<p>Read from the headers in <a href="https://github.com/hardfoc/hf-core/tree/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/handlers"><code>handlers/</code></a> and <a href="https://github.com/hardfoc/hf-core/blob/5cef7c587c2b6d9f893d729b793b0a51ef915fcd/cmake/hf_core_build_settings.cmake"><code>cmake/hf_core_build_settings.cmake</code></a>.</p>
+<p>Read from the headers in <a href="https://github.com/hardfoc/hf-core/tree/f44469de2cb0b812ce940e544833843339afe397/handlers"><code>handlers/</code></a> and <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/cmake/hf_core_build_settings.cmake"><code>cmake/hf_core_build_settings.cmake</code></a>.</p>
 <!-- /generated -->
 
 <p>A handler without a host test is still compiled by the host build (except WS2812 and Dynamixel, see
