@@ -32,8 +32,20 @@ static_assert(frame_flag::kExt == HF_CO_FRAME_EXT && frame_flag::kRtr == HF_CO_F
               "flag bits");
 
 /** @brief Copy between the C++ and C frame types (identical layout). */
-inline void ToC(const CanFrame& in, hf_co_frame_t& out) noexcept { std::memcpy(&out, &in, sizeof(out)); }
-inline void FromC(const hf_co_frame_t& in, CanFrame& out) noexcept { std::memcpy(&out, &in, sizeof(out)); }
+inline void ToC(const CanFrame& in, hf_co_frame_t& out) noexcept {
+  out.id = in.id;
+  out.len = in.len;
+  out.flags = in.flags;
+  std::memcpy(out.data, in.data, sizeof(out.data));
+  out.ts_us = in.ts_us;
+}
+inline void FromC(const hf_co_frame_t& in, CanFrame& out) noexcept {
+  out.id = in.id;
+  out.len = in.len;
+  out.flags = in.flags;
+  std::memcpy(out.data, in.data, sizeof(out.data));
+  out.ts_us = in.ts_us;
+}
 
 /** @brief One ICanPort attached to one CO driver port slot. */
 class CoPortBinding {
