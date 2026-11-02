@@ -9,6 +9,10 @@ var namespaces_dup =
     [ "anonymous_namespace{Bmp581Handler.cpp}", "namespaceanonymous__namespace_02Bmp581Handler_8cpp_03.html", [
       [ "kI2cTimeoutMs", "namespaceanonymous__namespace_02Bmp581Handler_8cpp_03.html#a055e48a209faf105c60406736021cc24", null ]
     ] ],
+    [ "anonymous_namespace{Bno08xHandler.cpp}", "namespaceanonymous__namespace_02Bno08xHandler_8cpp_03.html", [
+      [ "DriveResetPin", "namespaceanonymous__namespace_02Bno08xHandler_8cpp_03.html#a37877a124ad7dbf13572bbfe2b10ca3c", null ],
+      [ "PrepareResetPin", "namespaceanonymous__namespace_02Bno08xHandler_8cpp_03.html#ac9460a957606eead80a2abe9522b1dea", null ]
+    ] ],
     [ "anonymous_namespace{Logger.cpp}", "namespaceanonymous__namespace_02Logger_8cpp_03.html", [
       [ "ToBaseLevel", "namespaceanonymous__namespace_02Logger_8cpp_03.html#a9d2b496fa1b4f4e28667d14e4b8cb190", null ]
     ] ],

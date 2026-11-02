@@ -155,6 +155,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4cf122135165cde95680fe70ca55efcc" id="r_a4cf122135165cde95680fe70ca55efcc"><td class="memItemLeft" align="right" valign="top">AS5047U_Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cf122135165cde95680fe70ca55efcc">GetLastError</a> () const noexcept</td></tr>
 <tr class="memdesc:a4cf122135165cde95680fe70ca55efcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get last error code.  <br /></td></tr>
 <tr class="separator:a4cf122135165cde95680fe70ca55efcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a2d87930f802cfa8fbba194bb367dfc" id="r_a8a2d87930f802cfa8fbba194bb367dfc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAs5047uDiagnostics.html">As5047uDiagnostics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a2d87930f802cfa8fbba194bb367dfc">GetDiagnostics</a> () const noexcept</td></tr>
+<tr class="memdesc:a8a2d87930f802cfa8fbba194bb367dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Snapshot of the diagnostics cached at the last refresh.  <br /></td></tr>
+<tr class="separator:a8a2d87930f802cfa8fbba194bb367dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a653bc894993e9d109f6a4a716eb3fb28" id="r_a653bc894993e9d109f6a4a716eb3fb28"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a653bc894993e9d109f6a4a716eb3fb28">RefreshDiagnostics</a> () noexcept</td></tr>
+<tr class="memdesc:a653bc894993e9d109f6a4a716eb3fb28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read ERRFL from the sensor and update the cached diagnostics.  <br /></td></tr>
+<tr class="separator:a653bc894993e9d109f6a4a716eb3fb28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b24bfde6fe7f29e66b61828f44d2dff" id="r_a4b24bfde6fe7f29e66b61828f44d2dff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b24bfde6fe7f29e66b61828f44d2dff">DumpDiagnostics</a> () const noexcept</td></tr>
 <tr class="memdesc:a4b24bfde6fe7f29e66b61828f44d2dff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump comprehensive diagnostics and statistics to log as INFO level. Logs AS5047U sensor status, communication health, and measurement statistics.  <br /></td></tr>
 <tr class="separator:a4b24bfde6fe7f29e66b61828f44d2dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -544,6 +550,34 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a8a2d87930f802cfa8fbba194bb367dfc" name="a8a2d87930f802cfa8fbba194bb367dfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a2d87930f802cfa8fbba194bb367dfc">&#9670;&#160;</a></span>GetDiagnostics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structAs5047uDiagnostics.html">As5047uDiagnostics</a> As5047uHandler::GetDiagnostics </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Snapshot of the diagnostics cached at the last refresh. </p>
+<p>Refreshed by <a class="el" href="#a157826010a85f4279b7a13791fcf2003" title="Initialize the AS5047U sensor (lazy initialization)">Initialize()</a> and <a class="el" href="#a653bc894993e9d109f6a4a716eb3fb28" title="Read ERRFL from the sensor and update the cached diagnostics.">RefreshDiagnostics()</a>; reading this does not touch the bus. </p>
+
+</div>
+</div>
 <a id="aff42824ec0c4048211b432a35946ce19" name="aff42824ec0c4048211b432a35946ce19"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aff42824ec0c4048211b432a35946ce19">&#9670;&#160;</a></span>GetDriver() <span class="overload">[1/2]</span></h2>
 
@@ -820,6 +854,34 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a653bc894993e9d109f6a4a716eb3fb28" name="a653bc894993e9d109f6a4a716eb3fb28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a653bc894993e9d109f6a4a716eb3fb28">&#9670;&#160;</a></span>RefreshDiagnostics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool As5047uHandler::RefreshDiagnostics </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read ERRFL from the sensor and update the cached diagnostics. </p>
+<dl class="section return"><dt>Returns</dt><dd>false if the handler could not be initialized. </dd></dl>
 
 </div>
 </div>
