@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['kallbaudsbps_0',['kAllBaudsBps',['../namespaceanonymous__namespace_02_alicat_basis2_handler_8cpp_03.html#a964fadd70111271f4fac6a475ae1b340',1,'anonymous_namespace{AlicatBasis2Handler.cpp}']]],
+  ['kdefaultautoadvanceus_1',['kDefaultAutoAdvanceUs',['../classhf_1_1host_1_1_fake_clock.html#a3e05d0b0f527c60ac1f2902cc73b643c',1,'hf::host::FakeClock']]],
+  ['kdefaultbootconfig_2',['kDefaultBootConfig',['../class_tmc9660_handler.html#a4de763121aff441af52e492f3cff6f1c',1,'Tmc9660Handler']]],
+  ['ki2ctimeoutms_3',['ki2ctimeoutms',['../namespaceanonymous__namespace_02_sfm_handler_8cpp_03.html#a85399d204f743d67d5b96c84a2220f35',1,'anonymous_namespace{SfmHandler.cpp}::kI2cTimeoutMs'],['../namespaceanonymous__namespace_02_bmp581_handler_8cpp_03.html#a055e48a209faf105c60406736021cc24',1,'anonymous_namespace{Bmp581Handler.cpp}::kI2cTimeoutMs']]],
+  ['kind_4',['kind',['../structhf_1_1host_1_1_i2c_transaction.html#a3893b1555e63c39dab3a110c5a9d2b5b',1,'hf::host::I2cTransaction']]],
+  ['kmaxchannels_5',['kmaxchannels',['../class_pca9685_pwm_adapter.html#af55760adbbae32af83d3d4f68219f822',1,'Pca9685PwmAdapter::kMaxChannels'],['../classhf_1_1host_1_1_mock_adc.html#a893fb0db6afb3a46bced8c40bae7bdc6',1,'hf::host::MockAdc::kMaxChannels']]],
+  ['kmaxfrequencyhz_6',['kMaxFrequencyHz',['../class_pca9685_pwm_adapter.html#a99fbcd37f8ec3a7147f09895b6c8d0ce',1,'Pca9685PwmAdapter']]],
+  ['kmaxkeylength_7',['kMaxKeyLength',['../classhf_1_1host_1_1_mock_nvs.html#a7c00f1d6637de669c1dba043dee229de',1,'hf::host::MockNvs']]],
+  ['kmaxrawvalue_8',['kMaxRawValue',['../class_pca9685_pwm_adapter.html#a4fae40d04fe23c1bda49465a724ca260',1,'Pca9685PwmAdapter']]],
+  ['kmaxtaglength_9',['kMaxTagLength',['../class_logger.html#a3d7ee6286d92d880a680743d8a1af8f6',1,'Logger']]],
+  ['kmaxtaglevels_10',['kMaxTagLevels',['../class_logger.html#a1d59aa839504e8d05f08927c2617fb67',1,'Logger']]],
+  ['kmaxvaluesize_11',['kMaxValueSize',['../classhf_1_1host_1_1_mock_nvs.html#a813eeaae32121b72bf33595471a0dc4a',1,'hf::host::MockNvs']]],
+  ['kminfrequencyhz_12',['kMinFrequencyHz',['../class_pca9685_pwm_adapter.html#a2625228b6dc6f6edb8bebb4f69f668da',1,'Pca9685PwmAdapter']]],
+  ['kmonitoringcontextslots_13',['kMonitoringContextSlots',['../class_ntc_temperature_handler.html#ae2f7041f1b34c60db7afb47f3cb9f6a0',1,'NtcTemperatureHandler']]],
+  ['knumchannels_14',['knumchannels',['../class_tle92466ed_handler.html#aeb30a570646f9b32aaa499611691487e',1,'Tle92466edHandler::kNumChannels'],['../class_max22200_handler.html#a8505ffd513d2ebedcd107bc452407da1',1,'Max22200Handler::kNumChannels']]],
+  ['kresolutionbits_15',['kResolutionBits',['../class_pca9685_pwm_adapter.html#ab14fef2196431d10dc3c4347ba3a7d67',1,'Pca9685PwmAdapter']]],
+  ['ktlechaingapus_16',['kTleChainGapUs',['../namespaceanonymous__namespace_02_tle92466ed_handler_8cpp_03.html#a9cd2ca3aaa82b95d73fddc25256a9011',1,'anonymous_namespace{Tle92466edHandler.cpp}']]],
+  ['ktlechainmaxframes_17',['kTleChainMaxFrames',['../namespaceanonymous__namespace_02_tle92466ed_handler_8cpp_03.html#a7586fe5a1ed91d08bd2830744b76e5a3',1,'anonymous_namespace{Tle92466edHandler.cpp}']]]
+];
