@@ -37,6 +37,7 @@ Unified handler for the PCA9685 16-channel 12-bit PWM controller.
 - Header: [`handlers/pca9685/Pca9685Handler.h`](../../handlers/pca9685/Pca9685Handler.h)
 - Switch: `HF_CORE_ENABLE_PCA9685` (default OFF)
 - Driver: [hf-pca9685-driver](https://github.com/hardfoc/hf-pca9685-driver)
+- Host test: [`tests/host/test_pca9685.cpp`](../../tests/host/test_pca9685.cpp)
 
 ```cpp
 Pca9685Handler(BaseI2c& i2c_device);

@@ -74,6 +74,7 @@ HAL-level handler for the PyroScience FDO2-G2 oxygen probe.
 - Header: [`handlers/fdo2/Fdo2Handler.h`](../../handlers/fdo2/Fdo2Handler.h)
 - Switch: `HF_CORE_ENABLE_FDO2` (default OFF)
 - Driver: [hf-fdo2-driver](https://github.com/hardfoc/hf-fdo2-driver)
+- Host test: [`tests/host/test_fdo2.cpp`](../../tests/host/test_fdo2.cpp)
 
 ```cpp
 Fdo2Handler(
