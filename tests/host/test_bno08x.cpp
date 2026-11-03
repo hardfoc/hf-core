@@ -217,3 +217,19 @@ HF_TEST(Bno08x_InitializeReportsHubError) {
     CHECK(!imu.IsInitialized());
     CHECK(imu.GetLastDriverError() != 0);
 }
+
+HF_TEST(Bno08x_InitializeStopsOnResetPinError) {
+    // GpioSet() returns false on a GPIO error; HardwareReset() stops at the
+    // failed RSTN write and the handler reports it before touching SH-2.
+    MockI2c i2c(0x4A);
+    Sh2HubModel hub(i2c);
+    MockGpio rstn(10);
+    rstn.FailWrites();
+    Bno08xHandler imu(i2c, Bno08xConfig{}, &rstn);
+    CHECK(imu.Initialize() == Bno08xError::HARDWARE_ERROR);
+    CHECK(!imu.IsInitialized());
+    CHECK(i2c.Transactions().empty());
+
+    rstn.FailWrites(false);
+    CHECK(imu.Initialize() == Bno08xError::SUCCESS);
+}

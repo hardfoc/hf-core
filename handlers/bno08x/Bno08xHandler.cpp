@@ -50,14 +50,17 @@ void PrepareResetPin(BaseGpio* reset_gpio) noexcept {
     reset_gpio->EnsureInitialized();
 }
 
-void DriveResetPin(BaseGpio* reset_gpio, bno08x::GpioSignal signal) noexcept {
+/** @return true when the pin was driven, or is not wired (nothing to drive). */
+bool DriveResetPin(BaseGpio* reset_gpio, bno08x::GpioSignal signal) noexcept {
     if (reset_gpio == nullptr) {
-        return;
+        return true;
     }
     PrepareResetPin(reset_gpio);
     // ACTIVE -> drives LOW (assert reset), INACTIVE -> drives HIGH (release)
-    reset_gpio->SetState(signal == bno08x::GpioSignal::ACTIVE ? hf_gpio_state_t::HF_GPIO_STATE_ACTIVE
-                                                              : hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
+    return reset_gpio->SetState(signal == bno08x::GpioSignal::ACTIVE
+                                    ? hf_gpio_state_t::HF_GPIO_STATE_ACTIVE
+                                    : hf_gpio_state_t::HF_GPIO_STATE_INACTIVE) ==
+           hf_gpio_err_t::GPIO_SUCCESS;
 }
 
 }  // namespace
@@ -139,17 +142,17 @@ uint32_t HalI2cBno08xComm::GetTimeUs() noexcept {
     return static_cast<uint32_t>(RtosTime::GetCurrentTimeUs());
 }
 
-void HalI2cBno08xComm::GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept {
+bool HalI2cBno08xComm::GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept {
     switch (pin) {
         case bno08x::CtrlPin::RSTN:
-            DriveResetPin(reset_gpio_, signal);
-            break;
+            return DriveResetPin(reset_gpio_, signal);
         case bno08x::CtrlPin::BOOTN:
         case bno08x::CtrlPin::WAKE:
         case bno08x::CtrlPin::PS0:
         case bno08x::CtrlPin::PS1:
             break; // Not wired for I2C
     }
+    return true;  // a pin that is not wired counts as driven
 }
 
 // ============================================================================
@@ -235,25 +238,23 @@ uint32_t HalSpiBno08xComm::GetTimeUs() noexcept {
     return static_cast<uint32_t>(RtosTime::GetCurrentTimeUs());
 }
 
-void HalSpiBno08xComm::GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept {
+bool HalSpiBno08xComm::GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept {
     switch (pin) {
         case bno08x::CtrlPin::RSTN:
-            DriveResetPin(reset_gpio_, signal);
-            break;
+            return DriveResetPin(reset_gpio_, signal);
         case bno08x::CtrlPin::WAKE:
-            if (!wake_gpio_) return;
+            if (!wake_gpio_) return true;
             // WAKE is configured as active-low in Open()
-            if (signal == bno08x::GpioSignal::ACTIVE) {
-                wake_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_ACTIVE);
-            } else {
-                wake_gpio_->SetState(hf_gpio_state_t::HF_GPIO_STATE_INACTIVE);
-            }
-            break;
+            return wake_gpio_->SetState(signal == bno08x::GpioSignal::ACTIVE
+                                            ? hf_gpio_state_t::HF_GPIO_STATE_ACTIVE
+                                            : hf_gpio_state_t::HF_GPIO_STATE_INACTIVE) ==
+                   hf_gpio_err_t::GPIO_SUCCESS;
         case bno08x::CtrlPin::BOOTN:
         case bno08x::CtrlPin::PS0:
         case bno08x::CtrlPin::PS1:
             break; // Not wired in this SPI implementation
     }
+    return true;  // a pin that is not wired counts as driven
 }
 
 // ============================================================================
@@ -307,8 +308,13 @@ Bno08xError Bno08xHandler::Initialize() noexcept {
         return last_error_;
     }
 
-    // Perform hardware reset via the driver (uses RSTN pin if wired)
-    driver_ops_->HardwareReset(10);
+    // Perform hardware reset via the driver (uses RSTN pin if wired). The
+    // driver stops at a failed RSTN write; it waits RESET_STARTUP_MS (94 ms,
+    // datasheet 6.5.3 t1 + t2) after releasing the pin.
+    if (!driver_ops_->HardwareReset(10)) {
+        last_error_ = Bno08xError::HARDWARE_ERROR;
+        return last_error_;
+    }
 
     // Initialize the SH-2 protocol
     if (!driver_ops_->Begin()) {
