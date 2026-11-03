@@ -30,7 +30,7 @@ methods, read from its header; the [API reference](../api-reference.md) has ever
 | [`Fdo2Handler`](environment.md#fdo2handler) | Pressure, flow and gas | [hf-fdo2-driver](https://github.com/hardfoc/hf-fdo2-driver) | `BaseUart` | `HF_CORE_ENABLE_FDO2` | [`test_fdo2.cpp`](../../tests/host/test_fdo2.cpp) |
 | [`SfmHandler`](environment.md#sfmhandler) | Pressure, flow and gas | [hf-sfm-flow-meter-driver](https://github.com/hardfoc/hf-sfm-flow-meter-driver) | `BaseI2c` | `HF_CORE_ENABLE_SFM` |  |
 | [`At25040Handler`](power-security.md#at25040handler) | Power, memory and security | [hf-at25040-driver](https://github.com/hardfoc/hf-at25040-driver) | `BaseGpio`, `BaseSpi` | `HF_CORE_ENABLE_AT25040` |  |
-| [`Pf1550Handler`](power-security.md#pf1550handler) | Power, memory and security | [hf-pf1550-driver](https://github.com/hardfoc/hf-pf1550-driver) | `BaseGpio`, `BaseI2c` | `HF_CORE_ENABLE_PF1550` |  |
+| [`Pf1550Handler`](power-security.md#pf1550handler) | Power, memory and security | [hf-pf1550-driver](https://github.com/hardfoc/hf-pf1550-driver) | `BaseGpio`, `BaseI2c` | `HF_CORE_ENABLE_PF1550` | [`test_pf1550.cpp`](../../tests/host/test_pf1550.cpp) |
 | [`Se050Handler`](power-security.md#se050handler) | Power, memory and security | [hf-se050-driver](https://github.com/hardfoc/hf-se050-driver) | `BaseGpio`, `BaseI2c` | `HF_CORE_ENABLE_SE050` |  |
 | [`Logger`](logger.md#logger) | Logger | (in hf-core) | `BaseLogger` | `HF_CORE_ENABLE_LOGGER` |  |
 
