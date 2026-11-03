@@ -234,7 +234,9 @@ public:
 
     /**
      * @brief Visit the underlying AS5047U driver under handler mutex protection.
-     * @return Callable result or default-constructed value when driver is unavailable.
+     * @return Callable result. When the driver is unavailable: an as5047u::Result with
+     *         error = AS5047U_Error::BusError if @p fn returns one (the driver's value getters
+     *         do), otherwise a default-constructed value.
      */
     template <typename Fn>
     auto visitDriver(Fn&& fn) noexcept -> decltype(fn(std::declval<as5047u::AS5047U<As5047uSpiAdapter>&>())) {
@@ -243,6 +245,12 @@ public:
         if (!EnsureInitializedLocked() || !as5047u_sensor_) {
             if constexpr (std::is_void_v<ReturnType>) {
                 return;
+            } else if constexpr (IsDriverResult<ReturnType>::value) {
+                // A driver getter's Result: report the missing sensor as a bus error instead of a
+                // value-initialised Result, which would read as a successful 0.
+                ReturnType r{};
+                r.error = AS5047U_Error::BusError;
+                return r;
             } else {
                 return ReturnType{};
             }
@@ -300,6 +308,12 @@ public:
     void DumpDiagnostics() const noexcept;
 
 private:
+    /// True for as5047u::Result<T>, the return type of the driver's value getters.
+    template <typename T>
+    struct IsDriverResult : std::false_type {};
+    template <typename T>
+    struct IsDriverResult<as5047u::Result<T>> : std::true_type {};
+
     //======================================================//
     // PRIVATE MEMBERS
     //======================================================//
