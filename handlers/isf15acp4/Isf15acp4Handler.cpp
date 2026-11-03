@@ -88,6 +88,8 @@ void HalIsf15acp4SpiAdapter::GpioSet(isf15acp4::CtrlPin pin,
             setGpio(dc_, active);
             break;
         case isf15acp4::CtrlPin::Reset:
+            // Active = held in reset = RES# low (SSD1331 7.9); the driver
+            // pulses Active for >= 3 us and leaves the pin Inactive.
             setGpio(reset_, !active);
             break;
         case isf15acp4::CtrlPin::VccEnable:
@@ -195,6 +197,12 @@ bool Isf15acp4Handler::Present(const isf15acp4::GraphicsContext& gfx) noexcept {
 }
 
 isf15acp4::GraphicsContext Isf15acp4Handler::CreateGraphicsContext() const noexcept {
+    MutexLockGuard lock(handler_mutex_);
+    if (display_) {
+        // The display's non-const overload binds the context to the panel, so
+        // with GraphicsBackend::HardwareDirect its shapes reach the panel.
+        return display_->CreateGraphicsContext();
+    }
     return isf15acp4::GraphicsContext(config_.variant, config_.graphics);
 }
 

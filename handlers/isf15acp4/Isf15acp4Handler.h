@@ -108,6 +108,13 @@ public:
      * @param gfx Canvas produced by CreateGraphicsContext().
      */
     bool Present(const isf15acp4::GraphicsContext& gfx) noexcept;
+    /**
+     * @brief Canvas matching the configured variant and graphics backend.
+     *
+     * Once initialized the context is bound to the panel (the driver's
+     * CreateGraphicsContext()), so GraphicsBackend::HardwareDirect draws reach
+     * it; before Initialize() it is unbound. The handler must outlive it.
+     */
     [[nodiscard]] isf15acp4::GraphicsContext CreateGraphicsContext() const noexcept;
     [[nodiscard]] bool IsPressed() const noexcept;
 
