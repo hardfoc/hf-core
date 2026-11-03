@@ -249,6 +249,12 @@ public:
 
     /**
      * @brief Initialize, then apply @p config before mission mode.
+     *
+     * `tle92466ed::GlobalConfig{}` is now the configuration `Driver::Init()`
+     * itself writes: CRC check and SPI watchdog off, VBAT UV / OV at 7 V /
+     * 40 V. Set `crc_enabled` / `spi_watchdog_enabled` explicitly to turn
+     * them on; a default-constructed config no longer arms the watchdog.
+     *
      * @param config Global device configuration (watchdog, dither clock, …).
      * @return Empty on success; rolls back @ref driver_ on configure failure.
      * @note Acquires @ref mutex_; always performs hardware reset via `Driver::Init()`.
