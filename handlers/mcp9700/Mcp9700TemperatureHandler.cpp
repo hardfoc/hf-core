@@ -55,7 +55,12 @@ hf_temp_err_t Mcp9700TemperatureHandler::ReadTemperatureCelsiusImpl(float* tempe
         return hf_temp_err_t::TEMP_ERR_NOT_INITIALIZED;
     }
     if (!thermistor_->ReadTemperatureCelsius(temperature_celsius)) {
-        return hf_temp_err_t::TEMP_ERR_READ_FAILED;
+        // The driver rejects a voltage outside the specified range plus margin
+        // (-40..+125 C +-8 C by default): an open, shorted or mis-scaled input
+        // no longer reads as -50 C.
+        return thermistor_->LastError() == hf::mcp9700::Error::kOutOfRange
+                   ? hf_temp_err_t::TEMP_ERR_OUT_OF_RANGE
+                   : hf_temp_err_t::TEMP_ERR_READ_FAILED;
     }
     return hf_temp_err_t::TEMP_SUCCESS;
 }
@@ -68,7 +73,7 @@ hf_temp_err_t Mcp9700TemperatureHandler::GetSensorInfo(hf_temp_sensor_info_t* in
     info->min_temp_celsius = -40.0f;
     info->max_temp_celsius = 125.0f;
     info->resolution_celsius = 0.1f;
-    info->accuracy_celsius = 1.0f;
+    info->accuracy_celsius = 4.0f;  // MCP9700 maximum, 0..+70 C (MCP9700A: 2 C)
     info->response_time_ms = 10;
     info->capabilities = HF_TEMP_CAP_NONE;
     info->manufacturer = "Microchip";
