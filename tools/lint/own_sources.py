@@ -18,7 +18,7 @@ import json
 import os
 import sys
 
-KEEP = ("/handlers/", "/tests/host/")
+KEEP = ("/handlers/", "/tests/host/", "/templates/handler/example/")
 SKIP = ("/hf-core-drivers/", "/hf-core-utils/", "/build/")
 SOURCE_SUFFIXES = (".c", ".cpp", ".cc")
 
