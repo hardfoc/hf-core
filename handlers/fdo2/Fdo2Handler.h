@@ -57,13 +57,12 @@
  *        templated `fdo2::Driver<UartT>` can drive.
  *
  * @par Notes
- *   - `BaseUart::Read` returns a status code only — not the actual byte
- *     count — so this adapter polls `BytesAvailable()` first (with the
- *     caller's timeout as the deadline for the **first** byte) then
- *     drains whatever is currently in the FIFO plus a small grace
- *     window for any in-flight bytes. PSUP lines are short
- *     (~80 chars; ~42 ms at 19200 baud) so the drain window is
- *     bounded.
+ *   - `read()` returns one complete reply line, CR included, as the
+ *     driver requires (a line without its CR is a `ProtocolError`), or 0
+ *     when no whole line arrived within the timeout. A partial line is
+ *     kept for the next call; `flush_rx()` drops it. `BaseUart::Read`
+ *     reports a status, not a count, so bytes are read one at a time
+ *     while `BytesAvailable()` is non-zero.
  *   - All timing (delays, deadline tracking) goes through the
  *     `hf-utils-rtos-wrap` `os_*` primitives — the handler has zero
  *     direct ESP-IDF / FreeRTOS dependencies, so the same code path
@@ -81,6 +80,9 @@ public:
 
 private:
     BaseUart& uart_;
+    /// Reply being assembled; 128 bytes holds the longest reply (#MRAW with CRC, < 120).
+    std::uint8_t line_[128]{};
+    std::size_t line_len_{0};
 };
 
 //==============================================================================

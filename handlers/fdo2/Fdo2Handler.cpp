@@ -7,6 +7,8 @@
 
 #include "Fdo2Handler.h"
 
+#include <cstring>
+
 // MCU-agnostic timing / delay primitives — every handler in hf-core
 // goes through the rtos-wrap utilities so the same code runs against
 // FreeRTOS / ThreadX / bare-metal stubs without per-platform #ifdefs.
@@ -16,16 +18,12 @@
 // HalUartFdo2Comm — BaseUart → fdo2::UartInterface CRTP adapter
 //==============================================================================
 //
-// `BaseUart::Read(buf, length, timeout)` returns success / failure but
-// not how many bytes were actually read (it asks the underlying ESP-IDF
-// `uart_read_bytes` for `length` bytes and returns SUCCESS even on
-// partial reads). The FDO2 driver however expects
-// `read(buf, max, timeout) → actual_count` so it can scan up to a CR.
-//
-// Workaround: poll `BytesAvailable()` first — with the caller's timeout
-// as the deadline for the first byte — then drain whatever arrived
-// plus a small grace window. PSUP lines are short (~80 chars at 19200
-// baud → ~42 ms for a full line) so the bounded drain works.
+// The driver parses what one `read()` returns as the whole reply: a line
+// without its CR is a ProtocolError (FDO2 data sheet §4.1). `read()`
+// therefore returns exactly one complete line, CR included, and keeps a
+// partial line in `line_` across calls (the split exchange polls with a
+// timeout of 0 while a reply arrives). `BaseUart::Read` reports a status,
+// not a count, so bytes are taken one at a time while BytesAvailable() > 0.
 
 void HalUartFdo2Comm::write(const std::uint8_t* data,
                             std::size_t length) noexcept {
@@ -37,44 +35,35 @@ std::size_t HalUartFdo2Comm::read(std::uint8_t* out, std::size_t max,
                                    std::uint32_t timeout_ms) noexcept {
     if (out == nullptr || max == 0) return 0;
 
-    // Wait until at least one byte has landed (blocking, bounded by
-    // `timeout_ms`). All timing goes through rtos-wrap so the handler
-    // doesn't take a direct dependency on any specific RTOS API.
-    const std::uint32_t deadline_ms =
-        os_get_elapsed_time_msec() + timeout_ms;
-    while (uart_.BytesAvailable() == 0) {
-        if (os_get_elapsed_time_msec() >= deadline_ms) {
-            return 0;
+    // All timing goes through rtos-wrap so the handler doesn't take a
+    // direct dependency on any specific RTOS API.
+    const std::uint32_t start_ms = os_get_elapsed_time_msec();
+    for (;;) {
+        while (uart_.BytesAvailable() > 0) {
+            std::uint8_t byte = 0;
+            if (uart_.Read(&byte, 1, /*timeout_ms=*/0) != hf_uart_err_t::UART_SUCCESS) {
+                break;
+            }
+            if (line_len_ == sizeof(line_)) {
+                line_len_ = 0;  // longer than any PSUP reply: drop it, resync at the next CR
+            }
+            line_[line_len_++] = byte;
+            if (byte == '\r') {
+                const std::size_t n = line_len_ < max ? line_len_ : max;
+                std::memcpy(out, line_, n);
+                line_len_ = 0;
+                return n;
+            }
+        }
+        if (os_get_elapsed_time_msec() - start_ms >= timeout_ms) {
+            return 0;  // no whole line yet; the partial line stays in line_
         }
         os_delay_msec(1);
     }
-
-    // Drain everything currently in the FIFO + a small grace window for
-    // the rest of the (in-flight) line to arrive.
-    std::size_t got = 0;
-    constexpr std::uint16_t kPostFirstByteGraceMs = 5;
-    bool waited_grace = false;
-    while (got < max) {
-        const hf_u16_t avail = uart_.BytesAvailable();
-        if (avail == 0) {
-            if (waited_grace) break;
-            os_delay_msec(kPostFirstByteGraceMs);
-            waited_grace = true;
-            continue;
-        }
-        const hf_u16_t to_read = (max - got) < avail
-                                   ? static_cast<hf_u16_t>(max - got)
-                                   : avail;
-        if (uart_.Read(out + got, to_read, /*timeout_ms=*/0) !=
-            hf_uart_err_t::UART_SUCCESS) {
-            break;
-        }
-        got += to_read;
-    }
-    return got;
 }
 
 void HalUartFdo2Comm::flush_rx() noexcept {
+    line_len_ = 0;
     (void)uart_.FlushRx();
 }
 
