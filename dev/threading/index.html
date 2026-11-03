@@ -1154,6 +1154,10 @@ it yet.</p>
 </tr>
 </tbody>
 </table>
+<p>HardFOC runs FreeRTOS at 1 kHz, so a millisecond delay or timeout is one tick. On a slower tick a non-zero
+millisecond value still waits at least one tick, never zero: <code>os_convert_msec_to_delay_ticks()</code> in hf-utils-rtos-wrap
+and <code>handler_utils::DelayMs()</code> round the same way, and <code>DelayUs()</code> rounds a wait of 1 ms or more up to whole
+milliseconds.</p>
 <p>A class guarding its own state:</p>
 <div class="language-cpp highlight"><span class="filename">tests/docs/threading.cpp</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Counter</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w"> </span><span class="k">public</span><span class="o">:</span>

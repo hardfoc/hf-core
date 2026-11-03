@@ -1231,6 +1231,11 @@ several instruments, or several sensors on one I2C bus. The handlers for those t
 initialisation, the driver's result type (<code>sfm::DriverResult&lt;T&gt;</code>, <code>se050</code> status codes) where the driver has a
 rich one. Check every result. A failed <code>EnsureInitialized()</code> caches nothing, so the next call tries again; that
 makes a chip that powers up late recover without special code.</p>
+<p>Adapters pass bus and pin errors down to the driver instead of swallowing them. The SPI adapters of the ADS7952,
+ADS9324, AS5047U and AT25040 return <code>bool</code> from <code>transfer()</code> (<code>false</code> when <code>BaseSpi::Transfer()</code> failed), and the
+BNO08x adapters return <code>bool</code> from <code>GpioSet()</code>. The driver then fails the call (<code>Error::SpiError</code>, <code>false</code>, or the
+AS5047U <code>BusError</code> sticky flag) and leaves its cached state as it was, so a glitch on the bus is never read as
+data.</p>
 <h2 id="callbacks">Callbacks<a class="headerlink" href="#callbacks" title="Permanent link">&para;</a></h2>
 <p>Low-level callbacks in the <code>Base*</code> interfaces are plain function pointers with a <code>void* user_data</code>, not
 <code>std::function</code>, so no heap and no capture on interrupt paths. A handler passes a non-capturing lambda and gets

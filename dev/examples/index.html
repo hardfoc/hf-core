@@ -1342,7 +1342,7 @@
 
 <h1 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h1>
 <p>The ESP32 test applications: one per handler or utility, selected at build time by <code>APP_TYPE</code>.</p>
-<p>All of them build from <a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/app_config.yml"><code>examples/esp32/</code></a> with the hf-core component in
+<p>All of them build from <a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/app_config.yml"><code>examples/esp32/</code></a> with the hf-core component in
 <code>examples/esp32/components/hf_core</code>, which enables every handler they test. CI builds each application marked for
 CI, for every ESP-IDF version and build type listed in <code>app_config.yml</code>.</p>
 <!-- generated: examples -->
@@ -1359,109 +1359,109 @@ CI, for every ESP-IDF version and build type listed in <code>app_config.yml</cod
 <tr>
 <td><code>as5047u_handler_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Comprehensive test of As5047uHandler: CRTP SPI adapter, initialization, angle/velocity reading, DAEC configuration, zero position, diagnostics, OTP readback, error handling, and thread safety.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/handler_tests/as5047u_handler_comprehensive_test.cpp"><code>handler_tests/as5047u_handler_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/handler_tests/as5047u_handler_comprehensive_test.cpp"><code>handler_tests/as5047u_handler_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>bno08x_handler_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Comprehensive test of Bno08xHandler: I2C/SPI comm adapter, sensor enable/disable, accelerometer/gyroscope/magnetometer reading, rotation vectors, activity detection, freshness gating, callback management, hardware reset, configuration persistence, and error mapping.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/handler_tests/bno08x_handler_comprehensive_test.cpp"><code>handler_tests/bno08x_handler_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/handler_tests/bno08x_handler_comprehensive_test.cpp"><code>handler_tests/bno08x_handler_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>pca9685_handler_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Comprehensive test of Pca9685Handler: I2C comm adapter, EnsureInitialized delegation, PWM duty cycle (float + raw), frequency control, sleep/wake, PwmAdapter multi-channel interface, GpioPin wrapper, phase offset, output configuration, and error handling.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/handler_tests/pca9685_handler_comprehensive_test.cpp"><code>handler_tests/pca9685_handler_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/handler_tests/pca9685_handler_comprehensive_test.cpp"><code>handler_tests/pca9685_handler_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>pcal95555_handler_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Comprehensive test of Pcal95555Handler: I2C comm adapter, EnsureInitialized, per-pin direction/read/write/toggle, batch mask operations, interrupt management (deferred ISR via atomic flag), chip variant detection (PCA9555 vs PCAL9555A), Agile I/O features, pull mode, drive strength, output mode, and GpioPin wrapper.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/handler_tests/pcal95555_handler_comprehensive_test.cpp"><code>handler_tests/pcal95555_handler_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/handler_tests/pcal95555_handler_comprehensive_test.cpp"><code>handler_tests/pcal95555_handler_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>ntc_handler_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Comprehensive test of NtcTemperatureHandler: ADC reading, temperature conversion (lookup + math), calibration offset, EMA filtering, continuous monitoring via PeriodicTimer, threshold callbacks, statistics/diagnostics, and RtosMutex thread safety.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/handler_tests/ntc_handler_comprehensive_test.cpp"><code>handler_tests/ntc_handler_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/handler_tests/ntc_handler_comprehensive_test.cpp"><code>handler_tests/ntc_handler_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>tmc9660_handler_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Comprehensive test of Tmc9660Handler: SPI/UART comm adapter, bootloader initialization, TMCL parameter access, motor control (velocity/position/ torque), telemetry readback, GPIO wrapper (GPIO17/GPIO18), ADC wrapper (multi-channel), Temperature wrapper, error flag management, and peripheral accessor null safety.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/handler_tests/tmc9660_handler_comprehensive_test.cpp"><code>handler_tests/tmc9660_handler_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/handler_tests/tmc9660_handler_comprehensive_test.cpp"><code>handler_tests/tmc9660_handler_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>tmc5160_handler_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Comprehensive test of Tmc5160Handler: CRTP SPI/UART comm adapters, initialization with DriverConfig, motor enable/disable, motion control (position/velocity/acceleration), visitDriver() subsystem access, StallGuard readback, diagnostics dump, status checks (overtemp/stall/ standstill), and pre-init error handling.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/handler_tests/tmc5160_handler_comprehensive_test.cpp"><code>handler_tests/tmc5160_handler_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/handler_tests/tmc5160_handler_comprehensive_test.cpp"><code>handler_tests/tmc5160_handler_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>tle92466ed_handler_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Comprehensive test of Tle92466edHandler: CRTP SPI comm adapter, initialization with GlobalConfig, 6-channel enable/disable/current/PWM, fault report, watchdog kick/disable, device ID readback, diagnostics, channel diagnostics, and pre-init error handling.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/handler_tests/tle92466ed_handler_comprehensive_test.cpp"><code>handler_tests/tle92466ed_handler_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/handler_tests/tle92466ed_handler_comprehensive_test.cpp"><code>handler_tests/tle92466ed_handler_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>max22200_handler_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Comprehensive test of Max22200Handler: CRTP SPI comm adapter with CMD pin two-phase protocol, initialization with BoardConfig, 8-channel enable/disable/mask, CDR/VDR channel setup, fault readback, device ID, soft reset, diagnostics, and pre-init error handling.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/handler_tests/max22200_handler_comprehensive_test.cpp"><code>handler_tests/max22200_handler_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/handler_tests/max22200_handler_comprehensive_test.cpp"><code>handler_tests/max22200_handler_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>ads9324_handler_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Comprehensive test of Ads9324Handler: CRTP SPI + CONVST/DRDY adapter, BaseAdc 16-channel map, PGA/offset/gain, snapshot, visitDriver/GetDriver, diagnostics, missing-CONVST guard, and pre-init error handling. Compiles in CI; silicon optional at runtime (init fails gracefully).</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/handler_tests/ads9324_handler_comprehensive_test.cpp"><code>handler_tests/ads9324_handler_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/handler_tests/ads9324_handler_comprehensive_test.cpp"><code>handler_tests/ads9324_handler_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>isf15acp4_handler_test</code></td>
 <td>Comprehensive test of Isf15acp4Handler: SPI/GPIO adapter with software SS, initialization, DisplayOn/Off, FillScreen/Present, visitDriver/GetDriver, error flags, deinitialize, and pre-init error handling.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/handler_tests/isf15acp4_handler_comprehensive_test.cpp"><code>handler_tests/isf15acp4_handler_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/handler_tests/isf15acp4_handler_comprehensive_test.cpp"><code>handler_tests/isf15acp4_handler_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>ws2812_handler_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Comprehensive test of Ws2812Handler: RMT-based LED control, pixel set (individual + all), clear, show, brightness, animation effects (rainbow, chase, breathe), tick/step, direct strip/animator access, diagnostics, and pre-init error handling.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/handler_tests/ws2812_handler_comprehensive_test.cpp"><code>handler_tests/ws2812_handler_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/handler_tests/ws2812_handler_comprehensive_test.cpp"><code>handler_tests/ws2812_handler_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>se050_handler_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Exercises Se050Handler: BaseI2c→se050 CRTP adapter, EnsureInitialized (GPIO reset, T=1 warm reset, SELECT applet, GetVersion), and live GetRandom via se050::Device (same stack as hf-se050-driver ESP32 examples).</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/handler_tests/se050_handler_comprehensive_test.cpp"><code>handler_tests/se050_handler_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/handler_tests/se050_handler_comprehensive_test.cpp"><code>handler_tests/se050_handler_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>general_utils_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Comprehensive test of hf-utils-general on ESP32/FreeRTOS: CircularBuffer, RingBuffer, AveragingFilter, SimpleStateMachine, SlightlyAdvancedStateMachine, StateMachine (allocation-free FSM with Entry/Loop/Exit hooks, transition matrix, visit/dwell counters, stuck-state watchdog), CrcCalculator, ActionTimer, ActionRunLimiter, DynamicArray, EnumArray, BoundedLinearCurve, PiecewiseLinearCurve, LineEstimator, MultiReadings, TimestampedVariable, VariableMonitor, VariableAnomalyMonitor, SoftwareVersion, TestManager, and platform_compat.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/utils_tests/general_utils_comprehensive_test.cpp"><code>utils_tests/general_utils_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/utils_tests/general_utils_comprehensive_test.cpp"><code>utils_tests/general_utils_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>rtos_wrap_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>Comprehensive test of hf-utils-rtos-wrap on ESP32/FreeRTOS: RtosMutex, MutexLockGuard, PeriodicTimer, BaseThread, OsQueue, OsEventFlags, SignalSemaphore, CriticalGuard, OsUtility (os_delay_msec, os_time_get), OsAbstraction, ErrorSaver, FlagsSaver, EventDrivenDataMultiThread, and Utility (WaitForCondition).</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/utils_tests/rtos_wrap_comprehensive_test.cpp"><code>utils_tests/rtos_wrap_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/utils_tests/rtos_wrap_comprehensive_test.cpp"><code>utils_tests/rtos_wrap_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>logger_test</code></td>
 <td>Test of Logger system: log levels, ANSI formatting (font styles, foreground/background colors), configuration, singleton access, level filtering, and output correctness.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/utils_tests/logger_comprehensive_test.cpp"><code>utils_tests/logger_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/utils_tests/logger_comprehensive_test.cpp"><code>utils_tests/logger_comprehensive_test.cpp</code></a></td>
 <td>yes</td>
 </tr>
 <tr>
 <td><code>canopen_utils_test</code></td>
 <td>Test of hf-utils-canopen: CANopen protocol stack utilities. Requires CAN bus hardware.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/utils_tests/canopen_utils_comprehensive_test.cpp"><code>utils_tests/canopen_utils_comprehensive_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/utils_tests/canopen_utils_comprehensive_test.cpp"><code>utils_tests/canopen_utils_comprehensive_test.cpp</code></a></td>
 <td>no</td>
 </tr>
 <tr>
 <td><code>full_integration_test</code> <span class="twemoji" title="featured"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
 <td>End-to-end integration test exercising multiple handlers and utilities together: I2C bus sharing (PCA9685 + PCAL95555 + BNO08x), SPI bus sharing (AS5047U + TMC9660), RTOS threading with handlers, Logger integration, PeriodicTimer-driven monitoring, and multi-handler concurrent access.</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/main/integration_tests/full_system_integration_test.cpp"><code>integration_tests/full_system_integration_test.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/main/integration_tests/full_system_integration_test.cpp"><code>integration_tests/full_system_integration_test.cpp</code></a></td>
 <td>no</td>
 </tr>
 </tbody>
@@ -1470,7 +1470,7 @@ CI, for every ESP-IDF version and build type listed in <code>app_config.yml</cod
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>./scripts/build_app.sh<span class="w"> </span>general_utils_test<span class="w"> </span>Release
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>./scripts/flash_app.sh<span class="w"> </span>flash_monitor<span class="w"> </span>general_utils_test<span class="w"> </span>Release
 </span></code></pre></div>
-<p>Source of this table: <a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/examples/esp32/app_config.yml"><code>examples/esp32/app_config.yml</code></a>.</p>
+<p>Source of this table: <a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/app_config.yml"><code>examples/esp32/app_config.yml</code></a>.</p>
 <!-- /generated -->
 
 <h2 id="one-time-setup">One-time setup<a class="headerlink" href="#one-time-setup" title="Permanent link">&para;</a></h2>
