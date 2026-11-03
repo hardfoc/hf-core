@@ -150,6 +150,14 @@ dynamixel::DriverResult<uint8_t> DynamixelHandler::Scan(uint8_t* out_ids, uint8_
     return bus_.Scan(out_ids, max_ids, first_id, last_id);
 }
 
+dynamixel::DriverResult<void> DynamixelHandler::Reboot() noexcept {
+    MutexLockGuard lock(*bus_mutex_);
+    if (!EnsureInitializedLocked()) {
+        return dynamixel::DriverResult<void>::failure(dynamixel::DriverError::NotInitialized);
+    }
+    return device_.Reboot();
+}
+
 dynamixel::DriverResult<void> DynamixelHandler::SetTorqueEnabled(bool enabled) noexcept {
     MutexLockGuard lock(*bus_mutex_);
     if (!EnsureInitializedLocked()) {
