@@ -142,17 +142,32 @@ sfm::DriverResult<void> SfmHandler::Start(sfm::Gas gas) noexcept {
     if (!EnsureInitializedLocked()) {
         return sfm::DriverResult<void>::failure(sfm::DriverError::NotInitialized);
     }
-    auto r = driver_->StartContinuous(gas, config_.o2_permille);
-    if (!r.ok()) {
-        if (r.error == sfm::DriverError::BusWrite || r.error == sfm::DriverError::BusRead) {
+    auto count_bus_error = [this](const sfm::DriverResult<void>& res) {
+        if (res.error == sfm::DriverError::BusWrite || res.error == sfm::DriverError::BusRead) {
             bus_errors_.fetch_add(1, std::memory_order_relaxed);
         }
-        return r;
-    }
-    /* On-chip averaging is SF06-only; SFx6000 samples at 1 kHz and the
-     * reader averages. */
+    };
+    /* On-chip averaging is SF06-only (SFx6000 samples at 1 kHz and the
+     * reader averages), and the sensor only accepts it while idle (SFM4300
+     * datasheet 4.3.5): configure it before the start, stopping a running
+     * measurement first. */
     if (config_.averaging_window != 0U && driver_->PartFamily() == sfm::Family::Sf06) {
-        r = driver_->ConfigureAveraging(config_.averaging_window);
+        if (driver_->Measuring()) {
+            auto stopped = driver_->Stop();
+            if (!stopped.ok()) {
+                count_bus_error(stopped);
+                return stopped;
+            }
+        }
+        auto avg = driver_->ConfigureAveraging(config_.averaging_window);
+        if (!avg.ok()) {
+            count_bus_error(avg);
+            return avg;
+        }
+    }
+    auto r = driver_->StartContinuous(gas, config_.o2_permille);
+    if (!r.ok()) {
+        count_bus_error(r);
     }
     return r;
 }
