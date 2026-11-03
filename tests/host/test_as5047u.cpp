@@ -189,3 +189,39 @@ HF_TEST(As5047u_InitializeFailsOnFloatingMiso) {
     CHECK(!handler.RefreshDiagnostics());
     CHECK(!spi.Transactions().empty());
 }
+
+HF_TEST(As5047u_InitializeFailsOnSpiBusError) {
+    // transfer() returns false on a BaseSpi error: the driver fails the
+    // access and the handler reports BusError instead of trusting the frame.
+    MockSpi spi;
+    As5047uModel enc(spi);
+    As5047uConfig cfg = As5047uHandler::GetDefaultConfig();
+    cfg.crc_retries = 0;
+    As5047uHandler handler(spi, cfg);
+    spi.FailNext(hf_spi_err_t::SPI_ERR_TRANSFER_FAILED, 1000);
+    CHECK(!handler.Initialize());
+    CHECK(!handler.IsInitialized());
+
+    spi.FailNext(hf_spi_err_t::SPI_ERR_TRANSFER_FAILED, 0);
+    CHECK(handler.Initialize());
+}
+
+HF_TEST(As5047u_StickyFlagsStartCleanAndPersistUntilCleared) {
+    MockSpi spi;
+    As5047uModel enc(spi);
+    As5047uHandler handler(spi);
+    REQUIRE(handler.Initialize());
+    // Initialize() consumed what configuration left behind.
+    CHECK(handler.visitDriver([](auto& drv) { return drv.GetStickyErrorFlags(); }) ==
+          AS5047U_Error::None);
+
+    spi.FailNext(hf_spi_err_t::SPI_ERR_TRANSFER_FAILED, 1);
+    (void)handler.visitDriver([](auto& drv) { return drv.GetAngle(0); });
+    const auto first = handler.visitDriver([](auto& drv) { return drv.GetStickyErrorFlags(); });
+    CHECK((static_cast<uint16_t>(first) & static_cast<uint16_t>(AS5047U_Error::BusError)) != 0U);
+    // Reading does not clear any more; ClearStickyErrorFlags() does.
+    CHECK(handler.visitDriver([](auto& drv) { return drv.GetStickyErrorFlags(); }) == first);
+    CHECK(handler.visitDriver([](auto& drv) { return drv.ClearStickyErrorFlags(); }) == first);
+    CHECK(handler.visitDriver([](auto& drv) { return drv.GetStickyErrorFlags(); }) ==
+          AS5047U_Error::None);
+}
