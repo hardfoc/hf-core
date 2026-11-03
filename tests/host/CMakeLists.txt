@@ -16,6 +16,8 @@ hf_core_host_test(test_bno08x           test_bno08x.cpp)
 hf_core_host_test(test_as5047u          test_as5047u.cpp)
 hf_core_host_test(test_tmc9660          test_tmc9660.cpp)
 hf_core_host_test(test_ntc              test_ntc.cpp)
+hf_core_host_test(test_fdo2             test_fdo2.cpp)
+hf_core_host_test(test_pca9685          test_pca9685.cpp)
 
 # ── CANopen driver and host ports (CO_driver_hardfoc.c, PipePort, ...) ──────
 # CANopenNode itself lives outside hf-core (a HAL's third_party/), so the

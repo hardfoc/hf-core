@@ -17,6 +17,7 @@
 #include "core/hf-core-drivers/internal/hf-internal-interface-wrap/inc/base/BaseAdc.h"
 #include "core/hf-core-drivers/external/hf-ntc-thermistor-driver/inc/ntc_thermistor.hpp"
 #include "RtosMutex.h"
+#include "handlers/common/HandlerCommon.h"
 #include "core/hf-core-utils/hf-utils-rtos-wrap/include/PeriodicTimer.h"
 
 #include <memory>
@@ -68,6 +69,9 @@ public:
     }
     [[nodiscard]] float GetReferenceVoltage() const { return reference_voltage_; }
     [[nodiscard]] uint8_t GetResolutionBits() const { return resolution_bits_; }
+    /// Optional driver hook: the driver waits `sample_delay_ms` between averaged
+    /// samples through it (it used a busy-wait the compiler could remove).
+    void DelayMs(uint32_t ms) { handler_utils::DelayMs(ms); }
 
 private:
     BaseAdc* adc_;

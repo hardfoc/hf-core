@@ -250,6 +250,10 @@ public:
      * @param hit_time_ms HIT phase duration in milliseconds.
      * @return DriverStatus::OK on success, first failing operation's error code.
      *
+     * Switches the channel to CDR first if it is in VDR (the driver's current
+     * setters no longer do), keeping its other CFG_CHx fields. The chip ignores
+     * that switch while any channel is on or a TRIG pin is high.
+     *
      * @note Requires board IFS via @ref Initialize(const max22200::BoardConfig&).
      */
     max22200::DriverStatus SetupCdrChannel(uint8_t channel, uint16_t hit_ma,
@@ -262,6 +266,9 @@ public:
      * @param hold_duty_pct HOLD duty cycle (0..100 %).
      * @param hit_time_ms   HIT phase duration in milliseconds.
      * @return DriverStatus::OK on success, first failing operation's error code.
+     *
+     * Switches the channel to VDR first if it is in CDR, keeping its other
+     * CFG_CHx fields. The duty is written as percent (HIT[6:0] = 40 for 40 %).
      */
     max22200::DriverStatus SetupVdrChannel(uint8_t channel, float hit_duty_pct,
                          float hold_duty_pct, float hit_time_ms) noexcept;

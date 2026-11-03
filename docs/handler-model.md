@@ -72,6 +72,12 @@ initialisation, the driver's result type (`sfm::DriverResult<T>`, `se050` status
 rich one. Check every result. A failed `EnsureInitialized()` caches nothing, so the next call tries again; that
 makes a chip that powers up late recover without special code.
 
+Adapters pass bus and pin errors down to the driver instead of swallowing them. The SPI adapters of the ADS7952,
+ADS9324, AS5047U and AT25040 return `bool` from `transfer()` (`false` when `BaseSpi::Transfer()` failed), and the
+BNO08x adapters return `bool` from `GpioSet()`. The driver then fails the call (`Error::SpiError`, `false`, or the
+AS5047U `BusError` sticky flag) and leaves its cached state as it was, so a glitch on the bus is never read as
+data.
+
 ## Callbacks
 
 Low-level callbacks in the `Base*` interfaces are plain function pointers with a `void* user_data`, not

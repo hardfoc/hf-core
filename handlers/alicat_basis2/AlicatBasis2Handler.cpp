@@ -13,6 +13,22 @@
 
 namespace al = alicat_basis2;
 
+namespace {
+
+/// Retune the host UART and, when it switched, tell the driver: it waits the
+/// Modbus-RTU t3.5 inter-frame gap of the bus baud before every request
+/// (2 ms at 38400, about 4 ms at 9600; Modbus over Serial Line 2.5.1.1).
+template <typename Driver, typename Setter>
+bool RetuneHostBaud(Driver& driver, const Setter& set_host_baud, std::uint32_t bps) {
+    if (!set_host_baud(bps)) {
+        return false;
+    }
+    driver.SetBusBaudRate(bps);
+    return true;
+}
+
+}  // namespace
+
 //==============================================================================
 // HalUartAlicatBasis2Comm
 //==============================================================================
@@ -165,7 +181,8 @@ al::DriverResult<void> AlicatBasis2Handler::StartMeasurementSamples(std::uint16_
 }
 
 al::DriverResult<al::MeasurementData> AlicatBasis2Handler::ReadMeasurement() noexcept {
-    BASIS2_FORWARD_T(al::MeasurementData, ReadMeasurement);
+    // avg_flow is a scaled integer like the live flow: decode it with the same decimals.
+    BASIS2_FORWARD_T(al::MeasurementData, ReadMeasurement, flow_decimals_);
 }
 
 al::DriverResult<void> AlicatBasis2Handler::SetModbusAddress(std::uint8_t addr) noexcept {
@@ -266,7 +283,7 @@ AlicatBasis2Handler::DiscoverAcrossBauds(DiscoveredDevice* out,
     for (std::size_t i = 0; i < n_baud; ++i) {
         const std::uint32_t bps = bauds[i];
 
-        if (!set_host_baud(bps)) {
+        if (!RetuneHostBaud(*driver_, set_host_baud, bps)) {
             // Caller declined this baud — skip silently.
             continue;
         }
@@ -340,7 +357,7 @@ AlicatBasis2Handler::NormalizeBusBaud(std::uint32_t           target_bps,
         const auto& dev = devices[i];
 
         // Step 1 — get host onto the device's current baud.
-        if (!set_host_baud(dev.baud_bps)) {
+        if (!RetuneHostBaud(*driver_, set_host_baud, dev.baud_bps)) {
             SetBitmap(failed_bitmap, failed_bitmap_bytes, dev.address);
             continue;
         }
@@ -362,7 +379,7 @@ AlicatBasis2Handler::NormalizeBusBaud(std::uint32_t           target_bps,
 
         // Step 4 — retune host to the target baud and verify.
         handler_utils::DelayMs(15);
-        if (!set_host_baud(target_bps)) {
+        if (!RetuneHostBaud(*driver_, set_host_baud, target_bps)) {
             SetBitmap(failed_bitmap, failed_bitmap_bytes, dev.address);
             continue;
         }
@@ -379,7 +396,7 @@ AlicatBasis2Handler::NormalizeBusBaud(std::uint32_t           target_bps,
     // Restore the host UART to the target baud regardless of outcomes,
     // and the driver's saved address / timeout so the caller's other
     // operations are unaffected.
-    (void)set_host_baud(target_bps);
+    (void)RetuneHostBaud(*driver_, set_host_baud, target_bps);
     driver_->SetAddress(saved_addr);
     driver_->SetTimeoutMs(saved_timeout);
 

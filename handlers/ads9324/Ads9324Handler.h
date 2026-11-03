@@ -66,8 +66,9 @@ public:
      * @param tx  Transmit buffer, or nullptr to clock zeros.
      * @param rx  Receive buffer, or nullptr to discard MISO.
      * @param len Byte count (3 for config; N×2 or N×3 for conversion).
+     * @return true when the bytes were clocked, false on a BaseSpi error.
      */
-    void transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept;
+    bool transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept;
 
     /**
      * @brief Drive CONVST.
@@ -260,16 +261,19 @@ public:
     /**
      * @brief Program OFS_AINx (10-bit two's-complement).
      * @param channel   0–15.
-     * @param ofs_10bit Offset field.
+     * @param ofs_10bit Offset, `ads9324::kOffsetMin` (−512) to `kOffsetMax` (+511).
+     * @return false for a value outside the field (nothing is written) or a bus error.
      */
     bool SetChannelOffset(uint8_t channel, int16_t ofs_10bit) noexcept;
 
     /**
-     * @brief Program GAN_AINx (14-bit). Correction = GAN / 65536.
+     * @brief Program GAN_AINx (14-bit two's complement). Correction = GAN / 65536.
      * @param channel   0–15.
-     * @param gan_14bit Gain field.
+     * @param gan_14bit Signed gain, `ads9324::kGainMin` (−8192) to `kGainMax` (+8191);
+     *                  pass the signed value, not the raw 14-bit pattern.
+     * @return false for a value outside the field (nothing is written) or a bus error.
      */
-    bool SetChannelGain(uint8_t channel, uint16_t gan_14bit) noexcept;
+    bool SetChannelGain(uint8_t channel, int16_t gan_14bit) noexcept;
 
     /**
      * @brief Simultaneous capture of all enabled channels.

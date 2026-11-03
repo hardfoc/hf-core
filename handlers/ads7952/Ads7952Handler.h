@@ -61,8 +61,10 @@ public:
      * @param tx Transmit buffer (can be nullptr to send zeros)
      * @param rx Receive buffer (can be nullptr to discard received data)
      * @param len Number of bytes to transfer
+     * @return true when the frame was clocked, false on a BaseSpi error (the
+     *         driver then fails the call: `Error::SpiError` or `false`).
      */
-    void transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept;
+    bool transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept;
 
 private:
     BaseSpi& spi_interface_;

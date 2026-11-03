@@ -23,20 +23,13 @@ At25040Handler::ProbeResult At25040Handler::Probe() noexcept {
 
 bool At25040Handler::Read(uint16_t addr, uint8_t* dst, uint16_t len) noexcept {
   MutexLockGuard lock(mutex_);
-  ReleaseWriteProtect();
-  /* Driver Read() caps at 16 B. Loop so AID1 (64 B) is one product call. */
-  uint16_t off = 0;
-  while (off < len) {
-    const uint16_t chunk =
-        static_cast<uint16_t>((len - off) > static_cast<uint16_t>(16) ? static_cast<uint16_t>(16)
-                                                                       : (len - off));
-    if (device_.Read(static_cast<uint16_t>(addr + off), dst + off, chunk) !=
-        at25040::Status::Ok) {
-      return false;
-    }
-    off = static_cast<uint16_t>(off + chunk);
+  if (dst == nullptr) {
+    return false;
   }
-  return true;
+  ReleaseWriteProtect();
+  /* The driver splits the range into READ transactions of
+   * Device::kReadChunkBytes and returns Busy during a write cycle. */
+  return device_.Read(addr, dst, len) == at25040::Status::Ok;
 }
 
 void At25040Handler::ParkWriteProtect() noexcept {
@@ -53,30 +46,10 @@ bool At25040Handler::Write(uint16_t addr, const uint8_t* src,
     return false;
   }
   ReleaseWriteProtect();
-  uint16_t off = 0;
-  while (off < len) {
-    const uint16_t page_off = static_cast<uint16_t>((addr + off) % 8U);
-    const uint16_t room = static_cast<uint16_t>(8U - page_off);
-    const uint16_t chunk =
-        static_cast<uint16_t>((len - off) > room ? room : (len - off));
-    if (device_.WritePage(static_cast<uint16_t>(addr + off), src + off,
-                          chunk) != at25040::Status::Ok) {
-      return false;
-    }
-    /* tWC typical 5 ms. Poll WIP via Probe/ReadStatus. */
-    bool ready = false;
-    for (int i = 0; i < 20; ++i) {
-      uint8_t sr = 0xFF;
-      if (device_.ReadStatus(sr) == at25040::Status::Ok && (sr & 0x01U) == 0U) {
-        ready = true;
-        break;
-      }
-    }
-    if (!ready) {
-      return false;
-    }
-    off = static_cast<uint16_t>(off + chunk);
-  }
+  /* The driver splits the range at 8-byte page boundaries and waits for the
+   * write cycle (tWC, RDSR polls with the adapter's delay_us()) after each
+   * page, so a following call is never ignored by the chip. */
+  const bool ok = device_.Write(addr, src, len) == at25040::Status::Ok;
   ParkWriteProtect();
-  return true;
+  return ok;
 }

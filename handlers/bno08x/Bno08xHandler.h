@@ -185,8 +185,9 @@ public:
     /** @return Monotonic time in microseconds */
     uint32_t GetTimeUs() noexcept;
 
-    /** Set control pin to specified signal state. @param pin CtrlPin to drive @param signal ACTIVE or INACTIVE */
-    void GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept;
+    /** Set control pin to specified signal state. @param pin CtrlPin to drive @param signal ACTIVE or INACTIVE
+     *  @return true when driven or not wired, false on a GPIO error */
+    bool GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept;
 
 private:
     BaseI2c& i2c_;
@@ -234,8 +235,9 @@ public:
     /** @return Monotonic time in microseconds */
     uint32_t GetTimeUs() noexcept;
 
-    /** Set control pin to specified signal state. @param pin CtrlPin to drive @param signal ACTIVE or INACTIVE */
-    void GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept;
+    /** Set control pin to specified signal state. @param pin CtrlPin to drive @param signal ACTIVE or INACTIVE
+     *  @return true when driven or not wired, false on a GPIO error */
+    bool GpioSet(bno08x::CtrlPin pin, bno08x::GpioSignal signal) noexcept;
 
 private:
     BaseSpi& spi_;
@@ -267,10 +269,11 @@ public:
     virtual bool HasNewData(BNO085Sensor sensor) const noexcept = 0;
     virtual SensorEvent GetLatest(BNO085Sensor sensor) const noexcept = 0;
     virtual int  GetLastError() const noexcept = 0;
-    virtual void HardwareReset(uint32_t lowMs) noexcept = 0;
-    virtual void SetBootPin(bool state) noexcept = 0;
-    virtual void SetWakePin(bool state) noexcept = 0;
-    virtual void SelectInterface(BNO085Interface iface) noexcept = 0;
+    /// Pin calls return false when the port could not drive a pin (GPIO error).
+    virtual bool HardwareReset(uint32_t lowMs) noexcept = 0;
+    virtual bool SetBootPin(bool state) noexcept = 0;
+    virtual bool SetWakePin(bool state) noexcept = 0;
+    virtual bool SelectInterface(BNO085Interface iface) noexcept = 0;
     virtual BNO085Interface GetInterfaceType() noexcept = 0;
 };
 
@@ -320,20 +323,20 @@ public:
         return driver_.GetLastError();
     }
 
-    void HardwareReset(uint32_t lowMs) noexcept override {
-        driver_.HardwareReset(lowMs);
+    bool HardwareReset(uint32_t lowMs) noexcept override {
+        return driver_.HardwareReset(lowMs);
     }
 
-    void SetBootPin(bool state) noexcept override {
-        driver_.SetBootPin(state);
+    bool SetBootPin(bool state) noexcept override {
+        return driver_.SetBootPin(state);
     }
 
-    void SetWakePin(bool state) noexcept override {
-        driver_.SetWakePin(state);
+    bool SetWakePin(bool state) noexcept override {
+        return driver_.SetWakePin(state);
     }
 
-    void SelectInterface(BNO085Interface iface) noexcept override {
-        driver_.SelectInterface(iface);
+    bool SelectInterface(BNO085Interface iface) noexcept override {
+        return driver_.SelectInterface(iface);
     }
 
     BNO085Interface GetInterfaceType() noexcept override {

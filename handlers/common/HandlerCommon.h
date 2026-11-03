@@ -27,6 +27,8 @@
 #include "OsUtility.h"
 #elif defined(USE_HAL_DRIVER)
 extern "C" void HAL_Delay(uint32_t Delay);
+#elif defined(HF_RTOS_THREADX) || defined(HF_RTOS_NONE)
+#include "OsUtility.h"
 #endif
 
 namespace handler_utils {
@@ -65,12 +67,24 @@ inline void RouteLogToLogger(int level, const char* tag,
  * times (datasheet ≥10 ms) are real wall time — not a short `volatile`
  * busy-wait that was ~3×–10× too short at 200–240 MHz.
  *
+ * A non-zero @p ms always sleeps at least one tick, the rule
+ * `os_convert_msec_to_delay_ticks()` in hf-utils-rtos-wrap follows: below
+ * 1 kHz `pdMS_TO_TICKS()` rounds a short delay down to 0 ticks, which
+ * would only yield. HardFOC runs FreeRTOS at 1 kHz, where 1 ms is 1 tick.
+ *
  * @param ms Delay duration in milliseconds.
  */
 inline void DelayMs(uint32_t ms) noexcept {
 #if defined(ESP_PLATFORM)
-    vTaskDelay(pdMS_TO_TICKS(ms));
-#elif defined(HF_RTOS_FREERTOS)
+    if (ms == 0U) {
+        return;
+    }
+    TickType_t ticks = pdMS_TO_TICKS(ms);
+    if (ticks == 0U) {
+        ticks = 1U;
+    }
+    vTaskDelay(ticks);
+#elif defined(HF_RTOS_FREERTOS) || (!defined(USE_HAL_DRIVER) && (defined(HF_RTOS_THREADX) || defined(HF_RTOS_NONE)))
     while (ms > 0U) {
         const uint16_t chunk =
             (ms > 60000U) ? static_cast<uint16_t>(60000U)
@@ -93,24 +107,21 @@ inline void DelayMs(uint32_t ms) noexcept {
 /**
  * @brief Microsecond delay with automatic fallback to RTOS delay for large values.
  *
- * For delays >= 1 ms, delegates to @ref DelayMs (scheduler / HAL). Shorter
- * delays use `esp_rom_delay_us` on ESP-IDF or a denser busy-wait on STM32
- * so SPI CS setup / inter-frame gaps are not no-ops.
+ * For delays >= 1 ms, delegates to @ref DelayMs (scheduler / HAL), rounded
+ * up to whole milliseconds so a datasheet minimum such as 2.5 ms is not cut
+ * to 2 ms. Shorter delays use `esp_rom_delay_us` on ESP-IDF or a denser
+ * busy-wait elsewhere so SPI CS setup / inter-frame gaps are not no-ops.
  *
  * @param us Delay duration in microseconds.
  */
 inline void DelayUs(uint32_t us) noexcept {
-#if defined(ESP_PLATFORM)
-    if (us >= 1000) {
-        vTaskDelay(pdMS_TO_TICKS(us / 1000));
-    } else {
-        esp_rom_delay_us(us);
-    }
-#else
     if (us >= 1000U) {
         DelayMs((us + 999U) / 1000U);
         return;
     }
+#if defined(ESP_PLATFORM)
+    esp_rom_delay_us(us);
+#else
     /* ~1 µs/iteration @ Cortex-M ~200–240 MHz. */
     for (uint32_t i = 0; i < us; ++i) {
         for (uint32_t spin = 40U; spin > 0U; --spin) {

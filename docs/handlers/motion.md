@@ -98,6 +98,6 @@ DynamixelHandler(
 
 | Group | Public methods |
 | --- | --- |
-| All | `EnsureInitialized()`, `IsPresent()`, `Identity()`, `Model()`, `BindModel()`, `BindXSeriesFallback()`, `Ping()`, `Scan()`, `SetTorqueEnabled()`, `SetOperatingMode()`, `SetMotionProfile()`, `SetGoalPosition()`, `SetGoalVelocity()`, `ReadPosition()`, `ReadTelemetry()`, `bus()`, `device()`, `visitDevice()` |
+| All | `EnsureInitialized()`, `IsPresent()`, `Identity()`, `Model()`, `BindModel()`, `BindXSeriesFallback()`, `Ping()`, `Scan()`, `Reboot()`, `SetTorqueEnabled()`, `SetOperatingMode()`, `SetMotionProfile()`, `SetGoalPosition()`, `SetGoalVelocity()`, `ReadPosition()`, `ReadTelemetry()`, `bus()`, `device()`, `visitDevice()` |
 <!-- /generated -->
 

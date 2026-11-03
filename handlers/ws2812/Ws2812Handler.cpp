@@ -36,16 +36,24 @@ esp_err_t Ws2812Handler::Initialize() noexcept {
         return ESP_OK;
     }
 
+    // WS2812Strip takes bit times in RMT ticks of its 10 MHz clock (100 ns),
+    // as its Kconfig defaults (4, 8, 9, 5) are. The config holds nanoseconds:
+    // round to the nearest tick (400/800/850/450 ns -> 4/8/9/5). Passing the
+    // nanoseconds through made every bit 100x too long.
+    auto to_ticks = [](uint16_t ns) {
+        return static_cast<uint16_t>((static_cast<uint32_t>(ns) + 50U) / 100U);
+    };
+
     // Create the LED strip (all types in global scope)
     strip_ = std::make_unique<WS2812Strip>(
         config_.gpio_pin,
         config_.rmt_channel,
         config_.num_leds,
         config_.led_type,
-        config_.t0h,
-        config_.t1h,
-        config_.t0l,
-        config_.t1l,
+        to_ticks(config_.t0h),
+        to_ticks(config_.t1h),
+        to_ticks(config_.t0l),
+        to_ticks(config_.t1l),
         config_.brightness
     );
 

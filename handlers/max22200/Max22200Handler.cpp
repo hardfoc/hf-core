@@ -424,11 +424,37 @@ max22200::DriverStatus Max22200Handler::ConfigureChannel(uint8_t channel,
     });
 }
 
+namespace {
+
+// The driver's setpoint setters no longer switch VDRnCDR: a current setter on
+// a VDR channel (or a duty setter on a CDR channel) returns INVALID_PARAMETER
+// and writes nothing. Select the mode first, keeping side mode, chopping
+// frequency, trigger source and the detection flags, with both setpoints at 0
+// until the setters write them. The chip ignores a mode change while any
+// channel is on or TRIGA/TRIGB is high (Programming Procedure step 5c).
+template <typename Driver>
+max22200::DriverStatus SelectDriveMode(Driver& drv, uint8_t channel,
+                                       max22200::DriveMode mode) noexcept {
+    max22200::ChannelConfig cfg;
+    const auto s = drv.GetChannelConfig(channel, cfg);
+    if (s != max22200::DriverStatus::OK || cfg.drive_mode == mode) {
+        return s;
+    }
+    cfg.drive_mode = mode;
+    cfg.hit_setpoint = 0.0F;
+    cfg.hold_setpoint = 0.0F;
+    return drv.ConfigureChannel(channel, cfg);
+}
+
+}  // namespace
+
 max22200::DriverStatus Max22200Handler::SetupCdrChannel(uint8_t channel, uint16_t hit_ma,
                                        uint16_t hold_ma, float hit_time_ms) noexcept {
     return withDriver([&](auto& drv) -> max22200::DriverStatus {
         if (channel >= kNumChannels) return max22200::DriverStatus::INVALID_PARAMETER;
-        auto s = drv.SetHitCurrentMa(channel, hit_ma);
+        auto s = SelectDriveMode(drv, channel, max22200::DriveMode::CDR);
+        if (s != max22200::DriverStatus::OK) return s;
+        s = drv.SetHitCurrentMa(channel, hit_ma);
         if (s != max22200::DriverStatus::OK) return s;
         s = drv.SetHoldCurrentMa(channel, hold_ma);
         if (s != max22200::DriverStatus::OK) return s;
@@ -440,7 +466,10 @@ max22200::DriverStatus Max22200Handler::SetupVdrChannel(uint8_t channel, float h
                                        float hold_duty_pct, float hit_time_ms) noexcept {
     return withDriver([&](auto& drv) -> max22200::DriverStatus {
         if (channel >= kNumChannels) return max22200::DriverStatus::INVALID_PARAMETER;
-        auto s = drv.SetHitDutyPercent(channel, hit_duty_pct);
+        auto s = SelectDriveMode(drv, channel, max22200::DriveMode::VDR);
+        if (s != max22200::DriverStatus::OK) return s;
+        // VDR HIT[6:0] / HOLD[6:0] are percent (datasheet Table 3).
+        s = drv.SetHitDutyPercent(channel, hit_duty_pct);
         if (s != max22200::DriverStatus::OK) return s;
         s = drv.SetHoldDutyPercent(channel, hold_duty_pct);
         if (s != max22200::DriverStatus::OK) return s;

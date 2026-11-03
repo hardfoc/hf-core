@@ -34,22 +34,14 @@
 As5047uSpiAdapter::As5047uSpiAdapter(BaseSpi& spi_interface) noexcept
     : spi_interface_(spi_interface) {}
 
-void As5047uSpiAdapter::transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept {
-    // Handle null pointer cases gracefully
-    if (len == 0) return;
-    
-    // Perform SPI transfer through BaseSpi interface
-    // Note: BaseSpi implementations should handle CS assertion/deassertion
-    hf_spi_err_t result = spi_interface_.Transfer(
-        const_cast<uint8_t*>(tx),  // BaseSpi expects non-const tx buffer
-        rx,
-        static_cast<uint16_t>(len),
-        1000  // 1 second timeout
-    );
-    
-    // AS5047U::spiBus::transfer doesn't return error codes, so we handle errors internally
-    // The AS5047U driver will detect communication issues through CRC and frame validation
-    (void)result; // Suppress unused variable warning
+bool As5047uSpiAdapter::transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept {
+    if (len == 0) return true;
+
+    // BaseSpi implementations handle CS assertion/deassertion per transfer.
+    // A bus error goes back to the driver: the access fails and the driver
+    // sets AS5047U_Error::BusError in its sticky flags.
+    return spi_interface_.Transfer(tx, rx, static_cast<uint16_t>(len),
+                                   1000 /* ms */) == hf_spi_err_t::SPI_SUCCESS;
 }
 
 //======================================================//
@@ -104,11 +96,18 @@ bool As5047uHandler::Initialize() noexcept {
         return false;
     }
     
-    // Test basic sensor communication (direct driver call, no recursive lock)
+    // Test basic sensor communication (direct driver call, no recursive lock).
+    // GetStickyErrorFlags() no longer clears: ClearStickyErrorFlags() returns
+    // everything accumulated since construction (configuration writes and this
+    // read) and leaves the cache empty, so the application's first read of the
+    // sticky flags only shows what happened after Initialize().
     uint16_t test_angle = as5047u_sensor_->GetAngle(config_.crc_retries);
-    auto sticky = as5047u_sensor_->GetStickyErrorFlags();
-    if (static_cast<uint16_t>(sticky) & (static_cast<uint16_t>(AS5047U_Error::CrcError) |
-                                         static_cast<uint16_t>(AS5047U_Error::FramingError))) {
+    const auto sticky = as5047u_sensor_->ClearStickyErrorFlags();
+    constexpr uint16_t kLinkErrors = static_cast<uint16_t>(AS5047U_Error::CrcError) |
+                                     static_cast<uint16_t>(AS5047U_Error::FramingError) |
+                                     static_cast<uint16_t>(AS5047U_Error::BusError) |
+                                     static_cast<uint16_t>(AS5047U_Error::ReplyCrcError);
+    if ((static_cast<uint16_t>(sticky) & kLinkErrors) != 0U) {
         as5047u_sensor_.reset();
         spi_adapter_.reset();
         last_error_ = sticky;

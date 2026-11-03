@@ -158,3 +158,22 @@ HF_TEST(Pcal95555_CreateGpioPinRejectsBadPinAndDeadBus) {
     CHECK(pcal.CreateGpioPin(0, hf_gpio_direction_t::HF_GPIO_DIRECTION_OUTPUT) == nullptr);
     CHECK_EQ(pcal.GetCreatedPinMask(), 0u);
 }
+
+HF_TEST(Pcal95555_InputReadFailureIsReportedAndDoesNotStick) {
+    // ReadPin(pin, level) reports the read itself: a NACKed INPUT read is an
+    // error (not a low pin), and the next good read succeeds even though the
+    // driver's sticky I2CReadFail flag is still set.
+    MockI2c i2c(kAddr);
+    PowerOn(i2c);
+    Pcal95555Handler pcal(i2c);
+    auto pin2 = pcal.CreateGpioPin(2, hf_gpio_direction_t::HF_GPIO_DIRECTION_INPUT,
+                                   hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH);
+    REQUIRE(pin2 != nullptr);
+    i2c.SetRegister(kIn0, 0x04);
+
+    bool active = false;
+    i2c.FailNext(hf_i2c_err_t::I2C_ERR_DEVICE_NACK, 4);  // the first try and all 3 retries
+    CHECK(pin2->IsActive(active) != hf_gpio_err_t::GPIO_SUCCESS);
+    CHECK(pin2->IsActive(active) == hf_gpio_err_t::GPIO_SUCCESS);
+    CHECK(active);
+}

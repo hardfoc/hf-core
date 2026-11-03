@@ -69,6 +69,10 @@ bool HalI2cPca9685Comm::EnsureInitialized() noexcept {
     return i2c_device_.EnsureInitialized();
 }
 
+void HalI2cPca9685Comm::DelayUs(uint32_t us) noexcept {
+    handler_utils::DelayUs(us);
+}
+
 // =====================================================================
 // Pca9685Handler -- Construction & Lifecycle
 // =====================================================================
@@ -453,7 +457,9 @@ hf_pwm_err_t Pca9685PwmAdapter::SetDutyCycle(hf_channel_id_t channel_id,
 
     duty_cycle = ClampDutyCycle(duty_cycle);
 
-    // Handle edge cases: full-on and full-off.
+    // Ends: the LEDn full-ON / full-OFF bits (datasheet 7.3.3, Table 7). The
+    // driver's SetDuty() now does the same, and writes full-OFF for ON == OFF
+    // ticks, which the chip must never hold (7.3.4).
     if (duty_cycle >= 1.0f) {
         if (!parent_handler_->SetChannelFullOn(static_cast<uint8_t>(channel_id))) {
             return hf_pwm_err_t::PWM_ERR_COMMUNICATION_FAILURE;

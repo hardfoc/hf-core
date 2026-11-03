@@ -30,6 +30,11 @@ it yet.
 | `CriticalGuard` | `CriticalGuard.h` | A short critical section |
 | `handler_utils::DelayMs()`, `DelayUs()` | `handlers/common/HandlerCommon.h` | Delays inside handlers, on any platform |
 
+HardFOC runs FreeRTOS at 1 kHz, so a millisecond delay or timeout is one tick. On a slower tick a non-zero
+millisecond value still waits at least one tick, never zero: `os_convert_msec_to_delay_ticks()` in hf-utils-rtos-wrap
+and `handler_utils::DelayMs()` round the same way, and `DelayUs()` rounds a wait of 1 ms or more up to whole
+milliseconds.
+
 A class guarding its own state:
 
 ```cpp title="tests/docs/threading.cpp"

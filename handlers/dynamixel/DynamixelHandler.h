@@ -106,9 +106,13 @@ public:
     void BindXSeriesFallback() noexcept;
 
     dynamixel::DriverResult<dynamixel::PingInfo> Ping() noexcept;
+    /// Ping first_id..last_id; the default covers every Protocol 2.0 ID, 0 to 252.
     dynamixel::DriverResult<uint8_t> Scan(uint8_t* out_ids, uint8_t max_ids,
-                                          uint8_t first_id = 1,
+                                          uint8_t first_id = dynamixel::kMinDeviceId,
                                           uint8_t last_id = dynamixel::kMaxDeviceId) noexcept;
+
+    /// Reboot the servo (Protocol 2.0 Reboot, 0x08): clears a latched Hardware Error Status.
+    dynamixel::DriverResult<void> Reboot() noexcept;
 
     dynamixel::DriverResult<void> SetTorqueEnabled(bool enabled) noexcept;
     dynamixel::DriverResult<void> SetOperatingMode(dynamixel::OperatingMode mode) noexcept;

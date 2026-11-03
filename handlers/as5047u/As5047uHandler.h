@@ -68,8 +68,10 @@ public:
      * @param tx Transmit buffer (can be nullptr to send zeros)
      * @param rx Receive buffer (can be nullptr to discard received data)
      * @param len Number of bytes to transfer
+     * @return true when the frame was clocked, false on a BaseSpi error (the
+     *         driver fails the access and sets AS5047U_Error::BusError).
      */
-    void transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept;
+    bool transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept;
 
 private:
     BaseSpi& spi_interface_;
@@ -266,6 +268,13 @@ public:
 
     /**
      * @brief Get last error code
+     *
+     * After a failed Initialize() these are the sticky flags the driver
+     * collected during it (link errors include BusError and ReplyCrcError).
+     * Initialize() clears the driver's sticky flags; the driver's
+     * GetStickyErrorFlags() no longer clears them, call
+     * ClearStickyErrorFlags() through visitDriver() for that.
+     *
      * @return Last error that occurred
      */
     AS5047U_Error GetLastError() const noexcept;
