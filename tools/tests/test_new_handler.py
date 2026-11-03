@@ -94,11 +94,12 @@ class NewHandlerTest(unittest.TestCase):
         self.assertIn("<!-- generated: handler-foo42 -->", self.read("docs/handlers/environment.md"))
 
         comm = self.read("handlers/foo42/HalUartFoo42Comm.h")
-        self.assertIn("public HalUartComm<HalUartFoo42Comm, foo42::UartInterface<HalUartFoo42Comm>>", comm)
-        self.assertIn("case foo42::Error::DeviceIdMismatch:\n        return Status::NotFound;", comm)
-        self.assertIn("case foo42::Error::Crc:\n        return Status::Bus;", comm)
+        self.assertIn("using Foo42Port = foo42::UartInterface<HalUartFoo42Comm>;", comm)
+        self.assertIn("public HalUartCommBase<HalUartFoo42Comm, Foo42Port>", comm)
+        self.assertIn("case foo42::Error::DeviceIdMismatch:\n    return Status::NotFound;", comm)
+        self.assertIn("case foo42::Error::Crc:\n    return Status::Bus;", comm)
         handler = self.read("handlers/foo42/Foo42Handler.h")
-        self.assertIn("HandlerBase<Foo42Handler, foo42::FOO42<HalUartFoo42Comm>>", handler)
+        self.assertIn("using Foo42Driver = foo42::FOO42<HalUartFoo42Comm>;", handler)
         self.assertIn("EmplaceDriver(comm_).Initialize()", self.read("handlers/foo42/Foo42Handler.cpp"))
 
         # A second run refuses: the switch and the files exist.

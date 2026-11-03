@@ -4,7 +4,7 @@
 Writes, for chip ``<Chip>`` on bus ``<Bus>``:
 
   handlers/<chip>/<Chip>Handler.h, <Chip>Handler.cpp   the handler (hf::HandlerBase)
-  handlers/<chip>/Hal<Bus><Chip>Comm.h                 the adapter (hf::Hal<Bus>Comm) and the error mapping
+  handlers/<chip>/Hal<Bus><Chip>Comm.h                 the adapter (hf::Hal<Bus>CommBase), the error mapping
   tests/host/test_<chip>.cpp                           host test over hf::host::Mock<Bus>
 
 and registers them: the ``HF_CORE_ENABLE_<CHIP>`` switch, sources, include directory, compile definition
@@ -107,7 +107,7 @@ def values(args: argparse.Namespace, root: Path) -> dict[str, str]:
     oks = [e for e, s in mapped if s == "Ok"]
     if len(oks) != 1:
         fail(f"{ns}::{args.error_enum} needs exactly one success enumerator (Ok/None/Success), found {oks}")
-    cases = "\n".join(f"    case {ns}::{args.error_enum}::{e}:\n        return Status::{s};" for e, s in mapped)
+    cases = "\n".join(f"  case {ns}::{args.error_enum}::{e}:\n    return Status::{s};" for e, s in mapped)
     settings, var, has_sources = driver_settings(repo)
     return {
         "Chip": args.chip,
@@ -128,7 +128,7 @@ def values(args: argparse.Namespace, root: Path) -> dict[str, str]:
         "ResultType": args.result_type,
         "InitMethod": args.init_method,
         "error_cases": cases,
-        "error_values": ", ".join(f"E::{e}" for e in errors),
+        "error_values": "\n".join(f"      E::{e}," for e in errors),
         "driver_settings": settings,
         "DRIVER_VAR": var,
         "_has_sources": "1" if has_sources else "",
@@ -303,7 +303,7 @@ def main(argv: list[str] | None = None) -> int:
         f.write_text(text, encoding="utf-8")
         print(f"[new_handler] wrote {f.relative_to(root)}")
     if not args.example_dir:
-        print("[new_handler] next: fill the TODO(handler) spots, review ToStatus() in the adapter, then run\n"
+        print("[new_handler] next: add the typed API and the config, review ToStatus() in the adapter, then run\n"
               "  cmake --preset host-debug && cmake --build --preset host-debug && ctest --preset host-debug\n"
               "  hardfoc-docs gen && hardfoc-docs check && mkdocs build --strict")
     return 0

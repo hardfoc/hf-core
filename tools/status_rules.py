@@ -1,13 +1,13 @@
-"""Name-based mapping of an error code onto ``hf::Status``.
+"""Name-based first draft of the ``hf::Status`` for each value of a driver's ``Error`` enum.
 
-Shared by ``tools/gen_iiw_status.py`` (every ``hf_*_err_t`` in hf-internal-interface-wrap) and
-``tools/new_handler.py`` (a driver's ``enum class Error``). Both write the result out as an explicit
-``switch`` with no ``default``, so the compiler's ``-Wswitch`` flags a code that was added later, and a
-reviewer reads the mapping in the generated header, not here.
+Used by ``tools/new_handler.py`` to write the ``ToStatus(<chip>::Error)`` switch of a new handler's
+adapter. The base set of the driver contract maps as standards/errors.md ("Driver Error to
+hf::Status") says; chip-specific values get a guess from the keyword rules below, which the handler
+author reviews and documents on the handler's page. The interface-wrap ``hf_*_err_t`` mappings are
+not made here: they live in interface-wrap (``tools/gen_to_status.py`` there).
 
-Names are matched in UPPER_SNAKE form: ``InvalidChipId`` and ``INVALID_CHIP_ID`` are the same code. The
-interface prefix (``SPI_ERR_``, ``I2C_``) is removed before matching. The first rule that matches wins;
-a name no rule matches is ``Fault``.
+Names are matched in UPPER_SNAKE form: ``InvalidChipId`` and ``INVALID_CHIP_ID`` are the same code.
+The first rule that matches wins; a name no rule matches is ``Fault``.
 """
 
 from __future__ import annotations
@@ -31,7 +31,18 @@ STATUSES = (
 
 # Exact names (after the prefix is removed) whose meaning the keyword rules below would get wrong.
 EXACT = {
+    # The driver contract's base set (standards/errors.md).
     "OK": "Ok",
+    "NOT_INITIALIZED": "NotInitialized",
+    "INVALID_ARGUMENT": "InvalidArgument",
+    "BUS": "Bus",
+    "TIMEOUT": "Timeout",
+    "DEVICE_ID_MISMATCH": "NotFound",
+    "CRC": "Bus",
+    "BUSY": "Busy",
+    "DEVICE_FAULT": "Fault",
+    "UNSUPPORTED": "Unsupported",
+    # Older names and chip-specific values.
     "NONE": "Ok",
     "SUCCESS": "Ok",
     "UNKNOWN": "Unknown",
