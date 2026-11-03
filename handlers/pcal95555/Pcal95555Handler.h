@@ -845,7 +845,7 @@ public:
      * @return GPIO_ERR_OK on success, or a specific hf_gpio_err_t error code.
      * @note Requires PCAL9555A.
      */
-    hf_gpio_err_t SetDriveStrength(hf_pin_num_t pin, DriveStrength level) noexcept;
+    hf_gpio_err_t SetDriveStrength(hf_pin_num_t pin, pcal95555::DriveStrength level) noexcept;
 
     /**
      * @brief Enable or disable input latch for a pin.
