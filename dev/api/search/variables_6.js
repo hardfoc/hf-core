@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['g_5fauto_5fadvance_5fus_0',['g_auto_advance_us',['../namespaceanonymous__namespace_02_fake_clock_8cpp_03.html#a63b6b9799481c03b777c1cbec2b7b883',1,'anonymous_namespace{FakeClock.cpp}']]],
+  ['g_5fdelay_5fcount_1',['g_delay_count',['../namespaceanonymous__namespace_02_fake_clock_8cpp_03.html#ab4aef3f5295de89780f72f576da4fff7',1,'anonymous_namespace{FakeClock.cpp}']]],
+  ['g_5fmax_5fspi_5frx_2',['g_max_spi_rx',['../namespaceanonymous__namespace_02_max22200_handler_8cpp_03.html#a08fe6bda86042b2574e8b17024f89b23',1,'anonymous_namespace{Max22200Handler.cpp}']]],
+  ['g_5fmax_5fspi_5ftx_3',['g_max_spi_tx',['../namespaceanonymous__namespace_02_max22200_handler_8cpp_03.html#a25dbc7f7ed5fd79481884a7fab6cd3d5',1,'anonymous_namespace{Max22200Handler.cpp}']]],
+  ['g_5fnow_5fus_4',['g_now_us',['../namespaceanonymous__namespace_02_fake_clock_8cpp_03.html#a9b8211036194cb3e6cc2f65435e2386e',1,'anonymous_namespace{FakeClock.cpp}']]],
+  ['g_5fpcal_5fhandler_5finit_5fstage_5',['g_pcal_handler_init_stage',['../namespaceanonymous__namespace_02_pcal95555_handler_8cpp_03.html#aa6180f291805758f9b7e8c3f0159baf0',1,'anonymous_namespace{Pcal95555Handler.cpp}']]],
+  ['g_5fpcal_5flast_5fi2c_5fcmd_6',['g_pcal_last_i2c_cmd',['../namespaceanonymous__namespace_02_pcal95555_handler_8cpp_03.html#a18ef2f824f03fa130fb6535ed22272a4',1,'anonymous_namespace{Pcal95555Handler.cpp}']]],
+  ['g_5ftle_5fchain_5frx_7',['g_tle_chain_rx',['../namespaceanonymous__namespace_02_tle92466ed_handler_8cpp_03.html#a795ef095919fea283c4e35851da542ac',1,'anonymous_namespace{Tle92466edHandler.cpp}']]],
+  ['g_5ftle_5fchain_5ftx_8',['g_tle_chain_tx',['../namespaceanonymous__namespace_02_tle92466ed_handler_8cpp_03.html#a71b823eb16626c98ca26429fc57387cf',1,'anonymous_namespace{Tle92466edHandler.cpp}']]],
+  ['g_5ftle_5fspi_5frx_9',['g_tle_spi_rx',['../namespaceanonymous__namespace_02_tle92466ed_handler_8cpp_03.html#aa460383e4f42285b8eac26a9ce530413',1,'anonymous_namespace{Tle92466edHandler.cpp}']]],
+  ['g_5ftle_5fspi_5ftx_10',['g_tle_spi_tx',['../namespaceanonymous__namespace_02_tle92466ed_handler_8cpp_03.html#a1cbbee10486d119395b27bee926fa6a3',1,'anonymous_namespace{Tle92466edHandler.cpp}']]],
+  ['g_5ftotal_5fdelay_5fus_11',['g_total_delay_us',['../namespaceanonymous__namespace_02_fake_clock_8cpp_03.html#a20a7916029499bd51f33d5749c46a1ff',1,'anonymous_namespace{FakeClock.cpp}']]],
+  ['game_5frotation_5finterval_5fms_12',['game_rotation_interval_ms',['../struct_bno08x_config.html#a1e6923fc6542b050c2ab4fdc587d55bb',1,'Bno08xConfig']]],
+  ['gpio_5fpin_13',['gpio_pin',['../struct_ws2812_handler_1_1_config.html#acfd7c925abeb4af12fbddd986082d66f',1,'Ws2812Handler::Config']]],
+  ['gpio_5fregistry_5f_14',['gpio_registry_',['../class_pca9685_handler.html#a719fcc60d8e8b0d3b3b075e146b6767d',1,'Pca9685Handler']]],
+  ['gpionumber_5f_15',['gpioNumber_',['../class_tmc9660_handler_1_1_gpio.html#a4314495a5f96eca9ac7d9bb8134f8102',1,'Tmc9660Handler::Gpio']]],
+  ['gpiowrappers_5f_16',['gpioWrappers_',['../class_tmc9660_handler.html#a8e454461702fd671f09f2a271908798c',1,'Tmc9660Handler']]],
+  ['graphics_17',['graphics',['../struct_isf15acp4_handler_config.html#ad88c8d9002d37a1d03ecd829a3413fdf',1,'Isf15acp4HandlerConfig']]],
+  ['gravity_18',['gravity',['../struct_bno08x_imu_data.html#a29e8f558918db6c974797c3c25c2926f',1,'Bno08xImuData']]],
+  ['gravity_5finterval_5fms_19',['gravity_interval_ms',['../struct_bno08x_config.html#a83422ed8164bc618ec23072faf5ac31a',1,'Bno08xConfig']]],
+  ['gyroscope_20',['gyroscope',['../struct_bno08x_imu_data.html#a2dc11996fa80be3f66f41574312a59a0',1,'Bno08xImuData']]],
+  ['gyroscope_5faccuracy_21',['gyroscope_accuracy',['../struct_bno08x_calibration_status.html#ad8fbed7b8273a998f3ce83c4f61e65bc',1,'Bno08xCalibrationStatus']]],
+  ['gyroscope_5finterval_5fms_22',['gyroscope_interval_ms',['../struct_bno08x_config.html#a927d6555fa3e3c4418afae4f3b3df3cf',1,'Bno08xConfig']]]
+];
