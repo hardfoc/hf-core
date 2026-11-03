@@ -371,7 +371,7 @@ namespace {
 
 // A driver port in the standard shape: CRTP forwarding stubs the adapter base must hide.
 template <typename Derived>
-struct FakeSpiPort {
+struct FakeSpiPort {  // NOLINT(bugprone-crtp-constructor-accessibility): built by the adapter chain
     bool Transfer(const std::uint8_t* tx, std::uint8_t* rx, std::size_t len) noexcept {
         return static_cast<Derived*>(this)->Transfer(tx, rx, len);
     }
@@ -528,7 +528,7 @@ HF_TEST(HalUartComm_WriteFailureIsReported) {
     uart.InjectRx("OK");
     std::uint8_t in[2] = {};
     REQUIRE(port.Read(in, 2, 10));
-    CHECK_EQ(in[0], 'O');
+    CHECK_EQ(in[0], static_cast<std::uint8_t>('O'));
     CHECK(!port.Read(in, 2, 10)); // nothing left
     CHECK_EQ(port.LastBusError(), hf_uart_err_t::UART_ERR_TIMEOUT);
     CHECK(port.FlushRx());

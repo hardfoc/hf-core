@@ -31,6 +31,8 @@ template <typename Derived, typename PortBase = NoPort>
 class HalSpiComm : public HalDelayHooks<PortBase> {
 public:
     /// Adapter on @p spi; the object must outlive the adapter.
+    /// Public so that an adapter can inherit it (`using HalSpiComm::HalSpiComm;`).
+    // NOLINTNEXTLINE(bugprone-crtp-constructor-accessibility)
     explicit HalSpiComm(BaseSpi& spi) noexcept : spi_(spi) {}
 
     /// Full-duplex transfer of @p len bytes; @p tx or @p rx may be null.

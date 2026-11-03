@@ -36,6 +36,8 @@ template <typename Derived, typename PortBase = NoPort>
 class HalI2cComm : public HalDelayHooks<PortBase> {
 public:
     /// Adapter on @p i2c; the object must outlive the adapter.
+    /// Public so that an adapter can inherit it (`using HalI2cComm::HalI2cComm;`).
+    // NOLINTNEXTLINE(bugprone-crtp-constructor-accessibility)
     explicit HalI2cComm(BaseI2c& i2c) noexcept : i2c_(i2c) {}
 
     /// Default limit on the data bytes of one `WriteRegs()`.

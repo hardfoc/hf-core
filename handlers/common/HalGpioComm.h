@@ -98,6 +98,8 @@ public:
     }
 
 protected:
+    // Protected, not private: the next base in an adapter chain constructs it, not Derived.
+    // NOLINTNEXTLINE(bugprone-crtp-constructor-accessibility)
     HalGpioComm() noexcept = default;
     ~HalGpioComm() = default;
 

@@ -37,6 +37,8 @@ template <typename Derived, typename PortBase = NoPort>
 class HalUartComm : public HalDelayHooks<PortBase> {
 public:
     /// Adapter on @p uart; the object must outlive the adapter.
+    /// Public so that an adapter can inherit it (`using HalUartComm::HalUartComm;`).
+    // NOLINTNEXTLINE(bugprone-crtp-constructor-accessibility)
     explicit HalUartComm(BaseUart& uart) noexcept : uart_(uart) {}
 
     /// Write @p len bytes.

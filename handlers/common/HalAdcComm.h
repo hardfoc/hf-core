@@ -31,6 +31,8 @@ template <typename Derived, typename PortBase = NoPort>
 class HalAdcComm : public HalDelayHooks<PortBase> {
 public:
     /// Adapter on @p adc; the object must outlive the adapter.
+    /// Public so that an adapter can inherit it (`using HalAdcComm::HalAdcComm;`).
+    // NOLINTNEXTLINE(bugprone-crtp-constructor-accessibility)
     explicit HalAdcComm(BaseAdc& adc) noexcept : adc_(adc) {}
 
     /// Read @p channel in volts.

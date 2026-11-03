@@ -163,11 +163,15 @@ public:
         if (!lock.Held()) {
             return Fail(Status::Busy);
         }
-        if (!driver_.has_value()) {
+        Driver* driver = DriverIfPresent();
+        if (driver == nullptr) {
             initialized_.store(false, std::memory_order_release);
             return {};
         }
-        const Result<void> result = Self().DeinitializeLocked(*driver_);
+        Result<void> result{};
+        if constexpr (requires(Derived& self, Driver& d) { self.DeinitializeLocked(d); }) {
+            result = Self().DeinitializeLocked(*driver);
+        }
         driver_.reset();
         initialized_.store(false, std::memory_order_release);
         return Track(result);
@@ -192,13 +196,17 @@ public:
         if (!init.ok()) {
             return init.error();
         }
+        Driver* driver = DriverIfPresent();
+        if (driver == nullptr) {
+            return Fail(Status::Fault);  // unreachable: a successful initialisation always leaves a driver
+        }
         if constexpr (std::is_void_v<R>) {
-            std::forward<Fn>(fn)(*driver_);
+            std::forward<Fn>(fn)(*driver);
             return {};
         } else if constexpr (kIsResult<R>) {
-            return Track(R(std::forward<Fn>(fn)(*driver_)));
+            return Track(R(std::forward<Fn>(fn)(*driver)));
         } else {
-            return Result<R>(std::forward<Fn>(fn)(*driver_));
+            return Result<R>(std::forward<Fn>(fn)(*driver));
         }
     }
 
@@ -215,6 +223,8 @@ protected:
      * @param bus_mutex Mutex shared by every handler on the same bus (an RS-485 line, an I2C bus with
      *                  several devices), or null when the handler has its bus to itself.
      */
+    // Protected, not private: the handler's constructor calls it.
+    // NOLINTNEXTLINE(bugprone-crtp-constructor-accessibility)
     explicit HandlerBase(HandlerMutex* bus_mutex = nullptr) noexcept : bus_mutex_(bus_mutex) {}
     ~HandlerBase() = default;
 
@@ -251,12 +261,7 @@ protected:
 
     /// The driver, or null before initialisation. Only with the locks held.
     [[nodiscard]] Driver* DriverIfPresent() noexcept {
-        return driver_.has_value() ? &*driver_ : nullptr;
-    }
-
-    /// Default for the optional hook: nothing to do.
-    Result<void> DeinitializeLocked(Driver& /*driver*/) noexcept {
-        return {};
+        return driver_.has_value() ? &driver_.value() : nullptr;  // NOLINT(bugprone-unchecked-optional-access)
     }
 
     /// Record @p result in the diagnostics and return it unchanged.
