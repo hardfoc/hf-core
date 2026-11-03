@@ -25,20 +25,16 @@
 Ads7952SpiAdapter::Ads7952SpiAdapter(BaseSpi& spi_interface) noexcept
     : spi_interface_(spi_interface) {}
 
-void Ads7952SpiAdapter::transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept {
-    if (len == 0) return;
+bool Ads7952SpiAdapter::transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept {
+    if (len == 0) return true;
 
     // Bridge BaseSpi::Transfer ↔ ads7952::SpiInterface<>::transfer
     // BaseSpi handles CS assertion/deassertion per transaction. This runs once
     // per 16-bit frame (a dozen per bank, up to 1 kHz): no per-frame logging.
-    hf_spi_err_t result = spi_interface_.Transfer(
-        tx, rx,
-        static_cast<uint16_t>(len),
-        1000  // 1 second timeout
-    );
-
-    // ADS7952 driver detects errors through frame validation
-    (void)result;
+    // A bus error goes back to the driver, which fails the call and leaves its
+    // mirrored state (mode, range, GPIO) unchanged.
+    return spi_interface_.Transfer(tx, rx, static_cast<uint16_t>(len),
+                                   1000 /* ms */) == hf_spi_err_t::SPI_SUCCESS;
 }
 
 //======================================================//
@@ -251,8 +247,10 @@ hf_adc_err_t Ads7952Handler::ReadMultipleChannels(const hf_channel_id_t* channel
     }
 
     // Use Auto-1 mode for efficient multi-channel reads
-    adc_driver_->ProgramAuto1Channels(mask);
-    adc_driver_->EnterAuto1Mode(true);
+    if (!adc_driver_->ProgramAuto1Channels(mask) || !adc_driver_->EnterAuto1Mode(true)) {
+        ++error_count_;
+        return hf_adc_err_t::ADC_ERR_CHANNEL_READ_ERR;
+    }
 
     auto all = adc_driver_->ReadAllChannels();
     if (!all.ok()) {
@@ -299,7 +297,10 @@ bool Ads7952Handler::ReadAuto1Channels(uint16_t mask,
 
     const uint16_t use = (mask & 0x0FFFU) != 0U ? (mask & 0x0FFFU)
                                                 : ads7952::kAllChannels;
-    adc_driver_->ProgramAuto1Channels(use);
+    if (!adc_driver_->ProgramAuto1Channels(use)) {
+        ++error_count_;
+        return false;
+    }
     readings = adc_driver_->ReadAllChannels();
     /* Stay in Auto-1 so the next inner-loop pump skips a Manual hop. */
 
