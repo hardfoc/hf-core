@@ -12,6 +12,7 @@
 #include "base/BaseSpi.h"
 #include "base/BaseGpio.h"
 #include "RtosMutex.h"
+#include "handlers/common/HandlerCommon.h"
 
 #include <cstdint>
 
@@ -36,6 +37,12 @@ class At25040SpiAdapter : public at25040::SpiInterface<At25040SpiAdapter> {
     return spi_.Transfer(tx, rx, static_cast<uint16_t>(len), timeout_ms) ==
            hf_spi_err_t::SPI_SUCCESS;
   }
+
+  /**
+   * @brief Optional driver hook: sleep between RDSR polls of the write cycle.
+   * @param us Microseconds (the driver asks for 100 µs).
+   */
+  void delay_us(uint32_t us) noexcept { handler_utils::DelayUs(us); }
 
  private:
   BaseSpi& spi_;
@@ -77,7 +84,9 @@ class At25040Handler {
    * @param addr EEPROM address.
    * @param src  Source buffer.
    * @param len  Byte count.
-   * @return true on a complete write.
+   * @return true when every page was written and its write cycle ended
+   *         (the driver waits up to 10 ms per page); `/WP` is parked again
+   *         on every path.
    */
   bool Write(uint16_t addr, const uint8_t* src, uint16_t len) noexcept;
   /** @brief Drive `/WP` inactive so page writes can proceed. */
