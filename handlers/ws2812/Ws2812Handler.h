@@ -79,6 +79,8 @@ public:
         LedType led_type{LedType::RGB};
         uint8_t brightness{255};              ///< Global brightness (0-255)
         int rmt_channel{0};                   ///< RMT channel number
+        /// Bit times in nanoseconds (WS2812B datasheet nominal values). The
+        /// handler rounds them to the strip's 100 ns RMT ticks.
         uint16_t t0h{400};                    ///< T0H timing in nanoseconds
         uint16_t t1h{800};                    ///< T1H timing in nanoseconds
         uint16_t t0l{850};                    ///< T0L timing in nanoseconds
