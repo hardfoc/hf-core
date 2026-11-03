@@ -2,98 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/api-reference/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/architecture/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/canopen/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/examples/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/feature-switches/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/handler-model/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/host-build/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/integration/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/mcu-boundary/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/quickstart/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/testing/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/threading/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/utilities/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/diagrams/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/handlers/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/handlers/actuators/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/handlers/analog/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/handlers/environment/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/handlers/io/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/handlers/logger/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/handlers/motion/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/handlers/position/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
     <url>
          <loc>https://hardfoc.github.io/hf-core/latest/handlers/power-security/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
     </url>
 </urlset>

@@ -938,13 +938,13 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="hf-figure-desc">
 <summary>Figure description and sources</summary>
 <p>From the bottom up. Each device driver is its own repository and talks to its chip through a small CRTP interface; hf-core-drivers collects them as submodules, together with hf-internal-interface-wrap (the Base* interfaces and their ESP32 and STM32 implementations) and hf-pincfg. hf-core-utils collects the RTOS wrapper, the general utilities and the CANopen helpers. hf-core's handlers sit on top of those three: each one wraps one driver behind a thread-safe API that takes Base* interfaces. A board HAL creates the MCU peripherals, constructs the handlers it needs and exposes managers; a product is firmware on one board HAL. The driver list is read from cmake/hf_core_build_settings.cmake and the handler list from handlers/.</p>
-<p>Drawn from: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/cmake/hf_core_build_settings.cmake"><code>cmake/hf_core_build_settings.cmake</code></a> <code>driver and utility paths</code>; <a href="https://github.com/hardfoc/hf-core/tree/f44469de2cb0b812ce940e544833843339afe397/handlers"><code>handlers/</code></a> <code>handler folders</code>; figure module <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/docs/diagrams/figures/platform-layers.py"><code>docs/diagrams/figures/platform-layers.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/cmake/hf_core_build_settings.cmake"><code>cmake/hf_core_build_settings.cmake</code></a> <code>driver and utility paths</code>; <a href="https://github.com/hardfoc/hf-core/tree/2716b2165ed051cb82c9decba172f5570ec12357/handlers"><code>handlers/</code></a> <code>handler folders</code>; figure module <a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/docs/diagrams/figures/platform-layers.py"><code>docs/diagrams/figures/platform-layers.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/docs/diagrams/figures/platform-layers.py"><code>docs/diagrams/figures/platform-layers.py</code></a></p>
+<p>Figure module: <a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/docs/diagrams/figures/platform-layers.py"><code>docs/diagrams/figures/platform-layers.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>driver and utility paths</code> in <a href="https://github.com/hardfoc/hf-core/blob/f44469de2cb0b812ce940e544833843339afe397/cmake/hf_core_build_settings.cmake"><code>cmake/hf_core_build_settings.cmake</code></a></li>
-<li><code>handler folders</code> in <a href="https://github.com/hardfoc/hf-core/tree/f44469de2cb0b812ce940e544833843339afe397/handlers"><code>handlers/</code></a></li>
+<li><code>driver and utility paths</code> in <a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/cmake/hf_core_build_settings.cmake"><code>cmake/hf_core_build_settings.cmake</code></a></li>
+<li><code>handler folders</code> in <a href="https://github.com/hardfoc/hf-core/tree/2716b2165ed051cb82c9decba172f5570ec12357/handlers"><code>handlers/</code></a></li>
 </ul>
 
 
