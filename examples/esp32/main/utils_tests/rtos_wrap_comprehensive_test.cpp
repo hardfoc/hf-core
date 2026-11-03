@@ -228,7 +228,13 @@ static bool test_event_flags() noexcept {
     bool ok = events.Wait(0x05, WaitMode::Any, 100, actual);
     ESP_LOGI(TAG, "OsEventFlags: set1=%d set2=%d wait=%d actual=0x%lx",
              set1, set2, ok, static_cast<unsigned long>(actual));
-    return set1 && set2 && ok;
+
+    // Wait() does not clear bits, so an ALL wait on the same bits still
+    // succeeds; a bit nobody set times out and reports false.
+    bool still_set = events.Wait(0x05, WaitMode::All, 0, actual);
+    bool timed_out = !events.Wait(0x02, WaitMode::Any, 10, actual);
+    ESP_LOGI(TAG, "OsEventFlags: still_set=%d timed_out=%d", still_set, timed_out);
+    return set1 && set2 && ok && still_set && timed_out;
 }
 
 // ─────────────────────── SignalSemaphore ───────────────────────
