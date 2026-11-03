@@ -134,8 +134,10 @@ target_include_directories(hf_core_deps SYSTEM PUBLIC ${HF_CORE_DEP_INCLUDE_DIRS
 target_include_directories(hf_core_deps PUBLIC ${HF_CORE_OWN_INCLUDE_DIRS})
 target_compile_definitions(hf_core_deps PUBLIC
     ${HF_CORE_COMPILE_DEFINITIONS}
-    # Time on the host comes from FakeClock (tests/host/mocks), not a tick.
+    # Time on the host comes from FakeClock (tests/host/mocks), not a tick: rtos-wrap's delays and
+    # clock, and hf_time::MonotonicUs() (interface-wrap), which hf::DelayUs() busy-waits on.
     HF_RTOS_NONE_EXTERNAL_CLOCK=1
+    HF_TIME_NONE_EXTERNAL_CLOCK=1
 )
 target_compile_options(hf_core_deps PRIVATE -w)
 # hf_os_none_clock_us() / hf_os_none_delay_us() live in hf_core_host_clock.
