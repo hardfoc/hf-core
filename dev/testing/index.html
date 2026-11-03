@@ -1066,39 +1066,39 @@ site, on every pull request.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/tests/host/test_mocks.cpp"><code>tests/host/test_mocks.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/tests/host/test_mocks.cpp"><code>tests/host/test_mocks.cpp</code></a></td>
 <td>The mocks themselves: the executable description of their behaviour</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/tests/host/test_rtos_host.cpp"><code>tests/host/test_rtos_host.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/tests/host/test_rtos_host.cpp"><code>tests/host/test_rtos_host.cpp</code></a></td>
 <td>The no-RTOS backend: fake clock, <code>BaseThread</code> without a scheduler, <code>RtosMutex</code></td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/tests/host/test_utils_general.cpp"><code>tests/host/test_utils_general.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/tests/host/test_utils_general.cpp"><code>tests/host/test_utils_general.cpp</code></a></td>
 <td>hf-utils-general</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/tests/host/test_pcal95555.cpp"><code>tests/host/test_pcal95555.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/tests/host/test_pcal95555.cpp"><code>tests/host/test_pcal95555.cpp</code></a></td>
 <td><code>Pcal95555Handler</code> against a register model</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/tests/host/test_as5047u.cpp"><code>tests/host/test_as5047u.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/tests/host/test_as5047u.cpp"><code>tests/host/test_as5047u.cpp</code></a></td>
 <td><code>As5047uHandler</code> against a pipelined SPI register map with CRC</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/tests/host/test_bno08x.cpp"><code>tests/host/test_bno08x.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/tests/host/test_bno08x.cpp"><code>tests/host/test_bno08x.cpp</code></a></td>
 <td><code>Bno08xHandler</code> against an SHTP model</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/tests/host/test_tmc9660.cpp"><code>tests/host/test_tmc9660.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/tests/host/test_tmc9660.cpp"><code>tests/host/test_tmc9660.cpp</code></a></td>
 <td><code>Tmc9660Handler</code> against a TMCL model</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/tests/host/test_ntc.cpp"><code>tests/host/test_ntc.cpp</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/tests/host/test_ntc.cpp"><code>tests/host/test_ntc.cpp</code></a></td>
 <td><code>NtcTemperatureHandler</code> over <code>MockAdc</code></td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/tests/docs/CMakeLists.txt"><code>tests/docs/</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/tests/docs/CMakeLists.txt"><code>tests/docs/</code></a></td>
 <td>The code on this site, compiled with <code>-Werror</code> and run against the mocks (<code>test_doc_snippets</code>)</td>
 </tr>
 </tbody>
@@ -1116,12 +1116,12 @@ site, on every pull request.</p>
 <tbody>
 <tr>
 <td>Host CI</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/.github/workflows/host.yml"><code>host.yml</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/.github/workflows/host.yml"><code>host.yml</code></a></td>
 <td>Host build and ctest with GCC and Clang, clang-tidy 18 and cppcheck on hf-core's own sources, and a <code>CI gate</code> job</td>
 </tr>
 <tr>
 <td>ESP32 examples build</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/.github/workflows/esp32-examples-build-ci.yml"><code>esp32-examples-build-ci.yml</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/.github/workflows/esp32-examples-build-ci.yml"><code>esp32-examples-build-ci.yml</code></a></td>
 <td>Validates <code>app_config.yml</code>, builds every application with <code>ci_enabled</code> for each ESP-IDF version and build type, lints, and a <code>CI gate</code> job</td>
 </tr>
 <tr>
@@ -1131,7 +1131,7 @@ site, on every pull request.</p>
 </tr>
 <tr>
 <td>Docs</td>
-<td><a href="https://github.com/hardfoc/hf-core/blob/2716b2165ed051cb82c9decba172f5570ec12357/.github/workflows/ci-docs-publish.yml"><code>ci-docs-publish.yml</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/1252a4679e4ffa0156892cca4c9536c9072e1d20/.github/workflows/ci-docs-publish.yml"><code>ci-docs-publish.yml</code></a></td>
 <td>Strict site build, figure and generated-table drift, Doxygen, offline link check, Lighthouse, screenshots; publishes on <code>main</code> and tags</td>
 </tr>
 <tr>
