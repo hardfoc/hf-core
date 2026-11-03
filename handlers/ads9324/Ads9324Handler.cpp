@@ -22,11 +22,14 @@ Ads9324SpiHostAdapter::Ads9324SpiHostAdapter(BaseSpi& spi, BaseGpio* convst,
                                              BaseGpio* drdy) noexcept
     : spi_(spi), convst_(convst), drdy_(drdy) {}
 
-void Ads9324SpiHostAdapter::transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept {
+bool Ads9324SpiHostAdapter::transfer(const uint8_t* tx, uint8_t* rx, std::size_t len) noexcept {
     if (len == 0) {
-        return;
+        return true;
     }
-    (void)spi_.Transfer(tx, rx, static_cast<uint16_t>(len), 1000);
+    // A bus error goes back to the driver: configuration calls return false,
+    // reads return Error::SpiError and cached settings stay as they were.
+    return spi_.Transfer(tx, rx, static_cast<uint16_t>(len), 1000 /* ms */) ==
+           hf_spi_err_t::SPI_SUCCESS;
 }
 
 void Ads9324SpiHostAdapter::ConvstWrite(bool high) noexcept {
@@ -242,7 +245,7 @@ bool Ads9324Handler::SetChannelOffset(uint8_t channel, int16_t ofs_10bit) noexce
     return adc_driver_->SetChannelOffset(channel, ofs_10bit);
 }
 
-bool Ads9324Handler::SetChannelGain(uint8_t channel, uint16_t gan_14bit) noexcept {
+bool Ads9324Handler::SetChannelGain(uint8_t channel, int16_t gan_14bit) noexcept {
     MutexLockGuard lock(handler_mutex_);
     if (!EnsureInitializedLocked() || !adc_driver_) {
         return false;
