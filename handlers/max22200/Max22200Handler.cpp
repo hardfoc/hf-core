@@ -152,8 +152,8 @@ void HalSpiMax22200Comm::DelayUs(uint32_t us) noexcept {
     handler_utils::DelayUs(us);
 }
 
-void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal signal) noexcept {
-    if (!initialized_) return;
+bool HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal signal) noexcept {
+    if (!initialized_) return false;
 
     BaseGpio* gpio = nullptr;
 
@@ -161,10 +161,10 @@ void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal sig
         case max22200::CtrlPin::ENABLE:  gpio = &enable_; break;
         case max22200::CtrlPin::CMD:     gpio = &cmd_;    break;
         case max22200::CtrlPin::FAULT:   gpio = fault_;   break;
-        default: return;
+        default: return false;
     }
 
-    if (gpio == nullptr) return;
+    if (gpio == nullptr) return false;
 
     hf_gpio_err_t gpio_err = hf_gpio_err_t::GPIO_SUCCESS;
     if (signal == max22200::GpioSignal::ACTIVE) {
@@ -177,7 +177,7 @@ void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal sig
         /* Do not clear initialized_ — a single expander I2C glitch during CMD
          * toggle must not permanently kill IsReady()/Transfer mid-init. */
         Logger::GetInstance().Error(TAG, "GPIO control failed for MAX22200 control pin");
-        return;
+        return false;  // the driver reports it (INITIALIZATION_ERROR / GPIO_ERROR)
     }
 
     /* EN may be expander I2C (needs settle); CMD is local MCU GPIO (no settle). */
@@ -186,6 +186,7 @@ void HalSpiMax22200Comm::GpioSet(max22200::CtrlPin pin, max22200::GpioSignal sig
     } else if (pin == max22200::CtrlPin::CMD) {
         /* MCU GPIO: datasheet tCMS is 20 ns — no software settle. */
     }
+    return true;
 }
 
 bool HalSpiMax22200Comm::GpioRead(max22200::CtrlPin pin, max22200::GpioSignal& signal) noexcept {

@@ -8,14 +8,12 @@
 #include "handlers/common/HandlerCommon.h"
 #include "handlers/logger/Logger.h"
 
-void HalIsf15acp4SpiAdapter::setGpio(BaseGpio& gpio, bool electrical_high) noexcept {
+bool HalIsf15acp4SpiAdapter::setGpio(BaseGpio& gpio, bool electrical_high) noexcept {
     const bool pin_active_high =
         gpio.GetActiveState() == hf_gpio_active_state_t::HF_GPIO_ACTIVE_HIGH;
-    if (electrical_high == pin_active_high) {
-        (void)gpio.SetActive();
-    } else {
-        (void)gpio.SetInactive();
-    }
+    const hf_gpio_err_t err =
+        (electrical_high == pin_active_high) ? gpio.SetActive() : gpio.SetInactive();
+    return err == hf_gpio_err_t::GPIO_SUCCESS;
 }
 
 bool HalIsf15acp4SpiAdapter::readGpio(BaseGpio& gpio, bool active_low) noexcept {
@@ -45,29 +43,24 @@ bool HalIsf15acp4SpiAdapter::EnsureInitialized() noexcept {
     }
     ready_ = spi_.EnsureInitialized();
     if (ready_) {
-        setGpio(cs_, true);
-        setGpio(dc_, true);
-        setGpio(reset_, true);
-        if (vcc_enable_ != nullptr) {
-            setGpio(*vcc_enable_, false);
-        }
+        // Idle levels; a pin that cannot be driven leaves the adapter not ready.
+        ready_ = setGpio(cs_, true) && setGpio(dc_, true) && setGpio(reset_, true) &&
+                 (vcc_enable_ == nullptr || setGpio(*vcc_enable_, false));
     }
     return ready_;
 }
 
+// A D/C or SS pin that could not be driven fails the transaction: with D/C wrong a command is taken
+// as display data (or the reverse), with SS still high nothing is clocked in.
 bool HalIsf15acp4SpiAdapter::BeginCommand() noexcept {
-    setGpio(dc_, false);
-    setGpio(cs_, false);
-    return true;
+    return setGpio(dc_, false) && setGpio(cs_, false);
 }
 
 bool HalIsf15acp4SpiAdapter::BeginData() noexcept {
-    setGpio(dc_, true);
-    setGpio(cs_, false);
-    return true;
+    return setGpio(dc_, true) && setGpio(cs_, false);
 }
 
-void HalIsf15acp4SpiAdapter::EndTransaction() noexcept { setGpio(cs_, true); }
+void HalIsf15acp4SpiAdapter::EndTransaction() noexcept { (void)setGpio(cs_, true); }
 
 bool HalIsf15acp4SpiAdapter::WriteBytes(const uint8_t* data, std::size_t len) noexcept {
     if (data == nullptr || len == 0) {
@@ -77,29 +70,25 @@ bool HalIsf15acp4SpiAdapter::WriteBytes(const uint8_t* data, std::size_t len) no
            hf_spi_err_t::SPI_SUCCESS;
 }
 
-void HalIsf15acp4SpiAdapter::GpioSet(isf15acp4::CtrlPin pin,
+bool HalIsf15acp4SpiAdapter::GpioSet(isf15acp4::CtrlPin pin,
                                      isf15acp4::GpioSignal signal) noexcept {
     const bool active = signal == isf15acp4::GpioSignal::Active;
     switch (pin) {
         case isf15acp4::CtrlPin::ChipSelect:
-            setGpio(cs_, !active);
-            break;
+            return setGpio(cs_, !active);
         case isf15acp4::CtrlPin::DataCommand:
-            setGpio(dc_, active);
-            break;
+            return setGpio(dc_, active);
         case isf15acp4::CtrlPin::Reset:
             // Active = held in reset = RES# low (SSD1331 7.9); the driver
             // pulses Active for >= 3 us and leaves the pin Inactive.
-            setGpio(reset_, !active);
-            break;
+            return setGpio(reset_, !active);
         case isf15acp4::CtrlPin::VccEnable:
-            if (vcc_enable_ != nullptr) {
-                setGpio(*vcc_enable_, active);
-            }
-            break;
+            // Not wired: the drive supply is switched elsewhere, nothing to fail.
+            return (vcc_enable_ == nullptr) || setGpio(*vcc_enable_, active);
         case isf15acp4::CtrlPin::Switch:
             break;
     }
+    return true;
 }
 
 bool HalIsf15acp4SpiAdapter::GpioRead(isf15acp4::CtrlPin pin) noexcept {
