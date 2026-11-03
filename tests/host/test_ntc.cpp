@@ -14,6 +14,7 @@
 
 #include <cmath>
 
+using hf::host::FakeClock;
 using hf::host::MockAdc;
 
 namespace {
@@ -200,4 +201,35 @@ HF_TEST(Ntc_InitRejectsAnInvertedThresholdWindow) {
     cfg.high_threshold_celsius = 0.0f;
     NtcTemperatureHandler ntc(&adc, cfg);
     CHECK(!ntc.EnsureInitialized());
+}
+
+HF_TEST(Ntc_CalibrateAddsToAnExistingOffset) {
+    // The reading already includes the current offset, so calibration must
+    // add its correction to it instead of replacing it.
+    MockAdc adc(4, kVref, 12);
+    adc.SetVoltage(kChannel, VoltageForResistance(10000.0f));
+    NtcTemperatureHandler ntc(&adc, Config());
+    REQUIRE(ntc.EnsureInitialized());
+    REQUIRE(ntc.SetCalibrationOffset(3.0f) == hf_temp_err_t::TEMP_SUCCESS);
+    REQUIRE(ntc.Calibrate(30.0f) == hf_temp_err_t::TEMP_SUCCESS);
+    float c = 0.0f;
+    REQUIRE(ntc.ReadTemperatureCelsius(&c) == hf_temp_err_t::TEMP_SUCCESS);
+    CHECK_NEAR(c, 30.0, 0.05);
+    REQUIRE(ntc.Calibrate(30.0f) == hf_temp_err_t::TEMP_SUCCESS);  // idempotent
+    REQUIRE(ntc.ReadTemperatureCelsius(&c) == hf_temp_err_t::TEMP_SUCCESS);
+    CHECK_NEAR(c, 30.0, 0.05);
+}
+
+HF_TEST(Ntc_SampleDelayGoesThroughTheDelayHook) {
+    // The adapter's DelayMs() hook makes sample_delay_ms a real sleep between
+    // averaged samples (on the host: FakeClock time).
+    MockAdc adc(4, kVref, 12);
+    adc.SetVoltage(kChannel, VoltageForResistance(10000.0f));
+    NtcTemperatureHandler ntc(&adc, Config());
+    REQUIRE(ntc.EnsureInitialized());
+    REQUIRE(ntc.SetSamplingParameters(4, 5) == NtcError::Success);
+    const uint64_t t0 = FakeClock::NowUs();
+    float c = 0.0f;
+    REQUIRE(ntc.ReadTemperatureCelsius(&c) == hf_temp_err_t::TEMP_SUCCESS);
+    CHECK(FakeClock::NowUs() - t0 >= 15000u);  // three gaps of 5 ms between four samples
 }

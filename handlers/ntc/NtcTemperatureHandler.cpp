@@ -513,18 +513,18 @@ hf_temp_err_t NtcTemperatureHandler::Calibrate(float reference_temperature_celsi
         return TEMP_ERR_NOT_INITIALIZED;
     }
     
-    // Read current temperature
-    float current_temperature;
-    NtcError result = ntc_thermistor_->ReadTemperatureCelsius(&current_temperature);
+    // The driver reads the sensor (with the current offset applied) and adds
+    // the correction to the existing offset. Replacing the offset with
+    // reference - reading, as this handler did, left a non-zero offset off by
+    // itself.
+    NtcError result = ntc_thermistor_->Calibrate(reference_temperature_celsius);
     if (result != NtcError::Success) {
         return ConvertNtcError(result);
     }
-    
-    // Calculate offset
-    calibration_offset_ = reference_temperature_celsius - current_temperature;
-    
-    // Apply offset to thermistor
-    ntc_thermistor_->SetCalibrationOffset(calibration_offset_);
+    float offset = 0.0f;
+    if (ntc_thermistor_->GetCalibrationOffset(&offset) == NtcError::Success) {
+        calibration_offset_ = offset;
+    }
     
     diagnostics_.calibration_valid = true;
     statistics_.calibration_count++;
