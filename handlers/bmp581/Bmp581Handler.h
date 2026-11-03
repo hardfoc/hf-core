@@ -40,6 +40,10 @@
  */
 class HalI2cBmp581Comm : public bmp581::BusInterface<HalI2cBmp581Comm> {
 public:
+    /// The bus this transport drives. The driver then accepts the missing ACK
+    /// of the soft-reset command (datasheet 7.36) and skips the SPI dummy read.
+    static constexpr bmp581::Interface kInterface = bmp581::Interface::I2c;
+
     explicit HalI2cBmp581Comm(BaseI2c& i2c_device) noexcept;
 
     /// @name CRTP-required methods (static dispatch from bmp581::BusInterface)
