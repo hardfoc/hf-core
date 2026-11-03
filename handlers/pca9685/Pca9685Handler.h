@@ -95,6 +95,7 @@
 #include "base/BaseI2c.h"
 #include "core/hf-core-drivers/external/hf-pca9685-driver/inc/pca9685.hpp"
 #include "RtosMutex.h"
+#include "handlers/common/HandlerCommon.h"
 
 // Forward declarations
 class Pca9685Handler;
@@ -171,6 +172,15 @@ public:
      * @return true if the BaseI2c device is initialized or was initialized successfully.
      */
     bool EnsureInitialized() noexcept;
+
+    /**
+     * @brief Optional driver hook: wait at least @p us microseconds.
+     *
+     * The driver waits the 500 µs oscillator start-up after clearing
+     * MODE1.SLEEP (Wake(), SetPwmFreq(), Reset()) through it, before it
+     * writes RESTART (datasheet Table 5 note 2).
+     */
+    void DelayUs(uint32_t us) noexcept;
 
     /// @}
 
