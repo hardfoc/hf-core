@@ -1,49 +1,51 @@
 /**
  * @file HandlerBase.h
- * @brief `hf::HandlerBase`: the one handler shape (locking, start-up, driver access, diagnostics).
+ * @brief `hf::HandlerBase`: the one handler shape of standards/handler.md, written once.
  *
- * A handler derives from `HandlerBase<Self, Driver>` (CRTP) and supplies one private hook; the base
- * supplies the public contract every handler shares:
+ * A handler derives from `HandlerBase<Self, Driver>` (CRTP) and gets the contract every handler
+ * shares:
  *
- * - `EnsureInitialized()`: builds the driver in place and runs the handler's `InitializeLocked()` once.
- *   A failure caches nothing, so the next call retries.
- * - `IsInitialized()`: lock-free check.
- * - `Deinitialize()`: runs the optional `DeinitializeLocked(Driver&)` hook and destroys the driver.
- * - `VisitDriver(fn)`: under the locks, after `EnsureInitialized()`, calls `fn(driver)`. It is the only
- *   way to reach the driver.
- * - `GetDiagnostics()`: the common `HandlerDiagnostics` header.
+ * - `EnsureInitialized()`: builds the driver in place (`std::optional`, no heap) and runs the
+ *   handler's private `initializeLocked()`; on failure the driver is destroyed, so the next call
+ *   retries from scratch.
+ * - `Deinitialize()`: runs the optional private `deinitializeLocked(Driver&)`, then destroys the
+ * driver.
+ * - `IsInitialized()`: no lock, no I/O.
+ * - `VisitDriver(fn)`: under the locks, `fn(driver)` returns an `hf::Status`; `NotInitialized`
+ *   without calling `fn` before initialisation. The only way to reach the driver.
+ * - `Header()` (protected): a copy of the `DiagnosticsHeader`. Each handler's `GetDiagnostics()`
+ *   returns its own struct whose first member is that header.
+ *
+ * Typed methods use `CallDriver(fn)`: locks, initialises on demand, calls `fn(driver)` (which
+ * returns an `hf::Result`) and counts the outcome.
  *
  * @code
  * class FooHandler : public hf::HandlerBase<FooHandler, foo::FOO<HalI2cFooComm>> {
  * public:
- *     explicit FooHandler(BaseI2c& i2c, hf::HandlerMutex* bus_mutex = nullptr) noexcept
- *         : HandlerBase(bus_mutex), comm_(i2c) {}
- *     ~FooHandler() noexcept { DestroyDriver(); }  // the driver refers to comm_: destroy it first
+ *   explicit FooHandler(BaseI2c& i2c, hf::HandlerMutex* bus_mutex = nullptr) noexcept
+ *       : HandlerBase(bus_mutex), comm_(i2c) {}
+ *   ~FooHandler() noexcept { DestroyDriver(); }  // the driver refers to comm_
  *
- *     hf::Result<float> ReadCelsius() noexcept {
- *         return VisitDriver([](Driver& d) { return ToResult(d.ReadCelsius()); });
- *     }
+ *   hf::Result<float> ReadTemperatureC() noexcept {
+ *     return CallDriver([](Driver& d) { return ToResult(d.ReadTemperatureC()); });
+ *   }
  *
  * private:
- *     friend HandlerBase;
- *     hf::Result<void> InitializeLocked() noexcept {      // locks held, driver not built yet
- *         if (!comm_.EnsureInitialized()) return hf::Fail(hf::Status::DependencyNotReady);
- *         return ToResult(EmplaceDriver(comm_).Initialize());
- *     }
- *     HalI2cFooComm comm_;
+ *   friend HandlerBase;
+ *   hf::Result<void> initializeLocked() noexcept {  // locks held, no driver yet
+ *     if (!comm_.EnsureInitialized()) return {hf::Status::DependencyNotReady, 0};
+ *     return ToResult(EmplaceDriver(comm_).Initialize());
+ *   }
+ *   HalI2cFooComm comm_;
  * };
  * @endcode
  *
- * Why CRTP and not a member object: the public contract above is then written once and cannot drift
- * between handlers (today's two families differ exactly there), while dispatch stays static, the driver
- * stays in-place (`std::optional`, no heap) and nothing here names an MCU or an RTOS beyond rtos-wrap.
- * See docs/handler-model.md.
+ * Why CRTP rather than a member object: the public contract is then written once and cannot drift
+ * between handlers (today's two families differ exactly there), dispatch stays static, and nothing
+ * here names an MCU: only rtos-wrap, `hf_time` and `hf::Status`.
  *
- * Locking: every call into the driver holds the handler's own recursive `HandlerMutex` and then, when one
- * was given, the shared bus mutex, always in that order. `GetDiagnostics()` takes only the handler mutex,
- * so it never waits for a bus.
- *
- * @copyright Copyright (c) 2026 HardFOC. All rights reserved.
+ * Locking: the handler's own recursive `HandlerMutex`, then the shared bus mutex if one was given,
+ * always in that order, for the whole call. `Header()` takes only the handler mutex.
  */
 #pragma once
 
@@ -53,281 +55,231 @@
 #include <type_traits>
 #include <utility>
 
-#include "HfResult.h"
 #include "HfTime.h"
 #include "RtosMutex.h"
+#include "hf/iiw/Status.h"
 
 namespace hf {
 
-/// The lock every handler uses: rtos-wrap's recursive mutex.
+/// The lock of every handler: rtos-wrap's recursive mutex.
 using HandlerMutex = RtosMutex;
 /// RAII guard for a `HandlerMutex`.
 using HandlerLockGuard = MutexLockGuard;
 
-/// Default clock of a handler's diagnostics: the MCU-agnostic monotonic microsecond counter.
-struct MonotonicClock {
-    /// Microseconds since boot.
-    [[nodiscard]] static std::uint64_t NowUs() noexcept {
-        return hf_time::MonotonicUs();
-    }
+/// The diagnostics header every handler reports first (standards/handler.md).
+struct DiagnosticsHeader {
+  bool initialized = false;       ///< `EnsureInitialized()` has succeeded.
+  uint32_t ok_count = 0;          ///< Calls that returned `Ok`.
+  uint32_t error_count = 0;       ///< Calls that returned anything else.
+  Status last_error = Status::Ok; ///< The last failure.
+  uint16_t last_error_detail = 0; ///< Its detail: the driver's `Error` value (or interface code).
+  uint64_t last_error_us = 0;     ///< `hf_time::MonotonicUs()` at the last failure.
 };
-
-/**
- * @brief The diagnostics header every handler reports.
- *
- * A handler with more to say returns its own struct whose first member is this one.
- */
-struct HandlerDiagnostics {
-    bool initialized{false};                    ///< `EnsureInitialized()` has succeeded.
-    Status last_status{Status::NotInitialized}; ///< Outcome of the last tracked operation.
-    std::uint32_t last_detail{0};               ///< Layer-native code of that outcome.
-    std::uint32_t ok_count{0};                  ///< Tracked operations that succeeded.
-    std::uint32_t error_count{0};               ///< Tracked operations that failed.
-    std::uint32_t consecutive_errors{0};        ///< Failures since the last success.
-    std::uint32_t bus_errors{0};                ///< Failures with `Status::Bus`.
-    std::uint32_t timeouts{0};                  ///< Failures with `Status::Timeout`.
-    std::uint32_t init_attempts{0};             ///< Times the initialisation sequence ran.
-    std::uint32_t init_failures{0};             ///< Times it failed.
-    std::uint64_t last_ok_us{0};                ///< `hf_time::MonotonicUs()` of the last success.
-    std::uint64_t last_error_us{0};             ///< `hf_time::MonotonicUs()` of the last failure.
-};
-
-namespace detail {
-
-template <typename R>
-struct VisitResultOf {
-    using type = Result<R>;
-};
-template <>
-struct VisitResultOf<void> {
-    using type = Result<void>;
-};
-template <typename T>
-struct VisitResultOf<Result<T>> {
-    using type = Result<T>;
-};
-
-} // namespace detail
-
-/// What `VisitDriver(fn)` returns: `fn`'s `Result<T>` as is, `Result<void>` for `void`, else `Result<R>`.
-template <typename Fn, typename Driver>
-using VisitResult = typename detail::VisitResultOf<std::remove_cvref_t<std::invoke_result_t<Fn, Driver&>>>::type;
 
 /**
  * @brief CRTP base of every handler.
  *
- * @tparam Derived The handler. It provides, privately with `friend HandlerBase;`:
- *   - `hf::Result<void> InitializeLocked() noexcept` (required): called with the locks held and no
- *     driver; builds it with `EmplaceDriver(...)`, probes the chip and applies the configuration;
- *   - `hf::Result<void> DeinitializeLocked(Driver&) noexcept` (optional): puts the chip in a safe state
- *     before the driver is destroyed.
+ * @tparam Derived The handler. Privately, with `friend HandlerBase;`, it defines
+ *   `hf::Result<void> initializeLocked() noexcept` (required: build the driver with
+ *   `EmplaceDriver()`, probe the chip, apply the configuration) and may define
+ *   `hf::Result<void> deinitializeLocked(Driver&) noexcept` (put the chip in a safe state).
  * @tparam DriverT The driver type, stored in place.
- * @tparam Clock Source of the diagnostics timestamps (`NowUs()`); host tests substitute a fake.
  */
-template <typename Derived, typename DriverT, typename Clock = MonotonicClock>
+template <typename Derived, typename DriverT>
 class HandlerBase {
 public:
-    using Driver = DriverT;
+  using Driver = DriverT;
 
-    HandlerBase(const HandlerBase&) = delete;
-    HandlerBase& operator=(const HandlerBase&) = delete;
-    HandlerBase(HandlerBase&&) = delete;
-    HandlerBase& operator=(HandlerBase&&) = delete;
+  HandlerBase(const HandlerBase&) = delete;
+  HandlerBase& operator=(const HandlerBase&) = delete;
+  HandlerBase(HandlerBase&&) = delete;
+  HandlerBase& operator=(HandlerBase&&) = delete;
 
-    /**
-     * @brief Bring the chip up once; return at once when it already is.
-     * @return `Ok`, or the failure of the initialisation sequence. Nothing is cached on failure.
-     */
-    Result<void> EnsureInitialized() noexcept {
-        if (initialized_.load(std::memory_order_acquire)) {
-            return {};
-        }
-        const DeviceLock lock(*this);
-        if (!lock.Held()) {
-            return Fail(Status::Busy);
-        }
-        return EnsureInitializedLocked();
+  /// Bring the chip up once; `Ok` at once when it already is. Nothing is cached on failure.
+  Result<void> EnsureInitialized() noexcept {
+    const DeviceLock lock(*this);
+    if (!lock.Held()) {
+      return Track(Result<void>{Status::Busy, 0});
     }
+    return EnsureInitializedLocked();
+  }
 
-    /// True once `EnsureInitialized()` has succeeded (and `Deinitialize()` has not run since).
-    [[nodiscard]] bool IsInitialized() const noexcept {
-        return initialized_.load(std::memory_order_acquire);
+  /// Run the `deinitializeLocked()` hook, if any, and destroy the driver. `Ok` when not
+  /// initialised.
+  Result<void> Deinitialize() noexcept {
+    const DeviceLock lock(*this);
+    if (!lock.Held()) {
+      return Track(Result<void>{Status::Busy, 0});
     }
+    Driver* driver = DriverIfPresent();
+    if (driver == nullptr) {
+      return {};
+    }
+    Result<void> result{};
+    if constexpr (requires(Derived& handler, Driver& d) { handler.deinitializeLocked(d); }) {
+      result = self().deinitializeLocked(*driver);
+    }
+    DestroyDriver();
+    return Track(result);
+  }
 
-    /**
-     * @brief Run the handler's `DeinitializeLocked()` hook, if any, then destroy the driver.
-     * @return The hook's result; the driver is destroyed either way. `Ok` when nothing was initialised.
-     */
-    Result<void> Deinitialize() noexcept {
-        const DeviceLock lock(*this);
-        if (!lock.Held()) {
-            return Fail(Status::Busy);
-        }
-        Driver* driver = DriverIfPresent();
-        if (driver == nullptr) {
-            initialized_.store(false, std::memory_order_release);
-            return {};
-        }
-        Result<void> result{};
-        if constexpr (requires(Derived& self, Driver& d) { self.DeinitializeLocked(d); }) {
-            result = Self().DeinitializeLocked(*driver);
-        }
-        driver_.reset();
-        initialized_.store(false, std::memory_order_release);
-        return Track(result);
-    }
+  /// True once `EnsureInitialized()` has succeeded and `Deinitialize()` has not run since. No I/O.
+  [[nodiscard]] bool IsInitialized() const noexcept {
+    return initialized_.load(std::memory_order_acquire);
+  }
 
-    /**
-     * @brief Call @p fn with the driver, under the locks, after `EnsureInitialized()`.
-     *
-     * This is the only way to reach the driver. When @p fn returns an `hf::Result`, the outcome is
-     * recorded in the diagnostics.
-     *
-     * @return The initialisation failure, or what @p fn returns (see `VisitResult`).
-     */
-    template <typename Fn>
-    VisitResult<Fn, Driver> VisitDriver(Fn&& fn) noexcept {
-        using R = std::remove_cvref_t<std::invoke_result_t<Fn, Driver&>>;
-        const DeviceLock lock(*this);
-        if (!lock.Held()) {
-            return Fail(Status::Busy);
-        }
-        const Result<void> init = EnsureInitializedLocked();
-        if (!init.ok()) {
-            return init.error();
-        }
-        Driver* driver = DriverIfPresent();
-        if (driver == nullptr) {
-            return Fail(Status::Fault);  // unreachable: a successful initialisation always leaves a driver
-        }
-        if constexpr (std::is_void_v<R>) {
-            std::forward<Fn>(fn)(*driver);
-            return {};
-        } else if constexpr (kIsResult<R>) {
-            return Track(R(std::forward<Fn>(fn)(*driver)));
-        } else {
-            return Result<R>(std::forward<Fn>(fn)(*driver));
-        }
+  /**
+   * @brief Call @p fn with the driver, under the locks.
+   *
+   * @p fn takes `Driver&` and returns an `hf::Status`; values leave by capture. It must not keep
+   * the reference. The outcome is counted in the diagnostics.
+   * @return `NotInitialized` (without calling @p fn) before initialisation, else what @p fn
+   * returns.
+   */
+  template <typename Fn>
+  Status VisitDriver(Fn&& fn) noexcept {
+    static_assert(std::is_same_v<std::invoke_result_t<Fn, Driver&>, Status>,
+                  "VisitDriver: fn(Driver&) must return hf::Status");
+    const DeviceLock lock(*this);
+    if (!lock.Held()) {
+      return Track(Result<void>{Status::Busy, 0}).status;
     }
-
-    /// The common diagnostics header.
-    [[nodiscard]] HandlerDiagnostics GetDiagnostics() const noexcept {
-        const HandlerLockGuard lock(mutex_);
-        HandlerDiagnostics d = diag_;
-        d.initialized = initialized_.load(std::memory_order_acquire);
-        return d;
+    Driver* driver = DriverIfPresent();
+    if (driver == nullptr || !IsInitialized()) {
+      return Track(Result<void>{Status::NotInitialized, 0}).status;
     }
+    return Track(Result<void>{std::forward<Fn>(fn)(*driver), 0}).status;
+  }
 
 protected:
-    /**
-     * @param bus_mutex Mutex shared by every handler on the same bus (an RS-485 line, an I2C bus with
-     *                  several devices), or null when the handler has its bus to itself.
-     */
-    // Protected, not private: the handler's constructor calls it.
-    // NOLINTNEXTLINE(bugprone-crtp-constructor-accessibility)
-    explicit HandlerBase(HandlerMutex* bus_mutex = nullptr) noexcept : bus_mutex_(bus_mutex) {}
-    ~HandlerBase() = default;
+  /**
+   * @param bus_mutex Mutex shared by every handler on the same bus (an RS-485 line, an I2C bus with
+   *                  several devices), or null when the handler has the bus to itself.
+   */
+  // NOLINTNEXTLINE(bugprone-crtp-constructor-accessibility): the handler's constructor calls it
+  explicit HandlerBase(HandlerMutex* bus_mutex = nullptr) noexcept : bus_mutex_(bus_mutex) {}
+  ~HandlerBase() = default;
 
-    /// Holds the handler mutex, then the bus mutex if there is one.
-    class DeviceLock {
-    public:
-        explicit DeviceLock(const HandlerBase& handler) noexcept : own_(handler.mutex_) {
-            if (handler.bus_mutex_ != nullptr) {
-                bus_.emplace(*handler.bus_mutex_);
-            }
-        }
-        /// Both mutexes were taken.
-        [[nodiscard]] bool Held() const noexcept {
-            return own_.IsLocked() && (!bus_ || bus_->IsLocked());
-        }
-
-    private:
-        HandlerLockGuard own_;
-        std::optional<HandlerLockGuard> bus_;
-    };
-
-    /// Build the driver in place (inside `InitializeLocked()`), replacing any previous one.
-    template <typename... Args>
-    Driver& EmplaceDriver(Args&&... args) noexcept {
-        return driver_.emplace(std::forward<Args>(args)...);
+  /// Holds the handler mutex, then the bus mutex if there is one.
+  class DeviceLock {
+  public:
+    explicit DeviceLock(const HandlerBase& handler) noexcept : own_(handler.mutex_) {
+      if (handler.bus_mutex_ != nullptr) {
+        bus_.emplace(*handler.bus_mutex_);
+      }
+    }
+    /// Both mutexes were taken.
+    [[nodiscard]] bool Held() const noexcept {
+      return own_.IsLocked() && (!bus_ || bus_->IsLocked());
     }
 
-    /// Destroy the driver without the deinitialisation hook. Call it from the handler's destructor
-    /// when the driver refers to members of the handler (its adapter): they are destroyed before this base.
-    void DestroyDriver() noexcept {
-        driver_.reset();
-        initialized_.store(false, std::memory_order_release);
-    }
+  private:
+    HandlerLockGuard own_;
+    std::optional<HandlerLockGuard> bus_;
+  };
 
-    /// The driver, or null before initialisation. Only with the locks held.
-    [[nodiscard]] Driver* DriverIfPresent() noexcept {
-        return driver_.has_value() ? &driver_.value() : nullptr;  // NOLINT(bugprone-unchecked-optional-access)
+  /**
+   * @brief The body of a typed method: locks, initialises on demand, calls @p fn and counts.
+   * @param fn Takes `Driver&` and returns an `hf::Result<T>`.
+   * @return The initialisation failure, or what @p fn returns.
+   */
+  template <typename Fn>
+  std::invoke_result_t<Fn, Driver&> CallDriver(Fn&& fn) noexcept {
+    using R = std::invoke_result_t<Fn, Driver&>;
+    const DeviceLock lock(*this);
+    if (!lock.Held()) {
+      return Track(failure<R>(Status::Busy, 0));
     }
+    const Result<void> init = EnsureInitializedLocked();
+    Driver* driver = DriverIfPresent();
+    if (!init.ok() || driver == nullptr) {
+      // Already counted by EnsureInitializedLocked().
+      return failure<R>(init.ok() ? Status::Fault : init.status, init.detail);
+    }
+    return Track(std::forward<Fn>(fn)(*driver));
+  }
 
-    /// Record @p result in the diagnostics and return it unchanged.
-    template <typename T>
-    Result<T> Track(Result<T> result) noexcept {
-        Record(result.status(), result.detail());
-        return result;
-    }
+  /// Build the driver in place (inside `initializeLocked()`), replacing any previous one.
+  template <typename... Args>
+  Driver& EmplaceDriver(Args&&... args) noexcept {
+    return driver_.emplace(std::forward<Args>(args)...);
+  }
 
-    /// Record an outcome in the diagnostics.
-    void Record(Status status, std::uint32_t detail) noexcept {
-        const HandlerLockGuard lock(mutex_);
-        diag_.last_status = status;
-        diag_.last_detail = detail;
-        const std::uint64_t now = Clock::NowUs();
-        if (status == Status::Ok) {
-            ++diag_.ok_count;
-            diag_.consecutive_errors = 0;
-            diag_.last_ok_us = now;
-            return;
-        }
-        ++diag_.error_count;
-        ++diag_.consecutive_errors;
-        diag_.last_error_us = now;
-        if (status == Status::Bus) {
-            ++diag_.bus_errors;
-        } else if (status == Status::Timeout) {
-            ++diag_.timeouts;
-        }
-    }
+  /// Destroy the driver without the hook. A handler whose driver refers to its own members (the
+  /// adapter) calls this from its destructor: those members are destroyed before this base.
+  void DestroyDriver() noexcept {
+    driver_.reset();
+    initialized_.store(false, std::memory_order_release);
+  }
 
-    /// `EnsureInitialized()` for code that already holds the locks (inside `VisitDriver()`).
-    Result<void> EnsureInitializedLocked() noexcept {
-        if (initialized_.load(std::memory_order_acquire)) {
-            return {};
-        }
-        {
-            const HandlerLockGuard lock(mutex_);
-            ++diag_.init_attempts;
-        }
-        Result<void> result = Self().InitializeLocked();
-        if (result.ok() && !driver_.has_value()) {
-            result = Fail(Status::Fault); // InitializeLocked() must build the driver
-        }
-        if (!result.ok()) {
-            driver_.reset();
-            {
-                const HandlerLockGuard lock(mutex_);
-                ++diag_.init_failures;
-            }
-            return Track(result);
-        }
-        initialized_.store(true, std::memory_order_release);
-        return Track(result);
+  /// The driver, or null before initialisation. Only with the locks held.
+  [[nodiscard]] Driver* DriverIfPresent() noexcept {
+    return driver_.has_value() ? &driver_.value() : nullptr;
+  }
+
+  /// Count @p result in the diagnostics and return it unchanged.
+  template <typename R>
+  R Track(R result) noexcept {
+    Record(result.status, result.detail);
+    return result;
+  }
+
+  /// Count one outcome in the diagnostics.
+  void Record(Status status, uint16_t detail) noexcept {
+    const HandlerLockGuard lock(mutex_);
+    if (status == Status::Ok) {
+      ++diag_.ok_count;
+      return;
     }
+    ++diag_.error_count;
+    diag_.last_error = status;
+    diag_.last_error_detail = detail;
+    diag_.last_error_us = hf_time::MonotonicUs();
+  }
+
+  /// A copy of the diagnostics header, for a handler's own `GetDiagnostics()`.
+  [[nodiscard]] DiagnosticsHeader Header() const noexcept {
+    const HandlerLockGuard lock(mutex_);
+    DiagnosticsHeader header = diag_;
+    header.initialized = IsInitialized();
+    return header;
+  }
+
+  /// `EnsureInitialized()` for code that already holds the locks.
+  Result<void> EnsureInitializedLocked() noexcept {
+    if (IsInitialized()) {
+      return {};
+    }
+    Result<void> result = self().initializeLocked();
+    if (result.ok() && !driver_.has_value()) {
+      result = {Status::Fault, 0}; // initializeLocked() must build the driver
+    }
+    if (!result.ok()) {
+      driver_.reset();
+      return Track(result);
+    }
+    initialized_.store(true, std::memory_order_release);
+    return Track(result);
+  }
 
 private:
-    Derived& Self() noexcept {
-        return static_cast<Derived&>(*this);
-    }
+  template <typename R>
+  static constexpr R failure(Status status, uint16_t detail) noexcept {
+    R r{};
+    r.status = status;
+    r.detail = detail;
+    return r;
+  }
 
-    mutable HandlerMutex mutex_;
-    HandlerMutex* bus_mutex_;
-    std::optional<Driver> driver_;
-    std::atomic<bool> initialized_{false};
-    HandlerDiagnostics diag_{};
+  Derived& self() noexcept {
+    return static_cast<Derived&>(*this);
+  }
+
+  mutable HandlerMutex mutex_;
+  HandlerMutex* bus_mutex_;
+  std::optional<Driver> driver_;
+  std::atomic<bool> initialized_{false};
+  DiagnosticsHeader diag_{};
 };
 
 } // namespace hf
