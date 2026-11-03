@@ -18,6 +18,14 @@ hf_core_host_test(test_tmc9660          test_tmc9660.cpp)
 hf_core_host_test(test_ntc              test_ntc.cpp)
 hf_core_host_test(test_fdo2             test_fdo2.cpp)
 hf_core_host_test(test_pca9685          test_pca9685.cpp)
+hf_core_host_test(test_handler_foundation test_handler_foundation.cpp)
+
+# handlers/common/IiwStatus.h is generated from the interface-wrap error tables the submodule pins.
+find_package(Python3 COMPONENTS Interpreter)
+if(Python3_Interpreter_FOUND)
+    add_test(NAME iiw_status_fresh
+             COMMAND ${Python3_EXECUTABLE} "${HF_CORE_ROOT}/tools/gen_iiw_status.py" --check)
+endif()
 
 # ── CANopen driver and host ports (CO_driver_hardfoc.c, PipePort, ...) ──────
 # CANopenNode itself lives outside hf-core (a HAL's third_party/), so the
