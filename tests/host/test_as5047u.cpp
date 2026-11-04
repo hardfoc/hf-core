@@ -128,8 +128,9 @@ HF_TEST(As5047u_InitializeAppliesConfigurationOverTheWire) {
     CHECK_EQ(enc.regs[kZposm], static_cast<uint16_t>((0x0ABC >> 6) & 0xFF));
     CHECK_EQ(enc.regs[kZposl] & 0x3Fu, static_cast<uint16_t>(0x0ABC & 0x3F));
 
-    const uint16_t angle = handler.visitDriver([](auto& drv) { return drv.GetAngle(); });
-    CHECK_EQ(angle, 0x1234u);
+    const auto angle = handler.visitDriver([](auto& drv) { return drv.GetAngle(); });
+    CHECK(angle.ok());
+    CHECK_EQ(angle.value, 0x1234u);
 }
 
 HF_TEST(As5047u_DiagnosticsHealthyWhenNoErrorFlags) {
@@ -224,4 +225,41 @@ HF_TEST(As5047u_StickyFlagsStartCleanAndPersistUntilCleared) {
     CHECK(handler.visitDriver([](auto& drv) { return drv.ClearStickyErrorFlags(); }) == first);
     CHECK(handler.visitDriver([](auto& drv) { return drv.GetStickyErrorFlags(); }) ==
           AS5047U_Error::None);
+}
+
+// The driver's getters return as5047u::Result<T>: a failed read carries its error.
+
+HF_TEST(As5047u_RefreshDiagnosticsReportsADeadBus) {
+    MockSpi spi;
+    As5047uModel enc(spi);
+    As5047uHandler handler(spi);
+    REQUIRE(handler.Initialize());
+    REQUIRE(handler.GetDiagnostics().communication_ok);
+    // Every frame of the ERRFL read fails: no flag was read, so nothing is known to be healthy.
+    spi.FailNext(hf_spi_err_t::SPI_ERR_TRANSFER_FAILED, 1000);
+    CHECK(handler.RefreshDiagnostics());
+    const As5047uDiagnostics d = handler.GetDiagnostics();
+    CHECK(!d.communication_ok);
+    CHECK(d.communication_errors >= 1u);
+    CHECK((static_cast<uint16_t>(handler.GetLastError()) &
+           static_cast<uint16_t>(AS5047U_Error::BusError)) != 0u);
+}
+
+HF_TEST(As5047u_VisitDriverReportsAnUnavailableDriverAsAnError) {
+    MockSpi spi;
+    As5047uModel enc(spi);
+    spi.FailNext(hf_spi_err_t::SPI_ERR_TRANSFER_FAILED, 1000);  // Initialize() cannot succeed
+    As5047uHandler handler(spi);
+    const auto angle = handler.visitDriver([](auto& drv) { return drv.GetAngle(); });
+    CHECK(!angle.ok());  // not a value-initialised "success" with angle 0
+}
+
+HF_TEST(As5047u_AngleReadCarriesTheBusError) {
+    MockSpi spi;
+    As5047uModel enc(spi);
+    As5047uHandler handler(spi);
+    REQUIRE(handler.Initialize());
+    spi.FailNext(hf_spi_err_t::SPI_ERR_TRANSFER_FAILED, 1);
+    const auto angle = handler.visitDriver([](auto& drv) { return drv.GetAngle(0); });
+    CHECK(angle.error == AS5047U_Error::BusError);
 }

@@ -101,19 +101,20 @@ bool As5047uHandler::Initialize() noexcept {
     // everything accumulated since construction (configuration writes and this
     // read) and leaves the cache empty, so the application's first read of the
     // sticky flags only shows what happened after Initialize().
-    uint16_t test_angle = as5047u_sensor_->GetAngle(config_.crc_retries);
+    const auto test_angle = as5047u_sensor_->GetAngle(config_.crc_retries);
     const auto sticky = as5047u_sensor_->ClearStickyErrorFlags();
     constexpr uint16_t kLinkErrors = static_cast<uint16_t>(AS5047U_Error::CrcError) |
                                      static_cast<uint16_t>(AS5047U_Error::FramingError) |
                                      static_cast<uint16_t>(AS5047U_Error::BusError) |
                                      static_cast<uint16_t>(AS5047U_Error::ReplyCrcError);
-    if ((static_cast<uint16_t>(sticky) & kLinkErrors) != 0U) {
+    // The read must also have succeeded on its own: its Result carries the cause of a failure.
+    if (!test_angle.ok() || (static_cast<uint16_t>(sticky) & kLinkErrors) != 0U) {
         as5047u_sensor_.reset();
         spi_adapter_.reset();
-        last_error_ = sticky;
+        last_error_ = static_cast<AS5047U_Error>(static_cast<uint16_t>(sticky) |
+                                                 static_cast<uint16_t>(test_angle.error));
         return false;
     }
-    (void)test_angle;
     
     // Initialize diagnostics
     UpdateDiagnostics();
@@ -252,9 +253,16 @@ void As5047uHandler::HandleSensorErrors(uint16_t sensor_errors) noexcept {
 void As5047uHandler::UpdateDiagnostics() noexcept {
     if (!as5047u_sensor_) return;
     
-    // Read current error flags (driver handles retries internally)
-    uint16_t error_flags = as5047u_sensor_->GetErrorFlags(config_.crc_retries);
-    HandleSensorErrors(error_flags);
+    // Read current error flags (driver handles retries internally). A read that never went
+    // through is a communication failure, not a clean ERRFL: nothing is known to be healthy.
+    const auto error_flags = as5047u_sensor_->GetErrorFlags(config_.crc_retries);
+    if (!error_flags.ok()) {
+        diagnostics_.communication_ok = false;
+        diagnostics_.communication_errors++;
+        last_error_ = error_flags.error;
+        return;
+    }
+    HandleSensorErrors(error_flags.value);
 }
 
 bool As5047uHandler::ApplyConfiguration(const As5047uConfig& config) noexcept {
