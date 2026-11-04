@@ -116,7 +116,8 @@ inline void DelayMs(uint32_t ms) noexcept {
  */
 inline void DelayUs(uint32_t us) noexcept {
     if (us >= 1000U) {
-        DelayMs((us + 999U) / 1000U);
+        // Round up without (us + 999) wrapping for us close to UINT32_MAX.
+        DelayMs(us / 1000U + ((us % 1000U) != 0U ? 1U : 0U));
         return;
     }
 #if defined(ESP_PLATFORM)
