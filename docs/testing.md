@@ -21,6 +21,8 @@ ctest --preset host-debug
 | [`tests/host/test_bno08x.cpp`](../tests/host/test_bno08x.cpp) | `Bno08xHandler` against an SHTP model |
 | [`tests/host/test_tmc9660.cpp`](../tests/host/test_tmc9660.cpp) | `Tmc9660Handler` against a TMCL model |
 | [`tests/host/test_ntc.cpp`](../tests/host/test_ntc.cpp) | `NtcTemperatureHandler` over `MockAdc` |
+| [`tests/host/test_handler_foundation.cpp`](../tests/host/test_handler_foundation.cpp) | `hf::HandlerBase`, the `Hal{Bus}CommBase` adapter bases and `hf::DelayUs()` over the mocks |
+| [`templates/handler/example/`](../templates/handler/example/CMakeLists.txt) | The reference handler (`test_example_bmp581`); `handler_template_fresh` checks it matches the template, `new_handler_tool` tests `tools/new_handler.py` |
 | [`tests/docs/`](../tests/docs/CMakeLists.txt) | The code on this site, compiled with `-Werror` and run against the mocks (`test_doc_snippets`) |
 
 [Host build and mocks](host-build.md) explains the build, the fake clock and the mocks.

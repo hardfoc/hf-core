@@ -14,5 +14,9 @@ missingIncludeSystem
 # depend on are set. Moving those into the initializer list saves one null unique_ptr store and costs readability.
 useInitializationList
 
+# The Hal{Bus}Comm adapter bases derive from the driver's CRTP port and hide its forwarding stubs on purpose:
+# the hook the driver calls through the port must resolve to the adapter's implementation.
+duplInheritedMember:*handlers/common/Hal*Comm*.h
+
 # A suppression that matches nothing in a given configuration is not a finding.
 unmatchedSuppression
