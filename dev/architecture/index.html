@@ -1079,7 +1079,7 @@ manager to the chip.</p>
 <details class="hf-figure-desc">
 <summary>Figure description and sources</summary>
 <p>From the bottom up. Each device driver is its own repository and talks to its chip through a small CRTP interface; hf-core-drivers collects them as submodules, together with hf-internal-interface-wrap (the Base* interfaces and their ESP32 and STM32 implementations) and hf-pincfg. hf-core-utils collects the RTOS wrapper, the general utilities and the CANopen helpers. hf-core's handlers sit on top of those three: each one wraps one driver behind a thread-safe API that takes Base* interfaces. A board HAL creates the MCU peripherals, constructs the handlers it needs and exposes managers; a product is firmware on one board HAL. The driver list is read from cmake/hf_core_build_settings.cmake and the handler list from handlers/.</p>
-<p>Drawn from: <a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/cmake/hf_core_build_settings.cmake"><code>cmake/hf_core_build_settings.cmake</code></a> <code>driver and utility paths</code>; <a href="https://github.com/hardfoc/hf-core/tree/10a659dc49d53137778056222676764c1694160a/handlers"><code>handlers/</code></a> <code>handler folders</code>; figure module <a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/docs/diagrams/figures/platform-layers.py"><code>docs/diagrams/figures/platform-layers.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/hardfoc/hf-core/blob/e5d5a7f2006e0f354d4dd1295130b960b1d6508c/cmake/hf_core_build_settings.cmake"><code>cmake/hf_core_build_settings.cmake</code></a> <code>driver and utility paths</code>; <a href="https://github.com/hardfoc/hf-core/tree/e5d5a7f2006e0f354d4dd1295130b960b1d6508c/handlers"><code>handlers/</code></a> <code>handler folders</code>; figure module <a href="https://github.com/hardfoc/hf-core/blob/e5d5a7f2006e0f354d4dd1295130b960b1d6508c/docs/diagrams/figures/platform-layers.py"><code>docs/diagrams/figures/platform-layers.py</code></a>.</p>
 </details>
 <h2 id="layers">Layers<a class="headerlink" href="#layers" title="Permanent link">&para;</a></h2>
 <table>
@@ -1198,35 +1198,35 @@ gets a set of drivers, interfaces and utilities that were built and tested toget
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/tree/10a659dc49d53137778056222676764c1694160a/handlers"><code>handlers/&lt;chip&gt;/</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/tree/e5d5a7f2006e0f354d4dd1295130b960b1d6508c/handlers"><code>handlers/&lt;chip&gt;/</code></a></td>
 <td>One handler: its CRTP adapter(s), the handler class, wrappers that expose it as <code>BaseGpio</code>, <code>BaseAdc</code>, <code>BaseTemperature</code></td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/handlers/common/HandlerCommon.h"><code>handlers/common/</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/e5d5a7f2006e0f354d4dd1295130b960b1d6508c/handlers/common/HandlerCommon.h"><code>handlers/common/</code></a></td>
 <td><code>HandlerCommon.h</code> (delays, log routing), <code>PlatformMutexBackend.h</code>, the CANopen bridge</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/handlers/logger/Logger.h"><code>handlers/logger/</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/e5d5a7f2006e0f354d4dd1295130b960b1d6508c/handlers/logger/Logger.h"><code>handlers/logger/</code></a></td>
 <td>The <code>Logger</code> singleton and the per-MCU backend factories</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/cmake/hf_core_build_settings.cmake"><code>cmake/hf_core_build_settings.cmake</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/e5d5a7f2006e0f354d4dd1295130b960b1d6508c/cmake/hf_core_build_settings.cmake"><code>cmake/hf_core_build_settings.cmake</code></a></td>
 <td>The build entry point for every consumer</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/CMakeLists.txt"><code>CMakeLists.txt</code></a>, <a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/CMakePresets.json"><code>CMakePresets.json</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/e5d5a7f2006e0f354d4dd1295130b960b1d6508c/CMakeLists.txt"><code>CMakeLists.txt</code></a>, <a href="https://github.com/hardfoc/hf-core/blob/e5d5a7f2006e0f354d4dd1295130b960b1d6508c/CMakePresets.json"><code>CMakePresets.json</code></a></td>
 <td>The host build</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/tests/host/CMakeLists.txt"><code>tests/host/</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/e5d5a7f2006e0f354d4dd1295130b960b1d6508c/tests/host/CMakeLists.txt"><code>tests/host/</code></a></td>
 <td>Host unit tests, mocks (<code>mocks/</code>) and the test harness (<code>support/</code>)</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/tests/docs/CMakeLists.txt"><code>tests/docs/</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/e5d5a7f2006e0f354d4dd1295130b960b1d6508c/tests/docs/CMakeLists.txt"><code>tests/docs/</code></a></td>
 <td>The code on these pages, compiled and run by the host build</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/10a659dc49d53137778056222676764c1694160a/examples/esp32/app_config.yml"><code>examples/esp32/</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/e5d5a7f2006e0f354d4dd1295130b960b1d6508c/examples/esp32/app_config.yml"><code>examples/esp32/</code></a></td>
 <td>ESP32 test applications, one per handler or utility</td>
 </tr>
 <tr>
