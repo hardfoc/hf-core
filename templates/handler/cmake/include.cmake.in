@@ -1,0 +1,3 @@
+if(HF_CORE_ENABLE_@CHIP@)
+    list(APPEND HF_CORE_INCLUDE_DIRS "${HF_CORE_HANDLER_ROOT}/@chip@")
+endif()
