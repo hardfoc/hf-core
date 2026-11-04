@@ -25,10 +25,12 @@
 // timeout of 0 while a reply arrives). `BaseUart::Read` reports a status,
 // not a count, so bytes are taken one at a time while BytesAvailable() > 0.
 
-void HalUartFdo2Comm::write(const std::uint8_t* data,
+bool HalUartFdo2Comm::write(const std::uint8_t* data,
                             std::size_t length) noexcept {
-    if (length == 0 || data == nullptr) return;
-    (void)uart_.Write(data, static_cast<hf_u16_t>(length), /*timeout_ms=*/0);
+    if (length == 0) return true;
+    if (data == nullptr || length > 0xFFFFU) return false;
+    return uart_.Write(data, static_cast<hf_u16_t>(length), /*timeout_ms=*/0) ==
+           hf_uart_err_t::UART_SUCCESS;
 }
 
 std::size_t HalUartFdo2Comm::read(std::uint8_t* out, std::size_t max,

@@ -15,8 +15,12 @@ At25040Handler::ProbeResult At25040Handler::Probe() noexcept {
   MutexLockGuard lock(mutex_);
   ReleaseWriteProtect();
   const at25040::Status st = device_.Probe();
+  last_status_ = st;
   if (st == at25040::Status::Ok) {
     return ProbeResult::Present;
+  }
+  if (st == at25040::Status::BusError) {
+    return ProbeResult::BusError;  // the port failed: not evidence that no chip is fitted
   }
   return ProbeResult::Absent;
 }
@@ -29,7 +33,8 @@ bool At25040Handler::Read(uint16_t addr, uint8_t* dst, uint16_t len) noexcept {
   ReleaseWriteProtect();
   /* The driver splits the range into READ transactions of
    * Device::kReadChunkBytes and returns Busy during a write cycle. */
-  return device_.Read(addr, dst, len) == at25040::Status::Ok;
+  last_status_ = device_.Read(addr, dst, len);
+  return last_status_ == at25040::Status::Ok;
 }
 
 void At25040Handler::ParkWriteProtect() noexcept {
@@ -49,7 +54,8 @@ bool At25040Handler::Write(uint16_t addr, const uint8_t* src,
   /* The driver splits the range at 8-byte page boundaries and waits for the
    * write cycle (tWC, RDSR polls with the adapter's delay_us()) after each
    * page, so a following call is never ignored by the chip. */
-  const bool ok = device_.Write(addr, src, len) == at25040::Status::Ok;
+  last_status_ = device_.Write(addr, src, len);
+  const bool ok = last_status_ == at25040::Status::Ok;
   ParkWriteProtect();
   return ok;
 }

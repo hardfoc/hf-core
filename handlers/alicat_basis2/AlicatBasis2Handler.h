@@ -55,7 +55,9 @@ class HalUartAlicatBasis2Comm
 public:
     explicit HalUartAlicatBasis2Comm(BaseUart& uart) noexcept : uart_(uart) {}
 
-    void write(const std::uint8_t* data, std::size_t length) noexcept;
+    /// @return true when BaseUart::Write() took every byte; false on a UART error (the driver then
+    ///         fails the call with DriverError::SerialError instead of waiting for a reply).
+    bool write(const std::uint8_t* data, std::size_t length) noexcept;
     std::size_t read(std::uint8_t* out, std::size_t max,
                      std::uint32_t timeout_ms) noexcept;
     void flush_rx() noexcept;

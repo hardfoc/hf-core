@@ -58,6 +58,7 @@ class At25040Handler {
     NotBound = 0,  ///< SPI not attached / constructor-only state.
     Absent = 1,    ///< Bus answered with no device.
     Present = 2,   ///< RDSR / identity bytes look like AT25040.
+    BusError = 3,  ///< The SPI transfer failed: nothing is known about the device.
   };
 
   /**
@@ -71,6 +72,12 @@ class At25040Handler {
   ProbeResult Probe() noexcept;
   /** @return Last RDSR byte captured by the driver. */
   uint8_t LastRdsr() const noexcept { return device_.LastRdsr(); }
+  /**
+   * @return Driver status of the last Probe(), Read() or Write(): tells a failed SPI transfer
+   *         (Status::BusError) from a write cycle that did not end (Status::Timeout), a busy chip,
+   *         a bad argument or no chip, which the bool results do not.
+   */
+  at25040::Status LastStatus() const noexcept { return last_status_; }
   /**
    * @brief Read `len` bytes starting at `addr`.
    * @param addr EEPROM address.
@@ -98,5 +105,6 @@ class At25040Handler {
   At25040SpiAdapter adapter_;
   at25040::Device<At25040SpiAdapter> device_;
   BaseGpio* wp_{nullptr};
+  at25040::Status last_status_{at25040::Status::Ok};
   mutable RtosMutex mutex_{};
 };

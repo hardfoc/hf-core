@@ -33,10 +33,11 @@ bool RetuneHostBaud(Driver& driver, const Setter& set_host_baud, std::uint32_t b
 // HalUartAlicatBasis2Comm
 //==============================================================================
 
-void HalUartAlicatBasis2Comm::write(const std::uint8_t* data,
+bool HalUartAlicatBasis2Comm::write(const std::uint8_t* data,
                                     std::size_t length) noexcept {
-    if (length == 0 || data == nullptr) return;
-    (void)uart_.Write(data, static_cast<hf_u16_t>(length));
+    if (length == 0) return true;
+    if (data == nullptr || length > 0xFFFFU) return false;
+    return uart_.Write(data, static_cast<hf_u16_t>(length)) == hf_uart_err_t::UART_SUCCESS;
 }
 
 std::size_t HalUartAlicatBasis2Comm::read(std::uint8_t* out, std::size_t max,

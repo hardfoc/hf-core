@@ -40,7 +40,7 @@ At25040Handler(BaseSpi& spi, BaseGpio* wp = nullptr);
 
 | Group | Public methods |
 | --- | --- |
-| All | `Probe()`, `LastRdsr()`, `Read()`, `Write()`, `ReleaseWriteProtect()`, `ParkWriteProtect()` |
+| All | `Probe()`, `LastRdsr()`, `LastStatus()`, `Read()`, `Write()`, `ReleaseWriteProtect()`, `ParkWriteProtect()` |
 <!-- /generated -->
 
 ## Se050Handler

@@ -100,8 +100,11 @@ public:
     /**
      * @brief Drive ENABLE, CMD, or nFAULT through BaseGpio.
      * @note ENABLE (expander-backed) gets a 2 ms settle; CMD is local GPIO.
+     * @return true when the pin was driven; false before Initialize(), for a
+     *         pin that is not wired, or when the BaseGpio call failed (the
+     *         driver then reports INITIALIZATION_ERROR or GPIO_ERROR).
      */
-    void GpioSet(max22200::CtrlPin pin, max22200::GpioSignal signal) noexcept;
+    bool GpioSet(max22200::CtrlPin pin, max22200::GpioSignal signal) noexcept;
 
     /**
      * @brief Read ENABLE, CMD, or nFAULT level.

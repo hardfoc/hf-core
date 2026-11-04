@@ -41,7 +41,8 @@ public:
     bool BeginData() noexcept;
     void EndTransaction() noexcept;
     bool WriteBytes(const uint8_t* data, std::size_t len) noexcept;
-    void GpioSet(isf15acp4::CtrlPin pin, isf15acp4::GpioSignal signal) noexcept;
+    /// @return true when the pin was driven (or is not wired), false when the BaseGpio call failed.
+    bool GpioSet(isf15acp4::CtrlPin pin, isf15acp4::GpioSignal signal) noexcept;
     bool GpioRead(isf15acp4::CtrlPin pin) noexcept;
     void DelayUs(uint32_t us) noexcept;
 
@@ -55,7 +56,7 @@ private:
     bool switch_active_low_;
     bool ready_{false};
 
-    static void setGpio(BaseGpio& gpio, bool electrical_high) noexcept;
+    static bool setGpio(BaseGpio& gpio, bool electrical_high) noexcept;
     static bool readGpio(BaseGpio& gpio, bool active_low) noexcept;
 };
 
