@@ -10,6 +10,7 @@
 #include <cstring>
 
 #include "core/hf-core-utils/hf-utils-rtos-wrap/include/OsUtility.h"
+#include "handlers/common/HandlerCommon.h"
 
 namespace {
 
@@ -76,10 +77,10 @@ void HalPf1550Comm::GpioSet(pf1550::CtrlPin pin, pf1550::GpioSignal signal) noex
 }
 
 void HalPf1550Comm::DelayUs(uint32_t us) noexcept {
-    if (us == 0U) {
-        return;
-    }
-    os_delay_msec(static_cast<uint16_t>((us + 999U) / 1000U));
+    // The driver requires this hook to wait at least `us` (profile delays, the 2 ms OTP read wait).
+    // handler_utils::DelayUs() rounds up to whole milliseconds and splits long waits into chunks;
+    // the cast to uint16_t here used to wrap any delay above 65.535 s.
+    handler_utils::DelayUs(us);
 }
 
 Pf1550Handler::Pf1550Handler(BaseI2c& i2c, BaseGpio* standby_gpio, BaseGpio* usb_vbus_en_gpio,

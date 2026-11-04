@@ -50,7 +50,8 @@ public:
     bool EnsureInitialized() noexcept;
     /// @brief Drive a `CtrlPin` strap GPIO Active/Inactive.
     void GpioSet(pf1550::CtrlPin pin, pf1550::GpioSignal signal) noexcept;
-    /// @brief Coarse `µs`-precision delay used between profile writes.
+    /// @brief Wait at least `us` microseconds (required by the driver: profile delays, the 2 ms
+    ///        OTP read wait). Rounded up to whole milliseconds above 1 ms.
     void DelayUs(uint32_t us) noexcept;
 
 private:

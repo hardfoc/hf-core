@@ -10,6 +10,7 @@ HAL handler for NXP PF1550 PMIC (I2C + optional strap GPIOs).
 - Header: [`handlers/pf1550/Pf1550Handler.h`](../../handlers/pf1550/Pf1550Handler.h)
 - Switch: `HF_CORE_ENABLE_PF1550` (default OFF)
 - Driver: [hf-pf1550-driver](https://github.com/hardfoc/hf-pf1550-driver)
+- Host test: [`tests/host/test_pf1550.cpp`](../../tests/host/test_pf1550.cpp)
 
 ```cpp
 Pf1550Handler(
