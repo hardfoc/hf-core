@@ -52,3 +52,9 @@ extern "C" void hf_os_none_delay_us(uint64_t us) {
     g_delay_count.fetch_add(1);
     g_now_us.fetch_add(us);
 }
+
+// Hook declared by hf-internal-interface-wrap (utils/HfTime.h) when HF_TIME_NONE_EXTERNAL_CLOCK is
+// defined on HF_TARGET_MCU_NONE: hf_time::MonotonicUs() reads the same fake clock.
+extern "C" uint64_t hf_time_none_clock_us(void) {
+    return hf_os_none_clock_us();
+}

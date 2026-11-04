@@ -30,7 +30,7 @@ Checks: >
   -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling
 
 WarningsAsErrors: ''
-HeaderFilterRegex: '.*/(handlers|tests/host)/.*'
+HeaderFilterRegex: '.*/(handlers|tests/host|templates/handler/example)/.*'
 FormatStyle: none
 
 CheckOptions:
