@@ -1316,7 +1316,7 @@
 <p>What every handler does the same way: construction, initialisation, locking, driver access, errors and
 diagnostics. hf-core is moving from two handler families to the one shape of the HardFOC
 <a href="https://github.com/hardfoc/.github/blob/main/standards/handler.md">handler contract</a>. The foundation for it is in
-<a href="https://github.com/hardfoc/hf-core/blob/9a2def9589cffc5350d49bd75befc22586ea08a0/handlers/common/HandlerBase.h"><code>handlers/common/</code></a>; the handlers move over one at a time, and the
+<a href="https://github.com/hardfoc/hf-core/blob/6d61d1fa1e6525d73676270ca064e3084e53afef/handlers/common/HandlerBase.h"><code>handlers/common/</code></a>; the handlers move over one at a time, and the
 <a href="#migration-status">migration status</a> says which already have.</p>
 <h2 id="the-standard-handler">The standard handler<a class="headerlink" href="#the-standard-handler" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>stateDiagram-v2
@@ -1435,34 +1435,34 @@ so a new adapter is a few lines:</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/9a2def9589cffc5350d49bd75befc22586ea08a0/handlers/common/HalSpiCommBase.h"><code>HalSpiCommBase</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/6d61d1fa1e6525d73676270ca064e3084e53afef/handlers/common/HalSpiCommBase.h"><code>HalSpiCommBase</code></a></td>
 <td><code>BaseSpi</code></td>
 <td><code>Transfer(tx, rx, len)</code>; <code>Write</code>, <code>Read</code> for older drivers</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/9a2def9589cffc5350d49bd75befc22586ea08a0/handlers/common/HalI2cCommBase.h"><code>HalI2cCommBase</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/6d61d1fa1e6525d73676270ca064e3084e53afef/handlers/common/HalI2cCommBase.h"><code>HalI2cCommBase</code></a></td>
 <td><code>BaseI2c</code></td>
 <td><code>Write(addr, ...)</code>, <code>WriteRead(addr, ...)</code>, <code>Read(addr, ...)</code>; <code>WriteRegs</code>, <code>ReadRegs</code> for older drivers</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/9a2def9589cffc5350d49bd75befc22586ea08a0/handlers/common/HalUartCommBase.h"><code>HalUartCommBase</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/6d61d1fa1e6525d73676270ca064e3084e53afef/handlers/common/HalUartCommBase.h"><code>HalUartCommBase</code></a></td>
 <td><code>BaseUart</code></td>
 <td><code>Write</code>, <code>Read(data, len, timeout_ms)</code>, <code>FlushInput</code></td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/9a2def9589cffc5350d49bd75befc22586ea08a0/handlers/common/HalAdcCommBase.h"><code>HalAdcCommBase</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/6d61d1fa1e6525d73676270ca064e3084e53afef/handlers/common/HalAdcCommBase.h"><code>HalAdcCommBase</code></a></td>
 <td><code>BaseAdc</code></td>
 <td><code>ReadVoltageMv</code>; <code>ReadChannelV</code>, <code>ReadChannelCount</code>, <code>IsChannelAvailable</code> for older drivers</td>
 </tr>
 <tr>
-<td><a href="https://github.com/hardfoc/hf-core/blob/9a2def9589cffc5350d49bd75befc22586ea08a0/handlers/common/HalGpioCommBase.h"><code>HalGpioCommBase</code></a></td>
+<td><a href="https://github.com/hardfoc/hf-core/blob/6d61d1fa1e6525d73676270ca064e3084e53afef/handlers/common/HalGpioCommBase.h"><code>HalGpioCommBase</code></a></td>
 <td><code>BaseGpio</code> pins</td>
 <td><code>GpioSet(CtrlPin, GpioSignal)</code>, <code>GpioRead</code></td>
 </tr>
 </tbody>
 </table>
 <p>Every bus base also has <code>EnsureInitialized()</code> and the delay hooks <code>DelayUs()</code> and <code>DelayMs()</code>, which call
-<a href="https://github.com/hardfoc/hf-core/blob/9a2def9589cffc5350d49bd75befc22586ea08a0/handlers/common/Delay.h"><code>hf::DelayUs()</code> and <code>hf::DelayMs()</code></a>: below 1 ms a busy-wait on
+<a href="https://github.com/hardfoc/hf-core/blob/6d61d1fa1e6525d73676270ca064e3084e53afef/handlers/common/Delay.h"><code>hf::DelayUs()</code> and <code>hf::DelayMs()</code></a>: below 1 ms a busy-wait on
 <code>hf_time::MonotonicUs()</code>, from 1 ms rtos-wrap's <code>os_delay_msec()</code>, rounded up. The second template argument is
 the driver's port base: the adapter base derives from it, so its hooks also hide the forwarding stubs some
 current ports declare. <code>HalGpioCommBase</code> chains under a bus base for a chip with control pins:
@@ -1523,8 +1523,8 @@ calls another handler while it holds its locks. <code>GetDiagnostics()</code> ta
 </table>
 <p>The header counts <code>EnsureInitialized()</code>, <code>Deinitialize()</code>, every typed call and every <code>VisitDriver()</code>.</p>
 <h2 id="adding-a-handler">Adding a handler<a class="headerlink" href="#adding-a-handler" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/hardfoc/hf-core/blob/9a2def9589cffc5350d49bd75befc22586ea08a0/tools/new_handler.py"><code>tools/new_handler.py</code></a> writes a standard handler from
-<a href="https://github.com/hardfoc/hf-core/blob/9a2def9589cffc5350d49bd75befc22586ea08a0/templates/handler/Handler.h.in"><code>templates/handler/</code></a> and registers it:</p>
+<p><a href="https://github.com/hardfoc/hf-core/blob/6d61d1fa1e6525d73676270ca064e3084e53afef/tools/new_handler.py"><code>tools/new_handler.py</code></a> writes a standard handler from
+<a href="https://github.com/hardfoc/hf-core/blob/6d61d1fa1e6525d73676270ca064e3084e53afef/templates/handler/Handler.h.in"><code>templates/handler/</code></a> and registers it:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python3<span class="w"> </span>tools/new_handler.py<span class="w"> </span>--chip<span class="w"> </span>Foo42<span class="w"> </span>--bus<span class="w"> </span>i2c<span class="w"> </span>--driver-repo<span class="w"> </span>hf-foo42-driver<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span>--driver-header<span class="w"> </span>foo42.hpp<span class="w"> </span>--family<span class="w"> </span>environment
 </span></code></pre></div>
@@ -1558,7 +1558,7 @@ calls another handler while it holds its locks. <code>GetDiagnostics()</code> ta
 <code>Initialize()</code>); a driver that does not follow it yet takes <code>--driver-class</code>, <code>--port-base</code>, <code>--error-enum</code>,
 <code>--result-type</code> and <code>--init-method</code>. Then add the typed API and the config, review the generated error mapping,
 and run the checks in <a href="../testing/#before-a-pull-request">Testing and CI</a>.</p>
-<p><a href="https://github.com/hardfoc/hf-core/blob/9a2def9589cffc5350d49bd75befc22586ea08a0/templates/handler/example/CMakeLists.txt"><code>templates/handler/example/bmp581/</code></a> is the generator's output for
+<p><a href="https://github.com/hardfoc/hf-core/blob/6d61d1fa1e6525d73676270ca064e3084e53afef/templates/handler/example/CMakeLists.txt"><code>templates/handler/example/bmp581/</code></a> is the generator's output for
 hf-bmp581-driver, built and tested on the host. It is a reference, not a handler: it is outside <code>hf_core</code>, and
 <code>handler_template_fresh</code> fails when it drifts from the template.</p>
 <h2 id="migration-status">Migration status<a class="headerlink" href="#migration-status" title="Permanent link">&para;</a></h2>
