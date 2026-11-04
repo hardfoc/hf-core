@@ -1,0 +1,3 @@
+if(HF_CORE_ENABLE_@CHIP@)
+    string(APPEND _hf_enabled_features " @CHIP@")
+endif()

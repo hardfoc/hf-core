@@ -1,0 +1,9 @@
+# ── @Chip@ (@Bus@, standard handler — PORTABLE) ──────────────────────────
+if(HF_CORE_ENABLE_@CHIP@)
+    include("${HF_CORE_DRIVER_EXT}/@driver_repo@/cmake/@driver_settings@")
+    list(APPEND HF_CORE_HANDLER_SOURCES
+        "${HF_CORE_HANDLER_ROOT}/@chip@/@Chip@Handler.cpp")
+    list(APPEND HF_CORE_EXT_DRIVER_INCLUDE_DIRS ${HF_@DRIVER_VAR@_PUBLIC_INCLUDE_DIRS})
+    list(APPEND HF_CORE_EXT_DRIVER_SOURCES      ${HF_@DRIVER_VAR@_SOURCE_FILES})
+endif()
+
